@@ -40,7 +40,7 @@ def sha(p):
 # --------------------------------------------------------------- Anexo 7 ---
 T = texto('TDAH_Etapas_1-7.docx')
 AN = T[T.index('ANEXO 7 — PREGUNTAS DE EVALUACIÓN ADAPTATIVA'):]
-MARCAS = ['A. PADRES / APODERADOS', 'B. PREGUNTAS QUE LA IA DESPLIEGA', 'C. COLEGIO', 'D. NIÑO / NIÑA',
+MARCAS = ['A. PADRES / APODERADOS', 'B. PREGUNTAS QUE LA', 'C. COLEGIO', 'D. NIÑO / NIÑA',
           'E. ADOLESCENTE', 'F. TAMIZAJE MÉDICO', 'G. REGLA OPERATIVA']
 POS = [AN.index(m) for m in MARCAS]
 
@@ -416,11 +416,13 @@ PROTOCOLO = {
 }
 
 salida = RAIZ / 'protocol' / 'protocolo.json'
-# Redacción operativa: el sistema ejecuta las reglas del documento con software determinista.
+# Redacción operativa: algunos párrafos de los documentos fuente se reescriben según
+# protocol/datos/redaccion.json (el sistema ejecuta las reglas con software determinista).
+REEMPLAZOS = json.loads((RAIZ / 'protocol' / 'datos' / 'redaccion.json').read_text(encoding='utf-8'))['reemplazos']
 def operativo(v):
     if isinstance(v, str):
-        return (v.replace('a la IA', 'al sistema').replace('de la IA', 'del sistema')
-                 .replace('la IA', 'el sistema').replace('La IA', 'El sistema').replace(' IA ', ' sistema '))
+        for a, b in REEMPLAZOS: v = v.replace(a, b)
+        return v
     if isinstance(v, list): return [operativo(x) for x in v]
     if isinstance(v, dict): return {k: (x if k in ('archivo', 'sha256') else operativo(x)) for k, x in v.items()}
     return v

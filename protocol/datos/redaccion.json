@@ -1,0 +1,25 @@
+{
+ "descripcion": "Reemplazos de redacción aplicados al contenido extraído de los documentos fuente.",
+ "reemplazos": [
+  [
+   "a la IA",
+   "al sistema"
+  ],
+  [
+   "de la IA",
+   "del sistema"
+  ],
+  [
+   "la IA",
+   "el sistema"
+  ],
+  [
+   "La IA",
+   "El sistema"
+  ],
+  [
+   " IA ",
+   " sistema "
+  ]
+ ]
+}
