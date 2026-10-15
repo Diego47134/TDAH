@@ -65,9 +65,9 @@ CREATE TABLE IF NOT EXISTS hechos (
   caso_id TEXT NOT NULL REFERENCES casos(id),
   dimension_id TEXT NOT NULL,
   slot TEXT NOT NULL,
-  estado TEXT NOT NULL,            -- valor | no_sabe | no_recuerda | ambiguo
+  estado TEXT NOT NULL,            -- valor | no_sabe | no_recuerda | ambiguo | no_informado
   valor TEXT,
-  fuente TEXT NOT NULL,            -- apoderado | informe_escolar | instrumento | observacion | profesional | otra
+  fuente TEXT NOT NULL,            -- apoderado | informe_escolar | profesor | nino | adolescente | instrumento | profesional
   origen TEXT NOT NULL,            -- respuesta | mencion_espontanea | extraccion | registro_manual
   evidencia TEXT,
   respuesta_id INTEGER,
