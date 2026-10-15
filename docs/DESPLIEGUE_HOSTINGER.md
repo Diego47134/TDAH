@@ -95,7 +95,7 @@ Variables opcionales: `DATA_DIR` (carpeta de datos), `BACKUP_EVERY_HOURS`, `BACK
 ## Alternativa: VPS de Hostinger con Docker
 
 ```bash
-git clone https://github.com/Diego47134/TDAH.git && cd tdah
+git clone https://github.com/Diego47134/TDAH.git && cd TDAH
 docker build -t tdah .
 docker run -d --restart unless-stopped -p 3000:3000 -v tdah-datos:/data \
   -e APP_ACCESS_TOKEN='tu-token' tdah

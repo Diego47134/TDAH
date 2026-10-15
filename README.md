@@ -10,7 +10,7 @@ Requisitos: **Node.js 22.13 o superior** (incluye SQLite integrado). No hay depe
 
 ```bash
 git clone https://github.com/Diego47134/TDAH.git
-cd tdah
+cd TDAH
 npm run dev                 # desarrollo local: http://127.0.0.1:3000 (sin token)
 ```
 
