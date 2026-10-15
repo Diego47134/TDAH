@@ -1,6 +1,6 @@
 # Evidencia E2E — produccion
 
-Generado: 2026-10-15T18:53:21.493Z
+Generado: 2026-10-15T23:38:01.374Z
 
 ## P1 · Configuración inicial de la clave — **APROBADA**
 
@@ -45,7 +45,7 @@ Requisito: Simula Hostinger: HOME propio, PORT como socket, token configurado, S
 ### Paso 1
 
 - **entrada:** node server.js con HOME temporal y PORT=socket
-- **accion_resultante:** GET /api/casos → 200; BD: ~/tdah-datos/tdah.sqlite; respaldos: tdah-2026-10-15T18-53-20.sqlite
+- **accion_resultante:** GET /api/casos → 200; BD: ~/tdah-datos/tdah.sqlite; respaldos: tdah-2026-10-15T23-38-00.sqlite
 - **esperado:** 200, datos y respaldo fuera de la app
 - **ok:** true
 

@@ -29,14 +29,14 @@ export function completarDatosResponsable(html, env = process.env) {
 const MIME = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8',
   '.webmanifest': 'application/manifest+json', '.json': 'application/json', '.svg': 'image/svg+xml', '.png': 'image/png', '.ico': 'image/x-icon' };
 
-export function crearApp({ dbPath, protocoloPath, tokenAcceso = process.env.APP_ACCESS_TOKEN,
+export function crearApp({ dbPath, protocoloPath, buscador, tokenAcceso = process.env.APP_ACCESS_TOKEN,
   produccion = process.env.NODE_ENV === 'production', advertencias = [] } = {}) {
   const db = abrirDB(dbPath);
   // En producción (dominio público) la API exige token o clave: sin ellos no expone datos.
   const acceso = crearControlAcceso({ db, tokenEntorno: tokenAcceso || '', produccion });
   if (produccion && tokenAcceso && tokenAcceso.length < 16) advertencias.push('APP_ACCESS_TOKEN es corto; use al menos 16 caracteres aleatorios.');
   const protocolo = cargarProtocolo(protocoloPath);
-  const svc = crearServicio({ db, protocolo });
+  const svc = crearServicio({ db, protocolo, ...(buscador ? { buscador } : {}) });
 
   const rutas = [];
   const on = (metodo, patron, fn) => {
@@ -67,6 +67,10 @@ export function crearApp({ dbPath, protocoloPath, tokenAcceso = process.env.APP_
   on('GET', '/api/casos/:id/colegio', (p) => svc.colegioPendiente(p.id));
   on('POST', '/api/casos/:id/colegio', (p, b) => svc.responderColegio(p.id, b));
   on('POST', '/api/casos/:id/nna', (p, b) => svc.responderNNA(p.id, b));
+  on('GET', '/api/bibliografia/sugerencias', () => svc.bibliografiaSugerencias());
+  on('GET', '/api/bibliografia', (_p, _b, q) => svc.buscarBibliografia({ consulta: q.get('q'), fuente: q.get('fuente') || 'europepmc', cantidad: q.get('n') }));
+  on('POST', '/api/casos/:id/referencias', (p, b) => svc.agregarReferencia(p.id, b));
+  on('DELETE', '/api/casos/:id/referencias/:rid', (p, b) => svc.quitarReferencia(p.id, p.rid, b));
   on('GET', '/api/casos/:id/auditoria', (p) => svc.auditoria(p.id));
   on('GET', '/api/casos/:id/exportar', (p, _b, q) => svc.exportar(p.id, { solicitante: q?.get?.('solicitante') }));
 
@@ -100,7 +104,7 @@ export function crearApp({ dbPath, protocoloPath, tokenAcceso = process.env.APP_
       const params = Object.fromEntries(r.claves.map((k, i) => [k, decodeURIComponent(m[i + 1])]));
       try {
         let body = {};
-        if (['POST', 'PUT'].includes(req.method)) {
+        if (['POST', 'PUT', 'DELETE'].includes(req.method)) {
           const chunks = []; let n = 0;
           for await (const c of req) { n += c.length; if (n > 2_000_000) throw new ErrorServicio(413, 'Cuerpo demasiado grande.'); chunks.push(c); }
           const raw = Buffer.concat(chunks).toString('utf8');

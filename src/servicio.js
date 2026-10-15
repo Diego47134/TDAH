@@ -11,6 +11,7 @@ import { interpretarRespuesta, detectarMenciones, ErrorEntrada } from './interpr
 import { extraerPorReglas, validarExtraccionManual } from './informeEscolar.js';
 import { evaluarRequisitos, generarInforme, markdownAHtml } from './informe.js';
 import { integrar } from './integracion.js';
+import { crearBuscador, ErrorBusqueda, SUGERIDAS, FUENTES, validarConsulta } from './bibliografia.js';
 import { validarConsentimiento, validarAsentimiento, tieneAsentimiento, ErrorConsentimiento, VERSION_POLITICA } from './privacidad.js';
 
 export class ErrorServicio extends Error {
@@ -23,7 +24,7 @@ const vistaPregunta = (q, extra = {}) => ({
   objetivo: q.objetivo, ...extra,
 });
 
-export function crearServicio({ db, protocolo }) {
+export function crearServicio({ db, protocolo, buscador = crearBuscador() }) {
   const P = protocolo;
   const ctxDe = (id, fuente = 'apoderado') => {
     const c = X.contexto(db, P, id);
@@ -150,7 +151,7 @@ export function crearServicio({ db, protocolo }) {
         integracion: I && { puerta: I.puerta, resultado: I.resultado, requisitos: Object.fromEntries(Object.entries(I.requisitos).map(([k, v]) => [k, { nombre: v.nombre, estado: v.estado }])), areas: I.areas.map(({ id, nombre, estado }) => ({ id, nombre, estado })) },
         hechos: ctx.hechos, contradicciones: ctx.contradicciones, informes_escolares: ctx.informesEscolares,
         evaluaciones: ctx.evaluaciones, instrumentos: P.instrumentos, requisitos: req, informes,
-        consentimientos: ctx.consentimientos, version_politica: VERSION_POLITICA,
+        consentimientos: ctx.consentimientos, version_politica: VERSION_POLITICA, referencias: ctx.referencias,
         colegio: ini ? api.colegioPendiente(casoId, ctx) : null,
         nna: ini ? api.nnaEstado(casoId, ctx) : null,
         flujo: flujo(ctx, req, informes),
@@ -431,6 +432,53 @@ export function crearServicio({ db, protocolo }) {
         informes: db.prepare('SELECT * FROM informes WHERE caso_id = ? ORDER BY id').all(casoId),
         ...api.auditoria(casoId),
       };
+    },
+
+    // ------------------------ búsqueda bibliográfica en internet (Europe PMC / PubMed) ---
+    bibliografiaSugerencias: () => ({ sugeridas: SUGERIDAS, fuentes: Object.entries(FUENTES).map(([id, f]) => ({ id, nombre: f.nombre })) }),
+
+    async buscarBibliografia({ consulta, fuente = 'europepmc', cantidad = 10 } = {}) {
+      let q;
+      try { q = validarConsulta(consulta); } catch (e) { throw new ErrorServicio(e.status || 400, e.message); }
+      const desde = new Date(Date.now() - 7 * 864e5).toISOString();
+      const cache = db.prepare('SELECT * FROM busquedas_bibliograficas WHERE fuente = ? AND lower(consulta) = lower(?) AND creado >= ? ORDER BY id DESC LIMIT 1').get(fuente, q, desde);
+      const n = Math.min(Math.max(Number(cantidad) || 10, 1), 25);
+      if (cache) {
+        const res = JSON.parse(cache.resultados);
+        if (res.length >= n || res.length === cache.total) return { consulta: q, fuente, fuente_nombre: FUENTES[fuente]?.nombre, total: cache.total, resultados: res.slice(0, n), en_cache: true, fecha: cache.creado };
+      }
+      let r;
+      try { r = await buscador.buscar({ consulta: q, fuente, cantidad: n }); } catch (e) {
+        if (e instanceof ErrorBusqueda) { X.registrarError(db, null, 'bibliografia', e.message, { fuente }); throw new ErrorServicio(e.status, e.message); }
+        throw e;
+      }
+      const fecha = ahora();
+      db.prepare('INSERT INTO busquedas_bibliograficas (consulta, fuente, total, resultados, creado) VALUES (?, ?, ?, ?, ?)').run(q, fuente, r.total, JSON.stringify(r.resultados), fecha);
+      return { ...r, en_cache: false, fecha };
+    },
+
+    agregarReferencia(casoId, { referencia_id, fuente, nota, profesional } = {}) {
+      const ctx = ctxDe(casoId);
+      if (!String(profesional ?? '').trim()) throw new ErrorServicio(400, 'Indique el profesional que agrega la referencia.');
+      // Solo referencias obtenidas por una búsqueda real (no se aceptan citas escritas a mano).
+      const filas = db.prepare('SELECT resultados FROM busquedas_bibliograficas WHERE fuente = ? ORDER BY id DESC LIMIT 200').all(fuente || 'europepmc');
+      let ref = null;
+      for (const f of filas) { ref = JSON.parse(f.resultados).find((x) => x.id === referencia_id); if (ref) break; }
+      if (!ref) throw new ErrorServicio(404, 'La referencia no proviene de una búsqueda registrada; búsquela primero.');
+      return transaccion(db, () => {
+        const r = db.prepare('INSERT OR IGNORE INTO referencias_caso (caso_id, referencia, nota, profesional, creado) VALUES (?, ?, ?, ?, ?)')
+          .run(casoId, JSON.stringify(ref), String(nota ?? '').trim().slice(0, 500) || null, String(profesional).trim().slice(0, 120), ahora());
+        if (r.changes) X.registrarDecision(db, casoId, ctx.caso.turno, 'referencia_agregada', { referencia: ref.id, titulo: ref.titulo, profesional });
+        return api.vista(casoId);
+      });
+    },
+
+    quitarReferencia(casoId, refId, { profesional } = {}) {
+      const ctx = ctxDe(casoId);
+      const r = db.prepare('DELETE FROM referencias_caso WHERE id = ? AND caso_id = ?').run(Number(refId), casoId);
+      if (!r.changes) throw new ErrorServicio(404, 'Referencia no encontrada.');
+      X.registrarDecision(db, casoId, ctx.caso.turno, 'referencia_quitada', { id: Number(refId), profesional: profesional || null });
+      return api.vista(casoId);
     },
 
     auditoria(casoId) {

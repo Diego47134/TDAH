@@ -17,6 +17,7 @@ Revisión al 15-10-2026. Este documento resume cómo la plataforma aborda la nor
 - **Consentimiento informado del representante legal** (`POST /api/casos` con `consentimiento`): otorgante, relación (madre, padre, tutor legal, otro representante legal), medio (escrito firmado, electrónico, verbal registrado), profesional y versión de la política. Sin él, el caso no se crea (prueba L1).
 - **Asentimiento del niño, niña o adolescente** (`POST /api/casos/:id/nna` con `asentimiento`) antes de su entrevista (prueba A7).
 - **Sin servicios externos de procesamiento**: todas las respuestas se interpretan en el servidor de la aplicación; los datos no se envían a terceros.
+- **Búsqueda bibliográfica en internet** (Europe PMC y PubMed): solo salen los términos que escribe el profesional; se rechazan búsquedas con RUT, correo o teléfono (prueba B2).
 - **Derecho de acceso y portabilidad**: exportación íntegra en JSON, registrada en la auditoría (prueba L2).
 - **Avisos legales**: `/privacidad.html` y `/terminos.html`, enlazados en la interfaz y en el formulario de consentimiento; sección «Consentimiento, confidencialidad y alcance» en todo informe (prueba L3).
 - **Datos del responsable** configurables por variables de entorno (`RESPONSABLE_NOMBRE`, `RESPONSABLE_RUT`, `RESPONSABLE_DOMICILIO`, `RESPONSABLE_CORREO`); si faltan, las páginas muestran «[completar: …]» resaltado.
@@ -28,6 +29,7 @@ Revisión al 15-10-2026. Este documento resume cómo la plataforma aborda la nor
 | Prestador / profesional que usa la plataforma | Responsable del tratamiento y de la ficha clínica | Consentimientos, acceso del equipo, reserva, conservación, atención de derechos, notificación de vulneraciones, verificación regulatoria ante el ISP, decisiones clínicas |
 | Profesional que valida el informe | Responsable clínico | Diagnóstico, interpretación e indicaciones (la plataforma no diagnostica) |
 | Proveedor tecnológico | Encargado del tratamiento | Operar el software conforme a las instrucciones del responsable, sin usar los datos para fines propios |
+| Europe PMC (EMBL-EBI) y PubMed (NCBI) | Fuentes públicas consultadas | Reciben solo términos de búsqueda, sin datos personales |
 | Alojamiento (Hostinger) | Encargado | Prestación del servicio; puede implicar transferencia internacional |
 
 ## Pendientes recomendados antes del uso con pacientes reales

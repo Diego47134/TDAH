@@ -89,6 +89,7 @@ async function enrutar() {
       b.title = protocolo.aviso || '';
     }
     if (partes[0] === 'caso' && partes[1]) await vistaCaso(partes[1], partes[2] || 'entrevista');
+    else if (partes[0] === 'bibliografia') await vistaBibliografia(partes[1] || null);
     else await vistaCasos();
   } catch (e) {
     if (e.status !== 401) $app.innerHTML = `<div class="tarjeta"><h2>No se pudo cargar</h2><p>${esc(e.message)}</p><button class="boton sec" id="breintentar">Reintentar</button></div>`;
@@ -427,7 +428,10 @@ async function informe(cont, v, recargar) {
         ${ultimoFinal && ultimoFinal.estado !== 'validado' ? '<button class="boton sec" id="bvalidar">Validar informe</button>' : ''}
         <button class="boton sec" id="bimprimir">Imprimir / PDF</button>
       </div></div>
+    <div class="tarjeta no-imprimir"><div class="fila"><h2 style="margin:0">Bibliografía del caso (${(v.referencias || []).length})</h2><span class="espacio"></span><a class="boton sec" href="#/bibliografia/${c.id}">Buscar evidencia en internet</a></div>
+      ${(v.referencias || []).length ? `<ul class="refs">${v.referencias.map((r) => `<li><a href="${esc(r.referencia.url)}" target="_blank" rel="noopener noreferrer">${esc(r.referencia.titulo)}</a><div class="tenue peq">${esc([r.referencia.autores, r.referencia.revista, r.referencia.anio].filter(Boolean).join(' · '))}${r.nota ? ` — ${esc(r.nota)}` : ''}</div><button class="boton sec peq bquitar" data-id="${r.id}">Quitar</button></li>`).join('')}</ul>` : '<p class="tenue peq">Aún no hay referencias. Las que agregue aparecerán al final del informe.</p>'}</div>
     <article class="tarjeta informe">${inf.html}</article>`;
+  cont.querySelectorAll('.bquitar').forEach((b) => { b.onclick = async () => { try { await api('DELETE', `/api/casos/${c.id}/referencias/${b.dataset.id}`, {}); recargar(); } catch (e) { aviso(e.message, true); } }; });
   document.getElementById('bimprimir').onclick = () => window.print();
   document.getElementById('bfinal').onclick = async () => { try { await api('POST', `/api/casos/${c.id}/informes`); aviso('Informe final generado.'); recargar(); } catch (e) { aviso(e.message, true); } };
   const bv = document.getElementById('bvalidar');
@@ -436,6 +440,52 @@ async function informe(cont, v, recargar) {
     if (!profesional) return;
     try { await api('POST', `/api/casos/${c.id}/informes/${ultimoFinal.id}/validacion`, { profesional }); aviso('Informe validado.'); recargar(); } catch (e) { aviso(e.message, true); }
   };
+}
+
+// ------------------------------------------- búsqueda bibliográfica ---
+let ultimaBusqueda = null;
+async function vistaBibliografia(casoId) {
+  const [sug, casos] = await Promise.all([api('GET', '/api/bibliografia/sugerencias'), api('GET', '/api/casos')]);
+  const caso = casoId ? casos.find((c) => c.id === casoId) : null;
+  $app.innerHTML = `
+    <div class="fila">${caso ? `<a href="#/caso/${caso.id}/informe">← ${esc(caso.etiqueta)}</a>` : '<a href="#/">← Expedientes</a>'}</div>
+    <h1>Buscar evidencia en internet</h1>
+    <p class="tenue">Literatura científica sobre criterios diagnósticos DSM-5 y entrevistas para TDAH, desde Europe PMC y PubMed. <strong>Solo se envían los términos que escriba: nunca datos del paciente.</strong></p>
+    <form class="tarjeta" id="fbib">
+      <div class="fila"><input id="bq" type="search" maxlength="200" placeholder="p. ej. ADHD DSM-5 diagnostic interview children" style="flex:1;min-width:220px" required>
+        <select id="bf">${sug.fuentes.map((f) => `<option value="${f.id}">${esc(f.nombre)}</option>`).join('')}</select>
+        <button class="boton">Buscar</button></div>
+      <div class="chips">${sug.sugeridas.map((s, i) => `<button type="button" class="chip" data-i="${i}">${esc(s.etiqueta)}</button>`).join('')}</div>
+      ${caso ? `<div class="rejilla-bib"><div><label for="bprof">Profesional que agrega referencias</label><input id="bprof" type="text" maxlength="120"></div><div><label for="bnota">Nota (opcional)</label><input id="bnota" type="text" maxlength="500" placeholder="Para qué respalda el informe"></div></div>` : '<p class="tenue peq">Para agregar referencias al informe de un caso, abra esta búsqueda desde la pestaña «Informe» del caso.</p>'}
+    </form>
+    <div id="bres"></div>`;
+  const pintar = (r) => {
+    const cont = document.getElementById('bres');
+    if (!r) { cont.innerHTML = ''; return; }
+    cont.innerHTML = `<p class="tenue peq">${r.total.toLocaleString('es-CL')} resultados en ${esc(r.fuente_nombre)} para «${esc(r.consulta)}»${r.en_cache ? ' · desde caché' : ''}. Se muestran los más relevantes.</p>
+      ${r.resultados.map((x) => `<article class="tarjeta resultado">
+        <a class="titulo-ref" href="${esc(x.url)}" target="_blank" rel="noopener noreferrer">${esc(x.titulo)}</a>
+        <div class="tenue peq">${esc([x.autores, x.revista, x.anio].filter(Boolean).join(' · '))}${x.acceso_abierto ? ' · <span class="estado ok">acceso abierto</span>' : ''}${x.pmid ? ` · PMID ${esc(x.pmid)}` : ''}</div>
+        ${x.resumen ? `<details><summary class="peq">Resumen</summary><p class="peq">${esc(x.resumen)}</p></details>` : ''}
+        ${caso ? `<button class="boton sec peq bagregar" data-id="${esc(x.id)}">Agregar al informe del caso</button>` : ''}
+      </article>`).join('') || '<p class="tenue">Sin resultados.</p>'}`;
+    cont.querySelectorAll('.bagregar').forEach((b) => { b.onclick = async () => {
+      try {
+        await api('POST', `/api/casos/${caso.id}/referencias`, { referencia_id: b.dataset.id, fuente: r.fuente, profesional: document.getElementById('bprof').value, nota: document.getElementById('bnota').value });
+        b.textContent = 'Agregada ✓'; b.disabled = true; aviso('Referencia agregada al informe del caso.');
+      } catch (e) { aviso(e.message, true); }
+    }; });
+  };
+  const buscar = async (q) => {
+    const cont = document.getElementById('bres'); cont.innerHTML = '<p class="cargando">Buscando…</p>';
+    try {
+      ultimaBusqueda = await api('GET', `/api/bibliografia?q=${encodeURIComponent(q)}&fuente=${document.getElementById('bf').value}&n=15`);
+      pintar(ultimaBusqueda);
+    } catch (e) { cont.innerHTML = `<div class="tarjeta"><p>${esc(e.message)}</p></div>`; }
+  };
+  document.getElementById('fbib').onsubmit = (e) => { e.preventDefault(); buscar(document.getElementById('bq').value); };
+  document.querySelectorAll('.chip').forEach((b) => { b.onclick = () => { const q = sug.sugeridas[Number(b.dataset.i)].consulta; document.getElementById('bq').value = q; buscar(q); }; });
+  if (ultimaBusqueda) { document.getElementById('bq').value = ultimaBusqueda.consulta; pintar(ultimaBusqueda); }
 }
 
 // ------------------------------------------------------- auditoría ---

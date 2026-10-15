@@ -149,6 +149,28 @@ CREATE TABLE IF NOT EXISTS consentimientos (
   creado TEXT NOT NULL
 );
 
+-- Búsquedas bibliográficas en internet (solo términos de búsqueda; nunca datos del paciente)
+CREATE TABLE IF NOT EXISTS busquedas_bibliograficas (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  consulta TEXT NOT NULL,
+  fuente TEXT NOT NULL,
+  total INTEGER,
+  resultados TEXT NOT NULL,
+  creado TEXT NOT NULL
+);
+CREATE INDEX IF NOT EXISTS ix_busquedas ON busquedas_bibliograficas(fuente, consulta, creado);
+
+-- Referencias que el profesional asocia a un caso (aparecen en el informe)
+CREATE TABLE IF NOT EXISTS referencias_caso (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  caso_id TEXT NOT NULL REFERENCES casos(id),
+  referencia TEXT NOT NULL,
+  nota TEXT,
+  profesional TEXT NOT NULL,
+  creado TEXT NOT NULL,
+  UNIQUE(caso_id, referencia)
+);
+
 CREATE TABLE IF NOT EXISTS informes (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   caso_id TEXT NOT NULL REFERENCES casos(id),

@@ -152,7 +152,13 @@ export function contexto(db, protocolo, casoId) {
     informesEscolares: informesEscolares(db, casoId),
     evaluaciones: evaluaciones(db, casoId),
     consentimientos: consentimientos(db, casoId),
+    referencias: referenciasCaso(db, casoId),
   };
+}
+
+export function referenciasCaso(db, casoId) {
+  return db.prepare('SELECT * FROM referencias_caso WHERE caso_id = ? ORDER BY id').all(casoId)
+    .map((r) => ({ ...r, referencia: JSON.parse(r.referencia) }));
 }
 
 export function consentimientos(db, casoId) {

@@ -57,7 +57,7 @@ main { max-width: 1180px; margin: 0 auto; padding: 20px 16px 80px; outline: none
 .boton.peligro { background: var(--ladrillo); border-color: var(--ladrillo); }
 @media (prefers-color-scheme: dark) { .boton { color: #0f1717; } .boton.sec { color: var(--acento); } }
 
-input[type=text], input[type=date], input[type=password], textarea, select {
+input[type=text], input[type=search], input[type=date], input[type=password], textarea, select {
   width: 100%; padding: 9px 11px; border: 1px solid var(--linea); border-radius: 8px; background: var(--papel);
 }
 textarea { min-height: 90px; resize: vertical; }
@@ -175,3 +175,22 @@ mark.pendiente { background: var(--ambar-suave); color: var(--ambar); padding: 0
 .consentimiento label.chk input { margin-top: 3px; }
 .pie-legal { text-align: center; font-size: .8rem; color: var(--tenue); padding: 18px 16px 28px; }
 .pie-legal a { color: inherit; }
+
+/* Búsqueda bibliográfica */
+.nav-principal { display: flex; gap: 14px; margin-left: 18px; font-size: .9rem; }
+.nav-principal a { color: var(--tenue); text-decoration: none; }
+.nav-principal a:hover { color: var(--acento); }
+@media (max-width: 560px) { .nav-principal { margin-left: 8px; gap: 10px; font-size: .82rem; } }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+.chip { border: 1px solid var(--linea); background: var(--papel); border-radius: 999px; padding: 5px 11px; font-size: .8rem; cursor: pointer; color: var(--tinta, inherit); }
+.chip:hover { border-color: var(--acento); }
+.rejilla-bib { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 12px; }
+@media (max-width: 560px) { .rejilla-bib { grid-template-columns: minmax(0, 1fr); } }
+.resultado .titulo-ref { font-weight: 600; display: block; margin-bottom: 4px; overflow-wrap: anywhere; }
+.resultado details { margin: 6px 0; }
+.resultado .boton.peq, .refs .boton.peq { padding: 5px 10px; font-size: .8rem; margin-top: 6px; }
+.refs { list-style: none; padding: 0; margin: 8px 0 0; }
+.refs li { padding: 8px 0; border-bottom: 1px solid var(--linea); }
+#fbib .fila { flex-wrap: wrap; }
+#fbib .fila select { width: auto; flex: 0 1 260px; }
+#fbib .fila .boton { flex: 0 0 auto; }

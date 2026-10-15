@@ -1,6 +1,6 @@
 # Evidencia E2E — privacidad
 
-Generado: 2026-10-15T18:53:20.377Z
+Generado: 2026-10-15T23:38:00.106Z
 
 ## L1 · Consentimiento obligatorio — **APROBADA**
 

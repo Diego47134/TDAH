@@ -1,6 +1,7 @@
 // Informe clínico estructurado (Etapa 9 §28; Etapa 5 §18.3; Automatización fase 3; brief §9).
 // Se construye EXCLUSIVAMENTE desde el expediente. La interpretación y la decisión clínica final
 // las registra el profesional responsable.
+import { citar } from './bibliografia.js';
 import { faseInicialCompleta, ruta, justificacionRuta, estadoSlot, puedeCerrarEntrevista, informeCargado, estadoPregunta } from './motor.js';
 import { integrar } from './integracion.js';
 
@@ -182,6 +183,11 @@ export function generarInforme(ctx, { tipo = 'borrador', requisitos, validacion 
   else L.push('Pendiente: la interpretación y la decisión clínica final deben ser registradas por el profesional responsable.', '');
   L.push(validacion ? `**Validado por ${validacion.por}** el ${validacion.fecha.slice(0, 10)}.` : 'Pendiente de validación profesional.', '');
   L.push('## Referencias científicas de apoyo (Etapa 9)', '', ...Object.entries(p.referencias).map(([k, v]) => `- [${k}] ${v}`), '');
+  if (ctx.referencias?.length) {
+    L.push('## Bibliografía consultada por el profesional', '', '_Referencias obtenidas mediante búsqueda bibliográfica en internet (Europe PMC / PubMed) y seleccionadas por el profesional; respaldan la interpretación, no sustituyen el juicio clínico._', '');
+    ctx.referencias.forEach((r, i) => L.push(`- [B${i + 1}] ${citar(r.referencia)}${r.nota ? ` — ${r.nota}` : ''} (agregada por ${r.profesional}, ${r.creado.slice(0, 10)})`));
+    L.push('');
+  }
   L.push(...seccionLegal(ctx));
   return L.join('\n');
 }

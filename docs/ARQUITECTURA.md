@@ -15,6 +15,7 @@ El sistema separa **contenido clínico (datos)** de **mecanismo (código)**:
 |---|---|
 | Interfaz de entrevista y expediente | `public/` — PWA sin framework (instalable; el service worker solo cachea la interfaz) |
 | Backend que controla el flujo | `src/servicio.js` — orquesta cada transición dentro de una transacción |
+| Búsqueda bibliográfica en internet | `src/bibliografia.js` — Europe PMC y PubMed (API públicas, sin clave); caché; filtro de datos personales; referencias del caso en el informe |
 | Consentimiento y privacidad | `src/privacidad.js`, `public/privacidad.html`, `public/terminos.html` |
 | Motor de decisiones Etapa 9 | `src/motor.js` — funciones puras sobre el contexto del expediente |
 | Validador | `src/validador.js` — 17 reglas antes de mostrar cualquier pregunta |

@@ -1,0 +1,71 @@
+{
+  "generado": "2026-10-15T23:37:31.982Z",
+  "pruebas": [
+    {
+      "id": "B1",
+      "titulo": "Buscar evidencia en internet",
+      "requisito": "La app consulta Europe PMC y PubMed y devuelve título, autores, revista, año, DOI/PMID y enlace.",
+      "pasos": [
+        {
+          "entrada": "Europe PMC y PubMed",
+          "accion_resultante": "2 + 2 resultados normalizados",
+          "esperado": "Resultados con enlace verificable",
+          "ok": true
+        },
+        {
+          "entrada": "Repetir la búsqueda",
+          "accion_resultante": "Respondida desde caché",
+          "esperado": "Sin nueva consulta a internet",
+          "ok": true
+        }
+      ],
+      "resultado": "APROBADA"
+    },
+    {
+      "id": "B2",
+      "titulo": "Protección de datos",
+      "requisito": "Se rechazan búsquedas con RUT, correo o teléfono; solo salen términos clínicos generales.",
+      "pasos": [
+        {
+          "entrada": "TDAH 12.345.678-9",
+          "accion_resultante": "HTTP 400: La búsqueda parece contener un RUT. Use solo términos clínicos generales: nunca datos del paciente.",
+          "esperado": "Rechazada",
+          "ok": true
+        },
+        {
+          "entrada": "contacto apoderado@correo.cl",
+          "accion_resultante": "HTTP 400: La búsqueda parece contener un correo electrónico. Use solo términos clínicos generales: nunca datos del paciente.",
+          "esperado": "Rechazada",
+          "ok": true
+        },
+        {
+          "entrada": "llamar +56 9 1234 5678",
+          "accion_resultante": "HTTP 400: La búsqueda parece contener un número de teléfono. Use solo términos clínicos generales: nunca datos del paciente.",
+          "esperado": "Rechazada",
+          "ok": true
+        },
+        {
+          "entrada": "ab",
+          "accion_resultante": "HTTP 400: Escriba al menos 3 caracteres para buscar.",
+          "esperado": "Rechazada",
+          "ok": true
+        }
+      ],
+      "resultado": "APROBADA"
+    },
+    {
+      "id": "B4",
+      "titulo": "Referencias en el informe",
+      "requisito": "Solo se aceptan referencias obtenidas por una búsqueda real; se citan al final del informe.",
+      "pasos": [
+        {
+          "entrada": "Referencia inventada / sin profesional / válida",
+          "accion_resultante": "HTTP 404 / 400 / 200; citada en el informe; auditada",
+          "esperado": "Solo referencias reales",
+          "ok": true
+        }
+      ],
+      "resultado": "APROBADA"
+    }
+  ]
+}
