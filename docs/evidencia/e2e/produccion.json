@@ -1,0 +1,52 @@
+{
+  "generado": "2026-10-15T15:24:55.265Z",
+  "pruebas": [
+    {
+      "id": "P1",
+      "titulo": "Token obligatorio en producción",
+      "requisito": "Un dominio público nunca expone el expediente sin token.",
+      "pasos": [
+        {
+          "entrada": "GET /api/casos sin token configurado",
+          "accion_resultante": "HTTP 503",
+          "esperado": "503 con instrucción",
+          "ok": true
+        }
+      ],
+      "resultado": "APROBADA"
+    },
+    {
+      "id": "P2",
+      "titulo": "Acceso con token y cabeceras",
+      "requisito": "Bearer token y CSP en todas las respuestas.",
+      "pasos": [
+        {
+          "entrada": "Sin token / token incorrecto / token correcto",
+          "accion_resultante": "401 / 401 / 200",
+          "esperado": "401 / 401 / 200",
+          "ok": true
+        }
+      ],
+      "resultado": "APROBADA"
+    },
+    {
+      "id": "P3",
+      "titulo": "Entrada de producción",
+      "requisito": "Simula Hostinger: HOME propio, PORT como socket, token configurado, SIGTERM por inactividad.",
+      "pasos": [
+        {
+          "entrada": "node server.js con HOME temporal y PORT=socket",
+          "accion_resultante": "GET /api/casos → 200; BD: ~/tdah-datos/tdah.sqlite; respaldos: tdah-2026-10-15T15-24-54.sqlite",
+          "esperado": "200, datos y respaldo fuera de la app",
+          "ok": true
+        },
+        {
+          "entrada": "SIGTERM (detención por inactividad)",
+          "accion_resultante": "Proceso terminó con código 0",
+          "ok": true
+        }
+      ],
+      "resultado": "APROBADA"
+    }
+  ]
+}

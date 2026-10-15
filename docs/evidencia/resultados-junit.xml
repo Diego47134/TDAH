@@ -1,54 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <testsuites>
-	<testcase name="E01 · la entrevista comienza en el orden establecido" time="0.113877" classname="test"/>
-	<testcase name="E02 · la ruta cambia según la existencia del informe escolar" time="0.963289" classname="test"/>
-	<testcase name="E03/E13 · las respuestas persisten entre turnos y sesiones; un caso interrumpido continúa en el punto exacto" time="0.488426" classname="test"/>
-	<testcase name="E04 · la pregunta siguiente depende de la respuesta y del estado real del expediente" time="0.278494" classname="test"/>
-	<testcase name="E05 · no se repiten preguntas resueltas, ni con otra redacción" time="0.541810" classname="test"/>
-	<testcase name="E06 · profundiza cuando una dimensión importante sigue incompleta" time="0.461984" classname="test"/>
-	<testcase name="E07 · «no sé» y «no recuerdo» no se interpretan como negativas" time="0.057859" classname="test"/>
-	<testcase name="E08 · no se cierra la entrevista con dominios obligatorios sin explorar" time="0.539758" classname="test"/>
-	<testcase name="E09 · el tamizaje médico, sensorial y del sueño funciona sin duplicaciones" time="0.430382" classname="test"/>
-	<testcase name="E10 · los datos del informe escolar se conservan con su fuente y evitan preguntas redundantes" time="0.453155" classname="test"/>
-	<testcase name="E11 · el informe final refleja los datos reales y las incertidumbres" time="0.768701" classname="test"/>
-	<testcase name="E12 · el sistema bloquea preguntas no autorizadas e informes prematuros" time="0.036674" classname="test"/>
-	<testcase name="A1 · respuestas ambiguas: se aclara con una pregunta más específica, sin suponer" time="0.064044" classname="test"/>
-	<testcase name="A2 · contradicción dentro de la misma fuente: se registra y bloquea el informe hasta su revisión" time="0.073008" classname="test"/>
-	<testcase name="A3 · error de la API de IA: contingencia con el intérprete de reglas, sin perder la respuesta" time="0.094791" classname="test"/>
-	<testcase name="A4 · IA disponible: solo interpreta; menciones con dimensiones inválidas se descartan" time="0.030945" classname="test"/>
-	<testcase name="A5 · datos faltantes y entradas inválidas" time="0.035449" classname="test"/>
-	<testcase name="A6 · cambio de ruta cuando el informe finalmente no se puede obtener" time="0.388120" classname="test"/>
-	<testcase name="distingue sí, no, no sé y no recuerdo" time="0.002941" classname="test"/>
-	<testcase name="«no sé» y «no recuerdo» nunca se convierten en negativa" time="0.000340" classname="test"/>
-	<testcase name="no confunde el reflexivo «no se distrae» con «no sé»" time="0.000157" classname="test"/>
-	<testcase name="respuestas ambiguas quedan como ambiguas" time="0.000227" classname="test"/>
-	<testcase name="botones declarados tienen prioridad sobre el texto" time="0.000115" classname="test"/>
-	<testcase name="pregunta invertida: un «sí» significa ausencia" time="0.000154" classname="test"/>
-	<testcase name="números: dígitos y palabras" time="0.000498" classname="test"/>
-	<testcase name="texto libre se conserva literal" time="0.000116" classname="test"/>
-	<testcase name="menciones espontáneas: detecta conductas y respeta negaciones" time="0.003274" classname="test"/>
-	<testcase name="protocolo: la validación referencial rechaza errores" time="0.002693" classname="test"/>
-	<testcase name="fase inicial: la primera pregunta es el motivo de consulta" time="0.001059" classname="test"/>
-	<testcase name="fase inicial: orden estricto motivo → edad → informe → disponibilidad" time="0.000381" classname="test"/>
-	<testcase name="ruta: con informe disponible → con_informe; sin informe → completa; desconocido → completa" time="0.000272" classname="test"/>
-	<testcase name="validador: bloquea preguntas fuera del banco y con más de una pregunta" time="0.000434" classname="test"/>
-	<testcase name="validador: bloquea dimensiones antes de completar la fase inicial" time="0.000209" classname="test"/>
-	<testcase name="validador: bloquea el dato ya presente en el expediente desde otra fuente" time="0.000144" classname="test"/>
-	<testcase name="validador: equivalencia funcional entre preguntas de distintas dimensiones" time="0.000649" classname="test"/>
-	<testcase name="similitud textual detecta reformulaciones" time="0.000433" classname="test"/>
-	<testcase name="motor: presencia referida → profundización inmediata en la misma dimensión" time="0.000931" classname="test"/>
-	<testcase name="motor: ausencia → no se caracteriza la dimensión; pasa a la siguiente pendiente" time="0.001131" classname="test"/>
-	<testcase name="motor: tras «no sé» intenta una sola alternativa concreta y luego deja la dimensión parcial" time="0.000436" classname="test"/>
-	<testcase name="motor: ambigüedad → pregunta más específica del mismo dato" time="0.000230" classname="test"/>
-	<testcase name="motor: ruta con informe no explora dimensiones escolares en el hogar antes del informe" time="0.000212" classname="test"/>
-	<testcase name="motor: el límite por dimensión no es una cuota; se supera solo con justificación de dato esencial" time="0.000441" classname="test"/>
-	<testcase name="motor: con todo explorado cierra; nunca cierra con obligatorias pendientes" time="0.000812" classname="test"/>
-	<!-- tests 43 -->
+	<testcase name="E01 · la entrevista comienza en el orden establecido" time="0.120898" classname="test"/>
+	<testcase name="E02 · la ruta cambia según la existencia del informe escolar" time="0.992658" classname="test"/>
+	<testcase name="E03/E13 · las respuestas persisten entre turnos y sesiones; un caso interrumpido continúa en el punto exacto" time="0.443826" classname="test"/>
+	<testcase name="E04 · la pregunta siguiente depende de la respuesta y del estado real del expediente" time="0.292166" classname="test"/>
+	<testcase name="E05 · no se repiten preguntas resueltas, ni con otra redacción" time="0.551086" classname="test"/>
+	<testcase name="E06 · profundiza cuando una dimensión importante sigue incompleta" time="0.464281" classname="test"/>
+	<testcase name="E07 · «no sé» y «no recuerdo» no se interpretan como negativas" time="0.053975" classname="test"/>
+	<testcase name="E08 · no se cierra la entrevista con dominios obligatorios sin explorar" time="0.384070" classname="test"/>
+	<testcase name="E09 · el tamizaje médico, sensorial y del sueño funciona sin duplicaciones" time="0.408888" classname="test"/>
+	<testcase name="E10 · los datos del informe escolar se conservan con su fuente y evitan preguntas redundantes" time="0.479079" classname="test"/>
+	<testcase name="E11 · el informe final refleja los datos reales y las incertidumbres" time="0.713651" classname="test"/>
+	<testcase name="E12 · el sistema bloquea preguntas no autorizadas e informes prematuros" time="0.035544" classname="test"/>
+	<testcase name="A1 · respuestas ambiguas: se aclara con una pregunta más específica, sin suponer" time="0.058835" classname="test"/>
+	<testcase name="A2 · contradicción dentro de la misma fuente: se registra y bloquea el informe hasta su revisión" time="0.043620" classname="test"/>
+	<testcase name="A3 · error de la API de IA: contingencia con el intérprete de reglas, sin perder la respuesta" time="0.094430" classname="test"/>
+	<testcase name="A4 · IA disponible: solo interpreta; menciones con dimensiones inválidas se descartan" time="0.028006" classname="test"/>
+	<testcase name="A5 · datos faltantes y entradas inválidas" time="0.031127" classname="test"/>
+	<testcase name="A6 · cambio de ruta cuando el informe finalmente no se puede obtener" time="0.492114" classname="test"/>
+	<testcase name="P1 · en producción sin APP_ACCESS_TOKEN la API queda bloqueada con un mensaje claro" time="0.068185" classname="test"/>
+	<testcase name="P2 · con token: sin cabecera 401, con cabecera 200; cabeceras de seguridad presentes" time="0.037125" classname="test"/>
+	<testcase name="P3 · server.js (entrada de Hostinger): socket, datos fuera de la carpeta de despliegue, respaldo y cierre ordenado" time="0.230644" classname="test"/>
+	<testcase name="P4 · advierte si la base de datos quedaría dentro de la carpeta de despliegue" time="0.214819" classname="test"/>
+	<testcase name="distingue sí, no, no sé y no recuerdo" time="0.003882" classname="test"/>
+	<testcase name="«no sé» y «no recuerdo» nunca se convierten en negativa" time="0.000472" classname="test"/>
+	<testcase name="no confunde el reflexivo «no se distrae» con «no sé»" time="0.000188" classname="test"/>
+	<testcase name="respuestas ambiguas quedan como ambiguas" time="0.000299" classname="test"/>
+	<testcase name="botones declarados tienen prioridad sobre el texto" time="0.000146" classname="test"/>
+	<testcase name="pregunta invertida: un «sí» significa ausencia" time="0.000105" classname="test"/>
+	<testcase name="números: dígitos y palabras" time="0.000328" classname="test"/>
+	<testcase name="texto libre se conserva literal" time="0.000119" classname="test"/>
+	<testcase name="menciones espontáneas: detecta conductas y respeta negaciones" time="0.004670" classname="test"/>
+	<testcase name="protocolo: la validación referencial rechaza errores" time="0.002576" classname="test"/>
+	<testcase name="fase inicial: la primera pregunta es el motivo de consulta" time="0.002314" classname="test"/>
+	<testcase name="fase inicial: orden estricto motivo → edad → informe → disponibilidad" time="0.000525" classname="test"/>
+	<testcase name="ruta: con informe disponible → con_informe; sin informe → completa; desconocido → completa" time="0.000381" classname="test"/>
+	<testcase name="validador: bloquea preguntas fuera del banco y con más de una pregunta" time="0.000563" classname="test"/>
+	<testcase name="validador: bloquea dimensiones antes de completar la fase inicial" time="0.000183" classname="test"/>
+	<testcase name="validador: bloquea el dato ya presente en el expediente desde otra fuente" time="0.000179" classname="test"/>
+	<testcase name="validador: equivalencia funcional entre preguntas de distintas dimensiones" time="0.000675" classname="test"/>
+	<testcase name="similitud textual detecta reformulaciones" time="0.000377" classname="test"/>
+	<testcase name="motor: presencia referida → profundización inmediata en la misma dimensión" time="0.001015" classname="test"/>
+	<testcase name="motor: ausencia → no se caracteriza la dimensión; pasa a la siguiente pendiente" time="0.001168" classname="test"/>
+	<testcase name="motor: tras «no sé» intenta una sola alternativa concreta y luego deja la dimensión parcial" time="0.000599" classname="test"/>
+	<testcase name="motor: ambigüedad → pregunta más específica del mismo dato" time="0.000463" classname="test"/>
+	<testcase name="motor: ruta con informe no explora dimensiones escolares en el hogar antes del informe" time="0.000219" classname="test"/>
+	<testcase name="motor: el límite por dimensión no es una cuota; se supera solo con justificación de dato esencial" time="0.000507" classname="test"/>
+	<testcase name="motor: con todo explorado cierra; nunca cierra con obligatorias pendientes" time="0.000644" classname="test"/>
+	<!-- tests 47 -->
 	<!-- suites 0 -->
-	<!-- pass 43 -->
+	<!-- pass 47 -->
 	<!-- fail 0 -->
 	<!-- cancelled 0 -->
 	<!-- skipped 0 -->
 	<!-- todo 0 -->
-	<!-- duration_ms 6278.569537 -->
+	<!-- duration_ms 6884.104621 -->
 </testsuites>

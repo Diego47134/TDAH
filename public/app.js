@@ -67,7 +67,8 @@ async function enrutar() {
     if (partes[0] === 'caso' && partes[1]) await vistaCaso(partes[1], partes[2] || 'entrevista');
     else await vistaCasos();
   } catch (e) {
-    if (e.status !== 401 && !/token/.test(e.message)) $app.innerHTML = `<div class="tarjeta"><h2>No se pudo cargar</h2><p>${esc(e.message)}</p><button class="boton sec" onclick="location.reload()">Reintentar</button></div>`;
+    if (e.status !== 401 && !/token/.test(e.message)) $app.innerHTML = `<div class="tarjeta"><h2>No se pudo cargar</h2><p>${esc(e.message)}</p><button class="boton sec" id="breintentar">Reintentar</button></div>`;
+    const b = document.getElementById('breintentar'); if (b) b.onclick = () => location.reload();
   }
 }
 
@@ -322,9 +323,10 @@ async function informe(cont, v, recargar) {
       <div class="fila" style="margin-top:12px">
         <button class="boton" id="bfinal" ${req.completo ? '' : 'disabled'}>Generar informe final</button>
         ${ultimoFinal && ultimoFinal.estado !== 'validado' ? '<button class="boton sec" id="bvalidar">Validar informe</button>' : ''}
-        <button class="boton sec" onclick="window.print()">Imprimir / PDF</button>
+        <button class="boton sec" id="bimprimir">Imprimir / PDF</button>
       </div></div>
     <article class="tarjeta informe">${inf.html}</article>`;
+  document.getElementById('bimprimir').onclick = () => window.print();
   const bf = document.getElementById('bfinal');
   bf.onclick = async () => {
     try { await api('POST', `/api/casos/${c.id}/informes`); aviso('Informe final generado.'); recargar(); } catch (e) { aviso(e.message, true); }

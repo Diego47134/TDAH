@@ -50,13 +50,13 @@ Estado al 15-10-2026. Evidencia: `docs/evidencia/` (trazas E2E y resultados JUni
 | ✅ | Código fuente, instalación, base de datos, arquitectura, auditoría | Este repositorio |
 | ✅ | Demostración completa con caso ficticio e informe | `docs/demo/` |
 | ✅ | Sin datos de pacientes reales | Solo `test/fixtures/caso-ficticio.js` |
-| ❌ | **Aplicación accesible para pruebas en línea** | Ejecutable localmente o con Docker. Falta elegir hosting con disco persistente (p. ej. Render, Railway o Fly.io) y dominio con HTTPS. |
+| ⚠️ | **Aplicación accesible para pruebas en línea** | Lista para Hostinger (Node.js administrado) o VPS con Docker: entrada `server.js`, token obligatorio, datos fuera de la carpeta de despliegue, respaldos diarios (pruebas P1–P4). Falta crear el dominio y desplegar: [DESPLIEGUE_HOSTINGER.md](DESPLIEGUE_HOSTINGER.md). |
 
 ## Pendientes y mejoras recomendadas
 
 1. **Recibir y codificar los documentos vigentes**; registrar sus contradicciones; regenerar pruebas y demo.
-2. Publicar una instancia de prueba (hosting con volumen persistente + HTTPS + `APP_ACCESS_TOKEN`).
+2. Desplegar en Hostinger y conectar el dominio siguiendo `DESPLIEGUE_HOSTINGER.md`.
 3. Probar el intérprete con la IA real y respuestas de apoderados reales anonimizadas (hoy probado con IA simulada y reglas).
 4. Lectura de informes escolares en PDF/Word (hoy: texto pegado o .txt).
 5. Autenticación por usuario (profesional) y registro de quién realiza cada acción; hoy hay un token compartido.
-6. Respaldo y cifrado del archivo de base de datos en el servidor.
+6. Cifrado del archivo de base de datos y copia de los respaldos fuera del servidor (hoy: respaldos diarios en el mismo servidor).

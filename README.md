@@ -11,18 +11,20 @@ Requisitos: **Node.js 22.13 o superior** (incluye SQLite integrado). No hay depe
 ```bash
 git clone https://github.com/Diego47134/tdah.git
 cd tdah
-cp .env.example .env        # opcional: configurar clave de IA, puerto, token
-npm start                   # http://127.0.0.1:3000
+npm run dev                 # desarrollo local: http://127.0.0.1:3000 (sin token)
 ```
+
+**Publicar en un dominio (Hostinger):** ver la guía paso a paso [docs/DESPLIEGUE_HOSTINGER.md](docs/DESPLIEGUE_HOSTINGER.md).
 
 Abrir `http://127.0.0.1:3000`, crear un caso con un seudónimo y comenzar la entrevista. En el navegador puede instalarse como app (PWA).
 
-Para cargar las variables de `.env`: `node --env-file=.env --disable-warning=ExperimentalWarning src/server.js`.
+`npm start` arranca en **modo producción** (`server.js`): escucha en `0.0.0.0`, guarda la base de datos en `~/tdah-datos/` (fuera de la carpeta de la app), hace respaldos diarios y **exige `APP_ACCESS_TOKEN`**.
 
 | Comando | Qué hace |
 |---|---|
-| `npm start` | Levanta el servidor (API + PWA) |
-| `npm test` | Pruebas unitarias y de extremo a extremo (43) |
+| `npm run dev` | Desarrollo local (recarga al guardar, sin token) |
+| `npm start` | Producción (`server.js`): token obligatorio, datos fuera de la app, respaldos |
+| `npm test` | Pruebas unitarias y de extremo a extremo (47) |
 | `npm run test:evidencia` | Igual, y escribe evidencia verificable en `docs/evidencia/` |
 | `npm run demo` | Caso ficticio completo de principio a fin → `docs/demo/` |
 | `npm run validar-protocolo [-- archivo.json]` | Valida la integridad de un protocolo |
@@ -31,17 +33,18 @@ Para cargar las variables de `.env`: `node --env-file=.env --disable-warning=Exp
 
 ```bash
 docker build -t tdah .
-docker run -p 3000:3000 -v tdah-datos:/app/data --env-file .env tdah
+docker run -p 3000:3000 -v tdah-datos:/data --env-file .env tdah
 ```
 
 ## Variables de entorno
 
 | Variable | Uso | Por defecto |
 |---|---|---|
-| `PORT`, `HOST` | Dirección del servidor | `3000`, `127.0.0.1` |
-| `DB_PATH` | Archivo SQLite del expediente | `data/tdah.sqlite` |
+| `PORT`, `HOST` | Puerto (o ruta de socket) y host | `3000`; `127.0.0.1` en desarrollo, `0.0.0.0` en producción |
+| `DB_PATH` | Archivo SQLite del expediente | desarrollo: `data/tdah.sqlite` · producción: `~/tdah-datos/tdah.sqlite` |
+| `BACKUP_EVERY_HOURS`, `BACKUP_KEEP` | Respaldos automáticos en producción | cada `24` h, conservar `14` |
 | `PROTOCOLO_PATH` | Protocolo a cargar | `protocol/protocolo.provisional.json` |
-| `APP_ACCESS_TOKEN` | Si se define, la API exige `Authorization: Bearer <token>` (la PWA lo solicita) | sin token |
+| `APP_ACCESS_TOKEN` | La API exige `Authorization: Bearer <token>` (la PWA lo solicita). **Obligatorio en producción** | sin token en desarrollo |
 | `ANTHROPIC_API_KEY` | Habilita la IA para interpretar respuestas y extraer el informe escolar | IA deshabilitada → intérprete de reglas |
 | `ANTHROPIC_MODEL` | Modelo de IA | `claude-sonnet-5-5` |
 | `IA_TIMEOUT_MS` | Tiempo máximo por llamada a la IA | `20000` |

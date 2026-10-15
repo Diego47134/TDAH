@@ -15,8 +15,13 @@ const PUBLICO = path.join(__dirname, '..', 'public');
 const MIME = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8',
   '.webmanifest': 'application/manifest+json', '.json': 'application/json', '.svg': 'image/svg+xml', '.png': 'image/png', '.ico': 'image/x-icon' };
 
-export function crearApp({ dbPath, protocoloPath, ia, tokenAcceso = process.env.APP_ACCESS_TOKEN } = {}) {
+export function crearApp({ dbPath, protocoloPath, ia, tokenAcceso = process.env.APP_ACCESS_TOKEN,
+  produccion = process.env.NODE_ENV === 'production', advertencias = [] } = {}) {
   const db = abrirDB(dbPath);
+  // En producción (dominio público) la API exige token: sin él, la app no expone datos.
+  const faltaToken = produccion && !tokenAcceso;
+  if (faltaToken) advertencias.push('Falta configurar APP_ACCESS_TOKEN: la API está bloqueada hasta definirlo.');
+  else if (produccion && tokenAcceso.length < 16) advertencias.push('APP_ACCESS_TOKEN es corto; use al menos 16 caracteres aleatorios.');
   const protocolo = cargarProtocolo(protocoloPath);
   const clienteIA = ia ?? crearClienteIA();
   const svc = crearServicio({ db, protocolo, ia: clienteIA });
@@ -28,7 +33,7 @@ export function crearApp({ dbPath, protocoloPath, ia, tokenAcceso = process.env.
     rutas.push({ metodo, re, claves, fn });
   };
 
-  on('GET', '/api/salud', () => ({ ok: true, protocolo: protocolo.version, protocolo_estado: protocolo.estado, ia: clienteIA.habilitada ? clienteIA.modelo : 'deshabilitada (intérprete de reglas)', requiere_token: Boolean(tokenAcceso) }));
+  on('GET', '/api/salud', () => ({ ok: true, protocolo: protocolo.version, protocolo_estado: protocolo.estado, ia: clienteIA.habilitada ? clienteIA.modelo : 'deshabilitada (intérprete de reglas)', requiere_token: Boolean(tokenAcceso), entorno: produccion ? 'produccion' : 'desarrollo', advertencias }));
   on('GET', '/api/protocolo', () => resumenProtocolo(protocolo));
   on('GET', '/api/casos', () => svc.listarCasos());
   on('POST', '/api/casos', (_, b) => svc.crearCaso(b));
@@ -55,7 +60,12 @@ export function crearApp({ dbPath, protocoloPath, ia, tokenAcceso = process.env.
     const url = new URL(req.url, 'http://localhost');
     res.setHeader('x-content-type-options', 'nosniff');
     res.setHeader('referrer-policy', 'no-referrer');
+    res.setHeader('x-frame-options', 'DENY');
+    res.setHeader('content-security-policy', "default-src 'self'; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'");
     if (url.pathname.startsWith('/api/')) {
+      if (faltaToken && url.pathname !== '/api/salud') {
+        return enviar(res, 503, { error: 'La aplicación aún no está configurada: defina la variable de entorno APP_ACCESS_TOKEN en Hostinger y vuelva a desplegar.' });
+      }
       if (tokenAcceso && url.pathname !== '/api/salud') {
         const t = (req.headers.authorization || '').replace(/^Bearer\s+/i, '');
         const ok = t.length === tokenAcceso.length && crypto.timingSafeEqual(Buffer.from(t), Buffer.from(tokenAcceso));
@@ -97,13 +107,27 @@ export function crearApp({ dbPath, protocoloPath, ia, tokenAcceso = process.env.
   return { server, db, svc, protocolo, cerrar: () => new Promise((ok) => server.close(() => { db.close(); ok(); })) };
 }
 
-// Ejecución directa: node src/server.js
-if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
-  const puerto = Number(process.env.PORT || 3000);
-  const host = process.env.HOST || '127.0.0.1';
-  const app = crearApp();
-  app.server.listen(puerto, host, () => {
-    console.log(`Sistema de evaluación TDAH en http://${host}:${puerto}`);
+/**
+ * Arranca el servidor. PORT puede ser un número o la ruta de un socket (algunos
+ * hostings administrados entregan un socket al proceso Node).
+ */
+export function iniciarServidor(opciones = {}) {
+  const app = crearApp(opciones);
+  const puerto = process.env.PORT || 3000;
+  const destino = /^\d+$/.test(String(puerto)) ? [Number(puerto), process.env.HOST || '127.0.0.1'] : [puerto];
+  app.server.listen(...destino, () => {
+    console.log(`Sistema de evaluación TDAH escuchando en ${destino.length > 1 ? `${destino[1]}:${destino[0]}` : destino[0]}`);
     console.log(`Protocolo ${app.protocolo.version} (${app.protocolo.estado}) · IA: ${process.env.ANTHROPIC_API_KEY ? 'habilitada' : 'deshabilitada (intérprete de reglas)'}`);
+    for (const a of opciones.advertencias || []) console.warn(`ADVERTENCIA: ${a}`);
   });
+  // Cierre ordenado: el hosting puede detener el proceso por inactividad.
+  const cerrar = (senal) => { console.log(`${senal}: cerrando`); app.cerrar().finally(() => process.exit(0)); setTimeout(() => process.exit(0), 5000).unref(); };
+  process.once('SIGTERM', () => cerrar('SIGTERM'));
+  process.once('SIGINT', () => cerrar('SIGINT'));
+  return app;
+}
+
+// Ejecución directa en desarrollo: node src/server.js
+if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  iniciarServidor({ advertencias: [] });
 }
