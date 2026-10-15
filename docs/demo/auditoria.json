@@ -1,0 +1,5687 @@
+{
+  "decisiones": [
+    {
+      "id": 1,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 0,
+      "tipo": "caso_creado",
+      "detalle": {
+        "codigo": "CASO-0001",
+        "protocolo": "0.1.0-provisional"
+      },
+      "creado": "2026-10-15T15:09:07.867Z"
+    },
+    {
+      "id": 2,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 1,
+      "tipo": "pregunta_seleccionada",
+      "detalle": {
+        "pregunta_id": "INI-MOTIVO",
+        "dimension_id": "INI",
+        "slot": "motivo",
+        "justificacion": "Secuencia inicial obligatoria (paso 1): «Motivo de consulta».",
+        "validacion": [
+          {
+            "regla": "una_sola_pregunta",
+            "ok": true,
+            "detalle": "Contiene una sola pregunta."
+          },
+          {
+            "regla": "autorizada",
+            "ok": true,
+            "detalle": "Pregunta INI-MOTIVO del banco autorizado."
+          },
+          {
+            "regla": "orden_inicial",
+            "ok": true,
+            "detalle": "Respeta la secuencia inicial."
+          },
+          {
+            "regla": "no_en_expediente",
+            "ok": true,
+            "detalle": "Dato ausente del expediente."
+          },
+          {
+            "regla": "necesaria",
+            "ok": true,
+            "detalle": "Resuelve un dato pendiente."
+          },
+          {
+            "regla": "no_repetida",
+            "ok": true,
+            "detalle": "No formulada antes."
+          },
+          {
+            "regla": "no_equivalente",
+            "ok": true,
+            "detalle": "Sin grupo de equivalencia."
+          }
+        ],
+        "estado": {
+          "turno": 0,
+          "estado_global": "fase_inicial",
+          "fase_inicial_completa": false,
+          "ruta": null,
+          "iniciales": {
+            "motivo": "sin_dato",
+            "edad": "sin_dato",
+            "informe_existe": "sin_dato",
+            "informe_disponible": "sin_dato"
+          },
+          "dimensiones": {},
+          "contradicciones_abiertas": 0
+        }
+      },
+      "creado": "2026-10-15T15:09:07.869Z"
+    },
+    {
+      "id": 3,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 1,
+      "tipo": "respuesta_registrada",
+      "detalle": {
+        "pregunta_id": "INI-MOTIVO",
+        "texto_original": "Desde primero básico se distrae mucho en clases y le cuesta terminar las tareas; además duerme mal.",
+        "tipo_declarado": null,
+        "clasificacion": "valor",
+        "estado_dato": "valor",
+        "valor": "Desde primero básico se distrae mucho en clases y le cuesta terminar las tareas; además duerme mal.",
+        "interprete": "reglas"
+      },
+      "creado": "2026-10-15T15:09:07.887Z"
+    },
+    {
+      "id": 4,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 1,
+      "tipo": "mencion_detectada",
+      "detalle": {
+        "menciones": [
+          {
+            "dimension_id": "INA-SOST",
+            "palabra_clave": "se distrae",
+            "evidencia": "Desde primero básico se distrae mucho en clases y le cuesta terminar las tareas;"
+          },
+          {
+            "dimension_id": "TAM-SUENO",
+            "palabra_clave": "duerme mal",
+            "evidencia": "además duerme mal."
+          }
+        ]
+      },
+      "creado": "2026-10-15T15:09:07.888Z"
+    },
+    {
+      "id": 5,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 2,
+      "tipo": "pregunta_seleccionada",
+      "detalle": {
+        "pregunta_id": "INI-EDAD",
+        "dimension_id": "INI",
+        "slot": "edad",
+        "justificacion": "Secuencia inicial obligatoria (paso 2): «Edad (años)».",
+        "validacion": [
+          {
+            "regla": "una_sola_pregunta",
+            "ok": true,
+            "detalle": "Contiene una sola pregunta."
+          },
+          {
+            "regla": "autorizada",
+            "ok": true,
+            "detalle": "Pregunta INI-EDAD del banco autorizado."
+          },
+          {
+            "regla": "orden_inicial",
+            "ok": true,
+            "detalle": "Respeta la secuencia inicial."
+          },
+          {
+            "regla": "no_en_expediente",
+            "ok": true,
+            "detalle": "Dato ausente del expediente."
+          },
+          {
+            "regla": "necesaria",
+            "ok": true,
+            "detalle": "Resuelve un dato pendiente."
+          },
+          {
+            "regla": "no_repetida",
+            "ok": true,
+            "detalle": "No formulada antes."
+          },
+          {
+            "regla": "no_equivalente",
+            "ok": true,
+            "detalle": "Sin grupo de equivalencia."
+          }
+        ],
+        "estado": {
+          "turno": 1,
+          "estado_global": "fase_inicial",
+          "fase_inicial_completa": false,
+          "ruta": null,
+          "iniciales": {
+            "motivo": "Desde primero básico se distrae mucho en clases y le cuesta terminar las tareas; además duerme mal.",
+            "edad": "sin_dato",
+            "informe_existe": "sin_dato",
+            "informe_disponible": "sin_dato"
+          },
+          "dimensiones": {},
+          "contradicciones_abiertas": 0
+        }
+      },
+      "creado": "2026-10-15T15:09:07.889Z"
+    },
+    {
+      "id": 6,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 2,
+      "tipo": "respuesta_registrada",
+      "detalle": {
+        "pregunta_id": "INI-EDAD",
+        "texto_original": "8 años",
+        "tipo_declarado": null,
+        "clasificacion": "valor",
+        "estado_dato": "valor",
+        "valor": "8",
+        "interprete": "reglas"
+      },
+      "creado": "2026-10-15T15:09:07.897Z"
+    },
+    {
+      "id": 7,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 3,
+      "tipo": "pregunta_seleccionada",
+      "detalle": {
+        "pregunta_id": "INI-INF-EXISTE",
+        "dimension_id": "INI",
+        "slot": "informe_existe",
+        "justificacion": "Secuencia inicial obligatoria (paso 3): «Existe informe escolar».",
+        "validacion": [
+          {
+            "regla": "una_sola_pregunta",
+            "ok": true,
+            "detalle": "Contiene una sola pregunta."
+          },
+          {
+            "regla": "autorizada",
+            "ok": true,
+            "detalle": "Pregunta INI-INF-EXISTE del banco autorizado."
+          },
+          {
+            "regla": "orden_inicial",
+            "ok": true,
+            "detalle": "Respeta la secuencia inicial."
+          },
+          {
+            "regla": "no_en_expediente",
+            "ok": true,
+            "detalle": "Dato ausente del expediente."
+          },
+          {
+            "regla": "necesaria",
+            "ok": true,
+            "detalle": "Resuelve un dato pendiente."
+          },
+          {
+            "regla": "no_repetida",
+            "ok": true,
+            "detalle": "No formulada antes."
+          },
+          {
+            "regla": "no_equivalente",
+            "ok": true,
+            "detalle": "Sin grupo de equivalencia."
+          }
+        ],
+        "estado": {
+          "turno": 2,
+          "estado_global": "fase_inicial",
+          "fase_inicial_completa": false,
+          "ruta": null,
+          "iniciales": {
+            "motivo": "Desde primero básico se distrae mucho en clases y le cuesta terminar las tareas; además duerme mal.",
+            "edad": "8",
+            "informe_existe": "sin_dato",
+            "informe_disponible": "sin_dato"
+          },
+          "dimensiones": {},
+          "contradicciones_abiertas": 0
+        }
+      },
+      "creado": "2026-10-15T15:09:07.898Z"
+    },
+    {
+      "id": 8,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 3,
+      "tipo": "respuesta_registrada",
+      "detalle": {
+        "pregunta_id": "INI-INF-EXISTE",
+        "texto_original": "Sí, la profesora jefe hizo uno",
+        "tipo_declarado": null,
+        "clasificacion": "si",
+        "estado_dato": "valor",
+        "valor": "si",
+        "interprete": "reglas"
+      },
+      "creado": "2026-10-15T15:09:07.905Z"
+    },
+    {
+      "id": 9,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 4,
+      "tipo": "pregunta_seleccionada",
+      "detalle": {
+        "pregunta_id": "INI-INF-DISP",
+        "dimension_id": "INI",
+        "slot": "informe_disponible",
+        "justificacion": "Secuencia inicial obligatoria (paso 4): «Informe escolar disponible u obtenible».",
+        "validacion": [
+          {
+            "regla": "una_sola_pregunta",
+            "ok": true,
+            "detalle": "Contiene una sola pregunta."
+          },
+          {
+            "regla": "autorizada",
+            "ok": true,
+            "detalle": "Pregunta INI-INF-DISP del banco autorizado."
+          },
+          {
+            "regla": "orden_inicial",
+            "ok": true,
+            "detalle": "Respeta la secuencia inicial."
+          },
+          {
+            "regla": "condicion",
+            "ok": true,
+            "detalle": "Condición previa cumplida."
+          },
+          {
+            "regla": "no_en_expediente",
+            "ok": true,
+            "detalle": "Dato ausente del expediente."
+          },
+          {
+            "regla": "necesaria",
+            "ok": true,
+            "detalle": "Resuelve un dato pendiente."
+          },
+          {
+            "regla": "no_repetida",
+            "ok": true,
+            "detalle": "No formulada antes."
+          },
+          {
+            "regla": "no_equivalente",
+            "ok": true,
+            "detalle": "Sin grupo de equivalencia."
+          }
+        ],
+        "estado": {
+          "turno": 3,
+          "estado_global": "fase_inicial",
+          "fase_inicial_completa": false,
+          "ruta": null,
+          "iniciales": {
+            "motivo": "Desde primero básico se distrae mucho en clases y le cuesta terminar las tareas; además duerme mal.",
+            "edad": "8",
+            "informe_existe": "si",
+            "informe_disponible": "sin_dato"
+          },
+          "dimensiones": {},
+          "contradicciones_abiertas": 0
+        }
+      },
+      "creado": "2026-10-15T15:09:07.906Z"
+    },
+    {
+      "id": 10,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 4,
+      "tipo": "respuesta_registrada",
+      "detalle": {
+        "pregunta_id": "INI-INF-DISP",
+        "texto_original": "Sí, el colegio lo puede enviar",
+        "tipo_declarado": null,
+        "clasificacion": "si",
+        "estado_dato": "valor",
+        "valor": "si",
+        "interprete": "reglas"
+      },
+      "creado": "2026-10-15T15:09:07.916Z"
+    },
+    {
+      "id": 11,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 4,
+      "tipo": "ruta_determinada",
+      "detalle": {
+        "ruta": "con_informe",
+        "justificacion": "Existe informe escolar y está disponible: la entrevista al apoderado se centra en hogar, desarrollo, trayectoria, autonomía, funcionamiento y vacíos del informe."
+      },
+      "creado": "2026-10-15T15:09:07.916Z"
+    },
+    {
+      "id": 12,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 5,
+      "tipo": "pregunta_seleccionada",
+      "detalle": {
+        "pregunta_id": "INA-SOST-FRECUENCIA",
+        "dimension_id": "INA-SOST",
+        "slot": "frecuencia",
+        "justificacion": "Profundización: «Atención sostenida» tiene presencia referida (fuente: apoderado, mención espontánea) y falta caracterizar: frecuencia, contextos, inicio, impacto. Se pregunta por «Frecuencia».",
+        "validacion": [
+          {
+            "regla": "una_sola_pregunta",
+            "ok": true,
+            "detalle": "Contiene una sola pregunta."
+          },
+          {
+            "regla": "autorizada",
+            "ok": true,
+            "detalle": "Pregunta INA-SOST-FRECUENCIA del banco autorizado."
+          },
+          {
+            "regla": "orden_inicial",
+            "ok": true,
+            "detalle": "Fase inicial completa."
+          },
+          {
+            "regla": "aplicable_edad",
+            "ok": true,
+            "detalle": "Aplicable a la edad registrada."
+          },
+          {
+            "regla": "ruta_informe_escolar",
+            "ok": true,
+            "detalle": "Compatible con la ruta «con_informe»."
+          },
+          {
+            "regla": "no_en_expediente",
+            "ok": true,
+            "detalle": "Dato ausente del expediente."
+          },
+          {
+            "regla": "necesaria",
+            "ok": true,
+            "detalle": "La conducta está presente y este dato es esencial para caracterizarla."
+          },
+          {
+            "regla": "no_repetida",
+            "ok": true,
+            "detalle": "No formulada antes."
+          },
+          {
+            "regla": "no_equivalente",
+            "ok": true,
+            "detalle": "Sin grupo de equivalencia."
+          },
+          {
+            "regla": "limite",
+            "ok": true,
+            "detalle": "0/4 preguntas en la dimensión."
+          }
+        ],
+        "estado": {
+          "turno": 4,
+          "estado_global": "fase_inicial",
+          "fase_inicial_completa": true,
+          "ruta": "con_informe",
+          "iniciales": {
+            "motivo": "Desde primero básico se distrae mucho en clases y le cuesta terminar las tareas; además duerme mal.",
+            "edad": "8",
+            "informe_existe": "si",
+            "informe_disponible": "si"
+          },
+          "dimensiones": {
+            "INA-SOST": "en_curso",
+            "INA-ORG": "pendiente",
+            "INA-OLV": "pendiente",
+            "HIP-MOT": "pendiente",
+            "IMP-ESPERA": "pendiente",
+            "IMP-INTERR": "pendiente",
+            "DES-HITOS": "pendiente",
+            "TRA-EVOL": "pendiente",
+            "AUT-RUTINAS": "pendiente",
+            "FUN-FAMILIA": "pendiente",
+            "FUN-PARES": "pendiente",
+            "ESC-REND": "pendiente_informe",
+            "ESC-AULA": "pendiente_informe",
+            "TAM-SUENO": "en_curso",
+            "TAM-VISION": "pendiente",
+            "TAM-AUDICION": "pendiente",
+            "TAM-MEDICO": "pendiente"
+          },
+          "contradicciones_abiertas": 0
+        }
+      },
+      "creado": "2026-10-15T15:09:07.917Z"
+    },
+    {
+      "id": 13,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 5,
+      "tipo": "respuesta_registrada",
+      "detalle": {
+        "pregunta_id": "INA-SOST-FRECUENCIA",
+        "texto_original": "Varias veces al día",
+        "tipo_declarado": null,
+        "clasificacion": "valor",
+        "estado_dato": "valor",
+        "valor": "Varias veces al día",
+        "interprete": "reglas"
+      },
+      "creado": "2026-10-15T15:09:07.930Z"
+    },
+    {
+      "id": 14,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 6,
+      "tipo": "pregunta_seleccionada",
+      "detalle": {
+        "pregunta_id": "INA-SOST-CONTEXTOS",
+        "dimension_id": "INA-SOST",
+        "slot": "contextos",
+        "justificacion": "Profundización: «Atención sostenida» tiene presencia referida (fuente: apoderado, mención espontánea) y falta caracterizar: contextos, inicio, impacto. Se pregunta por «Contextos en que ocurre».",
+        "validacion": [
+          {
+            "regla": "una_sola_pregunta",
+            "ok": true,
+            "detalle": "Contiene una sola pregunta."
+          },
+          {
+            "regla": "autorizada",
+            "ok": true,
+            "detalle": "Pregunta INA-SOST-CONTEXTOS del banco autorizado."
+          },
+          {
+            "regla": "orden_inicial",
+            "ok": true,
+            "detalle": "Fase inicial completa."
+          },
+          {
+            "regla": "aplicable_edad",
+            "ok": true,
+            "detalle": "Aplicable a la edad registrada."
+          },
+          {
+            "regla": "ruta_informe_escolar",
+            "ok": true,
+            "detalle": "Compatible con la ruta «con_informe»."
+          },
+          {
+            "regla": "no_en_expediente",
+            "ok": true,
+            "detalle": "Dato ausente del expediente."
+          },
+          {
+            "regla": "necesaria",
+            "ok": true,
+            "detalle": "La conducta está presente y este dato es esencial para caracterizarla."
+          },
+          {
+            "regla": "no_repetida",
+            "ok": true,
+            "detalle": "No formulada antes."
+          },
+          {
+            "regla": "no_equivalente",
+            "ok": true,
+            "detalle": "Sin grupo de equivalencia."
+          },
+          {
+            "regla": "limite",
+            "ok": true,
+            "detalle": "1/4 preguntas en la dimensión."
+          }
+        ],
+        "estado": {
+          "turno": 5,
+          "estado_global": "entrevista",
+          "fase_inicial_completa": true,
+          "ruta": "con_informe",
+          "iniciales": {
+            "motivo": "Desde primero básico se distrae mucho en clases y le cuesta terminar las tareas; además duerme mal.",
+            "edad": "8",
+            "informe_existe": "si",
+            "informe_disponible": "si"
+          },
+          "dimensiones": {
+            "INA-SOST": "en_curso",
+            "INA-ORG": "pendiente",
+            "INA-OLV": "pendiente",
+            "HIP-MOT": "pendiente",
+            "IMP-ESPERA": "pendiente",
+            "IMP-INTERR": "pendiente",
+            "DES-HITOS": "pendiente",
+            "TRA-EVOL": "pendiente",
+            "AUT-RUTINAS": "pendiente",
+            "FUN-FAMILIA": "pendiente",
+            "FUN-PARES": "pendiente",
+            "ESC-REND": "pendiente_informe",
+            "ESC-AULA": "pendiente_informe",
+            "TAM-SUENO": "en_curso",
+            "TAM-VISION": "pendiente",
+            "TAM-AUDICION": "pendiente",
+            "TAM-MEDICO": "pendiente"
+          },
+          "contradicciones_abiertas": 0
+        }
+      },
+      "creado": "2026-10-15T15:09:07.931Z"
+    },
+    {
+      "id": 15,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 6,
+      "tipo": "respuesta_registrada",
+      "detalle": {
+        "pregunta_id": "INA-SOST-CONTEXTOS",
+        "texto_original": "En la casa con las tareas y también lo dicen en el colegio",
+        "tipo_declarado": null,
+        "clasificacion": "valor",
+        "estado_dato": "valor",
+        "valor": "En la casa con las tareas y también lo dicen en el colegio",
+        "interprete": "reglas"
+      },
+      "creado": "2026-10-15T15:09:07.945Z"
+    },
+    {
+      "id": 16,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 7,
+      "tipo": "pregunta_seleccionada",
+      "detalle": {
+        "pregunta_id": "INA-SOST-INICIO",
+        "dimension_id": "INA-SOST",
+        "slot": "inicio",
+        "justificacion": "Profundización: «Atención sostenida» tiene presencia referida (fuente: apoderado, mención espontánea) y falta caracterizar: inicio, impacto. Se pregunta por «Inicio».",
+        "validacion": [
+          {
+            "regla": "una_sola_pregunta",
+            "ok": true,
+            "detalle": "Contiene una sola pregunta."
+          },
+          {
+            "regla": "autorizada",
+            "ok": true,
+            "detalle": "Pregunta INA-SOST-INICIO del banco autorizado."
+          },
+          {
+            "regla": "orden_inicial",
+            "ok": true,
+            "detalle": "Fase inicial completa."
+          },
+          {
+            "regla": "aplicable_edad",
+            "ok": true,
+            "detalle": "Aplicable a la edad registrada."
+          },
+          {
+            "regla": "ruta_informe_escolar",
+            "ok": true,
+            "detalle": "Compatible con la ruta «con_informe»."
+          },
+          {
+            "regla": "no_en_expediente",
+            "ok": true,
+            "detalle": "Dato ausente del expediente."
+          },
+          {
+            "regla": "necesaria",
+            "ok": true,
+            "detalle": "La conducta está presente y este dato es esencial para caracterizarla."
+          },
+          {
+            "regla": "no_repetida",
+            "ok": true,
+            "detalle": "No formulada antes."
+          },
+          {
+            "regla": "no_equivalente",
+            "ok": true,
+            "detalle": "Sin grupo de equivalencia."
+          },
+          {
+            "regla": "limite",
+            "ok": true,
+            "detalle": "2/4 preguntas en la dimensión."
+          }
+        ],
+        "estado": {
+          "turno": 6,
+          "estado_global": "entrevista",
+          "fase_inicial_completa": true,
+          "ruta": "con_informe",
+          "iniciales": {
+            "motivo": "Desde primero básico se distrae mucho en clases y le cuesta terminar las tareas; además duerme mal.",
+            "edad": "8",
+            "informe_existe": "si",
+            "informe_disponible": "si"
+          },
+          "dimensiones": {
+            "INA-SOST": "en_curso",
+            "INA-ORG": "pendiente",
+            "INA-OLV": "pendiente",
+            "HIP-MOT": "pendiente",
+            "IMP-ESPERA": "pendiente",
+            "IMP-INTERR": "pendiente",
+            "DES-HITOS": "pendiente",
+            "TRA-EVOL": "pendiente",
+            "AUT-RUTINAS": "pendiente",
+            "FUN-FAMILIA": "pendiente",
+            "FUN-PARES": "pendiente",
+            "ESC-REND": "pendiente_informe",
+            "ESC-AULA": "pendiente_informe",
+            "TAM-SUENO": "en_curso",
+            "TAM-VISION": "pendiente",
+            "TAM-AUDICION": "pendiente",
+            "TAM-MEDICO": "pendiente"
+          },
+          "contradicciones_abiertas": 0
+        }
+      },
+      "creado": "2026-10-15T15:09:07.946Z"
+    },
+    {
+      "id": 17,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 7,
+      "tipo": "respuesta_registrada",
+      "detalle": {
+        "pregunta_id": "INA-SOST-INICIO",
+        "texto_original": "Desde los 5 o 6 años, cuando entró a kínder",
+        "tipo_declarado": null,
+        "clasificacion": "valor",
+        "estado_dato": "valor",
+        "valor": "Desde los 5 o 6 años, cuando entró a kínder",
+        "interprete": "reglas"
+      },
+      "creado": "2026-10-15T15:09:07.955Z"
+    },
+    {
+      "id": 18,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 8,
+      "tipo": "pregunta_seleccionada",
+      "detalle": {
+        "pregunta_id": "INA-SOST-IMPACTO",
+        "dimension_id": "INA-SOST",
+        "slot": "impacto",
+        "justificacion": "Profundización: «Atención sostenida» tiene presencia referida (fuente: apoderado, mención espontánea) y falta caracterizar: impacto. Se pregunta por «Interferencia en el funcionamiento».",
+        "validacion": [
+          {
+            "regla": "una_sola_pregunta",
+            "ok": true,
+            "detalle": "Contiene una sola pregunta."
+          },
+          {
+            "regla": "autorizada",
+            "ok": true,
+            "detalle": "Pregunta INA-SOST-IMPACTO del banco autorizado."
+          },
+          {
+            "regla": "orden_inicial",
+            "ok": true,
+            "detalle": "Fase inicial completa."
+          },
+          {
+            "regla": "aplicable_edad",
+            "ok": true,
+            "detalle": "Aplicable a la edad registrada."
+          },
+          {
+            "regla": "ruta_informe_escolar",
+            "ok": true,
+            "detalle": "Compatible con la ruta «con_informe»."
+          },
+          {
+            "regla": "no_en_expediente",
+            "ok": true,
+            "detalle": "Dato ausente del expediente."
+          },
+          {
+            "regla": "necesaria",
+            "ok": true,
+            "detalle": "La conducta está presente y este dato es esencial para caracterizarla."
+          },
+          {
+            "regla": "no_repetida",
+            "ok": true,
+            "detalle": "No formulada antes."
+          },
+          {
+            "regla": "no_equivalente",
+            "ok": true,
+            "detalle": "Sin grupo de equivalencia."
+          },
+          {
+            "regla": "limite",
+            "ok": true,
+            "detalle": "3/4 preguntas en la dimensión."
+          }
+        ],
+        "estado": {
+          "turno": 7,
+          "estado_global": "entrevista",
+          "fase_inicial_completa": true,
+          "ruta": "con_informe",
+          "iniciales": {
+            "motivo": "Desde primero básico se distrae mucho en clases y le cuesta terminar las tareas; además duerme mal.",
+            "edad": "8",
+            "informe_existe": "si",
+            "informe_disponible": "si"
+          },
+          "dimensiones": {
+            "INA-SOST": "en_curso",
+            "INA-ORG": "pendiente",
+            "INA-OLV": "pendiente",
+            "HIP-MOT": "pendiente",
+            "IMP-ESPERA": "pendiente",
+            "IMP-INTERR": "pendiente",
+            "DES-HITOS": "pendiente",
+            "TRA-EVOL": "pendiente",
+            "AUT-RUTINAS": "pendiente",
+            "FUN-FAMILIA": "pendiente",
+            "FUN-PARES": "pendiente",
+            "ESC-REND": "pendiente_informe",
+            "ESC-AULA": "pendiente_informe",
+            "TAM-SUENO": "en_curso",
+            "TAM-VISION": "pendiente",
+            "TAM-AUDICION": "pendiente",
+            "TAM-MEDICO": "pendiente"
+          },
+          "contradicciones_abiertas": 0
+        }
+      },
+      "creado": "2026-10-15T15:09:07.956Z"
+    },
+    {
+      "id": 19,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 8,
+      "tipo": "respuesta_registrada",
+      "detalle": {
+        "pregunta_id": "INA-SOST-IMPACTO",
+        "texto_original": "Las tareas le toman el doble de tiempo y hay discusiones en la casa",
+        "tipo_declarado": null,
+        "clasificacion": "valor",
+        "estado_dato": "valor",
+        "valor": "Las tareas le toman el doble de tiempo y hay discusiones en la casa",
+        "interprete": "reglas"
+      },
+      "creado": "2026-10-15T15:09:07.967Z"
+    },
+    {
+      "id": 20,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 8,
+      "tipo": "mencion_detectada",
+      "detalle": {
+        "menciones": [
+          {
+            "dimension_id": "FUN-FAMILIA",
+            "palabra_clave": "discusiones",
+            "evidencia": "Las tareas le toman el doble de tiempo y hay discusiones en la casa"
+          }
+        ]
+      },
+      "creado": "2026-10-15T15:09:07.967Z"
+    },
+    {
+      "id": 21,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 9,
+      "tipo": "pregunta_seleccionada",
+      "detalle": {
+        "pregunta_id": "FUN-FAMILIA-DESCRIPCION",
+        "dimension_id": "FUN-FAMILIA",
+        "slot": "descripcion",
+        "justificacion": "Profundización: «Funcionamiento familiar cotidiano» tiene presencia referida (fuente: apoderado, mención espontánea) y falta caracterizar: descripcion. Se pregunta por «Descripción».",
+        "validacion": [
+          {
+            "regla": "una_sola_pregunta",
+            "ok": true,
+            "detalle": "Contiene una sola pregunta."
+          },
+          {
+            "regla": "autorizada",
+            "ok": true,
+            "detalle": "Pregunta FUN-FAMILIA-DESCRIPCION del banco autorizado."
+          },
+          {
+            "regla": "orden_inicial",
+            "ok": true,
+            "detalle": "Fase inicial completa."
+          },
+          {
+            "regla": "aplicable_edad",
+            "ok": true,
+            "detalle": "Aplicable a la edad registrada."
+          },
+          {
+            "regla": "ruta_informe_escolar",
+            "ok": true,
+            "detalle": "Compatible con la ruta «con_informe»."
+          },
+          {
+            "regla": "no_en_expediente",
+            "ok": true,
+            "detalle": "Dato ausente del expediente."
+          },
+          {
+            "regla": "necesaria",
+            "ok": true,
+            "detalle": "La conducta está presente y este dato es esencial para caracterizarla."
+          },
+          {
+            "regla": "no_repetida",
+            "ok": true,
+            "detalle": "No formulada antes."
+          },
+          {
+            "regla": "no_equivalente",
+            "ok": true,
+            "detalle": "Sin grupo de equivalencia."
+          },
+          {
+            "regla": "limite",
+            "ok": true,
+            "detalle": "0/4 preguntas en la dimensión."
+          }
+        ],
+        "estado": {
+          "turno": 8,
+          "estado_global": "entrevista",
+          "fase_inicial_completa": true,
+          "ruta": "con_informe",
+          "iniciales": {
+            "motivo": "Desde primero básico se distrae mucho en clases y le cuesta terminar las tareas; además duerme mal.",
+            "edad": "8",
+            "informe_existe": "si",
+            "informe_disponible": "si"
+          },
+          "dimensiones": {
+            "INA-SOST": "resuelta",
+            "INA-ORG": "pendiente",
+            "INA-OLV": "pendiente",
+            "HIP-MOT": "pendiente",
+            "IMP-ESPERA": "pendiente",
+            "IMP-INTERR": "pendiente",
+            "DES-HITOS": "pendiente",
+            "TRA-EVOL": "pendiente",
+            "AUT-RUTINAS": "pendiente",
+            "FUN-FAMILIA": "en_curso",
+            "FUN-PARES": "pendiente",
+            "ESC-REND": "pendiente_informe",
+            "ESC-AULA": "pendiente_informe",
+            "TAM-SUENO": "en_curso",
+            "TAM-VISION": "pendiente",
+            "TAM-AUDICION": "pendiente",
+            "TAM-MEDICO": "pendiente"
+          },
+          "contradicciones_abiertas": 0
+        }
+      },
+      "creado": "2026-10-15T15:09:07.968Z"
+    },
+    {
+      "id": 22,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 9,
+      "tipo": "respuesta_registrada",
+      "detalle": {
+        "pregunta_id": "FUN-FAMILIA-DESCRIPCION",
+        "texto_original": "Las tareas generan tensión y discusiones casi a diario",
+        "tipo_declarado": null,
+        "clasificacion": "valor",
+        "estado_dato": "valor",
+        "valor": "Las tareas generan tensión y discusiones casi a diario",
+        "interprete": "reglas"
+      },
+      "creado": "2026-10-15T15:09:07.978Z"
+    },
+    {
+      "id": 23,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 10,
+      "tipo": "pregunta_seleccionada",
+      "detalle": {
+        "pregunta_id": "TAM-SUENO-DESCRIPCION",
+        "dimension_id": "TAM-SUENO",
+        "slot": "descripcion",
+        "justificacion": "Profundización: «Sueño» tiene presencia referida (fuente: apoderado, mención espontánea) y falta caracterizar: descripcion, evaluado_profesional. Se pregunta por «Descripción».",
+        "validacion": [
+          {
+            "regla": "una_sola_pregunta",
+            "ok": true,
+            "detalle": "Contiene una sola pregunta."
+          },
+          {
+            "regla": "autorizada",
+            "ok": true,
+            "detalle": "Pregunta TAM-SUENO-DESCRIPCION del banco autorizado."
+          },
+          {
+            "regla": "orden_inicial",
+            "ok": true,
+            "detalle": "Fase inicial completa."
+          },
+          {
+            "regla": "aplicable_edad",
+            "ok": true,
+            "detalle": "Aplicable a la edad registrada."
+          },
+          {
+            "regla": "ruta_informe_escolar",
+            "ok": true,
+            "detalle": "Compatible con la ruta «con_informe»."
+          },
+          {
+            "regla": "no_en_expediente",
+            "ok": true,
+            "detalle": "Dato ausente del expediente."
+          },
+          {
+            "regla": "necesaria",
+            "ok": true,
+            "detalle": "La conducta está presente y este dato es esencial para caracterizarla."
+          },
+          {
+            "regla": "no_repetida",
+            "ok": true,
+            "detalle": "No formulada antes."
+          },
+          {
+            "regla": "no_equivalente",
+            "ok": true,
+            "detalle": "Sin grupo de equivalencia."
+          },
+          {
+            "regla": "limite",
+            "ok": true,
+            "detalle": "0/4 preguntas en la dimensión."
+          }
+        ],
+        "estado": {
+          "turno": 9,
+          "estado_global": "entrevista",
+          "fase_inicial_completa": true,
+          "ruta": "con_informe",
+          "iniciales": {
+            "motivo": "Desde primero básico se distrae mucho en clases y le cuesta terminar las tareas; además duerme mal.",
+            "edad": "8",
+            "informe_existe": "si",
+            "informe_disponible": "si"
+          },
+          "dimensiones": {
+            "INA-SOST": "resuelta",
+            "INA-ORG": "pendiente",
+            "INA-OLV": "pendiente",
+            "HIP-MOT": "pendiente",
+            "IMP-ESPERA": "pendiente",
+            "IMP-INTERR": "pendiente",
+            "DES-HITOS": "pendiente",
+            "TRA-EVOL": "pendiente",
+            "AUT-RUTINAS": "pendiente",
+            "FUN-FAMILIA": "resuelta",
+            "FUN-PARES": "pendiente",
+            "ESC-REND": "pendiente_informe",
+            "ESC-AULA": "pendiente_informe",
+            "TAM-SUENO": "en_curso",
+            "TAM-VISION": "pendiente",
+            "TAM-AUDICION": "pendiente",
+            "TAM-MEDICO": "pendiente"
+          },
+          "contradicciones_abiertas": 0
+        }
+      },
+      "creado": "2026-10-15T15:09:07.979Z"
+    },
+    {
+      "id": 24,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 10,
+      "tipo": "respuesta_registrada",
+      "detalle": {
+        "pregunta_id": "TAM-SUENO-DESCRIPCION",
+        "texto_original": "Le cuesta dormirse y se despierta en la noche, desde hace un año",
+        "tipo_declarado": null,
+        "clasificacion": "valor",
+        "estado_dato": "valor",
+        "valor": "Le cuesta dormirse y se despierta en la noche, desde hace un año",
+        "interprete": "reglas"
+      },
+      "creado": "2026-10-15T15:09:07.995Z"
+    },
+    {
+      "id": 25,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 11,
+      "tipo": "pregunta_seleccionada",
+      "detalle": {
+        "pregunta_id": "TAM-SUENO-EVALUADO_PROFESIONAL",
+        "dimension_id": "TAM-SUENO",
+        "slot": "evaluado_profesional",
+        "justificacion": "Profundización: «Sueño» tiene presencia referida (fuente: apoderado, mención espontánea) y falta caracterizar: evaluado_profesional. Se pregunta por «Evaluado por un profesional».",
+        "validacion": [
+          {
+            "regla": "una_sola_pregunta",
+            "ok": true,
+            "detalle": "Contiene una sola pregunta."
+          },
+          {
+            "regla": "autorizada",
+            "ok": true,
+            "detalle": "Pregunta TAM-SUENO-EVALUADO_PROFESIONAL del banco autorizado."
+          },
+          {
+            "regla": "orden_inicial",
+            "ok": true,
+            "detalle": "Fase inicial completa."
+          },
+          {
+            "regla": "aplicable_edad",
+            "ok": true,
+            "detalle": "Aplicable a la edad registrada."
+          },
+          {
+            "regla": "ruta_informe_escolar",
+            "ok": true,
+            "detalle": "Compatible con la ruta «con_informe»."
+          },
+          {
+            "regla": "no_en_expediente",
+            "ok": true,
+            "detalle": "Dato ausente del expediente."
+          },
+          {
+            "regla": "necesaria",
+            "ok": true,
+            "detalle": "La conducta está presente y este dato es esencial para caracterizarla."
+          },
+          {
+            "regla": "no_repetida",
+            "ok": true,
+            "detalle": "No formulada antes."
+          },
+          {
+            "regla": "no_equivalente",
+            "ok": true,
+            "detalle": "Sin grupo de equivalencia."
+          },
+          {
+            "regla": "limite",
+            "ok": true,
+            "detalle": "1/4 preguntas en la dimensión."
+          }
+        ],
+        "estado": {
+          "turno": 10,
+          "estado_global": "entrevista",
+          "fase_inicial_completa": true,
+          "ruta": "con_informe",
+          "iniciales": {
+            "motivo": "Desde primero básico se distrae mucho en clases y le cuesta terminar las tareas; además duerme mal.",
+            "edad": "8",
+            "informe_existe": "si",
+            "informe_disponible": "si"
+          },
+          "dimensiones": {
+            "INA-SOST": "resuelta",
+            "INA-ORG": "pendiente",
+            "INA-OLV": "pendiente",
+            "HIP-MOT": "pendiente",
+            "IMP-ESPERA": "pendiente",
+            "IMP-INTERR": "pendiente",
+            "DES-HITOS": "pendiente",
+            "TRA-EVOL": "pendiente",
+            "AUT-RUTINAS": "pendiente",
+            "FUN-FAMILIA": "resuelta",
+            "FUN-PARES": "pendiente",
+            "ESC-REND": "pendiente_informe",
+            "ESC-AULA": "pendiente_informe",
+            "TAM-SUENO": "en_curso",
+            "TAM-VISION": "pendiente",
+            "TAM-AUDICION": "pendiente",
+            "TAM-MEDICO": "pendiente"
+          },
+          "contradicciones_abiertas": 0
+        }
+      },
+      "creado": "2026-10-15T15:09:07.995Z"
+    },
+    {
+      "id": 26,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 11,
+      "tipo": "respuesta_registrada",
+      "detalle": {
+        "pregunta_id": "TAM-SUENO-EVALUADO_PROFESIONAL",
+        "texto_original": "",
+        "tipo_declarado": "no_se",
+        "clasificacion": "no_se",
+        "estado_dato": "no_sabe",
+        "valor": null,
+        "interprete": "reglas"
+      },
+      "creado": "2026-10-15T15:09:08.003Z"
+    },
+    {
+      "id": 27,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 12,
+      "tipo": "pregunta_seleccionada",
+      "detalle": {
+        "pregunta_id": "INA-ORG-P1",
+        "dimension_id": "INA-ORG",
+        "slot": "presencia",
+        "justificacion": "Dimensión obligatoria pendiente «Organización y finalización de tareas» (inatencion): no hay datos en el expediente desde ninguna fuente.",
+        "validacion": [
+          {
+            "regla": "una_sola_pregunta",
+            "ok": true,
+            "detalle": "Contiene una sola pregunta."
+          },
+          {
+            "regla": "autorizada",
+            "ok": true,
+            "detalle": "Pregunta INA-ORG-P1 del banco autorizado."
+          },
+          {
+            "regla": "orden_inicial",
+            "ok": true,
+            "detalle": "Fase inicial completa."
+          },
+          {
+            "regla": "aplicable_edad",
+            "ok": true,
+            "detalle": "Aplicable a la edad registrada."
+          },
+          {
+            "regla": "ruta_informe_escolar",
+            "ok": true,
+            "detalle": "Compatible con la ruta «con_informe»."
+          },
+          {
+            "regla": "no_en_expediente",
+            "ok": true,
+            "detalle": "Dato ausente del expediente."
+          },
+          {
+            "regla": "necesaria",
+            "ok": true,
+            "detalle": "Resuelve un dato pendiente."
+          },
+          {
+            "regla": "no_repetida",
+            "ok": true,
+            "detalle": "No formulada antes."
+          },
+          {
+            "regla": "no_equivalente",
+            "ok": true,
+            "detalle": "Sin equivalentes formuladas."
+          },
+          {
+            "regla": "limite",
+            "ok": true,
+            "detalle": "0/4 preguntas en la dimensión."
+          }
+        ],
+        "estado": {
+          "turno": 11,
+          "estado_global": "entrevista",
+          "fase_inicial_completa": true,
+          "ruta": "con_informe",
+          "iniciales": {
+            "motivo": "Desde primero básico se distrae mucho en clases y le cuesta terminar las tareas; además duerme mal.",
+            "edad": "8",
+            "informe_existe": "si",
+            "informe_disponible": "si"
+          },
+          "dimensiones": {
+            "INA-SOST": "resuelta",
+            "INA-ORG": "pendiente",
+            "INA-OLV": "pendiente",
+            "HIP-MOT": "pendiente",
+            "IMP-ESPERA": "pendiente",
+            "IMP-INTERR": "pendiente",
+            "DES-HITOS": "pendiente",
+            "TRA-EVOL": "pendiente",
+            "AUT-RUTINAS": "pendiente",
+            "FUN-FAMILIA": "resuelta",
+            "FUN-PARES": "pendiente",
+            "ESC-REND": "pendiente_informe",
+            "ESC-AULA": "pendiente_informe",
+            "TAM-SUENO": "parcial",
+            "TAM-VISION": "pendiente",
+            "TAM-AUDICION": "pendiente",
+            "TAM-MEDICO": "pendiente"
+          },
+          "contradicciones_abiertas": 0
+        }
+      },
+      "creado": "2026-10-15T15:09:08.004Z"
+    },
+    {
+      "id": 28,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 12,
+      "tipo": "respuesta_registrada",
+      "detalle": {
+        "pregunta_id": "INA-ORG-P1",
+        "texto_original": "Sí, siempre hay que recordarle",
+        "tipo_declarado": null,
+        "clasificacion": "si",
+        "estado_dato": "valor",
+        "valor": "si",
+        "interprete": "reglas"
+      },
+      "creado": "2026-10-15T15:09:08.012Z"
+    },
+    {
+      "id": 29,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 13,
+      "tipo": "pregunta_seleccionada",
+      "detalle": {
+        "pregunta_id": "INA-ORG-FRECUENCIA",
+        "dimension_id": "INA-ORG",
+        "slot": "frecuencia",
+        "justificacion": "Profundización: «Organización y finalización de tareas» tiene presencia referida (fuente: apoderado) y falta caracterizar: frecuencia, contextos, inicio, impacto. Se pregunta por «Frecuencia».",
+        "validacion": [
+          {
+            "regla": "una_sola_pregunta",
+            "ok": true,
+            "detalle": "Contiene una sola pregunta."
+          },
+          {
+            "regla": "autorizada",
+            "ok": true,
+            "detalle": "Pregunta INA-ORG-FRECUENCIA del banco autorizado."
+          },
+          {
+            "regla": "orden_inicial",
+            "ok": true,
+            "detalle": "Fase inicial completa."
+          },
+          {
+            "regla": "aplicable_edad",
+            "ok": true,
+            "detalle": "Aplicable a la edad registrada."
+          },
+          {
+            "regla": "ruta_informe_escolar",
+            "ok": true,
+            "detalle": "Compatible con la ruta «con_informe»."
+          },
+          {
+            "regla": "no_en_expediente",
+            "ok": true,
+            "detalle": "Dato ausente del expediente."
+          },
+          {
+            "regla": "necesaria",
+            "ok": true,
+            "detalle": "La conducta está presente y este dato es esencial para caracterizarla."
+          },
+          {
+            "regla": "no_repetida",
+            "ok": true,
+            "detalle": "No formulada antes."
+          },
+          {
+            "regla": "no_equivalente",
+            "ok": true,
+            "detalle": "Sin grupo de equivalencia."
+          },
+          {
+            "regla": "limite",
+            "ok": true,
+            "detalle": "1/4 preguntas en la dimensión."
+          }
+        ],
+        "estado": {
+          "turno": 12,
+          "estado_global": "entrevista",
+          "fase_inicial_completa": true,
+          "ruta": "con_informe",
+          "iniciales": {
+            "motivo": "Desde primero básico se distrae mucho en clases y le cuesta terminar las tareas; además duerme mal.",
+            "edad": "8",
+            "informe_existe": "si",
+            "informe_disponible": "si"
+          },
+          "dimensiones": {
+            "INA-SOST": "resuelta",
+            "INA-ORG": "en_curso",
+            "INA-OLV": "pendiente",
+            "HIP-MOT": "pendiente",
+            "IMP-ESPERA": "pendiente",
+            "IMP-INTERR": "pendiente",
+            "DES-HITOS": "pendiente",
+            "TRA-EVOL": "pendiente",
+            "AUT-RUTINAS": "pendiente",
+            "FUN-FAMILIA": "resuelta",
+            "FUN-PARES": "pendiente",
+            "ESC-REND": "pendiente_informe",
+            "ESC-AULA": "pendiente_informe",
+            "TAM-SUENO": "parcial",
+            "TAM-VISION": "pendiente",
+            "TAM-AUDICION": "pendiente",
+            "TAM-MEDICO": "pendiente"
+          },
+          "contradicciones_abiertas": 0
+        }
+      },
+      "creado": "2026-10-15T15:09:08.013Z"
+    },
+    {
+      "id": 30,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 13,
+      "tipo": "respuesta_registrada",
+      "detalle": {
+        "pregunta_id": "INA-ORG-FRECUENCIA",
+        "texto_original": "Todos los días",
+        "tipo_declarado": null,
+        "clasificacion": "valor",
+        "estado_dato": "valor",
+        "valor": "Todos los días",
+        "interprete": "reglas"
+      },
+      "creado": "2026-10-15T15:09:08.021Z"
+    },
+    {
+      "id": 31,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 14,
+      "tipo": "pregunta_seleccionada",
+      "detalle": {
+        "pregunta_id": "INA-ORG-CONTEXTOS",
+        "dimension_id": "INA-ORG",
+        "slot": "contextos",
+        "justificacion": "Profundización: «Organización y finalización de tareas» tiene presencia referida (fuente: apoderado) y falta caracterizar: contextos, inicio, impacto. Se pregunta por «Contextos en que ocurre».",
+        "validacion": [
+          {
+            "regla": "una_sola_pregunta",
+            "ok": true,
+            "detalle": "Contiene una sola pregunta."
+          },
+          {
+            "regla": "autorizada",
+            "ok": true,
+            "detalle": "Pregunta INA-ORG-CONTEXTOS del banco autorizado."
+          },
+          {
+            "regla": "orden_inicial",
+            "ok": true,
+            "detalle": "Fase inicial completa."
+          },
+          {
+            "regla": "aplicable_edad",
+            "ok": true,
+            "detalle": "Aplicable a la edad registrada."
+          },
+          {
+            "regla": "ruta_informe_escolar",
+            "ok": true,
+            "detalle": "Compatible con la ruta «con_informe»."
+          },
+          {
+            "regla": "no_en_expediente",
+            "ok": true,
+            "detalle": "Dato ausente del expediente."
+          },
+          {
+            "regla": "necesaria",
+            "ok": true,
+            "detalle": "La conducta está presente y este dato es esencial para caracterizarla."
+          },
+          {
+            "regla": "no_repetida",
+            "ok": true,
+            "detalle": "No formulada antes."
+          },
+          {
+            "regla": "no_equivalente",
+            "ok": true,
+            "detalle": "Sin grupo de equivalencia."
+          },
+          {
+            "regla": "limite",
+            "ok": true,
+            "detalle": "2/4 preguntas en la dimensión."
+          }
+        ],
+        "estado": {
+          "turno": 13,
+          "estado_global": "entrevista",
+          "fase_inicial_completa": true,
+          "ruta": "con_informe",
+          "iniciales": {
+            "motivo": "Desde primero básico se distrae mucho en clases y le cuesta terminar las tareas; además duerme mal.",
+            "edad": "8",
+            "informe_existe": "si",
+            "informe_disponible": "si"
+          },
+          "dimensiones": {
+            "INA-SOST": "resuelta",
+            "INA-ORG": "en_curso",
+            "INA-OLV": "pendiente",
+            "HIP-MOT": "pendiente",
+            "IMP-ESPERA": "pendiente",
+            "IMP-INTERR": "pendiente",
+            "DES-HITOS": "pendiente",
+            "TRA-EVOL": "pendiente",
+            "AUT-RUTINAS": "pendiente",
+            "FUN-FAMILIA": "resuelta",
+            "FUN-PARES": "pendiente",
+            "ESC-REND": "pendiente_informe",
+            "ESC-AULA": "pendiente_informe",
+            "TAM-SUENO": "parcial",
+            "TAM-VISION": "pendiente",
+            "TAM-AUDICION": "pendiente",
+            "TAM-MEDICO": "pendiente"
+          },
+          "contradicciones_abiertas": 0
+        }
+      },
+      "creado": "2026-10-15T15:09:08.022Z"
+    },
+    {
+      "id": 32,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 14,
+      "tipo": "respuesta_registrada",
+      "detalle": {
+        "pregunta_id": "INA-ORG-CONTEXTOS",
+        "texto_original": "En la casa y en el colegio",
+        "tipo_declarado": null,
+        "clasificacion": "valor",
+        "estado_dato": "valor",
+        "valor": "En la casa y en el colegio",
+        "interprete": "reglas"
+      },
+      "creado": "2026-10-15T15:09:08.041Z"
+    },
+    {
+      "id": 33,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 15,
+      "tipo": "pregunta_seleccionada",
+      "detalle": {
+        "pregunta_id": "INA-ORG-INICIO",
+        "dimension_id": "INA-ORG",
+        "slot": "inicio",
+        "justificacion": "Profundización: «Organización y finalización de tareas» tiene presencia referida (fuente: apoderado) y falta caracterizar: inicio, impacto. Se pregunta por «Inicio».",
+        "validacion": [
+          {
+            "regla": "una_sola_pregunta",
+            "ok": true,
+            "detalle": "Contiene una sola pregunta."
+          },
+          {
+            "regla": "autorizada",
+            "ok": true,
+            "detalle": "Pregunta INA-ORG-INICIO del banco autorizado."
+          },
+          {
+            "regla": "orden_inicial",
+            "ok": true,
+            "detalle": "Fase inicial completa."
+          },
+          {
+            "regla": "aplicable_edad",
+            "ok": true,
+            "detalle": "Aplicable a la edad registrada."
+          },
+          {
+            "regla": "ruta_informe_escolar",
+            "ok": true,
+            "detalle": "Compatible con la ruta «con_informe»."
+          },
+          {
+            "regla": "no_en_expediente",
+            "ok": true,
+            "detalle": "Dato ausente del expediente."
+          },
+          {
+            "regla": "necesaria",
+            "ok": true,
+            "detalle": "La conducta está presente y este dato es esencial para caracterizarla."
+          },
+          {
+            "regla": "no_repetida",
+            "ok": true,
+            "detalle": "No formulada antes."
+          },
+          {
+            "regla": "no_equivalente",
+            "ok": true,
+            "detalle": "Sin grupo de equivalencia."
+          },
+          {
+            "regla": "limite",
+            "ok": true,
+            "detalle": "3/4 preguntas en la dimensión."
+          }
+        ],
+        "estado": {
+          "turno": 14,
+          "estado_global": "entrevista",
+          "fase_inicial_completa": true,
+          "ruta": "con_informe",
+          "iniciales": {
+            "motivo": "Desde primero básico se distrae mucho en clases y le cuesta terminar las tareas; además duerme mal.",
+            "edad": "8",
+            "informe_existe": "si",
+            "informe_disponible": "si"
+          },
+          "dimensiones": {
+            "INA-SOST": "resuelta",
+            "INA-ORG": "en_curso",
+            "INA-OLV": "pendiente",
+            "HIP-MOT": "pendiente",
+            "IMP-ESPERA": "pendiente",
+            "IMP-INTERR": "pendiente",
+            "DES-HITOS": "pendiente",
+            "TRA-EVOL": "pendiente",
+            "AUT-RUTINAS": "pendiente",
+            "FUN-FAMILIA": "resuelta",
+            "FUN-PARES": "pendiente",
+            "ESC-REND": "pendiente_informe",
+            "ESC-AULA": "pendiente_informe",
+            "TAM-SUENO": "parcial",
+            "TAM-VISION": "pendiente",
+            "TAM-AUDICION": "pendiente",
+            "TAM-MEDICO": "pendiente"
+          },
+          "contradicciones_abiertas": 0
+        }
+      },
+      "creado": "2026-10-15T15:09:08.043Z"
+    },
+    {
+      "id": 34,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 15,
+      "tipo": "respuesta_registrada",
+      "detalle": {
+        "pregunta_id": "INA-ORG-INICIO",
+        "texto_original": "",
+        "tipo_declarado": "no_recuerdo",
+        "clasificacion": "no_recuerdo",
+        "estado_dato": "no_recuerda",
+        "valor": null,
+        "interprete": "reglas"
+      },
+      "creado": "2026-10-15T15:09:08.056Z"
+    },
+    {
+      "id": 35,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 16,
+      "tipo": "pregunta_seleccionada",
+      "detalle": {
+        "pregunta_id": "INA-ORG-IMPACTO",
+        "dimension_id": "INA-ORG",
+        "slot": "impacto",
+        "justificacion": "Profundización: «Organización y finalización de tareas» tiene presencia referida (fuente: apoderado) y falta caracterizar: impacto. Se pregunta por «Interferencia en el funcionamiento». Se supera el límite orientativo de 4 preguntas porque falta un dato esencial. [límite 4/4 superado por dato esencial]",
+        "validacion": [
+          {
+            "regla": "una_sola_pregunta",
+            "ok": true,
+            "detalle": "Contiene una sola pregunta."
+          },
+          {
+            "regla": "autorizada",
+            "ok": true,
+            "detalle": "Pregunta INA-ORG-IMPACTO del banco autorizado."
+          },
+          {
+            "regla": "orden_inicial",
+            "ok": true,
+            "detalle": "Fase inicial completa."
+          },
+          {
+            "regla": "aplicable_edad",
+            "ok": true,
+            "detalle": "Aplicable a la edad registrada."
+          },
+          {
+            "regla": "ruta_informe_escolar",
+            "ok": true,
+            "detalle": "Compatible con la ruta «con_informe»."
+          },
+          {
+            "regla": "no_en_expediente",
+            "ok": true,
+            "detalle": "Dato ausente del expediente."
+          },
+          {
+            "regla": "necesaria",
+            "ok": true,
+            "detalle": "La conducta está presente y este dato es esencial para caracterizarla."
+          },
+          {
+            "regla": "no_repetida",
+            "ok": true,
+            "detalle": "No formulada antes."
+          },
+          {
+            "regla": "no_equivalente",
+            "ok": true,
+            "detalle": "Sin grupo de equivalencia."
+          },
+          {
+            "regla": "limite",
+            "ok": true,
+            "detalle": "Excede el límite orientativo (4) justificadamente: dato esencial pendiente."
+          }
+        ],
+        "estado": {
+          "turno": 15,
+          "estado_global": "entrevista",
+          "fase_inicial_completa": true,
+          "ruta": "con_informe",
+          "iniciales": {
+            "motivo": "Desde primero básico se distrae mucho en clases y le cuesta terminar las tareas; además duerme mal.",
+            "edad": "8",
+            "informe_existe": "si",
+            "informe_disponible": "si"
+          },
+          "dimensiones": {
+            "INA-SOST": "resuelta",
+            "INA-ORG": "en_curso",
+            "INA-OLV": "pendiente",
+            "HIP-MOT": "pendiente",
+            "IMP-ESPERA": "pendiente",
+            "IMP-INTERR": "pendiente",
+            "DES-HITOS": "pendiente",
+            "TRA-EVOL": "pendiente",
+            "AUT-RUTINAS": "pendiente",
+            "FUN-FAMILIA": "resuelta",
+            "FUN-PARES": "pendiente",
+            "ESC-REND": "pendiente_informe",
+            "ESC-AULA": "pendiente_informe",
+            "TAM-SUENO": "parcial",
+            "TAM-VISION": "pendiente",
+            "TAM-AUDICION": "pendiente",
+            "TAM-MEDICO": "pendiente"
+          },
+          "contradicciones_abiertas": 0
+        }
+      },
+      "creado": "2026-10-15T15:09:08.059Z"
+    },
+    {
+      "id": 36,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 16,
+      "tipo": "respuesta_registrada",
+      "detalle": {
+        "pregunta_id": "INA-ORG-IMPACTO",
+        "texto_original": "Llega con tareas incompletas al colegio",
+        "tipo_declarado": null,
+        "clasificacion": "valor",
+        "estado_dato": "valor",
+        "valor": "Llega con tareas incompletas al colegio",
+        "interprete": "reglas"
+      },
+      "creado": "2026-10-15T15:09:08.073Z"
+    },
+    {
+      "id": 37,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 17,
+      "tipo": "pregunta_seleccionada",
+      "detalle": {
+        "pregunta_id": "INA-OLV-P1",
+        "dimension_id": "INA-OLV",
+        "slot": "presencia",
+        "justificacion": "Dimensión obligatoria pendiente «Olvidos y pérdida de objetos» (inatencion): no hay datos en el expediente desde ninguna fuente.",
+        "validacion": [
+          {
+            "regla": "una_sola_pregunta",
+            "ok": true,
+            "detalle": "Contiene una sola pregunta."
+          },
+          {
+            "regla": "autorizada",
+            "ok": true,
+            "detalle": "Pregunta INA-OLV-P1 del banco autorizado."
+          },
+          {
+            "regla": "orden_inicial",
+            "ok": true,
+            "detalle": "Fase inicial completa."
+          },
+          {
+            "regla": "aplicable_edad",
+            "ok": true,
+            "detalle": "Aplicable a la edad registrada."
+          },
+          {
+            "regla": "ruta_informe_escolar",
+            "ok": true,
+            "detalle": "Compatible con la ruta «con_informe»."
+          },
+          {
+            "regla": "no_en_expediente",
+            "ok": true,
+            "detalle": "Dato ausente del expediente."
+          },
+          {
+            "regla": "necesaria",
+            "ok": true,
+            "detalle": "Resuelve un dato pendiente."
+          },
+          {
+            "regla": "no_repetida",
+            "ok": true,
+            "detalle": "No formulada antes."
+          },
+          {
+            "regla": "no_equivalente",
+            "ok": true,
+            "detalle": "Sin grupo de equivalencia."
+          },
+          {
+            "regla": "limite",
+            "ok": true,
+            "detalle": "0/4 preguntas en la dimensión."
+          }
+        ],
+        "estado": {
+          "turno": 16,
+          "estado_global": "entrevista",
+          "fase_inicial_completa": true,
+          "ruta": "con_informe",
+          "iniciales": {
+            "motivo": "Desde primero básico se distrae mucho en clases y le cuesta terminar las tareas; además duerme mal.",
+            "edad": "8",
+            "informe_existe": "si",
+            "informe_disponible": "si"
+          },
+          "dimensiones": {
+            "INA-SOST": "resuelta",
+            "INA-ORG": "parcial",
+            "INA-OLV": "pendiente",
+            "HIP-MOT": "pendiente",
+            "IMP-ESPERA": "pendiente",
+            "IMP-INTERR": "pendiente",
+            "DES-HITOS": "pendiente",
+            "TRA-EVOL": "pendiente",
+            "AUT-RUTINAS": "pendiente",
+            "FUN-FAMILIA": "resuelta",
+            "FUN-PARES": "pendiente",
+            "ESC-REND": "pendiente_informe",
+            "ESC-AULA": "pendiente_informe",
+            "TAM-SUENO": "parcial",
+            "TAM-VISION": "pendiente",
+            "TAM-AUDICION": "pendiente",
+            "TAM-MEDICO": "pendiente"
+          },
+          "contradicciones_abiertas": 0
+        }
+      },
+      "creado": "2026-10-15T15:09:08.075Z"
+    },
+    {
+      "id": 38,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 17,
+      "tipo": "respuesta_registrada",
+      "detalle": {
+        "pregunta_id": "INA-OLV-P1",
+        "texto_original": "A veces",
+        "tipo_declarado": null,
+        "clasificacion": "ambiguo",
+        "estado_dato": "ambiguo",
+        "valor": null,
+        "interprete": "reglas"
+      },
+      "creado": "2026-10-15T15:09:08.097Z"
+    },
+    {
+      "id": 39,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 18,
+      "tipo": "pregunta_seleccionada",
+      "detalle": {
+        "pregunta_id": "INA-OLV-P2",
+        "dimension_id": "INA-OLV",
+        "slot": "presencia",
+        "justificacion": "La respuesta sobre «presencia» de «Olvidos y pérdida de objetos» fue ambigua; se formula una pregunta más específica en lugar de suponer.",
+        "validacion": [
+          {
+            "regla": "una_sola_pregunta",
+            "ok": true,
+            "detalle": "Contiene una sola pregunta."
+          },
+          {
+            "regla": "autorizada",
+            "ok": true,
+            "detalle": "Pregunta INA-OLV-P2 del banco autorizado."
+          },
+          {
+            "regla": "orden_inicial",
+            "ok": true,
+            "detalle": "Fase inicial completa."
+          },
+          {
+            "regla": "aplicable_edad",
+            "ok": true,
+            "detalle": "Aplicable a la edad registrada."
+          },
+          {
+            "regla": "ruta_informe_escolar",
+            "ok": true,
+            "detalle": "Compatible con la ruta «con_informe»."
+          },
+          {
+            "regla": "no_en_expediente",
+            "ok": true,
+            "detalle": "Dato en estado «ambiguo»."
+          },
+          {
+            "regla": "necesaria",
+            "ok": true,
+            "detalle": "Resuelve un dato pendiente."
+          },
+          {
+            "regla": "no_repetida",
+            "ok": true,
+            "detalle": "No formulada antes."
+          },
+          {
+            "regla": "no_equivalente",
+            "ok": true,
+            "detalle": "Sin grupo de equivalencia."
+          },
+          {
+            "regla": "mas_especifica",
+            "ok": true,
+            "detalle": "Más específica que las anteriores para este dato."
+          },
+          {
+            "regla": "limite",
+            "ok": true,
+            "detalle": "1/4 preguntas en la dimensión."
+          }
+        ],
+        "estado": {
+          "turno": 17,
+          "estado_global": "entrevista",
+          "fase_inicial_completa": true,
+          "ruta": "con_informe",
+          "iniciales": {
+            "motivo": "Desde primero básico se distrae mucho en clases y le cuesta terminar las tareas; además duerme mal.",
+            "edad": "8",
+            "informe_existe": "si",
+            "informe_disponible": "si"
+          },
+          "dimensiones": {
+            "INA-SOST": "resuelta",
+            "INA-ORG": "parcial",
+            "INA-OLV": "en_curso",
+            "HIP-MOT": "pendiente",
+            "IMP-ESPERA": "pendiente",
+            "IMP-INTERR": "pendiente",
+            "DES-HITOS": "pendiente",
+            "TRA-EVOL": "pendiente",
+            "AUT-RUTINAS": "pendiente",
+            "FUN-FAMILIA": "resuelta",
+            "FUN-PARES": "pendiente",
+            "ESC-REND": "pendiente_informe",
+            "ESC-AULA": "pendiente_informe",
+            "TAM-SUENO": "parcial",
+            "TAM-VISION": "pendiente",
+            "TAM-AUDICION": "pendiente",
+            "TAM-MEDICO": "pendiente"
+          },
+          "contradicciones_abiertas": 0
+        }
+      },
+      "creado": "2026-10-15T15:09:08.099Z"
+    },
+    {
+      "id": 40,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 18,
+      "tipo": "respuesta_registrada",
+      "detalle": {
+        "pregunta_id": "INA-OLV-P2",
+        "texto_original": "Sí, bastantes veces",
+        "tipo_declarado": null,
+        "clasificacion": "si",
+        "estado_dato": "valor",
+        "valor": "si",
+        "interprete": "reglas"
+      },
+      "creado": "2026-10-15T15:09:08.116Z"
+    },
+    {
+      "id": 41,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 19,
+      "tipo": "pregunta_seleccionada",
+      "detalle": {
+        "pregunta_id": "INA-OLV-FRECUENCIA",
+        "dimension_id": "INA-OLV",
+        "slot": "frecuencia",
+        "justificacion": "Profundización: «Olvidos y pérdida de objetos» tiene presencia referida (fuente: apoderado) y falta caracterizar: frecuencia, contextos, inicio, impacto. Se pregunta por «Frecuencia».",
+        "validacion": [
+          {
+            "regla": "una_sola_pregunta",
+            "ok": true,
+            "detalle": "Contiene una sola pregunta."
+          },
+          {
+            "regla": "autorizada",
+            "ok": true,
+            "detalle": "Pregunta INA-OLV-FRECUENCIA del banco autorizado."
+          },
+          {
+            "regla": "orden_inicial",
+            "ok": true,
+            "detalle": "Fase inicial completa."
+          },
+          {
+            "regla": "aplicable_edad",
+            "ok": true,
+            "detalle": "Aplicable a la edad registrada."
+          },
+          {
+            "regla": "ruta_informe_escolar",
+            "ok": true,
+            "detalle": "Compatible con la ruta «con_informe»."
+          },
+          {
+            "regla": "no_en_expediente",
+            "ok": true,
+            "detalle": "Dato ausente del expediente."
+          },
+          {
+            "regla": "necesaria",
+            "ok": true,
+            "detalle": "La conducta está presente y este dato es esencial para caracterizarla."
+          },
+          {
+            "regla": "no_repetida",
+            "ok": true,
+            "detalle": "No formulada antes."
+          },
+          {
+            "regla": "no_equivalente",
+            "ok": true,
+            "detalle": "Sin grupo de equivalencia."
+          },
+          {
+            "regla": "limite",
+            "ok": true,
+            "detalle": "2/4 preguntas en la dimensión."
+          }
+        ],
+        "estado": {
+          "turno": 18,
+          "estado_global": "entrevista",
+          "fase_inicial_completa": true,
+          "ruta": "con_informe",
+          "iniciales": {
+            "motivo": "Desde primero básico se distrae mucho en clases y le cuesta terminar las tareas; además duerme mal.",
+            "edad": "8",
+            "informe_existe": "si",
+            "informe_disponible": "si"
+          },
+          "dimensiones": {
+            "INA-SOST": "resuelta",
+            "INA-ORG": "parcial",
+            "INA-OLV": "en_curso",
+            "HIP-MOT": "pendiente",
+            "IMP-ESPERA": "pendiente",
+            "IMP-INTERR": "pendiente",
+            "DES-HITOS": "pendiente",
+            "TRA-EVOL": "pendiente",
+            "AUT-RUTINAS": "pendiente",
+            "FUN-FAMILIA": "resuelta",
+            "FUN-PARES": "pendiente",
+            "ESC-REND": "pendiente_informe",
+            "ESC-AULA": "pendiente_informe",
+            "TAM-SUENO": "parcial",
+            "TAM-VISION": "pendiente",
+            "TAM-AUDICION": "pendiente",
+            "TAM-MEDICO": "pendiente"
+          },
+          "contradicciones_abiertas": 0
+        }
+      },
+      "creado": "2026-10-15T15:09:08.118Z"
+    },
+    {
+      "id": 42,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 19,
+      "tipo": "respuesta_registrada",
+      "detalle": {
+        "pregunta_id": "INA-OLV-FRECUENCIA",
+        "texto_original": "Una o dos veces por semana",
+        "tipo_declarado": null,
+        "clasificacion": "valor",
+        "estado_dato": "valor",
+        "valor": "Una o dos veces por semana",
+        "interprete": "reglas"
+      },
+      "creado": "2026-10-15T15:09:08.136Z"
+    },
+    {
+      "id": 43,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 20,
+      "tipo": "pregunta_seleccionada",
+      "detalle": {
+        "pregunta_id": "INA-OLV-CONTEXTOS",
+        "dimension_id": "INA-OLV",
+        "slot": "contextos",
+        "justificacion": "Profundización: «Olvidos y pérdida de objetos» tiene presencia referida (fuente: apoderado) y falta caracterizar: contextos, inicio, impacto. Se pregunta por «Contextos en que ocurre».",
+        "validacion": [
+          {
+            "regla": "una_sola_pregunta",
+            "ok": true,
+            "detalle": "Contiene una sola pregunta."
+          },
+          {
+            "regla": "autorizada",
+            "ok": true,
+            "detalle": "Pregunta INA-OLV-CONTEXTOS del banco autorizado."
+          },
+          {
+            "regla": "orden_inicial",
+            "ok": true,
+            "detalle": "Fase inicial completa."
+          },
+          {
+            "regla": "aplicable_edad",
+            "ok": true,
+            "detalle": "Aplicable a la edad registrada."
+          },
+          {
+            "regla": "ruta_informe_escolar",
+            "ok": true,
+            "detalle": "Compatible con la ruta «con_informe»."
+          },
+          {
+            "regla": "no_en_expediente",
+            "ok": true,
+            "detalle": "Dato ausente del expediente."
+          },
+          {
+            "regla": "necesaria",
+            "ok": true,
+            "detalle": "La conducta está presente y este dato es esencial para caracterizarla."
+          },
+          {
+            "regla": "no_repetida",
+            "ok": true,
+            "detalle": "No formulada antes."
+          },
+          {
+            "regla": "no_equivalente",
+            "ok": true,
+            "detalle": "Sin grupo de equivalencia."
+          },
+          {
+            "regla": "limite",
+            "ok": true,
+            "detalle": "3/4 preguntas en la dimensión."
+          }
+        ],
+        "estado": {
+          "turno": 19,
+          "estado_global": "entrevista",
+          "fase_inicial_completa": true,
+          "ruta": "con_informe",
+          "iniciales": {
+            "motivo": "Desde primero básico se distrae mucho en clases y le cuesta terminar las tareas; además duerme mal.",
+            "edad": "8",
+            "informe_existe": "si",
+            "informe_disponible": "si"
+          },
+          "dimensiones": {
+            "INA-SOST": "resuelta",
+            "INA-ORG": "parcial",
+            "INA-OLV": "en_curso",
+            "HIP-MOT": "pendiente",
+            "IMP-ESPERA": "pendiente",
+            "IMP-INTERR": "pendiente",
+            "DES-HITOS": "pendiente",
+            "TRA-EVOL": "pendiente",
+            "AUT-RUTINAS": "pendiente",
+            "FUN-FAMILIA": "resuelta",
+            "FUN-PARES": "pendiente",
+            "ESC-REND": "pendiente_informe",
+            "ESC-AULA": "pendiente_informe",
+            "TAM-SUENO": "parcial",
+            "TAM-VISION": "pendiente",
+            "TAM-AUDICION": "pendiente",
+            "TAM-MEDICO": "pendiente"
+          },
+          "contradicciones_abiertas": 0
+        }
+      },
+      "creado": "2026-10-15T15:09:08.138Z"
+    },
+    {
+      "id": 44,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 20,
+      "tipo": "respuesta_registrada",
+      "detalle": {
+        "pregunta_id": "INA-OLV-CONTEXTOS",
+        "texto_original": "Colegio, sobre todo con útiles y la colación",
+        "tipo_declarado": null,
+        "clasificacion": "valor",
+        "estado_dato": "valor",
+        "valor": "Colegio, sobre todo con útiles y la colación",
+        "interprete": "reglas"
+      },
+      "creado": "2026-10-15T15:09:08.155Z"
+    },
+    {
+      "id": 45,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 21,
+      "tipo": "pregunta_seleccionada",
+      "detalle": {
+        "pregunta_id": "INA-OLV-INICIO",
+        "dimension_id": "INA-OLV",
+        "slot": "inicio",
+        "justificacion": "Profundización: «Olvidos y pérdida de objetos» tiene presencia referida (fuente: apoderado) y falta caracterizar: inicio, impacto. Se pregunta por «Inicio». Se supera el límite orientativo de 4 preguntas porque falta un dato esencial. [límite 4/4 superado por dato esencial]",
+        "validacion": [
+          {
+            "regla": "una_sola_pregunta",
+            "ok": true,
+            "detalle": "Contiene una sola pregunta."
+          },
+          {
+            "regla": "autorizada",
+            "ok": true,
+            "detalle": "Pregunta INA-OLV-INICIO del banco autorizado."
+          },
+          {
+            "regla": "orden_inicial",
+            "ok": true,
+            "detalle": "Fase inicial completa."
+          },
+          {
+            "regla": "aplicable_edad",
+            "ok": true,
+            "detalle": "Aplicable a la edad registrada."
+          },
+          {
+            "regla": "ruta_informe_escolar",
+            "ok": true,
+            "detalle": "Compatible con la ruta «con_informe»."
+          },
+          {
+            "regla": "no_en_expediente",
+            "ok": true,
+            "detalle": "Dato ausente del expediente."
+          },
+          {
+            "regla": "necesaria",
+            "ok": true,
+            "detalle": "La conducta está presente y este dato es esencial para caracterizarla."
+          },
+          {
+            "regla": "no_repetida",
+            "ok": true,
+            "detalle": "No formulada antes."
+          },
+          {
+            "regla": "no_equivalente",
+            "ok": true,
+            "detalle": "Sin grupo de equivalencia."
+          },
+          {
+            "regla": "limite",
+            "ok": true,
+            "detalle": "Excede el límite orientativo (4) justificadamente: dato esencial pendiente."
+          }
+        ],
+        "estado": {
+          "turno": 20,
+          "estado_global": "entrevista",
+          "fase_inicial_completa": true,
+          "ruta": "con_informe",
+          "iniciales": {
+            "motivo": "Desde primero básico se distrae mucho en clases y le cuesta terminar las tareas; además duerme mal.",
+            "edad": "8",
+            "informe_existe": "si",
+            "informe_disponible": "si"
+          },
+          "dimensiones": {
+            "INA-SOST": "resuelta",
+            "INA-ORG": "parcial",
+            "INA-OLV": "en_curso",
+            "HIP-MOT": "pendiente",
+            "IMP-ESPERA": "pendiente",
+            "IMP-INTERR": "pendiente",
+            "DES-HITOS": "pendiente",
+            "TRA-EVOL": "pendiente",
+            "AUT-RUTINAS": "pendiente",
+            "FUN-FAMILIA": "resuelta",
+            "FUN-PARES": "pendiente",
+            "ESC-REND": "pendiente_informe",
+            "ESC-AULA": "pendiente_informe",
+            "TAM-SUENO": "parcial",
+            "TAM-VISION": "pendiente",
+            "TAM-AUDICION": "pendiente",
+            "TAM-MEDICO": "pendiente"
+          },
+          "contradicciones_abiertas": 0
+        }
+      },
+      "creado": "2026-10-15T15:09:08.157Z"
+    },
+    {
+      "id": 46,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 21,
+      "tipo": "respuesta_registrada",
+      "detalle": {
+        "pregunta_id": "INA-OLV-INICIO",
+        "texto_original": "Desde que entró al colegio",
+        "tipo_declarado": null,
+        "clasificacion": "valor",
+        "estado_dato": "valor",
+        "valor": "Desde que entró al colegio",
+        "interprete": "reglas"
+      },
+      "creado": "2026-10-15T15:09:08.175Z"
+    },
+    {
+      "id": 47,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 22,
+      "tipo": "pregunta_seleccionada",
+      "detalle": {
+        "pregunta_id": "INA-OLV-IMPACTO",
+        "dimension_id": "INA-OLV",
+        "slot": "impacto",
+        "justificacion": "Profundización: «Olvidos y pérdida de objetos» tiene presencia referida (fuente: apoderado) y falta caracterizar: impacto. Se pregunta por «Interferencia en el funcionamiento». Se supera el límite orientativo de 4 preguntas porque falta un dato esencial. [límite 5/4 superado por dato esencial]",
+        "validacion": [
+          {
+            "regla": "una_sola_pregunta",
+            "ok": true,
+            "detalle": "Contiene una sola pregunta."
+          },
+          {
+            "regla": "autorizada",
+            "ok": true,
+            "detalle": "Pregunta INA-OLV-IMPACTO del banco autorizado."
+          },
+          {
+            "regla": "orden_inicial",
+            "ok": true,
+            "detalle": "Fase inicial completa."
+          },
+          {
+            "regla": "aplicable_edad",
+            "ok": true,
+            "detalle": "Aplicable a la edad registrada."
+          },
+          {
+            "regla": "ruta_informe_escolar",
+            "ok": true,
+            "detalle": "Compatible con la ruta «con_informe»."
+          },
+          {
+            "regla": "no_en_expediente",
+            "ok": true,
+            "detalle": "Dato ausente del expediente."
+          },
+          {
+            "regla": "necesaria",
+            "ok": true,
+            "detalle": "La conducta está presente y este dato es esencial para caracterizarla."
+          },
+          {
+            "regla": "no_repetida",
+            "ok": true,
+            "detalle": "No formulada antes."
+          },
+          {
+            "regla": "no_equivalente",
+            "ok": true,
+            "detalle": "Sin grupo de equivalencia."
+          },
+          {
+            "regla": "limite",
+            "ok": true,
+            "detalle": "Excede el límite orientativo (4) justificadamente: dato esencial pendiente."
+          }
+        ],
+        "estado": {
+          "turno": 21,
+          "estado_global": "entrevista",
+          "fase_inicial_completa": true,
+          "ruta": "con_informe",
+          "iniciales": {
+            "motivo": "Desde primero básico se distrae mucho en clases y le cuesta terminar las tareas; además duerme mal.",
+            "edad": "8",
+            "informe_existe": "si",
+            "informe_disponible": "si"
+          },
+          "dimensiones": {
+            "INA-SOST": "resuelta",
+            "INA-ORG": "parcial",
+            "INA-OLV": "en_curso",
+            "HIP-MOT": "pendiente",
+            "IMP-ESPERA": "pendiente",
+            "IMP-INTERR": "pendiente",
+            "DES-HITOS": "pendiente",
+            "TRA-EVOL": "pendiente",
+            "AUT-RUTINAS": "pendiente",
+            "FUN-FAMILIA": "resuelta",
+            "FUN-PARES": "pendiente",
+            "ESC-REND": "pendiente_informe",
+            "ESC-AULA": "pendiente_informe",
+            "TAM-SUENO": "parcial",
+            "TAM-VISION": "pendiente",
+            "TAM-AUDICION": "pendiente",
+            "TAM-MEDICO": "pendiente"
+          },
+          "contradicciones_abiertas": 0
+        }
+      },
+      "creado": "2026-10-15T15:09:08.177Z"
+    },
+    {
+      "id": 48,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 22,
+      "tipo": "respuesta_registrada",
+      "detalle": {
+        "pregunta_id": "INA-OLV-IMPACTO",
+        "texto_original": "Hay que reponer materiales y a veces le anotan",
+        "tipo_declarado": null,
+        "clasificacion": "valor",
+        "estado_dato": "valor",
+        "valor": "Hay que reponer materiales y a veces le anotan",
+        "interprete": "reglas"
+      },
+      "creado": "2026-10-15T15:09:08.194Z"
+    },
+    {
+      "id": 49,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 23,
+      "tipo": "pregunta_seleccionada",
+      "detalle": {
+        "pregunta_id": "HIP-MOT-P1",
+        "dimension_id": "HIP-MOT",
+        "slot": "presencia",
+        "justificacion": "Dimensión obligatoria pendiente «Inquietud motora» (hiperactividad): no hay datos en el expediente desde ninguna fuente.",
+        "validacion": [
+          {
+            "regla": "una_sola_pregunta",
+            "ok": true,
+            "detalle": "Contiene una sola pregunta."
+          },
+          {
+            "regla": "autorizada",
+            "ok": true,
+            "detalle": "Pregunta HIP-MOT-P1 del banco autorizado."
+          },
+          {
+            "regla": "orden_inicial",
+            "ok": true,
+            "detalle": "Fase inicial completa."
+          },
+          {
+            "regla": "aplicable_edad",
+            "ok": true,
+            "detalle": "Aplicable a la edad registrada."
+          },
+          {
+            "regla": "ruta_informe_escolar",
+            "ok": true,
+            "detalle": "Compatible con la ruta «con_informe»."
+          },
+          {
+            "regla": "no_en_expediente",
+            "ok": true,
+            "detalle": "Dato ausente del expediente."
+          },
+          {
+            "regla": "necesaria",
+            "ok": true,
+            "detalle": "Resuelve un dato pendiente."
+          },
+          {
+            "regla": "no_repetida",
+            "ok": true,
+            "detalle": "No formulada antes."
+          },
+          {
+            "regla": "no_equivalente",
+            "ok": true,
+            "detalle": "Sin grupo de equivalencia."
+          },
+          {
+            "regla": "limite",
+            "ok": true,
+            "detalle": "0/4 preguntas en la dimensión."
+          }
+        ],
+        "estado": {
+          "turno": 22,
+          "estado_global": "entrevista",
+          "fase_inicial_completa": true,
+          "ruta": "con_informe",
+          "iniciales": {
+            "motivo": "Desde primero básico se distrae mucho en clases y le cuesta terminar las tareas; además duerme mal.",
+            "edad": "8",
+            "informe_existe": "si",
+            "informe_disponible": "si"
+          },
+          "dimensiones": {
+            "INA-SOST": "resuelta",
+            "INA-ORG": "parcial",
+            "INA-OLV": "resuelta",
+            "HIP-MOT": "pendiente",
+            "IMP-ESPERA": "pendiente",
+            "IMP-INTERR": "pendiente",
+            "DES-HITOS": "pendiente",
+            "TRA-EVOL": "pendiente",
+            "AUT-RUTINAS": "pendiente",
+            "FUN-FAMILIA": "resuelta",
+            "FUN-PARES": "pendiente",
+            "ESC-REND": "pendiente_informe",
+            "ESC-AULA": "pendiente_informe",
+            "TAM-SUENO": "parcial",
+            "TAM-VISION": "pendiente",
+            "TAM-AUDICION": "pendiente",
+            "TAM-MEDICO": "pendiente"
+          },
+          "contradicciones_abiertas": 0
+        }
+      },
+      "creado": "2026-10-15T15:09:08.196Z"
+    },
+    {
+      "id": 50,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 23,
+      "tipo": "respuesta_registrada",
+      "detalle": {
+        "pregunta_id": "HIP-MOT-P1",
+        "texto_original": "No, en la casa es tranquilo",
+        "tipo_declarado": null,
+        "clasificacion": "no",
+        "estado_dato": "valor",
+        "valor": "no",
+        "interprete": "reglas"
+      },
+      "creado": "2026-10-15T15:09:08.212Z"
+    },
+    {
+      "id": 51,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 24,
+      "tipo": "pregunta_seleccionada",
+      "detalle": {
+        "pregunta_id": "IMP-ESPERA-P1",
+        "dimension_id": "IMP-ESPERA",
+        "slot": "presencia",
+        "justificacion": "Dimensión obligatoria pendiente «Dificultad para esperar» (impulsividad): no hay datos en el expediente desde ninguna fuente.",
+        "validacion": [
+          {
+            "regla": "una_sola_pregunta",
+            "ok": true,
+            "detalle": "Contiene una sola pregunta."
+          },
+          {
+            "regla": "autorizada",
+            "ok": true,
+            "detalle": "Pregunta IMP-ESPERA-P1 del banco autorizado."
+          },
+          {
+            "regla": "orden_inicial",
+            "ok": true,
+            "detalle": "Fase inicial completa."
+          },
+          {
+            "regla": "aplicable_edad",
+            "ok": true,
+            "detalle": "Aplicable a la edad registrada."
+          },
+          {
+            "regla": "ruta_informe_escolar",
+            "ok": true,
+            "detalle": "Compatible con la ruta «con_informe»."
+          },
+          {
+            "regla": "no_en_expediente",
+            "ok": true,
+            "detalle": "Dato ausente del expediente."
+          },
+          {
+            "regla": "necesaria",
+            "ok": true,
+            "detalle": "Resuelve un dato pendiente."
+          },
+          {
+            "regla": "no_repetida",
+            "ok": true,
+            "detalle": "No formulada antes."
+          },
+          {
+            "regla": "no_equivalente",
+            "ok": true,
+            "detalle": "Sin grupo de equivalencia."
+          },
+          {
+            "regla": "limite",
+            "ok": true,
+            "detalle": "0/4 preguntas en la dimensión."
+          }
+        ],
+        "estado": {
+          "turno": 23,
+          "estado_global": "entrevista",
+          "fase_inicial_completa": true,
+          "ruta": "con_informe",
+          "iniciales": {
+            "motivo": "Desde primero básico se distrae mucho en clases y le cuesta terminar las tareas; además duerme mal.",
+            "edad": "8",
+            "informe_existe": "si",
+            "informe_disponible": "si"
+          },
+          "dimensiones": {
+            "INA-SOST": "resuelta",
+            "INA-ORG": "parcial",
+            "INA-OLV": "resuelta",
+            "HIP-MOT": "resuelta",
+            "IMP-ESPERA": "pendiente",
+            "IMP-INTERR": "pendiente",
+            "DES-HITOS": "pendiente",
+            "TRA-EVOL": "pendiente",
+            "AUT-RUTINAS": "pendiente",
+            "FUN-FAMILIA": "resuelta",
+            "FUN-PARES": "pendiente",
+            "ESC-REND": "pendiente_informe",
+            "ESC-AULA": "pendiente_informe",
+            "TAM-SUENO": "parcial",
+            "TAM-VISION": "pendiente",
+            "TAM-AUDICION": "pendiente",
+            "TAM-MEDICO": "pendiente"
+          },
+          "contradicciones_abiertas": 0
+        }
+      },
+      "creado": "2026-10-15T15:09:08.214Z"
+    },
+    {
+      "id": 52,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 24,
+      "tipo": "respuesta_registrada",
+      "detalle": {
+        "pregunta_id": "IMP-ESPERA-P1",
+        "texto_original": "No",
+        "tipo_declarado": null,
+        "clasificacion": "no",
+        "estado_dato": "valor",
+        "valor": "no",
+        "interprete": "reglas"
+      },
+      "creado": "2026-10-15T15:09:08.225Z"
+    },
+    {
+      "id": 53,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 25,
+      "tipo": "pregunta_seleccionada",
+      "detalle": {
+        "pregunta_id": "IMP-INTERR-P1",
+        "dimension_id": "IMP-INTERR",
+        "slot": "presencia",
+        "justificacion": "Dimensión obligatoria pendiente «Interrupciones» (impulsividad): no hay datos en el expediente desde ninguna fuente.",
+        "validacion": [
+          {
+            "regla": "una_sola_pregunta",
+            "ok": true,
+            "detalle": "Contiene una sola pregunta."
+          },
+          {
+            "regla": "autorizada",
+            "ok": true,
+            "detalle": "Pregunta IMP-INTERR-P1 del banco autorizado."
+          },
+          {
+            "regla": "orden_inicial",
+            "ok": true,
+            "detalle": "Fase inicial completa."
+          },
+          {
+            "regla": "aplicable_edad",
+            "ok": true,
+            "detalle": "Aplicable a la edad registrada."
+          },
+          {
+            "regla": "ruta_informe_escolar",
+            "ok": true,
+            "detalle": "Compatible con la ruta «con_informe»."
+          },
+          {
+            "regla": "no_en_expediente",
+            "ok": true,
+            "detalle": "Dato ausente del expediente."
+          },
+          {
+            "regla": "necesaria",
+            "ok": true,
+            "detalle": "Resuelve un dato pendiente."
+          },
+          {
+            "regla": "no_repetida",
+            "ok": true,
+            "detalle": "No formulada antes."
+          },
+          {
+            "regla": "no_equivalente",
+            "ok": true,
+            "detalle": "Sin grupo de equivalencia."
+          },
+          {
+            "regla": "limite",
+            "ok": true,
+            "detalle": "0/4 preguntas en la dimensión."
+          }
+        ],
+        "estado": {
+          "turno": 24,
+          "estado_global": "entrevista",
+          "fase_inicial_completa": true,
+          "ruta": "con_informe",
+          "iniciales": {
+            "motivo": "Desde primero básico se distrae mucho en clases y le cuesta terminar las tareas; además duerme mal.",
+            "edad": "8",
+            "informe_existe": "si",
+            "informe_disponible": "si"
+          },
+          "dimensiones": {
+            "INA-SOST": "resuelta",
+            "INA-ORG": "parcial",
+            "INA-OLV": "resuelta",
+            "HIP-MOT": "resuelta",
+            "IMP-ESPERA": "resuelta",
+            "IMP-INTERR": "pendiente",
+            "DES-HITOS": "pendiente",
+            "TRA-EVOL": "pendiente",
+            "AUT-RUTINAS": "pendiente",
+            "FUN-FAMILIA": "resuelta",
+            "FUN-PARES": "pendiente",
+            "ESC-REND": "pendiente_informe",
+            "ESC-AULA": "pendiente_informe",
+            "TAM-SUENO": "parcial",
+            "TAM-VISION": "pendiente",
+            "TAM-AUDICION": "pendiente",
+            "TAM-MEDICO": "pendiente"
+          },
+          "contradicciones_abiertas": 0
+        }
+      },
+      "creado": "2026-10-15T15:09:08.227Z"
+    },
+    {
+      "id": 54,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 25,
+      "tipo": "respuesta_registrada",
+      "detalle": {
+        "pregunta_id": "IMP-INTERR-P1",
+        "texto_original": "Sí",
+        "tipo_declarado": null,
+        "clasificacion": "si",
+        "estado_dato": "valor",
+        "valor": "si",
+        "interprete": "reglas"
+      },
+      "creado": "2026-10-15T15:09:08.238Z"
+    },
+    {
+      "id": 55,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 26,
+      "tipo": "pregunta_seleccionada",
+      "detalle": {
+        "pregunta_id": "IMP-INTERR-FRECUENCIA",
+        "dimension_id": "IMP-INTERR",
+        "slot": "frecuencia",
+        "justificacion": "Profundización: «Interrupciones» tiene presencia referida (fuente: apoderado) y falta caracterizar: frecuencia, contextos, inicio, impacto. Se pregunta por «Frecuencia».",
+        "validacion": [
+          {
+            "regla": "una_sola_pregunta",
+            "ok": true,
+            "detalle": "Contiene una sola pregunta."
+          },
+          {
+            "regla": "autorizada",
+            "ok": true,
+            "detalle": "Pregunta IMP-INTERR-FRECUENCIA del banco autorizado."
+          },
+          {
+            "regla": "orden_inicial",
+            "ok": true,
+            "detalle": "Fase inicial completa."
+          },
+          {
+            "regla": "aplicable_edad",
+            "ok": true,
+            "detalle": "Aplicable a la edad registrada."
+          },
+          {
+            "regla": "ruta_informe_escolar",
+            "ok": true,
+            "detalle": "Compatible con la ruta «con_informe»."
+          },
+          {
+            "regla": "no_en_expediente",
+            "ok": true,
+            "detalle": "Dato ausente del expediente."
+          },
+          {
+            "regla": "necesaria",
+            "ok": true,
+            "detalle": "La conducta está presente y este dato es esencial para caracterizarla."
+          },
+          {
+            "regla": "no_repetida",
+            "ok": true,
+            "detalle": "No formulada antes."
+          },
+          {
+            "regla": "no_equivalente",
+            "ok": true,
+            "detalle": "Sin grupo de equivalencia."
+          },
+          {
+            "regla": "limite",
+            "ok": true,
+            "detalle": "1/4 preguntas en la dimensión."
+          }
+        ],
+        "estado": {
+          "turno": 25,
+          "estado_global": "entrevista",
+          "fase_inicial_completa": true,
+          "ruta": "con_informe",
+          "iniciales": {
+            "motivo": "Desde primero básico se distrae mucho en clases y le cuesta terminar las tareas; además duerme mal.",
+            "edad": "8",
+            "informe_existe": "si",
+            "informe_disponible": "si"
+          },
+          "dimensiones": {
+            "INA-SOST": "resuelta",
+            "INA-ORG": "parcial",
+            "INA-OLV": "resuelta",
+            "HIP-MOT": "resuelta",
+            "IMP-ESPERA": "resuelta",
+            "IMP-INTERR": "en_curso",
+            "DES-HITOS": "pendiente",
+            "TRA-EVOL": "pendiente",
+            "AUT-RUTINAS": "pendiente",
+            "FUN-FAMILIA": "resuelta",
+            "FUN-PARES": "pendiente",
+            "ESC-REND": "pendiente_informe",
+            "ESC-AULA": "pendiente_informe",
+            "TAM-SUENO": "parcial",
+            "TAM-VISION": "pendiente",
+            "TAM-AUDICION": "pendiente",
+            "TAM-MEDICO": "pendiente"
+          },
+          "contradicciones_abiertas": 0
+        }
+      },
+      "creado": "2026-10-15T15:09:08.239Z"
+    },
+    {
+      "id": 56,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 26,
+      "tipo": "respuesta_registrada",
+      "detalle": {
+        "pregunta_id": "IMP-INTERR-FRECUENCIA",
+        "texto_original": "Algunas veces por semana",
+        "tipo_declarado": null,
+        "clasificacion": "valor",
+        "estado_dato": "valor",
+        "valor": "Algunas veces por semana",
+        "interprete": "reglas"
+      },
+      "creado": "2026-10-15T15:09:08.248Z"
+    },
+    {
+      "id": 57,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 27,
+      "tipo": "pregunta_seleccionada",
+      "detalle": {
+        "pregunta_id": "IMP-INTERR-CONTEXTOS",
+        "dimension_id": "IMP-INTERR",
+        "slot": "contextos",
+        "justificacion": "Profundización: «Interrupciones» tiene presencia referida (fuente: apoderado) y falta caracterizar: contextos, inicio, impacto. Se pregunta por «Contextos en que ocurre».",
+        "validacion": [
+          {
+            "regla": "una_sola_pregunta",
+            "ok": true,
+            "detalle": "Contiene una sola pregunta."
+          },
+          {
+            "regla": "autorizada",
+            "ok": true,
+            "detalle": "Pregunta IMP-INTERR-CONTEXTOS del banco autorizado."
+          },
+          {
+            "regla": "orden_inicial",
+            "ok": true,
+            "detalle": "Fase inicial completa."
+          },
+          {
+            "regla": "aplicable_edad",
+            "ok": true,
+            "detalle": "Aplicable a la edad registrada."
+          },
+          {
+            "regla": "ruta_informe_escolar",
+            "ok": true,
+            "detalle": "Compatible con la ruta «con_informe»."
+          },
+          {
+            "regla": "no_en_expediente",
+            "ok": true,
+            "detalle": "Dato ausente del expediente."
+          },
+          {
+            "regla": "necesaria",
+            "ok": true,
+            "detalle": "La conducta está presente y este dato es esencial para caracterizarla."
+          },
+          {
+            "regla": "no_repetida",
+            "ok": true,
+            "detalle": "No formulada antes."
+          },
+          {
+            "regla": "no_equivalente",
+            "ok": true,
+            "detalle": "Sin grupo de equivalencia."
+          },
+          {
+            "regla": "limite",
+            "ok": true,
+            "detalle": "2/4 preguntas en la dimensión."
+          }
+        ],
+        "estado": {
+          "turno": 26,
+          "estado_global": "entrevista",
+          "fase_inicial_completa": true,
+          "ruta": "con_informe",
+          "iniciales": {
+            "motivo": "Desde primero básico se distrae mucho en clases y le cuesta terminar las tareas; además duerme mal.",
+            "edad": "8",
+            "informe_existe": "si",
+            "informe_disponible": "si"
+          },
+          "dimensiones": {
+            "INA-SOST": "resuelta",
+            "INA-ORG": "parcial",
+            "INA-OLV": "resuelta",
+            "HIP-MOT": "resuelta",
+            "IMP-ESPERA": "resuelta",
+            "IMP-INTERR": "en_curso",
+            "DES-HITOS": "pendiente",
+            "TRA-EVOL": "pendiente",
+            "AUT-RUTINAS": "pendiente",
+            "FUN-FAMILIA": "resuelta",
+            "FUN-PARES": "pendiente",
+            "ESC-REND": "pendiente_informe",
+            "ESC-AULA": "pendiente_informe",
+            "TAM-SUENO": "parcial",
+            "TAM-VISION": "pendiente",
+            "TAM-AUDICION": "pendiente",
+            "TAM-MEDICO": "pendiente"
+          },
+          "contradicciones_abiertas": 0
+        }
+      },
+      "creado": "2026-10-15T15:09:08.249Z"
+    },
+    {
+      "id": 58,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 27,
+      "tipo": "respuesta_registrada",
+      "detalle": {
+        "pregunta_id": "IMP-INTERR-CONTEXTOS",
+        "texto_original": "Sobre todo en la casa, en las comidas",
+        "tipo_declarado": null,
+        "clasificacion": "valor",
+        "estado_dato": "valor",
+        "valor": "Sobre todo en la casa, en las comidas",
+        "interprete": "reglas"
+      },
+      "creado": "2026-10-15T15:09:08.259Z"
+    },
+    {
+      "id": 59,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 28,
+      "tipo": "pregunta_seleccionada",
+      "detalle": {
+        "pregunta_id": "IMP-INTERR-INICIO",
+        "dimension_id": "IMP-INTERR",
+        "slot": "inicio",
+        "justificacion": "Profundización: «Interrupciones» tiene presencia referida (fuente: apoderado) y falta caracterizar: inicio, impacto. Se pregunta por «Inicio».",
+        "validacion": [
+          {
+            "regla": "una_sola_pregunta",
+            "ok": true,
+            "detalle": "Contiene una sola pregunta."
+          },
+          {
+            "regla": "autorizada",
+            "ok": true,
+            "detalle": "Pregunta IMP-INTERR-INICIO del banco autorizado."
+          },
+          {
+            "regla": "orden_inicial",
+            "ok": true,
+            "detalle": "Fase inicial completa."
+          },
+          {
+            "regla": "aplicable_edad",
+            "ok": true,
+            "detalle": "Aplicable a la edad registrada."
+          },
+          {
+            "regla": "ruta_informe_escolar",
+            "ok": true,
+            "detalle": "Compatible con la ruta «con_informe»."
+          },
+          {
+            "regla": "no_en_expediente",
+            "ok": true,
+            "detalle": "Dato ausente del expediente."
+          },
+          {
+            "regla": "necesaria",
+            "ok": true,
+            "detalle": "La conducta está presente y este dato es esencial para caracterizarla."
+          },
+          {
+            "regla": "no_repetida",
+            "ok": true,
+            "detalle": "No formulada antes."
+          },
+          {
+            "regla": "no_equivalente",
+            "ok": true,
+            "detalle": "Sin grupo de equivalencia."
+          },
+          {
+            "regla": "limite",
+            "ok": true,
+            "detalle": "3/4 preguntas en la dimensión."
+          }
+        ],
+        "estado": {
+          "turno": 27,
+          "estado_global": "entrevista",
+          "fase_inicial_completa": true,
+          "ruta": "con_informe",
+          "iniciales": {
+            "motivo": "Desde primero básico se distrae mucho en clases y le cuesta terminar las tareas; además duerme mal.",
+            "edad": "8",
+            "informe_existe": "si",
+            "informe_disponible": "si"
+          },
+          "dimensiones": {
+            "INA-SOST": "resuelta",
+            "INA-ORG": "parcial",
+            "INA-OLV": "resuelta",
+            "HIP-MOT": "resuelta",
+            "IMP-ESPERA": "resuelta",
+            "IMP-INTERR": "en_curso",
+            "DES-HITOS": "pendiente",
+            "TRA-EVOL": "pendiente",
+            "AUT-RUTINAS": "pendiente",
+            "FUN-FAMILIA": "resuelta",
+            "FUN-PARES": "pendiente",
+            "ESC-REND": "pendiente_informe",
+            "ESC-AULA": "pendiente_informe",
+            "TAM-SUENO": "parcial",
+            "TAM-VISION": "pendiente",
+            "TAM-AUDICION": "pendiente",
+            "TAM-MEDICO": "pendiente"
+          },
+          "contradicciones_abiertas": 0
+        }
+      },
+      "creado": "2026-10-15T15:09:08.260Z"
+    },
+    {
+      "id": 60,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 28,
+      "tipo": "respuesta_registrada",
+      "detalle": {
+        "pregunta_id": "IMP-INTERR-INICIO",
+        "texto_original": "No sé",
+        "tipo_declarado": null,
+        "clasificacion": "no_se",
+        "estado_dato": "no_sabe",
+        "valor": null,
+        "interprete": "reglas"
+      },
+      "creado": "2026-10-15T15:09:08.268Z"
+    },
+    {
+      "id": 61,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 29,
+      "tipo": "pregunta_seleccionada",
+      "detalle": {
+        "pregunta_id": "IMP-INTERR-IMPACTO",
+        "dimension_id": "IMP-INTERR",
+        "slot": "impacto",
+        "justificacion": "Profundización: «Interrupciones» tiene presencia referida (fuente: apoderado) y falta caracterizar: impacto. Se pregunta por «Interferencia en el funcionamiento». Se supera el límite orientativo de 4 preguntas porque falta un dato esencial. [límite 4/4 superado por dato esencial]",
+        "validacion": [
+          {
+            "regla": "una_sola_pregunta",
+            "ok": true,
+            "detalle": "Contiene una sola pregunta."
+          },
+          {
+            "regla": "autorizada",
+            "ok": true,
+            "detalle": "Pregunta IMP-INTERR-IMPACTO del banco autorizado."
+          },
+          {
+            "regla": "orden_inicial",
+            "ok": true,
+            "detalle": "Fase inicial completa."
+          },
+          {
+            "regla": "aplicable_edad",
+            "ok": true,
+            "detalle": "Aplicable a la edad registrada."
+          },
+          {
+            "regla": "ruta_informe_escolar",
+            "ok": true,
+            "detalle": "Compatible con la ruta «con_informe»."
+          },
+          {
+            "regla": "no_en_expediente",
+            "ok": true,
+            "detalle": "Dato ausente del expediente."
+          },
+          {
+            "regla": "necesaria",
+            "ok": true,
+            "detalle": "La conducta está presente y este dato es esencial para caracterizarla."
+          },
+          {
+            "regla": "no_repetida",
+            "ok": true,
+            "detalle": "No formulada antes."
+          },
+          {
+            "regla": "no_equivalente",
+            "ok": true,
+            "detalle": "Sin grupo de equivalencia."
+          },
+          {
+            "regla": "limite",
+            "ok": true,
+            "detalle": "Excede el límite orientativo (4) justificadamente: dato esencial pendiente."
+          }
+        ],
+        "estado": {
+          "turno": 28,
+          "estado_global": "entrevista",
+          "fase_inicial_completa": true,
+          "ruta": "con_informe",
+          "iniciales": {
+            "motivo": "Desde primero básico se distrae mucho en clases y le cuesta terminar las tareas; además duerme mal.",
+            "edad": "8",
+            "informe_existe": "si",
+            "informe_disponible": "si"
+          },
+          "dimensiones": {
+            "INA-SOST": "resuelta",
+            "INA-ORG": "parcial",
+            "INA-OLV": "resuelta",
+            "HIP-MOT": "resuelta",
+            "IMP-ESPERA": "resuelta",
+            "IMP-INTERR": "en_curso",
+            "DES-HITOS": "pendiente",
+            "TRA-EVOL": "pendiente",
+            "AUT-RUTINAS": "pendiente",
+            "FUN-FAMILIA": "resuelta",
+            "FUN-PARES": "pendiente",
+            "ESC-REND": "pendiente_informe",
+            "ESC-AULA": "pendiente_informe",
+            "TAM-SUENO": "parcial",
+            "TAM-VISION": "pendiente",
+            "TAM-AUDICION": "pendiente",
+            "TAM-MEDICO": "pendiente"
+          },
+          "contradicciones_abiertas": 0
+        }
+      },
+      "creado": "2026-10-15T15:09:08.269Z"
+    },
+    {
+      "id": 62,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 29,
+      "tipo": "respuesta_registrada",
+      "detalle": {
+        "pregunta_id": "IMP-INTERR-IMPACTO",
+        "texto_original": "Molesta a sus hermanos, pero no es lo principal",
+        "tipo_declarado": null,
+        "clasificacion": "valor",
+        "estado_dato": "valor",
+        "valor": "Molesta a sus hermanos, pero no es lo principal",
+        "interprete": "reglas"
+      },
+      "creado": "2026-10-15T15:09:08.278Z"
+    },
+    {
+      "id": 63,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 30,
+      "tipo": "pregunta_seleccionada",
+      "detalle": {
+        "pregunta_id": "DES-HITOS-P1",
+        "dimension_id": "DES-HITOS",
+        "slot": "presencia",
+        "justificacion": "Dimensión obligatoria pendiente «Desarrollo temprano» (desarrollo): no hay datos en el expediente desde ninguna fuente.",
+        "validacion": [
+          {
+            "regla": "una_sola_pregunta",
+            "ok": true,
+            "detalle": "Contiene una sola pregunta."
+          },
+          {
+            "regla": "autorizada",
+            "ok": true,
+            "detalle": "Pregunta DES-HITOS-P1 del banco autorizado."
+          },
+          {
+            "regla": "orden_inicial",
+            "ok": true,
+            "detalle": "Fase inicial completa."
+          },
+          {
+            "regla": "aplicable_edad",
+            "ok": true,
+            "detalle": "Aplicable a la edad registrada."
+          },
+          {
+            "regla": "ruta_informe_escolar",
+            "ok": true,
+            "detalle": "Compatible con la ruta «con_informe»."
+          },
+          {
+            "regla": "no_en_expediente",
+            "ok": true,
+            "detalle": "Dato ausente del expediente."
+          },
+          {
+            "regla": "necesaria",
+            "ok": true,
+            "detalle": "Resuelve un dato pendiente."
+          },
+          {
+            "regla": "no_repetida",
+            "ok": true,
+            "detalle": "No formulada antes."
+          },
+          {
+            "regla": "no_equivalente",
+            "ok": true,
+            "detalle": "Sin grupo de equivalencia."
+          },
+          {
+            "regla": "limite",
+            "ok": true,
+            "detalle": "0/4 preguntas en la dimensión."
+          }
+        ],
+        "estado": {
+          "turno": 29,
+          "estado_global": "entrevista",
+          "fase_inicial_completa": true,
+          "ruta": "con_informe",
+          "iniciales": {
+            "motivo": "Desde primero básico se distrae mucho en clases y le cuesta terminar las tareas; además duerme mal.",
+            "edad": "8",
+            "informe_existe": "si",
+            "informe_disponible": "si"
+          },
+          "dimensiones": {
+            "INA-SOST": "resuelta",
+            "INA-ORG": "parcial",
+            "INA-OLV": "resuelta",
+            "HIP-MOT": "resuelta",
+            "IMP-ESPERA": "resuelta",
+            "IMP-INTERR": "parcial",
+            "DES-HITOS": "pendiente",
+            "TRA-EVOL": "pendiente",
+            "AUT-RUTINAS": "pendiente",
+            "FUN-FAMILIA": "resuelta",
+            "FUN-PARES": "pendiente",
+            "ESC-REND": "pendiente_informe",
+            "ESC-AULA": "pendiente_informe",
+            "TAM-SUENO": "parcial",
+            "TAM-VISION": "pendiente",
+            "TAM-AUDICION": "pendiente",
+            "TAM-MEDICO": "pendiente"
+          },
+          "contradicciones_abiertas": 0
+        }
+      },
+      "creado": "2026-10-15T15:09:08.279Z"
+    },
+    {
+      "id": 64,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 30,
+      "tipo": "respuesta_registrada",
+      "detalle": {
+        "pregunta_id": "DES-HITOS-P1",
+        "texto_original": "No, todo normal",
+        "tipo_declarado": null,
+        "clasificacion": "no",
+        "estado_dato": "valor",
+        "valor": "no",
+        "interprete": "reglas"
+      },
+      "creado": "2026-10-15T15:09:08.290Z"
+    },
+    {
+      "id": 65,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 31,
+      "tipo": "pregunta_seleccionada",
+      "detalle": {
+        "pregunta_id": "TRA-EVOL-P1",
+        "dimension_id": "TRA-EVOL",
+        "slot": "presencia",
+        "justificacion": "Dimensión obligatoria pendiente «Trayectoria de las dificultades» (trayectoria): no hay datos en el expediente desde ninguna fuente.",
+        "validacion": [
+          {
+            "regla": "una_sola_pregunta",
+            "ok": true,
+            "detalle": "Contiene una sola pregunta."
+          },
+          {
+            "regla": "autorizada",
+            "ok": true,
+            "detalle": "Pregunta TRA-EVOL-P1 del banco autorizado."
+          },
+          {
+            "regla": "orden_inicial",
+            "ok": true,
+            "detalle": "Fase inicial completa."
+          },
+          {
+            "regla": "aplicable_edad",
+            "ok": true,
+            "detalle": "Aplicable a la edad registrada."
+          },
+          {
+            "regla": "ruta_informe_escolar",
+            "ok": true,
+            "detalle": "Compatible con la ruta «con_informe»."
+          },
+          {
+            "regla": "no_en_expediente",
+            "ok": true,
+            "detalle": "Dato ausente del expediente."
+          },
+          {
+            "regla": "necesaria",
+            "ok": true,
+            "detalle": "Resuelve un dato pendiente."
+          },
+          {
+            "regla": "no_repetida",
+            "ok": true,
+            "detalle": "No formulada antes."
+          },
+          {
+            "regla": "no_equivalente",
+            "ok": true,
+            "detalle": "Sin grupo de equivalencia."
+          },
+          {
+            "regla": "limite",
+            "ok": true,
+            "detalle": "0/4 preguntas en la dimensión."
+          }
+        ],
+        "estado": {
+          "turno": 30,
+          "estado_global": "entrevista",
+          "fase_inicial_completa": true,
+          "ruta": "con_informe",
+          "iniciales": {
+            "motivo": "Desde primero básico se distrae mucho en clases y le cuesta terminar las tareas; además duerme mal.",
+            "edad": "8",
+            "informe_existe": "si",
+            "informe_disponible": "si"
+          },
+          "dimensiones": {
+            "INA-SOST": "resuelta",
+            "INA-ORG": "parcial",
+            "INA-OLV": "resuelta",
+            "HIP-MOT": "resuelta",
+            "IMP-ESPERA": "resuelta",
+            "IMP-INTERR": "parcial",
+            "DES-HITOS": "resuelta",
+            "TRA-EVOL": "pendiente",
+            "AUT-RUTINAS": "pendiente",
+            "FUN-FAMILIA": "resuelta",
+            "FUN-PARES": "pendiente",
+            "ESC-REND": "pendiente_informe",
+            "ESC-AULA": "pendiente_informe",
+            "TAM-SUENO": "parcial",
+            "TAM-VISION": "pendiente",
+            "TAM-AUDICION": "pendiente",
+            "TAM-MEDICO": "pendiente"
+          },
+          "contradicciones_abiertas": 0
+        }
+      },
+      "creado": "2026-10-15T15:09:08.291Z"
+    },
+    {
+      "id": 66,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 31,
+      "tipo": "respuesta_registrada",
+      "detalle": {
+        "pregunta_id": "TRA-EVOL-P1",
+        "texto_original": "Sí, este año empeoró",
+        "tipo_declarado": null,
+        "clasificacion": "si",
+        "estado_dato": "valor",
+        "valor": "si",
+        "interprete": "reglas"
+      },
+      "creado": "2026-10-15T15:09:08.307Z"
+    },
+    {
+      "id": 67,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 32,
+      "tipo": "pregunta_seleccionada",
+      "detalle": {
+        "pregunta_id": "TRA-EVOL-DESCRIPCION",
+        "dimension_id": "TRA-EVOL",
+        "slot": "descripcion",
+        "justificacion": "Profundización: «Trayectoria de las dificultades» tiene presencia referida (fuente: apoderado) y falta caracterizar: descripcion. Se pregunta por «Descripción».",
+        "validacion": [
+          {
+            "regla": "una_sola_pregunta",
+            "ok": true,
+            "detalle": "Contiene una sola pregunta."
+          },
+          {
+            "regla": "autorizada",
+            "ok": true,
+            "detalle": "Pregunta TRA-EVOL-DESCRIPCION del banco autorizado."
+          },
+          {
+            "regla": "orden_inicial",
+            "ok": true,
+            "detalle": "Fase inicial completa."
+          },
+          {
+            "regla": "aplicable_edad",
+            "ok": true,
+            "detalle": "Aplicable a la edad registrada."
+          },
+          {
+            "regla": "ruta_informe_escolar",
+            "ok": true,
+            "detalle": "Compatible con la ruta «con_informe»."
+          },
+          {
+            "regla": "no_en_expediente",
+            "ok": true,
+            "detalle": "Dato ausente del expediente."
+          },
+          {
+            "regla": "necesaria",
+            "ok": true,
+            "detalle": "La conducta está presente y este dato es esencial para caracterizarla."
+          },
+          {
+            "regla": "no_repetida",
+            "ok": true,
+            "detalle": "No formulada antes."
+          },
+          {
+            "regla": "no_equivalente",
+            "ok": true,
+            "detalle": "Sin grupo de equivalencia."
+          },
+          {
+            "regla": "limite",
+            "ok": true,
+            "detalle": "1/4 preguntas en la dimensión."
+          }
+        ],
+        "estado": {
+          "turno": 31,
+          "estado_global": "entrevista",
+          "fase_inicial_completa": true,
+          "ruta": "con_informe",
+          "iniciales": {
+            "motivo": "Desde primero básico se distrae mucho en clases y le cuesta terminar las tareas; además duerme mal.",
+            "edad": "8",
+            "informe_existe": "si",
+            "informe_disponible": "si"
+          },
+          "dimensiones": {
+            "INA-SOST": "resuelta",
+            "INA-ORG": "parcial",
+            "INA-OLV": "resuelta",
+            "HIP-MOT": "resuelta",
+            "IMP-ESPERA": "resuelta",
+            "IMP-INTERR": "parcial",
+            "DES-HITOS": "resuelta",
+            "TRA-EVOL": "en_curso",
+            "AUT-RUTINAS": "pendiente",
+            "FUN-FAMILIA": "resuelta",
+            "FUN-PARES": "pendiente",
+            "ESC-REND": "pendiente_informe",
+            "ESC-AULA": "pendiente_informe",
+            "TAM-SUENO": "parcial",
+            "TAM-VISION": "pendiente",
+            "TAM-AUDICION": "pendiente",
+            "TAM-MEDICO": "pendiente"
+          },
+          "contradicciones_abiertas": 0
+        }
+      },
+      "creado": "2026-10-15T15:09:08.308Z"
+    },
+    {
+      "id": 68,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 32,
+      "tipo": "respuesta_registrada",
+      "detalle": {
+        "pregunta_id": "TRA-EVOL-DESCRIPCION",
+        "texto_original": "Antes se notaba menos; con más exigencia escolar aumentaron las dificultades",
+        "tipo_declarado": null,
+        "clasificacion": "valor",
+        "estado_dato": "valor",
+        "valor": "Antes se notaba menos; con más exigencia escolar aumentaron las dificultades",
+        "interprete": "reglas"
+      },
+      "creado": "2026-10-15T15:09:08.316Z"
+    },
+    {
+      "id": 69,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 33,
+      "tipo": "pregunta_seleccionada",
+      "detalle": {
+        "pregunta_id": "AUT-RUTINAS-P1",
+        "dimension_id": "AUT-RUTINAS",
+        "slot": "presencia",
+        "justificacion": "Dimensión obligatoria pendiente «Autonomía en rutinas» (autonomia): no hay datos en el expediente desde ninguna fuente.",
+        "validacion": [
+          {
+            "regla": "una_sola_pregunta",
+            "ok": true,
+            "detalle": "Contiene una sola pregunta."
+          },
+          {
+            "regla": "autorizada",
+            "ok": true,
+            "detalle": "Pregunta AUT-RUTINAS-P1 del banco autorizado."
+          },
+          {
+            "regla": "orden_inicial",
+            "ok": true,
+            "detalle": "Fase inicial completa."
+          },
+          {
+            "regla": "aplicable_edad",
+            "ok": true,
+            "detalle": "Aplicable a la edad registrada."
+          },
+          {
+            "regla": "ruta_informe_escolar",
+            "ok": true,
+            "detalle": "Compatible con la ruta «con_informe»."
+          },
+          {
+            "regla": "no_en_expediente",
+            "ok": true,
+            "detalle": "Dato ausente del expediente."
+          },
+          {
+            "regla": "necesaria",
+            "ok": true,
+            "detalle": "Resuelve un dato pendiente."
+          },
+          {
+            "regla": "no_repetida",
+            "ok": true,
+            "detalle": "No formulada antes."
+          },
+          {
+            "regla": "no_equivalente",
+            "ok": true,
+            "detalle": "Sin grupo de equivalencia."
+          },
+          {
+            "regla": "limite",
+            "ok": true,
+            "detalle": "0/4 preguntas en la dimensión."
+          }
+        ],
+        "estado": {
+          "turno": 32,
+          "estado_global": "entrevista",
+          "fase_inicial_completa": true,
+          "ruta": "con_informe",
+          "iniciales": {
+            "motivo": "Desde primero básico se distrae mucho en clases y le cuesta terminar las tareas; además duerme mal.",
+            "edad": "8",
+            "informe_existe": "si",
+            "informe_disponible": "si"
+          },
+          "dimensiones": {
+            "INA-SOST": "resuelta",
+            "INA-ORG": "parcial",
+            "INA-OLV": "resuelta",
+            "HIP-MOT": "resuelta",
+            "IMP-ESPERA": "resuelta",
+            "IMP-INTERR": "parcial",
+            "DES-HITOS": "resuelta",
+            "TRA-EVOL": "resuelta",
+            "AUT-RUTINAS": "pendiente",
+            "FUN-FAMILIA": "resuelta",
+            "FUN-PARES": "pendiente",
+            "ESC-REND": "pendiente_informe",
+            "ESC-AULA": "pendiente_informe",
+            "TAM-SUENO": "parcial",
+            "TAM-VISION": "pendiente",
+            "TAM-AUDICION": "pendiente",
+            "TAM-MEDICO": "pendiente"
+          },
+          "contradicciones_abiertas": 0
+        }
+      },
+      "creado": "2026-10-15T15:09:08.317Z"
+    },
+    {
+      "id": 70,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 33,
+      "tipo": "respuesta_registrada",
+      "detalle": {
+        "pregunta_id": "AUT-RUTINAS-P1",
+        "texto_original": "Sí, hay que ayudarlo a vestirse y preparar la mochila",
+        "tipo_declarado": null,
+        "clasificacion": "si",
+        "estado_dato": "valor",
+        "valor": "si",
+        "interprete": "reglas"
+      },
+      "creado": "2026-10-15T15:09:08.327Z"
+    },
+    {
+      "id": 71,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 34,
+      "tipo": "pregunta_seleccionada",
+      "detalle": {
+        "pregunta_id": "AUT-RUTINAS-DESCRIPCION",
+        "dimension_id": "AUT-RUTINAS",
+        "slot": "descripcion",
+        "justificacion": "Profundización: «Autonomía en rutinas» tiene presencia referida (fuente: apoderado) y falta caracterizar: descripcion. Se pregunta por «Descripción».",
+        "validacion": [
+          {
+            "regla": "una_sola_pregunta",
+            "ok": true,
+            "detalle": "Contiene una sola pregunta."
+          },
+          {
+            "regla": "autorizada",
+            "ok": true,
+            "detalle": "Pregunta AUT-RUTINAS-DESCRIPCION del banco autorizado."
+          },
+          {
+            "regla": "orden_inicial",
+            "ok": true,
+            "detalle": "Fase inicial completa."
+          },
+          {
+            "regla": "aplicable_edad",
+            "ok": true,
+            "detalle": "Aplicable a la edad registrada."
+          },
+          {
+            "regla": "ruta_informe_escolar",
+            "ok": true,
+            "detalle": "Compatible con la ruta «con_informe»."
+          },
+          {
+            "regla": "no_en_expediente",
+            "ok": true,
+            "detalle": "Dato ausente del expediente."
+          },
+          {
+            "regla": "necesaria",
+            "ok": true,
+            "detalle": "La conducta está presente y este dato es esencial para caracterizarla."
+          },
+          {
+            "regla": "no_repetida",
+            "ok": true,
+            "detalle": "No formulada antes."
+          },
+          {
+            "regla": "no_equivalente",
+            "ok": true,
+            "detalle": "Sin grupo de equivalencia."
+          },
+          {
+            "regla": "limite",
+            "ok": true,
+            "detalle": "1/4 preguntas en la dimensión."
+          }
+        ],
+        "estado": {
+          "turno": 33,
+          "estado_global": "entrevista",
+          "fase_inicial_completa": true,
+          "ruta": "con_informe",
+          "iniciales": {
+            "motivo": "Desde primero básico se distrae mucho en clases y le cuesta terminar las tareas; además duerme mal.",
+            "edad": "8",
+            "informe_existe": "si",
+            "informe_disponible": "si"
+          },
+          "dimensiones": {
+            "INA-SOST": "resuelta",
+            "INA-ORG": "parcial",
+            "INA-OLV": "resuelta",
+            "HIP-MOT": "resuelta",
+            "IMP-ESPERA": "resuelta",
+            "IMP-INTERR": "parcial",
+            "DES-HITOS": "resuelta",
+            "TRA-EVOL": "resuelta",
+            "AUT-RUTINAS": "en_curso",
+            "FUN-FAMILIA": "resuelta",
+            "FUN-PARES": "pendiente",
+            "ESC-REND": "pendiente_informe",
+            "ESC-AULA": "pendiente_informe",
+            "TAM-SUENO": "parcial",
+            "TAM-VISION": "pendiente",
+            "TAM-AUDICION": "pendiente",
+            "TAM-MEDICO": "pendiente"
+          },
+          "contradicciones_abiertas": 0
+        }
+      },
+      "creado": "2026-10-15T15:09:08.328Z"
+    },
+    {
+      "id": 72,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 34,
+      "tipo": "respuesta_registrada",
+      "detalle": {
+        "pregunta_id": "AUT-RUTINAS-DESCRIPCION",
+        "texto_original": "Necesita supervisión diaria para las rutinas de la mañana",
+        "tipo_declarado": null,
+        "clasificacion": "valor",
+        "estado_dato": "valor",
+        "valor": "Necesita supervisión diaria para las rutinas de la mañana",
+        "interprete": "reglas"
+      },
+      "creado": "2026-10-15T15:09:08.338Z"
+    },
+    {
+      "id": 73,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 35,
+      "tipo": "pregunta_seleccionada",
+      "detalle": {
+        "pregunta_id": "FUN-PARES-P1",
+        "dimension_id": "FUN-PARES",
+        "slot": "presencia",
+        "justificacion": "Dimensión obligatoria pendiente «Relación con pares» (funcionamiento): no hay datos en el expediente desde ninguna fuente.",
+        "validacion": [
+          {
+            "regla": "una_sola_pregunta",
+            "ok": true,
+            "detalle": "Contiene una sola pregunta."
+          },
+          {
+            "regla": "autorizada",
+            "ok": true,
+            "detalle": "Pregunta FUN-PARES-P1 del banco autorizado."
+          },
+          {
+            "regla": "orden_inicial",
+            "ok": true,
+            "detalle": "Fase inicial completa."
+          },
+          {
+            "regla": "aplicable_edad",
+            "ok": true,
+            "detalle": "Aplicable a la edad registrada."
+          },
+          {
+            "regla": "ruta_informe_escolar",
+            "ok": true,
+            "detalle": "Compatible con la ruta «con_informe»."
+          },
+          {
+            "regla": "no_en_expediente",
+            "ok": true,
+            "detalle": "Dato ausente del expediente."
+          },
+          {
+            "regla": "necesaria",
+            "ok": true,
+            "detalle": "Resuelve un dato pendiente."
+          },
+          {
+            "regla": "no_repetida",
+            "ok": true,
+            "detalle": "No formulada antes."
+          },
+          {
+            "regla": "no_equivalente",
+            "ok": true,
+            "detalle": "Sin grupo de equivalencia."
+          },
+          {
+            "regla": "limite",
+            "ok": true,
+            "detalle": "0/4 preguntas en la dimensión."
+          }
+        ],
+        "estado": {
+          "turno": 34,
+          "estado_global": "entrevista",
+          "fase_inicial_completa": true,
+          "ruta": "con_informe",
+          "iniciales": {
+            "motivo": "Desde primero básico se distrae mucho en clases y le cuesta terminar las tareas; además duerme mal.",
+            "edad": "8",
+            "informe_existe": "si",
+            "informe_disponible": "si"
+          },
+          "dimensiones": {
+            "INA-SOST": "resuelta",
+            "INA-ORG": "parcial",
+            "INA-OLV": "resuelta",
+            "HIP-MOT": "resuelta",
+            "IMP-ESPERA": "resuelta",
+            "IMP-INTERR": "parcial",
+            "DES-HITOS": "resuelta",
+            "TRA-EVOL": "resuelta",
+            "AUT-RUTINAS": "resuelta",
+            "FUN-FAMILIA": "resuelta",
+            "FUN-PARES": "pendiente",
+            "ESC-REND": "pendiente_informe",
+            "ESC-AULA": "pendiente_informe",
+            "TAM-SUENO": "parcial",
+            "TAM-VISION": "pendiente",
+            "TAM-AUDICION": "pendiente",
+            "TAM-MEDICO": "pendiente"
+          },
+          "contradicciones_abiertas": 0
+        }
+      },
+      "creado": "2026-10-15T15:09:08.340Z"
+    },
+    {
+      "id": 74,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 35,
+      "tipo": "respuesta_registrada",
+      "detalle": {
+        "pregunta_id": "FUN-PARES-P1",
+        "texto_original": "No, tiene amigos",
+        "tipo_declarado": null,
+        "clasificacion": "no",
+        "estado_dato": "valor",
+        "valor": "no",
+        "interprete": "reglas"
+      },
+      "creado": "2026-10-15T15:09:08.353Z"
+    },
+    {
+      "id": 75,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 36,
+      "tipo": "pregunta_seleccionada",
+      "detalle": {
+        "pregunta_id": "TAM-VISION-P1",
+        "dimension_id": "TAM-VISION",
+        "slot": "presencia",
+        "justificacion": "Dimensión obligatoria pendiente «Visión» (tamizaje): no hay datos en el expediente desde ninguna fuente.",
+        "validacion": [
+          {
+            "regla": "una_sola_pregunta",
+            "ok": true,
+            "detalle": "Contiene una sola pregunta."
+          },
+          {
+            "regla": "autorizada",
+            "ok": true,
+            "detalle": "Pregunta TAM-VISION-P1 del banco autorizado."
+          },
+          {
+            "regla": "orden_inicial",
+            "ok": true,
+            "detalle": "Fase inicial completa."
+          },
+          {
+            "regla": "aplicable_edad",
+            "ok": true,
+            "detalle": "Aplicable a la edad registrada."
+          },
+          {
+            "regla": "ruta_informe_escolar",
+            "ok": true,
+            "detalle": "Compatible con la ruta «con_informe»."
+          },
+          {
+            "regla": "no_en_expediente",
+            "ok": true,
+            "detalle": "Dato ausente del expediente."
+          },
+          {
+            "regla": "necesaria",
+            "ok": true,
+            "detalle": "Resuelve un dato pendiente."
+          },
+          {
+            "regla": "no_repetida",
+            "ok": true,
+            "detalle": "No formulada antes."
+          },
+          {
+            "regla": "no_equivalente",
+            "ok": true,
+            "detalle": "Sin grupo de equivalencia."
+          },
+          {
+            "regla": "limite",
+            "ok": true,
+            "detalle": "0/4 preguntas en la dimensión."
+          }
+        ],
+        "estado": {
+          "turno": 35,
+          "estado_global": "entrevista",
+          "fase_inicial_completa": true,
+          "ruta": "con_informe",
+          "iniciales": {
+            "motivo": "Desde primero básico se distrae mucho en clases y le cuesta terminar las tareas; además duerme mal.",
+            "edad": "8",
+            "informe_existe": "si",
+            "informe_disponible": "si"
+          },
+          "dimensiones": {
+            "INA-SOST": "resuelta",
+            "INA-ORG": "parcial",
+            "INA-OLV": "resuelta",
+            "HIP-MOT": "resuelta",
+            "IMP-ESPERA": "resuelta",
+            "IMP-INTERR": "parcial",
+            "DES-HITOS": "resuelta",
+            "TRA-EVOL": "resuelta",
+            "AUT-RUTINAS": "resuelta",
+            "FUN-FAMILIA": "resuelta",
+            "FUN-PARES": "resuelta",
+            "ESC-REND": "pendiente_informe",
+            "ESC-AULA": "pendiente_informe",
+            "TAM-SUENO": "parcial",
+            "TAM-VISION": "pendiente",
+            "TAM-AUDICION": "pendiente",
+            "TAM-MEDICO": "pendiente"
+          },
+          "contradicciones_abiertas": 0
+        }
+      },
+      "creado": "2026-10-15T15:09:08.354Z"
+    },
+    {
+      "id": 76,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 36,
+      "tipo": "respuesta_registrada",
+      "detalle": {
+        "pregunta_id": "TAM-VISION-P1",
+        "texto_original": "No",
+        "tipo_declarado": null,
+        "clasificacion": "no",
+        "estado_dato": "valor",
+        "valor": "no",
+        "interprete": "reglas"
+      },
+      "creado": "2026-10-15T15:09:08.364Z"
+    },
+    {
+      "id": 77,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 37,
+      "tipo": "pregunta_seleccionada",
+      "detalle": {
+        "pregunta_id": "TAM-AUDICION-P1",
+        "dimension_id": "TAM-AUDICION",
+        "slot": "presencia",
+        "justificacion": "Dimensión obligatoria pendiente «Audición» (tamizaje): no hay datos en el expediente desde ninguna fuente.",
+        "validacion": [
+          {
+            "regla": "una_sola_pregunta",
+            "ok": true,
+            "detalle": "Contiene una sola pregunta."
+          },
+          {
+            "regla": "autorizada",
+            "ok": true,
+            "detalle": "Pregunta TAM-AUDICION-P1 del banco autorizado."
+          },
+          {
+            "regla": "orden_inicial",
+            "ok": true,
+            "detalle": "Fase inicial completa."
+          },
+          {
+            "regla": "aplicable_edad",
+            "ok": true,
+            "detalle": "Aplicable a la edad registrada."
+          },
+          {
+            "regla": "ruta_informe_escolar",
+            "ok": true,
+            "detalle": "Compatible con la ruta «con_informe»."
+          },
+          {
+            "regla": "no_en_expediente",
+            "ok": true,
+            "detalle": "Dato ausente del expediente."
+          },
+          {
+            "regla": "necesaria",
+            "ok": true,
+            "detalle": "Resuelve un dato pendiente."
+          },
+          {
+            "regla": "no_repetida",
+            "ok": true,
+            "detalle": "No formulada antes."
+          },
+          {
+            "regla": "no_equivalente",
+            "ok": true,
+            "detalle": "Sin grupo de equivalencia."
+          },
+          {
+            "regla": "limite",
+            "ok": true,
+            "detalle": "0/4 preguntas en la dimensión."
+          }
+        ],
+        "estado": {
+          "turno": 36,
+          "estado_global": "entrevista",
+          "fase_inicial_completa": true,
+          "ruta": "con_informe",
+          "iniciales": {
+            "motivo": "Desde primero básico se distrae mucho en clases y le cuesta terminar las tareas; además duerme mal.",
+            "edad": "8",
+            "informe_existe": "si",
+            "informe_disponible": "si"
+          },
+          "dimensiones": {
+            "INA-SOST": "resuelta",
+            "INA-ORG": "parcial",
+            "INA-OLV": "resuelta",
+            "HIP-MOT": "resuelta",
+            "IMP-ESPERA": "resuelta",
+            "IMP-INTERR": "parcial",
+            "DES-HITOS": "resuelta",
+            "TRA-EVOL": "resuelta",
+            "AUT-RUTINAS": "resuelta",
+            "FUN-FAMILIA": "resuelta",
+            "FUN-PARES": "resuelta",
+            "ESC-REND": "pendiente_informe",
+            "ESC-AULA": "pendiente_informe",
+            "TAM-SUENO": "parcial",
+            "TAM-VISION": "resuelta",
+            "TAM-AUDICION": "pendiente",
+            "TAM-MEDICO": "pendiente"
+          },
+          "contradicciones_abiertas": 0
+        }
+      },
+      "creado": "2026-10-15T15:09:08.365Z"
+    },
+    {
+      "id": 78,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 37,
+      "tipo": "respuesta_registrada",
+      "detalle": {
+        "pregunta_id": "TAM-AUDICION-P1",
+        "texto_original": "No",
+        "tipo_declarado": null,
+        "clasificacion": "no",
+        "estado_dato": "valor",
+        "valor": "no",
+        "interprete": "reglas"
+      },
+      "creado": "2026-10-15T15:09:08.377Z"
+    },
+    {
+      "id": 79,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 38,
+      "tipo": "pregunta_seleccionada",
+      "detalle": {
+        "pregunta_id": "TAM-MEDICO-P1",
+        "dimension_id": "TAM-MEDICO",
+        "slot": "presencia",
+        "justificacion": "Dimensión obligatoria pendiente «Condiciones médicas y medicamentos» (tamizaje): no hay datos en el expediente desde ninguna fuente.",
+        "validacion": [
+          {
+            "regla": "una_sola_pregunta",
+            "ok": true,
+            "detalle": "Contiene una sola pregunta."
+          },
+          {
+            "regla": "autorizada",
+            "ok": true,
+            "detalle": "Pregunta TAM-MEDICO-P1 del banco autorizado."
+          },
+          {
+            "regla": "orden_inicial",
+            "ok": true,
+            "detalle": "Fase inicial completa."
+          },
+          {
+            "regla": "aplicable_edad",
+            "ok": true,
+            "detalle": "Aplicable a la edad registrada."
+          },
+          {
+            "regla": "ruta_informe_escolar",
+            "ok": true,
+            "detalle": "Compatible con la ruta «con_informe»."
+          },
+          {
+            "regla": "no_en_expediente",
+            "ok": true,
+            "detalle": "Dato ausente del expediente."
+          },
+          {
+            "regla": "necesaria",
+            "ok": true,
+            "detalle": "Resuelve un dato pendiente."
+          },
+          {
+            "regla": "no_repetida",
+            "ok": true,
+            "detalle": "No formulada antes."
+          },
+          {
+            "regla": "no_equivalente",
+            "ok": true,
+            "detalle": "Sin grupo de equivalencia."
+          },
+          {
+            "regla": "limite",
+            "ok": true,
+            "detalle": "0/4 preguntas en la dimensión."
+          }
+        ],
+        "estado": {
+          "turno": 37,
+          "estado_global": "entrevista",
+          "fase_inicial_completa": true,
+          "ruta": "con_informe",
+          "iniciales": {
+            "motivo": "Desde primero básico se distrae mucho en clases y le cuesta terminar las tareas; además duerme mal.",
+            "edad": "8",
+            "informe_existe": "si",
+            "informe_disponible": "si"
+          },
+          "dimensiones": {
+            "INA-SOST": "resuelta",
+            "INA-ORG": "parcial",
+            "INA-OLV": "resuelta",
+            "HIP-MOT": "resuelta",
+            "IMP-ESPERA": "resuelta",
+            "IMP-INTERR": "parcial",
+            "DES-HITOS": "resuelta",
+            "TRA-EVOL": "resuelta",
+            "AUT-RUTINAS": "resuelta",
+            "FUN-FAMILIA": "resuelta",
+            "FUN-PARES": "resuelta",
+            "ESC-REND": "pendiente_informe",
+            "ESC-AULA": "pendiente_informe",
+            "TAM-SUENO": "parcial",
+            "TAM-VISION": "resuelta",
+            "TAM-AUDICION": "resuelta",
+            "TAM-MEDICO": "pendiente"
+          },
+          "contradicciones_abiertas": 0
+        }
+      },
+      "creado": "2026-10-15T15:09:08.378Z"
+    },
+    {
+      "id": 80,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 38,
+      "tipo": "respuesta_registrada",
+      "detalle": {
+        "pregunta_id": "TAM-MEDICO-P1",
+        "texto_original": "No",
+        "tipo_declarado": null,
+        "clasificacion": "no",
+        "estado_dato": "valor",
+        "valor": "no",
+        "interprete": "reglas"
+      },
+      "creado": "2026-10-15T15:09:08.387Z"
+    },
+    {
+      "id": 81,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 38,
+      "tipo": "espera_informe_escolar",
+      "detalle": {
+        "pendientes": [
+          "ESC-REND",
+          "ESC-AULA"
+        ],
+        "justificacion": "La entrevista del hogar está completa; las dimensiones escolares se esperan del informe escolar."
+      },
+      "creado": "2026-10-15T15:09:08.387Z"
+    },
+    {
+      "id": 82,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 38,
+      "tipo": "contradiccion_registrada",
+      "detalle": {
+        "id": 1,
+        "dimension_id": "HIP-MOT",
+        "slot": "presencia",
+        "descripcion": "«presencia» registrado como «no» (fuente: apoderado) y luego como «si» (fuente: informe_escolar)."
+      },
+      "creado": "2026-10-15T15:09:08.397Z"
+    },
+    {
+      "id": 83,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 38,
+      "tipo": "informe_escolar_cargado",
+      "detalle": {
+        "metodo": "reglas",
+        "hechos": 7,
+        "dimensiones": [
+          "INA-SOST",
+          "HIP-MOT",
+          "ESC-REND"
+        ],
+        "contradicciones": 1
+      },
+      "creado": "2026-10-15T15:09:08.397Z"
+    },
+    {
+      "id": 84,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 39,
+      "tipo": "pregunta_seleccionada",
+      "detalle": {
+        "pregunta_id": "ESC-AULA-P1",
+        "dimension_id": "ESC-AULA",
+        "slot": "presencia",
+        "justificacion": "Dimensión obligatoria pendiente «Conducta en el aula» (escolar): no hay datos en el expediente desde ninguna fuente. El informe escolar no resolvió este dato (vacío relevante).",
+        "validacion": [
+          {
+            "regla": "una_sola_pregunta",
+            "ok": true,
+            "detalle": "Contiene una sola pregunta."
+          },
+          {
+            "regla": "autorizada",
+            "ok": true,
+            "detalle": "Pregunta ESC-AULA-P1 del banco autorizado."
+          },
+          {
+            "regla": "orden_inicial",
+            "ok": true,
+            "detalle": "Fase inicial completa."
+          },
+          {
+            "regla": "aplicable_edad",
+            "ok": true,
+            "detalle": "Aplicable a la edad registrada."
+          },
+          {
+            "regla": "ruta_informe_escolar",
+            "ok": true,
+            "detalle": "Dimensión escolar: el informe ya fue cargado y no resolvió este dato."
+          },
+          {
+            "regla": "no_en_expediente",
+            "ok": true,
+            "detalle": "Dato ausente del expediente."
+          },
+          {
+            "regla": "necesaria",
+            "ok": true,
+            "detalle": "Resuelve un dato pendiente."
+          },
+          {
+            "regla": "no_repetida",
+            "ok": true,
+            "detalle": "No formulada antes."
+          },
+          {
+            "regla": "no_equivalente",
+            "ok": true,
+            "detalle": "Sin grupo de equivalencia."
+          },
+          {
+            "regla": "limite",
+            "ok": true,
+            "detalle": "0/4 preguntas en la dimensión."
+          }
+        ],
+        "estado": {
+          "turno": 38,
+          "estado_global": "esperando_informe_escolar",
+          "fase_inicial_completa": true,
+          "ruta": "con_informe",
+          "iniciales": {
+            "motivo": "Desde primero básico se distrae mucho en clases y le cuesta terminar las tareas; además duerme mal.",
+            "edad": "8",
+            "informe_existe": "si",
+            "informe_disponible": "si"
+          },
+          "dimensiones": {
+            "INA-SOST": "resuelta",
+            "INA-ORG": "parcial",
+            "INA-OLV": "resuelta",
+            "HIP-MOT": "parcial",
+            "IMP-ESPERA": "resuelta",
+            "IMP-INTERR": "parcial",
+            "DES-HITOS": "resuelta",
+            "TRA-EVOL": "resuelta",
+            "AUT-RUTINAS": "resuelta",
+            "FUN-FAMILIA": "resuelta",
+            "FUN-PARES": "resuelta",
+            "ESC-REND": "resuelta",
+            "ESC-AULA": "pendiente",
+            "TAM-SUENO": "parcial",
+            "TAM-VISION": "resuelta",
+            "TAM-AUDICION": "resuelta",
+            "TAM-MEDICO": "resuelta"
+          },
+          "contradicciones_abiertas": 1
+        }
+      },
+      "creado": "2026-10-15T15:09:08.400Z"
+    },
+    {
+      "id": 85,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 39,
+      "tipo": "respuesta_registrada",
+      "detalle": {
+        "pregunta_id": "ESC-AULA-P1",
+        "texto_original": "No que yo sepa, nunca nos han dicho nada",
+        "tipo_declarado": null,
+        "clasificacion": "no",
+        "estado_dato": "valor",
+        "valor": "no",
+        "interprete": "reglas"
+      },
+      "creado": "2026-10-15T15:09:08.409Z"
+    },
+    {
+      "id": 86,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 39,
+      "tipo": "entrevista_cerrada",
+      "detalle": {
+        "justificacion": "Todas las dimensiones obligatorias están exploradas (resueltas, parciales o no aplicables)."
+      },
+      "creado": "2026-10-15T15:09:08.410Z"
+    },
+    {
+      "id": 87,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 39,
+      "tipo": "evaluacion_registrada",
+      "detalle": {
+        "instrumento_id": "ESCALA-APODERADO",
+        "estado": "realizada",
+        "fecha": "2026-10-10"
+      },
+      "creado": "2026-10-15T15:09:08.420Z"
+    },
+    {
+      "id": 88,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 39,
+      "tipo": "evaluacion_registrada",
+      "detalle": {
+        "instrumento_id": "ESCALA-DOCENTE",
+        "estado": "realizada",
+        "fecha": "2026-10-12"
+      },
+      "creado": "2026-10-15T15:09:08.424Z"
+    },
+    {
+      "id": 89,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 39,
+      "tipo": "evaluacion_registrada",
+      "detalle": {
+        "instrumento_id": "NESPLORA",
+        "estado": "realizada",
+        "fecha": "2026-10-14"
+      },
+      "creado": "2026-10-15T15:09:08.437Z"
+    },
+    {
+      "id": 90,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 39,
+      "tipo": "informe_final_bloqueado",
+      "detalle": {
+        "faltantes": [
+          {
+            "id": "contradicciones_revisadas",
+            "descripcion": "Contradicciones revisadas por el profesional (sin resolverlas por suposición)",
+            "cumplido": false,
+            "detalle": "1 contradicción(es) sin revisar"
+          },
+          {
+            "id": "interpretacion_profesional",
+            "descripcion": "Interpretación clínica redactada por el profesional responsable",
+            "cumplido": false,
+            "detalle": "El profesional aún no ha registrado la interpretación clínica."
+          }
+        ]
+      },
+      "creado": "2026-10-15T15:09:08.442Z"
+    },
+    {
+      "id": 91,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 39,
+      "tipo": "contradiccion_revisada",
+      "detalle": {
+        "id": 1,
+        "profesional": "Profesional de prueba",
+        "nota": "Discrepancia entre contextos casa/colegio; se conserva para la integración clínica."
+      },
+      "creado": "2026-10-15T15:09:08.449Z"
+    },
+    {
+      "id": 92,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 39,
+      "tipo": "interpretacion_registrada",
+      "detalle": {
+        "profesional": "Profesional de prueba"
+      },
+      "creado": "2026-10-15T15:09:08.454Z"
+    },
+    {
+      "id": 93,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 39,
+      "tipo": "informe_final_generado",
+      "detalle": {
+        "informe_id": 1
+      },
+      "creado": "2026-10-15T15:09:08.461Z"
+    },
+    {
+      "id": 94,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 39,
+      "tipo": "informe_validado",
+      "detalle": {
+        "informe_id": 1,
+        "profesional": "Profesional de prueba"
+      },
+      "creado": "2026-10-15T15:09:08.466Z"
+    }
+  ],
+  "errores": [],
+  "preguntas": [
+    {
+      "id": 1,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 1,
+      "pregunta_id": "INI-MOTIVO",
+      "dimension_id": "INI",
+      "slot": "motivo",
+      "especificidad": 1,
+      "texto": "Para comenzar, ¿cuál es el motivo de consulta? Cuénteme qué es lo que le preocupa.",
+      "justificacion": "Secuencia inicial obligatoria (paso 1): «Motivo de consulta».",
+      "presentada": "2026-10-15T15:09:07.868Z",
+      "respondida": "2026-10-15T15:09:07.887Z",
+      "estado": "respondida"
+    },
+    {
+      "id": 2,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 2,
+      "pregunta_id": "INI-EDAD",
+      "dimension_id": "INI",
+      "slot": "edad",
+      "especificidad": 1,
+      "texto": "¿Qué edad tiene la persona evaluada?",
+      "justificacion": "Secuencia inicial obligatoria (paso 2): «Edad (años)».",
+      "presentada": "2026-10-15T15:09:07.888Z",
+      "respondida": "2026-10-15T15:09:07.897Z",
+      "estado": "respondida"
+    },
+    {
+      "id": 3,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 3,
+      "pregunta_id": "INI-INF-EXISTE",
+      "dimension_id": "INI",
+      "slot": "informe_existe",
+      "especificidad": 1,
+      "texto": "¿Existe un informe escolar (del profesor jefe o del colegio) sobre la persona evaluada?",
+      "justificacion": "Secuencia inicial obligatoria (paso 3): «Existe informe escolar».",
+      "presentada": "2026-10-15T15:09:07.898Z",
+      "respondida": "2026-10-15T15:09:07.905Z",
+      "estado": "respondida"
+    },
+    {
+      "id": 4,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 4,
+      "pregunta_id": "INI-INF-DISP",
+      "dimension_id": "INI",
+      "slot": "informe_disponible",
+      "especificidad": 1,
+      "texto": "¿Ese informe está disponible o se puede solicitar al colegio para esta evaluación?",
+      "justificacion": "Secuencia inicial obligatoria (paso 4): «Informe escolar disponible u obtenible».",
+      "presentada": "2026-10-15T15:09:07.906Z",
+      "respondida": "2026-10-15T15:09:07.915Z",
+      "estado": "respondida"
+    },
+    {
+      "id": 5,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 5,
+      "pregunta_id": "INA-SOST-FRECUENCIA",
+      "dimension_id": "INA-SOST",
+      "slot": "frecuencia",
+      "especificidad": 1,
+      "texto": "Respecto de la distracción o pérdida de atención: ¿con qué frecuencia ocurre? Por ejemplo, varias veces al día o algunas veces por semana.",
+      "justificacion": "Profundización: «Atención sostenida» tiene presencia referida (fuente: apoderado, mención espontánea) y falta caracterizar: frecuencia, contextos, inicio, impacto. Se pregunta por «Frecuencia».",
+      "presentada": "2026-10-15T15:09:07.917Z",
+      "respondida": "2026-10-15T15:09:07.930Z",
+      "estado": "respondida"
+    },
+    {
+      "id": 6,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 6,
+      "pregunta_id": "INA-SOST-CONTEXTOS",
+      "dimension_id": "INA-SOST",
+      "slot": "contextos",
+      "especificidad": 1,
+      "texto": "Respecto de la distracción o pérdida de atención: ¿en qué lugares o situaciones ocurre (casa, colegio, con amigos u otros)?",
+      "justificacion": "Profundización: «Atención sostenida» tiene presencia referida (fuente: apoderado, mención espontánea) y falta caracterizar: contextos, inicio, impacto. Se pregunta por «Contextos en que ocurre».",
+      "presentada": "2026-10-15T15:09:07.931Z",
+      "respondida": "2026-10-15T15:09:07.945Z",
+      "estado": "respondida"
+    },
+    {
+      "id": 7,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 7,
+      "pregunta_id": "INA-SOST-INICIO",
+      "dimension_id": "INA-SOST",
+      "slot": "inicio",
+      "especificidad": 1,
+      "texto": "Respecto de la distracción o pérdida de atención: ¿desde qué edad o desde cuándo lo nota?",
+      "justificacion": "Profundización: «Atención sostenida» tiene presencia referida (fuente: apoderado, mención espontánea) y falta caracterizar: inicio, impacto. Se pregunta por «Inicio».",
+      "presentada": "2026-10-15T15:09:07.946Z",
+      "respondida": "2026-10-15T15:09:07.955Z",
+      "estado": "respondida"
+    },
+    {
+      "id": 8,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 8,
+      "pregunta_id": "INA-SOST-IMPACTO",
+      "dimension_id": "INA-SOST",
+      "slot": "impacto",
+      "especificidad": 1,
+      "texto": "Respecto de la distracción o pérdida de atención: ¿de qué manera afecta su vida diaria (tareas, familia, amistades)?",
+      "justificacion": "Profundización: «Atención sostenida» tiene presencia referida (fuente: apoderado, mención espontánea) y falta caracterizar: impacto. Se pregunta por «Interferencia en el funcionamiento».",
+      "presentada": "2026-10-15T15:09:07.956Z",
+      "respondida": "2026-10-15T15:09:07.967Z",
+      "estado": "respondida"
+    },
+    {
+      "id": 9,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 9,
+      "pregunta_id": "FUN-FAMILIA-DESCRIPCION",
+      "dimension_id": "FUN-FAMILIA",
+      "slot": "descripcion",
+      "especificidad": 1,
+      "texto": "Respecto de la convivencia familiar: ¿podría describir en qué consiste y cómo ha sido?",
+      "justificacion": "Profundización: «Funcionamiento familiar cotidiano» tiene presencia referida (fuente: apoderado, mención espontánea) y falta caracterizar: descripcion. Se pregunta por «Descripción».",
+      "presentada": "2026-10-15T15:09:07.968Z",
+      "respondida": "2026-10-15T15:09:07.978Z",
+      "estado": "respondida"
+    },
+    {
+      "id": 10,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 10,
+      "pregunta_id": "TAM-SUENO-DESCRIPCION",
+      "dimension_id": "TAM-SUENO",
+      "slot": "descripcion",
+      "especificidad": 1,
+      "texto": "Respecto de el sueño: ¿qué ha observado exactamente y desde cuándo?",
+      "justificacion": "Profundización: «Sueño» tiene presencia referida (fuente: apoderado, mención espontánea) y falta caracterizar: descripcion, evaluado_profesional. Se pregunta por «Descripción».",
+      "presentada": "2026-10-15T15:09:07.979Z",
+      "respondida": "2026-10-15T15:09:07.995Z",
+      "estado": "respondida"
+    },
+    {
+      "id": 11,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 11,
+      "pregunta_id": "TAM-SUENO-EVALUADO_PROFESIONAL",
+      "dimension_id": "TAM-SUENO",
+      "slot": "evaluado_profesional",
+      "especificidad": 1,
+      "texto": "Respecto de el sueño: ¿lo ha evaluado algún profesional de la salud?",
+      "justificacion": "Profundización: «Sueño» tiene presencia referida (fuente: apoderado, mención espontánea) y falta caracterizar: evaluado_profesional. Se pregunta por «Evaluado por un profesional».",
+      "presentada": "2026-10-15T15:09:07.995Z",
+      "respondida": "2026-10-15T15:09:08.003Z",
+      "estado": "respondida"
+    },
+    {
+      "id": 12,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 12,
+      "pregunta_id": "INA-ORG-P1",
+      "dimension_id": "INA-ORG",
+      "slot": "presencia",
+      "especificidad": 1,
+      "texto": "¿Necesita recordatorios para completar una tarea que ya comenzó?",
+      "justificacion": "Dimensión obligatoria pendiente «Organización y finalización de tareas» (inatencion): no hay datos en el expediente desde ninguna fuente.",
+      "presentada": "2026-10-15T15:09:08.003Z",
+      "respondida": "2026-10-15T15:09:08.012Z",
+      "estado": "respondida"
+    },
+    {
+      "id": 13,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 13,
+      "pregunta_id": "INA-ORG-FRECUENCIA",
+      "dimension_id": "INA-ORG",
+      "slot": "frecuencia",
+      "especificidad": 1,
+      "texto": "Respecto de la necesidad de recordatorios para terminar tareas: ¿con qué frecuencia ocurre? Por ejemplo, varias veces al día o algunas veces por semana.",
+      "justificacion": "Profundización: «Organización y finalización de tareas» tiene presencia referida (fuente: apoderado) y falta caracterizar: frecuencia, contextos, inicio, impacto. Se pregunta por «Frecuencia».",
+      "presentada": "2026-10-15T15:09:08.013Z",
+      "respondida": "2026-10-15T15:09:08.021Z",
+      "estado": "respondida"
+    },
+    {
+      "id": 14,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 14,
+      "pregunta_id": "INA-ORG-CONTEXTOS",
+      "dimension_id": "INA-ORG",
+      "slot": "contextos",
+      "especificidad": 1,
+      "texto": "Respecto de la necesidad de recordatorios para terminar tareas: ¿en qué lugares o situaciones ocurre (casa, colegio, con amigos u otros)?",
+      "justificacion": "Profundización: «Organización y finalización de tareas» tiene presencia referida (fuente: apoderado) y falta caracterizar: contextos, inicio, impacto. Se pregunta por «Contextos en que ocurre».",
+      "presentada": "2026-10-15T15:09:08.022Z",
+      "respondida": "2026-10-15T15:09:08.041Z",
+      "estado": "respondida"
+    },
+    {
+      "id": 15,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 15,
+      "pregunta_id": "INA-ORG-INICIO",
+      "dimension_id": "INA-ORG",
+      "slot": "inicio",
+      "especificidad": 1,
+      "texto": "Respecto de la necesidad de recordatorios para terminar tareas: ¿desde qué edad o desde cuándo lo nota?",
+      "justificacion": "Profundización: «Organización y finalización de tareas» tiene presencia referida (fuente: apoderado) y falta caracterizar: inicio, impacto. Se pregunta por «Inicio».",
+      "presentada": "2026-10-15T15:09:08.042Z",
+      "respondida": "2026-10-15T15:09:08.056Z",
+      "estado": "respondida"
+    },
+    {
+      "id": 16,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 16,
+      "pregunta_id": "INA-ORG-IMPACTO",
+      "dimension_id": "INA-ORG",
+      "slot": "impacto",
+      "especificidad": 1,
+      "texto": "Respecto de la necesidad de recordatorios para terminar tareas: ¿de qué manera afecta su vida diaria (tareas, familia, amistades)?",
+      "justificacion": "Profundización: «Organización y finalización de tareas» tiene presencia referida (fuente: apoderado) y falta caracterizar: impacto. Se pregunta por «Interferencia en el funcionamiento». Se supera el límite orientativo de 4 preguntas porque falta un dato esencial. [límite 4/4 superado por dato esencial]",
+      "presentada": "2026-10-15T15:09:08.057Z",
+      "respondida": "2026-10-15T15:09:08.073Z",
+      "estado": "respondida"
+    },
+    {
+      "id": 17,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 17,
+      "pregunta_id": "INA-OLV-P1",
+      "dimension_id": "INA-OLV",
+      "slot": "presencia",
+      "especificidad": 1,
+      "texto": "¿Suele olvidar cosas de la rutina diaria o perder objetos que necesita (útiles, ropa, llaves)?",
+      "justificacion": "Dimensión obligatoria pendiente «Olvidos y pérdida de objetos» (inatencion): no hay datos en el expediente desde ninguna fuente.",
+      "presentada": "2026-10-15T15:09:08.075Z",
+      "respondida": "2026-10-15T15:09:08.097Z",
+      "estado": "respondida"
+    },
+    {
+      "id": 18,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 18,
+      "pregunta_id": "INA-OLV-P2",
+      "dimension_id": "INA-OLV",
+      "slot": "presencia",
+      "especificidad": 2,
+      "texto": "En el último mes, ¿cuántas veces aproximadamente olvidó o perdió algo importante para el colegio?",
+      "justificacion": "La respuesta sobre «presencia» de «Olvidos y pérdida de objetos» fue ambigua; se formula una pregunta más específica en lugar de suponer.",
+      "presentada": "2026-10-15T15:09:08.098Z",
+      "respondida": "2026-10-15T15:09:08.116Z",
+      "estado": "respondida"
+    },
+    {
+      "id": 19,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 19,
+      "pregunta_id": "INA-OLV-FRECUENCIA",
+      "dimension_id": "INA-OLV",
+      "slot": "frecuencia",
+      "especificidad": 1,
+      "texto": "Respecto de los olvidos o pérdidas de objetos: ¿con qué frecuencia ocurre? Por ejemplo, varias veces al día o algunas veces por semana.",
+      "justificacion": "Profundización: «Olvidos y pérdida de objetos» tiene presencia referida (fuente: apoderado) y falta caracterizar: frecuencia, contextos, inicio, impacto. Se pregunta por «Frecuencia».",
+      "presentada": "2026-10-15T15:09:08.117Z",
+      "respondida": "2026-10-15T15:09:08.136Z",
+      "estado": "respondida"
+    },
+    {
+      "id": 20,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 20,
+      "pregunta_id": "INA-OLV-CONTEXTOS",
+      "dimension_id": "INA-OLV",
+      "slot": "contextos",
+      "especificidad": 1,
+      "texto": "Respecto de los olvidos o pérdidas de objetos: ¿en qué lugares o situaciones ocurre (casa, colegio, con amigos u otros)?",
+      "justificacion": "Profundización: «Olvidos y pérdida de objetos» tiene presencia referida (fuente: apoderado) y falta caracterizar: contextos, inicio, impacto. Se pregunta por «Contextos en que ocurre».",
+      "presentada": "2026-10-15T15:09:08.137Z",
+      "respondida": "2026-10-15T15:09:08.155Z",
+      "estado": "respondida"
+    },
+    {
+      "id": 21,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 21,
+      "pregunta_id": "INA-OLV-INICIO",
+      "dimension_id": "INA-OLV",
+      "slot": "inicio",
+      "especificidad": 1,
+      "texto": "Respecto de los olvidos o pérdidas de objetos: ¿desde qué edad o desde cuándo lo nota?",
+      "justificacion": "Profundización: «Olvidos y pérdida de objetos» tiene presencia referida (fuente: apoderado) y falta caracterizar: inicio, impacto. Se pregunta por «Inicio». Se supera el límite orientativo de 4 preguntas porque falta un dato esencial. [límite 4/4 superado por dato esencial]",
+      "presentada": "2026-10-15T15:09:08.156Z",
+      "respondida": "2026-10-15T15:09:08.175Z",
+      "estado": "respondida"
+    },
+    {
+      "id": 22,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 22,
+      "pregunta_id": "INA-OLV-IMPACTO",
+      "dimension_id": "INA-OLV",
+      "slot": "impacto",
+      "especificidad": 1,
+      "texto": "Respecto de los olvidos o pérdidas de objetos: ¿de qué manera afecta su vida diaria (tareas, familia, amistades)?",
+      "justificacion": "Profundización: «Olvidos y pérdida de objetos» tiene presencia referida (fuente: apoderado) y falta caracterizar: impacto. Se pregunta por «Interferencia en el funcionamiento». Se supera el límite orientativo de 4 preguntas porque falta un dato esencial. [límite 5/4 superado por dato esencial]",
+      "presentada": "2026-10-15T15:09:08.176Z",
+      "respondida": "2026-10-15T15:09:08.194Z",
+      "estado": "respondida"
+    },
+    {
+      "id": 23,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 23,
+      "pregunta_id": "HIP-MOT-P1",
+      "dimension_id": "HIP-MOT",
+      "slot": "presencia",
+      "especificidad": 1,
+      "texto": "¿Le cuesta quedarse quieto en situaciones en que se espera que lo esté, como en la mesa o en clases?",
+      "justificacion": "Dimensión obligatoria pendiente «Inquietud motora» (hiperactividad): no hay datos en el expediente desde ninguna fuente.",
+      "presentada": "2026-10-15T15:09:08.195Z",
+      "respondida": "2026-10-15T15:09:08.212Z",
+      "estado": "respondida"
+    },
+    {
+      "id": 24,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 24,
+      "pregunta_id": "IMP-ESPERA-P1",
+      "dimension_id": "IMP-ESPERA",
+      "slot": "presencia",
+      "especificidad": 1,
+      "texto": "¿Le cuesta esperar su turno, por ejemplo en juegos o en una fila?",
+      "justificacion": "Dimensión obligatoria pendiente «Dificultad para esperar» (impulsividad): no hay datos en el expediente desde ninguna fuente.",
+      "presentada": "2026-10-15T15:09:08.213Z",
+      "respondida": "2026-10-15T15:09:08.225Z",
+      "estado": "respondida"
+    },
+    {
+      "id": 25,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 25,
+      "pregunta_id": "IMP-INTERR-P1",
+      "dimension_id": "IMP-INTERR",
+      "slot": "presencia",
+      "especificidad": 1,
+      "texto": "¿Interrumpe a otras personas cuando hablan o se mete en conversaciones o juegos ajenos?",
+      "justificacion": "Dimensión obligatoria pendiente «Interrupciones» (impulsividad): no hay datos en el expediente desde ninguna fuente.",
+      "presentada": "2026-10-15T15:09:08.226Z",
+      "respondida": "2026-10-15T15:09:08.238Z",
+      "estado": "respondida"
+    },
+    {
+      "id": 26,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 26,
+      "pregunta_id": "IMP-INTERR-FRECUENCIA",
+      "dimension_id": "IMP-INTERR",
+      "slot": "frecuencia",
+      "especificidad": 1,
+      "texto": "Respecto de las interrupciones a otras personas: ¿con qué frecuencia ocurre? Por ejemplo, varias veces al día o algunas veces por semana.",
+      "justificacion": "Profundización: «Interrupciones» tiene presencia referida (fuente: apoderado) y falta caracterizar: frecuencia, contextos, inicio, impacto. Se pregunta por «Frecuencia».",
+      "presentada": "2026-10-15T15:09:08.239Z",
+      "respondida": "2026-10-15T15:09:08.248Z",
+      "estado": "respondida"
+    },
+    {
+      "id": 27,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 27,
+      "pregunta_id": "IMP-INTERR-CONTEXTOS",
+      "dimension_id": "IMP-INTERR",
+      "slot": "contextos",
+      "especificidad": 1,
+      "texto": "Respecto de las interrupciones a otras personas: ¿en qué lugares o situaciones ocurre (casa, colegio, con amigos u otros)?",
+      "justificacion": "Profundización: «Interrupciones» tiene presencia referida (fuente: apoderado) y falta caracterizar: contextos, inicio, impacto. Se pregunta por «Contextos en que ocurre».",
+      "presentada": "2026-10-15T15:09:08.249Z",
+      "respondida": "2026-10-15T15:09:08.259Z",
+      "estado": "respondida"
+    },
+    {
+      "id": 28,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 28,
+      "pregunta_id": "IMP-INTERR-INICIO",
+      "dimension_id": "IMP-INTERR",
+      "slot": "inicio",
+      "especificidad": 1,
+      "texto": "Respecto de las interrupciones a otras personas: ¿desde qué edad o desde cuándo lo nota?",
+      "justificacion": "Profundización: «Interrupciones» tiene presencia referida (fuente: apoderado) y falta caracterizar: inicio, impacto. Se pregunta por «Inicio».",
+      "presentada": "2026-10-15T15:09:08.259Z",
+      "respondida": "2026-10-15T15:09:08.268Z",
+      "estado": "respondida"
+    },
+    {
+      "id": 29,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 29,
+      "pregunta_id": "IMP-INTERR-IMPACTO",
+      "dimension_id": "IMP-INTERR",
+      "slot": "impacto",
+      "especificidad": 1,
+      "texto": "Respecto de las interrupciones a otras personas: ¿de qué manera afecta su vida diaria (tareas, familia, amistades)?",
+      "justificacion": "Profundización: «Interrupciones» tiene presencia referida (fuente: apoderado) y falta caracterizar: impacto. Se pregunta por «Interferencia en el funcionamiento». Se supera el límite orientativo de 4 preguntas porque falta un dato esencial. [límite 4/4 superado por dato esencial]",
+      "presentada": "2026-10-15T15:09:08.269Z",
+      "respondida": "2026-10-15T15:09:08.278Z",
+      "estado": "respondida"
+    },
+    {
+      "id": 30,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 30,
+      "pregunta_id": "DES-HITOS-P1",
+      "dimension_id": "DES-HITOS",
+      "slot": "presencia",
+      "especificidad": 1,
+      "texto": "Durante sus primeros años, ¿hubo algún retraso o dificultad en el desarrollo (caminar, hablar, control de esfínter)?",
+      "justificacion": "Dimensión obligatoria pendiente «Desarrollo temprano» (desarrollo): no hay datos en el expediente desde ninguna fuente.",
+      "presentada": "2026-10-15T15:09:08.279Z",
+      "respondida": "2026-10-15T15:09:08.290Z",
+      "estado": "respondida"
+    },
+    {
+      "id": 31,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 31,
+      "pregunta_id": "TRA-EVOL-P1",
+      "dimension_id": "TRA-EVOL",
+      "slot": "presencia",
+      "especificidad": 1,
+      "texto": "¿Las dificultades que le preocupan han cambiado con el tiempo (aparecieron, aumentaron o disminuyeron en algún momento)?",
+      "justificacion": "Dimensión obligatoria pendiente «Trayectoria de las dificultades» (trayectoria): no hay datos en el expediente desde ninguna fuente.",
+      "presentada": "2026-10-15T15:09:08.291Z",
+      "respondida": "2026-10-15T15:09:08.307Z",
+      "estado": "respondida"
+    },
+    {
+      "id": 32,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 32,
+      "pregunta_id": "TRA-EVOL-DESCRIPCION",
+      "dimension_id": "TRA-EVOL",
+      "slot": "descripcion",
+      "especificidad": 1,
+      "texto": "Respecto de la evolución de las dificultades: ¿podría describir en qué consiste y cómo ha sido?",
+      "justificacion": "Profundización: «Trayectoria de las dificultades» tiene presencia referida (fuente: apoderado) y falta caracterizar: descripcion. Se pregunta por «Descripción».",
+      "presentada": "2026-10-15T15:09:08.308Z",
+      "respondida": "2026-10-15T15:09:08.316Z",
+      "estado": "respondida"
+    },
+    {
+      "id": 33,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 33,
+      "pregunta_id": "AUT-RUTINAS-P1",
+      "dimension_id": "AUT-RUTINAS",
+      "slot": "presencia",
+      "especificidad": 1,
+      "texto": "¿Tiene dificultades para realizar solo sus rutinas esperables para su edad (vestirse, asearse, preparar sus cosas)?",
+      "justificacion": "Dimensión obligatoria pendiente «Autonomía en rutinas» (autonomia): no hay datos en el expediente desde ninguna fuente.",
+      "presentada": "2026-10-15T15:09:08.317Z",
+      "respondida": "2026-10-15T15:09:08.327Z",
+      "estado": "respondida"
+    },
+    {
+      "id": 34,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 34,
+      "pregunta_id": "AUT-RUTINAS-DESCRIPCION",
+      "dimension_id": "AUT-RUTINAS",
+      "slot": "descripcion",
+      "especificidad": 1,
+      "texto": "Respecto de la autonomía en las rutinas del hogar: ¿podría describir en qué consiste y cómo ha sido?",
+      "justificacion": "Profundización: «Autonomía en rutinas» tiene presencia referida (fuente: apoderado) y falta caracterizar: descripcion. Se pregunta por «Descripción».",
+      "presentada": "2026-10-15T15:09:08.327Z",
+      "respondida": "2026-10-15T15:09:08.338Z",
+      "estado": "respondida"
+    },
+    {
+      "id": 35,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 35,
+      "pregunta_id": "FUN-PARES-P1",
+      "dimension_id": "FUN-PARES",
+      "slot": "presencia",
+      "especificidad": 1,
+      "texto": "¿Tiene dificultades para hacer o mantener amistades con niños de su edad?",
+      "justificacion": "Dimensión obligatoria pendiente «Relación con pares» (funcionamiento): no hay datos en el expediente desde ninguna fuente.",
+      "presentada": "2026-10-15T15:09:08.339Z",
+      "respondida": "2026-10-15T15:09:08.352Z",
+      "estado": "respondida"
+    },
+    {
+      "id": 36,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 36,
+      "pregunta_id": "TAM-VISION-P1",
+      "dimension_id": "TAM-VISION",
+      "slot": "presencia",
+      "especificidad": 1,
+      "texto": "¿Ha notado alguna dificultad para ver, por ejemplo acercarse mucho a los textos o entrecerrar los ojos?",
+      "justificacion": "Dimensión obligatoria pendiente «Visión» (tamizaje): no hay datos en el expediente desde ninguna fuente.",
+      "presentada": "2026-10-15T15:09:08.353Z",
+      "respondida": "2026-10-15T15:09:08.364Z",
+      "estado": "respondida"
+    },
+    {
+      "id": 37,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 37,
+      "pregunta_id": "TAM-AUDICION-P1",
+      "dimension_id": "TAM-AUDICION",
+      "slot": "presencia",
+      "especificidad": 1,
+      "texto": "¿Ha notado alguna dificultad para oír, como pedir que le repitan seguido o subir mucho el volumen?",
+      "justificacion": "Dimensión obligatoria pendiente «Audición» (tamizaje): no hay datos en el expediente desde ninguna fuente.",
+      "presentada": "2026-10-15T15:09:08.365Z",
+      "respondida": "2026-10-15T15:09:08.377Z",
+      "estado": "respondida"
+    },
+    {
+      "id": 38,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 38,
+      "pregunta_id": "TAM-MEDICO-P1",
+      "dimension_id": "TAM-MEDICO",
+      "slot": "presencia",
+      "especificidad": 1,
+      "texto": "¿Tiene alguna condición médica diagnosticada o toma algún medicamento de forma regular?",
+      "justificacion": "Dimensión obligatoria pendiente «Condiciones médicas y medicamentos» (tamizaje): no hay datos en el expediente desde ninguna fuente.",
+      "presentada": "2026-10-15T15:09:08.378Z",
+      "respondida": "2026-10-15T15:09:08.387Z",
+      "estado": "respondida"
+    },
+    {
+      "id": 39,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 39,
+      "pregunta_id": "ESC-AULA-P1",
+      "dimension_id": "ESC-AULA",
+      "slot": "presencia",
+      "especificidad": 1,
+      "texto": "¿El colegio ha informado dificultades de conducta o de comportamiento en clases?",
+      "justificacion": "Dimensión obligatoria pendiente «Conducta en el aula» (escolar): no hay datos en el expediente desde ninguna fuente. El informe escolar no resolvió este dato (vacío relevante).",
+      "presentada": "2026-10-15T15:09:08.399Z",
+      "respondida": "2026-10-15T15:09:08.409Z",
+      "estado": "respondida"
+    }
+  ],
+  "respuestas": [
+    {
+      "id": 1,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 1,
+      "pregunta_id": "INI-MOTIVO",
+      "texto_original": "Desde primero básico se distrae mucho en clases y le cuesta terminar las tareas; además duerme mal.",
+      "tipo_declarado": null,
+      "clasificacion": "valor",
+      "valor": "Desde primero básico se distrae mucho en clases y le cuesta terminar las tareas; además duerme mal.",
+      "interprete": "reglas",
+      "detalle": {
+        "menciones": [
+          {
+            "dimension_id": "INA-SOST",
+            "palabra_clave": "se distrae",
+            "evidencia": "Desde primero básico se distrae mucho en clases y le cuesta terminar las tareas;"
+          },
+          {
+            "dimension_id": "TAM-SUENO",
+            "palabra_clave": "duerme mal",
+            "evidencia": "además duerme mal."
+          }
+        ]
+      },
+      "creado": "2026-10-15T15:09:07.887Z"
+    },
+    {
+      "id": 2,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 2,
+      "pregunta_id": "INI-EDAD",
+      "texto_original": "8 años",
+      "tipo_declarado": null,
+      "clasificacion": "valor",
+      "valor": "8",
+      "interprete": "reglas",
+      "detalle": {
+        "menciones": []
+      },
+      "creado": "2026-10-15T15:09:07.897Z"
+    },
+    {
+      "id": 3,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 3,
+      "pregunta_id": "INI-INF-EXISTE",
+      "texto_original": "Sí, la profesora jefe hizo uno",
+      "tipo_declarado": null,
+      "clasificacion": "si",
+      "valor": "si",
+      "interprete": "reglas",
+      "detalle": {
+        "menciones": []
+      },
+      "creado": "2026-10-15T15:09:07.905Z"
+    },
+    {
+      "id": 4,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 4,
+      "pregunta_id": "INI-INF-DISP",
+      "texto_original": "Sí, el colegio lo puede enviar",
+      "tipo_declarado": null,
+      "clasificacion": "si",
+      "valor": "si",
+      "interprete": "reglas",
+      "detalle": {
+        "menciones": []
+      },
+      "creado": "2026-10-15T15:09:07.915Z"
+    },
+    {
+      "id": 5,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 5,
+      "pregunta_id": "INA-SOST-FRECUENCIA",
+      "texto_original": "Varias veces al día",
+      "tipo_declarado": null,
+      "clasificacion": "valor",
+      "valor": "Varias veces al día",
+      "interprete": "reglas",
+      "detalle": {
+        "menciones": []
+      },
+      "creado": "2026-10-15T15:09:07.930Z"
+    },
+    {
+      "id": 6,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 6,
+      "pregunta_id": "INA-SOST-CONTEXTOS",
+      "texto_original": "En la casa con las tareas y también lo dicen en el colegio",
+      "tipo_declarado": null,
+      "clasificacion": "valor",
+      "valor": "En la casa con las tareas y también lo dicen en el colegio",
+      "interprete": "reglas",
+      "detalle": {
+        "menciones": []
+      },
+      "creado": "2026-10-15T15:09:07.945Z"
+    },
+    {
+      "id": 7,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 7,
+      "pregunta_id": "INA-SOST-INICIO",
+      "texto_original": "Desde los 5 o 6 años, cuando entró a kínder",
+      "tipo_declarado": null,
+      "clasificacion": "valor",
+      "valor": "Desde los 5 o 6 años, cuando entró a kínder",
+      "interprete": "reglas",
+      "detalle": {
+        "menciones": []
+      },
+      "creado": "2026-10-15T15:09:07.955Z"
+    },
+    {
+      "id": 8,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 8,
+      "pregunta_id": "INA-SOST-IMPACTO",
+      "texto_original": "Las tareas le toman el doble de tiempo y hay discusiones en la casa",
+      "tipo_declarado": null,
+      "clasificacion": "valor",
+      "valor": "Las tareas le toman el doble de tiempo y hay discusiones en la casa",
+      "interprete": "reglas",
+      "detalle": {
+        "menciones": [
+          {
+            "dimension_id": "FUN-FAMILIA",
+            "palabra_clave": "discusiones",
+            "evidencia": "Las tareas le toman el doble de tiempo y hay discusiones en la casa"
+          }
+        ]
+      },
+      "creado": "2026-10-15T15:09:07.967Z"
+    },
+    {
+      "id": 9,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 9,
+      "pregunta_id": "FUN-FAMILIA-DESCRIPCION",
+      "texto_original": "Las tareas generan tensión y discusiones casi a diario",
+      "tipo_declarado": null,
+      "clasificacion": "valor",
+      "valor": "Las tareas generan tensión y discusiones casi a diario",
+      "interprete": "reglas",
+      "detalle": {
+        "menciones": [
+          {
+            "dimension_id": "FUN-FAMILIA",
+            "palabra_clave": "discusiones",
+            "evidencia": "Las tareas generan tensión y discusiones casi a diario"
+          }
+        ]
+      },
+      "creado": "2026-10-15T15:09:07.978Z"
+    },
+    {
+      "id": 10,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 10,
+      "pregunta_id": "TAM-SUENO-DESCRIPCION",
+      "texto_original": "Le cuesta dormirse y se despierta en la noche, desde hace un año",
+      "tipo_declarado": null,
+      "clasificacion": "valor",
+      "valor": "Le cuesta dormirse y se despierta en la noche, desde hace un año",
+      "interprete": "reglas",
+      "detalle": {
+        "menciones": [
+          {
+            "dimension_id": "TAM-SUENO",
+            "palabra_clave": "despierta en la noche",
+            "evidencia": "Le cuesta dormirse y se despierta en la noche, desde hace un año"
+          }
+        ]
+      },
+      "creado": "2026-10-15T15:09:07.995Z"
+    },
+    {
+      "id": 11,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 11,
+      "pregunta_id": "TAM-SUENO-EVALUADO_PROFESIONAL",
+      "texto_original": "",
+      "tipo_declarado": "no_se",
+      "clasificacion": "no_se",
+      "valor": null,
+      "interprete": "reglas",
+      "detalle": {
+        "menciones": []
+      },
+      "creado": "2026-10-15T15:09:08.003Z"
+    },
+    {
+      "id": 12,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 12,
+      "pregunta_id": "INA-ORG-P1",
+      "texto_original": "Sí, siempre hay que recordarle",
+      "tipo_declarado": null,
+      "clasificacion": "si",
+      "valor": "si",
+      "interprete": "reglas",
+      "detalle": {
+        "menciones": [
+          {
+            "dimension_id": "INA-ORG",
+            "palabra_clave": "hay que recordarle",
+            "evidencia": "Sí, siempre hay que recordarle"
+          }
+        ]
+      },
+      "creado": "2026-10-15T15:09:08.012Z"
+    },
+    {
+      "id": 13,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 13,
+      "pregunta_id": "INA-ORG-FRECUENCIA",
+      "texto_original": "Todos los días",
+      "tipo_declarado": null,
+      "clasificacion": "valor",
+      "valor": "Todos los días",
+      "interprete": "reglas",
+      "detalle": {
+        "menciones": []
+      },
+      "creado": "2026-10-15T15:09:08.021Z"
+    },
+    {
+      "id": 14,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 14,
+      "pregunta_id": "INA-ORG-CONTEXTOS",
+      "texto_original": "En la casa y en el colegio",
+      "tipo_declarado": null,
+      "clasificacion": "valor",
+      "valor": "En la casa y en el colegio",
+      "interprete": "reglas",
+      "detalle": {
+        "menciones": []
+      },
+      "creado": "2026-10-15T15:09:08.041Z"
+    },
+    {
+      "id": 15,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 15,
+      "pregunta_id": "INA-ORG-INICIO",
+      "texto_original": "",
+      "tipo_declarado": "no_recuerdo",
+      "clasificacion": "no_recuerdo",
+      "valor": null,
+      "interprete": "reglas",
+      "detalle": {
+        "menciones": []
+      },
+      "creado": "2026-10-15T15:09:08.056Z"
+    },
+    {
+      "id": 16,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 16,
+      "pregunta_id": "INA-ORG-IMPACTO",
+      "texto_original": "Llega con tareas incompletas al colegio",
+      "tipo_declarado": null,
+      "clasificacion": "valor",
+      "valor": "Llega con tareas incompletas al colegio",
+      "interprete": "reglas",
+      "detalle": {
+        "menciones": []
+      },
+      "creado": "2026-10-15T15:09:08.073Z"
+    },
+    {
+      "id": 17,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 17,
+      "pregunta_id": "INA-OLV-P1",
+      "texto_original": "A veces",
+      "tipo_declarado": null,
+      "clasificacion": "ambiguo",
+      "valor": null,
+      "interprete": "reglas",
+      "detalle": {
+        "menciones": []
+      },
+      "creado": "2026-10-15T15:09:08.097Z"
+    },
+    {
+      "id": 18,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 18,
+      "pregunta_id": "INA-OLV-P2",
+      "texto_original": "Sí, bastantes veces",
+      "tipo_declarado": null,
+      "clasificacion": "si",
+      "valor": "si",
+      "interprete": "reglas",
+      "detalle": {
+        "menciones": []
+      },
+      "creado": "2026-10-15T15:09:08.116Z"
+    },
+    {
+      "id": 19,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 19,
+      "pregunta_id": "INA-OLV-FRECUENCIA",
+      "texto_original": "Una o dos veces por semana",
+      "tipo_declarado": null,
+      "clasificacion": "valor",
+      "valor": "Una o dos veces por semana",
+      "interprete": "reglas",
+      "detalle": {
+        "menciones": []
+      },
+      "creado": "2026-10-15T15:09:08.136Z"
+    },
+    {
+      "id": 20,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 20,
+      "pregunta_id": "INA-OLV-CONTEXTOS",
+      "texto_original": "Colegio, sobre todo con útiles y la colación",
+      "tipo_declarado": null,
+      "clasificacion": "valor",
+      "valor": "Colegio, sobre todo con útiles y la colación",
+      "interprete": "reglas",
+      "detalle": {
+        "menciones": []
+      },
+      "creado": "2026-10-15T15:09:08.155Z"
+    },
+    {
+      "id": 21,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 21,
+      "pregunta_id": "INA-OLV-INICIO",
+      "texto_original": "Desde que entró al colegio",
+      "tipo_declarado": null,
+      "clasificacion": "valor",
+      "valor": "Desde que entró al colegio",
+      "interprete": "reglas",
+      "detalle": {
+        "menciones": []
+      },
+      "creado": "2026-10-15T15:09:08.175Z"
+    },
+    {
+      "id": 22,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 22,
+      "pregunta_id": "INA-OLV-IMPACTO",
+      "texto_original": "Hay que reponer materiales y a veces le anotan",
+      "tipo_declarado": null,
+      "clasificacion": "valor",
+      "valor": "Hay que reponer materiales y a veces le anotan",
+      "interprete": "reglas",
+      "detalle": {
+        "menciones": []
+      },
+      "creado": "2026-10-15T15:09:08.194Z"
+    },
+    {
+      "id": 23,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 23,
+      "pregunta_id": "HIP-MOT-P1",
+      "texto_original": "No, en la casa es tranquilo",
+      "tipo_declarado": null,
+      "clasificacion": "no",
+      "valor": "no",
+      "interprete": "reglas",
+      "detalle": {
+        "menciones": []
+      },
+      "creado": "2026-10-15T15:09:08.212Z"
+    },
+    {
+      "id": 24,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 24,
+      "pregunta_id": "IMP-ESPERA-P1",
+      "texto_original": "No",
+      "tipo_declarado": null,
+      "clasificacion": "no",
+      "valor": "no",
+      "interprete": "reglas",
+      "detalle": {
+        "menciones": []
+      },
+      "creado": "2026-10-15T15:09:08.225Z"
+    },
+    {
+      "id": 25,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 25,
+      "pregunta_id": "IMP-INTERR-P1",
+      "texto_original": "Sí",
+      "tipo_declarado": null,
+      "clasificacion": "si",
+      "valor": "si",
+      "interprete": "reglas",
+      "detalle": {
+        "menciones": []
+      },
+      "creado": "2026-10-15T15:09:08.238Z"
+    },
+    {
+      "id": 26,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 26,
+      "pregunta_id": "IMP-INTERR-FRECUENCIA",
+      "texto_original": "Algunas veces por semana",
+      "tipo_declarado": null,
+      "clasificacion": "valor",
+      "valor": "Algunas veces por semana",
+      "interprete": "reglas",
+      "detalle": {
+        "menciones": []
+      },
+      "creado": "2026-10-15T15:09:08.248Z"
+    },
+    {
+      "id": 27,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 27,
+      "pregunta_id": "IMP-INTERR-CONTEXTOS",
+      "texto_original": "Sobre todo en la casa, en las comidas",
+      "tipo_declarado": null,
+      "clasificacion": "valor",
+      "valor": "Sobre todo en la casa, en las comidas",
+      "interprete": "reglas",
+      "detalle": {
+        "menciones": []
+      },
+      "creado": "2026-10-15T15:09:08.259Z"
+    },
+    {
+      "id": 28,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 28,
+      "pregunta_id": "IMP-INTERR-INICIO",
+      "texto_original": "No sé",
+      "tipo_declarado": null,
+      "clasificacion": "no_se",
+      "valor": null,
+      "interprete": "reglas",
+      "detalle": {
+        "menciones": []
+      },
+      "creado": "2026-10-15T15:09:08.268Z"
+    },
+    {
+      "id": 29,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 29,
+      "pregunta_id": "IMP-INTERR-IMPACTO",
+      "texto_original": "Molesta a sus hermanos, pero no es lo principal",
+      "tipo_declarado": null,
+      "clasificacion": "valor",
+      "valor": "Molesta a sus hermanos, pero no es lo principal",
+      "interprete": "reglas",
+      "detalle": {
+        "menciones": []
+      },
+      "creado": "2026-10-15T15:09:08.278Z"
+    },
+    {
+      "id": 30,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 30,
+      "pregunta_id": "DES-HITOS-P1",
+      "texto_original": "No, todo normal",
+      "tipo_declarado": null,
+      "clasificacion": "no",
+      "valor": "no",
+      "interprete": "reglas",
+      "detalle": {
+        "menciones": []
+      },
+      "creado": "2026-10-15T15:09:08.290Z"
+    },
+    {
+      "id": 31,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 31,
+      "pregunta_id": "TRA-EVOL-P1",
+      "texto_original": "Sí, este año empeoró",
+      "tipo_declarado": null,
+      "clasificacion": "si",
+      "valor": "si",
+      "interprete": "reglas",
+      "detalle": {
+        "menciones": [
+          {
+            "dimension_id": "TRA-EVOL",
+            "palabra_clave": "empeoro",
+            "evidencia": "Sí, este año empeoró"
+          }
+        ]
+      },
+      "creado": "2026-10-15T15:09:08.307Z"
+    },
+    {
+      "id": 32,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 32,
+      "pregunta_id": "TRA-EVOL-DESCRIPCION",
+      "texto_original": "Antes se notaba menos; con más exigencia escolar aumentaron las dificultades",
+      "tipo_declarado": null,
+      "clasificacion": "valor",
+      "valor": "Antes se notaba menos; con más exigencia escolar aumentaron las dificultades",
+      "interprete": "reglas",
+      "detalle": {
+        "menciones": []
+      },
+      "creado": "2026-10-15T15:09:08.316Z"
+    },
+    {
+      "id": 33,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 33,
+      "pregunta_id": "AUT-RUTINAS-P1",
+      "texto_original": "Sí, hay que ayudarlo a vestirse y preparar la mochila",
+      "tipo_declarado": null,
+      "clasificacion": "si",
+      "valor": "si",
+      "interprete": "reglas",
+      "detalle": {
+        "menciones": []
+      },
+      "creado": "2026-10-15T15:09:08.327Z"
+    },
+    {
+      "id": 34,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 34,
+      "pregunta_id": "AUT-RUTINAS-DESCRIPCION",
+      "texto_original": "Necesita supervisión diaria para las rutinas de la mañana",
+      "tipo_declarado": null,
+      "clasificacion": "valor",
+      "valor": "Necesita supervisión diaria para las rutinas de la mañana",
+      "interprete": "reglas",
+      "detalle": {
+        "menciones": []
+      },
+      "creado": "2026-10-15T15:09:08.338Z"
+    },
+    {
+      "id": 35,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 35,
+      "pregunta_id": "FUN-PARES-P1",
+      "texto_original": "No, tiene amigos",
+      "tipo_declarado": null,
+      "clasificacion": "no",
+      "valor": "no",
+      "interprete": "reglas",
+      "detalle": {
+        "menciones": [
+          {
+            "dimension_id": "FUN-PARES",
+            "palabra_clave": "no tiene amigos",
+            "evidencia": "No, tiene amigos"
+          }
+        ]
+      },
+      "creado": "2026-10-15T15:09:08.352Z"
+    },
+    {
+      "id": 36,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 36,
+      "pregunta_id": "TAM-VISION-P1",
+      "texto_original": "No",
+      "tipo_declarado": null,
+      "clasificacion": "no",
+      "valor": "no",
+      "interprete": "reglas",
+      "detalle": {
+        "menciones": []
+      },
+      "creado": "2026-10-15T15:09:08.364Z"
+    },
+    {
+      "id": 37,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 37,
+      "pregunta_id": "TAM-AUDICION-P1",
+      "texto_original": "No",
+      "tipo_declarado": null,
+      "clasificacion": "no",
+      "valor": "no",
+      "interprete": "reglas",
+      "detalle": {
+        "menciones": []
+      },
+      "creado": "2026-10-15T15:09:08.377Z"
+    },
+    {
+      "id": 38,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 38,
+      "pregunta_id": "TAM-MEDICO-P1",
+      "texto_original": "No",
+      "tipo_declarado": null,
+      "clasificacion": "no",
+      "valor": "no",
+      "interprete": "reglas",
+      "detalle": {
+        "menciones": []
+      },
+      "creado": "2026-10-15T15:09:08.387Z"
+    },
+    {
+      "id": 39,
+      "caso_id": "533e3468-62d9-4503-9548-07f2235f27b3",
+      "turno": 39,
+      "pregunta_id": "ESC-AULA-P1",
+      "texto_original": "No que yo sepa, nunca nos han dicho nada",
+      "tipo_declarado": null,
+      "clasificacion": "no",
+      "valor": "no",
+      "interprete": "reglas",
+      "detalle": {
+        "menciones": []
+      },
+      "creado": "2026-10-15T15:09:08.409Z"
+    }
+  ]
+}

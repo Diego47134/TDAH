@@ -1,0 +1,689 @@
+{
+  "id": "tdah-protocolo",
+  "version": "0.1.0-provisional",
+  "estado": "PROVISIONAL",
+  "aviso": "Protocolo PROVISIONAL creado solo para validar técnicamente el software. Su contenido NO proviene de los documentos vigentes (Modelo científico, Etapa 4, Etapa 7, Etapa 9) y NO tiene validez clínica. Debe reemplazarse por la codificación de los documentos corregidos antes de cualquier uso real.",
+  "fuentes": {
+    "modelo_cientifico": null,
+    "etapa_4": null,
+    "etapa_7": null,
+    "etapa_9": null,
+    "prompt_entrevista": null
+  },
+  "edad": {
+    "minima": 4,
+    "maxima": 17
+  },
+  "limites": {
+    "max_preguntas_por_dimension": 4,
+    "tope_absoluto_por_dimension": 8,
+    "umbral_similitud_textual": 0.6
+  },
+  "slots": {
+    "motivo": {
+      "tipo": "texto",
+      "etiqueta": "Motivo de consulta"
+    },
+    "edad": {
+      "tipo": "numero",
+      "etiqueta": "Edad (años)"
+    },
+    "informe_existe": {
+      "tipo": "si_no",
+      "etiqueta": "Existe informe escolar"
+    },
+    "informe_disponible": {
+      "tipo": "si_no",
+      "etiqueta": "Informe escolar disponible u obtenible"
+    },
+    "presencia": {
+      "tipo": "si_no",
+      "etiqueta": "Presencia"
+    },
+    "frecuencia": {
+      "tipo": "texto",
+      "etiqueta": "Frecuencia"
+    },
+    "contextos": {
+      "tipo": "texto",
+      "etiqueta": "Contextos en que ocurre"
+    },
+    "inicio": {
+      "tipo": "texto",
+      "etiqueta": "Inicio"
+    },
+    "impacto": {
+      "tipo": "texto",
+      "etiqueta": "Interferencia en el funcionamiento"
+    },
+    "descripcion": {
+      "tipo": "texto",
+      "etiqueta": "Descripción"
+    },
+    "evaluado_profesional": {
+      "tipo": "si_no",
+      "etiqueta": "Evaluado por un profesional"
+    }
+  },
+  "perfiles": {
+    "sintoma": {
+      "esenciales_si_presente": [
+        "frecuencia",
+        "contextos",
+        "inicio",
+        "impacto"
+      ]
+    },
+    "antecedente": {
+      "esenciales_si_presente": [
+        "descripcion"
+      ]
+    },
+    "tamizaje": {
+      "esenciales_si_presente": [
+        "descripcion",
+        "evaluado_profesional"
+      ]
+    }
+  },
+  "plantillas": {
+    "sintoma": {
+      "frecuencia": "Respecto de {tema}: ¿con qué frecuencia ocurre? Por ejemplo, varias veces al día o algunas veces por semana.",
+      "contextos": "Respecto de {tema}: ¿en qué lugares o situaciones ocurre (casa, colegio, con amigos u otros)?",
+      "inicio": "Respecto de {tema}: ¿desde qué edad o desde cuándo lo nota?",
+      "impacto": "Respecto de {tema}: ¿de qué manera afecta su vida diaria (tareas, familia, amistades)?"
+    },
+    "antecedente": {
+      "descripcion": "Respecto de {tema}: ¿podría describir en qué consiste y cómo ha sido?"
+    },
+    "tamizaje": {
+      "descripcion": "Respecto de {tema}: ¿qué ha observado exactamente y desde cuándo?",
+      "evaluado_profesional": "Respecto de {tema}: ¿lo ha evaluado algún profesional de la salud?"
+    }
+  },
+  "fase_inicial": [
+    {
+      "id": "INI-MOTIVO",
+      "slot": "motivo",
+      "especificidad": 1,
+      "texto": "Para comenzar, ¿cuál es el motivo de consulta? Cuénteme qué es lo que le preocupa."
+    },
+    {
+      "id": "INI-EDAD",
+      "slot": "edad",
+      "especificidad": 1,
+      "texto": "¿Qué edad tiene la persona evaluada?"
+    },
+    {
+      "id": "INI-EDAD-2",
+      "slot": "edad",
+      "especificidad": 2,
+      "texto": "¿Cuántos años cumplió en su último cumpleaños?"
+    },
+    {
+      "id": "INI-INF-EXISTE",
+      "slot": "informe_existe",
+      "especificidad": 1,
+      "texto": "¿Existe un informe escolar (del profesor jefe o del colegio) sobre la persona evaluada?"
+    },
+    {
+      "id": "INI-INF-EXISTE-2",
+      "slot": "informe_existe",
+      "especificidad": 2,
+      "texto": "¿El colegio ha entregado alguna vez un informe escrito sobre su conducta, atención o aprendizaje?"
+    },
+    {
+      "id": "INI-INF-DISP",
+      "slot": "informe_disponible",
+      "especificidad": 1,
+      "condicion": {
+        "slot": "informe_existe",
+        "igual": "si"
+      },
+      "texto": "¿Ese informe está disponible o se puede solicitar al colegio para esta evaluación?"
+    }
+  ],
+  "orden_dominios": [
+    "inatencion",
+    "hiperactividad",
+    "impulsividad",
+    "desarrollo",
+    "trayectoria",
+    "autonomia",
+    "funcionamiento",
+    "escolar",
+    "tamizaje"
+  ],
+  "dimensiones": [
+    {
+      "id": "INA-SOST",
+      "dominio": "inatencion",
+      "perfil": "sintoma",
+      "ambito": "general",
+      "obligatoria": true,
+      "nombre": "Atención sostenida",
+      "tema": "la distracción o pérdida de atención",
+      "palabras_clave": [
+        "se distrae",
+        "distraido",
+        "distraida",
+        "desconcentra",
+        "no pone atencion",
+        "pierde la atencion",
+        "elevado",
+        "en las nubes"
+      ],
+      "preguntas": [
+        {
+          "id": "INA-SOST-P1",
+          "slot": "presencia",
+          "especificidad": 1,
+          "texto": "¿Le cuesta mantener la atención en lo que está haciendo, por ejemplo en tareas o juegos?"
+        },
+        {
+          "id": "INA-SOST-P2",
+          "slot": "presencia",
+          "especificidad": 2,
+          "texto": "Cuando hace una tarea de 15 minutos, ¿suele dejarla a medias porque algo lo distrae?"
+        },
+        {
+          "id": "INA-SOST-P3",
+          "slot": "presencia",
+          "especificidad": 3,
+          "tras_incertidumbre": true,
+          "texto": "Pensando en la última semana, ¿recuerda alguna situación concreta en que se haya distraído y no terminara algo?"
+        }
+      ]
+    },
+    {
+      "id": "INA-ORG",
+      "dominio": "inatencion",
+      "perfil": "sintoma",
+      "ambito": "general",
+      "obligatoria": true,
+      "nombre": "Organización y finalización de tareas",
+      "tema": "la necesidad de recordatorios para terminar tareas",
+      "palabras_clave": [
+        "no termina",
+        "deja todo a medias",
+        "desordenado",
+        "desordenada",
+        "hay que recordarle",
+        "hay que insistirle"
+      ],
+      "preguntas": [
+        {
+          "id": "INA-ORG-P1",
+          "slot": "presencia",
+          "especificidad": 1,
+          "texto": "¿Necesita recordatorios para completar una tarea que ya comenzó?"
+        },
+        {
+          "id": "INA-ORG-P2",
+          "slot": "presencia",
+          "especificidad": 2,
+          "texto": "Si le pide terminar una tarea escolar sin supervisión, ¿la termina por su cuenta la mayoría de las veces?",
+          "invertida": true
+        }
+      ]
+    },
+    {
+      "id": "INA-OLV",
+      "dominio": "inatencion",
+      "perfil": "sintoma",
+      "ambito": "general",
+      "obligatoria": true,
+      "nombre": "Olvidos y pérdida de objetos",
+      "tema": "los olvidos o pérdidas de objetos",
+      "palabras_clave": [
+        "olvida",
+        "olvidadizo",
+        "olvidadiza",
+        "pierde sus cosas",
+        "pierde las cosas"
+      ],
+      "preguntas": [
+        {
+          "id": "INA-OLV-P1",
+          "slot": "presencia",
+          "especificidad": 1,
+          "texto": "¿Suele olvidar cosas de la rutina diaria o perder objetos que necesita (útiles, ropa, llaves)?"
+        },
+        {
+          "id": "INA-OLV-P2",
+          "slot": "presencia",
+          "especificidad": 2,
+          "texto": "En el último mes, ¿cuántas veces aproximadamente olvidó o perdió algo importante para el colegio?"
+        }
+      ]
+    },
+    {
+      "id": "HIP-MOT",
+      "dominio": "hiperactividad",
+      "perfil": "sintoma",
+      "ambito": "general",
+      "obligatoria": true,
+      "nombre": "Inquietud motora",
+      "tema": "la inquietud o el movimiento excesivo",
+      "palabras_clave": [
+        "inquieto",
+        "inquieta",
+        "no se queda quieto",
+        "no se queda quieta",
+        "se mueve mucho",
+        "hiperactivo",
+        "hiperactiva",
+        "corre todo el dia"
+      ],
+      "preguntas": [
+        {
+          "id": "HIP-MOT-P1",
+          "slot": "presencia",
+          "especificidad": 1,
+          "texto": "¿Le cuesta quedarse quieto en situaciones en que se espera que lo esté, como en la mesa o en clases?"
+        },
+        {
+          "id": "HIP-MOT-P2",
+          "slot": "presencia",
+          "especificidad": 2,
+          "texto": "Durante una comida familiar de unos 20 minutos, ¿se levanta o se mueve constantemente?"
+        },
+        {
+          "id": "HIP-MOT-P3",
+          "slot": "presencia",
+          "especificidad": 3,
+          "tras_incertidumbre": true,
+          "texto": "¿Algún adulto (familiar, profesor) le ha comentado que se mueve más que otros niños de su edad?"
+        }
+      ]
+    },
+    {
+      "id": "IMP-ESPERA",
+      "dominio": "impulsividad",
+      "perfil": "sintoma",
+      "ambito": "general",
+      "obligatoria": true,
+      "nombre": "Dificultad para esperar",
+      "tema": "la dificultad para esperar su turno",
+      "palabras_clave": [
+        "no espera",
+        "impaciente",
+        "no respeta turnos",
+        "no sabe esperar"
+      ],
+      "preguntas": [
+        {
+          "id": "IMP-ESPERA-P1",
+          "slot": "presencia",
+          "especificidad": 1,
+          "texto": "¿Le cuesta esperar su turno, por ejemplo en juegos o en una fila?"
+        },
+        {
+          "id": "IMP-ESPERA-P2",
+          "slot": "presencia",
+          "especificidad": 2,
+          "texto": "En un juego de mesa, ¿suele intentar jugar antes de que sea su turno?"
+        }
+      ]
+    },
+    {
+      "id": "IMP-INTERR",
+      "dominio": "impulsividad",
+      "perfil": "sintoma",
+      "ambito": "general",
+      "obligatoria": true,
+      "nombre": "Interrupciones",
+      "tema": "las interrupciones a otras personas",
+      "palabras_clave": [
+        "interrumpe",
+        "habla sin parar",
+        "responde antes"
+      ],
+      "preguntas": [
+        {
+          "id": "IMP-INTERR-P1",
+          "slot": "presencia",
+          "especificidad": 1,
+          "texto": "¿Interrumpe a otras personas cuando hablan o se mete en conversaciones o juegos ajenos?"
+        },
+        {
+          "id": "IMP-INTERR-P2",
+          "slot": "presencia",
+          "especificidad": 2,
+          "texto": "Cuando dos adultos conversan, ¿suele interrumpir antes de que terminen?"
+        }
+      ]
+    },
+    {
+      "id": "DES-HITOS",
+      "dominio": "desarrollo",
+      "perfil": "antecedente",
+      "ambito": "hogar",
+      "obligatoria": true,
+      "nombre": "Desarrollo temprano",
+      "tema": "el desarrollo temprano",
+      "palabras_clave": [
+        "retraso",
+        "camino tarde",
+        "hablo tarde"
+      ],
+      "preguntas": [
+        {
+          "id": "DES-HITOS-P1",
+          "slot": "presencia",
+          "especificidad": 1,
+          "texto": "Durante sus primeros años, ¿hubo algún retraso o dificultad en el desarrollo (caminar, hablar, control de esfínter)?"
+        },
+        {
+          "id": "DES-HITOS-P2",
+          "slot": "presencia",
+          "especificidad": 2,
+          "texto": "¿Algún profesional de salud le indicó que caminaba o hablaba más tarde de lo esperado?"
+        }
+      ]
+    },
+    {
+      "id": "TRA-EVOL",
+      "dominio": "trayectoria",
+      "perfil": "antecedente",
+      "ambito": "hogar",
+      "obligatoria": true,
+      "nombre": "Trayectoria de las dificultades",
+      "tema": "la evolución de las dificultades",
+      "palabras_clave": [
+        "siempre ha sido asi",
+        "desde chico",
+        "desde chica",
+        "empeoro",
+        "ha empeorado"
+      ],
+      "preguntas": [
+        {
+          "id": "TRA-EVOL-P1",
+          "slot": "presencia",
+          "especificidad": 1,
+          "texto": "¿Las dificultades que le preocupan han cambiado con el tiempo (aparecieron, aumentaron o disminuyeron en algún momento)?"
+        }
+      ]
+    },
+    {
+      "id": "AUT-RUTINAS",
+      "dominio": "autonomia",
+      "perfil": "antecedente",
+      "ambito": "hogar",
+      "obligatoria": true,
+      "nombre": "Autonomía en rutinas",
+      "tema": "la autonomía en las rutinas del hogar",
+      "palabras_clave": [
+        "no es autonomo",
+        "no es autonoma",
+        "hay que vestirlo",
+        "hay que vestirla"
+      ],
+      "preguntas": [
+        {
+          "id": "AUT-RUTINAS-P1",
+          "slot": "presencia",
+          "especificidad": 1,
+          "texto": "¿Tiene dificultades para realizar solo sus rutinas esperables para su edad (vestirse, asearse, preparar sus cosas)?"
+        },
+        {
+          "id": "AUT-RUTINAS-P2",
+          "slot": "presencia",
+          "especificidad": 2,
+          "texto": "¿Hay que insistirle para que termine lo que empieza en casa, como ordenar o vestirse?"
+        }
+      ]
+    },
+    {
+      "id": "FUN-FAMILIA",
+      "dominio": "funcionamiento",
+      "perfil": "antecedente",
+      "ambito": "hogar",
+      "obligatoria": true,
+      "nombre": "Funcionamiento familiar cotidiano",
+      "tema": "la convivencia familiar",
+      "palabras_clave": [
+        "peleas en casa",
+        "conflictos en casa",
+        "discusiones"
+      ],
+      "preguntas": [
+        {
+          "id": "FUN-FAMILIA-P1",
+          "slot": "presencia",
+          "especificidad": 1,
+          "texto": "¿Las dificultades generan problemas en la convivencia familiar o en las rutinas de la casa?"
+        }
+      ]
+    },
+    {
+      "id": "FUN-PARES",
+      "dominio": "funcionamiento",
+      "perfil": "antecedente",
+      "ambito": "general",
+      "obligatoria": true,
+      "nombre": "Relación con pares",
+      "tema": "la relación con otros niños",
+      "palabras_clave": [
+        "no tiene amigos",
+        "pelea con companeros",
+        "lo excluyen",
+        "la excluyen"
+      ],
+      "preguntas": [
+        {
+          "id": "FUN-PARES-P1",
+          "slot": "presencia",
+          "especificidad": 1,
+          "texto": "¿Tiene dificultades para hacer o mantener amistades con niños de su edad?"
+        }
+      ]
+    },
+    {
+      "id": "ESC-REND",
+      "dominio": "escolar",
+      "perfil": "antecedente",
+      "ambito": "escolar",
+      "obligatoria": true,
+      "edad_min": 5,
+      "nombre": "Rendimiento académico",
+      "tema": "el rendimiento académico",
+      "palabras_clave": [
+        "malas notas",
+        "bajo rendimiento",
+        "repitio",
+        "va mal en el colegio",
+        "rendimiento bajo",
+        "notas bajas"
+      ],
+      "preguntas": [
+        {
+          "id": "ESC-REND-P1",
+          "slot": "presencia",
+          "especificidad": 1,
+          "texto": "¿Tiene dificultades en su rendimiento escolar, como notas bajas o asignaturas en riesgo?"
+        }
+      ],
+      "palabras_clave_ausencia": [
+        "buen rendimiento",
+        "rendimiento adecuado",
+        "notas adecuadas",
+        "buenas notas"
+      ]
+    },
+    {
+      "id": "ESC-AULA",
+      "dominio": "escolar",
+      "perfil": "antecedente",
+      "ambito": "escolar",
+      "obligatoria": true,
+      "edad_min": 5,
+      "nombre": "Conducta en el aula",
+      "tema": "la conducta en clases",
+      "palabras_clave": [
+        "anotaciones",
+        "lo retan en clases",
+        "la retan en clases",
+        "conducta en clases",
+        "se para en clases"
+      ],
+      "preguntas": [
+        {
+          "id": "ESC-AULA-P1",
+          "slot": "presencia",
+          "especificidad": 1,
+          "texto": "¿El colegio ha informado dificultades de conducta o de comportamiento en clases?"
+        }
+      ],
+      "palabras_clave_ausencia": [
+        "buena conducta",
+        "conducta adecuada",
+        "sin anotaciones",
+        "comportamiento adecuado"
+      ]
+    },
+    {
+      "id": "TAM-SUENO",
+      "dominio": "tamizaje",
+      "categoria_tamizaje": "sueno",
+      "perfil": "tamizaje",
+      "ambito": "general",
+      "obligatoria": true,
+      "nombre": "Sueño",
+      "tema": "el sueño",
+      "palabras_clave": [
+        "duerme mal",
+        "ronca",
+        "despierta en la noche",
+        "no duerme",
+        "insomnio",
+        "cansado en la manana",
+        "cansada en la manana"
+      ],
+      "preguntas": [
+        {
+          "id": "TAM-SUENO-P1",
+          "slot": "presencia",
+          "especificidad": 1,
+          "texto": "¿Ha notado problemas de sueño, como dificultad para dormirse, despertares frecuentes, ronquidos o cansancio al despertar?"
+        }
+      ]
+    },
+    {
+      "id": "TAM-VISION",
+      "dominio": "tamizaje",
+      "categoria_tamizaje": "sensorial",
+      "perfil": "tamizaje",
+      "ambito": "general",
+      "obligatoria": true,
+      "nombre": "Visión",
+      "tema": "la visión",
+      "palabras_clave": [
+        "ve mal",
+        "no ve bien",
+        "entrecierra los ojos"
+      ],
+      "preguntas": [
+        {
+          "id": "TAM-VISION-P1",
+          "slot": "presencia",
+          "especificidad": 1,
+          "texto": "¿Ha notado alguna dificultad para ver, por ejemplo acercarse mucho a los textos o entrecerrar los ojos?"
+        }
+      ]
+    },
+    {
+      "id": "TAM-AUDICION",
+      "dominio": "tamizaje",
+      "categoria_tamizaje": "sensorial",
+      "perfil": "tamizaje",
+      "ambito": "general",
+      "obligatoria": true,
+      "nombre": "Audición",
+      "tema": "la audición",
+      "palabras_clave": [
+        "no escucha",
+        "escucha mal",
+        "sube el volumen"
+      ],
+      "preguntas": [
+        {
+          "id": "TAM-AUDICION-P1",
+          "slot": "presencia",
+          "especificidad": 1,
+          "texto": "¿Ha notado alguna dificultad para oír, como pedir que le repitan seguido o subir mucho el volumen?"
+        }
+      ]
+    },
+    {
+      "id": "TAM-MEDICO",
+      "dominio": "tamizaje",
+      "categoria_tamizaje": "medico",
+      "perfil": "tamizaje",
+      "ambito": "general",
+      "obligatoria": true,
+      "nombre": "Condiciones médicas y medicamentos",
+      "tema": "las condiciones médicas o medicamentos",
+      "palabras_clave": [
+        "epilepsia",
+        "convulsiones",
+        "asma",
+        "toma medicamentos",
+        "tiroides",
+        "anemia"
+      ],
+      "preguntas": [
+        {
+          "id": "TAM-MEDICO-P1",
+          "slot": "presencia",
+          "especificidad": 1,
+          "texto": "¿Tiene alguna condición médica diagnosticada o toma algún medicamento de forma regular?"
+        }
+      ]
+    }
+  ],
+  "grupos_equivalencia": [
+    {
+      "id": "EQ-RECORDATORIOS",
+      "descripcion": "Necesitar recordatorios o insistencia para terminar lo que se empieza",
+      "preguntas": [
+        "INA-ORG-P1",
+        "AUT-RUTINAS-P2"
+      ]
+    }
+  ],
+  "instrumentos": [
+    {
+      "id": "ESCALA-APODERADO",
+      "nombre": "Escala de síntomas – apoderado (provisional)",
+      "obligatorio": true
+    },
+    {
+      "id": "ESCALA-DOCENTE",
+      "nombre": "Escala de síntomas – docente (provisional)",
+      "obligatorio": true
+    },
+    {
+      "id": "NESPLORA",
+      "nombre": "Nesplora (prueba de atención en realidad virtual)",
+      "obligatorio": false,
+      "objetivo": true
+    },
+    {
+      "id": "RV-PROPIA",
+      "nombre": "Tarea de realidad virtual del proyecto",
+      "obligatorio": false,
+      "objetivo": true
+    }
+  ],
+  "requisitos_informe_final": [
+    "fase_inicial_completa",
+    "entrevista_cerrada",
+    "informe_escolar_segun_ruta",
+    "tamizaje_completo",
+    "instrumentos_obligatorios",
+    "contradicciones_revisadas",
+    "interpretacion_profesional"
+  ]
+}

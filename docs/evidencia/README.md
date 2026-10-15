@@ -1,0 +1,16 @@
+# Evidencia de pruebas
+
+Generada con `npm run test:evidencia` (regenerable en cualquier momento).
+
+| Archivo | Contenido |
+|---|---|
+| `resultados-pruebas.txt` | Salida completa de las 43 pruebas (25 unitarias, 18 de extremo a extremo) |
+| `resultados-junit.xml` | Mismo resultado en formato JUnit (para CI) |
+| `e2e/entrevista.md` / `.json` | E01–E10 y E13: orden inicial, rutas, persistencia y recuperación, adaptación, redundancia, profundización, incertidumbre, cierre, tamizaje, informe escolar |
+| `e2e/informe-y-adversos.md` / `.json` | E11–E12 y A1–A6: informe final, bloqueos, ambigüedad, contradicciones, errores de API, IA acotada, entradas inválidas, cambio de ruta |
+
+Cada paso registra: **entrada**, **estado anterior**, **decisión del motor** (con justificación), **acción resultante**, **estado posterior**, **resultado esperado** y si se cumplió.
+
+Las pruebas E2E levantan el servidor HTTP real con una base SQLite temporal; no usan simulaciones del backend. La IA se simula solo en A3 (fallos de API) y A4 (respuesta válida), porque requieren respuestas controladas.
+
+La demostración completa de un caso ficticio está en `../demo/`.

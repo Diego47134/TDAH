@@ -1,0 +1,19 @@
+{
+  "name": "tdah-evaluacion",
+  "version": "0.1.0",
+  "description": "Sistema de evaluación TDAH: entrevista adaptativa (motor Etapa 9), expediente persistente e informe estructurado. PWA + backend Node + SQLite integrado.",
+  "type": "module",
+  "private": true,
+  "engines": { "node": ">=22.13" },
+  "scripts": {
+    "start": "node --disable-warning=ExperimentalWarning src/server.js",
+    "dev": "node --disable-warning=ExperimentalWarning --watch src/server.js",
+    "test": "node --disable-warning=ExperimentalWarning --test --test-reporter=spec \"test/unit/*.test.js\" \"test/e2e/*.test.js\"",
+    "test:unit": "node --disable-warning=ExperimentalWarning --test \"test/unit/*.test.js\"",
+    "test:e2e": "node --disable-warning=ExperimentalWarning --test \"test/e2e/*.test.js\"",
+    "test:evidencia": "EVIDENCIA=1 node --disable-warning=ExperimentalWarning --test --test-reporter=spec --test-reporter-destination=stdout --test-reporter=junit --test-reporter-destination=docs/evidencia/resultados-junit.xml \"test/unit/*.test.js\" \"test/e2e/*.test.js\"",
+    "demo": "node --disable-warning=ExperimentalWarning scripts/demo.js",
+    "validar-protocolo": "node --disable-warning=ExperimentalWarning scripts/validar-protocolo.js"
+  },
+  "license": "UNLICENSED"
+}
