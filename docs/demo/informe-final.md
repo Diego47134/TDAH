@@ -390,3 +390,10 @@ _Redactada por: Profesional de prueba (2026-10-15)._
 - [8] Behavioral Sleep Interventions for Children With ADHD: A Systematic Review and Meta-Analysis. Journal of Attention Disorders. 2022;26(14):1805–1821. PMID: 35758199.
 - [9] The influence of existing interventions on sleep of youth with ADHD: A meta-analysis of randomized controlled trials. Sleep Medicine Reviews. 2026. PMID: 42096966.
 - [10] Exercise for core ADHD symptoms and executive functions in children and adolescents with ADHD: A network and dose-response meta-analysis. Journal of Sport and Health Science. 2026. PMID: 42480697.
+
+## Consentimiento, confidencialidad y alcance de este informe
+
+- Consentimiento informado del representante legal (madre), medio escrito firmado, obtenido por Profesional de prueba el 2026-10-15 (política de privacidad versión 1.0 (15-10-2026)). Envío de respuestas a proveedor externo de IA: no autorizado.
+- Asentimiento del niño, niña o adolescente registrado por Profesional de prueba el 2026-10-15.
+
+_Documento confidencial que contiene datos sensibles de salud (Ley 19.628, modificada por la Ley 21.719; Ley 20.584). Su uso se limita a la finalidad de evaluación clínica para la que fue elaborado y no puede comunicarse a terceros sin autorización del representante legal, salvo en los casos que la ley permite. Este informe es una herramienta de apoyo: no constituye por sí mismo un diagnóstico; la interpretación, el diagnóstico y las indicaciones son responsabilidad exclusiva del profesional de salud que lo valida. Ningún diagnóstico de salud mental puede usarse para discriminar a la persona evaluada (Ley 21.331, art. 9 N° 15)._

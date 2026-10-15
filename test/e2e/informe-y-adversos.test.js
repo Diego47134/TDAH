@@ -3,7 +3,7 @@
 import { test, after } from 'node:test';
 import assert from 'node:assert/strict';
 import { iniciarApp, crearCaso, vista, responder, entrevistar, crearEvidencia } from './ayudantes.js';
-import { respuestaPara, INFORME_ESCOLAR } from '../fixtures/caso-ficticio.js';
+import { respuestaPara, INFORME_ESCOLAR, ASENTIMIENTO } from '../fixtures/caso-ficticio.js';
 import { crearClienteIA } from '../../src/ia.js';
 
 const ev = crearEvidencia('informe-y-adversos');
@@ -240,6 +240,10 @@ test('A7 · complementación del colegio (Anexo 7-C) y entrevista al niño/niña
     assert.equal(v.nna.fuente, 'nino');
     const q = v.nna.siguiente;
     assert.match(q.id, /^D\d+/);
+    const sinAsent = await api.req('POST', `/api/casos/${id}/nna`, { pregunta_id: q.id, texto: 'x' });
+    assert.equal(sinAsent.status, 409, 'sin asentimiento no se entrevista al niño');
+    v = (await api.req('POST', `/api/casos/${id}/nna`, { asentimiento: ASENTIMIENTO })).body;
+    assert.equal(v.nna.asentimiento, true);
     v = (await api.req('POST', `/api/casos/${id}/nna`, { pregunta_id: q.id, texto: 'A veces me cuesta poner atención en clases.' })).body;
     assert.equal(v.nna.respondidas, 1);
     v = (await api.req('POST', `/api/casos/${id}/nna`, { finalizar: true })).body;

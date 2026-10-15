@@ -24,7 +24,7 @@ Abrir `http://127.0.0.1:3000`, crear un caso con un seudónimo y comenzar la ent
 |---|---|
 | `npm run dev` | Desarrollo local (recarga al guardar, sin token) |
 | `npm start` | Producción (`server.js`): clave de acceso obligatoria, datos fuera de la app, respaldos |
-| `npm test` | Pruebas unitarias y de extremo a extremo (50) |
+| `npm test` | Pruebas unitarias y de extremo a extremo (54) |
 | `npm run test:evidencia` | Igual, y escribe evidencia verificable en `docs/evidencia/` |
 | `npm run demo` | Caso ficticio completo de principio a fin → `docs/demo/` |
 | `npm run validar-protocolo [-- archivo.json]` | Valida la integridad del protocolo |
@@ -49,6 +49,7 @@ docker run -p 3000:3000 -v tdah-datos:/data --env-file .env tdah
 | `IA_PROVEEDOR` | `anthropic` u `openai` | `anthropic` (u `openai` si solo existe `OPENAI_API_KEY`) |
 | `ANTHROPIC_API_KEY` / `OPENAI_API_KEY` | Habilita la IA para asignar respuestas libres a alternativas y extraer el informe escolar | IA deshabilitada → intérprete de reglas |
 | `IA_MODELO` | Modelo de IA | `claude-sonnet-5-5` / `gpt-4o` |
+| `RESPONSABLE_NOMBRE`, `RESPONSABLE_RUT`, `RESPONSABLE_DOMICILIO`, `RESPONSABLE_CORREO` | Datos del responsable del tratamiento en la política de privacidad y los términos | se muestran como «[completar]» |
 | `IA_TIMEOUT_MS` | Tiempo máximo por llamada a la IA | `20000` |
 
 Las claves nunca se escriben en el código ni se envían al navegador.
@@ -84,6 +85,8 @@ docs/                arquitectura, requisitos, evidencia de pruebas y demostraci
 ```
 
 ## Privacidad
+
+- **Consentimiento informado obligatorio** del representante legal para crear un caso y **asentimiento** del niño, niña o adolescente antes de su entrevista. Política de privacidad en `/privacidad.html` y términos de uso con deslinde de responsabilidades en `/terminos.html`. Marco normativo (Leyes 19.628/21.719, 20.584, 21.331; Decreto 41/2012 MINSAL; ISP) y pendientes en [docs/PRIVACIDAD_Y_CUMPLIMIENTO.md](docs/PRIVACIDAD_Y_CUMPLIMIENTO.md).
 
 - Use seudónimos. No ingrese datos identificables de pacientes reales en entornos de prueba.
 - El service worker cachea **solo la interfaz**; los datos clínicos nunca se guardan en el navegador.

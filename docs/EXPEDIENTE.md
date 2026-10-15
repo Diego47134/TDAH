@@ -16,7 +16,7 @@ Base de datos SQLite (`DB_PATH`, por defecto `data/tdah.sqlite`). Esquema comple
 | Pregunta anterior y justificación de la siguiente | `preguntas` (orden por turno) y `casos.pregunta_actual.justificacion` |
 | Estado global del proceso | `casos.estado_global` + `flujo` en la vista del caso |
 
-Tablas adicionales: `informes_escolares` (texto y extracción), `informes` (finales, estado de validación), `errores` (API de IA, servidor, motor).
+Tablas adicionales: `consentimientos` (consentimiento del representante legal y asentimiento del NNA, con versión de la política y autorización de IA externa), `informes_escolares` (texto y extracción), `informes` (finales, estado de validación), `errores` (API de IA, servidor, motor).
 
 ## API
 
@@ -24,12 +24,12 @@ Tablas adicionales: `informes_escolares` (texto y extracción), `informes` (fina
 |---|---|
 | `GET /api/salud` | Estado, versión de protocolo, IA |
 | `GET /api/protocolo` | Resumen del protocolo vigente (fuentes, alternativas, síntomas, barrido, tamizaje) |
-| `GET/POST /api/casos` | Listar / crear caso (devuelve la primera pregunta) |
+| `GET/POST /api/casos` | Listar / crear caso: `{etiqueta, consentimiento:{acepta, otorgante, relacion, medio, profesional, acepta_ia_externa}}` (devuelve la primera pregunta) |
 | `GET /api/casos/:id` | Expediente completo, síntomas, barrido, tamizaje, integración, requisitos, flujo |
 | `POST /api/casos/:id/respuestas` | `{pregunta_id, opcion?}` · `{pregunta_id, opciones?: [..]}` · `{pregunta_id, texto?, tipo?}` → traza del ciclo de decisión |
 | `POST /api/casos/:id/informe-escolar` | `{texto}` o `{hechos:[{sintoma, slot, valor, evidencia}]}` |
 | `GET/POST /api/casos/:id/colegio` | Preguntas del Anexo 7-C pendientes (las cubiertas por el informe no se envían) / `{respuestas:[{pregunta_id, texto}]}` |
-| `POST /api/casos/:id/nna` | Entrevista al niño/niña (Anexo 7-D) o adolescente (7-E): `{pregunta_id, texto}`, `{pregunta_id, omitir:true}` o `{finalizar:true}` |
+| `POST /api/casos/:id/nna` | Entrevista al niño/niña (Anexo 7-D) o adolescente (7-E): `{asentimiento:{acepta, profesional}}` (obligatorio antes de la primera respuesta), `{pregunta_id, texto}`, `{pregunta_id, omitir:true}` o `{finalizar:true}` |
 | `POST /api/casos/:id/ruta` | `{ruta, motivo}` cambio manual de ruta |
 | `POST /api/casos/:id/evaluaciones` | Registro de instrumento |
 | `POST /api/casos/:id/contradicciones/:cid/revision` | `{nota, profesional}` |
@@ -39,4 +39,5 @@ Tablas adicionales: `informes_escolares` (texto y extracción), `informes` (fina
 | `POST /api/casos/:id/informes/:iid/validacion` | `{profesional}` |
 | `POST /api/casos/:id/propuestas` | Valida una pregunta propuesta externamente |
 | `GET /api/casos/:id/auditoria` | Decisiones, errores, preguntas y respuestas |
+| `GET /api/casos/:id/exportar?solicitante=` | Copia íntegra del expediente (derecho de acceso y portabilidad); queda auditada |
 | `POST /api/configuracion-inicial` | `{clave}` crea la clave de acceso en el primer ingreso (solo producción sin `APP_ACCESS_TOKEN`) |

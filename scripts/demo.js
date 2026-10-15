@@ -4,7 +4,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { crearApp } from '../src/server.js';
-import { ETIQUETA, respuestaPara, INFORME_ESCOLAR, INSTRUMENTOS, INTERPRETACION } from '../test/fixtures/caso-ficticio.js';
+import { ETIQUETA, respuestaPara, INFORME_ESCOLAR, INSTRUMENTOS, INTERPRETACION, CONSENTIMIENTO, ASENTIMIENTO } from '../test/fixtures/caso-ficticio.js';
 
 const SALIDA = path.join('docs', 'demo');
 const DB = path.join(SALIDA, 'demo.sqlite');
@@ -43,7 +43,7 @@ async function entrevistar(id) {
 }
 
 try {
-  const v0 = await req('POST', '/api/casos', { etiqueta: ETIQUETA });
+  const v0 = await req('POST', '/api/casos', { etiqueta: ETIQUETA, consentimiento: { ...CONSENTIMIENTO, acepta_ia_externa: false } });
   const id = v0.caso.id;
   T.push(`Caso: **${v0.caso.codigo}** (${ETIQUETA})`, '', '## 1. Entrevista al apoderado', '');
   let v = await entrevistar(id);
@@ -70,7 +70,8 @@ try {
     await req('POST', `/api/casos/${id}/colegio`, { respuestas: [{ pregunta_id: enviar[0].id, texto: 'Necesita apoyo para organizar sus materiales (respuesta ficticia del colegio).' }] });
     T.push(`- ${enviar[0].id} «${enviar[0].texto}» → respuesta ficticia registrada con fuente «profesor».`);
   }
-  v = await req('GET', `/api/casos/${id}`);
+  v = await req('POST', `/api/casos/${id}/nna`, { asentimiento: ASENTIMIENTO });
+  T.push('- Asentimiento del niño registrado antes de su entrevista.');
   for (const t of ['A veces me distraigo cuando hay ruido.', 'Me cuesta terminar las guías.']) {
     if (!v.nna.siguiente) break;
     T.push(`- Niño · ${v.nna.siguiente.id} «${v.nna.siguiente.texto}» → «${t}»`);

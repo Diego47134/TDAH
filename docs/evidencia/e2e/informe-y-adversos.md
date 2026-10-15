@@ -1,6 +1,6 @@
 # Evidencia E2E — informe-y-adversos
 
-Generado: 2026-10-15T18:17:00.163Z
+Generado: 2026-10-15T18:45:37.773Z
 
 ## E11 · Informe desde el expediente — **APROBADA**
 
@@ -9,7 +9,7 @@ Requisito: El informe se construye solo con el expediente: 19 secciones de la Et
 ### Paso 1
 
 - **entrada:** Expediente completo + revisión + interpretación
-- **accion_resultante:** Informe final #1 (33252 caracteres)
+- **accion_resultante:** Informe final #1 (34196 caracteres)
 - **esperado:** 19 secciones con datos reales
 - **ok:** true
 

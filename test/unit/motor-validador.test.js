@@ -7,7 +7,7 @@ import { abrirDB } from '../../src/db.js';
 import { cargarProtocolo, compilarProtocolo, PROTOCOLO_POR_DEFECTO } from '../../src/protocolo.js';
 import { crearServicio } from '../../src/servicio.js';
 import { similitud } from '../../src/validador.js';
-import { respuestaPara } from '../fixtures/caso-ficticio.js';
+import { respuestaPara, CONSENTIMIENTO } from '../fixtures/caso-ficticio.js';
 
 const P = cargarProtocolo();
 const nuevo = () => crearServicio({ db: abrirDB(':memory:'), protocolo: P, ia: { habilitada: false } });
@@ -40,7 +40,7 @@ test('protocolo vigente: 18 síntomas, alternativas obligatorias y validación r
 
 test('fase inicial: orden estricto motivo → edad → informe escolar → disponibilidad', async () => {
   const s = nuevo();
-  let v = s.crearCaso({});
+  let v = s.crearCaso({ consentimiento: CONSENTIMIENTO });
   const orden = [];
   v = await avanzar(s, v, { 'INI-INF-EXISTE': { opcion: 'A' }, 'INI-INF-DISP': { opcion: 'A' } }, (q) => { orden.push(q.id); return !q.id.startsWith('INI-'); });
   assert.deepEqual(orden.slice(0, 4), ['INI-MOTIVO', 'INI-EDAD', 'INI-INF-EXISTE', 'INI-INF-DISP']);
@@ -49,7 +49,7 @@ test('fase inicial: orden estricto motivo → edad → informe escolar → dispo
 test('fase inicial: la disponibilidad solo se pregunta si el informe existe', async () => {
   const s = nuevo();
   const orden = [];
-  await avanzar(s, s.crearCaso({}), INICIO_SIN_INFORME, (q) => { orden.push(q.id); return !q.id.startsWith('INI-'); });
+  await avanzar(s, s.crearCaso({ consentimiento: CONSENTIMIENTO }), INICIO_SIN_INFORME, (q) => { orden.push(q.id); return !q.id.startsWith('INI-'); });
   assert.ok(!orden.includes('INI-INF-DISP'));
 });
 
@@ -62,14 +62,14 @@ test('ruta: disponible → Ruta B (con_informe); no existe / no sabe / no dispon
   ];
   for (const [fijo, esperada] of casos) {
     const s = nuevo();
-    const v = await avanzar(s, s.crearCaso({}), fijo, (q) => !q.id.startsWith('INI-'));
+    const v = await avanzar(s, s.crearCaso({ consentimiento: CONSENTIMIENTO }), fijo, (q) => !q.id.startsWith('INI-'));
     assert.equal(v.estado.ruta, esperada, JSON.stringify(fijo));
   }
 });
 
 test('activación inmediata (Etapa 9 §14.2): una conducta mencionada en el motivo se caracteriza primero', async () => {
   const s = nuevo();
-  const v = await avanzar(s, s.crearCaso({}), { ...INICIO_SIN_INFORME, 'INI-MOTIVO': { texto: 'Interrumpe todo el tiempo a los demás.' } }, (q) => !q.id.startsWith('INI-'));
+  const v = await avanzar(s, s.crearCaso({ consentimiento: CONSENTIMIENTO }), { ...INICIO_SIN_INFORME, 'INI-MOTIVO': { texto: 'Interrumpe todo el tiempo a los demás.' } }, (q) => !q.id.startsWith('INI-'));
   assert.equal(v.caso.pregunta_actual.id, 'A19'); // R2.9 «interrumpe»
   assert.match(v.caso.pregunta_actual.justificacion, /Activación inmediata/);
 });
@@ -77,7 +77,7 @@ test('activación inmediata (Etapa 9 §14.2): una conducta mencionada en el moti
 test('profundización: con presencia «Sí» se preguntan como máximo frecuencia, desde y contextos', async () => {
   const s = nuevo();
   const vistas = [];
-  let v = await avanzar(s, s.crearCaso({}), { ...INICIO_SIN_INFORME, 'INI-MOTIVO': { texto: 'Se distrae mucho.' } }, (q) => !q.id.startsWith('INI-'));
+  let v = await avanzar(s, s.crearCaso({ consentimiento: CONSENTIMIENTO }), { ...INICIO_SIN_INFORME, 'INI-MOTIVO': { texto: 'Se distrae mucho.' } }, (q) => !q.id.startsWith('INI-'));
   assert.equal(v.caso.pregunta_actual.id, 'A09');
   v = (await s.responder(v.caso.id, { pregunta_id: 'A09', opcion: 'A' })).vista;
   for (let i = 0; i < 3; i++) { vistas.push(v.caso.pregunta_actual.id); v = (await s.responder(v.caso.id, { pregunta_id: v.caso.pregunta_actual.id, ...respuestaPara(v.caso.pregunta_actual) })).vista; }
@@ -88,7 +88,7 @@ test('profundización: con presencia «Sí» se preguntan como máximo frecuenci
 
 test('ausencia: con «No» no se profundiza el síntoma', async () => {
   const s = nuevo();
-  let v = await avanzar(s, s.crearCaso({}), INICIO_SIN_INFORME, (q) => !q.id.startsWith('INI-'));
+  let v = await avanzar(s, s.crearCaso({ consentimiento: CONSENTIMIENTO }), INICIO_SIN_INFORME, (q) => !q.id.startsWith('INI-'));
   const q1 = v.caso.pregunta_actual;
   v = (await s.responder(v.caso.id, { pregunta_id: q1.id, opcion: 'B' })).vista;
   assert.ok(!/-FRECUENCIA$/.test(v.caso.pregunta_actual.id));
@@ -96,7 +96,7 @@ test('ausencia: con «No» no se profundiza el síntoma', async () => {
 
 test('«No sabe / No recuerda» no es negativa: el síntoma queda DESCONOCIDO, no NO REFERIDO', async () => {
   const s = nuevo();
-  let v = await avanzar(s, s.crearCaso({}), INICIO_SIN_INFORME, (q) => !q.id.startsWith('INI-'));
+  let v = await avanzar(s, s.crearCaso({ consentimiento: CONSENTIMIENTO }), INICIO_SIN_INFORME, (q) => !q.id.startsWith('INI-'));
   const q1 = v.caso.pregunta_actual; // A01 → R1.1
   assert.equal(q1.id, 'A01');
   v = (await s.responder(v.caso.id, { pregunta_id: 'A01', opcion: 'D' })).vista;
@@ -108,7 +108,7 @@ test('«No sabe / No recuerda» no es negativa: el síntoma queda DESCONOCIDO, n
 
 test('validador: bloquea preguntas externas, repetidas, reformuladas y equivalentes', async () => {
   const s = nuevo();
-  let v = await avanzar(s, s.crearCaso({}), INICIO_SIN_INFORME, (q) => !q.id.startsWith('INI-'));
+  let v = await avanzar(s, s.crearCaso({ consentimiento: CONSENTIMIENTO }), INICIO_SIN_INFORME, (q) => !q.id.startsWith('INI-'));
   const id = v.caso.id;
   const externa = s.proponerPregunta(id, { texto: '¿Cuál es su color favorito?' });
   assert.equal(externa.ok, false);
@@ -136,7 +136,7 @@ test('similitud textual detecta reformulaciones', () => {
 
 test('barrido diferencial: el tamizaje no se adelanta al barrido y «Sueño» deriva la categoría D', async () => {
   const s = nuevo();
-  let v = await avanzar(s, s.crearCaso({}), INICIO_SIN_INFORME, (q) => q.id === 'BARRIDO' || q.id === 'TAMIZAJE');
+  let v = await avanzar(s, s.crearCaso({ consentimiento: CONSENTIMIENTO }), INICIO_SIN_INFORME, (q) => q.id === 'BARRIDO' || q.id === 'TAMIZAJE');
   assert.equal(v.caso.pregunta_actual.id, 'BARRIDO');
   const adelantado = s.proponerPregunta(v.caso.id, { pregunta_id: 'TAMIZAJE', texto: P.preguntas.get('TAMIZAJE').texto });
   assert.equal(adelantado.ok, false);
@@ -149,7 +149,7 @@ test('barrido diferencial: el tamizaje no se adelanta al barrido y «Sueño» de
 
 test('gate de cierre: no cierra con barrido pendiente; cierra con barrido y tamizaje completos', async () => {
   const s = nuevo();
-  let v = await avanzar(s, s.crearCaso({}), INICIO_SIN_INFORME, (q) => q.id === 'BARRIDO');
+  let v = await avanzar(s, s.crearCaso({ consentimiento: CONSENTIMIENTO }), INICIO_SIN_INFORME, (q) => q.id === 'BARRIDO');
   assert.equal(v.caso.estado_global, 'entrevista');
   assert.equal(v.requisitos.requisitos.find((r) => r.id === 'entrevista_apoderado_cerrada').cumplido, false);
   v = await avanzar(s, v, { BARRIDO: { opciones: ['M'] }, TAMIZAJE: { opciones: ['J'] } });
@@ -162,13 +162,13 @@ test('gate de cierre: no cierra con barrido pendiente; cierra con barrido y tami
 
 test('tamizaje con «No sabe» queda COMPLETADO_CON_INCERTIDUMBRE (no se interpreta como ausencia)', async () => {
   const s = nuevo();
-  const v = await avanzar(s, s.crearCaso({}), { ...INICIO_SIN_INFORME, BARRIDO: { opciones: ['M'] }, TAMIZAJE: { opciones: ['K'] } });
+  const v = await avanzar(s, s.crearCaso({ consentimiento: CONSENTIMIENTO }), { ...INICIO_SIN_INFORME, BARRIDO: { opciones: ['M'] }, TAMIZAJE: { opciones: ['K'] } });
   assert.equal(v.estado.tamizaje, 'COMPLETADO_CON_INCERTIDUMBRE');
 });
 
 test('«Ocasionalmente»: se registra y se evalúa la profundización cuantificando solo la frecuencia (Etapa 9 §6.2)', async () => {
   const s = nuevo();
-  let v = await avanzar(s, s.crearCaso({}), INICIO_SIN_INFORME, (q) => !q.id.startsWith('INI-'));
+  let v = await avanzar(s, s.crearCaso({ consentimiento: CONSENTIMIENTO }), INICIO_SIN_INFORME, (q) => !q.id.startsWith('INI-'));
   assert.equal(v.caso.pregunta_actual.id, 'A01');
   v = (await s.responder(v.caso.id, { pregunta_id: 'A01', opcion: 'C' })).vista;
   assert.equal(v.caso.pregunta_actual.id, 'R1.1-FRECUENCIA');

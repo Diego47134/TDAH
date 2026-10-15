@@ -1,0 +1,97 @@
+{
+  "generado": "2026-10-15T18:45:38.225Z",
+  "pruebas": [
+    {
+      "id": "L1",
+      "titulo": "Consentimiento obligatorio",
+      "requisito": "Datos de salud mental = datos sensibles: requieren consentimiento expreso (Ley 19.628/21.719; Ley 20.584; Ley 21.331).",
+      "pasos": [
+        {
+          "entrada": "Sin consentimiento",
+          "accion_resultante": "HTTP 400: Debe registrar el consentimiento informado del representante legal antes de crear el caso.",
+          "esperado": "HTTP 400",
+          "ok": true
+        },
+        {
+          "entrada": "Consentimiento no aceptado",
+          "accion_resultante": "HTTP 400: Sin consentimiento expreso del representante legal no se pueden tratar datos de salud (datos sensibles).",
+          "esperado": "HTTP 400",
+          "ok": true
+        },
+        {
+          "entrada": "Sin otorgante",
+          "accion_resultante": "HTTP 400: Indique quién otorga el consentimiento (nombre o referencia al documento firmado).",
+          "esperado": "HTTP 400",
+          "ok": true
+        },
+        {
+          "entrada": "Sin profesional",
+          "accion_resultante": "HTTP 400: Indique el profesional responsable que obtiene el consentimiento.",
+          "esperado": "HTTP 400",
+          "ok": true
+        },
+        {
+          "entrada": "Relación no válida",
+          "accion_resultante": "HTTP 400: Relación con el niño, niña o adolescente no válida (madre, padre, tutor_legal, otro_representante_legal).",
+          "esperado": "HTTP 400",
+          "ok": true
+        },
+        {
+          "entrada": "Medio no válido",
+          "accion_resultante": "HTTP 400: Medio de consentimiento no válido (escrito_firmado, electronico, verbal_registrado).",
+          "esperado": "HTTP 400",
+          "ok": true
+        },
+        {
+          "entrada": "Consentimiento completo",
+          "accion_resultante": "Caso creado; consentimiento auditado",
+          "esperado": "HTTP 201",
+          "ok": true
+        }
+      ],
+      "resultado": "APROBADA"
+    },
+    {
+      "id": "L2",
+      "titulo": "Comunicación a terceros",
+      "requisito": "Las respuestas solo se envían a un proveedor externo de IA con autorización expresa; si no, se usa el intérprete local.",
+      "pasos": [
+        {
+          "entrada": "acepta_ia_externa = false; 6 respuestas con texto libre",
+          "accion_resultante": "Llamadas a la IA: 0",
+          "esperado": "0 llamadas",
+          "ok": true
+        }
+      ],
+      "resultado": "APROBADA"
+    },
+    {
+      "id": "L3",
+      "titulo": "Acceso y portabilidad",
+      "requisito": "El expediente completo se entrega en formato estructurado y la entrega queda registrada.",
+      "pasos": [
+        {
+          "entrada": "GET /exportar",
+          "accion_resultante": "15 secciones; entrega auditada",
+          "esperado": "Copia íntegra",
+          "ok": true
+        }
+      ],
+      "resultado": "APROBADA"
+    },
+    {
+      "id": "L4",
+      "titulo": "Avisos legales",
+      "requisito": "Las páginas de privacidad y términos están disponibles y el informe incluye la sección de consentimiento y confidencialidad.",
+      "pasos": [
+        {
+          "entrada": "GET /privacidad.html, /terminos.html, borrador del informe",
+          "accion_resultante": "Páginas y sección legal presentes",
+          "esperado": "Disponibles",
+          "ok": true
+        }
+      ],
+      "resultado": "APROBADA"
+    }
+  ]
+}

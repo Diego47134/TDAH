@@ -6,7 +6,7 @@ import os from 'node:os';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import { crearApp } from '../../src/server.js';
-import { respuestaPara } from '../fixtures/caso-ficticio.js';
+import { respuestaPara, CONSENTIMIENTO } from '../fixtures/caso-ficticio.js';
 
 export function rutaDBTemporal() {
   return path.join(os.tmpdir(), `tdah-e2e-${crypto.randomUUID()}.sqlite`);
@@ -24,7 +24,7 @@ export async function iniciarApp({ dbPath = rutaDBTemporal(), ia = { habilitada:
 }
 
 export async function crearCaso(api, etiqueta = 'Caso ficticio de prueba') {
-  const r = await api.req('POST', '/api/casos', { etiqueta });
+  const r = await api.req('POST', '/api/casos', { etiqueta, consentimiento: CONSENTIMIENTO });
   if (r.status !== 201) throw new Error(`crear caso: ${r.status} ${JSON.stringify(r.body)}`);
   return r.body;
 }

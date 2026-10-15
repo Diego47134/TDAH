@@ -61,3 +61,7 @@ export const INSTRUMENTOS = [
 ];
 
 export const INTERPRETACION = 'Texto de demostración (ficticio): el profesional integra la entrevista, el informe escolar y la evaluación complementaria; considera la discrepancia en R2.9 y la información de sueño antes de concluir.';
+
+/** Consentimiento informado ficticio del representante legal (obligatorio para crear un caso). */
+export const CONSENTIMIENTO = { acepta: true, otorgante: 'Representante ficticio (documento de consentimiento N° 0001)', relacion: 'madre', medio: 'escrito_firmado', profesional: 'Profesional de prueba', acepta_ia_externa: true };
+export const ASENTIMIENTO = { acepta: true, profesional: 'Profesional de prueba', medio: 'verbal_registrado' };

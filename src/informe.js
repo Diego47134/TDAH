@@ -45,7 +45,7 @@ export function generarInforme(ctx, { tipo = 'borrador', requisitos, validacion 
     for (const r of req.requisitos.filter((x) => !x.cumplido)) L.push(`- ${r.descripcion}${r.detalle ? ` — ${r.detalle}` : ''}`);
     L.push('');
   }
-  if (!faseInicialCompleta(ctx)) { L.push('La fase inicial no está completa; no es posible integrar el caso.'); return L.join('\n'); }
+  if (!faseInicialCompleta(ctx)) { L.push('La fase inicial no está completa; no es posible integrar el caso.', '', ...seccionLegal(ctx)); return L.join('\n'); }
   const I = integrar(ctx);
 
   // A. Identificación
@@ -182,7 +182,25 @@ export function generarInforme(ctx, { tipo = 'borrador', requisitos, validacion 
   else L.push('Pendiente: la interpretación y la decisión clínica final deben ser registradas por el profesional responsable.', '');
   L.push(validacion ? `**Validado por ${validacion.por}** el ${validacion.fecha.slice(0, 10)}.` : 'Pendiente de validación profesional.', '');
   L.push('## Referencias científicas de apoyo (Etapa 9)', '', ...Object.entries(p.referencias).map(([k, v]) => `- [${k}] ${v}`), '');
+  L.push(...seccionLegal(ctx));
   return L.join('\n');
+}
+
+/** Consentimiento, confidencialidad y alcance (Ley 19.628/21.719, Ley 20.584, Ley 21.331). */
+function seccionLegal(ctx) {
+  const L = [];
+  const cons = (ctx.consentimientos || []).filter((x) => !x.revocado);
+  const ETQ_MEDIO = { escrito_firmado: 'escrito firmado', electronico: 'electrónico', verbal_registrado: 'verbal registrado' };
+  L.push('## Consentimiento, confidencialidad y alcance de este informe', '');
+  for (const x of cons) {
+    L.push(x.tipo === 'tratamiento_datos'
+      ? `- Consentimiento informado del representante legal (${x.relacion.replace(/_/g, ' ')}), medio ${ETQ_MEDIO[x.medio] || x.medio}, obtenido por ${x.profesional} el ${x.creado.slice(0, 10)} (política de privacidad versión ${x.version_politica}). Envío de respuestas a proveedor externo de IA: ${x.acepta_ia_externa ? 'autorizado' : 'no autorizado'}.`
+      : `- Asentimiento del niño, niña o adolescente registrado por ${x.profesional} el ${x.creado.slice(0, 10)}.`);
+  }
+  if (!cons.length) L.push('- Sin consentimiento registrado en el expediente.');
+  L.push('',
+    '_Documento confidencial que contiene datos sensibles de salud (Ley 19.628, modificada por la Ley 21.719; Ley 20.584). Su uso se limita a la finalidad de evaluación clínica para la que fue elaborado y no puede comunicarse a terceros sin autorización del representante legal, salvo en los casos que la ley permite. Este informe es una herramienta de apoyo: no constituye por sí mismo un diagnóstico; la interpretación, el diagnóstico y las indicaciones son responsabilidad exclusiva del profesional de salud que lo valida. Ningún diagnóstico de salud mental puede usarse para discriminar a la persona evaluada (Ley 21.331, art. 9 N° 15)._', '');
+  return L;
 }
 
 /** Markdown → HTML mínimo (encabezados, listas anidadas, tablas, citas, negrita, cursiva). */

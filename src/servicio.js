@@ -11,6 +11,7 @@ import { interpretarRespuesta, detectarMenciones, ErrorEntrada } from './interpr
 import { extraerPorReglas, validarExtraccionManual } from './informeEscolar.js';
 import { evaluarRequisitos, generarInforme, markdownAHtml } from './informe.js';
 import { integrar } from './integracion.js';
+import { validarConsentimiento, validarAsentimiento, permiteIAExterna, tieneAsentimiento, ErrorConsentimiento, VERSION_POLITICA } from './privacidad.js';
 
 export class ErrorServicio extends Error {
   constructor(status, mensaje, detalle) { super(mensaje); this.status = status; this.detalle = detalle; }
@@ -111,12 +112,12 @@ export function crearServicio({ db, protocolo, ia }) {
     return reg;
   }
 
-  async function interpretar(q, r) {
+  async function interpretar(q, r, iaPermitida = true) {
     let res;
     try { res = interpretarRespuesta(q, r); } catch (e) { if (e instanceof ErrorEntrada) throw new ErrorServicio(400, e.message); throw e; }
     let errorIA = null; let interprete = 'reglas';
     const textoLibre = r.texto && !r.opcion && !r.opciones && !r.tipo;
-    if (ia?.habilitada && textoLibre && ['presencia', 'opciones'].includes(q.tipo)) {
+    if (ia?.habilitada && iaPermitida && textoLibre && ['presencia', 'opciones'].includes(q.tipo)) {
       try {
         const s = await ia.interpretarRespuesta({ pregunta: q, texto: r.texto, protocolo: P });
         if (s.codigo) { res = interpretarRespuesta(q, { opcion: s.codigo, texto: r.texto }); interprete = 'ia'; }
@@ -129,9 +130,13 @@ export function crearServicio({ db, protocolo, ia }) {
   const api = {
     protocolo: P,
 
-    crearCaso({ etiqueta } = {}) {
+    crearCaso({ etiqueta, consentimiento } = {}) {
+      let cons;
+      try { cons = validarConsentimiento(consentimiento); } catch (e) { if (e instanceof ErrorConsentimiento) throw new ErrorServicio(400, e.message); throw e; }
       return transaccion(db, () => {
         const c = X.crearCaso(db, P, { etiqueta: String(etiqueta || '').trim().slice(0, 80) || null });
+        const cid = X.registrarConsentimiento(db, c.id, cons);
+        X.registrarDecision(db, c.id, 0, 'consentimiento_registrado', { id: cid, tipo: cons.tipo, relacion: cons.relacion, medio: cons.medio, profesional: cons.profesional, acepta_ia_externa: cons.acepta_ia_externa, version_politica: cons.version_politica });
         X.registrarDecision(db, c.id, 0, 'caso_creado', { codigo: c.codigo, protocolo: P.version, fuentes: P.fuentes });
         avanzar(c.id);
         return api.vista(c.id);
@@ -155,6 +160,7 @@ export function crearServicio({ db, protocolo, ia }) {
         integracion: I && { puerta: I.puerta, resultado: I.resultado, requisitos: Object.fromEntries(Object.entries(I.requisitos).map(([k, v]) => [k, { nombre: v.nombre, estado: v.estado }])), areas: I.areas.map(({ id, nombre, estado }) => ({ id, nombre, estado })) },
         hechos: ctx.hechos, contradicciones: ctx.contradicciones, informes_escolares: ctx.informesEscolares,
         evaluaciones: ctx.evaluaciones, instrumentos: P.instrumentos, requisitos: req, informes,
+        consentimientos: ctx.consentimientos, ia_externa_autorizada: permiteIAExterna(ctx), version_politica: VERSION_POLITICA,
         colegio: ini ? api.colegioPendiente(casoId, ctx) : null,
         nna: ini ? api.nnaEstado(casoId, ctx) : null,
         flujo: flujo(ctx, req, informes),
@@ -171,7 +177,7 @@ export function crearServicio({ db, protocolo, ia }) {
       }
       texto = String(texto ?? '').slice(0, 4000);
       const q = P.preguntas.get(actual.id);
-      const { res, interprete, errorIA } = await interpretar(q, { opcion, opciones, texto, tipo });
+      const { res, interprete, errorIA } = await interpretar(q, { opcion, opciones, texto, tipo }, permiteIAExterna(ctx0));
 
       return transaccion(db, () => {
         const ctx = ctxDe(casoId);
@@ -222,7 +228,7 @@ export function crearServicio({ db, protocolo, ia }) {
       if (hechos) {
         try { extraidos = validarExtraccionManual(P, hechos); } catch (e) { throw new ErrorServicio(400, e.message); }
         metodo = 'estructurada_manual';
-      } else if (ia?.habilitada) {
+      } else if (ia?.habilitada && permiteIAExterna(ctx0)) {
         try { extraidos = await ia.extraerInformeEscolar({ texto, protocolo: P }); metodo = 'ia'; } catch (e) { errorIA = e; }
       }
       if (!extraidos) { extraidos = extraerPorReglas(P, texto); metodo = errorIA ? 'reglas (contingencia)' : 'reglas'; }
@@ -300,14 +306,24 @@ export function crearServicio({ db, protocolo, ia }) {
       const peso = (q) => (/(espera|interrump|quieto|inquietud|controlar)/i.test(q.texto) && positivos.includes('hiperactividad_impulsividad') ? 0
         : /(concentr|distra|recordar|organiz|empiezas|comenzar)/i.test(q.texto) && positivos.includes('inatencion') ? 0 : 1);
       const pendientes = banco.filter((q) => !respondidas.includes(q)).sort((a, b) => peso(a) - peso(b));
-      return { fuente, banco: banco.length, respondidas: respondidas.length, cerrada, siguiente: cerrada || !pendientes.length ? null : vistaPregunta(P.preguntas.get(pendientes[0].id)) };
+      return { fuente, banco: banco.length, respondidas: respondidas.length, cerrada, asentimiento: tieneAsentimiento(ctx), siguiente: cerrada || !pendientes.length ? null : vistaPregunta(P.preguntas.get(pendientes[0].id)) };
     },
 
-    responderNNA(casoId, { pregunta_id, texto = '', omitir = false, finalizar = false }) {
+    responderNNA(casoId, { pregunta_id, texto = '', omitir = false, finalizar = false, asentimiento } = {}) {
       const ctx = ctxDe(casoId);
       const st = api.nnaEstado(casoId, ctx);
       if (!st) throw new ErrorServicio(409, 'Primero debe registrarse la edad.');
       if (st.cerrada) throw new ErrorServicio(409, 'La entrevista del niño/adolescente ya fue finalizada.');
+      if (asentimiento) {
+        let a;
+        try { a = validarAsentimiento(asentimiento); } catch (e) { throw new ErrorServicio(400, e.message); }
+        return transaccion(db, () => {
+          const id = X.registrarConsentimiento(db, casoId, a);
+          X.registrarDecision(db, casoId, ctx.caso.turno, 'asentimiento_nna_registrado', { id, profesional: a.profesional, medio: a.medio });
+          return api.vista(casoId);
+        });
+      }
+      if (!finalizar && !st.asentimiento) throw new ErrorServicio(409, 'Registre primero el asentimiento del niño, niña o adolescente (derecho a ser informado y oído).');
       return transaccion(db, () => {
         if (finalizar) {
           X.agregarHecho(db, P, casoId, { dimension_id: 'NNA', slot: 'cerrada', estado: 'valor', valor: 'si', fuente: st.fuente, origen: 'registro_manual' });
@@ -420,6 +436,19 @@ export function crearServicio({ db, protocolo, ia }) {
       X.registrarDecision(db, casoId, ctx.caso.turno, v.ok ? 'propuesta_valida' : 'propuesta_bloqueada', { pregunta_id: pregunta_id ?? null, texto, origen, reglas: v.reglas });
       return { ok: v.ok, reglas: v.reglas, pregunta_vigente: ctx.caso.pregunta_actual,
         mensaje: v.ok ? 'La pregunta es válida, pero la selección corresponde al motor; la pregunta vigente se mantiene.' : 'Pregunta descartada por el validador; el motor mantiene su alternativa autorizada.' };
+    },
+
+    /** Derecho de acceso y portabilidad (Ley 19.628/21.719): copia íntegra del expediente en formato estructurado. */
+    exportar(casoId, { solicitante = 'no indicado' } = {}) {
+      const ctx = ctxDe(casoId);
+      X.registrarDecision(db, casoId, ctx.caso.turno, 'expediente_exportado', { solicitante: String(solicitante).slice(0, 120) });
+      return {
+        formato: 'tdah-expediente/1', generado: ahora(), protocolo: { id: P.id, version: P.version }, version_politica: VERSION_POLITICA,
+        caso: ctx.caso, consentimientos: ctx.consentimientos, hechos: ctx.hechos, contradicciones: ctx.contradicciones,
+        informes_escolares: ctx.informesEscolares, evaluaciones: ctx.evaluaciones,
+        informes: db.prepare('SELECT * FROM informes WHERE caso_id = ? ORDER BY id').all(casoId),
+        ...api.auditoria(casoId),
+      };
     },
 
     auditoria(casoId) {

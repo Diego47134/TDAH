@@ -105,8 +105,21 @@ async function vistaCasos() {
     <form id="fnuevo" class="tarjeta" style="margin-top:14px">
       <h2>Nuevo caso</h2>
       <p class="tenue peq">Use un seudónimo o código interno. No ingrese nombres ni datos identificables de pacientes en entornos de prueba.</p>
-      <div class="fila"><input id="etq" type="text" placeholder="Seudónimo del caso (p. ej. «Caso ficticio A»)" maxlength="80" style="flex:1;min-width:220px">
-      <button class="boton">Crear e iniciar entrevista</button></div>
+      <label for="etq">Seudónimo del caso</label>
+      <input id="etq" type="text" placeholder="p. ej. «Caso ficticio A»" maxlength="80">
+      <fieldset class="consentimiento">
+        <legend>Consentimiento informado del representante legal</legend>
+        <p class="tenue peq" style="margin:0">Los datos de salud mental son datos sensibles: solo pueden tratarse con consentimiento expreso (Ley 19.628/21.719, Ley 20.584, Ley 21.331). Entregue al representante la <a href="/privacidad.html" target="_blank" rel="noopener">política de privacidad</a> antes de registrarlo.</p>
+        <div class="rejilla">
+          <div><label for="cotorg">Otorgado por (nombre o N° de documento firmado)</label><input id="cotorg" type="text" maxlength="160" required></div>
+          <div><label for="crel">Relación con el niño, niña o adolescente</label><select id="crel" required><option value="">Seleccione…</option><option value="madre">Madre</option><option value="padre">Padre</option><option value="tutor_legal">Tutor legal</option><option value="otro_representante_legal">Otro representante legal</option></select></div>
+          <div><label for="cmedio">Medio</label><select id="cmedio" required><option value="escrito_firmado">Escrito firmado</option><option value="electronico">Electrónico</option><option value="verbal_registrado">Verbal registrado</option></select></div>
+          <div><label for="cprof">Profesional que obtiene el consentimiento</label><input id="cprof" type="text" maxlength="120" required></div>
+        </div>
+        <label class="chk"><input id="cacepta" type="checkbox" required> <span>El representante legal fue informado de la finalidad, del uso de sus datos y de sus derechos, y <strong>consiente expresamente</strong> el tratamiento de los datos de salud del niño, niña o adolescente para esta evaluación.</span></label>
+        <label class="chk"><input id="cia" type="checkbox"> <span>Además autoriza enviar respuestas libres, sin identificadores, a un proveedor externo de inteligencia artificial para interpretarlas (opcional; sin esta autorización se usa solo el intérprete local).</span></label>
+      </fieldset>
+      <div class="fila" style="margin-top:12px"><button class="boton">Registrar consentimiento y crear caso</button></div>
     </form>
     <div class="casos">${casos.length ? casos.map((c) => `
       <a class="caso-item" href="#/caso/${c.id}">
@@ -117,7 +130,10 @@ async function vistaCasos() {
       </a>`).join('') : '<p class="tenue">Aún no hay casos.</p>'}</div>`;
   document.getElementById('fnuevo').onsubmit = async (e) => {
     e.preventDefault();
-    const v = await api('POST', '/api/casos', { etiqueta: document.getElementById('etq').value });
+    const val = (id) => document.getElementById(id).value;
+    const v = await api('POST', '/api/casos', { etiqueta: val('etq'), consentimiento: {
+      acepta: document.getElementById('cacepta').checked, otorgante: val('cotorg'), relacion: val('crel'), medio: val('cmedio'),
+      profesional: val('cprof'), acepta_ia_externa: document.getElementById('cia').checked } });
     location.hash = `#/caso/${v.caso.id}`;
   };
 }
@@ -244,6 +260,9 @@ function entrevista(cont, v, recargar) {
 function expediente(cont, v) {
   const I = v.integracion;
   cont.innerHTML = `
+    <div class="tarjeta"><h2>Consentimiento y asentimiento</h2><table class="tabla"><tbody>
+      ${(v.consentimientos || []).map((x) => `<tr><th>${x.tipo === 'tratamiento_datos' ? 'Representante legal' : 'Niño/niña/adolescente'}</th><td>${esc(x.otorgante)}${x.relacion && x.relacion !== 'nna' ? ` (${esc(x.relacion.replace(/_/g, ' '))})` : ''} · ${esc(x.medio.replace(/_/g, ' '))} · ${esc(x.profesional)} · ${new Date(x.creado).toLocaleDateString('es-CL')}${x.tipo === 'tratamiento_datos' ? ` · IA externa: ${x.acepta_ia_externa ? 'autorizada' : 'no autorizada'}` : ''}<div class="tenue peq">Política de privacidad versión ${esc(x.version_politica)}</div></td></tr>`).join('') || '<tr><td class="tenue">Sin registro.</td></tr>'}
+    </tbody></table></div>
     <div class="tarjeta"><h2>Datos iniciales</h2><table class="tabla"><tbody>
       ${Object.entries(v.iniciales).map(([k, s]) => `<tr><th>${esc(k.replace('_', ' '))}</th><td>${esc(s.estado === 'valor' ? sv(s.valor) : et(s.estado))}</td></tr>`).join('')}
       <tr><th>Ruta</th><td>${esc(v.ruta_justificacion || 'No determinada')}</td></tr></tbody></table></div>
@@ -315,6 +334,18 @@ function nna(cont, v, recargar) {
     cont.innerHTML = `<div class="tarjeta"><h2>${titulo}</h2><p>${s.cerrada ? 'Entrevista finalizada.' : 'Todas las preguntas fueron respondidas.'} (${s.respondidas}/${s.banco})</p>
       ${!s.cerrada ? '<button class="boton" id="bfin">Finalizar entrevista</button>' : ''}</div>`;
     const b = document.getElementById('bfin'); if (b) b.onclick = async () => { await api('POST', `/api/casos/${c.id}/nna`, { finalizar: true }); recargar(); };
+    return;
+  }
+  if (!s.asentimiento) {
+    cont.innerHTML = `<form class="tarjeta" id="fasent"><h2>${titulo}</h2>
+      <p>Antes de entrevistar al ${s.fuente === 'nino' ? 'niño o niña' : 'adolescente'}, explíquele con palabras adecuadas a su edad para qué son las preguntas, que puede no responder alguna y que lo que diga se usará solo para ayudarle. Registre que acepta participar (derecho a ser informado y oído, Ley 21.331 art. 25).</p>
+      <label class="chk" style="display:flex;gap:8px"><input type="checkbox" id="aacepta" required> <span>Fue informado y acepta participar (asentimiento).</span></label>
+      <label for="aprof">Profesional</label><input id="aprof" type="text" maxlength="120" required>
+      <div class="fila" style="margin-top:10px"><button class="boton">Registrar asentimiento</button></div></form>`;
+    document.getElementById('fasent').onsubmit = async (e) => {
+      e.preventDefault();
+      try { await api('POST', `/api/casos/${c.id}/nna`, { asentimiento: { acepta: document.getElementById('aacepta').checked, profesional: document.getElementById('aprof').value } }); recargar(); } catch (er) { aviso(er.message, true); }
+    };
     return;
   }
   const q = s.siguiente;
@@ -413,7 +444,7 @@ async function informe(cont, v, recargar) {
 async function auditoria(cont, v) {
   const a = await api('GET', `/api/casos/${v.caso.id}/auditoria`);
   cont.innerHTML = `
-    <div class="tarjeta"><div class="fila"><h2 style="margin:0">Decisiones del motor (${a.decisiones.length})</h2><span class="espacio"></span><button class="boton sec" id="bdesc">Descargar JSON</button></div>
+    <div class="tarjeta"><div class="fila"><h2 style="margin:0">Decisiones del motor (${a.decisiones.length})</h2><span class="espacio"></span><button class="boton sec" id="bdesc">Descargar auditoría</button><button class="boton sec" id="bexp" title="Derecho de acceso y portabilidad del titular">Exportar expediente completo</button></div>
       <div class="desplaza"><table class="tabla" style="margin-top:8px"><thead><tr><th>Turno</th><th>Tipo</th><th>Detalle</th></tr></thead><tbody>
       ${a.decisiones.slice().reverse().map((d) => `<tr><td>${d.turno}</td><td class="mono">${esc(d.tipo)}</td><td class="peq">${esc(resumenDecision(d))}</td></tr>`).join('')}
       </tbody></table></div></div>
@@ -421,6 +452,11 @@ async function auditoria(cont, v) {
   document.getElementById('bdesc').onclick = () => {
     const blob = new Blob([JSON.stringify(a, null, 2)], { type: 'application/json' });
     const el = document.createElement('a'); el.href = URL.createObjectURL(blob); el.download = `auditoria-${v.caso.codigo}.json`; el.click();
+  };
+  document.getElementById('bexp').onclick = async () => {
+    const x = await api('GET', `/api/casos/${v.caso.id}/exportar?solicitante=${encodeURIComponent('profesional (desde la interfaz)')}`);
+    const blob = new Blob([JSON.stringify(x, null, 2)], { type: 'application/json' });
+    const el = document.createElement('a'); el.href = URL.createObjectURL(blob); el.download = `expediente-${v.caso.codigo}.json`; el.click();
   };
 }
 

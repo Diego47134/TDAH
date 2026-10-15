@@ -1,5 +1,5 @@
 {
-  "generado": "2026-10-15T18:17:00.163Z",
+  "generado": "2026-10-15T18:45:37.772Z",
   "pruebas": [
     {
       "id": "E11",
@@ -8,7 +8,7 @@
       "pasos": [
         {
           "entrada": "Expediente completo + revisión + interpretación",
-          "accion_resultante": "Informe final #1 (33252 caracteres)",
+          "accion_resultante": "Informe final #1 (34196 caracteres)",
           "esperado": "19 secciones con datos reales",
           "ok": true
         },

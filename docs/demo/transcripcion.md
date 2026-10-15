@@ -1,6 +1,6 @@
 # Demostración E2E — caso ficticio
 
-Generado: 2026-10-15T18:12:57.109Z  
+Generado: 2026-10-15T18:46:03.360Z  
 Datos 100 % ficticios. El guion responde según la pregunta que **elige el motor**; no es una lista fija.
 
 Caso: **CASO-0001** (Caso ficticio A (demostración))
@@ -721,13 +721,14 @@ Preguntas cubiertas por el informe (no se envían): C01, C02, C03, C07, C08.
 Preguntas a enviar al colegio: C04, C05, C06, C09, C10, C11, C12.
 
 - C04 «¿En qué situaciones funciona mejor?» → respuesta ficticia registrada con fuente «profesor».
+- Asentimiento del niño registrado antes de su entrevista.
 - Niño · D04 «Cuando tienes que concentrarte durante bastante tiempo, ¿qué te pasa?» → «A veces me distraigo cuando hay ruido.»
 - Niño · D05 «Cuando empiezas a distraerte, ¿qué haces?» → «Me cuesta terminar las guías.»
 - Entrevista al niño finalizada por el profesional.
 
 ## 4. Bloqueo de informe prematuro
 
-Intento de informe final antes de la revisión profesional → POST /api/casos/c4f6ef54-2e7d-4e12-8d7b-34c837d0e42e/informes → 409: Evaluación pendiente: no se puede generar el informe final.
+Intento de informe final antes de la revisión profesional → POST /api/casos/da8f0a42-b248-4bf6-b6fd-a7b72df99b45/informes → 409: Evaluación pendiente: no se puede generar el informe final.
 
 ## 5. Revisión profesional
 
@@ -742,6 +743,7 @@ Generado y validado. Ver [informe-final.md](informe-final.md).
 
 | Tipo de decisión | Cantidad |
 |---|---|
+| consentimiento_registrado | 1 |
 | caso_creado | 1 |
 | pregunta_seleccionada | 84 |
 | respuesta_registrada | 84 |
@@ -754,6 +756,7 @@ Generado y validado. Ver [informe-final.md](informe-final.md).
 | entrevista_cerrada | 2 |
 | evaluacion_registrada | 2 |
 | complementacion_colegio | 1 |
+| asentimiento_nna_registrado | 1 |
 | respuesta_nna | 2 |
 | entrevista_nna_finalizada | 1 |
 | informe_final_bloqueado | 1 |

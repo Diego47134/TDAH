@@ -44,6 +44,17 @@ Estado al 15-10-2026, protocolo vigente 1.0.0 (generado desde los tres documento
 | ✅ | Bloqueo del informe final con faltantes explícitos | E08, E12 |
 | ✅ | Interpretación clínica y validación por el profesional | E11 |
 
+## Protección de datos y salud mental
+
+| | Requisito | Dónde / prueba |
+|---|---|---|
+| ✅ | Consentimiento informado del representante legal antes de tratar datos | L1 |
+| ✅ | Asentimiento del niño, niña o adolescente antes de su entrevista | A7 |
+| ✅ | IA externa solo con autorización expresa | L2 |
+| ✅ | Derecho de acceso y portabilidad | L3 |
+| ✅ | Política de privacidad, términos de uso y aviso en el informe | L4 · `PRIVACIDAD_Y_CUMPLIMIENTO.md` |
+| ❌ | Cuentas por profesional, cifrado en reposo, contratos de encargo, evaluación de impacto | Pendientes del responsable (ver `PRIVACIDAD_Y_CUMPLIMIENTO.md`) |
+
 ## Brief §10–§12
 
 | | Requisito | Estado |

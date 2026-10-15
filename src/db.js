@@ -134,6 +134,22 @@ CREATE TABLE IF NOT EXISTS errores (
   creado TEXT NOT NULL
 );
 
+-- Consentimiento informado del representante legal y asentimiento del niño/niña/adolescente
+-- (Ley 19.628 / 21.719: datos sensibles de salud; Ley 20.584 y 21.331: consentimiento libre e informado)
+CREATE TABLE IF NOT EXISTS consentimientos (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  caso_id TEXT NOT NULL REFERENCES casos(id),
+  tipo TEXT NOT NULL,              -- tratamiento_datos | asentimiento_nna
+  otorgante TEXT NOT NULL,         -- nombre o referencia al documento firmado
+  relacion TEXT,                   -- madre | padre | tutor_legal | otro_representante | nna
+  medio TEXT NOT NULL,             -- escrito_firmado | electronico | verbal_registrado
+  profesional TEXT NOT NULL,
+  acepta_ia_externa INTEGER NOT NULL DEFAULT 0,
+  version_politica TEXT NOT NULL,
+  revocado TEXT,
+  creado TEXT NOT NULL
+);
+
 CREATE TABLE IF NOT EXISTS informes (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   caso_id TEXT NOT NULL REFERENCES casos(id),

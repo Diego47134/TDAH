@@ -12,6 +12,21 @@ import { crearControlAcceso } from './acceso.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PUBLICO = path.join(__dirname, '..', 'public');
+
+// Páginas legales: los datos del responsable del tratamiento se configuran por variables de entorno.
+const PAGINAS_LEGALES = new Set(['/privacidad.html', '/terminos.html']);
+const DATOS_RESPONSABLE = {
+  RESPONSABLE_NOMBRE: 'nombre del prestador o institución responsable',
+  RESPONSABLE_RUT: 'RUT',
+  RESPONSABLE_DOMICILIO: 'domicilio',
+  RESPONSABLE_CORREO: 'correo de contacto para privacidad',
+};
+const escHtml = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+export function completarDatosResponsable(html, env = process.env) {
+  return html.replace(/\{\{(RESPONSABLE_[A-Z]+)\}\}/g, (_, k) => (env[k]?.trim()
+    ? escHtml(env[k].trim())
+    : `<mark class="pendiente">[completar: ${DATOS_RESPONSABLE[k] || k}]</mark>`));
+}
 const MIME = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8',
   '.webmanifest': 'application/manifest+json', '.json': 'application/json', '.svg': 'image/svg+xml', '.png': 'image/png', '.ico': 'image/x-icon' };
 
@@ -55,6 +70,7 @@ export function crearApp({ dbPath, protocoloPath, ia, tokenAcceso = process.env.
   on('POST', '/api/casos/:id/colegio', (p, b) => svc.responderColegio(p.id, b));
   on('POST', '/api/casos/:id/nna', (p, b) => svc.responderNNA(p.id, b));
   on('GET', '/api/casos/:id/auditoria', (p) => svc.auditoria(p.id));
+  on('GET', '/api/casos/:id/exportar', (p, _b, q) => svc.exportar(p.id, { solicitante: q?.get?.('solicitante') }));
 
   const enviar = (res, status, cuerpo) => {
     res.writeHead(status, { 'content-type': 'application/json; charset=utf-8', 'cache-control': 'no-store' });
@@ -92,7 +108,7 @@ export function crearApp({ dbPath, protocoloPath, ia, tokenAcceso = process.env.
           const raw = Buffer.concat(chunks).toString('utf8');
           try { body = raw ? JSON.parse(raw) : {}; } catch { throw new ErrorServicio(400, 'JSON inválido.'); }
         }
-        const out = await r.fn(params, body);
+        const out = await r.fn(params, body, url.searchParams);
         return enviar(res, req.method === 'POST' && r.re.source.includes('casos$') ? 201 : 200, out);
       } catch (e) {
         if (e instanceof ErrorServicio) return enviar(res, e.status, { error: e.message, detalle: e.detalle ?? null });
@@ -109,7 +125,7 @@ export function crearApp({ dbPath, protocoloPath, ia, tokenAcceso = process.env.
     fs.readFile(archivo, (err, data) => {
       if (err) { res.writeHead(404); return res.end('No encontrado'); }
       res.writeHead(200, { 'content-type': MIME[path.extname(archivo)] || 'application/octet-stream', 'cache-control': rel === '/sw.js' ? 'no-cache' : 'public, max-age=300' });
-      res.end(data);
+      res.end(PAGINAS_LEGALES.has(rel) ? completarDatosResponsable(data.toString('utf8')) : data);
     });
   });
 
