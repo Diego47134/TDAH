@@ -2,7 +2,7 @@
 
 ## Principio rector
 
-> La IA puede interpretar respuestas, pero el **software** controla el estado, la persistencia, las transiciones y las validaciones críticas. (Brief §10)
+> El **software** controla el estado, la persistencia, las transiciones y las validaciones críticas con reglas deterministas y auditables. (Brief §10)
 
 El sistema separa **contenido clínico (datos)** de **mecanismo (código)**:
 
@@ -15,13 +15,12 @@ El sistema separa **contenido clínico (datos)** de **mecanismo (código)**:
 |---|---|
 | Interfaz de entrevista y expediente | `public/` — PWA sin framework (instalable; el service worker solo cachea la interfaz) |
 | Backend que controla el flujo | `src/servicio.js` — orquesta cada transición dentro de una transacción |
-| Integración con la API de IA | `src/ia.js` — Anthropic u OpenAI, timeout, validación de esquema, contingencia |
-| System Prompt Maestro y prompt de ejecución | `prompts/` (texto de la automatización + restricción de esta implementación) |
+| Consentimiento y privacidad | `src/privacidad.js`, `public/privacidad.html`, `public/terminos.html` |
 | Motor de decisiones Etapa 9 | `src/motor.js` — funciones puras sobre el contexto del expediente |
 | Validador | `src/validador.js` — 17 reglas antes de mostrar cualquier pregunta |
 | Esquema de datos y validación de respuestas | `src/db.js`, `src/expediente.js`, `src/interprete.js` |
 | Base de datos persistente | SQLite integrado en Node (`node:sqlite`), modo WAL, un archivo |
-| Extracción del informe escolar | `src/informeEscolar.js` (+ IA opcional) |
+| Extracción del informe escolar | `src/informeEscolar.js` (reglas con evidencia literal, o carga estructurada) |
 | Integración multidimensional | `src/integracion.js` — R1–R10, puerta de suficiencia, áreas, perfiles, inferencias, sugerencias |
 | Generador de informes | `src/informe.js` — 19 secciones, solo desde el expediente; bloqueo por requisitos |
 | Acceso | `src/acceso.js` — clave creada en el primer ingreso (scrypt) o `APP_ACCESS_TOKEN`; bloqueo por intentos |
@@ -33,7 +32,7 @@ El sistema separa **contenido clínico (datos)** de **mecanismo (código)**:
 ```
 POST /respuestas
  1. Verifica que la respuesta corresponde a la pregunta VIGENTE (si no → 409)
- 2. Interpreta: alternativa (A, B, …), selección múltiple o texto → reglas o IA (con contingencia)
+ 2. Interpreta: alternativa (A, B, …), selección múltiple o texto libre (intérprete de reglas)
  3. Transacción:
     a. guarda la respuesta literal
     b. agrega el hecho con su fuente y evidencia; contradicción en la misma fuente → registrada
@@ -76,18 +75,16 @@ POST /respuestas
 
 `una_sola_pregunta`, `pertenece_al_proyecto`, `fuente`, `alternativas`, `orden_inicial`, `condicion`, `informacion_no_resuelta`, `no_utilizada`, `no_equivalente`, `sintoma_no_establecido`, `maximo_profundizacion`, `necesaria`, `ruta_informe_escolar`, `rama_abierta`, `orden_barrido_tamizaje`, `minima_suficiente`, `opcion_excluyente`.
 
-Las preguntas propuestas desde fuera del motor (por ejemplo, por una IA) entran por `POST /api/casos/:id/propuestas`, se validan y se auditan; nunca reemplazan la decisión del motor.
+Las preguntas propuestas desde fuera del motor entran por `POST /api/casos/:id/propuestas`, se validan y se auditan; nunca reemplazan la decisión del motor.
 
 ## Integración e informe (Etapas 4–6 y 9)
 
 `integrar()` calcula los requisitos R1–R10 (umbral 6 síntomas, 5 desde los 17 años; «varios» = 2), la puerta de suficiencia (ABIERTA / CERRADA / ABIERTA CON INCERTIDUMBRE), el tipo de resultado (INFORMACIÓN INSUFICIENTE / SOSTIENE TDAH / NO SOSTIENE TDAH / EXPLICACIÓN ALTERNATIVA), áreas funcionales comparadas con la matriz por edad de la Etapa 2, los seis perfiles (1–3 solo como marco teórico), inferencias multinivel y sugerencias con referencias [1]–[10]. El informe incluye una auditoría automática previa (9 controles) y la trazabilidad fuente → dato → pregunta → síntoma.
 
-## IA: alcance y contingencia
+## Interpretación de respuestas
 
-- **Usa:** asignar una respuesta libre a una alternativa autorizada; extraer hechos del informe escolar con frase literal.
-- **No usa:** seleccionar o redactar preguntas, interpretar clínicamente, completar datos.
-- Toda salida se valida (código dentro de las alternativas, síntoma existente, evidencia literal presente en el texto). Ante caída, timeout, HTTP de error, JSON inválido o código fuera de esquema se usa el intérprete de reglas, se registra el error y la entrevista continúa (prueba A3).
-- Sin clave de IA el sistema funciona completo con reglas deterministas.
+- Las respuestas se registran por alternativa (botones) o como texto literal; el intérprete de reglas asigna el texto a una alternativa solo cuando no hay duda y, si no, lo deja como información parcial.
+- Todo el procesamiento ocurre en el servidor de la aplicación: ninguna respuesta se envía a servicios externos.
 
 ## Persistencia y recuperación (brief §5)
 

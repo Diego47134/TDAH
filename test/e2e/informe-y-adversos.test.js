@@ -1,10 +1,9 @@
-// E11–E12 y casos adversos: ambigüedad, contradicciones, errores de API, datos faltantes,
+// E11–E12 y casos adversos: ambigüedad, contradicciones, datos faltantes,
 // entradas inválidas, cambio de ruta, colegio y entrevista al niño/niña.
 import { test, after } from 'node:test';
 import assert from 'node:assert/strict';
 import { iniciarApp, crearCaso, vista, responder, entrevistar, crearEvidencia } from './ayudantes.js';
 import { respuestaPara, INFORME_ESCOLAR, ASENTIMIENTO } from '../fixtures/caso-ficticio.js';
-import { crearClienteIA } from '../../src/ia.js';
 
 const ev = crearEvidencia('informe-y-adversos');
 after(() => ev.escribir());
@@ -73,7 +72,7 @@ test('E12 · el sistema bloquea preguntas no autorizadas e informes prematuros',
   const api = await iniciarApp();
   try {
     const v = await crearCaso(api); const id = v.caso.id;
-    const ext = await api.req('POST', `/api/casos/${id}/propuestas`, { texto: '¿Tiene antecedentes de alergias alimentarias?', origen: 'ia' });
+    const ext = await api.req('POST', `/api/casos/${id}/propuestas`, { texto: '¿Tiene antecedentes de alergias alimentarias?', origen: 'externo' });
     assert.equal(ext.body.ok, false);
     const fuera = await api.req('POST', `/api/casos/${id}/respuestas`, { pregunta_id: 'A09', opcion: 'A' });
     assert.equal(fuera.status, 409);
@@ -122,61 +121,6 @@ test('A2 · discrepancia entre fuentes: se registra y bloquea el informe hasta s
     ev.paso(p, { entrada: c.descripcion, accion_resultante: 'Revisión con nota y profesional', esperado: 'Requisito cumplido solo tras la revisión', ok: true });
     ev.cerrar(p, true);
   } finally { await api.cerrar(); }
-});
-
-test('A3 · error de la API de IA: contingencia con el intérprete de reglas, sin perder la respuesta', async () => {
-  const p = ev.prueba('A3', 'Error de API', 'Caída, tiempo agotado, JSON inválido o alternativa fuera de esquema no detienen la entrevista ni corrompen el expediente.');
-  const fallos = [
-    ['red caída', async () => { throw new Error('ECONNRESET'); }],
-    ['HTTP 529', async () => new Response('sobrecargado', { status: 529 })],
-    ['JSON inválido', async () => Response.json({ content: [{ type: 'text', text: 'no es json' }] })],
-    ['alternativa fuera de esquema', async () => Response.json({ content: [{ type: 'text', text: '{"codigo":"Z"}' }] })],
-  ];
-  for (const [nombre, fetchImpl] of fallos) {
-    const ia = crearClienteIA({ proveedor: 'anthropic', apiKey: 'clave-de-prueba', fetchImpl, timeoutMs: 500 });
-    const api = await iniciarApp({ ia });
-    try {
-      const v = await crearCaso(api); const id = v.caso.id;
-      await hastaPregunta(api, id, 'A09');
-      const r = await responder(api, id, { texto: 'Sí, se distrae siempre' });
-      assert.ok(r.traza.error_api, nombre);
-      assert.equal(r.traza.interpretacion.interprete, 'reglas (contingencia)');
-      assert.equal(r.traza.interpretacion.valor, 'si');
-      assert.equal(r.traza.decision_motor.pregunta_id, 'R1.8-FRECUENCIA', 'la entrevista continúa');
-      const aud = (await api.req('GET', `/api/casos/${id}/auditoria`)).body;
-      assert.equal(aud.errores.length, 1);
-      ev.pasoDesdeTraza(p, r.traza, `Falla «${nombre}» → contingencia y error auditado (${r.traza.error_api})`, true);
-    } finally { await api.cerrar(); }
-  }
-  ev.cerrar(p, true);
-});
-
-test('A4 · IA disponible (Anthropic u OpenAI): solo asigna la alternativa; el motor decide la siguiente pregunta', async () => {
-  const p = ev.prueba('A4', 'IA acotada', 'La IA recibe la pregunta autorizada y sus alternativas y devuelve solo un código; no elige preguntas.');
-  for (const proveedor of ['anthropic', 'openai']) {
-    let llamadas = 0;
-    const fetchImpl = async (url, init) => {
-      llamadas++;
-      const cuerpo = JSON.parse(init.body);
-      const system = proveedor === 'anthropic' ? cuerpo.system : cuerpo.messages[0].content;
-      assert.match(system, /No selecciones, inventes ni reformules preguntas/);
-      if (proveedor === 'openai') { assert.match(url, /openai/); assert.equal(init.headers.authorization, 'Bearer k'); }
-      const texto = JSON.stringify({ codigo: 'C' });
-      return Response.json(proveedor === 'anthropic' ? { content: [{ type: 'text', text: texto }] } : { choices: [{ message: { content: texto } }] });
-    };
-    const api = await iniciarApp({ ia: crearClienteIA({ proveedor, apiKey: 'k', fetchImpl }) });
-    try {
-      const v = await crearCaso(api); const id = v.caso.id;
-      await hastaPregunta(api, id, 'A09');
-      const r = await responder(api, id, { texto: 'Pasa en algunos momentos, depende del día' });
-      assert.equal(llamadas, 1);
-      assert.equal(r.traza.interpretacion.interprete, 'ia');
-      assert.equal(r.traza.interpretacion.valor, 'ocasionalmente');
-      assert.equal(r.traza.decision_motor.pregunta_id, 'R1.8-FRECUENCIA', 'el orden lo fija el motor');
-      ev.pasoDesdeTraza(p, r.traza, `${proveedor}: código C → Ocasionalmente; la siguiente pregunta la decide el motor`, true);
-    } finally { await api.cerrar(); }
-  }
-  ev.cerrar(p, true);
 });
 
 test('A5 · datos faltantes y entradas inválidas', async () => {

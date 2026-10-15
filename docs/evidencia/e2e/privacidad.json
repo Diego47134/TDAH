@@ -1,5 +1,5 @@
 {
-  "generado": "2026-10-15T18:45:38.225Z",
+  "generado": "2026-10-15T18:53:20.376Z",
   "pruebas": [
     {
       "id": "L1",
@@ -53,20 +53,6 @@
     },
     {
       "id": "L2",
-      "titulo": "Comunicación a terceros",
-      "requisito": "Las respuestas solo se envían a un proveedor externo de IA con autorización expresa; si no, se usa el intérprete local.",
-      "pasos": [
-        {
-          "entrada": "acepta_ia_externa = false; 6 respuestas con texto libre",
-          "accion_resultante": "Llamadas a la IA: 0",
-          "esperado": "0 llamadas",
-          "ok": true
-        }
-      ],
-      "resultado": "APROBADA"
-    },
-    {
-      "id": "L3",
       "titulo": "Acceso y portabilidad",
       "requisito": "El expediente completo se entrega en formato estructurado y la entrega queda registrada.",
       "pasos": [
@@ -80,7 +66,7 @@
       "resultado": "APROBADA"
     },
     {
-      "id": "L4",
+      "id": "L3",
       "titulo": "Avisos legales",
       "requisito": "Las páginas de privacidad y términos están disponibles y el informe incluye la sección de consentimiento y confidencialidad.",
       "pasos": [

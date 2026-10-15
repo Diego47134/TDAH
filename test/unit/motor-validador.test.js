@@ -10,7 +10,7 @@ import { similitud } from '../../src/validador.js';
 import { respuestaPara, CONSENTIMIENTO } from '../fixtures/caso-ficticio.js';
 
 const P = cargarProtocolo();
-const nuevo = () => crearServicio({ db: abrirDB(':memory:'), protocolo: P, ia: { habilitada: false } });
+const nuevo = () => crearServicio({ db: abrirDB(':memory:'), protocolo: P });
 
 /** Responde con `fijo[id]` o con la respuesta por defecto del guion hasta `hasta(q)`. */
 async function avanzar(s, v, fijo = {}, hasta = () => false, max = 250) {

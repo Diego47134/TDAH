@@ -24,7 +24,7 @@ Abrir `http://127.0.0.1:3000`, crear un caso con un seudónimo y comenzar la ent
 |---|---|
 | `npm run dev` | Desarrollo local (recarga al guardar, sin token) |
 | `npm start` | Producción (`server.js`): clave de acceso obligatoria, datos fuera de la app, respaldos |
-| `npm test` | Pruebas unitarias y de extremo a extremo (54) |
+| `npm test` | Pruebas unitarias y de extremo a extremo (51) |
 | `npm run test:evidencia` | Igual, y escribe evidencia verificable en `docs/evidencia/` |
 | `npm run demo` | Caso ficticio completo de principio a fin → `docs/demo/` |
 | `npm run validar-protocolo [-- archivo.json]` | Valida la integridad del protocolo |
@@ -46,11 +46,7 @@ docker run -p 3000:3000 -v tdah-datos:/data --env-file .env tdah
 | `BACKUP_EVERY_HOURS`, `BACKUP_KEEP` | Respaldos automáticos en producción | cada `24` h, conservar `14` |
 | `PROTOCOLO_PATH` | Protocolo a cargar | `protocol/protocolo.json` |
 | `APP_ACCESS_TOKEN` | Clave fija de acceso (`Authorization: Bearer`). Opcional: en producción, sin ella, la app pide crear la clave en el primer ingreso | sin clave en desarrollo |
-| `IA_PROVEEDOR` | `anthropic` u `openai` | `anthropic` (u `openai` si solo existe `OPENAI_API_KEY`) |
-| `ANTHROPIC_API_KEY` / `OPENAI_API_KEY` | Habilita la IA para asignar respuestas libres a alternativas y extraer el informe escolar | IA deshabilitada → intérprete de reglas |
-| `IA_MODELO` | Modelo de IA | `claude-sonnet-5-5` / `gpt-4o` |
 | `RESPONSABLE_NOMBRE`, `RESPONSABLE_RUT`, `RESPONSABLE_DOMICILIO`, `RESPONSABLE_CORREO` | Datos del responsable del tratamiento en la política de privacidad y los términos | se muestran como «[completar]» |
-| `IA_TIMEOUT_MS` | Tiempo máximo por llamada a la IA | `20000` |
 
 Las claves nunca se escriben en el código ni se envían al navegador.
 
@@ -60,10 +56,9 @@ Las claves nunca se escriben en el código ni se envían al navegador.
 PWA ──HTTP──> Backend (servicio) ──> Motor Etapa 9 ──> Validador ──> pregunta autorizada
                     │                     ▲                              │
                     │                     └──── expediente (SQLite) <────┘ respuesta + hechos + auditoría
-                    └──> IA (opcional): solo interpreta respuestas / extrae informe escolar
 ```
 
-- El **motor** decide qué falta y qué preguntar; la **IA nunca elige preguntas**.
+- El **motor** decide qué falta y qué preguntar con reglas deterministas; el sistema funciona completo en el servidor, sin servicios externos.
 - Cada pregunta pasa por un **validador** de 17 reglas antes de mostrarse (pertenece al proyecto, orden, ruta, necesaria, no repetida, no equivalente, máximo 3 por síntoma, barrido antes del tamizaje, alternativas obligatorias, etc.).
 - Presencia con **SÍ / NO / OCASIONALMENTE / NO SABE-NO RECUERDA**; «no sé» nunca equivale a «no».
 - **Barrido diferencial** y **tamizaje médico, sensorial y del sueño** obligatorios antes del cierre (gate de la Etapa 9).
@@ -75,10 +70,9 @@ Detalle completo en [docs/ARQUITECTURA.md](docs/ARQUITECTURA.md). Estructura del
 ## Estructura del repositorio
 
 ```
-src/                 backend: servidor, servicio, motor, validador, intérprete, IA, informe
+src/                 backend: servidor, servicio, motor, validador, intérprete, integración, informe, privacidad
 public/              PWA: interfaz, service worker, manifest, íconos
 protocol/            protocolo.json (generado), fuentes/ (documentos .docx y texto), datos/ (tablas extraídas)
-prompts/             System Prompt Maestro y prompts de ejecución/extracción
 test/unit, test/e2e  pruebas; test/fixtures: caso ficticio
 scripts/             constructor y validador del protocolo, demo
 docs/                arquitectura, requisitos, evidencia de pruebas y demostración

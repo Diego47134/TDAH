@@ -16,15 +16,15 @@ Base de datos SQLite (`DB_PATH`, por defecto `data/tdah.sqlite`). Esquema comple
 | Pregunta anterior y justificación de la siguiente | `preguntas` (orden por turno) y `casos.pregunta_actual.justificacion` |
 | Estado global del proceso | `casos.estado_global` + `flujo` en la vista del caso |
 
-Tablas adicionales: `consentimientos` (consentimiento del representante legal y asentimiento del NNA, con versión de la política y autorización de IA externa), `informes_escolares` (texto y extracción), `informes` (finales, estado de validación), `errores` (API de IA, servidor, motor).
+Tablas adicionales: `consentimientos` (consentimiento del representante legal y asentimiento del NNA, con versión de la política), `informes_escolares` (texto y extracción), `informes` (finales, estado de validación), `errores` (servidor y motor).
 
 ## API
 
 | Método y ruta | Acción |
 |---|---|
-| `GET /api/salud` | Estado, versión de protocolo, IA |
+| `GET /api/salud` | Estado y versión del protocolo |
 | `GET /api/protocolo` | Resumen del protocolo vigente (fuentes, alternativas, síntomas, barrido, tamizaje) |
-| `GET/POST /api/casos` | Listar / crear caso: `{etiqueta, consentimiento:{acepta, otorgante, relacion, medio, profesional, acepta_ia_externa}}` (devuelve la primera pregunta) |
+| `GET/POST /api/casos` | Listar / crear caso: `{etiqueta, consentimiento:{acepta, otorgante, relacion, medio, profesional}}` (devuelve la primera pregunta) |
 | `GET /api/casos/:id` | Expediente completo, síntomas, barrido, tamizaje, integración, requisitos, flujo |
 | `POST /api/casos/:id/respuestas` | `{pregunta_id, opcion?}` · `{pregunta_id, opciones?: [..]}` · `{pregunta_id, texto?, tipo?}` → traza del ciclo de decisión |
 | `POST /api/casos/:id/informe-escolar` | `{texto}` o `{hechos:[{sintoma, slot, valor, evidencia}]}` |

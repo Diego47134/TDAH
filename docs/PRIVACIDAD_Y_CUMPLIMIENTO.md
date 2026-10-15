@@ -14,11 +14,11 @@ Revisión al 15-10-2026. Este documento resume cómo la plataforma aborda la nor
 
 ## Funciones implementadas
 
-- **Consentimiento informado del representante legal** (`POST /api/casos` con `consentimiento`): otorgante, relación (madre, padre, tutor legal, otro representante legal), medio (escrito firmado, electrónico, verbal registrado), profesional, versión de la política y autorización opcional de IA externa. Sin él, el caso no se crea (prueba L1).
+- **Consentimiento informado del representante legal** (`POST /api/casos` con `consentimiento`): otorgante, relación (madre, padre, tutor legal, otro representante legal), medio (escrito firmado, electrónico, verbal registrado), profesional y versión de la política. Sin él, el caso no se crea (prueba L1).
 - **Asentimiento del niño, niña o adolescente** (`POST /api/casos/:id/nna` con `asentimiento`) antes de su entrevista (prueba A7).
-- **IA externa solo con autorización**: si el representante no la autoriza, ninguna respuesta sale del servidor (prueba L2). Cuando se autoriza, se envían solo la pregunta y la respuesta literal, sin el seudónimo ni otros identificadores del caso.
-- **Derecho de acceso y portabilidad**: exportación íntegra en JSON, registrada en la auditoría (prueba L3).
-- **Avisos legales**: `/privacidad.html` y `/terminos.html`, enlazados en la interfaz y en el formulario de consentimiento; sección «Consentimiento, confidencialidad y alcance» en todo informe (prueba L4).
+- **Sin servicios externos de procesamiento**: todas las respuestas se interpretan en el servidor de la aplicación; los datos no se envían a terceros.
+- **Derecho de acceso y portabilidad**: exportación íntegra en JSON, registrada en la auditoría (prueba L2).
+- **Avisos legales**: `/privacidad.html` y `/terminos.html`, enlazados en la interfaz y en el formulario de consentimiento; sección «Consentimiento, confidencialidad y alcance» en todo informe (prueba L3).
 - **Datos del responsable** configurables por variables de entorno (`RESPONSABLE_NOMBRE`, `RESPONSABLE_RUT`, `RESPONSABLE_DOMICILIO`, `RESPONSABLE_CORREO`); si faltan, las páginas muestran «[completar: …]» resaltado.
 
 ## Responsabilidades (deslinde)
@@ -28,14 +28,14 @@ Revisión al 15-10-2026. Este documento resume cómo la plataforma aborda la nor
 | Prestador / profesional que usa la plataforma | Responsable del tratamiento y de la ficha clínica | Consentimientos, acceso del equipo, reserva, conservación, atención de derechos, notificación de vulneraciones, verificación regulatoria ante el ISP, decisiones clínicas |
 | Profesional que valida el informe | Responsable clínico | Diagnóstico, interpretación e indicaciones (la plataforma no diagnostica) |
 | Proveedor tecnológico | Encargado del tratamiento | Operar el software conforme a las instrucciones del responsable, sin usar los datos para fines propios |
-| Alojamiento (Hostinger) y, si se autoriza, proveedor de IA | Encargados / subencargados | Prestación del servicio; puede implicar transferencia internacional |
+| Alojamiento (Hostinger) | Encargado | Prestación del servicio; puede implicar transferencia internacional |
 
 ## Pendientes recomendados antes del uso con pacientes reales
 
 1. Completar los datos del responsable (variables `RESPONSABLE_*`) y revisar ambos textos con asesoría legal.
 2. **Cuentas individuales por profesional** (hoy existe una clave compartida): necesario para la trazabilidad de «quién» exigida por el reglamento de fichas clínicas.
 3. **Cifrado en reposo** de la base de datos y copia de los respaldos fuera del servidor.
-4. **Contrato de encargo** con el proveedor de alojamiento y, si se usa, con el proveedor de IA (cláusulas de confidencialidad, ubicación de datos y transferencia internacional).
+4. **Contrato de encargo** con el proveedor de alojamiento (cláusulas de confidencialidad, ubicación de datos y transferencia internacional).
 5. **Evaluación de impacto** en protección de datos (tratamiento de datos sensibles de NNA) y procedimiento escrito de respuesta ante vulneraciones.
 6. Procedimiento de revocación del consentimiento y de atención de solicitudes de rectificación y supresión (la supresión puede quedar limitada por la conservación obligatoria de la ficha clínica).
 7. Consulta al ISP sobre si la plataforma queda comprendida en alguna categoría de dispositivo médico sujeta a control.

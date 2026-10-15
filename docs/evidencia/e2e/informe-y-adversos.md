@@ -1,6 +1,6 @@
 # Evidencia E2E — informe-y-adversos
 
-Generado: 2026-10-15T18:45:37.773Z
+Generado: 2026-10-15T18:53:20.037Z
 
 ## E11 · Informe desde el expediente — **APROBADA**
 
@@ -9,7 +9,7 @@ Requisito: El informe se construye solo con el expediente: 19 secciones de la Et
 ### Paso 1
 
 - **entrada:** Expediente completo + revisión + interpretación
-- **accion_resultante:** Informe final #1 (34196 caracteres)
+- **accion_resultante:** Informe final #1 (34147 caracteres)
 - **esperado:** 19 secciones con datos reales
 - **ok:** true
 
@@ -40,7 +40,7 @@ Requisito: Una respuesta libre que no corresponde a ninguna alternativa queda co
 - **entrada:** `{"pregunta":"A09 — ¿Se distrae fácilmente con estímulos que ocurren alrededor?","respuesta":"mmm"}`
 - **estado_antes:** `{"turno":5,"estado_global":"entrevista","ruta":"con_informe","edad":8,"fase_inicial_completa":true,"sintomas":"R1.8:EVIDENCIA RELACIONADA — REQUIERE CARACTERIZACIÓN","barrido":"NO_REALIZADO","tamizaje":"NO_REALIZADO","contradicciones_abiertas":0}`
 - **decision_motor:** `{"accion":"preguntar","pregunta_id":"R1.8-FRECUENCIA","justificacion":"Profundización del síntoma R1.8 «Se distrae fácilmente» (1/3): falta «frecuencia». Prioridad de la Automatización (regla 2a: frecuencia e intensidad)."}`
-- **interpretacion:** `{"clasificacion":"ambiguo","estado_dato":"ambiguo","valor":null,"interprete":"reglas","menciones":[]}`
+- **interpretacion:** `{"clasificacion":"ambiguo","estado_dato":"ambiguo","valor":null,"menciones":[]}`
 - **accion_resultante:** Pregunta: Sobre «se distrae fácilmente con estímulos que ocurren alrededor»: ¿Con qué frecuencia sucede?
 - **estado_despues:** `{"turno":6,"estado_global":"entrevista","ruta":"con_informe","edad":8,"fase_inicial_completa":true,"sintomas":"R1.8:EVIDENCIA RELACIONADA — REQUIERE CARACTERIZACIÓN","barrido":"NO_REALIZADO","tamizaje":"NO_REALIZADO","contradicciones_abiertas":0}`
 - **esperado:** Dato ambiguo; sin supuesto
@@ -55,80 +55,6 @@ Requisito: Apoderado «Sí» vs. colegio «No» en R2.9: se conserva sin resolve
 - **entrada:** «Interrumpe o invade actividades de otros»: apoderado informa «Sí» y informe_escolar informa «No». Puede explicarse por contexto, demanda, observador o supervisión (Etapa 9 §11); se conserva sin resolver.
 - **accion_resultante:** Revisión con nota y profesional
 - **esperado:** Requisito cumplido solo tras la revisión
-- **ok:** true
-
-## A3 · Error de API — **APROBADA**
-
-Requisito: Caída, tiempo agotado, JSON inválido o alternativa fuera de esquema no detienen la entrevista ni corrompen el expediente.
-
-### Paso 1
-
-- **entrada:** `{"pregunta":"A09 — ¿Se distrae fácilmente con estímulos que ocurren alrededor?","respuesta":"Sí, se distrae siempre"}`
-- **estado_antes:** `{"turno":5,"estado_global":"entrevista","ruta":"con_informe","edad":8,"fase_inicial_completa":true,"sintomas":"R1.8:EVIDENCIA RELACIONADA — REQUIERE CARACTERIZACIÓN","barrido":"NO_REALIZADO","tamizaje":"NO_REALIZADO","contradicciones_abiertas":0}`
-- **decision_motor:** `{"accion":"preguntar","pregunta_id":"R1.8-FRECUENCIA","justificacion":"Profundización del síntoma R1.8 «Se distrae fácilmente» (1/3): falta «frecuencia». Prioridad de la Automatización (regla 2a: frecuencia e intensidad)."}`
-- **interpretacion:** `{"clasificacion":"si","estado_dato":"valor","valor":"si","interprete":"reglas (contingencia)","menciones":[]}`
-- **accion_resultante:** Pregunta: Sobre «se distrae fácilmente con estímulos que ocurren alrededor»: ¿Con qué frecuencia sucede?
-- **estado_despues:** `{"turno":6,"estado_global":"entrevista","ruta":"con_informe","edad":8,"fase_inicial_completa":true,"sintomas":"R1.8:EVIDENCIA RELACIONADA — REQUIERE CARACTERIZACIÓN","barrido":"NO_REALIZADO","tamizaje":"NO_REALIZADO","contradicciones_abiertas":0}`
-- **esperado:** Falla «red caída» → contingencia y error auditado (Fallo de red o API: ECONNRESET)
-- **ok:** true
-
-### Paso 2
-
-- **entrada:** `{"pregunta":"A09 — ¿Se distrae fácilmente con estímulos que ocurren alrededor?","respuesta":"Sí, se distrae siempre"}`
-- **estado_antes:** `{"turno":5,"estado_global":"entrevista","ruta":"con_informe","edad":8,"fase_inicial_completa":true,"sintomas":"R1.8:EVIDENCIA RELACIONADA — REQUIERE CARACTERIZACIÓN","barrido":"NO_REALIZADO","tamizaje":"NO_REALIZADO","contradicciones_abiertas":0}`
-- **decision_motor:** `{"accion":"preguntar","pregunta_id":"R1.8-FRECUENCIA","justificacion":"Profundización del síntoma R1.8 «Se distrae fácilmente» (1/3): falta «frecuencia». Prioridad de la Automatización (regla 2a: frecuencia e intensidad)."}`
-- **interpretacion:** `{"clasificacion":"si","estado_dato":"valor","valor":"si","interprete":"reglas (contingencia)","menciones":[]}`
-- **accion_resultante:** Pregunta: Sobre «se distrae fácilmente con estímulos que ocurren alrededor»: ¿Con qué frecuencia sucede?
-- **estado_despues:** `{"turno":6,"estado_global":"entrevista","ruta":"con_informe","edad":8,"fase_inicial_completa":true,"sintomas":"R1.8:EVIDENCIA RELACIONADA — REQUIERE CARACTERIZACIÓN","barrido":"NO_REALIZADO","tamizaje":"NO_REALIZADO","contradicciones_abiertas":0}`
-- **esperado:** Falla «HTTP 529» → contingencia y error auditado (API respondió 529)
-- **ok:** true
-
-### Paso 3
-
-- **entrada:** `{"pregunta":"A09 — ¿Se distrae fácilmente con estímulos que ocurren alrededor?","respuesta":"Sí, se distrae siempre"}`
-- **estado_antes:** `{"turno":5,"estado_global":"entrevista","ruta":"con_informe","edad":8,"fase_inicial_completa":true,"sintomas":"R1.8:EVIDENCIA RELACIONADA — REQUIERE CARACTERIZACIÓN","barrido":"NO_REALIZADO","tamizaje":"NO_REALIZADO","contradicciones_abiertas":0}`
-- **decision_motor:** `{"accion":"preguntar","pregunta_id":"R1.8-FRECUENCIA","justificacion":"Profundización del síntoma R1.8 «Se distrae fácilmente» (1/3): falta «frecuencia». Prioridad de la Automatización (regla 2a: frecuencia e intensidad)."}`
-- **interpretacion:** `{"clasificacion":"si","estado_dato":"valor","valor":"si","interprete":"reglas (contingencia)","menciones":[]}`
-- **accion_resultante:** Pregunta: Sobre «se distrae fácilmente con estímulos que ocurren alrededor»: ¿Con qué frecuencia sucede?
-- **estado_despues:** `{"turno":6,"estado_global":"entrevista","ruta":"con_informe","edad":8,"fase_inicial_completa":true,"sintomas":"R1.8:EVIDENCIA RELACIONADA — REQUIERE CARACTERIZACIÓN","barrido":"NO_REALIZADO","tamizaje":"NO_REALIZADO","contradicciones_abiertas":0}`
-- **esperado:** Falla «JSON inválido» → contingencia y error auditado (La respuesta de la IA no contiene JSON)
-- **ok:** true
-
-### Paso 4
-
-- **entrada:** `{"pregunta":"A09 — ¿Se distrae fácilmente con estímulos que ocurren alrededor?","respuesta":"Sí, se distrae siempre"}`
-- **estado_antes:** `{"turno":5,"estado_global":"entrevista","ruta":"con_informe","edad":8,"fase_inicial_completa":true,"sintomas":"R1.8:EVIDENCIA RELACIONADA — REQUIERE CARACTERIZACIÓN","barrido":"NO_REALIZADO","tamizaje":"NO_REALIZADO","contradicciones_abiertas":0}`
-- **decision_motor:** `{"accion":"preguntar","pregunta_id":"R1.8-FRECUENCIA","justificacion":"Profundización del síntoma R1.8 «Se distrae fácilmente» (1/3): falta «frecuencia». Prioridad de la Automatización (regla 2a: frecuencia e intensidad)."}`
-- **interpretacion:** `{"clasificacion":"si","estado_dato":"valor","valor":"si","interprete":"reglas (contingencia)","menciones":[]}`
-- **accion_resultante:** Pregunta: Sobre «se distrae fácilmente con estímulos que ocurren alrededor»: ¿Con qué frecuencia sucede?
-- **estado_despues:** `{"turno":6,"estado_global":"entrevista","ruta":"con_informe","edad":8,"fase_inicial_completa":true,"sintomas":"R1.8:EVIDENCIA RELACIONADA — REQUIERE CARACTERIZACIÓN","barrido":"NO_REALIZADO","tamizaje":"NO_REALIZADO","contradicciones_abiertas":0}`
-- **esperado:** Falla «alternativa fuera de esquema» → contingencia y error auditado (Alternativa fuera del esquema)
-- **ok:** true
-
-## A4 · IA acotada — **APROBADA**
-
-Requisito: La IA recibe la pregunta autorizada y sus alternativas y devuelve solo un código; no elige preguntas.
-
-### Paso 1
-
-- **entrada:** `{"pregunta":"A09 — ¿Se distrae fácilmente con estímulos que ocurren alrededor?","respuesta":"Pasa en algunos momentos, depende del día"}`
-- **estado_antes:** `{"turno":5,"estado_global":"entrevista","ruta":"con_informe","edad":8,"fase_inicial_completa":true,"sintomas":"R1.8:EVIDENCIA RELACIONADA — REQUIERE CARACTERIZACIÓN","barrido":"NO_REALIZADO","tamizaje":"NO_REALIZADO","contradicciones_abiertas":0}`
-- **decision_motor:** `{"accion":"preguntar","pregunta_id":"R1.8-FRECUENCIA","justificacion":"Profundización del síntoma R1.8 «Se distrae fácilmente» (1/3): falta «frecuencia». Respuesta «Ocasionalmente»: se evalúa la necesidad de profundización cuantificando la frecuencia (Etapa 9 §6.2). Prioridad de la Automatización (regla 2a: frecuencia e intensidad)."}`
-- **interpretacion:** `{"clasificacion":"ocasionalmente","estado_dato":"valor","valor":"ocasionalmente","interprete":"ia","menciones":[]}`
-- **accion_resultante:** Pregunta: Sobre «se distrae fácilmente con estímulos que ocurren alrededor»: ¿Con qué frecuencia sucede?
-- **estado_despues:** `{"turno":6,"estado_global":"entrevista","ruta":"con_informe","edad":8,"fase_inicial_completa":true,"sintomas":"R1.8:POSIBLE","barrido":"NO_REALIZADO","tamizaje":"NO_REALIZADO","contradicciones_abiertas":0}`
-- **esperado:** anthropic: código C → Ocasionalmente; la siguiente pregunta la decide el motor
-- **ok:** true
-
-### Paso 2
-
-- **entrada:** `{"pregunta":"A09 — ¿Se distrae fácilmente con estímulos que ocurren alrededor?","respuesta":"Pasa en algunos momentos, depende del día"}`
-- **estado_antes:** `{"turno":5,"estado_global":"entrevista","ruta":"con_informe","edad":8,"fase_inicial_completa":true,"sintomas":"R1.8:EVIDENCIA RELACIONADA — REQUIERE CARACTERIZACIÓN","barrido":"NO_REALIZADO","tamizaje":"NO_REALIZADO","contradicciones_abiertas":0}`
-- **decision_motor:** `{"accion":"preguntar","pregunta_id":"R1.8-FRECUENCIA","justificacion":"Profundización del síntoma R1.8 «Se distrae fácilmente» (1/3): falta «frecuencia». Respuesta «Ocasionalmente»: se evalúa la necesidad de profundización cuantificando la frecuencia (Etapa 9 §6.2). Prioridad de la Automatización (regla 2a: frecuencia e intensidad)."}`
-- **interpretacion:** `{"clasificacion":"ocasionalmente","estado_dato":"valor","valor":"ocasionalmente","interprete":"ia","menciones":[]}`
-- **accion_resultante:** Pregunta: Sobre «se distrae fácilmente con estímulos que ocurren alrededor»: ¿Con qué frecuencia sucede?
-- **estado_despues:** `{"turno":6,"estado_global":"entrevista","ruta":"con_informe","edad":8,"fase_inicial_completa":true,"sintomas":"R1.8:POSIBLE","barrido":"NO_REALIZADO","tamizaje":"NO_REALIZADO","contradicciones_abiertas":0}`
-- **esperado:** openai: código C → Ocasionalmente; la siguiente pregunta la decide el motor
 - **ok:** true
 
 ## A5 · Validación de entradas — **APROBADA**

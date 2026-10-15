@@ -11,7 +11,7 @@ const DB = path.join(SALIDA, 'demo.sqlite');
 fs.mkdirSync(SALIDA, { recursive: true });
 for (const f of [DB, `${DB}-wal`, `${DB}-shm`]) fs.rmSync(f, { force: true });
 
-const app = crearApp({ dbPath: DB, ia: { habilitada: false }, tokenAcceso: '' });
+const app = crearApp({ dbPath: DB, tokenAcceso: '' });
 await new Promise((ok) => app.server.listen(0, '127.0.0.1', ok));
 const base = `http://127.0.0.1:${app.server.address().port}`;
 const req = async (m, r, b) => {
@@ -43,7 +43,7 @@ async function entrevistar(id) {
 }
 
 try {
-  const v0 = await req('POST', '/api/casos', { etiqueta: ETIQUETA, consentimiento: { ...CONSENTIMIENTO, acepta_ia_externa: false } });
+  const v0 = await req('POST', '/api/casos', { etiqueta: ETIQUETA, consentimiento: CONSENTIMIENTO });
   const id = v0.caso.id;
   T.push(`Caso: **${v0.caso.codigo}** (${ETIQUETA})`, '', '## 1. Entrevista al apoderado', '');
   let v = await entrevistar(id);

@@ -6,7 +6,6 @@ import { fileURLToPath } from 'node:url';
 import { abrirDB } from './db.js';
 import { cargarProtocolo, resumenProtocolo } from './protocolo.js';
 import { crearServicio, ErrorServicio } from './servicio.js';
-import { crearClienteIA } from './ia.js';
 import { registrarError } from './expediente.js';
 import { crearControlAcceso } from './acceso.js';
 
@@ -30,15 +29,14 @@ export function completarDatosResponsable(html, env = process.env) {
 const MIME = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8',
   '.webmanifest': 'application/manifest+json', '.json': 'application/json', '.svg': 'image/svg+xml', '.png': 'image/png', '.ico': 'image/x-icon' };
 
-export function crearApp({ dbPath, protocoloPath, ia, tokenAcceso = process.env.APP_ACCESS_TOKEN,
+export function crearApp({ dbPath, protocoloPath, tokenAcceso = process.env.APP_ACCESS_TOKEN,
   produccion = process.env.NODE_ENV === 'production', advertencias = [] } = {}) {
   const db = abrirDB(dbPath);
   // En producción (dominio público) la API exige token o clave: sin ellos no expone datos.
   const acceso = crearControlAcceso({ db, tokenEntorno: tokenAcceso || '', produccion });
   if (produccion && tokenAcceso && tokenAcceso.length < 16) advertencias.push('APP_ACCESS_TOKEN es corto; use al menos 16 caracteres aleatorios.');
   const protocolo = cargarProtocolo(protocoloPath);
-  const clienteIA = ia ?? crearClienteIA();
-  const svc = crearServicio({ db, protocolo, ia: clienteIA });
+  const svc = crearServicio({ db, protocolo });
 
   const rutas = [];
   const on = (metodo, patron, fn) => {
@@ -47,7 +45,7 @@ export function crearApp({ dbPath, protocoloPath, ia, tokenAcceso = process.env.
     rutas.push({ metodo, re, claves, fn });
   };
 
-  on('GET', '/api/salud', () => ({ ok: true, protocolo: protocolo.version, protocolo_estado: protocolo.estado, ia: clienteIA.habilitada ? `${clienteIA.proveedor}:${clienteIA.modelo}` : 'deshabilitada (intérprete de reglas)', requiere_token: acceso.modo() !== 'abierto', configuracion_inicial_pendiente: acceso.modo() === 'pendiente',
+  on('GET', '/api/salud', () => ({ ok: true, protocolo: protocolo.version, protocolo_estado: protocolo.estado, requiere_token: acceso.modo() !== 'abierto', configuracion_inicial_pendiente: acceso.modo() === 'pendiente',
     entorno: produccion ? 'produccion' : 'desarrollo',
     advertencias: [...advertencias, ...(acceso.modo() === 'pendiente' ? ['Falta crear la clave de acceso (abra la aplicación para configurarla).'] : [])] }));
   on('POST', '/api/configuracion-inicial', (_, b) => acceso.configurar(b.clave));
@@ -142,7 +140,7 @@ export function iniciarServidor(opciones = {}) {
   const destino = /^\d+$/.test(String(puerto)) ? [Number(puerto), process.env.HOST || '127.0.0.1'] : [puerto];
   app.server.listen(...destino, () => {
     console.log(`Sistema de evaluación TDAH escuchando en ${destino.length > 1 ? `${destino[1]}:${destino[0]}` : destino[0]}`);
-    console.log(`Protocolo ${app.protocolo.version} (${app.protocolo.estado}) · IA: ${process.env.ANTHROPIC_API_KEY ? 'habilitada' : 'deshabilitada (intérprete de reglas)'}`);
+    console.log(`Protocolo ${app.protocolo.version} (${app.protocolo.estado})`);
     for (const a of opciones.advertencias || []) console.warn(`ADVERTENCIA: ${a}`);
   });
   // Cierre ordenado: el hosting puede detener el proceso por inactividad.

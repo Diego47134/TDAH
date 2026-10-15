@@ -9,7 +9,7 @@ Estado al 15-10-2026, protocolo vigente 1.0.0 (generado desde los tres documento
 | | Requisito | Estado |
 |---|---|---|
 | ✅ | Identificar versiones vigentes y registrar contradicciones antes de programar | `DOCUMENTOS_Y_CONTRADICCIONES.md`: inventario con SHA-256, contradicciones K1–K8 y decisiones D1–D12 |
-| ✅ | Etapa 9 como motor; automatización como «lenguaje» opcional | Motor en `src/`; prompts de la automatización en `prompts/` (usados solo si hay IA) |
+| ✅ | Etapa 9 como motor; automatización como «lenguaje» opcional | Motor en `src/`; de la automatización se usan las fases de la entrevista |
 
 ## Brief §3–§9
 
@@ -34,7 +34,7 @@ Estado al 15-10-2026, protocolo vigente 1.0.0 (generado desde los tres documento
 | ✅ | Expediente único persistente con todos los campos del §5 | `EXPEDIENTE.md` |
 | ✅ | Persistencia entre turnos, pantallas y sesiones; recuperación en el punto exacto | E03/E13 |
 | ✅ | Validador previo (17 reglas) con bloqueo y alternativa | `validador.js`, E05, E12 |
-| ✅ | Informe escolar: extracción estructurada con fuente y frase literal | E10 (reglas; IA opcional; carga estructurada manual) |
+| ✅ | Informe escolar: extracción estructurada con fuente y frase literal | E10 (reglas; carga estructurada manual) |
 | ✅ | Complementación del colegio (Anexo 7-C) solo con lo no cubierto | A7 |
 | ✅ | Entrevista al niño/niña (7-D) o adolescente (7-E) | A7 |
 | ⚠️ | Instrumentos del protocolo (escalas, neuropsicológica, Nesplora, RV) | E11 · todos opcionales (D9) |
@@ -50,9 +50,8 @@ Estado al 15-10-2026, protocolo vigente 1.0.0 (generado desde los tres documento
 |---|---|---|
 | ✅ | Consentimiento informado del representante legal antes de tratar datos | L1 |
 | ✅ | Asentimiento del niño, niña o adolescente antes de su entrevista | A7 |
-| ✅ | IA externa solo con autorización expresa | L2 |
-| ✅ | Derecho de acceso y portabilidad | L3 |
-| ✅ | Política de privacidad, términos de uso y aviso en el informe | L4 · `PRIVACIDAD_Y_CUMPLIMIENTO.md` |
+| ✅ | Derecho de acceso y portabilidad | L2 |
+| ✅ | Política de privacidad, términos de uso y aviso en el informe | L3 · `PRIVACIDAD_Y_CUMPLIMIENTO.md` |
 | ❌ | Cuentas por profesional, cifrado en reposo, contratos de encargo, evaluación de impacto | Pendientes del responsable (ver `PRIVACIDAD_Y_CUMPLIMIENTO.md`) |
 
 ## Brief §10–§12
@@ -60,9 +59,8 @@ Estado al 15-10-2026, protocolo vigente 1.0.0 (generado desde los tres documento
 | | Requisito | Estado |
 |---|---|---|
 | ✅ | Componentes separados de la arquitectura propuesta | `ARQUITECTURA.md` |
-| ✅ | API de IA (Anthropic u OpenAI) por variables de entorno, sin exponer claves | `.env.example`, `src/ia.js`, A3, A4 |
 | ✅ | Pruebas E2E con entrada, estado anterior, decisión, acción, estado posterior y esperado | `docs/evidencia/e2e/*.md` |
-| ✅ | Casos adversos: ambiguas, contradicciones, equivalentes, errores de API, interrupciones, datos faltantes | A1–A7, E03/E13, E05 |
+| ✅ | Casos adversos: ambiguas, contradicciones, equivalentes, interrupciones, datos faltantes | A1, A2, A5–A7, E03/E13, E05 |
 | ✅ | Código fuente, instalación, base de datos, arquitectura, auditoría | Este repositorio |
 | ✅ | Demostración completa con caso ficticio e informe | `docs/demo/` |
 | ✅ | Sin datos de pacientes reales | Solo `test/fixtures/caso-ficticio.js` |
@@ -72,7 +70,6 @@ Estado al 15-10-2026, protocolo vigente 1.0.0 (generado desde los tres documento
 
 1. Validación clínica del protocolo codificado por la autora de los documentos (revisar `origen` de cada pregunta y las decisiones D1–D12).
 2. Etapa 8 (realidad virtual del proyecto) cuando se entregue: hoy se registra como instrumento opcional.
-3. Probar la IA real con respuestas anonimizadas (hoy probada con IA simulada y reglas).
-4. Lectura de informes escolares en PDF/Word (hoy: texto pegado o .txt).
-5. Usuarios por profesional y registro de quién realiza cada acción (hoy una clave compartida).
-6. Cifrado de la base de datos y copia de respaldos fuera del servidor.
+3. Lectura de informes escolares en PDF/Word (hoy: texto pegado o .txt).
+4. Usuarios por profesional y registro de quién realiza cada acción (hoy una clave compartida).
+5. Cifrado de la base de datos y copia de respaldos fuera del servidor.

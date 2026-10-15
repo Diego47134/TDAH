@@ -303,12 +303,12 @@ _Derivadas de las dificultades realmente identificadas; deben ajustarse por el p
 - **Etapa 9 §21.6:** Cuando las dificultades aparezcan en el colegio, pueden considerarse apoyos educativos individualizados, modificaciones ambientales, estrategias conductuales y apoyos organizacionales ajustados a las necesidades identificadas.
   - [1] American Academy of Pediatrics. Clinical Practice Guideline for the Diagnosis, Evaluation, and Treatment of ADHD in Children and Adolescents. Pediatrics. 2019;144(4):e20192528.
   - [2] NICE. Attention deficit hyperactivity disorder: diagnosis and management (NG87). Recommendations.
-- **Etapa 9 §21.7:** Cuando se identifiquen problemas de sueño, la IA debe abrir un módulo específico. Las intervenciones conductuales del sueño cuentan con evidencia de beneficio sobre resultados de sueño en niños con TDAH, aunque la literatura presenta heterogeneidad.
+- **Etapa 9 §21.7:** Cuando se identifiquen problemas de sueño, el sistema debe abrir un módulo específico. Las intervenciones conductuales del sueño cuentan con evidencia de beneficio sobre resultados de sueño en niños con TDAH, aunque la literatura presenta heterogeneidad.
   - [8] Behavioral Sleep Interventions for Children With ADHD: A Systematic Review and Meta-Analysis. Journal of Attention Disorders. 2022;26(14):1805–1821. PMID: 35758199.
   - [9] The influence of existing interventions on sleep of youth with ADHD: A meta-analysis of randomized controlled trials. Sleep Medicine Reviews. 2026. PMID: 42096966.
 - **Etapa 9 §21.8:** La actividad física puede aparecer como apoyo complementario cuando sea apropiada para el niño. La literatura reciente muestra efectos sobre síntomas nucleares y funciones ejecutivas, pero la certeza de evidencia varía según resultado y modalidad.
   - [10] Exercise for core ADHD symptoms and executive functions in children and adolescents with ADHD: A network and dose-response meta-analysis. Journal of Sport and Health Science. 2026. PMID: 42480697.
-- **Etapa 9 §21.12:** Cuando una acción pueda implicar tratamiento farmacológico, la IA debe limitarse a identificar que existe una opción terapéutica respaldada por guías y derivar la decisión, selección, indicación y ajuste al profesional médico responsable. No debe prescribir, dosificar ni modificar tratamientos.
+- **Etapa 9 §21.12:** Cuando una acción pueda implicar tratamiento farmacológico, el sistema debe limitarse a identificar que existe una opción terapéutica respaldada por guías y derivar la decisión, selección, indicación y ajuste al profesional médico responsable. No debe prescribir, dosificar ni modificar tratamientos.
   - [1] American Academy of Pediatrics. Clinical Practice Guideline for the Diagnosis, Evaluation, and Treatment of ADHD in Children and Adolescents. Pediatrics. 2019;144(4):e20192528.
   - [2] NICE. Attention deficit hyperactivity disorder: diagnosis and management (NG87). Recommendations.
 
@@ -393,7 +393,7 @@ _Redactada por: Profesional de prueba (2026-10-15)._
 
 ## Consentimiento, confidencialidad y alcance de este informe
 
-- Consentimiento informado del representante legal (madre), medio escrito firmado, obtenido por Profesional de prueba el 2026-10-15 (política de privacidad versión 1.0 (15-10-2026)). Envío de respuestas a proveedor externo de IA: no autorizado.
+- Consentimiento informado del representante legal (madre), medio escrito firmado, obtenido por Profesional de prueba el 2026-10-15 (política de privacidad versión 1.0 (15-10-2026)).
 - Asentimiento del niño, niña o adolescente registrado por Profesional de prueba el 2026-10-15.
 
 _Documento confidencial que contiene datos sensibles de salud (Ley 19.628, modificada por la Ley 21.719; Ley 20.584). Su uso se limita a la finalidad de evaluación clínica para la que fue elaborado y no puede comunicarse a terceros sin autorización del representante legal, salvo en los casos que la ley permite. Este informe es una herramienta de apoyo: no constituye por sí mismo un diagnóstico; la interpretación, el diagnóstico y las indicaciones son responsabilidad exclusiva del profesional de salud que lo valida. Ningún diagnóstico de salud mental puede usarse para discriminar a la persona evaluada (Ley 21.331, art. 9 N° 15)._

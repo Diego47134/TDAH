@@ -23,8 +23,8 @@ DATOS = RAIZ / 'protocol' / 'datos'
 
 DOCS = {
     'TDAH_Etapas_1-7.docx': 'Modelo científico TDAH completo — Etapas 1 a 7 (Etapa 7 modificada)',
-    'ETAPA_9_COMPLETA_CORREGIDA_ALINEADA.docx': 'Etapa 9 — Especificación operativa para IA (versión corregida)',
-    'AUTOMATIZACION_TDAH_CORREGIDA_COMPLETA.docx': 'Automatización TDAH — System Prompt, esquema JSON e informe (versión corregida)',
+    'ETAPA_9_COMPLETA_CORREGIDA_ALINEADA.docx': 'Etapa 9 — Especificación operativa del motor (versión corregida)',
+    'AUTOMATIZACION_TDAH_CORREGIDA_COMPLETA.docx': 'Automatización TDAH — fases de la entrevista, esquema e informe (versión corregida)',
 }
 
 
@@ -416,6 +416,15 @@ PROTOCOLO = {
 }
 
 salida = RAIZ / 'protocol' / 'protocolo.json'
+# Redacción operativa: el sistema ejecuta las reglas del documento con software determinista.
+def operativo(v):
+    if isinstance(v, str):
+        return (v.replace('a la IA', 'al sistema').replace('de la IA', 'del sistema')
+                 .replace('la IA', 'el sistema').replace('La IA', 'El sistema').replace(' IA ', ' sistema '))
+    if isinstance(v, list): return [operativo(x) for x in v]
+    if isinstance(v, dict): return {k: (x if k in ('archivo', 'sha256') else operativo(x)) for k, x in v.items()}
+    return v
+PROTOCOLO = operativo(PROTOCOLO)
 salida.write_text(json.dumps(PROTOCOLO, ensure_ascii=False, indent=1))
 print(f'{salida.relative_to(RAIZ)}: {len(BANCO)} preguntas A, {len(SINTOMAS)} síntomas, {len(BARRIDO["opciones"])} áreas de barrido, '
       f'{sum(len(c["preguntas"]) for c in TAM_CAT.values())} preguntas de tamizaje, {len(COLEGIO)} C, {len(NINO)} D, {len(ADOL)} E')

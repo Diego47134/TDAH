@@ -1,10 +1,9 @@
 // Protección de datos sensibles de salud mental: consentimiento informado, asentimiento del NNA,
-// IA externa solo con autorización, derecho de acceso/portabilidad y avisos legales.
+// derecho de acceso/portabilidad y avisos legales.
 import { test, after } from 'node:test';
 import assert from 'node:assert/strict';
 import { iniciarApp, crearCaso, vista, responder, crearEvidencia } from './ayudantes.js';
 import { respuestaPara, CONSENTIMIENTO } from '../fixtures/caso-ficticio.js';
-import { crearClienteIA } from '../../src/ia.js';
 
 const ev = crearEvidencia('privacidad');
 after(() => ev.escribir());
@@ -38,26 +37,8 @@ test('L1 · sin consentimiento informado del representante legal no se crea el c
   } finally { await api.cerrar(); }
 });
 
-test('L2 · la IA externa no recibe datos si el representante no lo autorizó', async () => {
-  const p = ev.prueba('L2', 'Comunicación a terceros', 'Las respuestas solo se envían a un proveedor externo de IA con autorización expresa; si no, se usa el intérprete local.');
-  let llamadas = 0;
-  const fetchImpl = async () => { llamadas++; return Response.json({ content: [{ type: 'text', text: '{"codigo":"A"}' }] }); };
-  const api = await iniciarApp({ ia: crearClienteIA({ proveedor: 'anthropic', apiKey: 'k', fetchImpl }) });
-  try {
-    const r0 = await api.req('POST', '/api/casos', { etiqueta: 'sin IA', consentimiento: { ...CONSENTIMIENTO, acepta_ia_externa: false } });
-    const id = r0.body.caso.id;
-    assert.equal(r0.body.ia_externa_autorizada, false);
-    for (let i = 0; i < 6; i++) await responder(api, id, (q) => (q.tipo === 'presencia' ? { texto: 'sí, siempre' } : respuestaPara(q)));
-    assert.equal(llamadas, 0);
-    const aud = (await api.req('GET', `/api/casos/${id}/auditoria`)).body;
-    assert.ok(aud.respuestas.every((r) => r.interprete === 'reglas'));
-    ev.paso(p, { entrada: 'acepta_ia_externa = false; 6 respuestas con texto libre', accion_resultante: `Llamadas a la IA: ${llamadas}`, esperado: '0 llamadas', ok: true });
-    ev.cerrar(p, true);
-  } finally { await api.cerrar(); }
-});
-
-test('L3 · derecho de acceso y portabilidad: exportación íntegra y auditada del expediente', async () => {
-  const p = ev.prueba('L3', 'Acceso y portabilidad', 'El expediente completo se entrega en formato estructurado y la entrega queda registrada.');
+test('L2 · derecho de acceso y portabilidad: exportación íntegra y auditada del expediente', async () => {
+  const p = ev.prueba('L2', 'Acceso y portabilidad', 'El expediente completo se entrega en formato estructurado y la entrega queda registrada.');
   const api = await iniciarApp();
   try {
     const v = await crearCaso(api); const id = v.caso.id;
@@ -75,8 +56,8 @@ test('L3 · derecho de acceso y portabilidad: exportación íntegra y auditada d
   } finally { await api.cerrar(); }
 });
 
-test('L4 · política de privacidad y términos publicados; el informe declara consentimiento y alcance', async () => {
-  const p = ev.prueba('L4', 'Avisos legales', 'Las páginas de privacidad y términos están disponibles y el informe incluye la sección de consentimiento y confidencialidad.');
+test('L3 · política de privacidad y términos publicados; el informe declara consentimiento y alcance', async () => {
+  const p = ev.prueba('L3', 'Avisos legales', 'Las páginas de privacidad y términos están disponibles y el informe incluye la sección de consentimiento y confidencialidad.');
   const api = await iniciarApp();
   try {
     const base = `http://127.0.0.1:${api.app.server.address().port}`;

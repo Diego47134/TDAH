@@ -1,6 +1,6 @@
 # Evidencia E2E — entrevista
 
-Generado: 2026-10-15T18:45:30.739Z
+Generado: 2026-10-15T18:53:13.520Z
 
 ## E01 · Orden inicial obligatorio — **APROBADA**
 
@@ -11,7 +11,7 @@ Requisito: Motivo → edad → informe escolar → disponibilidad → ruta, ante
 - **entrada:** `{"pregunta":"INI-MOTIVO — ¿Qué está ocurriendo actualmente que motivó esta evaluación?","respuesta":"Desde primero básico se distrae mucho en clases y le cuesta terminar las tareas."}`
 - **estado_antes:** `{"turno":1,"estado_global":"fase_inicial","ruta":null,"edad":null,"fase_inicial_completa":false,"sintomas":"(sin información)","barrido":"NO_REALIZADO","tamizaje":"NO_REALIZADO","contradicciones_abiertas":0}`
 - **decision_motor:** `{"accion":"preguntar","pregunta_id":"INI-EDAD","justificacion":"Secuencia inicial obligatoria (paso 2 de 3)."}`
-- **interpretacion:** `{"clasificacion":"valor","estado_dato":"valor","valor":"Desde primero básico se distrae mucho en clases y le cuesta terminar las tareas.","interprete":"reglas","menciones":[{"sintoma":"R1.8","palabra_clave":"se distrae","evidencia":"Desde primero básico se distrae mucho en clases y le cuesta terminar las tareas."}]}`
+- **interpretacion:** `{"clasificacion":"valor","estado_dato":"valor","valor":"Desde primero básico se distrae mucho en clases y le cuesta terminar las tareas.","menciones":[{"sintoma":"R1.8","palabra_clave":"se distrae","evidencia":"Desde primero básico se distrae mucho en clases y le cuesta terminar las tareas."}]}`
 - **accion_resultante:** Pregunta: ¿Qué edad tiene el niño, niña o adolescente evaluado?
 - **estado_despues:** `{"turno":2,"estado_global":"fase_inicial","ruta":null,"edad":null,"fase_inicial_completa":false,"sintomas":"(sin información)","barrido":"NO_REALIZADO","tamizaje":"NO_REALIZADO","contradicciones_abiertas":0}`
 - **esperado:** Siguiente paso de la secuencia inicial
@@ -22,7 +22,7 @@ Requisito: Motivo → edad → informe escolar → disponibilidad → ruta, ante
 - **entrada:** `{"pregunta":"INI-EDAD — ¿Qué edad tiene el niño, niña o adolescente evaluado?","respuesta":"8 años"}`
 - **estado_antes:** `{"turno":2,"estado_global":"fase_inicial","ruta":null,"edad":null,"fase_inicial_completa":false,"sintomas":"(sin información)","barrido":"NO_REALIZADO","tamizaje":"NO_REALIZADO","contradicciones_abiertas":0}`
 - **decision_motor:** `{"accion":"preguntar","pregunta_id":"INI-INF-EXISTE","justificacion":"Secuencia inicial obligatoria (paso 3 de 3)."}`
-- **interpretacion:** `{"clasificacion":"valor","estado_dato":"valor","valor":"8","interprete":"reglas","menciones":[]}`
+- **interpretacion:** `{"clasificacion":"valor","estado_dato":"valor","valor":"8","menciones":[]}`
 - **accion_resultante:** Pregunta: ¿Existe un informe escolar sobre el niño, niña o adolescente?
 - **estado_despues:** `{"turno":3,"estado_global":"fase_inicial","ruta":null,"edad":8,"fase_inicial_completa":false,"sintomas":"(sin información)","barrido":"NO_REALIZADO","tamizaje":"NO_REALIZADO","contradicciones_abiertas":0}`
 - **esperado:** Siguiente paso de la secuencia inicial
@@ -33,7 +33,7 @@ Requisito: Motivo → edad → informe escolar → disponibilidad → ruta, ante
 - **entrada:** `{"pregunta":"INI-INF-EXISTE — ¿Existe un informe escolar sobre el niño, niña o adolescente?","respuesta":"A. Sí"}`
 - **estado_antes:** `{"turno":3,"estado_global":"fase_inicial","ruta":null,"edad":8,"fase_inicial_completa":false,"sintomas":"(sin información)","barrido":"NO_REALIZADO","tamizaje":"NO_REALIZADO","contradicciones_abiertas":0}`
 - **decision_motor:** `{"accion":"preguntar","pregunta_id":"INI-INF-DISP","justificacion":"Secuencia inicial obligatoria (paso 4 de 4)."}`
-- **interpretacion:** `{"clasificacion":"valor","estado_dato":"valor","valor":"si","interprete":"reglas","menciones":[]}`
+- **interpretacion:** `{"clasificacion":"valor","estado_dato":"valor","valor":"si","menciones":[]}`
 - **accion_resultante:** Pregunta: ¿El informe escolar está disponible o puede obtenerse para esta evaluación?
 - **estado_despues:** `{"turno":4,"estado_global":"fase_inicial","ruta":null,"edad":8,"fase_inicial_completa":false,"sintomas":"(sin información)","barrido":"NO_REALIZADO","tamizaje":"NO_REALIZADO","contradicciones_abiertas":0}`
 - **esperado:** Siguiente paso de la secuencia inicial
@@ -44,7 +44,7 @@ Requisito: Motivo → edad → informe escolar → disponibilidad → ruta, ante
 - **entrada:** `{"pregunta":"INI-INF-DISP — ¿El informe escolar está disponible o puede obtenerse para esta evaluación?","respuesta":"A. Sí"}`
 - **estado_antes:** `{"turno":4,"estado_global":"fase_inicial","ruta":null,"edad":8,"fase_inicial_completa":false,"sintomas":"(sin información)","barrido":"NO_REALIZADO","tamizaje":"NO_REALIZADO","contradicciones_abiertas":0}`
 - **decision_motor:** `{"accion":"preguntar","pregunta_id":"A09","justificacion":"Activación inmediata (Etapa 9 §14.2): se mencionó una conducta con posible correspondencia con «Se distrae fácilmente» (R1.8); se usa la pregunta específica del banco para caracterizarla, sin confirmarla por asociación."}`
-- **interpretacion:** `{"clasificacion":"valor","estado_dato":"valor","valor":"si","interprete":"reglas","menciones":[]}`
+- **interpretacion:** `{"clasificacion":"valor","estado_dato":"valor","valor":"si","menciones":[]}`
 - **accion_resultante:** Pregunta: ¿Se distrae fácilmente con estímulos que ocurren alrededor?
 - **estado_despues:** `{"turno":5,"estado_global":"entrevista","ruta":"con_informe","edad":8,"fase_inicial_completa":true,"sintomas":"R1.8:EVIDENCIA RELACIONADA — REQUIERE CARACTERIZACIÓN","barrido":"NO_REALIZADO","tamizaje":"NO_REALIZADO","contradicciones_abiertas":0}`
 - **esperado:** Siguiente paso de la secuencia inicial
@@ -95,7 +95,7 @@ Requisito: La misma pregunta con respuestas distintas produce siguientes pasos d
 - **entrada:** `{"pregunta":"A09 — ¿Se distrae fácilmente con estímulos que ocurren alrededor?","respuesta":"A. Sí"}`
 - **estado_antes:** `{"turno":5,"estado_global":"entrevista","ruta":"con_informe","edad":8,"fase_inicial_completa":true,"sintomas":"R1.8:EVIDENCIA RELACIONADA — REQUIERE CARACTERIZACIÓN","barrido":"NO_REALIZADO","tamizaje":"NO_REALIZADO","contradicciones_abiertas":0}`
 - **decision_motor:** `{"accion":"preguntar","pregunta_id":"R1.8-FRECUENCIA","justificacion":"Profundización del síntoma R1.8 «Se distrae fácilmente» (1/3): falta «frecuencia». Prioridad de la Automatización (regla 2a: frecuencia e intensidad)."}`
-- **interpretacion:** `{"clasificacion":"si","estado_dato":"valor","valor":"si","interprete":"reglas","menciones":[]}`
+- **interpretacion:** `{"clasificacion":"si","estado_dato":"valor","valor":"si","menciones":[]}`
 - **accion_resultante:** Pregunta: Sobre «se distrae fácilmente con estímulos que ocurren alrededor»: ¿Con qué frecuencia sucede?
 - **estado_despues:** `{"turno":6,"estado_global":"entrevista","ruta":"con_informe","edad":8,"fase_inicial_completa":true,"sintomas":"R1.8:EVIDENCIA RELACIONADA — REQUIERE CARACTERIZACIÓN","barrido":"NO_REALIZADO","tamizaje":"NO_REALIZADO","contradicciones_abiertas":0}`
 - **esperado:** Profundiza R1.8 (frecuencia)
@@ -106,7 +106,7 @@ Requisito: La misma pregunta con respuestas distintas produce siguientes pasos d
 - **entrada:** `{"pregunta":"A09 — ¿Se distrae fácilmente con estímulos que ocurren alrededor?","respuesta":"B. No"}`
 - **estado_antes:** `{"turno":5,"estado_global":"entrevista","ruta":"con_informe","edad":8,"fase_inicial_completa":true,"sintomas":"R1.8:EVIDENCIA RELACIONADA — REQUIERE CARACTERIZACIÓN","barrido":"NO_REALIZADO","tamizaje":"NO_REALIZADO","contradicciones_abiertas":0}`
 - **decision_motor:** `{"accion":"preguntar","pregunta_id":"A01","justificacion":"Cobertura individual de los 18 síntomas DSM-5-TR (Etapa 9 §14.1): R1.1 «Dificultad para prestar atención a detalles / errores por descuido» sin información del apoderado."}`
-- **interpretacion:** `{"clasificacion":"no","estado_dato":"valor","valor":"no","interprete":"reglas","menciones":[]}`
+- **interpretacion:** `{"clasificacion":"no","estado_dato":"valor","valor":"no","menciones":[]}`
 - **accion_resultante:** Pregunta: ¿Comete errores por no fijarse bien en los detalles?
 - **estado_despues:** `{"turno":6,"estado_global":"entrevista","ruta":"con_informe","edad":8,"fase_inicial_completa":true,"sintomas":"R1.8:NO REFERIDO","barrido":"NO_REALIZADO","tamizaje":"NO_REALIZADO","contradicciones_abiertas":0}`
 - **esperado:** Avanza a otro síntoma
@@ -143,7 +143,7 @@ Requisito: Las respuestas de incertidumbre se registran como tales y el síntoma
 - **entrada:** `{"pregunta":"A01 — ¿Comete errores por no fijarse bien en los detalles?","respuesta":"La verdad no me acuerdo"}`
 - **estado_antes:** `{"turno":8,"estado_global":"entrevista","ruta":"completa","edad":8,"fase_inicial_completa":true,"sintomas":"R1.8:APOYADO POR EVIDENCIA","barrido":"NO_REALIZADO","tamizaje":"NO_REALIZADO","contradicciones_abiertas":0}`
 - **decision_motor:** `{"accion":"preguntar","pregunta_id":"A02","justificacion":"Cobertura individual de los 18 síntomas DSM-5-TR (Etapa 9 §14.1): R1.2 «Dificultad para mantener la atención» sin información del apoderado."}`
-- **interpretacion:** `{"clasificacion":"no_recuerdo","estado_dato":"no_recuerda","valor":null,"interprete":"reglas","menciones":[]}`
+- **interpretacion:** `{"clasificacion":"no_recuerdo","estado_dato":"no_recuerda","valor":null,"menciones":[]}`
 - **accion_resultante:** Pregunta: ¿Le cuesta mantener la atención durante una actividad?
 - **estado_despues:** `{"turno":9,"estado_global":"entrevista","ruta":"completa","edad":8,"fase_inicial_completa":true,"sintomas":"R1.1:DESCONOCIDO, R1.8:APOYADO POR EVIDENCIA","barrido":"NO_REALIZADO","tamizaje":"NO_REALIZADO","contradicciones_abiertas":0}`
 - **esperado:** R1.1 = DESCONOCIDO (no se registra como ausente)

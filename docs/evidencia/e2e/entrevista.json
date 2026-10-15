@@ -1,5 +1,5 @@
 {
-  "generado": "2026-10-15T18:45:30.738Z",
+  "generado": "2026-10-15T18:53:13.519Z",
   "pruebas": [
     {
       "id": "E01",
@@ -31,7 +31,6 @@
             "clasificacion": "valor",
             "estado_dato": "valor",
             "valor": "Desde primero básico se distrae mucho en clases y le cuesta terminar las tareas.",
-            "interprete": "reglas",
             "menciones": [
               {
                 "sintoma": "R1.8",
@@ -80,7 +79,6 @@
             "clasificacion": "valor",
             "estado_dato": "valor",
             "valor": "8",
-            "interprete": "reglas",
             "menciones": []
           },
           "accion_resultante": "Pregunta: ¿Existe un informe escolar sobre el niño, niña o adolescente?",
@@ -123,7 +121,6 @@
             "clasificacion": "valor",
             "estado_dato": "valor",
             "valor": "si",
-            "interprete": "reglas",
             "menciones": []
           },
           "accion_resultante": "Pregunta: ¿El informe escolar está disponible o puede obtenerse para esta evaluación?",
@@ -166,7 +163,6 @@
             "clasificacion": "valor",
             "estado_dato": "valor",
             "valor": "si",
-            "interprete": "reglas",
             "menciones": []
           },
           "accion_resultante": "Pregunta: ¿Se distrae fácilmente con estímulos que ocurren alrededor?",
@@ -265,7 +261,6 @@
             "clasificacion": "si",
             "estado_dato": "valor",
             "valor": "si",
-            "interprete": "reglas",
             "menciones": []
           },
           "accion_resultante": "Pregunta: Sobre «se distrae fácilmente con estímulos que ocurren alrededor»: ¿Con qué frecuencia sucede?",
@@ -308,7 +303,6 @@
             "clasificacion": "no",
             "estado_dato": "valor",
             "valor": "no",
-            "interprete": "reglas",
             "menciones": []
           },
           "accion_resultante": "Pregunta: ¿Comete errores por no fijarse bien en los detalles?",
@@ -387,7 +381,6 @@
             "clasificacion": "no_recuerdo",
             "estado_dato": "no_recuerda",
             "valor": null,
-            "interprete": "reglas",
             "menciones": []
           },
           "accion_resultante": "Pregunta: ¿Le cuesta mantener la atención durante una actividad?",

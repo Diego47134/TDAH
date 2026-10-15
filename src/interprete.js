@@ -39,7 +39,7 @@ export function interpretarPresencia(texto, tipoDeclarado) {
   return { clasificacion: c, estado: 'valor', valor: c };
 }
 
-/** Compatibilidad: intérprete de reglas usado por pruebas y por la IA de contingencia. */
+/** Intérprete de reglas por tipo de dato (compatibilidad). */
 export function interpretarReglas({ slotTipo, texto = '', tipoDeclarado }) {
   if (slotTipo === 'si_no' || slotTipo === 'presencia') return { ...interpretarPresencia(texto, tipoDeclarado), interprete: 'reglas' };
   const original = String(texto).trim();

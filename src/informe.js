@@ -194,7 +194,7 @@ function seccionLegal(ctx) {
   L.push('## Consentimiento, confidencialidad y alcance de este informe', '');
   for (const x of cons) {
     L.push(x.tipo === 'tratamiento_datos'
-      ? `- Consentimiento informado del representante legal (${x.relacion.replace(/_/g, ' ')}), medio ${ETQ_MEDIO[x.medio] || x.medio}, obtenido por ${x.profesional} el ${x.creado.slice(0, 10)} (política de privacidad versión ${x.version_politica}). Envío de respuestas a proveedor externo de IA: ${x.acepta_ia_externa ? 'autorizado' : 'no autorizado'}.`
+      ? `- Consentimiento informado del representante legal (${x.relacion.replace(/_/g, ' ')}), medio ${ETQ_MEDIO[x.medio] || x.medio}, obtenido por ${x.profesional} el ${x.creado.slice(0, 10)} (política de privacidad versión ${x.version_politica}).`
       : `- Asentimiento del niño, niña o adolescente registrado por ${x.profesional} el ${x.creado.slice(0, 10)}.`);
   }
   if (!cons.length) L.push('- Sin consentimiento registrado en el expediente.');

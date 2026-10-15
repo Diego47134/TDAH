@@ -1,6 +1,6 @@
 # Evidencia E2E — privacidad
 
-Generado: 2026-10-15T18:45:38.226Z
+Generado: 2026-10-15T18:53:20.377Z
 
 ## L1 · Consentimiento obligatorio — **APROBADA**
 
@@ -55,18 +55,7 @@ Requisito: Datos de salud mental = datos sensibles: requieren consentimiento exp
 - **esperado:** HTTP 201
 - **ok:** true
 
-## L2 · Comunicación a terceros — **APROBADA**
-
-Requisito: Las respuestas solo se envían a un proveedor externo de IA con autorización expresa; si no, se usa el intérprete local.
-
-### Paso 1
-
-- **entrada:** acepta_ia_externa = false; 6 respuestas con texto libre
-- **accion_resultante:** Llamadas a la IA: 0
-- **esperado:** 0 llamadas
-- **ok:** true
-
-## L3 · Acceso y portabilidad — **APROBADA**
+## L2 · Acceso y portabilidad — **APROBADA**
 
 Requisito: El expediente completo se entrega en formato estructurado y la entrega queda registrada.
 
@@ -77,7 +66,7 @@ Requisito: El expediente completo se entrega en formato estructurado y la entreg
 - **esperado:** Copia íntegra
 - **ok:** true
 
-## L4 · Avisos legales — **APROBADA**
+## L3 · Avisos legales — **APROBADA**
 
 Requisito: Las páginas de privacidad y términos están disponibles y el informe incluye la sección de consentimiento y confidencialidad.
 

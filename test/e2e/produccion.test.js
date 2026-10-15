@@ -14,7 +14,7 @@ const ev = crearEvidencia('produccion');
 after(() => ev.escribir());
 
 async function levantar(opts) {
-  const app = crearApp({ dbPath: rutaDBTemporal(), ia: { habilitada: false }, ...opts });
+  const app = crearApp({ dbPath: rutaDBTemporal(), ...opts });
   await new Promise((ok) => app.server.listen(0, '127.0.0.1', ok));
   const base = `http://127.0.0.1:${app.server.address().port}`;
   return { app, base };
@@ -23,7 +23,7 @@ async function levantar(opts) {
 test('P1 · en producción sin token ni clave: API bloqueada hasta la configuración inicial, que se hace una sola vez', async () => {
   const p = ev.prueba('P1', 'Configuración inicial de la clave', 'Un dominio público nunca expone el expediente sin clave; la primera clave se crea desde la app y queda cifrada.');
   const dbPath = rutaDBTemporal();
-  let app = crearApp({ dbPath, ia: { habilitada: false }, produccion: true, tokenAcceso: '', advertencias: [] });
+  let app = crearApp({ dbPath, produccion: true, tokenAcceso: '', advertencias: [] });
   await new Promise((ok) => app.server.listen(0, '127.0.0.1', ok));
   let base = `http://127.0.0.1:${app.server.address().port}`;
   const post = (b, ruta, cuerpo, h = {}) => fetch(`${b}${ruta}`, { method: 'POST', headers: { 'content-type': 'application/json', ...h }, body: JSON.stringify(cuerpo) });
@@ -49,7 +49,7 @@ test('P1 · en producción sin token ni clave: API bloqueada hasta la configurac
     assert.equal((await fetch(`${base}/api/casos`, { headers: { authorization: `Bearer ${clave}` } })).status, 200);
 
     await app.cerrar(); // reinicio: la clave persiste en la base de datos
-    app = crearApp({ dbPath, ia: { habilitada: false }, produccion: true, tokenAcceso: '', advertencias: [] });
+    app = crearApp({ dbPath, produccion: true, tokenAcceso: '', advertencias: [] });
     await new Promise((ok) => app.server.listen(0, '127.0.0.1', ok));
     base = `http://127.0.0.1:${app.server.address().port}`;
     assert.equal((await (await fetch(`${base}/api/salud`)).json()).configuracion_inicial_pendiente, false);

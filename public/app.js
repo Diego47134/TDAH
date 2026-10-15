@@ -84,7 +84,7 @@ async function enrutar() {
       protocolo = await api('GET', '/api/protocolo');
       for (const ops of Object.values(protocolo.alternativas || {})) for (const o of ops) if (!ETIQ[o.valor] && !/^[A-Z]$/.test(o.valor)) ETIQ[o.valor] = o.texto;
       const b = document.getElementById('protocolo');
-      b.textContent = `Protocolo ${protocolo.version}${protocolo.estado === 'PROVISIONAL' ? ' · provisional' : ''} · IA: ${salud.ia.startsWith('deshab') ? 'reglas' : 'activa'}`;
+      b.textContent = `Protocolo ${protocolo.version}${protocolo.estado === 'PROVISIONAL' ? ' · provisional' : ''}`;
       b.className = `insignia${protocolo.estado === 'PROVISIONAL' ? ' provisional' : ''}`;
       b.title = protocolo.aviso || '';
     }
@@ -117,7 +117,6 @@ async function vistaCasos() {
           <div><label for="cprof">Profesional que obtiene el consentimiento</label><input id="cprof" type="text" maxlength="120" required></div>
         </div>
         <label class="chk"><input id="cacepta" type="checkbox" required> <span>El representante legal fue informado de la finalidad, del uso de sus datos y de sus derechos, y <strong>consiente expresamente</strong> el tratamiento de los datos de salud del niño, niña o adolescente para esta evaluación.</span></label>
-        <label class="chk"><input id="cia" type="checkbox"> <span>Además autoriza enviar respuestas libres, sin identificadores, a un proveedor externo de inteligencia artificial para interpretarlas (opcional; sin esta autorización se usa solo el intérprete local).</span></label>
       </fieldset>
       <div class="fila" style="margin-top:12px"><button class="boton">Registrar consentimiento y crear caso</button></div>
     </form>
@@ -133,7 +132,7 @@ async function vistaCasos() {
     const val = (id) => document.getElementById(id).value;
     const v = await api('POST', '/api/casos', { etiqueta: val('etq'), consentimiento: {
       acepta: document.getElementById('cacepta').checked, otorgante: val('cotorg'), relacion: val('crel'), medio: val('cmedio'),
-      profesional: val('cprof'), acepta_ia_externa: document.getElementById('cia').checked } });
+      profesional: val('cprof') } });
     location.hash = `#/caso/${v.caso.id}`;
   };
 }
@@ -246,7 +245,6 @@ function entrevista(cont, v, recargar) {
       ultima = { caso: c.id, pregunta: q.texto.slice(0, 70) + (q.texto.length > 70 ? '…' : ''), interp: res.traza.entrada.respuesta || i.estado_dato,
         extra: [i.menciones.length ? `evidencia relacionada: ${i.menciones.map((m) => m.sintoma).join(', ')}` : '', i.estado_dato === 'ambiguo' ? 'información parcial' : ''].filter(Boolean).join(' · ') };
       if (res.traza.contradiccion) aviso('Se registró una discrepancia (queda para revisión profesional).');
-      else if (res.traza.error_api) aviso('La IA no respondió; se usó el intérprete de reglas.', true);
       recargar();
     } catch (e) {
       aviso(e.message, true);
@@ -261,7 +259,7 @@ function expediente(cont, v) {
   const I = v.integracion;
   cont.innerHTML = `
     <div class="tarjeta"><h2>Consentimiento y asentimiento</h2><table class="tabla"><tbody>
-      ${(v.consentimientos || []).map((x) => `<tr><th>${x.tipo === 'tratamiento_datos' ? 'Representante legal' : 'Niño/niña/adolescente'}</th><td>${esc(x.otorgante)}${x.relacion && x.relacion !== 'nna' ? ` (${esc(x.relacion.replace(/_/g, ' '))})` : ''} · ${esc(x.medio.replace(/_/g, ' '))} · ${esc(x.profesional)} · ${new Date(x.creado).toLocaleDateString('es-CL')}${x.tipo === 'tratamiento_datos' ? ` · IA externa: ${x.acepta_ia_externa ? 'autorizada' : 'no autorizada'}` : ''}<div class="tenue peq">Política de privacidad versión ${esc(x.version_politica)}</div></td></tr>`).join('') || '<tr><td class="tenue">Sin registro.</td></tr>'}
+      ${(v.consentimientos || []).map((x) => `<tr><th>${x.tipo === 'tratamiento_datos' ? 'Representante legal' : 'Niño/niña/adolescente'}</th><td>${esc(x.otorgante)}${x.relacion && x.relacion !== 'nna' ? ` (${esc(x.relacion.replace(/_/g, ' '))})` : ''} · ${esc(x.medio.replace(/_/g, ' '))} · ${esc(x.profesional)} · ${new Date(x.creado).toLocaleDateString('es-CL')}<div class="tenue peq">Política de privacidad versión ${esc(x.version_politica)}</div></td></tr>`).join('') || '<tr><td class="tenue">Sin registro.</td></tr>'}
     </tbody></table></div>
     <div class="tarjeta"><h2>Datos iniciales</h2><table class="tabla"><tbody>
       ${Object.entries(v.iniciales).map(([k, s]) => `<tr><th>${esc(k.replace('_', ' '))}</th><td>${esc(s.estado === 'valor' ? sv(s.valor) : et(s.estado))}</td></tr>`).join('')}

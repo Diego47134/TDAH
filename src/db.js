@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS respuestas (
   tipo_declarado TEXT,
   clasificacion TEXT NOT NULL,
   valor TEXT,
-  interprete TEXT NOT NULL,        -- reglas | ia
+  interprete TEXT NOT NULL,        -- reglas
   detalle TEXT,
   creado TEXT NOT NULL
 );
@@ -144,7 +144,6 @@ CREATE TABLE IF NOT EXISTS consentimientos (
   relacion TEXT,                   -- madre | padre | tutor_legal | otro_representante | nna
   medio TEXT NOT NULL,             -- escrito_firmado | electronico | verbal_registrado
   profesional TEXT NOT NULL,
-  acepta_ia_externa INTEGER NOT NULL DEFAULT 0,
   version_politica TEXT NOT NULL,
   revocado TEXT,
   creado TEXT NOT NULL

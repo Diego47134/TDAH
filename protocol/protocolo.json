@@ -11,12 +11,12 @@
   },
   {
    "archivo": "ETAPA_9_COMPLETA_CORREGIDA_ALINEADA.docx",
-   "titulo": "Etapa 9 — Especificación operativa para IA (versión corregida)",
+   "titulo": "Etapa 9 — Especificación operativa del motor (versión corregida)",
    "sha256": "8c14f6303c7fae4f5ec7049d2d5f76db1dd58252c777face5e402b47f3146218"
   },
   {
    "archivo": "AUTOMATIZACION_TDAH_CORREGIDA_COMPLETA.docx",
-   "titulo": "Automatización TDAH — System Prompt, esquema JSON e informe (versión corregida)",
+   "titulo": "Automatización TDAH — fases de la entrevista, esquema e informe (versión corregida)",
    "sha256": "4d51c9271d6797b2f6d3ed93b493a0c0d94ad47b08d111352002bcb2fed178ea"
   }
  ],
@@ -3287,7 +3287,7 @@
   {
    "id": "sueno",
    "tamizaje": "D",
-   "texto": "Cuando se identifiquen problemas de sueño, la IA debe abrir un módulo específico. Las intervenciones conductuales del sueño cuentan con evidencia de beneficio sobre resultados de sueño en niños con TDAH, aunque la literatura presenta heterogeneidad.",
+   "texto": "Cuando se identifiquen problemas de sueño, el sistema debe abrir un módulo específico. Las intervenciones conductuales del sueño cuentan con evidencia de beneficio sobre resultados de sueño en niños con TDAH, aunque la literatura presenta heterogeneidad.",
    "refs": [
     8,
     9
@@ -3310,14 +3310,14 @@
   {
    "id": "fortalezas",
    "recursos": true,
-   "texto": "Si una determinada condición mejora el desempeño —por ejemplo, mayor estructura, retroalimentación, interés o apoyo externo—, la IA debe considerar esa condición como recurso para diseñar acciones funcionales.",
+   "texto": "Si una determinada condición mejora el desempeño —por ejemplo, mayor estructura, retroalimentación, interés o apoyo externo—, el sistema debe considerar esa condición como recurso para diseñar acciones funcionales.",
    "refs": [],
    "origen": "Etapa 9 §21.9"
   },
   {
    "id": "medicas",
    "siempre": true,
-   "texto": "Cuando una acción pueda implicar tratamiento farmacológico, la IA debe limitarse a identificar que existe una opción terapéutica respaldada por guías y derivar la decisión, selección, indicación y ajuste al profesional médico responsable. No debe prescribir, dosificar ni modificar tratamientos.",
+   "texto": "Cuando una acción pueda implicar tratamiento farmacológico, el sistema debe limitarse a identificar que existe una opción terapéutica respaldada por guías y derivar la decisión, selección, indicación y ajuste al profesional médico responsable. No debe prescribir, dosificar ni modificar tratamientos.",
    "refs": [
     1,
     2

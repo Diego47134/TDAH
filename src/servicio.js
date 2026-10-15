@@ -1,5 +1,5 @@
 // Backend de control del flujo de evaluación. Orquesta motor, validador, intérprete,
-// persistencia y auditoría. El software (no la IA) controla estado y transiciones.
+// persistencia y auditoría. El software controla estado y transiciones.
 import * as X from './expediente.js';
 import { transaccion, ahora } from './db.js';
 import {
@@ -11,7 +11,7 @@ import { interpretarRespuesta, detectarMenciones, ErrorEntrada } from './interpr
 import { extraerPorReglas, validarExtraccionManual } from './informeEscolar.js';
 import { evaluarRequisitos, generarInforme, markdownAHtml } from './informe.js';
 import { integrar } from './integracion.js';
-import { validarConsentimiento, validarAsentimiento, permiteIAExterna, tieneAsentimiento, ErrorConsentimiento, VERSION_POLITICA } from './privacidad.js';
+import { validarConsentimiento, validarAsentimiento, tieneAsentimiento, ErrorConsentimiento, VERSION_POLITICA } from './privacidad.js';
 
 export class ErrorServicio extends Error {
   constructor(status, mensaje, detalle) { super(mensaje); this.status = status; this.detalle = detalle; }
@@ -23,7 +23,7 @@ const vistaPregunta = (q, extra = {}) => ({
   objetivo: q.objetivo, ...extra,
 });
 
-export function crearServicio({ db, protocolo, ia }) {
+export function crearServicio({ db, protocolo }) {
   const P = protocolo;
   const ctxDe = (id, fuente = 'apoderado') => {
     const c = X.contexto(db, P, id);
@@ -112,18 +112,8 @@ export function crearServicio({ db, protocolo, ia }) {
     return reg;
   }
 
-  async function interpretar(q, r, iaPermitida = true) {
-    let res;
-    try { res = interpretarRespuesta(q, r); } catch (e) { if (e instanceof ErrorEntrada) throw new ErrorServicio(400, e.message); throw e; }
-    let errorIA = null; let interprete = 'reglas';
-    const textoLibre = r.texto && !r.opcion && !r.opciones && !r.tipo;
-    if (ia?.habilitada && iaPermitida && textoLibre && ['presencia', 'opciones'].includes(q.tipo)) {
-      try {
-        const s = await ia.interpretarRespuesta({ pregunta: q, texto: r.texto, protocolo: P });
-        if (s.codigo) { res = interpretarRespuesta(q, { opcion: s.codigo, texto: r.texto }); interprete = 'ia'; }
-      } catch (e) { errorIA = { mensaje: e.message, detalle: e.detalle }; }
-    }
-    return { res, interprete: errorIA ? 'reglas (contingencia)' : interprete, errorIA };
+  function interpretar(q, r) {
+    try { return interpretarRespuesta(q, r); } catch (e) { if (e instanceof ErrorEntrada) throw new ErrorServicio(400, e.message); throw e; }
   }
 
   // ------------------------------------------------------------ API ---
@@ -136,7 +126,7 @@ export function crearServicio({ db, protocolo, ia }) {
       return transaccion(db, () => {
         const c = X.crearCaso(db, P, { etiqueta: String(etiqueta || '').trim().slice(0, 80) || null });
         const cid = X.registrarConsentimiento(db, c.id, cons);
-        X.registrarDecision(db, c.id, 0, 'consentimiento_registrado', { id: cid, tipo: cons.tipo, relacion: cons.relacion, medio: cons.medio, profesional: cons.profesional, acepta_ia_externa: cons.acepta_ia_externa, version_politica: cons.version_politica });
+        X.registrarDecision(db, c.id, 0, 'consentimiento_registrado', { id: cid, tipo: cons.tipo, relacion: cons.relacion, medio: cons.medio, profesional: cons.profesional, version_politica: cons.version_politica });
         X.registrarDecision(db, c.id, 0, 'caso_creado', { codigo: c.codigo, protocolo: P.version, fuentes: P.fuentes });
         avanzar(c.id);
         return api.vista(c.id);
@@ -160,7 +150,7 @@ export function crearServicio({ db, protocolo, ia }) {
         integracion: I && { puerta: I.puerta, resultado: I.resultado, requisitos: Object.fromEntries(Object.entries(I.requisitos).map(([k, v]) => [k, { nombre: v.nombre, estado: v.estado }])), areas: I.areas.map(({ id, nombre, estado }) => ({ id, nombre, estado })) },
         hechos: ctx.hechos, contradicciones: ctx.contradicciones, informes_escolares: ctx.informesEscolares,
         evaluaciones: ctx.evaluaciones, instrumentos: P.instrumentos, requisitos: req, informes,
-        consentimientos: ctx.consentimientos, ia_externa_autorizada: permiteIAExterna(ctx), version_politica: VERSION_POLITICA,
+        consentimientos: ctx.consentimientos, version_politica: VERSION_POLITICA,
         colegio: ini ? api.colegioPendiente(casoId, ctx) : null,
         nna: ini ? api.nnaEstado(casoId, ctx) : null,
         flujo: flujo(ctx, req, informes),
@@ -177,16 +167,13 @@ export function crearServicio({ db, protocolo, ia }) {
       }
       texto = String(texto ?? '').slice(0, 4000);
       const q = P.preguntas.get(actual.id);
-      const { res, interprete, errorIA } = await interpretar(q, { opcion, opciones, texto, tipo }, permiteIAExterna(ctx0));
+      const res = interpretar(q, { opcion, opciones, texto, tipo });
+      const interprete = 'reglas';
 
       return transaccion(db, () => {
         const ctx = ctxDe(casoId);
         if (ctx.caso.turno !== actual.turno) throw new ErrorServicio(409, 'El caso cambió mientras se procesaba la respuesta; recargue.');
         const antes = resumenEstado(ctx);
-        if (errorIA) {
-          X.registrarError(db, casoId, 'api_ia', errorIA.mensaje, errorIA.detalle);
-          X.registrarDecision(db, casoId, actual.turno, 'error_api_ia', { mensaje: errorIA.mensaje, accion: 'Se usó el intérprete de reglas (contingencia).' });
-        }
         const original = texto || (res.codigos || [res.codigo || opcion]).filter(Boolean).map((c) => `${c}. ${q.opciones?.find((o) => o.codigo === c)?.texto ?? ''}`).join('; ') || tipo || '';
         const respuestaId = X.registrarRespuesta(db, casoId, actual.turno, {
           pregunta_id: q.id, texto_original: original, tipo_declarado: tipo || (opcion ? `opcion:${opcion}` : opciones ? `opciones:${opciones.join(',')}` : null),
@@ -198,7 +185,7 @@ export function crearServicio({ db, protocolo, ia }) {
           evidencia: original, respuesta_id: respuestaId, pregunta_id: q.id, categorico: q.tipo !== 'abierta',
         });
         X.registrarDecision(db, casoId, actual.turno, 'respuesta_registrada', {
-          pregunta_id: q.id, texto_original: original, clasificacion: res.clasificacion, estado_dato: res.estado, valor: res.valor, interprete,
+          pregunta_id: q.id, texto_original: original, clasificacion: res.clasificacion, estado_dato: res.estado, valor: res.valor,
         });
         if (contradiccion) X.registrarDecision(db, casoId, actual.turno, 'contradiccion_registrada', contradiccion);
         const menciones = texto ? registrarMenciones(casoId, texto, 'apoderado', respuestaId, q.id, actual.turno, q.sintoma) : [];
@@ -208,13 +195,12 @@ export function crearServicio({ db, protocolo, ia }) {
         return {
           traza: {
             entrada: { pregunta_id: q.id, pregunta: q.texto, respuesta: original, opcion: opcion || null, opciones: opciones || null },
-            interpretacion: { clasificacion: res.clasificacion, estado_dato: res.estado, valor: res.valor, interprete, menciones },
+            interpretacion: { clasificacion: res.clasificacion, estado_dato: res.estado, valor: res.valor, menciones },
             estado_antes: antes,
             decision_motor: resultado.accion === 'preguntar' ? { accion: 'preguntar', pregunta_id: resultado.pregunta.id, justificacion: resultado.pregunta.justificacion } : resultado,
             pregunta_resultante: resultado.pregunta?.texto ?? null,
             estado_despues: resumenEstado(ctxF),
             contradiccion: contradiccion || discrepancias[0] || null,
-            error_api: errorIA?.mensaje || null,
           },
           vista: api.vista(casoId),
         };
@@ -224,16 +210,12 @@ export function crearServicio({ db, protocolo, ia }) {
     async cargarInformeEscolar(casoId, { texto = '', hechos } = {}) {
       const ctx0 = ctxDe(casoId);
       if (!String(texto).trim() && !hechos) throw new ErrorServicio(400, 'Debe enviar el texto del informe o una extracción estructurada.');
-      let extraidos; let metodo; let errorIA = null;
+      let extraidos; let metodo;
       if (hechos) {
         try { extraidos = validarExtraccionManual(P, hechos); } catch (e) { throw new ErrorServicio(400, e.message); }
         metodo = 'estructurada_manual';
-      } else if (ia?.habilitada && permiteIAExterna(ctx0)) {
-        try { extraidos = await ia.extraerInformeEscolar({ texto, protocolo: P }); metodo = 'ia'; } catch (e) { errorIA = e; }
-      }
-      if (!extraidos) { extraidos = extraerPorReglas(P, texto); metodo = errorIA ? 'reglas (contingencia)' : 'reglas'; }
+      } else { extraidos = extraerPorReglas(P, texto); metodo = 'reglas'; }
       return transaccion(db, () => {
-        if (errorIA) X.registrarError(db, casoId, 'api_ia', errorIA.message, errorIA.detalle);
         db.prepare('INSERT INTO informes_escolares (caso_id, texto, extraccion, metodo, creado) VALUES (?, ?, ?, ?, ?)')
           .run(casoId, String(texto || '(extracción estructurada)'), JSON.stringify(extraidos), metodo, ahora());
         for (const h of extraidos) {

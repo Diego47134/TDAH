@@ -157,12 +157,12 @@ export function contexto(db, protocolo, casoId) {
 
 export function consentimientos(db, casoId) {
   return db.prepare('SELECT * FROM consentimientos WHERE caso_id = ? ORDER BY id').all(casoId)
-    .map((c) => ({ ...c, acepta_ia_externa: Boolean(c.acepta_ia_externa) }));
+;
 }
 
 export function registrarConsentimiento(db, casoId, c) {
-  const r = db.prepare(`INSERT INTO consentimientos (caso_id, tipo, otorgante, relacion, medio, profesional, acepta_ia_externa, version_politica, creado)
-                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`)
-    .run(casoId, c.tipo, c.otorgante, c.relacion ?? null, c.medio, c.profesional, c.acepta_ia_externa ? 1 : 0, c.version_politica, ahora());
+  const r = db.prepare(`INSERT INTO consentimientos (caso_id, tipo, otorgante, relacion, medio, profesional, version_politica, creado)
+                        VALUES (?, ?, ?, ?, ?, ?, ?, ?)`)
+    .run(casoId, c.tipo, c.otorgante, c.relacion ?? null, c.medio, c.profesional, c.version_politica, ahora());
   return Number(r.lastInsertRowid);
 }
