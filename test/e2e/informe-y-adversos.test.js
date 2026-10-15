@@ -1,13 +1,23 @@
-// E11–E12 y casos adversos: ambigüedad, contradicciones, equivalencias, errores de API,
-// datos faltantes y entradas inválidas.
+// E11–E12 y casos adversos: ambigüedad, contradicciones, errores de API, datos faltantes,
+// entradas inválidas, cambio de ruta, colegio y entrevista al niño/niña.
 import { test, after } from 'node:test';
 import assert from 'node:assert/strict';
 import { iniciarApp, crearCaso, vista, responder, entrevistar, crearEvidencia } from './ayudantes.js';
-import { respuestaPara, INFORME_ESCOLAR, INSTRUMENTOS, INTERPRETACION } from '../fixtures/caso-ficticio.js';
+import { respuestaPara, INFORME_ESCOLAR } from '../fixtures/caso-ficticio.js';
 import { crearClienteIA } from '../../src/ia.js';
 
 const ev = crearEvidencia('informe-y-adversos');
 after(() => ev.escribir());
+
+async function hastaPregunta(api, id, qid, resp = respuestaPara) {
+  for (let i = 0; i < 200; i++) {
+    const q = (await vista(api, id)).caso.pregunta_actual;
+    if (!q) throw new Error(`no se llegó a ${qid}`);
+    if (q.id === qid) return q;
+    await responder(api, id, resp);
+  }
+  throw new Error('demasiados turnos');
+}
 
 async function casoCompleto(api) {
   const v = await crearCaso(api);
@@ -18,173 +28,155 @@ async function casoCompleto(api) {
   return id;
 }
 
-test('E11 · el informe final refleja los datos reales y las incertidumbres', async () => {
-  const p = ev.prueba('E11', 'Informe desde el expediente', 'Cada sección proviene del expediente; incertidumbres y contradicciones visibles; sin interpretación automática.');
+test('E11 · el informe final refleja los datos reales, las discrepancias y la incertidumbre', async () => {
+  const p = ev.prueba('E11', 'Informe desde el expediente', 'El informe se construye solo con el expediente: 19 secciones de la Etapa 9 §28.2, contraste DSM-5-TR R1–R10, evidencia literal y validación profesional.');
   const api = await iniciarApp();
   try {
     const id = await casoCompleto(api);
-    for (const i of INSTRUMENTOS) assert.equal((await api.req('POST', `/api/casos/${id}/evaluaciones`, i)).status, 200);
     let v = await vista(api, id);
-    const contr = v.contradicciones;
-    assert.equal(contr.length, 1, 'inquietud motora: apoderado «no» vs informe «sí»');
-    ev.paso(p, { entrada: 'Apoderado: HIP-MOT «No»; informe: «Es inquieto»', accion_resultante: contr[0].descripcion, esperado: 'Contradicción registrada sin resolverla', ok: true });
-    for (const c of contr) await api.req('POST', `/api/casos/${id}/contradicciones/${c.id}/revision`, { nota: 'Discrepancia entre contextos; se mantiene para la integración clínica.', profesional: 'Profesional de prueba' });
-    await api.req('PUT', `/api/casos/${id}/interpretacion`, { texto: INTERPRETACION, profesional: 'Profesional de prueba' });
-    v = await vista(api, id);
-    assert.equal(v.requisitos.completo, true, JSON.stringify(v.requisitos.requisitos.filter((r) => !r.cumplido)));
-    const fin = await api.req('POST', `/api/casos/${id}/informes`);
-    assert.equal(fin.status, 200);
-    const md = fin.body.markdown;
-    // Datos literales del expediente
-    assert.ok(md.includes('Desde primero básico se distrae mucho en clases'), 'motivo literal');
-    assert.match(md, /\*\*Edad:\*\* 8 años/);
-    assert.match(md, /«Presenta notas bajas en Lenguaje y Matemática durante el primer semestre\.»/, 'evidencia del informe escolar');
-    assert.match(md, /Inatención \(ficticio\):\*\* 21\/27/, 'resultado de instrumento');
-    assert.match(md, /Organización y finalización de tareas — Inicio: No recuerda/);
-    assert.match(md, /Inquietud motora: «presencia» registrado como «no» \(fuente: apoderado\) y luego como «si» \(fuente: informe_escolar\)\. — revisada por Profesional de prueba/);
-    assert.match(md, /Instrumento no realizado: Tarea de realidad virtual del proyecto \(opcional\)/);
-    assert.match(md, /no determinan por sí solos un diagnóstico/);
-    assert.match(md, /\*\*Presencia:\*\* Sí _\(respuesta inicial: respuesta ambigua; aclarada después\)_/, 'olvidos: ambigüedad aclarada');
-    assert.ok(md.includes(INTERPRETACION), 'la interpretación es la del profesional, sin agregados');
-    assert.match(md, /FINAL — PENDIENTE DE VALIDACIÓN/);
-    // Nada inventado: todo valor de la sección del apoderado existe en el expediente
-    const valores = new Set(v.hechos.map((h) => h.valor).filter(Boolean));
-    const sec2 = md.split('## 2.')[1].split('## 3.')[0];
-    for (const m of sec2.matchAll(/^- \*\*[^*]+:\*\* (.+)$/gm)) {
-      const limpio = m[1].replace(/ _\(.*\)_$/, '');
-      const val = limpio === 'Sí' ? 'si' : limpio === 'No' ? 'no' : limpio;
-      if (['No sabe', 'No recuerda', 'Respuesta ambigua'].includes(val)) continue;
-      assert.ok(valores.has(val), `valor no presente en el expediente: ${val}`);
+    assert.equal(v.caso.estado_global, 'entrevista_completa');
+    assert.equal(v.integracion.requisitos.R1.estado, 'UMBRAL ALCANZADO');
+    // La discrepancia R2.9 bloquea hasta ser revisada.
+    let r = await api.req('POST', `/api/casos/${id}/informes`);
+    assert.equal(r.status, 409);
+    for (const c of v.contradicciones.filter((x) => x.estado !== 'revisada')) {
+      await api.req('POST', `/api/casos/${id}/contradicciones/${c.id}/revision`, { nota: 'Diferencia atribuible al contexto (hogar vs. aula).', profesional: 'Profesional ficticio' });
     }
-    ev.paso(p, { entrada: 'Generación del informe final', accion_resultante: 'Motivo literal, edad, evidencia escolar, instrumentos, «No recuerda», contradicción revisada, RV pendiente', esperado: 'Todo trazable al expediente', ok: true });
-    const val = await api.req('POST', `/api/casos/${id}/informes/${fin.body.id}/validacion`, { profesional: 'Profesional de prueba' });
+    await api.req('POST', `/api/casos/${id}/evaluaciones`, { instrumento_id: 'NESPLORA', estado: 'realizada', fecha: '2026-10-01', resultados: { atencion_sostenida: 'bajo lo esperado' } });
+    await api.req('PUT', `/api/casos/${id}/interpretacion`, { texto: 'Interpretación clínica ficticia del profesional.', profesional: 'Profesional ficticio' });
+    r = await api.req('POST', `/api/casos/${id}/informes`);
+    assert.equal(r.status, 200);
+    const md = r.body.markdown;
+    for (let i = 1; i <= 19; i++) {
+      const sec = i === 13 || i === 14 ? '## 13–14.' : `## ${i}.`;
+      assert.ok(md.includes(sec), `sección ${i}`);
+    }
+    assert.match(md, /Desde primero básico se distrae mucho en clases/);
+    assert.match(md, /«No interrumpe a sus compañeros\.»/);
+    assert.match(md, /R1\.5 \| Dificultad para organizar tareas y actividades \| DESCONOCIDO/);
+    assert.match(md, /Nesplora/);
+    assert.match(md, /Referencias científicas/);
+    assert.match(md, /PENDIENTE DE VALIDACIÓN PROFESIONAL/);
+    ev.paso(p, { entrada: 'Expediente completo + revisión + interpretación', accion_resultante: `Informe final #${r.body.id} (${md.length} caracteres)`, esperado: '19 secciones con datos reales', ok: true });
+    const val = await api.req('POST', `/api/casos/${id}/informes/${r.body.id}/validacion`, { profesional: 'Profesional ficticio' });
     assert.equal(val.status, 200);
-    assert.match(val.body.markdown, /VALIDADO por Profesional de prueba/);
-    assert.equal((await vista(api, id)).caso.estado_global, 'validado');
-    ev.paso(p, { entrada: 'Validación profesional', accion_resultante: 'Estado: validado', ok: true });
+    assert.match(val.body.markdown, /VALIDADO por Profesional ficticio/);
+    v = await vista(api, id);
+    assert.equal(v.caso.estado_global, 'validado');
+    ev.paso(p, { entrada: 'Validación profesional', accion_resultante: `estado=${v.caso.estado_global}`, esperado: 'validado', ok: true });
     ev.cerrar(p, true);
   } finally { await api.cerrar(); }
 });
 
 test('E12 · el sistema bloquea preguntas no autorizadas e informes prematuros', async () => {
-  const p = ev.prueba('E12', 'Bloqueos', 'Preguntas fuera del banco, fuera de orden, dobles o equivalentes; respuestas a una pregunta no vigente; informe prematuro.');
+  const p = ev.prueba('E12', 'Bloqueos', 'Preguntas externas, respuestas a preguntas no vigentes e informes sin requisitos se rechazan y quedan auditados.');
   const api = await iniciarApp();
   try {
     const v = await crearCaso(api); const id = v.caso.id;
-    const casos = [
-      ['Inventada', { texto: '¿Su hijo tiene TDAH?' }, 'autorizada'],
-      ['Fuera de orden (dimensión durante la fase inicial)', { pregunta_id: 'HIP-MOT-P1', texto: '¿Le cuesta quedarse quieto en situaciones en que se espera que lo esté, como en la mesa o en clases?' }, 'orden_inicial'],
-      ['Texto alterado de una pregunta autorizada', { pregunta_id: 'INI-MOTIVO', texto: '¿Por qué vino y qué edad tiene?' }, 'autorizada'],
-      ['Doble pregunta', { texto: '¿Se distrae? ¿Y duerme bien?' }, 'una_sola_pregunta'],
-    ];
-    for (const [nombre, cuerpo, regla] of casos) {
-      const r = await api.req('POST', `/api/casos/${id}/propuestas`, cuerpo);
-      assert.equal(r.body.ok, false, nombre);
-      assert.ok(r.body.reglas.some((x) => x.regla === regla && !x.ok), `${nombre} → ${regla}`);
-      assert.equal(r.body.pregunta_vigente.id, 'INI-MOTIVO', 'la pregunta vigente no cambia');
-      ev.paso(p, { entrada: `${nombre}: «${cuerpo.texto}»`, decision_motor: 'Validador', accion_resultante: r.body.reglas.filter((x) => !x.ok).map((x) => `${x.regla}: ${x.detalle}`).join(' | '), esperado: `Bloqueada (${regla})`, ok: true });
-    }
-    const otra = await api.req('POST', `/api/casos/${id}/respuestas`, { pregunta_id: 'INI-EDAD', texto: '9' });
-    assert.equal(otra.status, 409);
-    ev.paso(p, { entrada: 'Respuesta enviada para INI-EDAD cuando la vigente es INI-MOTIVO', accion_resultante: `HTTP ${otra.status}`, esperado: 'Rechazada', ok: true });
+    const ext = await api.req('POST', `/api/casos/${id}/propuestas`, { texto: '¿Tiene antecedentes de alergias alimentarias?', origen: 'ia' });
+    assert.equal(ext.body.ok, false);
+    const fuera = await api.req('POST', `/api/casos/${id}/respuestas`, { pregunta_id: 'A09', opcion: 'A' });
+    assert.equal(fuera.status, 409);
     const inf = await api.req('POST', `/api/casos/${id}/informes`);
     assert.equal(inf.status, 409);
-    assert.equal(inf.body.detalle.completo, false);
-    ev.paso(p, { entrada: 'Informe final al inicio', accion_resultante: `HTTP ${inf.status}: ${inf.body.error}`, estado_despues: inf.body.detalle.requisitos.filter((x) => !x.cumplido).map((x) => x.id), esperado: 'Bloqueado con lista de faltantes', ok: true });
-    const aud = (await api.req('GET', `/api/casos/${id}/auditoria`)).body.decisiones.map((d) => d.tipo);
-    assert.ok(aud.includes('propuesta_bloqueada') && aud.includes('informe_final_bloqueado') && aud.includes('respuesta_rechazada'));
+    const aud = (await api.req('GET', `/api/casos/${id}/auditoria`)).body;
+    const tipos = aud.decisiones.map((d) => d.tipo);
+    for (const t of ['propuesta_bloqueada', 'respuesta_rechazada', 'informe_final_bloqueado']) assert.ok(tipos.includes(t), t);
+    ev.paso(p, { entrada: 'Pregunta externa / respuesta fuera de turno / informe prematuro', accion_resultante: `${ext.body.mensaje} · HTTP ${fuera.status} · HTTP ${inf.status}`, esperado: 'Todo bloqueado y auditado', ok: true });
     ev.cerrar(p, true);
   } finally { await api.cerrar(); }
 });
 
-test('A1 · respuestas ambiguas: se aclara con una pregunta más específica, sin suponer', async () => {
-  const p = ev.prueba('A1', 'Ambigüedad', '«A veces» no se convierte en sí ni en no.');
+test('A1 · respuestas ambiguas: no se suponen; la pregunta se mantiene hasta obtener una alternativa', async () => {
+  const p = ev.prueba('A1', 'Ambigüedad', 'Una respuesta libre que no corresponde a ninguna alternativa queda como ambigua y no se convierte en Sí ni No.');
   const api = await iniciarApp();
   try {
     const v = await crearCaso(api); const id = v.caso.id;
-    for (const t of ['Consulta general', '7', 'no']) await responder(api, id, t);
-    await responder(api, id, 'No'); await responder(api, id, 'No'); // INA-SOST, INA-ORG
-    const r1 = await responder(api, id, 'Depende del día'); // INA-OLV-P1
-    assert.equal(r1.traza.interpretacion.estado_dato, 'ambiguo');
-    assert.equal(r1.traza.decision_motor.pregunta_id, 'INA-OLV-P2');
-    ev.pasoDesdeTraza(p, r1.traza, 'Pregunta más específica del mismo dato', true);
-    const r2 = await responder(api, id, 'Más o menos');
-    assert.equal(r2.traza.estado_despues.dimensiones['INA-OLV'], 'parcial');
-    assert.equal(r2.traza.decision_motor.pregunta_id, 'HIP-MOT-P1');
-    ev.pasoDesdeTraza(p, r2.traza, 'Sin más preguntas específicas: queda parcial (ambigua) y avanza', true);
+    await hastaPregunta(api, id, 'A09');
+    const r = await responder(api, id, { texto: 'mmm' });
+    assert.equal(r.traza.interpretacion.estado_dato, 'ambiguo');
+    const e = r.vista.sintomas.find((s) => s.id === 'R1.8');
+    assert.notEqual(e.estado, 'NO REFERIDO');
+    assert.notEqual(e.estado, 'APOYADO POR EVIDENCIA');
+    ev.pasoDesdeTraza(p, r.traza, 'Dato ambiguo; sin supuesto', true);
     ev.cerrar(p, true);
   } finally { await api.cerrar(); }
 });
 
-test('A2 · contradicción dentro de la misma fuente: se registra y bloquea el informe hasta su revisión', async () => {
-  const p = ev.prueba('A2', 'Contradicción', 'Datos que se contradicen no se resuelven por suposición.');
+test('A2 · discrepancia entre fuentes: se registra y bloquea el informe hasta su revisión', async () => {
+  const p = ev.prueba('A2', 'Discrepancias', 'Apoderado «Sí» vs. colegio «No» en R2.9: se conserva sin resolver por suposición y exige revisión profesional.');
   const api = await iniciarApp();
   try {
-    const v = await crearCaso(api); const id = v.caso.id;
-    await responder(api, id, 'Consulta'); await responder(api, id, '9');
-    await responder(api, id, 'no'); // no existe informe → ruta completa
-    // Datos estructurados del colegio que contradicen la edad no aplican; usamos un dato de dimensión:
-    const r = await responder(api, id, 'Sí, mucho'); // INA-SOST-P1 = sí
-    ev.pasoDesdeTraza(p, r.traza, 'Presencia sí', true);
-    const manual = await api.req('POST', `/api/casos/${id}/informe-escolar`, { hechos: [{ dimension_id: 'INA-SOST', slot: 'presencia', valor: 'no', evidencia: 'Mantiene la atención durante toda la clase.' }] });
-    assert.equal(manual.status, 200);
-    assert.equal(manual.body.contradicciones.length, 1);
-    const w = await vista(api, id);
-    assert.equal(w.dimensiones.find((d) => d.id === 'INA-SOST').slots.presencia.estado, 'contradiccion');
-    assert.equal(w.requisitos.requisitos.find((x) => x.id === 'contradicciones_revisadas').cumplido, false);
-    ev.paso(p, { entrada: 'Extracción estructurada contradictoria (presencia «no» con evidencia)', accion_resultante: manual.body.contradicciones[0].descripcion, estado_despues: 'Presencia: contradicción; requisito contradicciones_revisadas = false', esperado: 'Registrada, no resuelta', ok: true });
-    const sinNota = await api.req('POST', `/api/casos/${id}/contradicciones/${manual.body.contradicciones[0].id}/revision`, { profesional: 'X' });
+    const id = await casoCompleto(api);
+    const v = await vista(api, id);
+    const c = v.contradicciones.find((x) => x.estado === 'abierta');
+    assert.ok(c);
+    assert.match(c.descripcion, /se conserva sin resolver/);
+    const e = v.sintomas.find((s) => s.id === 'R2.9');
+    assert.equal(e.estado, 'CONTRADICTORIO');
+    assert.equal(v.requisitos.requisitos.find((r) => r.id === 'contradicciones_revisadas').cumplido, false);
+    const sinNota = await api.req('POST', `/api/casos/${id}/contradicciones/${c.id}/revision`, { profesional: 'X' });
     assert.equal(sinNota.status, 400);
+    const ok = await api.req('POST', `/api/casos/${id}/contradicciones/${c.id}/revision`, { nota: 'Revisado', profesional: 'Profesional ficticio' });
+    assert.equal(ok.body.requisitos.requisitos.find((r) => r.id === 'contradicciones_revisadas').cumplido, true);
+    ev.paso(p, { entrada: c.descripcion, accion_resultante: 'Revisión con nota y profesional', esperado: 'Requisito cumplido solo tras la revisión', ok: true });
     ev.cerrar(p, true);
   } finally { await api.cerrar(); }
 });
 
 test('A3 · error de la API de IA: contingencia con el intérprete de reglas, sin perder la respuesta', async () => {
-  const p = ev.prueba('A3', 'Error de API', 'Caída, tiempo agotado o JSON inválido de la IA no detienen la entrevista ni corrompen el expediente.');
+  const p = ev.prueba('A3', 'Error de API', 'Caída, tiempo agotado, JSON inválido o alternativa fuera de esquema no detienen la entrevista ni corrompen el expediente.');
   const fallos = [
     ['red caída', async () => { throw new Error('ECONNRESET'); }],
     ['HTTP 529', async () => new Response('sobrecargado', { status: 529 })],
     ['JSON inválido', async () => Response.json({ content: [{ type: 'text', text: 'no es json' }] })],
-    ['clasificación fuera de esquema', async () => Response.json({ content: [{ type: 'text', text: '{"clasificacion":"quizas"}' }] })],
+    ['alternativa fuera de esquema', async () => Response.json({ content: [{ type: 'text', text: '{"codigo":"Z"}' }] })],
   ];
   for (const [nombre, fetchImpl] of fallos) {
-    const ia = crearClienteIA({ apiKey: 'clave-de-prueba', fetchImpl, timeoutMs: 500 });
+    const ia = crearClienteIA({ proveedor: 'anthropic', apiKey: 'clave-de-prueba', fetchImpl, timeoutMs: 500 });
     const api = await iniciarApp({ ia });
     try {
       const v = await crearCaso(api); const id = v.caso.id;
-      const r = await responder(api, id, 'Se distrae mucho');
+      await hastaPregunta(api, id, 'A09');
+      const r = await responder(api, id, { texto: 'Sí, se distrae siempre' });
       assert.ok(r.traza.error_api, nombre);
       assert.equal(r.traza.interpretacion.interprete, 'reglas (contingencia)');
-      assert.equal(r.traza.decision_motor.pregunta_id, 'INI-EDAD', 'la entrevista continúa');
+      assert.equal(r.traza.interpretacion.valor, 'si');
+      assert.equal(r.traza.decision_motor.pregunta_id, 'R1.8-FRECUENCIA', 'la entrevista continúa');
       const aud = (await api.req('GET', `/api/casos/${id}/auditoria`)).body;
       assert.equal(aud.errores.length, 1);
-      assert.equal(aud.respuestas[0].texto_original, 'Se distrae mucho');
       ev.pasoDesdeTraza(p, r.traza, `Falla «${nombre}» → contingencia y error auditado (${r.traza.error_api})`, true);
     } finally { await api.cerrar(); }
   }
   ev.cerrar(p, true);
 });
 
-test('A4 · IA disponible: solo interpreta; menciones con dimensiones inválidas se descartan', async () => {
-  const p = ev.prueba('A4', 'IA acotada', 'La IA clasifica y detecta menciones, pero no elige preguntas; su salida se valida.');
-  let llamadas = 0;
-  const fetchImpl = async (_url, init) => {
-    llamadas++;
-    const cuerpo = JSON.parse(init.body);
-    assert.match(cuerpo.system, /Nunca selecciones, inventes ni reformules preguntas/);
-    return Response.json({ content: [{ type: 'text', text: JSON.stringify({ clasificacion: 'valor', valor: 'Le cuesta concentrarse', menciones: [{ dimension_id: 'HIP-MOT', evidencia: 'no para quieto' }, { dimension_id: 'INVENTADA', evidencia: 'x' }] }) }] });
-  };
-  const api = await iniciarApp({ ia: crearClienteIA({ apiKey: 'k', fetchImpl }) });
-  try {
-    const v = await crearCaso(api); const id = v.caso.id;
-    const r = await responder(api, id, 'Le cuesta concentrarse y no para quieto');
-    assert.equal(llamadas, 1);
-    assert.equal(r.traza.interpretacion.interprete, 'ia');
-    assert.deepEqual(r.traza.interpretacion.menciones.map((m) => m.dimension_id), ['HIP-MOT']);
-    assert.equal(r.traza.decision_motor.pregunta_id, 'INI-EDAD', 'el orden lo sigue fijando el motor');
-    ev.pasoDesdeTraza(p, r.traza, 'Mención válida registrada; dimensión inventada descartada; siguiente pregunta la decide el motor', true);
-    ev.cerrar(p, true);
-  } finally { await api.cerrar(); }
+test('A4 · IA disponible (Anthropic u OpenAI): solo asigna la alternativa; el motor decide la siguiente pregunta', async () => {
+  const p = ev.prueba('A4', 'IA acotada', 'La IA recibe la pregunta autorizada y sus alternativas y devuelve solo un código; no elige preguntas.');
+  for (const proveedor of ['anthropic', 'openai']) {
+    let llamadas = 0;
+    const fetchImpl = async (url, init) => {
+      llamadas++;
+      const cuerpo = JSON.parse(init.body);
+      const system = proveedor === 'anthropic' ? cuerpo.system : cuerpo.messages[0].content;
+      assert.match(system, /No selecciones, inventes ni reformules preguntas/);
+      if (proveedor === 'openai') { assert.match(url, /openai/); assert.equal(init.headers.authorization, 'Bearer k'); }
+      const texto = JSON.stringify({ codigo: 'C' });
+      return Response.json(proveedor === 'anthropic' ? { content: [{ type: 'text', text: texto }] } : { choices: [{ message: { content: texto } }] });
+    };
+    const api = await iniciarApp({ ia: crearClienteIA({ proveedor, apiKey: 'k', fetchImpl }) });
+    try {
+      const v = await crearCaso(api); const id = v.caso.id;
+      await hastaPregunta(api, id, 'A09');
+      const r = await responder(api, id, { texto: 'Pasa en algunos momentos, depende del día' });
+      assert.equal(llamadas, 1);
+      assert.equal(r.traza.interpretacion.interprete, 'ia');
+      assert.equal(r.traza.interpretacion.valor, 'ocasionalmente');
+      assert.equal(r.traza.decision_motor.pregunta_id, 'R1.8-FRECUENCIA', 'el orden lo fija el motor');
+      ev.pasoDesdeTraza(p, r.traza, `${proveedor}: código C → Ocasionalmente; la siguiente pregunta la decide el motor`, true);
+    } finally { await api.cerrar(); }
+  }
+  ev.cerrar(p, true);
 });
 
 test('A5 · datos faltantes y entradas inválidas', async () => {
@@ -196,13 +188,15 @@ test('A5 · datos faltantes y entradas inválidas', async () => {
       ['Respuesta vacía', await api.req('POST', `/api/casos/${id}/respuestas`, { pregunta_id: 'INI-MOTIVO', texto: '  ' }), 400],
       ['Tipo de respuesta no válido', await api.req('POST', `/api/casos/${id}/respuestas`, { pregunta_id: 'INI-MOTIVO', tipo: 'tal_vez' }), 400],
       ['Caso inexistente', await api.req('GET', '/api/casos/no-existe'), 404],
-      ['Instrumento fuera del protocolo', await api.req('POST', `/api/casos/${id}/evaluaciones`, { instrumento_id: 'OTRO', estado: 'realizada', fecha: '2026-10-01' }), 400],
+      ['Instrumento fuera del protocolo', await api.req('POST', `/api/casos/${id}/evaluaciones`, { instrumento_id: 'INVENTADO', estado: 'realizada', fecha: '2026-10-01' }), 400],
       ['Realizada sin fecha', await api.req('POST', `/api/casos/${id}/evaluaciones`, { instrumento_id: 'NESPLORA', estado: 'realizada' }), 400],
       ['No aplica sin justificación', await api.req('POST', `/api/casos/${id}/evaluaciones`, { instrumento_id: 'ESCALA-DOCENTE', estado: 'no_aplica' }), 400],
       ['Cambio de ruta antes de la fase inicial', await api.req('POST', `/api/casos/${id}/ruta`, { ruta: 'completa', motivo: 'x' }), 409],
       ['Interpretación sin profesional', await api.req('PUT', `/api/casos/${id}/interpretacion`, { texto: 'x' }), 400],
       ['Informe escolar vacío', await api.req('POST', `/api/casos/${id}/informe-escolar`, { texto: '' }), 400],
-      ['Extracción manual sin evidencia', await api.req('POST', `/api/casos/${id}/informe-escolar`, { hechos: [{ dimension_id: 'INA-SOST', slot: 'presencia', valor: 'si' }] }), 400],
+      ['Extracción manual sin evidencia', await api.req('POST', `/api/casos/${id}/informe-escolar`, { hechos: [{ sintoma: 'R1.8', slot: 'presencia:informe', valor: 'si' }] }), 400],
+      ['Pregunta de colegio inexistente', await api.req('POST', `/api/casos/${id}/colegio`, { respuestas: [{ pregunta_id: 'X99', texto: 'a' }] }), 400],
+      ['Entrevista NNA sin edad', await api.req('POST', `/api/casos/${id}/nna`, { pregunta_id: 'D01', texto: 'a' }), 409],
     ];
     for (const [nombre, r, esperado] of checks) {
       assert.equal(r.status, esperado, nombre);
@@ -216,7 +210,7 @@ test('A5 · datos faltantes y entradas inválidas', async () => {
 });
 
 test('A6 · cambio de ruta cuando el informe finalmente no se puede obtener', async () => {
-  const p = ev.prueba('A6', 'Cambio de ruta', 'Si el informe anunciado no llega, el profesional cambia la ruta y la entrevista cubre lo escolar.');
+  const p = ev.prueba('A6', 'Cambio de ruta', 'Si el informe anunciado no llega, el profesional cambia a Ruta A y el apoderado aporta lo escolar.');
   const api = await iniciarApp();
   try {
     const v = await crearCaso(api); const id = v.caso.id;
@@ -224,10 +218,33 @@ test('A6 · cambio de ruta cuando el informe finalmente no se puede obtener', as
     assert.equal(r.vista.caso.estado_global, 'esperando_informe_escolar');
     const c = await api.req('POST', `/api/casos/${id}/ruta`, { ruta: 'completa', motivo: 'El colegio no entregará el informe' });
     assert.equal(c.status, 200);
-    assert.ok(c.body.resultado.pregunta.id.startsWith('ESC-'));
-    ev.paso(p, { entrada: 'Cambio de ruta a «completa» con motivo', decision_motor: c.body.resultado.pregunta.justificacion, accion_resultante: `Pregunta: ${c.body.resultado.pregunta.texto}`, esperado: 'Se exploran las dimensiones escolares en la entrevista', ok: true });
+    assert.equal(c.body.resultado.pregunta.id, 'RA-C01');
+    ev.paso(p, { entrada: 'Cambio de ruta a «completa» con motivo', decision_motor: c.body.resultado.pregunta.justificacion, accion_resultante: `Pregunta: ${c.body.resultado.pregunta.texto}`, esperado: 'Se pregunta lo escolar al apoderado', ok: true });
     const fin = await entrevistar(api, id);
     assert.equal(fin.vista.caso.estado_global, 'entrevista_completa');
+    ev.cerrar(p, true);
+  } finally { await api.cerrar(); }
+});
+
+test('A7 · complementación del colegio (Anexo 7-C) y entrevista al niño/niña (Anexo 7-D)', async () => {
+  const p = ev.prueba('A7', 'Otras fuentes', 'Solo se envían al colegio las preguntas que el informe no cubre; la entrevista al niño usa el banco D (<12 años) y se puede finalizar.');
+  const api = await iniciarApp();
+  try {
+    const id = await casoCompleto(api);
+    let v = await vista(api, id);
+    const enviar = v.colegio.filter((c) => c.enviar).map((c) => c.id);
+    assert.ok(!enviar.includes('C01'));
+    assert.ok(enviar.length > 0);
+    v = (await api.req('POST', `/api/casos/${id}/colegio`, { respuestas: [{ pregunta_id: enviar[0], texto: 'En el aula necesita apoyo para organizarse.' }] })).body;
+    assert.ok(v.hechos.some((h) => h.fuente === 'profesor' && h.slot === enviar[0]));
+    assert.equal(v.nna.fuente, 'nino');
+    const q = v.nna.siguiente;
+    assert.match(q.id, /^D\d+/);
+    v = (await api.req('POST', `/api/casos/${id}/nna`, { pregunta_id: q.id, texto: 'A veces me cuesta poner atención en clases.' })).body;
+    assert.equal(v.nna.respondidas, 1);
+    v = (await api.req('POST', `/api/casos/${id}/nna`, { finalizar: true })).body;
+    assert.equal(v.nna.cerrada, true);
+    ev.paso(p, { entrada: `Colegio: ${enviar.length} preguntas por enviar; NNA: ${q.id}`, accion_resultante: 'Respuestas registradas con su fuente (profesor / niño)', esperado: 'Sin preguntar lo ya cubierto', ok: true });
     ev.cerrar(p, true);
   } finally { await api.cerrar(); }
 });

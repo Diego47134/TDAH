@@ -1,145 +1,138 @@
-// Validador previo a presentar cualquier pregunta (requisito §6 del brief).
-// Si una regla falla, la pregunta se bloquea y el motor busca otra alternativa autorizada.
+// Barrera obligatoria antes de mostrar cualquier pregunta (Etapa 9 §C y §L; brief §6).
+// Si una regla falla, la pregunta se descarta y el motor prueba la siguiente candidata.
 import { normalizar } from './protocolo.js';
 import {
-  estadoSlot, preguntasDe, slotTerminal, faseInicialCompleta, slotsIniciales, ruta,
-  dimensionAplica, ESTADOS_INCIERTOS,
+  estadoSlot, estadoPregunta, resuelto, preguntadas, slotsIniciales, faseInicialCompleta, ruta, informeCargado,
+  evaluarSintoma, estadoBarrido, estadoTamizaje, lista,
 } from './motor.js';
 
 const VACIAS = new Set(('a al algo algun alguna como con cual cuando de del desde el ella en es esa ese esta este hay la las le lo los me mi mas o para pero por que se su sus te tu un una uno y ya ha han usted ud sobre respecto ocurre suele').split(' '));
-
+// Raíz aproximada: sin plural ni «-mente», recortada a 5 letras (facilidad ≈ fácilmente).
+const raiz = (w) => w.replace(/mente$/, '').replace(/(es|s)$/, '').slice(0, 5);
 export function tokens(t) {
-  return new Set(normalizar(t).split(' ').filter((w) => w.length > 2 && !VACIAS.has(w)).map((w) => w.replace(/(es|s)$/, '')));
+  return new Set(normalizar(t).split(' ').filter((w) => w.length > 2 && !VACIAS.has(w)).map(raiz));
 }
-
 export function similitud(a, b) {
   const A = tokens(a); const B = tokens(b);
   if (!A.size || !B.size) return 0;
-  let inter = 0;
-  for (const x of A) if (B.has(x)) inter++;
-  return inter / (A.size + B.size - inter);
+  let i = 0; for (const x of A) if (B.has(x)) i++;
+  return i / (A.size + B.size - i);
 }
 
-/**
- * @param ctx contexto del expediente
- * @param cand {pregunta_id?, texto, origen}
- * @returns {{ok:boolean, reglas:Array<{regla,ok,detalle}>, notas:string[]}}
- */
 export function validarPregunta(ctx, cand) {
   const p = ctx.protocolo;
-  const reglas = [];
-  const notas = [];
+  const reglas = []; const notas = [];
   const add = (regla, ok, detalle) => reglas.push({ regla, ok, detalle });
-  const q = cand.pregunta_id ? p.preguntasPorId.get(cand.pregunta_id) : null;
+  const q = cand.pregunta_id ? p.preguntas.get(cand.pregunta_id) : null;
+  const fuenteActiva = ctx.fuente || 'apoderado';
 
-  // 1. Una sola pregunta por turno.
-  const nInterrog = (String(cand.texto).match(/\?/g) || []).length;
-  add('una_sola_pregunta', nInterrog <= 1, nInterrog <= 1 ? 'Contiene una sola pregunta.' : `Contiene ${nInterrog} preguntas.`);
+  const n = (String(cand.texto).match(/\?/g) || []).length;
+  add('una_sola_pregunta', n <= 1, n <= 1 ? 'Una sola dimensión principal.' : `Contiene ${n} preguntas.`);
 
-  // 2. Autorizada por el banco (Etapa 7) y seleccionada por el motor (Etapa 9).
   if (!q) {
-    add('autorizada', false, 'La pregunta no pertenece al banco autorizado del protocolo.');
-    // Aun así se informa si es funcionalmente equivalente a algo ya preguntado.
-    const umbral = p.limites.umbral_similitud_textual;
-    const parecida = ctx.preguntas.map((x) => ({ x, s: similitud(cand.texto, x.texto) })).sort((a, b) => b.s - a.s)[0];
-    if (parecida && parecida.s >= umbral) {
-      add('no_equivalente', false, `Equivalente funcional a ${parecida.x.pregunta_id} ya formulada (similitud ${parecida.s.toFixed(2)}).`);
-    }
-    for (const g of p.grupos_equivalencia || []) {
-      const ref = g.preguntas.map((id) => p.preguntasPorId.get(id));
-      const s = Math.max(...ref.map((r) => similitud(cand.texto, r.texto)));
-      if (s >= umbral && g.preguntas.some((id) => ctx.preguntas.some((x) => x.pregunta_id === id))) {
-        add('no_equivalente', false, `Pertenece al grupo de equivalencia ${g.id} («${g.descripcion}»), ya explorado.`);
-      }
-    }
+    add('pertenece_al_proyecto', false, 'La pregunta no pertenece al banco del proyecto (Etapa 7 / Anexo 7 / Etapa 9).');
+    const umbral = p.parametros.umbral_similitud_textual;
+    const hechas = ctx.preguntas.map((x) => ({ x, s: similitud(cand.texto, x.texto) })).sort((a, b) => b.s - a.s);
+    if (hechas[0] && hechas[0].s >= umbral) add('no_equivalente', false, `Equivalente funcional a ${hechas[0].x.pregunta_id}, ya utilizada (similitud ${hechas[0].s.toFixed(2)}).`);
+    const banco = [...p.preguntas.values()].map((x) => ({ x, s: similitud(cand.texto, x.texto) })).sort((a, b) => b.s - a.s)[0];
+    if (banco && banco.s >= umbral && resuelto(estadoPregunta(ctx, banco.x))) add('informacion_ya_resuelta', false, `Busca la información de ${banco.x.id}, que ya está establecida en el expediente.`);
     return { ok: false, reglas, notas };
   }
   const textoOk = normalizar(cand.texto) === normalizar(q.texto);
-  add('autorizada', textoOk, textoOk ? `Pregunta ${q.id} del banco autorizado.` : `El texto difiere del autorizado para ${q.id}.`);
+  add('pertenece_al_proyecto', textoOk, textoOk ? `Pregunta ${q.id} (${q.origen}).` : `El texto difiere del definido para ${q.id}.`);
+  add('fuente', q.fuente === fuenteActiva || (q.fuente === 'apoderado' && fuenteActiva === 'apoderado'),
+    q.fuente === fuenteActiva ? `Corresponde a la fuente activa (${fuenteActiva}).` : `Pertenece a la fuente ${q.fuente}; la fuente activa es ${fuenteActiva} (Etapa 9 §I).`);
 
-  // 3. Orden obligatorio de la fase inicial.
-  const iniCompleta = faseInicialCompleta(ctx);
-  if (q.fase === 'inicial') {
-    const sig = slotsIniciales(ctx).find((s) => !slotTerminal(ctx, 'INI', s));
-    add('orden_inicial', sig === q.slot, sig === q.slot ? 'Respeta la secuencia inicial.' : `En la secuencia inicial corresponde «${sig ?? 'ninguno'}», no «${q.slot}».`);
+  // Alternativas correctas según el tipo (Etapa 9 §G).
+  let altOk = true; let altDet = 'Formato abierto.';
+  if (q.tipo === 'presencia') {
+    altOk = (q.opciones || []).map((o) => o.valor).join(',') === 'si,no,ocasionalmente,no_sabe';
+    altDet = altOk ? 'Presencia/ausencia: SÍ / NO / OCASIONALMENTE / NO SABE-NO RECUERDA.' : 'Faltan las cuatro alternativas obligatorias.';
+  } else if (q.tipo === 'opciones' || q.tipo === 'multiple') {
+    altOk = (q.opciones || []).length >= 2; altDet = altOk ? 'Alternativas definidas por el proyecto.' : 'Pregunta de selección sin alternativas.';
+  } else if (q.opciones?.length) { altOk = false; altDet = 'Una pregunta abierta no debe llevar alternativas.'; }
+  add('alternativas', altOk, altDet);
+
+  // Orden de la fase inicial.
+  if (q.grupo === 'inicio') {
+    const sig = slotsIniciales(ctx).find((s) => !resuelto(estadoSlot(ctx, 'INI', s)));
+    add('orden_inicial', sig === q.objetivo[1], sig === q.objetivo[1] ? 'Respeta la secuencia inicial.' : `En la secuencia inicial corresponde «${sig ?? 'ninguno'}».`);
     if (q.condicion) {
-      const c = estadoSlot(ctx, 'INI', q.condicion.slot);
-      const cumple = c.estado === 'valor' && c.valor === q.condicion.igual;
-      add('condicion', cumple, cumple ? 'Condición previa cumplida.' : `Requiere ${q.condicion.slot} = ${q.condicion.igual}.`);
+      const c = estadoSlot(ctx, ...q.condicion.objetivo);
+      const ok = c.estado === 'valor' && c.valor === q.condicion.igual;
+      add('condicion', ok, ok ? 'Condición previa cumplida.' : 'La condición previa no se cumple.');
     }
-  } else {
-    add('orden_inicial', iniCompleta, iniCompleta ? 'Fase inicial completa.' : 'No se pueden explorar dimensiones antes de completar motivo, edad, informe escolar y ruta.');
+  } else if (q.fuente === 'apoderado') {
+    const ok = faseInicialCompleta(ctx);
+    add('orden_inicial', ok, ok ? 'Fase inicial completa.' : 'Antes deben registrarse motivo, edad e informe escolar.');
   }
 
-  const dimId = q.dimension_id;
-  const d = dimId === 'INI' ? null : p.dimensionesPorId.get(dimId);
+  // Información ya resuelta (aunque la pregunta literal nunca se haya formulado) — Etapa 9 §J.4-A.
+  const st = estadoPregunta(ctx, q);
+  add('informacion_no_resuelta', !resuelto(st), resuelto(st) ? `La información ya está establecida (${st.estado}${st.via ? `, vía ${st.via}` : ''}; fuentes: ${st.fuentes.join(', ') || '—'}).` : 'La información buscada no está en el expediente.');
+  add('no_utilizada', !preguntadas(ctx, q.id), preguntadas(ctx, q.id) ? `${q.id} ya fue utilizada (Etapa 9 §B).` : 'No utilizada antes.');
 
-  // 4. Ruta y edad.
-  if (d) {
-    const r = ruta(ctx);
-    const aplica = dimensionAplica(ctx, d);
-    add('aplicable_edad', aplica, aplica ? 'Aplicable a la edad registrada.' : 'Dimensión fuera del rango de edad.');
-    if (d.ambito === 'escolar' && r === 'con_informe') {
-      const hay = ctx.informesEscolares.length > 0;
-      add('ruta_informe_escolar', hay, hay ? 'Dimensión escolar: el informe ya fue cargado y no resolvió este dato.' : 'Ruta con informe escolar: esta dimensión se espera del informe, no se pregunta en el hogar.');
+  // Equivalencias funcionales.
+  const g = p.grupoDe.get(q.id);
+  if (g) {
+    const otra = g.preguntas.filter((id) => id !== q.id).find((id) => {
+      if (id.startsWith('TAM:')) { const t = estadoTamizaje(ctx); return t.estado !== 'NO_REALIZADO'; }
+      if (id.startsWith('BAR:')) { const b = estadoBarrido(ctx); return b.estado !== 'NO_REALIZADO'; }
+      return preguntadas(ctx, id) || resuelto(estadoPregunta(ctx, p.preguntas.get(id)));
+    });
+    add('no_equivalente', !otra, otra ? `Funcionalmente equivalente a ${otra} (${g.descripcion}).` : 'Sin equivalentes utilizados.');
+  }
+
+  // Síntomas: presencia ya establecida y máximo de 3 preguntas de profundización (Etapa 9 §14).
+  if (q.sintoma) {
+    const s = p.sintomasPorId.get(q.sintoma);
+    const e = evaluarSintoma(ctx, s);
+    if (q.grupo === 'sintoma') {
+      const ok = !e.presenciaEstablecida && e.porFuente.apoderado !== 'si';
+      add('sintoma_no_establecido', ok, ok ? 'La presencia del síntoma aún no está establecida.' : `La presencia de ${s.id} ya está establecida; no se reformula.`);
     } else {
-      add('ruta_informe_escolar', true, `Compatible con la ruta «${r}».`);
+      const max = p.parametros.max_profundizacion_sintoma;
+      add('maximo_profundizacion', e.profundizacion < max, e.profundizacion < max ? `${e.profundizacion}/${max} preguntas de profundización en ${s.id}.` : `Se alcanzó el máximo de ${max} preguntas para ${s.id}; queda abierto/insuficiente sin confirmarse por defecto.`);
+      const necesaria = e.positivo || e.porFuente.apoderado === 'parcial' || (e.ocasional && q.dimension === 'frecuencia');
+      add('necesaria', necesaria, necesaria ? (e.ocasional && !e.positivo ? 'Respuesta «Ocasionalmente»: se cuantifica la frecuencia (Etapa 9 §6.2).' : 'El síntoma tiene evidencia positiva que requiere caracterización.') : 'Solo se profundiza un síntoma con evidencia positiva.');
     }
   }
 
-  // 5. Necesaria: el dato no está resuelto en el expediente (de ninguna fuente).
-  const st = estadoSlot(ctx, dimId, q.slot);
-  if (st.estado === 'valor' || st.estado === 'contradiccion') {
-    add('no_en_expediente', false, `El dato ya está en el expediente (${st.estado}; fuentes: ${st.fuentes.join(', ')}).`);
-  } else {
-    add('no_en_expediente', true, st.estado === 'sin_dato' ? 'Dato ausente del expediente.' : `Dato en estado «${st.estado}».`);
-  }
-  if (d && q.slot !== 'presencia') {
-    const pres = estadoSlot(ctx, dimId, 'presencia');
-    const ok = pres.estado === 'valor' && pres.valor === 'si';
-    add('necesaria', ok, ok ? 'La conducta está presente y este dato es esencial para caracterizarla.' : 'Solo se caracteriza una conducta cuya presencia está establecida.');
-  } else {
-    const term = slotTerminal(ctx, dimId, q.slot);
-    add('necesaria', !term, term ? 'El dato ya no requiere más preguntas.' : 'Resuelve un dato pendiente.');
+  // Ruta escolar (Etapa 7 §5).
+  if (q.grupo === 'ruta_a') {
+    const r = ruta(ctx);
+    const ok = r === 'completa' || (r === 'con_informe' && informeCargado(ctx));
+    add('ruta_informe_escolar', ok, ok ? `Compatible con la ruta ${r === 'completa' ? 'A' : 'B (vacío del informe)'}.` : 'Ruta B: la información escolar se obtiene primero del informe.');
   }
 
-  // 6. No repetida ni funcionalmente equivalente a una ya formulada.
-  const repetida = ctx.preguntas.some((x) => x.pregunta_id === q.id);
-  add('no_repetida', !repetida, repetida ? `${q.id} ya fue formulada.` : 'No formulada antes.');
-  const grupo = p.grupoDePregunta.get(q.id);
-  if (grupo) {
-    const previa = ctx.preguntas.find((x) => grupo.preguntas.includes(x.pregunta_id) && x.pregunta_id !== q.id);
-    add('no_equivalente', !previa, previa ? `Equivalente funcional a ${previa.pregunta_id} (grupo ${grupo.id}: «${grupo.descripcion}»).` : 'Sin equivalentes formuladas.');
-  } else {
-    add('no_equivalente', true, 'Sin grupo de equivalencia.');
+  // Ramas del barrido y del tamizaje: solo categorías seleccionadas (Etapa 9 §H).
+  if (q.grupo === 'rama_barrido') {
+    const b = estadoBarrido(ctx);
+    const ok = b.areas.includes(q.area);
+    add('rama_abierta', ok, ok ? `Área «${q.area}» seleccionada en el barrido.` : 'El área no fue seleccionada en el barrido diferencial.');
+  }
+  if (q.grupo === 'rama_tamizaje') {
+    const t = estadoTamizaje(ctx);
+    const ok = t.categorias.includes(q.categoria);
+    add('rama_abierta', ok, ok ? `Categoría «${q.categoria}» seleccionada.` : 'La categoría no fue seleccionada en el tamizaje.');
+  }
+  if (q.grupo === 'tamizaje') {
+    const b = estadoBarrido(ctx);
+    const ok = b.estado === 'COMPLETADO';
+    add('orden_barrido_tamizaje', ok, ok ? 'Barrido diferencial completado (Etapa 9 §J.5).' : 'El tamizaje se aplica después del barrido diferencial general.');
+  }
+  if (q.bloque) {
+    const b = p.bloques.find((x) => x.id === q.bloque);
+    const hechas = b.preguntas.filter((id) => preguntadas(ctx, id)).length;
+    add('minima_suficiente', hechas < b.max, hechas < b.max ? `${hechas}/${b.max} preguntas del bloque «${b.id}».` : `El bloque «${b.id}» alcanzó su máximo; la línea se cierra.`);
   }
 
-  // 7. Especificidad creciente dentro de un mismo dato.
-  const previas = preguntasDe(ctx, dimId, q.slot);
-  if (previas.length) {
-    const max = Math.max(...previas.map((x) => x.especificidad));
-    add('mas_especifica', q.especificidad > max, q.especificidad > max ? 'Más específica que las anteriores para este dato.' : 'Ya se formuló una pregunta igual o más específica para este dato.');
+  // Exclusividad de alternativas declaradas.
+  if (q.tipo === 'multiple') {
+    const exc = (q.opciones || []).filter((o) => o.excluyente).map((o) => o.codigo);
+    add('opcion_excluyente', exc.length > 0 || q.alternativas === 'contextos', exc.length ? `Opciones excluyentes: ${exc.join(', ')}.` : 'Selección múltiple.');
   }
-
-  // 8. Tratamiento de la incertidumbre.
-  const incierto = ESTADOS_INCIERTOS.includes(st.estado);
-  if (q.tras_incertidumbre) {
-    add('incertidumbre', incierto, incierto ? 'Pregunta alternativa autorizada tras «no sé/no recuerdo».' : 'Solo procede después de una respuesta «no sé/no recuerdo».');
-  } else if (incierto) {
-    add('incertidumbre', false, 'Tras «no sé/no recuerdo» no se repite la pregunta; solo se admite una alternativa con ejemplo concreto.');
-  }
-
-  // 9. Límite por dimensión: control de redundancia, no cuota.
-  if (d) {
-    const n = preguntasDe(ctx, dimId).length;
-    const { max_preguntas_por_dimension: lim, tope_absoluto_por_dimension: tope } = p.limites;
-    if (n >= tope) add('limite', false, `Se alcanzó el tope absoluto de ${tope} preguntas en la dimensión.`);
-    else if (n >= lim) {
-      const esencial = q.slot === 'presencia' || d.esenciales.includes(q.slot);
-      add('limite', esencial, esencial ? `Excede el límite orientativo (${lim}) justificadamente: dato esencial pendiente.` : 'Excede el límite y el dato no es esencial.');
-      if (esencial) notas.push(`[límite ${n}/${lim} superado por dato esencial]`);
-    } else add('limite', true, `${n}/${lim} preguntas en la dimensión.`);
-  }
-
   return { ok: reglas.every((r) => r.ok), reglas, notas };
 }
+
+export { lista };

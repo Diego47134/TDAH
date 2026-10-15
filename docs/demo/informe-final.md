@@ -2,216 +2,391 @@
 
 **Estado:** VALIDADO por Profesional de prueba el 2026-10-15
 
-> Este informe se genera a partir del expediente estructurado. No sustituye el juicio clínico: su contenido debe ser revisado y validado por el profesional responsable. Las inferencias automáticas no se presentan como hechos documentados.
+> Informe generado desde el expediente estructurado con el protocolo tdah-protocolo 1.0.0. Es una hipótesis estructurada: la decisión clínica final corresponde al profesional responsable (Etapa 9 §1 y §28). Las inferencias no se presentan como hechos documentados.
 
-> **Protocolo provisional (0.1.0-provisional).** Protocolo PROVISIONAL creado solo para validar técnicamente el software. Su contenido NO proviene de los documentos vigentes (Modelo científico, Etapa 4, Etapa 7, Etapa 9) y NO tiene validez clínica. Debe reemplazarse por la codificación de los documentos corregidos antes de cualquier uso real.
-
-## 1. Datos de la evaluación
+## Identificación y motivo de consulta
 
 - **Caso:** CASO-0001 (Caso ficticio A (demostración))
+- **Motivo de consulta (literal):** Desde primero básico se distrae mucho en clases y le cuesta terminar las tareas.
+- **Edad:** 8 años · **Etapa evolutiva (Etapa 2):** 8–10 años
+- **Ruta:** Ruta B (Etapa 7 §5.2): existe informe escolar disponible; el apoderado se centra en hogar, desarrollo, trayectoria, autonomía e impacto, y solo se pregunta lo que el informe no resuelva.
 - **Fecha de generación:** 2026-10-15
-- **Protocolo:** tdah-protocolo 0.1.0-provisional
-- **Motivo de consulta (literal):** Desde primero básico se distrae mucho en clases y le cuesta terminar las tareas; además duerme mal.
-- **Edad:** 8 años
-- **Ruta de entrevista:** Con informe escolar — Existe informe escolar y está disponible: la entrevista al apoderado se centra en hogar, desarrollo, trayectoria, autonomía, funcionamiento y vacíos del informe.
 
-## 2. Antecedentes aportados por el apoderado
+## Auditoría automática previa a la salida
 
-### Inatención
+| Control | Resultado | Detalle |
+| --- | --- | --- |
+| Cobertura de los 18 síntomas DSM-5-TR, individualmente | ✓ | 18 con información; 0 no informados. |
+| Ausencia de pérdida diagnóstica por clasificación funcional | ✓ | Ningún síntoma con evidencia relacionada quedó como NO INFORMADO. |
+| Ausencia de duplicación de síntomas por una misma conducta | ✓ | El conteo se realiza por síntoma DSM-5-TR, no por pregunta ni por fuente (Etapa 9 §14.3). |
+| Integración del conjunto de respuestas de cada fuente | ✓ | Fuentes integradas: apoderado, informe_escolar, profesor, nino. |
+| Convergencias y discrepancias entre fuentes conservadas | ✓ | 1 contradicción(es) registradas sin resolver por suposición. |
+| Duración, inicio, desarrollo, contextos, impacto y diferencial revisados | ✓ | R3: APOYADO; R4: APOYADO; R5: APOYADO; R6: APOYADO; R7: APOYADO; R8: REQUIERE CONSIDERACIÓN PROFESIONAL |
+| Realidad virtual utilizada solo como evidencia complementaria | ✓ | Los resultados de RV/Nesplora se presentan como evidencia complementaria y no crean ni anulan criterios (Etapa 9 §18). |
+| Inferencias neurobiológicas separadas de hallazgos individuales | ✓ | Perfiles 1–3 rotulados como marco teórico; inferencias por nivel 1/2/3. |
+| Conclusión coherente con la evidencia y la información faltante | ✓ | El tipo de resultado se deriva de la puerta de suficiencia (Etapa 5 §20–21). |
 
-**Atención sostenida**
-- **Presencia:** Sí _(mención espontánea)_
-- **Frecuencia:** Varias veces al día
-- **Contextos en que ocurre:** En la casa con las tareas y también lo dicen en el colegio
-- **Inicio:** Desde los 5 o 6 años, cuando entró a kínder
-- **Interferencia en el funcionamiento:** Las tareas le toman el doble de tiempo y hay discusiones en la casa
+## Síntesis de fuentes
 
-**Organización y finalización de tareas**
-- **Presencia:** Sí
-- **Frecuencia:** Todos los días
-- **Contextos en que ocurre:** En la casa y en el colegio
-- **Inicio:** No recuerda
-- **Interferencia en el funcionamiento:** Llega con tareas incompletas al colegio
+- **Apoderado:** 83 datos registrados.
+- **Informe escolar:** 7 datos registrados.
+- **Colegio (complementación):** 1 datos registrados.
+- **Niño/niña:** 3 datos registrados.
 
-**Olvidos y pérdida de objetos**
-- **Presencia:** Sí _(respuesta inicial: respuesta ambigua; aclarada después)_
-- **Frecuencia:** Una o dos veces por semana
-- **Contextos en que ocurre:** Colegio, sobre todo con útiles y la colación
-- **Inicio:** Desde que entró al colegio
-- **Interferencia en el funcionamiento:** Hay que reponer materiales y a veces le anotan
+**Información obtenida del informe escolar (con su evidencia literal):**
 
-### Hiperactividad
+- R1.8 Se distrae fácilmente · presencia: Sí — «En clases se distrae con facilidad, varias veces al día, con ruidos o compañeros.»
+- R1.8 Se distrae fácilmente · frecuencia: Varias veces al día — «En clases se distrae con facilidad, varias veces al día, con ruidos o compañeros.»
+- R1.4 No sigue instrucciones o no completa tareas · presencia: Sí — «No termina las tareas que comienza y deja guías incompletas.»
+- R1.7 Pierde objetos necesarios · presencia: Sí — «Pierde sus útiles con frecuencia.»
+- R2.9 Interrumpe o invade actividades de otros · presencia: No — «No interrumpe a sus compañeros.»
+- Dato general · impacto académico: Sí — «Su rendimiento ha bajado este semestre, sobre todo en lenguaje.»
+- Dato general · inicio referido — «Las dificultades se observan desde primero básico.»
 
-**Inquietud motora**
-- **Presencia:** No
+**Complementación del colegio:**
 
-### Impulsividad
+- ¿En qué situaciones funciona mejor?: Necesita apoyo para organizar sus materiales (respuesta ficticia del colegio).
 
-**Dificultad para esperar**
-- **Presencia:** No
+**Entrevista al niño/niña:**
 
-**Interrupciones**
-- **Presencia:** Sí
-- **Frecuencia:** Algunas veces por semana
-- **Contextos en que ocurre:** Sobre todo en la casa, en las comidas
-- **Inicio:** No sabe
-- **Interferencia en el funcionamiento:** Molesta a sus hermanos, pero no es lo principal
+- Cuando tienes que concentrarte durante bastante tiempo, ¿qué te pasa? → A veces me distraigo cuando hay ruido.
+- Cuando empiezas a distraerte, ¿qué haces? → Me cuesta terminar las guías.
 
-### Desarrollo
+## 1. Diagnóstico según DSM-5-TR
 
-**Desarrollo temprano**
-- **Presencia:** No
+**Puerta de suficiencia diagnóstica (Etapa 5 §20–21):** ABIERTA CON INCERTIDUMBRE
 
-### Trayectoria
+**Estado de la hipótesis:** El contraste DSM-5-TR es compatible con TDAH, pero existe una explicación alternativa o condición concurrente relevante que debe considerarse.
 
-**Trayectoria de las dificultades**
-- **Presencia:** Sí
-- **Descripción:** Antes se notaba menos; con más exigencia escolar aumentaron las dificultades
+**Umbral de síntomas alcanzado (presentación predominantemente inatenta); el umbral por sí solo no constituye un diagnóstico formal sustentado.**
 
-### Autonomía
+### Análisis síntoma por síntoma
 
-**Autonomía en rutinas**
-- **Presencia:** Sí
-- **Descripción:** Necesita supervisión diaria para las rutinas de la mañana
+| Código | Síntoma | Estado | Frecuencia | Desde | Contextos | Fuentes |
+| --- | --- | --- | --- | --- | --- | --- |
+| R1.1 | Dificultad para prestar atención a detalles / errores por descuido | APOYADO POR EVIDENCIA | Varias veces al día | Hace más de 6 meses, y comenzó antes de los 12 años | hogar, colegio | Apoderado |
+| R1.2 | Dificultad para mantener la atención | APOYADO POR EVIDENCIA | Varias veces al día | Hace más de 6 meses, y comenzó antes de los 12 años | hogar, colegio | Apoderado |
+| R1.3 | Parece no escuchar cuando se le habla directamente | APOYADO POR EVIDENCIA | Varias veces al día | Hace más de 6 meses, y comenzó antes de los 12 años | hogar, colegio | Apoderado |
+| R1.4 | No sigue instrucciones o no completa tareas | APOYADO POR EVIDENCIA | Varias veces al día | Hace más de 6 meses, y comenzó antes de los 12 años | hogar, colegio | Apoderado, Informe escolar |
+| R1.5 | Dificultad para organizar tareas y actividades | DESCONOCIDO | — | — | — | Apoderado |
+| R1.6 | Evita o muestra resistencia ante tareas que requieren esfuerzo mental sostenido | APOYADO POR EVIDENCIA | Varias veces al día | Hace más de 6 meses, y comenzó antes de los 12 años | hogar, colegio | Apoderado |
+| R1.7 | Pierde objetos necesarios | APOYADO POR EVIDENCIA | Varias veces al día | Hace más de 6 meses, y comenzó antes de los 12 años | hogar, colegio | Apoderado, Informe escolar |
+| R1.8 | Se distrae fácilmente | APOYADO POR EVIDENCIA | Varias veces al día | Hace más de 6 meses, y comenzó antes de los 12 años | hogar, colegio | Apoderado, Informe escolar |
+| R1.9 | Es olvidadizo en actividades cotidianas | APOYADO POR EVIDENCIA | Varias veces al día | Hace más de 6 meses, y comenzó antes de los 12 años | hogar, colegio | Apoderado |
+| R2.1 | Inquietud motora / mueve manos, pies o se mueve en el asiento | NO REFERIDO | — | — | — | Apoderado |
+| R2.2 | Se levanta cuando se espera que permanezca sentado | NO REFERIDO | — | — | — | Apoderado |
+| R2.3 | Corre, trepa o presenta inquietud inapropiada para la situación | NO REFERIDO | — | — | — | Apoderado |
+| R2.4 | Dificultad para participar tranquilamente en actividades | NO REFERIDO | — | — | — | Apoderado |
+| R2.5 | Actúa como si estuviera permanentemente en marcha | NO REFERIDO | — | — | — | Apoderado |
+| R2.6 | Habla excesivamente | NO REFERIDO | — | — | — | Apoderado |
+| R2.7 | Responde antes de que termine la pregunta | NO REFERIDO | — | — | — | Apoderado |
+| R2.8 | Dificultad para esperar su turno | NO REFERIDO | — | — | — | Apoderado |
+| R2.9 | Interrumpe o invade actividades de otros | CONTRADICTORIO | Varias veces al día | Hace más de 6 meses, y comenzó antes de los 12 años | hogar, colegio | Apoderado, Informe escolar |
 
-### Funcionamiento
+Inatención: 8 de 9 síntomas apoyados por evidencia (umbral 6). Hiperactividad/impulsividad: 0 de 9 (umbral 6).
 
-**Funcionamiento familiar cotidiano**
-- **Presencia:** Sí _(mención espontánea)_
-- **Descripción:** Las tareas generan tensión y discusiones casi a diario
+### Contraste de los demás requisitos diagnósticos
 
-**Relación con pares**
-- **Presencia:** No
+| Requisito | Estado | Detalle |
+| --- | --- | --- |
+| R1 — Síntomas de inatención | UMBRAL ALCANZADO | 8 |
+| R2 — Síntomas de hiperactividad/impulsividad | UMBRAL NO ALCANZADO | 0 |
+| R3 — Duración ≥6 meses | APOYADO | 8 síntomas con persistencia >6 meses referida. Trayectoria «largos períodos» (A40): no. |
+| R4 — Varios síntomas antes de los 12 años | APOYADO | 8 síntomas con inicio referido antes de los 12 años (mínimo «varios» = 2, D8). Antes de los 6 años (A38): si; antes de entrar al colegio (A39): no. |
+| R5 — Inadecuación respecto del nivel de desarrollo | APOYADO | Etapa evolutiva: 8–10 años. Necesita más supervisión que otros niños de su edad (A27): sin_dato; más ayuda que otros niños de su edad (A50): si. Comparación con lo esperable según la matriz de la Etapa 2. |
+| R6 — Varios síntomas en dos o más contextos | APOYADO | Contextos con ≥2 síntomas: hogar, colegio. Distribución: hogar 8; colegio 8. Funciona diferente en casa y colegio (A37): no. |
+| R7 — Interferencia o deterioro funcional | APOYADO | Impacto referido en: A47, informe escolar. Principal dificultad (A52): Lo que más preocupa es que se está quedando atrás en lectura y se frustra.. |
+| R8 — Explicaciones alternativas | REQUIERE CONSIDERACIÓN PROFESIONAL | Barrido: COMPLETADO / AREAS_SELECCIONADAS. Tamizaje: COMPLETADO / HALLAZGOS_REPORTADOS. |
+| R9 — Pesquisa de condiciones concurrentes | REALIZADA | Sueño (PRESENTE); Sueño (REQUIERE EVALUACIÓN ADICIONAL) |
+| R10 — Información de múltiples fuentes | APOYADO | Fuentes: apoderado, informe_escolar, profesor, nino; instrumentos: NESPLORA.  |
 
-### Ámbito escolar
+## 2. Trayectoria evolutiva
 
-**Conducta en el aula**
-- **Presencia:** No
+- ¿Recuerda haber observado alguna de estas dificultades antes de los 6 años? → Sí
+- ¿Las dificultades han estado presentes durante largos períodos? → No
+- ¿Han aumentado a medida que aumentaron las exigencias? → No
+- ¿Hay etapas en que funcionaba claramente mejor? → No
+- ¿Ya existían algunas de estas dificultades antes de entrar al colegio? → No
+- Informe escolar: «Las dificultades se observan desde primero básico.»
 
-### Tamizaje médico, sensorial y del sueño
+## 3. Funcionamiento cognitivo (comparación con lo esperable para la edad)
 
-**Sueño**
-- **Presencia:** Sí _(mención espontánea)_
-- **Descripción:** Le cuesta dormirse y se despierta en la noche, desde hace un año
-- **Evaluado por un profesional:** No sabe
+| Área | Esperable para la etapa (Etapa 2) | Observado | Estado |
+| --- | --- | --- | --- |
+| Atención | Mayor duración y mantenimiento | R1.1 Dificultad para prestar atención a detalles / errores por descuido (APOYADO POR EVIDENCIA); R1.3 Parece no escuchar cuando se le habla directamente (APOYADO POR EVIDENCIA) | ÁREA CON MAYOR DIFICULTAD |
+| Atención sostenida | Mayor mantenimiento | R1.2 Dificultad para mantener la atención (APOYADO POR EVIDENCIA) | ÁREA CON MAYOR DIFICULTAD |
+| Distractibilidad / selección de información | Mayor resistencia | R1.8 Se distrae fácilmente (APOYADO POR EVIDENCIA) | ÁREA CON MAYOR DIFICULTAD |
+| Inhibición y control de respuesta | Mayor consistencia | R2.6 no referido; R2.7 no referido; R2.8 no referido; ¿Actúa rápidamente sin detenerse a pensar qué puede ocurrir después? → No | RELATIVAMENTE PRESERVADA |
+| Memoria de trabajo | Mantiene varios elementos | R1.9 Es olvidadizo en actividades cotidianas (APOYADO POR EVIDENCIA); ¿Le cuesta recordar varios pasos de una instrucción? → Sí | ÁREA CON MAYOR DIFICULTAD |
+| Mantenimiento de objetivos | Mantiene objetivos ante distractores | R1.4 No sigue instrucciones o no completa tareas (APOYADO POR EVIDENCIA); ¿Pierde el objetivo de una actividad mientras la está realizando? → No | ÁREA CON MAYOR DIFICULTAD |
+| Planificación | Varios pasos | ¿Le cuesta saber por dónde comenzar una tarea? → No | RELATIVAMENTE PRESERVADA |
+| Organización | Responsabilidades escolares | R1.7 Pierde objetos necesarios (APOYADO POR EVIDENCIA) | ÁREA CON MAYOR DIFICULTAD |
+| Flexibilidad cognitiva | Cambio de estrategias | ¿Le cuesta cambiar de una actividad a otra? → No; ¿Le cuesta cambiar de estrategia cuando una forma de hacer algo no funciona? → Sí | ÁREA CON MAYOR DIFICULTAD |
+| Persistencia | Mayor mantenimiento del esfuerzo | — | SIN INFORMACIÓN SUFICIENTE |
+| Regulación del esfuerzo | Mayor capacidad ante demandas | R1.6 Evita o muestra resistencia ante tareas que requieren esfuerzo mental sostenido (APOYADO POR EVIDENCIA) | ÁREA CON MAYOR DIFICULTAD |
+| Variabilidad del desempeño | Puede variar según demanda | — | SIN INFORMACIÓN SUFICIENTE |
+| Actividad motora | Mayor regulación | R2.1 no referido; R2.2 no referido; R2.3 no referido; R2.4 no referido; R2.5 no referido | RELATIVAMENTE PRESERVADA |
+| Autonomía | Responsabilidad creciente | — | SIN INFORMACIÓN SUFICIENTE |
 
-**Visión**
-- **Presencia:** No
+_«Área con mayor dificultad» se usa en ausencia de una medida normativa; «área descendida» exige una referencia objetiva validada (Etapa 5 §26)._
 
-**Audición**
-- **Presencia:** No
+## 4. Conducta
 
-**Condiciones médicas y medicamentos**
-- **Presencia:** No
+- comete errores por no fijarse bien en los detalles — apoyado por evidencia
+- le cuesta mantener la atención durante una actividad — apoyado por evidencia
+- parece no escuchar cuando se le habla directamente — apoyado por evidencia
+- le cuesta seguir instrucciones completas — apoyado por evidencia
+- evita o posterga actividades que requieren esfuerzo mental durante bastante tiempo — apoyado por evidencia
+- pierde con frecuencia cosas que necesita — apoyado por evidencia
+- se distrae fácilmente con estímulos que ocurren alrededor — apoyado por evidencia
+- olvida con frecuencia cosas que debería recordar — apoyado por evidencia
+- interrumpe conversaciones, juegos o actividades de otras personas — contradictorio
 
-## 3. Información obtenida del informe escolar
+## 5. Áreas con mayor dificultad
 
-### Inatención
+- Atención
+- Atención sostenida
+- Distractibilidad / selección de información
+- Memoria de trabajo
+- Mantenimiento de objetivos
+- Organización
+- Flexibilidad cognitiva
+- Regulación del esfuerzo
 
-**Atención sostenida**
-- **Presencia:** Sí — «El estudiante se distrae frecuentemente durante las clases y necesita apoyo para iniciar las tareas.»
-- **Contextos en que ocurre:** Colegio (según informe escolar) — «El estudiante se distrae frecuentemente durante las clases y necesita apoyo para iniciar las tareas.»
-- **Frecuencia:** frecuentemente (según informe escolar) — «El estudiante se distrae frecuentemente durante las clases y necesita apoyo para iniciar las tareas.»
+## 6. Áreas fortalecidas (recursos funcionales)
 
-### Hiperactividad
+- No se identificaron recursos funcionales específicos.
 
-**Inquietud motora**
-- **Presencia:** Sí — «Es inquieto: se para de su puesto varias veces por clase.»
-- **Contextos en que ocurre:** Colegio (según informe escolar) — «Es inquieto: se para de su puesto varias veces por clase.»
+## 7. Áreas relativamente preservadas
 
-### Ámbito escolar
+- Inhibición y control de respuesta
+- Planificación
+- Actividad motora
 
-**Rendimiento académico**
-- **Presencia:** Sí — «Presenta notas bajas en Lenguaje y Matemática durante el primer semestre.»
-- **Descripción:** Presenta notas bajas en Lenguaje y Matemática durante el primer semestre. — «Presenta notas bajas en Lenguaje y Matemática durante el primer semestre.»
+## 8. Contexto y modulación
 
-## 4. Resultados de instrumentos aplicados
+- Aumentan cuando la actividad dura bastante tiempo: No
+- Aumentan con muchos distractores: No
+- Funciona diferente en casa y en el colegio: No
+- Han aumentado con las exigencias: No
 
-### Escala de síntomas – apoderado (provisional) (obligatorio)
+## 9. Impacto funcional
 
-- **Estado:** Realizada — 2026-10-10 — aplicada por Profesional de prueba
-- **Inatención (ficticio):** 18/27
-- **Hiperactividad-impulsividad (ficticio):** 9/27
+- APOYADO: Impacto referido en: A47, informe escolar. Principal dificultad (A52): Lo que más preocupa es que se está quedando atrás en lectura y se frustra..
 
-### Escala de síntomas – docente (provisional) (obligatorio)
+## 10. Seis perfiles multidimensionales
 
-- **Estado:** Realizada — 2026-10-12 — aplicada por Profesora jefe (ficticia)
-- **Inatención (ficticio):** 21/27
-- **Hiperactividad-impulsividad (ficticio):** 14/27
+_Niveles de análisis del mismo niño: no son subtipos, diagnósticos ni puntajes (Etapa 1 §8; Etapa 5 §25)._
 
-### Nesplora (prueba de atención en realidad virtual)
+| Perfil | Nivel global de evidencia | Caracterización del caso |
+| --- | --- | --- |
+| 1. Neuroquímico | ALTO | Sin evidencia individual directa, pertinente y válida para este nivel: se describe solo como marco teórico o hipótesis de plausibilidad poblacional; no constituye un hallazgo biológico del caso (Etapa 9 §16 y §19.7; Automatización fase 3). |
+| 2. Estructural | MEDIO–ALTO | Sin evidencia individual directa, pertinente y válida para este nivel: se describe solo como marco teórico o hipótesis de plausibilidad poblacional; no constituye un hallazgo biológico del caso (Etapa 9 §16 y §19.7; Automatización fase 3). |
+| 3. Circuitos / Redes | ALTO | Sin evidencia individual directa, pertinente y válida para este nivel: se describe solo como marco teórico o hipótesis de plausibilidad poblacional; no constituye un hallazgo biológico del caso (Etapa 9 §16 y §19.7; Automatización fase 3). Sistemas asociados en la literatura a las áreas con mayor dificultad: redes frontoparietales, cíngulo, ínsula y otros sistemas de control atencional descritos en neuroimagen funcional. / redes frontoparietales y su interacción con sistemas fronto-estriatales. / redes de control ejecutivo, especialmente redes frontoparietales; la asociación neurobiológica es menos específica que en inhibición. / redes distribuidas de control ejecutivo; mantener lenguaje cauteloso por heterogeneidad. / circuitos de recompensa, incluido el estriado, y sistemas dopaminérgicos/noradrenérgicos implicados en recompensa, saliencia, motivación y regulación del esfuerzo.. |
+| 4. Neuropsicológico | ALTO | Áreas con mayor dificultad: Atención, Atención sostenida, Distractibilidad / selección de información, Memoria de trabajo, Mantenimiento de objetivos, Organización, Flexibilidad cognitiva, Regulación del esfuerzo. Relativamente preservadas: Inhibición y control de respuesta, Planificación, Actividad motora. |
+| 5. Conductual | MUY ALTO | Conductas observables referidas: Dificultad para prestar atención a detalles / errores por descuido (apoyado por evidencia); Dificultad para mantener la atención (apoyado por evidencia); Parece no escuchar cuando se le habla directamente (apoyado por evidencia); No sigue instrucciones o no completa tareas (apoyado por evidencia); Evita o muestra resistencia ante tareas que requieren esfuerzo mental sostenido (apoyado por evidencia); Pierde objetos necesarios (apoyado por evidencia); Se distrae fácilmente (apoyado por evidencia); Es olvidadizo en actividades cotidianas (apoyado por evidencia). |
+| 6. Contextual | MEDIO–ALTO | Moduladores: no referidos. Recursos: no referidos. |
 
-- **Estado:** Realizada — 2026-10-14 — aplicada por Profesional de prueba
-- **Omisiones (ficticio):** percentil 12
-- **Comisiones (ficticio):** percentil 40
-- **Observaciones:** Valores ficticios para la demostración técnica.
+## 11. Realidad virtual y evidencia objetiva
 
-### Tarea de realidad virtual del proyecto
+- **Realidad virtual del proyecto (evidencia objetiva complementaria):** no realizada.
+- **Nesplora (evidencia objetiva complementaria):** realizada 2026-10-01 por Profesional de prueba — atencion_sostenida: bajo lo esperado (ficticio); impulsividad: dentro de lo esperado (ficticio) (Resultado ficticio de demostración.)
+- **Escala o cuestionario — apoderado:** no realizada.
+- **Escala o cuestionario — docente:** no aplica (El informe escolar narrativo cubre la información del docente (ficticio).)
+- **Evaluación neuropsicológica:** no realizada.
+- **Otro instrumento o documento clínico:** no realizada.
 
-- **Estado:** Pendiente
+_La RV, Nesplora o un instrumento aislado no determinan por sí solos un diagnóstico: caracterizan las variables que realmente miden (Etapa 9 §18)._
 
-_Los resultados de realidad virtual, de Nesplora o de cualquier instrumento aislado no determinan por sí solos un diagnóstico._
+## 12. Explicaciones alternativas y condiciones concurrentes
 
-## 5. Hallazgos y patrones observados
+- **Barrido diferencial general:** COMPLETADO — AREAS_SELECCIONADAS
+  - Sueño: PRESENTE
+- **Tamizaje médico, sensorial y del sueño:** COMPLETADO — HALLAZGOS_REPORTADOS
+  - Sueño: Le cuesta dormirse; ronca algunas noches.; Sí; Sí
+  - **Requiere valoración profesional:** Sueño: se informan ronquidos intensos o pausas respiratorias; se recomienda valoración por un profesional sanitario.
 
-_Descripción de los datos registrados; no constituye interpretación diagnóstica._
+_El tamizaje no diagnostica ni descarta enfermedades, no confirma ni excluye TDAH y no autoriza indicaciones farmacológicas (Etapa 9 §J.6.1)._
 
-- **Inatención:** presencia referida en 3 de 3 dimensiones exploradas.
-  - Atención sostenida — fuentes: Apoderado, Informe escolar (coinciden). frecuencia: frecuentemente (según informe escolar); contextos en que ocurre: Colegio (según informe escolar); inicio: Desde los 5 o 6 años, cuando entró a kínder; interferencia en el funcionamiento: Las tareas le toman el doble de tiempo y hay discusiones en la casa
-  - Organización y finalización de tareas — fuentes: Apoderado. frecuencia: Todos los días; contextos en que ocurre: En la casa y en el colegio; inicio: No recuerda; interferencia en el funcionamiento: Llega con tareas incompletas al colegio
-  - Olvidos y pérdida de objetos — fuentes: Apoderado. frecuencia: Una o dos veces por semana; contextos en que ocurre: Colegio, sobre todo con útiles y la colación; inicio: Desde que entró al colegio; interferencia en el funcionamiento: Hay que reponer materiales y a veces le anotan
-- **Hiperactividad:** presencia referida en 0 de 1 dimensiones exploradas.
-- **Impulsividad:** presencia referida en 1 de 2 dimensiones exploradas.
-  - Interrupciones — fuentes: Apoderado. frecuencia: Algunas veces por semana; contextos en que ocurre: Sobre todo en la casa, en las comidas; inicio: No sabe; interferencia en el funcionamiento: Molesta a sus hermanos, pero no es lo principal
-- **Desarrollo:** presencia referida en 0 de 1 dimensiones exploradas.
-- **Trayectoria:** presencia referida en 1 de 1 dimensiones exploradas.
-  - Trayectoria de las dificultades — fuentes: Apoderado
-- **Autonomía:** presencia referida en 1 de 1 dimensiones exploradas.
-  - Autonomía en rutinas — fuentes: Apoderado
-- **Funcionamiento:** presencia referida en 1 de 2 dimensiones exploradas.
-  - Funcionamiento familiar cotidiano — fuentes: Apoderado
-- **Ámbito escolar:** presencia referida en 1 de 2 dimensiones exploradas.
-  - Rendimiento académico — fuentes: Informe escolar
+## 13–14. Información faltante y su relevancia
 
-## 6. Información ausente o contradictoria
+| Información | Relevancia | Por qué importa |
+| --- | --- | --- |
+| R1.5 Dificultad para organizar tareas y actividades: DESCONOCIDO | CRÍTICA | Necesario para el conteo de síntomas (R1/R2). |
+| R2.9 Interrumpe o invade actividades de otros: CONTRADICTORIO | CRÍTICA | Necesario para el conteo de síntomas (R1/R2). |
 
-**Datos desconocidos o ambiguos (no se interpretan como negativos):**
+**Discrepancias registradas (conservadas, no resueltas por suposición):**
 
-- Sueño — Evaluado por un profesional: No sabe (fuente: Apoderado)
-- Organización y finalización de tareas — Inicio: No recuerda (fuente: Apoderado)
-- Interrupciones — Inicio: No sabe (fuente: Apoderado)
+- R2.9: «Interrumpe o invade actividades de otros»: apoderado informa «Sí» y informe_escolar informa «No». Puede explicarse por contexto, demanda, observador o supervisión (Etapa 9 §11); se conserva sin resolver. — revisada por Profesional de prueba: Discrepancia entre contextos casa/colegio; se conserva para la integración clínica.
 
-**Contradicciones registradas (no resueltas por suposición):**
+## 15. Áreas para fortalecimiento o evaluación posterior
 
-- Inquietud motora: «presencia» registrado como «no» (fuente: apoderado) y luego como «si» (fuente: informe_escolar). — revisada por Profesional de prueba: Discrepancia entre contextos casa/colegio; se conserva para la integración clínica.
+- Fortalecimiento: Atención
+- Fortalecimiento: Atención sostenida
+- Fortalecimiento: Distractibilidad / selección de información
+- Fortalecimiento: Memoria de trabajo
+- Fortalecimiento: Mantenimiento de objetivos
+- Fortalecimiento: Organización
+- Fortalecimiento: Flexibilidad cognitiva
+- Fortalecimiento: Regulación del esfuerzo
+- Evaluación posterior: Persistencia
+- Evaluación posterior: Variabilidad del desempeño
+- Evaluación posterior: Autonomía
+- Valoración sanitaria: Sueño: se informan ronquidos intensos o pausas respiratorias; se recomienda valoración por un profesional sanitario.
 
-**Dimensiones parcial o no caracterizadas:**
+## 16. Inferencias explicativas multinivel
 
-- Organización y finalización de tareas: parcial — Presente; algunos datos quedaron desconocidos, ambiguos o contradictorios.
-- Inquietud motora: parcial — Presencia contradictoria entre registros; se registra sin suponer.
-- Interrupciones: parcial — Presente; algunos datos quedaron desconocidos, ambiguos o contradictorios.
-- Sueño: parcial — Presente; algunos datos quedaron desconocidos, ambiguos o contradictorios.
+_Nivel 1 = evidencia del caso; Nivel 2 = inferencia funcional; Nivel 3 = hipótesis neurobiológica basada en literatura (Etapa 9 §19.2). Una inferencia de nivel superior nunca se presenta como observación directa._
 
-## 7. Explicaciones alternativas que requieren consideración
+### Atención
 
-_El tamizaje no constituye diagnóstico médico y no cierra otras áreas de evaluación._
+- **Nivel 1:** R1.1 Dificultad para prestar atención a detalles / errores por descuido (APOYADO POR EVIDENCIA); R1.3 Parece no escuchar cuando se le habla directamente (APOYADO POR EVIDENCIA)
+- **Nivel 2:** Patrón compatible con funcionamiento menos eficiente para la edad en atención (evidencia convergente; esperable a esta edad: «Mayor duración y mantenimiento»).
+- **Nivel 3:** Hipótesis explicativa (asociación poblacional, no biomarcador individual): redes frontoparietales, cíngulo, ínsula y otros sistemas de control atencional descritos en neuroimagen funcional.
+- **Límite:** Los datos clínicos no permiten determinar individualmente alteraciones neuroquímicas, estructurales o de conectividad (Etapa 9 §19.7).
 
-- **Sueño:** Situación presente: Le cuesta dormirse y se despierta en la noche, desde hace un año. Evaluada por profesional: No sabe. **Requiere verificación profesional.**
-- **Visión:** Situación no referida.
-- **Audición:** Situación no referida.
-- **Condiciones médicas y medicamentos:** Situación no referida.
+### Atención sostenida
 
-## 8. Interpretación clínica
+- **Nivel 1:** R1.2 Dificultad para mantener la atención (APOYADO POR EVIDENCIA)
+- **Nivel 2:** Hipótesis funcional inicial: una sola evidencia no basta para establecer una vulnerabilidad estable (Etapa 9 §19.3 y §20.4).
+- **Nivel 3:** Hipótesis explicativa (asociación poblacional, no biomarcador individual): redes frontoparietales, cíngulo, ínsula y otros sistemas de control atencional descritos en neuroimagen funcional.
+- **Límite:** Los datos clínicos no permiten determinar individualmente alteraciones neuroquímicas, estructurales o de conectividad (Etapa 9 §19.7).
 
-[TEXTO DE DEMOSTRACIÓN — caso ficticio, sin valor clínico] El profesional responsable redacta aquí su interpretación integrando entrevista, informe escolar, instrumentos, explicaciones alternativas (p. ej. el sueño, pendiente de verificación) y la discrepancia entre contextos registrada.
+### Distractibilidad / selección de información
+
+- **Nivel 1:** R1.8 Se distrae fácilmente (APOYADO POR EVIDENCIA)
+- **Nivel 2:** Hipótesis funcional inicial: una sola evidencia no basta para establecer una vulnerabilidad estable (Etapa 9 §19.3 y §20.4).
+- **Nivel 3:** Hipótesis explicativa (asociación poblacional, no biomarcador individual): redes frontoparietales, cíngulo, ínsula y otros sistemas de control atencional descritos en neuroimagen funcional.
+- **Límite:** Los datos clínicos no permiten determinar individualmente alteraciones neuroquímicas, estructurales o de conectividad (Etapa 9 §19.7).
+
+### Memoria de trabajo
+
+- **Nivel 1:** R1.9 Es olvidadizo en actividades cotidianas (APOYADO POR EVIDENCIA); ¿Le cuesta recordar varios pasos de una instrucción? → Sí
+- **Nivel 2:** Patrón compatible con funcionamiento menos eficiente para la edad en memoria de trabajo (evidencia convergente; esperable a esta edad: «Mantiene varios elementos»).
+- **Nivel 3:** Hipótesis explicativa (asociación poblacional, no biomarcador individual): redes frontoparietales y su interacción con sistemas fronto-estriatales.
+- **Límite:** Los datos clínicos no permiten determinar individualmente alteraciones neuroquímicas, estructurales o de conectividad (Etapa 9 §19.7).
+
+### Mantenimiento de objetivos
+
+- **Nivel 1:** R1.4 No sigue instrucciones o no completa tareas (APOYADO POR EVIDENCIA)
+- **Nivel 2:** Hipótesis funcional inicial: una sola evidencia no basta para establecer una vulnerabilidad estable (Etapa 9 §19.3 y §20.4).
+- **Nivel 3:** Hipótesis explicativa (asociación poblacional, no biomarcador individual): redes frontoparietales y su interacción con sistemas fronto-estriatales.
+- **Límite:** Los datos clínicos no permiten determinar individualmente alteraciones neuroquímicas, estructurales o de conectividad (Etapa 9 §19.7).
+
+### Organización
+
+- **Nivel 1:** R1.7 Pierde objetos necesarios (APOYADO POR EVIDENCIA)
+- **Nivel 2:** Hipótesis funcional inicial: una sola evidencia no basta para establecer una vulnerabilidad estable (Etapa 9 §19.3 y §20.4).
+- **Nivel 3:** Hipótesis explicativa (asociación poblacional, no biomarcador individual): redes de control ejecutivo, especialmente redes frontoparietales; la asociación neurobiológica es menos específica que en inhibición.
+- **Límite:** Los datos clínicos no permiten determinar individualmente alteraciones neuroquímicas, estructurales o de conectividad (Etapa 9 §19.7).
+
+### Flexibilidad cognitiva
+
+- **Nivel 1:** ¿Le cuesta cambiar de estrategia cuando una forma de hacer algo no funciona? → Sí
+- **Nivel 2:** Hipótesis funcional inicial: una sola evidencia no basta para establecer una vulnerabilidad estable (Etapa 9 §19.3 y §20.4).
+- **Nivel 3:** Hipótesis explicativa (asociación poblacional, no biomarcador individual): redes distribuidas de control ejecutivo; mantener lenguaje cauteloso por heterogeneidad.
+- **Límite:** Los datos clínicos no permiten determinar individualmente alteraciones neuroquímicas, estructurales o de conectividad (Etapa 9 §19.7).
+
+### Regulación del esfuerzo
+
+- **Nivel 1:** R1.6 Evita o muestra resistencia ante tareas que requieren esfuerzo mental sostenido (APOYADO POR EVIDENCIA)
+- **Nivel 2:** Hipótesis funcional inicial: una sola evidencia no basta para establecer una vulnerabilidad estable (Etapa 9 §19.3 y §20.4).
+- **Nivel 3:** Hipótesis explicativa (asociación poblacional, no biomarcador individual): circuitos de recompensa, incluido el estriado, y sistemas dopaminérgicos/noradrenérgicos implicados en recompensa, saliencia, motivación y regulación del esfuerzo.
+- **Límite:** Los datos clínicos no permiten determinar individualmente alteraciones neuroquímicas, estructurales o de conectividad (Etapa 9 §19.7).
+
+## 17. Sugerencias de acción basadas en evidencia
+
+_Derivadas de las dificultades realmente identificadas; deben ajustarse por el profesional. El sistema no prescribe, dosifica ni modifica tratamientos (Etapa 9 §21.12)._
+
+- **Etapa 9 §21.4:** Cuando se identifiquen dificultades de organización, planificación, manejo de materiales o tiempo, pueden considerarse intervenciones específicas de habilidades organizacionales. La evidencia disponible muestra beneficios en habilidades organizacionales y efectos más modestos sobre inatención y desempeño académico.
+  - [6] Meta-analysis of organizational skills interventions for children and adolescents with ADHD. Clinical Psychology Review. 2017;52:108–123. PMID: 28088557.
+- **Etapa 9 §21.6:** Cuando las dificultades aparezcan en el colegio, pueden considerarse apoyos educativos individualizados, modificaciones ambientales, estrategias conductuales y apoyos organizacionales ajustados a las necesidades identificadas.
+  - [1] American Academy of Pediatrics. Clinical Practice Guideline for the Diagnosis, Evaluation, and Treatment of ADHD in Children and Adolescents. Pediatrics. 2019;144(4):e20192528.
+  - [2] NICE. Attention deficit hyperactivity disorder: diagnosis and management (NG87). Recommendations.
+- **Etapa 9 §21.7:** Cuando se identifiquen problemas de sueño, la IA debe abrir un módulo específico. Las intervenciones conductuales del sueño cuentan con evidencia de beneficio sobre resultados de sueño en niños con TDAH, aunque la literatura presenta heterogeneidad.
+  - [8] Behavioral Sleep Interventions for Children With ADHD: A Systematic Review and Meta-Analysis. Journal of Attention Disorders. 2022;26(14):1805–1821. PMID: 35758199.
+  - [9] The influence of existing interventions on sleep of youth with ADHD: A meta-analysis of randomized controlled trials. Sleep Medicine Reviews. 2026. PMID: 42096966.
+- **Etapa 9 §21.8:** La actividad física puede aparecer como apoyo complementario cuando sea apropiada para el niño. La literatura reciente muestra efectos sobre síntomas nucleares y funciones ejecutivas, pero la certeza de evidencia varía según resultado y modalidad.
+  - [10] Exercise for core ADHD symptoms and executive functions in children and adolescents with ADHD: A network and dose-response meta-analysis. Journal of Sport and Health Science. 2026. PMID: 42480697.
+- **Etapa 9 §21.12:** Cuando una acción pueda implicar tratamiento farmacológico, la IA debe limitarse a identificar que existe una opción terapéutica respaldada por guías y derivar la decisión, selección, indicación y ajuste al profesional médico responsable. No debe prescribir, dosificar ni modificar tratamientos.
+  - [1] American Academy of Pediatrics. Clinical Practice Guideline for the Diagnosis, Evaluation, and Treatment of ADHD in Children and Adolescents. Pediatrics. 2019;144(4):e20192528.
+  - [2] NICE. Attention deficit hyperactivity disorder: diagnosis and management (NG87). Recommendations.
+
+## 18. Trazabilidad de la conclusión
+
+_Fuente → dato original → pregunta → síntoma (Etapa 9 §23). El registro completo de decisiones está en la auditoría del caso._
+
+| Síntoma | Fuente | Pregunta/origen | Dato | Valor | Respuesta original |
+| --- | --- | --- | --- | --- | --- |
+| R1.1 | Apoderado | A01 | presencia:A01 | Sí | A. Sí |
+| R1.1 | Apoderado | R1.1-FRECUENCIA | frecuencia | varias_al_dia | A. Varias veces al día |
+| R1.1 | Apoderado | R1.1-DESDE | desde | mas_6_meses_antes_12 | B. Hace más de 6 meses, y comenzó antes de los 12 años |
+| R1.1 | Apoderado | R1.1-CONTEXTOS | contextos | hogar,colegio | A. Hogar; B. Colegio |
+| R1.2 | Apoderado | A02 | presencia:A02 | Sí | A. Sí |
+| R1.2 | Apoderado | R1.2-FRECUENCIA | frecuencia | varias_al_dia | A. Varias veces al día |
+| R1.2 | Apoderado | R1.2-DESDE | desde | mas_6_meses_antes_12 | B. Hace más de 6 meses, y comenzó antes de los 12 años |
+| R1.2 | Apoderado | R1.2-CONTEXTOS | contextos | hogar,colegio | A. Hogar; B. Colegio |
+| R1.3 | Apoderado | A03 | presencia:A03 | Sí | A. Sí |
+| R1.3 | Apoderado | R1.3-FRECUENCIA | frecuencia | varias_al_dia | A. Varias veces al día |
+| R1.3 | Apoderado | R1.3-DESDE | desde | mas_6_meses_antes_12 | B. Hace más de 6 meses, y comenzó antes de los 12 años |
+| R1.3 | Apoderado | R1.3-CONTEXTOS | contextos | hogar,colegio | A. Hogar; B. Colegio |
+| R1.4 | Apoderado | A04 | presencia:A04 | Sí | A. Sí |
+| R1.4 | Apoderado | R1.4-FRECUENCIA | frecuencia | varias_al_dia | A. Varias veces al día |
+| R1.4 | Apoderado | R1.4-DESDE | desde | mas_6_meses_antes_12 | B. Hace más de 6 meses, y comenzó antes de los 12 años |
+| R1.4 | Apoderado | R1.4-CONTEXTOS | contextos | hogar,colegio | A. Hogar; B. Colegio |
+| R1.4 | Informe escolar | extraccion | presencia:informe | Sí | No termina las tareas que comienza y deja guías incompletas. |
+| R1.5 | Apoderado | A06 | presencia:A06 | No sabe | D. No sabe / No recuerda |
+| R1.6 | Apoderado | A07 | presencia:A07 | Sí | A. Sí |
+| R1.6 | Apoderado | R1.6-FRECUENCIA | frecuencia | varias_al_dia | A. Varias veces al día |
+| R1.6 | Apoderado | R1.6-DESDE | desde | mas_6_meses_antes_12 | B. Hace más de 6 meses, y comenzó antes de los 12 años |
+| R1.6 | Apoderado | R1.6-CONTEXTOS | contextos | hogar,colegio | A. Hogar; B. Colegio |
+| R1.7 | Apoderado | A08 | presencia:A08 | Sí | A. Sí |
+| R1.7 | Apoderado | R1.7-FRECUENCIA | frecuencia | varias_al_dia | A. Varias veces al día |
+| R1.7 | Apoderado | R1.7-DESDE | desde | mas_6_meses_antes_12 | B. Hace más de 6 meses, y comenzó antes de los 12 años |
+| R1.7 | Apoderado | R1.7-CONTEXTOS | contextos | hogar,colegio | A. Hogar; B. Colegio |
+| R1.7 | Informe escolar | extraccion | presencia:informe | Sí | Pierde sus útiles con frecuencia. |
+| R1.8 | Apoderado | INI-MOTIVO | mencion | Sí | Desde primero básico se distrae mucho en clases y le cuesta terminar las tareas. |
+| R1.8 | Apoderado | A09 | presencia:A09 | Sí | A. Sí |
+| R1.8 | Apoderado | R1.8-FRECUENCIA | frecuencia | varias_al_dia | A. Varias veces al día |
+| R1.8 | Apoderado | R1.8-DESDE | desde | mas_6_meses_antes_12 | B. Hace más de 6 meses, y comenzó antes de los 12 años |
+| R1.8 | Apoderado | R1.8-CONTEXTOS | contextos | hogar,colegio | A. Hogar; B. Colegio |
+| R1.8 | Informe escolar | extraccion | presencia:informe | Sí | En clases se distrae con facilidad, varias veces al día, con ruidos o compañeros. |
+| R1.8 | Informe escolar | extraccion | frecuencia | varias_al_dia | En clases se distrae con facilidad, varias veces al día, con ruidos o compañeros. |
+| R1.9 | Apoderado | A10 | presencia:A10 | Sí | A. Sí |
+| R1.9 | Apoderado | R1.9-FRECUENCIA | frecuencia | varias_al_dia | A. Varias veces al día |
+| R1.9 | Apoderado | R1.9-DESDE | desde | mas_6_meses_antes_12 | B. Hace más de 6 meses, y comenzó antes de los 12 años |
+| R1.9 | Apoderado | R1.9-CONTEXTOS | contextos | hogar,colegio | A. Hogar; B. Colegio |
+| R2.1 | Apoderado | A12 | presencia:A12 | No | B. No |
+| R2.2 | Apoderado | A11 | presencia:A11 | No | B. No |
+| R2.3 | Apoderado | A13 | presencia:A13 | No | B. No |
+| R2.4 | Apoderado | A14 | presencia:A14 | No | B. No |
+| R2.5 | Apoderado | A15 | presencia:A15 | No | B. No |
+| R2.6 | Apoderado | A16 | presencia:A16 | No | B. No |
+| R2.7 | Apoderado | A17 | presencia:A17 | No | B. No |
+| R2.8 | Apoderado | A18 | presencia:A18 | No | B. No |
+| R2.9 | Apoderado | A19 | presencia:A19 | Sí | A. Sí |
+| R2.9 | Apoderado | R2.9-FRECUENCIA | frecuencia | varias_al_dia | A. Varias veces al día |
+| R2.9 | Apoderado | R2.9-DESDE | desde | mas_6_meses_antes_12 | B. Hace más de 6 meses, y comenzó antes de los 12 años |
+| R2.9 | Apoderado | R2.9-CONTEXTOS | contextos | hogar,colegio | A. Hogar; B. Colegio |
+| R2.9 | Informe escolar | extraccion | presencia:informe | No | No interrumpe a sus compañeros. |
+
+## 19. Revisión profesional
+
+Texto de demostración (ficticio): el profesional integra la entrevista, el informe escolar y la evaluación complementaria; considera la discrepancia en R2.9 y la información de sueño antes de concluir.
 
 _Redactada por: Profesional de prueba (2026-10-15)._
 
-## 9. Limitaciones y aspectos pendientes de evaluación
+**Validado por Profesional de prueba** el 2026-10-15.
 
-- Instrumento no realizado: Tarea de realidad virtual del proyecto (opcional)
-- El protocolo utilizado es provisional y no tiene validez clínica.
+## Referencias científicas de apoyo (Etapa 9)
 
-## 10. Revisión y validación profesional
-
-Validado por **Profesional de prueba** el 2026-10-15.
+- [1] American Academy of Pediatrics. Clinical Practice Guideline for the Diagnosis, Evaluation, and Treatment of ADHD in Children and Adolescents. Pediatrics. 2019;144(4):e20192528.
+- [2] NICE. Attention deficit hyperactivity disorder: diagnosis and management (NG87). Recommendations.
+- [3] Neural correlates of executive function and attention in children with ADHD: An ALE meta-analysis of task-based functional connectivity studies. Psychiatry Research. DOI: 10.1016/j.psychres.2024.116338. PMID: 39947841.
+- [4] ADHD and the Choice of Small Immediate Over Larger Delayed Rewards: A Comparative Meta-Analysis of Performance on Simple Choice-Delay and Temporal Discounting Paradigms. Journal of Attention Disorders. PMID: 29806533.
+- [5] Executive function in children with neurodevelopmental conditions: systematic review and meta-analysis. Nature Human Behaviour. 2024. PMID: 39424962.
+- [6] Meta-analysis of organizational skills interventions for children and adolescents with ADHD. Clinical Psychology Review. 2017;52:108–123. PMID: 28088557.
+- [7] Behavioral Parent Training for School-Aged Children With ADHD: A Systematic Review of Randomized Control Trials. Journal of Attention Disorders. PMID: 38083879.
+- [8] Behavioral Sleep Interventions for Children With ADHD: A Systematic Review and Meta-Analysis. Journal of Attention Disorders. 2022;26(14):1805–1821. PMID: 35758199.
+- [9] The influence of existing interventions on sleep of youth with ADHD: A meta-analysis of randomized controlled trials. Sleep Medicine Reviews. 2026. PMID: 42096966.
+- [10] Exercise for core ADHD symptoms and executive functions in children and adolescents with ADHD: A network and dose-response meta-analysis. Journal of Sport and Health Science. 2026. PMID: 42480697.

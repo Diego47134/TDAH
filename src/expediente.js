@@ -76,8 +76,8 @@ export function agregarHecho(db, protocolo, casoId, h) {
       h.respuesta_id ?? null, h.pregunta_id ?? null, t);
   const nuevoId = Number(r.lastInsertRowid);
   let contradiccion = null;
-  const tipo = protocolo.slots[h.slot]?.tipo;
-  if (h.estado === 'valor' && (tipo === 'si_no' || tipo === 'numero')) {
+  // Solo datos categóricos (presencia, alternativas, edad) pueden contradecirse; el texto libre se acumula.
+  if (h.estado === 'valor' && h.categorico) {
     const previo = db.prepare(`SELECT * FROM hechos WHERE caso_id = ? AND dimension_id = ? AND slot = ? AND estado = 'valor'
                                AND id <> ? AND valor <> ? ORDER BY id DESC LIMIT 1`)
       .get(casoId, h.dimension_id, h.slot, nuevoId, String(h.valor));
@@ -95,7 +95,16 @@ export function agregarHecho(db, protocolo, casoId, h) {
 export function registrarPregunta(db, casoId, turno, q, justificacion) {
   db.prepare(`INSERT INTO preguntas (caso_id, turno, pregunta_id, dimension_id, slot, especificidad, texto, justificacion, presentada)
               VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`)
-    .run(casoId, turno, q.id, q.dimension_id, q.slot, q.especificidad, q.texto, justificacion, ahora());
+    .run(casoId, turno, q.id, q.objetivo[0], q.objetivo[1], 0, q.texto, justificacion, ahora());
+}
+
+/** Registra una discrepancia entre fuentes sobre un mismo síntoma (Etapa 9 §11), si no existe ya. */
+export function registrarDiscrepancia(db, casoId, dim, slot, hechoA, hechoB, descripcion) {
+  const ya = db.prepare('SELECT id FROM contradicciones WHERE caso_id = ? AND dimension_id = ? AND slot = ?').get(casoId, dim, slot);
+  if (ya) return null;
+  const r = db.prepare(`INSERT INTO contradicciones (caso_id, dimension_id, slot, hecho_a, hecho_b, descripcion, creado) VALUES (?, ?, ?, ?, ?, ?, ?)`)
+    .run(casoId, dim, slot, hechoA, hechoB, descripcion, ahora());
+  return { id: Number(r.lastInsertRowid), dimension_id: dim, slot, descripcion };
 }
 
 export function marcarRespondida(db, casoId, turno) {

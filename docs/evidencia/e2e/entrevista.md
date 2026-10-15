@@ -1,64 +1,64 @@
 # Evidencia E2E — entrevista
 
-Generado: 2026-10-15T16:15:52.099Z
+Generado: 2026-10-15T18:16:53.402Z
 
 ## E01 · Orden inicial obligatorio — **APROBADA**
 
-Requisito: Motivo → edad → informe escolar → disponibilidad → ruta, antes de cualquier dimensión.
+Requisito: Motivo → edad → informe escolar → disponibilidad → ruta, antes de cualquier síntoma.
 
 ### Paso 1
 
-- **entrada:** `{"pregunta":"INI-MOTIVO — Para comenzar, ¿cuál es el motivo de consulta? Cuénteme qué es lo que le preocupa.","respuesta":"Se distrae mucho"}`
-- **estado_antes:** `{"turno":1,"ruta":null,"fase_inicial_completa":false,"iniciales":{"motivo":"sin_dato","edad":"sin_dato","informe_existe":"sin_dato","informe_disponible":"sin_dato"},"dimensiones_no_pendientes":"(ninguna)","contradicciones_abiertas":0}`
-- **decision_motor:** `{"accion":"preguntar","pregunta_id":"INI-EDAD","justificacion":"Secuencia inicial obligatoria (paso 2): «Edad (años)»."}`
-- **interpretacion:** `{"clasificacion":"valor","estado_dato":"valor","valor":"Se distrae mucho","interprete":"reglas","menciones":[{"dimension_id":"INA-SOST","palabra_clave":"se distrae","evidencia":"Se distrae mucho"}]}`
-- **accion_resultante:** Pregunta: ¿Qué edad tiene la persona evaluada?
-- **estado_despues:** `{"turno":2,"ruta":null,"fase_inicial_completa":false,"iniciales":{"motivo":"Se distrae mucho","edad":"sin_dato","informe_existe":"sin_dato","informe_disponible":"sin_dato"},"dimensiones_no_pendientes":"(ninguna)","contradicciones_abiertas":0}`
+- **entrada:** `{"pregunta":"INI-MOTIVO — ¿Qué está ocurriendo actualmente que motivó esta evaluación?","respuesta":"Desde primero básico se distrae mucho en clases y le cuesta terminar las tareas."}`
+- **estado_antes:** `{"turno":1,"estado_global":"fase_inicial","ruta":null,"edad":null,"fase_inicial_completa":false,"sintomas":"(sin información)","barrido":"NO_REALIZADO","tamizaje":"NO_REALIZADO","contradicciones_abiertas":0}`
+- **decision_motor:** `{"accion":"preguntar","pregunta_id":"INI-EDAD","justificacion":"Secuencia inicial obligatoria (paso 2 de 3)."}`
+- **interpretacion:** `{"clasificacion":"valor","estado_dato":"valor","valor":"Desde primero básico se distrae mucho en clases y le cuesta terminar las tareas.","interprete":"reglas","menciones":[{"sintoma":"R1.8","palabra_clave":"se distrae","evidencia":"Desde primero básico se distrae mucho en clases y le cuesta terminar las tareas."}]}`
+- **accion_resultante:** Pregunta: ¿Qué edad tiene el niño, niña o adolescente evaluado?
+- **estado_despues:** `{"turno":2,"estado_global":"fase_inicial","ruta":null,"edad":null,"fase_inicial_completa":false,"sintomas":"(sin información)","barrido":"NO_REALIZADO","tamizaje":"NO_REALIZADO","contradicciones_abiertas":0}`
 - **esperado:** Siguiente paso de la secuencia inicial
 - **ok:** true
 
 ### Paso 2
 
-- **entrada:** `{"pregunta":"INI-EDAD — ¿Qué edad tiene la persona evaluada?","respuesta":"9"}`
-- **estado_antes:** `{"turno":2,"ruta":null,"fase_inicial_completa":false,"iniciales":{"motivo":"Se distrae mucho","edad":"sin_dato","informe_existe":"sin_dato","informe_disponible":"sin_dato"},"dimensiones_no_pendientes":"(ninguna)","contradicciones_abiertas":0}`
-- **decision_motor:** `{"accion":"preguntar","pregunta_id":"INI-INF-EXISTE","justificacion":"Secuencia inicial obligatoria (paso 3): «Existe informe escolar»."}`
-- **interpretacion:** `{"clasificacion":"valor","estado_dato":"valor","valor":"9","interprete":"reglas","menciones":[]}`
-- **accion_resultante:** Pregunta: ¿Existe un informe escolar (del profesor jefe o del colegio) sobre la persona evaluada?
-- **estado_despues:** `{"turno":3,"ruta":null,"fase_inicial_completa":false,"iniciales":{"motivo":"Se distrae mucho","edad":"9","informe_existe":"sin_dato","informe_disponible":"sin_dato"},"dimensiones_no_pendientes":"(ninguna)","contradicciones_abiertas":0}`
+- **entrada:** `{"pregunta":"INI-EDAD — ¿Qué edad tiene el niño, niña o adolescente evaluado?","respuesta":"8 años"}`
+- **estado_antes:** `{"turno":2,"estado_global":"fase_inicial","ruta":null,"edad":null,"fase_inicial_completa":false,"sintomas":"(sin información)","barrido":"NO_REALIZADO","tamizaje":"NO_REALIZADO","contradicciones_abiertas":0}`
+- **decision_motor:** `{"accion":"preguntar","pregunta_id":"INI-INF-EXISTE","justificacion":"Secuencia inicial obligatoria (paso 3 de 3)."}`
+- **interpretacion:** `{"clasificacion":"valor","estado_dato":"valor","valor":"8","interprete":"reglas","menciones":[]}`
+- **accion_resultante:** Pregunta: ¿Existe un informe escolar sobre el niño, niña o adolescente?
+- **estado_despues:** `{"turno":3,"estado_global":"fase_inicial","ruta":null,"edad":8,"fase_inicial_completa":false,"sintomas":"(sin información)","barrido":"NO_REALIZADO","tamizaje":"NO_REALIZADO","contradicciones_abiertas":0}`
 - **esperado:** Siguiente paso de la secuencia inicial
 - **ok:** true
 
 ### Paso 3
 
-- **entrada:** `{"pregunta":"INI-INF-EXISTE — ¿Existe un informe escolar (del profesor jefe o del colegio) sobre la persona evaluada?","respuesta":"sí"}`
-- **estado_antes:** `{"turno":3,"ruta":null,"fase_inicial_completa":false,"iniciales":{"motivo":"Se distrae mucho","edad":"9","informe_existe":"sin_dato","informe_disponible":"sin_dato"},"dimensiones_no_pendientes":"(ninguna)","contradicciones_abiertas":0}`
-- **decision_motor:** `{"accion":"preguntar","pregunta_id":"INI-INF-DISP","justificacion":"Secuencia inicial obligatoria (paso 4): «Informe escolar disponible u obtenible»."}`
-- **interpretacion:** `{"clasificacion":"si","estado_dato":"valor","valor":"si","interprete":"reglas","menciones":[]}`
-- **accion_resultante:** Pregunta: ¿Ese informe está disponible o se puede solicitar al colegio para esta evaluación?
-- **estado_despues:** `{"turno":4,"ruta":null,"fase_inicial_completa":false,"iniciales":{"motivo":"Se distrae mucho","edad":"9","informe_existe":"si","informe_disponible":"sin_dato"},"dimensiones_no_pendientes":"(ninguna)","contradicciones_abiertas":0}`
+- **entrada:** `{"pregunta":"INI-INF-EXISTE — ¿Existe un informe escolar sobre el niño, niña o adolescente?","respuesta":"A. Sí"}`
+- **estado_antes:** `{"turno":3,"estado_global":"fase_inicial","ruta":null,"edad":8,"fase_inicial_completa":false,"sintomas":"(sin información)","barrido":"NO_REALIZADO","tamizaje":"NO_REALIZADO","contradicciones_abiertas":0}`
+- **decision_motor:** `{"accion":"preguntar","pregunta_id":"INI-INF-DISP","justificacion":"Secuencia inicial obligatoria (paso 4 de 4)."}`
+- **interpretacion:** `{"clasificacion":"valor","estado_dato":"valor","valor":"si","interprete":"reglas","menciones":[]}`
+- **accion_resultante:** Pregunta: ¿El informe escolar está disponible o puede obtenerse para esta evaluación?
+- **estado_despues:** `{"turno":4,"estado_global":"fase_inicial","ruta":null,"edad":8,"fase_inicial_completa":false,"sintomas":"(sin información)","barrido":"NO_REALIZADO","tamizaje":"NO_REALIZADO","contradicciones_abiertas":0}`
 - **esperado:** Siguiente paso de la secuencia inicial
 - **ok:** true
 
 ### Paso 4
 
-- **entrada:** `{"pregunta":"INI-INF-DISP — ¿Ese informe está disponible o se puede solicitar al colegio para esta evaluación?","respuesta":"sí"}`
-- **estado_antes:** `{"turno":4,"ruta":null,"fase_inicial_completa":false,"iniciales":{"motivo":"Se distrae mucho","edad":"9","informe_existe":"si","informe_disponible":"sin_dato"},"dimensiones_no_pendientes":"(ninguna)","contradicciones_abiertas":0}`
-- **decision_motor:** `{"accion":"preguntar","pregunta_id":"INA-SOST-FRECUENCIA","justificacion":"Profundización: «Atención sostenida» tiene presencia referida (fuente: apoderado, mención espontánea) y falta caracterizar: frecuencia, contextos, inicio, impacto. Se pregunta por «Frecuencia»."}`
-- **interpretacion:** `{"clasificacion":"si","estado_dato":"valor","valor":"si","interprete":"reglas","menciones":[]}`
-- **accion_resultante:** Pregunta: Respecto de la distracción o pérdida de atención: ¿con qué frecuencia ocurre? Por ejemplo, varias veces al día o algunas veces por semana.
-- **estado_despues:** `{"turno":5,"ruta":"con_informe","fase_inicial_completa":true,"iniciales":{"motivo":"Se distrae mucho","edad":"9","informe_existe":"si","informe_disponible":"si"},"dimensiones_no_pendientes":"INA-SOST:en_curso, ESC-REND:pendiente_informe, ESC-AULA:pendiente_informe","contradicciones_abiertas":0}`
+- **entrada:** `{"pregunta":"INI-INF-DISP — ¿El informe escolar está disponible o puede obtenerse para esta evaluación?","respuesta":"A. Sí"}`
+- **estado_antes:** `{"turno":4,"estado_global":"fase_inicial","ruta":null,"edad":8,"fase_inicial_completa":false,"sintomas":"(sin información)","barrido":"NO_REALIZADO","tamizaje":"NO_REALIZADO","contradicciones_abiertas":0}`
+- **decision_motor:** `{"accion":"preguntar","pregunta_id":"A09","justificacion":"Activación inmediata (Etapa 9 §14.2): se mencionó una conducta con posible correspondencia con «Se distrae fácilmente» (R1.8); se usa la pregunta específica del banco para caracterizarla, sin confirmarla por asociación."}`
+- **interpretacion:** `{"clasificacion":"valor","estado_dato":"valor","valor":"si","interprete":"reglas","menciones":[]}`
+- **accion_resultante:** Pregunta: ¿Se distrae fácilmente con estímulos que ocurren alrededor?
+- **estado_despues:** `{"turno":5,"estado_global":"entrevista","ruta":"con_informe","edad":8,"fase_inicial_completa":true,"sintomas":"R1.8:EVIDENCIA RELACIONADA — REQUIERE CARACTERIZACIÓN","barrido":"NO_REALIZADO","tamizaje":"NO_REALIZADO","contradicciones_abiertas":0}`
 - **esperado:** Siguiente paso de la secuencia inicial
 - **ok:** true
 
 ## E02 · Ruta según informe escolar — **APROBADA**
 
-Requisito: Con informe: el hogar no explora lo escolar hasta tener el informe. Sin informe: ruta completa, sin preguntar disponibilidad.
+Requisito: Ruta B: el hogar no pregunta lo escolar hasta tener el informe. Ruta A: el apoderado aporta lo escolar (RA-*), sin preguntar disponibilidad.
 
 ### Paso 1
 
 - **entrada:** Caso A: informe existe y está disponible
 - **decision_motor:** ruta=con_informe
-- **accion_resultante:** estado=esperando_informe_escolar; preguntas ESC formuladas: 0
+- **accion_resultante:** estado=esperando_informe_escolar; preguntas RA: 0
 - **esperado:** con_informe, 0 preguntas escolares, espera el informe
 - **ok:** true
 
@@ -66,8 +66,8 @@ Requisito: Con informe: el hogar no explora lo escolar hasta tener el informe. S
 
 - **entrada:** Caso B: no existe informe
 - **decision_motor:** ruta=completa
-- **accion_resultante:** ESC preguntadas: ESC-REND-P1, ESC-AULA-P1
-- **esperado:** completa, explora lo escolar, no pregunta disponibilidad
+- **accion_resultante:** RA preguntadas: RA-C01, RA-C03, RA-C04, RA-C08
+- **esperado:** completa, explora lo escolar con el apoderado, no pregunta disponibilidad
 - **ok:** true
 
 ## E03-E13 · Persistencia y recuperación — **APROBADA**
@@ -76,199 +76,115 @@ Requisito: El expediente sobrevive al cierre del servidor y la entrevista contin
 
 ### Paso 1
 
-- **entrada:** Cierre y reapertura del servidor
-- **estado_antes:** `{"turno":8,"pregunta":"INA-SOST-IMPACTO","hechos":9}`
-- **estado_despues:** `{"turno":8,"pregunta":"INA-SOST-IMPACTO","hechos":9}`
-- **esperado:** Idénticos
-- **ok:** true
+- **entrada:** Servidor detenido tras 12 respuestas
+- **estado_antes:** `{"turno":13,"pregunta":"A02","hechos":13}`
 
 ### Paso 2
 
-- **entrada:** `{"pregunta":"INA-SOST-IMPACTO — Respecto de la distracción o pérdida de atención: ¿de qué manera afecta su vida diaria (tareas, familia, amistades)?","respuesta":"Las tareas le toman el doble de tiempo y hay discusiones en la casa"}`
-- **estado_antes:** `{"turno":8,"ruta":"con_informe","fase_inicial_completa":true,"iniciales":{"motivo":"Desde primero básico se distrae mucho en clases y le cuesta terminar las tareas; además duerme mal.","edad":"8","informe_existe":"si","informe_disponible":"si"},"dimensiones_no_pendientes":"INA-SOST:en_curso, ESC-REND:pendiente_informe, ESC-AULA:pendiente_informe, TAM-SUENO:en_curso","contradicciones_abiertas":0}`
-- **decision_motor:** `{"accion":"preguntar","pregunta_id":"FUN-FAMILIA-DESCRIPCION","justificacion":"Profundización: «Funcionamiento familiar cotidiano» tiene presencia referida (fuente: apoderado, mención espontánea) y falta caracterizar: descripcion. Se pregunta por «Descripción»."}`
-- **interpretacion:** `{"clasificacion":"valor","estado_dato":"valor","valor":"Las tareas le toman el doble de tiempo y hay discusiones en la casa","interprete":"reglas","menciones":[{"dimension_id":"FUN-FAMILIA","palabra_clave":"discusiones","evidencia":"Las tareas le toman el doble de tiempo y hay discusiones en la casa"}]}`
-- **accion_resultante:** Pregunta: Respecto de la convivencia familiar: ¿podría describir en qué consiste y cómo ha sido?
-- **estado_despues:** `{"turno":9,"ruta":"con_informe","fase_inicial_completa":true,"iniciales":{"motivo":"Desde primero básico se distrae mucho en clases y le cuesta terminar las tareas; además duerme mal.","edad":"8","informe_existe":"si","informe_disponible":"si"},"dimensiones_no_pendientes":"INA-SOST:resuelta, FUN-FAMILIA:en_curso, ESC-REND:pendiente_informe, ESC-AULA:pendiente_informe, TAM-SUENO:en_curso","contradicciones_abiertas":0}`
-- **esperado:** Continúa desde la pregunta pendiente antes de la interrupción
+- **entrada:** Servidor reiniciado
+- **estado_despues:** `{"turno":13,"pregunta":"A02","hechos":13}`
+- **esperado:** Mismo turno, misma pregunta, mismos hechos
 - **ok:** true
 
-### Paso 3
+## E04 · Selección adaptativa — **APROBADA**
 
-- **entrada:** Se completa la entrevista tras la reapertura
-- **accion_resultante:** esperando_informe_escolar
-- **esperado:** Sin repeticiones
-- **ok:** true
-
-## E04 · Adaptación a la respuesta — **APROBADA**
-
-Requisito: Misma pregunta, respuestas distintas → siguiente pregunta distinta.
+Requisito: La misma pregunta con respuestas distintas produce siguientes pasos distintos (profundizar vs. avanzar).
 
 ### Paso 1
 
-- **entrada:** `{"pregunta":"HIP-MOT-P1 — ¿Le cuesta quedarse quieto en situaciones en que se espera que lo esté, como en la mesa o en clases?","respuesta":"Sí, todo el tiempo"}`
-- **estado_antes:** `{"turno":13,"ruta":"con_informe","fase_inicial_completa":true,"iniciales":{"motivo":"Desde primero básico se distrae mucho en clases y le cuesta terminar las tareas; además duerme mal.","edad":"8","informe_existe":"si","informe_disponible":"si"},"dimensiones_no_pendientes":"INA-SOST:resuelta, INA-ORG:resuelta, INA-OLV:resuelta, ESC-REND:pendiente_informe, ESC-AULA:pendiente_informe, TAM-SUENO:resuelta","contradicciones_abiertas":0}`
-- **decision_motor:** `{"accion":"preguntar","pregunta_id":"HIP-MOT-FRECUENCIA","justificacion":"Profundización: «Inquietud motora» tiene presencia referida (fuente: apoderado) y falta caracterizar: frecuencia, contextos, inicio, impacto. Se pregunta por «Frecuencia»."}`
+- **entrada:** `{"pregunta":"A09 — ¿Se distrae fácilmente con estímulos que ocurren alrededor?","respuesta":"A. Sí"}`
+- **estado_antes:** `{"turno":5,"estado_global":"entrevista","ruta":"con_informe","edad":8,"fase_inicial_completa":true,"sintomas":"R1.8:EVIDENCIA RELACIONADA — REQUIERE CARACTERIZACIÓN","barrido":"NO_REALIZADO","tamizaje":"NO_REALIZADO","contradicciones_abiertas":0}`
+- **decision_motor:** `{"accion":"preguntar","pregunta_id":"R1.8-FRECUENCIA","justificacion":"Profundización del síntoma R1.8 «Se distrae fácilmente» (1/3): falta «frecuencia». Prioridad de la Automatización (regla 2a: frecuencia e intensidad)."}`
 - **interpretacion:** `{"clasificacion":"si","estado_dato":"valor","valor":"si","interprete":"reglas","menciones":[]}`
-- **accion_resultante:** Pregunta: Respecto de la inquietud o el movimiento excesivo: ¿con qué frecuencia ocurre? Por ejemplo, varias veces al día o algunas veces por semana.
-- **estado_despues:** `{"turno":14,"ruta":"con_informe","fase_inicial_completa":true,"iniciales":{"motivo":"Desde primero básico se distrae mucho en clases y le cuesta terminar las tareas; además duerme mal.","edad":"8","informe_existe":"si","informe_disponible":"si"},"dimensiones_no_pendientes":"INA-SOST:resuelta, INA-ORG:resuelta, INA-OLV:resuelta, HIP-MOT:en_curso, ESC-REND:pendiente_informe, ESC-AULA:pendiente_informe, TAM-SUENO:resuelta","contradicciones_abiertas":0}`
-- **esperado:** Profundiza en inquietud motora
+- **accion_resultante:** Pregunta: Sobre «se distrae fácilmente con estímulos que ocurren alrededor»: ¿Con qué frecuencia sucede?
+- **estado_despues:** `{"turno":6,"estado_global":"entrevista","ruta":"con_informe","edad":8,"fase_inicial_completa":true,"sintomas":"R1.8:EVIDENCIA RELACIONADA — REQUIERE CARACTERIZACIÓN","barrido":"NO_REALIZADO","tamizaje":"NO_REALIZADO","contradicciones_abiertas":0}`
+- **esperado:** Profundiza R1.8 (frecuencia)
 - **ok:** true
 
 ### Paso 2
 
-- **entrada:** `{"pregunta":"HIP-MOT-P1 — ¿Le cuesta quedarse quieto en situaciones en que se espera que lo esté, como en la mesa o en clases?","respuesta":"No"}`
-- **estado_antes:** `{"turno":13,"ruta":"con_informe","fase_inicial_completa":true,"iniciales":{"motivo":"Desde primero básico se distrae mucho en clases y le cuesta terminar las tareas; además duerme mal.","edad":"8","informe_existe":"si","informe_disponible":"si"},"dimensiones_no_pendientes":"INA-SOST:resuelta, INA-ORG:resuelta, INA-OLV:resuelta, ESC-REND:pendiente_informe, ESC-AULA:pendiente_informe, TAM-SUENO:resuelta","contradicciones_abiertas":0}`
-- **decision_motor:** `{"accion":"preguntar","pregunta_id":"IMP-ESPERA-P1","justificacion":"Dimensión obligatoria pendiente «Dificultad para esperar» (impulsividad): no hay datos en el expediente desde ninguna fuente."}`
+- **entrada:** `{"pregunta":"A09 — ¿Se distrae fácilmente con estímulos que ocurren alrededor?","respuesta":"B. No"}`
+- **estado_antes:** `{"turno":5,"estado_global":"entrevista","ruta":"con_informe","edad":8,"fase_inicial_completa":true,"sintomas":"R1.8:EVIDENCIA RELACIONADA — REQUIERE CARACTERIZACIÓN","barrido":"NO_REALIZADO","tamizaje":"NO_REALIZADO","contradicciones_abiertas":0}`
+- **decision_motor:** `{"accion":"preguntar","pregunta_id":"A01","justificacion":"Cobertura individual de los 18 síntomas DSM-5-TR (Etapa 9 §14.1): R1.1 «Dificultad para prestar atención a detalles / errores por descuido» sin información del apoderado."}`
 - **interpretacion:** `{"clasificacion":"no","estado_dato":"valor","valor":"no","interprete":"reglas","menciones":[]}`
-- **accion_resultante:** Pregunta: ¿Le cuesta esperar su turno, por ejemplo en juegos o en una fila?
-- **estado_despues:** `{"turno":14,"ruta":"con_informe","fase_inicial_completa":true,"iniciales":{"motivo":"Desde primero básico se distrae mucho en clases y le cuesta terminar las tareas; además duerme mal.","edad":"8","informe_existe":"si","informe_disponible":"si"},"dimensiones_no_pendientes":"INA-SOST:resuelta, INA-ORG:resuelta, INA-OLV:resuelta, HIP-MOT:resuelta, ESC-REND:pendiente_informe, ESC-AULA:pendiente_informe, TAM-SUENO:resuelta","contradicciones_abiertas":0}`
-- **esperado:** Pasa a la siguiente dimensión pendiente
+- **accion_resultante:** Pregunta: ¿Comete errores por no fijarse bien en los detalles?
+- **estado_despues:** `{"turno":6,"estado_global":"entrevista","ruta":"con_informe","edad":8,"fase_inicial_completa":true,"sintomas":"R1.8:NO REFERIDO","barrido":"NO_REALIZADO","tamizaje":"NO_REALIZADO","contradicciones_abiertas":0}`
+- **esperado:** Avanza a otro síntoma
 - **ok:** true
 
-## E05 · Sin redundancia — **APROBADA**
+## E05 · Sin repeticiones — **APROBADA**
 
-Requisito: Datos establecidos por mención, equivalencias funcionales y reformulaciones no se vuelven a preguntar.
+Requisito: Ninguna pregunta se formula dos veces y no se formulan dos preguntas de un mismo grupo de equivalencia funcional.
 
 ### Paso 1
 
-- **entrada:** 37 preguntas formuladas
-- **decision_motor:** Motivo menciona distracción y sueño; AUT-RUTINAS ambigua
-- **accion_resultante:** INA-SOST-P1 formulada: false; TAM-SUENO-P1: false; AUT-RUTINAS-P2: false
-- **esperado:** false, false, false (sin repeticiones)
+- **entrada:** Entrevista completa (86 turnos)
+- **accion_resultante:** Preguntas únicas: 86
+- **esperado:** Sin repeticiones ni equivalentes
 - **ok:** true
 
-### Paso 2
+## E06 · Profundización acotada — **APROBADA**
 
-- **entrada:** Propuesta externa: «¿Necesita recordatorios para completar la tarea que comenzó?»
-- **decision_motor:** Validador
-- **accion_resultante:** autorizada: La pregunta no pertenece al banco autorizado del protocolo. | no_equivalente: Equivalente funcional a INA-ORG-P1 ya formulada (similitud 1.00). | no_equivalente: Pertenece al grupo de equivalencia EQ-RECORDATORIOS («Necesitar recordatorios o insistencia para terminar lo que se empieza»), ya explorado.
-- **esperado:** Bloqueada: no autorizada y equivalente
-- **ok:** true
-
-### Paso 3
-
-- **entrada:** Bloqueos registrados por el motor durante la entrevista
-- **accion_resultante:** 0 bloqueos
-- **ok:** true
-
-## E06 · Profundización — **APROBADA**
-
-Requisito: Presencia referida → se caracterizan inmediatamente los datos esenciales; el límite se supera solo con justificación.
+Requisito: Cada síntoma referido se caracteriza con ≤3 preguntas; los síntomas negados no se profundizan.
 
 ### Paso 1
 
-- **entrada:** `{"pregunta":"INI-INF-DISP — ¿Ese informe está disponible o se puede solicitar al colegio para esta evaluación?","respuesta":"Sí, el colegio lo puede enviar"}`
-- **estado_antes:** `{"turno":4,"ruta":null,"fase_inicial_completa":false,"iniciales":{"motivo":"Desde primero básico se distrae mucho en clases y le cuesta terminar las tareas; además duerme mal.","edad":"8","informe_existe":"si","informe_disponible":"sin_dato"},"dimensiones_no_pendientes":"(ninguna)","contradicciones_abiertas":0}`
-- **decision_motor:** `{"accion":"preguntar","pregunta_id":"INA-SOST-FRECUENCIA","justificacion":"Profundización: «Atención sostenida» tiene presencia referida (fuente: apoderado, mención espontánea) y falta caracterizar: frecuencia, contextos, inicio, impacto. Se pregunta por «Frecuencia»."}`
-- **interpretacion:** `{"clasificacion":"si","estado_dato":"valor","valor":"si","interprete":"reglas","menciones":[]}`
-- **accion_resultante:** Pregunta: Respecto de la distracción o pérdida de atención: ¿con qué frecuencia ocurre? Por ejemplo, varias veces al día o algunas veces por semana.
-- **estado_despues:** `{"turno":5,"ruta":"con_informe","fase_inicial_completa":true,"iniciales":{"motivo":"Desde primero básico se distrae mucho en clases y le cuesta terminar las tareas; además duerme mal.","edad":"8","informe_existe":"si","informe_disponible":"si"},"dimensiones_no_pendientes":"INA-SOST:en_curso, ESC-REND:pendiente_informe, ESC-AULA:pendiente_informe, TAM-SUENO:en_curso","contradicciones_abiertas":0}`
-- **esperado:** Tras la fase inicial, profundiza la conducta mencionada en el motivo
+- **entrada:** Síntomas con «Sí»: R1.1, R1.2, R1.3, R1.4, R1.6, R1.7, R1.8, R1.9, R2.9
+- **accion_resultante:** Profundizaciones: 28
+- **esperado:** 3 por síntoma referido, 0 en negados o desconocidos
 - **ok:** true
 
-### Paso 2
+## E07 · Incertidumbre ≠ negativa — **APROBADA**
 
-- **entrada:** `{"pregunta":"INA-ORG-INICIO — Respecto de la necesidad de recordatorios para terminar tareas: ¿desde qué edad o desde cuándo lo nota?","respuesta":"(botón: no_recuerdo)"}`
-- **estado_antes:** `{"turno":15,"ruta":"con_informe","fase_inicial_completa":true,"iniciales":{"motivo":"Desde primero básico se distrae mucho en clases y le cuesta terminar las tareas; además duerme mal.","edad":"8","informe_existe":"si","informe_disponible":"si"},"dimensiones_no_pendientes":"INA-SOST:resuelta, INA-ORG:en_curso, FUN-FAMILIA:resuelta, ESC-REND:pendiente_informe, ESC-AULA:pendiente_informe, TAM-SUENO:parcial","contradicciones_abiertas":0}`
-- **decision_motor:** `{"accion":"preguntar","pregunta_id":"INA-ORG-IMPACTO","justificacion":"Profundización: «Organización y finalización de tareas» tiene presencia referida (fuente: apoderado) y falta caracterizar: impacto. Se pregunta por «Interferencia en el funcionamiento». Se supera el límite orientativo de 4 preguntas porque falta un dato esencial. [límite 4/4 superado por dato esencial]"}`
+Requisito: Las respuestas de incertidumbre se registran como tales y el síntoma queda DESCONOCIDO.
+
+### Paso 1
+
+- **entrada:** `{"pregunta":"A01 — ¿Comete errores por no fijarse bien en los detalles?","respuesta":"La verdad no me acuerdo"}`
+- **estado_antes:** `{"turno":8,"estado_global":"entrevista","ruta":"completa","edad":8,"fase_inicial_completa":true,"sintomas":"R1.8:APOYADO POR EVIDENCIA","barrido":"NO_REALIZADO","tamizaje":"NO_REALIZADO","contradicciones_abiertas":0}`
+- **decision_motor:** `{"accion":"preguntar","pregunta_id":"A02","justificacion":"Cobertura individual de los 18 síntomas DSM-5-TR (Etapa 9 §14.1): R1.2 «Dificultad para mantener la atención» sin información del apoderado."}`
 - **interpretacion:** `{"clasificacion":"no_recuerdo","estado_dato":"no_recuerda","valor":null,"interprete":"reglas","menciones":[]}`
-- **accion_resultante:** Pregunta: Respecto de la necesidad de recordatorios para terminar tareas: ¿de qué manera afecta su vida diaria (tareas, familia, amistades)?
-- **estado_despues:** `{"turno":16,"ruta":"con_informe","fase_inicial_completa":true,"iniciales":{"motivo":"Desde primero básico se distrae mucho en clases y le cuesta terminar las tareas; además duerme mal.","edad":"8","informe_existe":"si","informe_disponible":"si"},"dimensiones_no_pendientes":"INA-SOST:resuelta, INA-ORG:en_curso, FUN-FAMILIA:resuelta, ESC-REND:pendiente_informe, ESC-AULA:pendiente_informe, TAM-SUENO:parcial","contradicciones_abiertas":0}`
-- **esperado:** Supera el límite con justificación explícita
+- **accion_resultante:** Pregunta: ¿Le cuesta mantener la atención durante una actividad?
+- **estado_despues:** `{"turno":9,"estado_global":"entrevista","ruta":"completa","edad":8,"fase_inicial_completa":true,"sintomas":"R1.1:DESCONOCIDO, R1.8:APOYADO POR EVIDENCIA","barrido":"NO_REALIZADO","tamizaje":"NO_REALIZADO","contradicciones_abiertas":0}`
+- **esperado:** R1.1 = DESCONOCIDO (no se registra como ausente)
 - **ok:** true
 
-## E07 · Incertidumbre — **APROBADA**
+## E08 · Gate de cierre (Etapa 9 §J.2) — **APROBADA**
 
-Requisito: No sé / no recuerdo se registran como desconocidos, generan a lo sumo una alternativa y aparecen en el informe.
+Requisito: PUEDE_CERRAR_ENTREVISTA solo es verdadero con barrido y tamizaje completos y sin ramas abiertas.
 
 ### Paso 1
 
-- **entrada:** `{"pregunta":"INA-SOST-P1 — ¿Le cuesta mantener la atención en lo que está haciendo, por ejemplo en tareas o juegos?","respuesta":"(botón: no_se)"}`
-- **estado_antes:** `{"turno":4,"ruta":"completa","fase_inicial_completa":true,"iniciales":{"motivo":"Problemas de conducta","edad":"10","informe_existe":"no","informe_disponible":"sin_dato"},"dimensiones_no_pendientes":"(ninguna)","contradicciones_abiertas":0}`
-- **decision_motor:** `{"accion":"preguntar","pregunta_id":"INA-SOST-P3","justificacion":"Se respondió «no sé» sobre «presencia» de «Atención sostenida»: no se interpreta como negativa; se intenta una única pregunta alternativa con un ejemplo concreto."}`
-- **interpretacion:** `{"clasificacion":"no_se","estado_dato":"no_sabe","valor":null,"interprete":"reglas","menciones":[]}`
-- **accion_resultante:** Pregunta: Pensando en la última semana, ¿recuerda alguna situación concreta en que se haya distraído y no terminara algo?
-- **estado_despues:** `{"turno":5,"ruta":"completa","fase_inicial_completa":true,"iniciales":{"motivo":"Problemas de conducta","edad":"10","informe_existe":"no","informe_disponible":"sin_dato"},"dimensiones_no_pendientes":"INA-SOST:parcial","contradicciones_abiertas":0}`
-- **esperado:** no_sabe y una única pregunta alternativa concreta
+- **entrada:** Intento de informe final antes del barrido
+- **accion_resultante:** HTTP 409: Barrido diferencial NO_REALIZADO. Tamizaje médico, sensorial y del sueño NO_REALIZADO.
+- **esperado:** Bloqueado
 - **ok:** true
 
 ### Paso 2
 
-- **entrada:** `{"pregunta":"INA-SOST-P3 — Pensando en la última semana, ¿recuerda alguna situación concreta en que se haya distraído y no terminara algo?","respuesta":"No me acuerdo, la verdad"}`
-- **estado_antes:** `{"turno":5,"ruta":"completa","fase_inicial_completa":true,"iniciales":{"motivo":"Problemas de conducta","edad":"10","informe_existe":"no","informe_disponible":"sin_dato"},"dimensiones_no_pendientes":"INA-SOST:parcial","contradicciones_abiertas":0}`
-- **decision_motor:** `{"accion":"preguntar","pregunta_id":"INA-ORG-P1","justificacion":"Dimensión obligatoria pendiente «Organización y finalización de tareas» (inatencion): no hay datos en el expediente desde ninguna fuente."}`
-- **interpretacion:** `{"clasificacion":"no_recuerdo","estado_dato":"no_recuerda","valor":null,"interprete":"reglas","menciones":[]}`
-- **accion_resultante:** Pregunta: ¿Necesita recordatorios para completar una tarea que ya comenzó?
-- **estado_despues:** `{"turno":6,"ruta":"completa","fase_inicial_completa":true,"iniciales":{"motivo":"Problemas de conducta","edad":"10","informe_existe":"no","informe_disponible":"sin_dato"},"dimensiones_no_pendientes":"INA-SOST:parcial","contradicciones_abiertas":0}`
-- **esperado:** no_recuerda; dimensión parcial (no «ausente»); continúa
+- **entrada:** Barrido y tamizaje respondidos
+- **accion_resultante:** barrido=COMPLETADO; tamizaje=COMPLETADO; estado=entrevista_completa
+- **esperado:** Entrevista cerrada
 - **ok:** true
 
-### Paso 3
+## E09 · Tamizaje (Etapa 9 §H.1) — **APROBADA**
 
-- **entrada:** Informe borrador
-- **accion_resultante:** Lista «Atención sostenida — Presencia: No recuerda» entre los datos desconocidos
-- **esperado:** Incertidumbre visible, no negativa
-- **ok:** true
-
-## E08 · Cierre controlado — **APROBADA**
-
-Requisito: Mientras haya dimensiones obligatorias pendientes no hay cierre ni informe final.
+Requisito: El área «Sueño» del barrido deriva la categoría D del tamizaje; cada pregunta se formula una vez.
 
 ### Paso 1
 
-- **entrada:** Solicitud de informe final a mitad de entrevista
-- **accion_resultante:** HTTP 409: Evaluación pendiente: no se puede generar el informe final.
-- **esperado:** 409 y lista de requisitos pendientes
-- **ok:** true
-- **estado_despues:** `["entrevista_cerrada","informe_escolar_segun_ruta","tamizaje_completo","instrumentos_obligatorios","interpretacion_profesional"]`
-
-### Paso 2
-
-- **entrada:** Fin de la entrevista del hogar
-- **accion_resultante:** esperando_informe_escolar
-- **esperado:** Solo se detiene cuando lo único pendiente es el informe escolar
-- **ok:** true
-
-## E09 · Tamizaje diferencial — **APROBADA**
-
-Requisito: Abre solo las ramas que corresponden, sin duplicar, y distingue ausente / presente / desconocido / requiere verificación.
-
-### Paso 1
-
-- **entrada:** Sueño mencionado en el motivo; visión «no sé»; audición «no»
-- **accion_resultante:** Preguntas de tamizaje: TAM-SUENO-DESCRIPCION, TAM-SUENO-EVALUADO_PROFESIONAL, TAM-VISION-P1, TAM-AUDICION-P1, TAM-MEDICO-P1
-- **esperado:** Sueño: sin repetir presencia; ramas solo donde corresponde
-- **ok:** true
-
-### Paso 2
-
-- **entrada:** Sección 7 del informe
-- **accion_resultante:** Explicaciones alternativas que requieren consideración
-
-_El tamizaje no constituye diagnóstico médico y no cierra otras áreas de evaluación._
-
-- **Sueño:** Situación presente: Le cuesta dormirse y se despierta en la noche, desde hace un año. Evaluada por profesional: No sabe. **Requiere verificación profesional.**
-- **Visión:** Información desconocida (No sabe). **Requiere verificación profesional.**
-- **Audición:** Situación no referida.
-- **Condiciones médicas y medicamentos:** Situación no referida.
+- **entrada:** Barrido: C (Sueño); Tamizaje: D
+- **accion_resultante:** Ramas: BAR-C-1, BAR-C-DESDE, TAM-D-1, TAM-D-3, TAM-D-5
+- **esperado:** Sin duplicaciones; ≤3 preguntas por categoría
 - **ok:** true
 
 ## E10 · Informe escolar — **APROBADA**
 
-Requisito: Extracción estructurada con fuente y evidencia; el hogar solo cubre vacíos.
+Requisito: La extracción conserva la frase literal y la fuente; la discrepancia entre fuentes se registra sin resolver.
 
 ### Paso 1
 
-- **entrada:** Carga del informe escolar ficticio
-- **accion_resultante:** INA-SOST.presencia=si; INA-SOST.contextos=Colegio (según informe escolar); INA-SOST.frecuencia=frecuentemente (según informe escolar); HIP-MOT.presencia=si; HIP-MOT.contextos=Colegio (según informe escolar); ESC-REND.presencia=si; ESC-REND.descripcion=Presenta notas bajas en Lenguaje y Matemática durante el primer semestre.
-- **esperado:** Hechos con fuente informe_escolar y evidencia literal
-- **ok:** true
-
-### Paso 2
-
-- **entrada:** Motor tras el informe
-- **decision_motor:** Dimensión obligatoria pendiente «Conducta en el aula» (escolar): no hay datos en el expediente desde ninguna fuente. El informe escolar no resolvió este dato (vacío relevante).
-- **accion_resultante:** Pregunta: ¿El colegio ha informado dificultades de conducta o de comportamiento en clases?
-- **esperado:** Solo se pregunta lo que el informe no resolvió
+- **entrada:** Informe escolar ficticio (7 frases)
+- **accion_resultante:** R1.8:presencia:informe=si; R1.8:frecuencia=varias_al_dia; R1.4:presencia:informe=si; R1.7:presencia:informe=si; R2.9:presencia:informe=no; INF:impacto_academico=si; INF:desde=Las dificultades se observan desde primero básico.
+- **esperado:** Hechos con fuente informe_escolar y evidencia literal; discrepancia R2.9 registrada
 - **ok:** true

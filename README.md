@@ -2,7 +2,7 @@
 
 Aplicación (PWA + backend + base de datos integrada) que ejecuta la **entrevista adaptativa** de evaluación de TDAH, mantiene un **expediente persistente** por persona evaluada, integra **informe escolar e instrumentos** (escalas, Nesplora, realidad virtual) y genera un **informe estructurado** que queda sujeto a validación profesional.
 
-> ⚠️ **Estado del protocolo: PROVISIONAL.** Los documentos que gobiernan el sistema (Modelo científico, Etapa 4, Etapa 7, Etapa 9, prompt de entrevista y archivo de automatización) **aún no han sido entregados**. El software está completo y probado, pero carga un protocolo provisional (`protocol/protocolo.provisional.json`) creado solo para validar técnicamente el flujo. **No tiene validez clínica.** Ver [docs/DOCUMENTOS_Y_CONTRADICCIONES.md](docs/DOCUMENTOS_Y_CONTRADICCIONES.md).
+> **Protocolo vigente 1.0.0**, generado desde los documentos del proyecto (`protocol/fuentes/`): *TDAH Etapas 1–7*, *Etapa 9 completa corregida alineada* (motor) y *Automatización TDAH corregida completa* (lenguaje). Inventario, contradicciones y decisiones en [docs/DOCUMENTOS_Y_CONTRADICCIONES.md](docs/DOCUMENTOS_Y_CONTRADICCIONES.md). El sistema produce hipótesis estructuradas: la decisión clínica corresponde siempre al profesional.
 
 ## Inicio rápido
 
@@ -24,10 +24,11 @@ Abrir `http://127.0.0.1:3000`, crear un caso con un seudónimo y comenzar la ent
 |---|---|
 | `npm run dev` | Desarrollo local (recarga al guardar, sin token) |
 | `npm start` | Producción (`server.js`): clave de acceso obligatoria, datos fuera de la app, respaldos |
-| `npm test` | Pruebas unitarias y de extremo a extremo (49) |
+| `npm test` | Pruebas unitarias y de extremo a extremo (50) |
 | `npm run test:evidencia` | Igual, y escribe evidencia verificable en `docs/evidencia/` |
 | `npm run demo` | Caso ficticio completo de principio a fin → `docs/demo/` |
-| `npm run validar-protocolo [-- archivo.json]` | Valida la integridad de un protocolo |
+| `npm run validar-protocolo [-- archivo.json]` | Valida la integridad del protocolo |
+| `python3 scripts/construir_protocolo.py` | Regenera `protocol/protocolo.json` desde los documentos |
 
 ### Con Docker
 
@@ -43,10 +44,11 @@ docker run -p 3000:3000 -v tdah-datos:/data --env-file .env tdah
 | `PORT`, `HOST` | Puerto (o ruta de socket) y host | `3000`; `127.0.0.1` en desarrollo, `0.0.0.0` en producción |
 | `DB_PATH` | Archivo SQLite del expediente | desarrollo: `data/tdah.sqlite` · producción: `~/tdah-datos/tdah.sqlite` |
 | `BACKUP_EVERY_HOURS`, `BACKUP_KEEP` | Respaldos automáticos en producción | cada `24` h, conservar `14` |
-| `PROTOCOLO_PATH` | Protocolo a cargar | `protocol/protocolo.provisional.json` |
+| `PROTOCOLO_PATH` | Protocolo a cargar | `protocol/protocolo.json` |
 | `APP_ACCESS_TOKEN` | Clave fija de acceso (`Authorization: Bearer`). Opcional: en producción, sin ella, la app pide crear la clave en el primer ingreso | sin clave en desarrollo |
-| `ANTHROPIC_API_KEY` | Habilita la IA para interpretar respuestas y extraer el informe escolar | IA deshabilitada → intérprete de reglas |
-| `ANTHROPIC_MODEL` | Modelo de IA | `claude-sonnet-5-5` |
+| `IA_PROVEEDOR` | `anthropic` u `openai` | `anthropic` (u `openai` si solo existe `OPENAI_API_KEY`) |
+| `ANTHROPIC_API_KEY` / `OPENAI_API_KEY` | Habilita la IA para asignar respuestas libres a alternativas y extraer el informe escolar | IA deshabilitada → intérprete de reglas |
+| `IA_MODELO` | Modelo de IA | `claude-sonnet-5-5` / `gpt-4o` |
 | `IA_TIMEOUT_MS` | Tiempo máximo por llamada a la IA | `20000` |
 
 Las claves nunca se escriben en el código ni se envían al navegador.
@@ -61,9 +63,11 @@ PWA ──HTTP──> Backend (servicio) ──> Motor Etapa 9 ──> Validador
 ```
 
 - El **motor** decide qué falta y qué preguntar; la **IA nunca elige preguntas**.
-- Cada pregunta pasa por un **validador** de 9 reglas antes de mostrarse (autorizada, orden, ruta, necesaria, no repetida, no equivalente, especificidad, incertidumbre, límite).
+- Cada pregunta pasa por un **validador** de 17 reglas antes de mostrarse (pertenece al proyecto, orden, ruta, necesaria, no repetida, no equivalente, máximo 3 por síntoma, barrido antes del tamizaje, alternativas obligatorias, etc.).
+- Presencia con **SÍ / NO / OCASIONALMENTE / NO SABE-NO RECUERDA**; «no sé» nunca equivale a «no».
+- **Barrido diferencial** y **tamizaje médico, sensorial y del sueño** obligatorios antes del cierre (gate de la Etapa 9).
 - Cada dato del expediente guarda su **fuente** y su **evidencia literal**.
-- El **informe final se bloquea** mientras falten requisitos del protocolo.
+- **Contraste DSM-5-TR R1–R10** e informe de **19 secciones** (Etapa 9 §28.2); el informe final se bloquea mientras falten requisitos.
 
 Detalle completo en [docs/ARQUITECTURA.md](docs/ARQUITECTURA.md). Estructura del expediente en [docs/EXPEDIENTE.md](docs/EXPEDIENTE.md). Matriz de cumplimiento del brief en [docs/REQUISITOS.md](docs/REQUISITOS.md).
 
@@ -72,10 +76,10 @@ Detalle completo en [docs/ARQUITECTURA.md](docs/ARQUITECTURA.md). Estructura del
 ```
 src/                 backend: servidor, servicio, motor, validador, intérprete, IA, informe
 public/              PWA: interfaz, service worker, manifest, íconos
-protocol/            protocolo (datos): dimensiones, banco de preguntas, reglas, instrumentos
+protocol/            protocolo.json (generado), fuentes/ (documentos .docx y texto), datos/ (tablas extraídas)
 prompts/             System Prompt Maestro y prompts de ejecución/extracción
 test/unit, test/e2e  pruebas; test/fixtures: caso ficticio
-scripts/             demo y validador de protocolo
+scripts/             constructor y validador del protocolo, demo
 docs/                arquitectura, requisitos, evidencia de pruebas y demostración
 ```
 

@@ -1,0 +1,32 @@
+[
+ {
+  "Perfil": "1. Neuroquímico",
+  "Nivel global de evidencia": "ALTO",
+  "Qué representa": "Sistemas neuroquímicos implicados en la regulación de procesos y circuitos relevantes"
+ },
+ {
+  "Perfil": "2. Estructural",
+  "Nivel global de evidencia": "MEDIO–ALTO",
+  "Qué representa": "Diferencias neuroanatómicas y de trayectoria observadas principalmente a nivel grupal"
+ },
+ {
+  "Perfil": "3. Circuitos / Redes",
+  "Nivel global de evidencia": "ALTO",
+  "Qué representa": "Interacción funcional entre sistemas cerebrales distribuidos"
+ },
+ {
+  "Perfil": "4. Neuropsicológico",
+  "Nivel global de evidencia": "ALTO",
+  "Qué representa": "Procesos cognitivos y ejecutivos"
+ },
+ {
+  "Perfil": "5. Conductual",
+  "Nivel global de evidencia": "MUY ALTO",
+  "Qué representa": "Manifestación observable y clínicamente relevante"
+ },
+ {
+  "Perfil": "6. Contextual",
+  "Nivel global de evidencia": "MEDIO–ALTO",
+  "Qué representa": "Modulación del funcionamiento según condiciones individuales, ambientales y de tarea"
+ }
+]

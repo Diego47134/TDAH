@@ -8,9 +8,10 @@ const ETIQ = {
   con_informe: 'Con informe escolar', completa: 'Entrevista completa', incorporado: 'Incorporado', disponible: 'Disponible', revisado: 'Revisado', generado: 'Generado', bloqueado: 'Bloqueado', 'listo para generar': 'Listo para generar',
   sin_dato: 'Sin dato', contradiccion: 'Contradictorio', apoderado: 'Apoderado', informe_escolar: 'Informe escolar', valor: 'Valor', no_sabe: 'No sabe', no_recuerda: 'No recuerda', ambiguo: 'Ambiguo',
 };
-const DOM = { inatencion: 'Inatención', hiperactividad: 'Hiperactividad', impulsividad: 'Impulsividad', desarrollo: 'Desarrollo', trayectoria: 'Trayectoria', autonomia: 'Autonomía', funcionamiento: 'Funcionamiento', escolar: 'Escolar', tamizaje: 'Tamizaje' };
+const DOM = { inatencion: 'Inatención', hiperactividad_impulsividad: 'Hiperactividad / impulsividad' };
+const CLASE_ESTADO = (e) => ({ 'APOYADO POR EVIDENCIA': 'mal', PROBABLE: 'aviso', POSIBLE: 'aviso', CONTRADICTORIO: 'mal', 'NO REFERIDO': 'ok', 'NO INFORMADO': 'pendiente', DESCONOCIDO: 'pendiente', 'INFORMACIÓN INSUFICIENTE': 'aviso' }[e] || 'en_curso');
 const et = (k) => ETIQ[k] || k;
-const sv = (v) => (v === 'si' ? 'Sí' : v === 'no' ? 'No' : v);
+const sv = (v) => (v === 'si' ? 'Sí' : v === 'no' ? 'No' : String(v ?? '').split(',').map((x) => ETIQ[x] || x).join(', '));
 
 let token = sessionStorage.getItem('tdah_token') || '';
 let protocolo = null;
@@ -81,6 +82,7 @@ async function enrutar() {
       const salud = await api('GET', '/api/salud');
       if (salud.configuracion_inicial_pendiente) { configuracionInicial(); return; }
       protocolo = await api('GET', '/api/protocolo');
+      for (const ops of Object.values(protocolo.alternativas || {})) for (const o of ops) if (!ETIQ[o.valor] && !/^[A-Z]$/.test(o.valor)) ETIQ[o.valor] = o.texto;
       const b = document.getElementById('protocolo');
       b.textContent = `Protocolo ${protocolo.version}${protocolo.estado === 'PROVISIONAL' ? ' · provisional' : ''} · IA: ${salud.ia.startsWith('deshab') ? 'reglas' : 'activa'}`;
       b.className = `insignia${protocolo.estado === 'PROVISIONAL' ? ' provisional' : ''}`;
@@ -121,20 +123,19 @@ async function vistaCasos() {
 }
 
 // ---------------------------------------------------------- caso ---
-const PESTANAS = [['entrevista', 'Entrevista'], ['expediente', 'Expediente'], ['escolar', 'Informe escolar'], ['instrumentos', 'Instrumentos'], ['revision', 'Revisión profesional'], ['informe', 'Informe'], ['auditoria', 'Auditoría']];
+const PESTANAS = [['entrevista', 'Entrevista apoderado'], ['expediente', 'Expediente'], ['escolar', 'Informe escolar y colegio'], ['nna', 'Niño / adolescente'],
+  ['instrumentos', 'Instrumentos y RV'], ['revision', 'Revisión profesional'], ['informe', 'Informe'], ['auditoria', 'Auditoría']];
 let ultima = null;
 
 async function vistaCaso(id, pestana) {
   const v = await api('GET', `/api/casos/${id}`);
   const c = v.caso;
   $app.innerHTML = `
-    <div class="fila no-imprimir" style="margin-bottom:12px">
-      <a href="#/" class="peq">← Expedientes</a><span class="espacio"></span>
-    </div>
+    <div class="fila no-imprimir" style="margin-bottom:12px"><a href="#/" class="peq">← Expedientes</a><span class="espacio"></span></div>
     <div class="fila" style="margin-bottom:14px">
-      <div><h1 style="margin:0">${esc(c.etiqueta)}</h1><div class="codigo">${esc(c.codigo)} · protocolo ${esc(c.protocolo_version)}</div></div>
+      <div><h1 style="margin:0">${esc(c.etiqueta)}</h1><div class="codigo">${esc(c.codigo)} · protocolo ${esc(c.protocolo_version)}${v.etapa_evolutiva ? ` · etapa evolutiva ${esc(v.etapa_evolutiva)}` : ''}</div></div>
       <span class="espacio"></span>
-      ${c.ruta ? `<span class="estado pendiente" title="${esc(v.ruta_justificacion)}">Ruta: ${esc(et(c.ruta))}</span>` : ''}
+      ${c.ruta ? `<span class="estado pendiente" title="${esc(v.ruta_justificacion)}">${c.ruta === 'completa' ? 'Ruta A — sin informe' : 'Ruta B — con informe'}</span>` : ''}
       <span class="estado ${esc(c.estado_global)}">${esc(et(c.estado_global))}</span>
     </div>
     <div class="caso">
@@ -146,158 +147,211 @@ async function vistaCaso(id, pestana) {
     </div>`;
   const cont = document.getElementById('contenido');
   const recargar = () => vistaCaso(id, pestana);
-  ({ entrevista, expediente, escolar, instrumentos, revision, informe, auditoria }[pestana] || entrevista)(cont, v, recargar);
+  ({ entrevista, expediente, escolar, nna, instrumentos, revision, informe, auditoria }[pestana] || entrevista)(cont, v, recargar);
 }
 
 function lateral(v) {
-  const porDom = {};
-  for (const d of v.dimensiones) (porDom[d.dominio] ||= []).push(d);
+  const I = v.integracion;
   return `
     <div class="tarjeta"><h3>Flujo de evaluación</h3><ol class="flujo">${v.flujo.map((f) => `<li><span>${esc(f.etapa)}</span><span class="tenue peq">${esc(et(f.estado))}</span></li>`).join('')}</ol></div>
-    <div class="tarjeta"><h3>Dimensiones</h3>${v.dimensiones.length ? `<ul class="dims">${Object.entries(porDom).map(([dom, ds]) =>
-      `<li class="dom">${esc(DOM[dom] || dom)}</li>${ds.map((d) => `<li><span>${esc(d.nombre)}</span><span class="estado ${d.estado}">${esc(et(d.estado))}</span></li>`).join('')}`).join('')}</ul>`
-      : '<p class="tenue peq">Disponibles al completar la fase inicial (motivo, edad, informe escolar, ruta).</p>'}</div>`;
+    ${I ? `<div class="tarjeta"><h3>Contraste DSM-5-TR</h3>
+      <p class="peq" style="margin:0 0 6px">Puerta de suficiencia: <strong>${esc(I.puerta)}</strong></p>
+      <ul class="dims">${Object.entries(I.requisitos).map(([k, r]) => `<li><span>${k} ${esc(r.nombre)}</span><span class="estado ${/APOYADO|ALCANZADO|NINGUNA|REALIZADA/.test(r.estado) && !/NO /.test(r.estado) ? 'ok' : /INSUF|PENDIENTE/.test(r.estado) ? 'aviso' : 'pendiente'}">${esc(r.estado.toLowerCase())}</span></li>`).join('')}</ul></div>` : ''}
+    <div class="tarjeta"><h3>18 síntomas DSM-5-TR</h3>${v.sintomas.length ? `<ul class="dims">${['inatencion', 'hiperactividad_impulsividad'].map((d) =>
+      `<li class="dom">${DOM[d]}</li>${v.sintomas.filter((s) => s.dominio === d).map((s) => `<li title="${esc(s.nombre)}"><span>${s.id} ${esc(s.nombre.slice(0, 34))}${s.nombre.length > 34 ? '…' : ''}</span><span class="estado ${CLASE_ESTADO(s.estado)}">${esc(s.estado.toLowerCase().slice(0, 22))}</span></li>`).join('')}`).join('')}</ul>`
+      : '<p class="tenue peq">Disponibles al completar la fase inicial.</p>'}</div>`;
 }
 
 // ------------------------------------------------------- entrevista ---
+function formPregunta(q, { conTexto = true } = {}) {
+  const ops = q.opciones || [];
+  if (q.tipo === 'presencia' || q.tipo === 'opciones') {
+    return `<div class="opciones-lista">${ops.map((o) => `<button type="button" class="opcion ${o.incierta ? 'inc' : ''}" data-op="${esc(o.codigo)}"><span class="letra">${esc(o.codigo)}</span> ${esc(o.texto)}</button>`).join('')}</div>
+      ${conTexto ? `<details class="libre"><summary>Registrar la respuesta textual del apoderado</summary><textarea id="resp" placeholder="Respuesta literal (se asignará a una alternativa; si no es posible, queda como información parcial)"></textarea><div class="fila" style="margin-top:8px"><button class="boton sec" id="benviar">Registrar texto</button></div></details>` : ''}`;
+  }
+  if (q.tipo === 'multiple') {
+    return `<p class="tenue peq">Puede seleccionar varias alternativas. Las marcadas como excluyentes no se combinan.</p>
+      <div class="opciones-lista">${ops.map((o) => `<label class="opcion check ${o.incierta ? 'inc' : ''}"><input type="checkbox" value="${esc(o.codigo)}" ${o.excluyente ? 'data-exc="1"' : ''}><span class="letra">${esc(o.codigo)}</span> ${esc(o.texto)}${o.excluyente ? ' <em class="tenue peq">(excluyente)</em>' : ''}</label>`).join('')}</div>
+      <div class="fila" style="margin-top:10px"><button class="boton" id="bmulti">Continuar</button></div>`;
+  }
+  return `<label for="resp">Respuesta ${q.tipo === 'numero' ? '(número)' : 'del informante (texto literal)'}</label>
+    ${q.tipo === 'numero' ? '<input id="resp" type="text" inputmode="numeric" autocomplete="off">' : '<textarea id="resp"></textarea>'}
+    <div class="fila" style="margin-top:10px"><button class="boton" id="benviar">Registrar respuesta</button>
+    <button type="button" class="boton sec" data-tipo="no_se">No sabe</button><button type="button" class="boton sec" data-tipo="no_recuerdo">No recuerda</button></div>`;
+}
+
+function conectarForm(cont, enviar) {
+  cont.querySelectorAll('[data-op]').forEach((b) => { b.onclick = () => enviar({ opcion: b.dataset.op }); });
+  cont.querySelectorAll('[data-tipo]').forEach((b) => { b.onclick = () => enviar({ tipo: b.dataset.tipo }); });
+  const be = cont.querySelector('#benviar');
+  if (be) be.onclick = (e) => { e.preventDefault(); const t = cont.querySelector('#resp').value.trim(); if (!t) { aviso('Escriba la respuesta.', true); return; } enviar({ texto: t }); };
+  const bm = cont.querySelector('#bmulti');
+  if (bm) {
+    const checks = [...cont.querySelectorAll('input[type=checkbox]')];
+    checks.forEach((ch) => { ch.onchange = () => { if (ch.checked && ch.dataset.exc) checks.forEach((o) => { if (o !== ch) o.checked = false; }); else if (ch.checked) checks.filter((o) => o.dataset.exc).forEach((o) => { o.checked = false; }); }; });
+    bm.onclick = () => { const sel = checks.filter((c) => c.checked).map((c) => c.value); if (!sel.length) { aviso('Seleccione al menos una alternativa.', true); return; } enviar({ opciones: sel }); };
+  }
+  const r = cont.querySelector('#resp');
+  if (r) r.onkeydown = (e) => { if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) { e.preventDefault(); be?.click(); } };
+}
+
 function entrevista(cont, v, recargar) {
   const c = v.caso; const q = c.pregunta_actual;
   if (!q) {
     const msj = {
-      esperando_informe_escolar: ['La entrevista del hogar está completa.', 'Las dimensiones escolares se esperan del informe escolar. Cárguelo en la pestaña «Informe escolar»; si quedan vacíos, la entrevista se reabrirá solo para ellos. Si el informe finalmente no se puede obtener, puede cambiar la ruta.'],
-      entrevista_completa: ['Entrevista completa.', 'Todas las dimensiones obligatorias fueron exploradas. Continúe con instrumentos, revisión profesional e informe.'],
+      esperando_informe_escolar: ['La entrevista del apoderado está completa.', 'Ruta B: la información escolar se obtiene del informe. Cárguelo en «Informe escolar y colegio»; si quedan vacíos, la entrevista se reabrirá solo para ellos. Si el informe no se podrá obtener, cambie a la Ruta A.'],
+      entrevista_completa: ['Entrevista del apoderado completa.', 'El gate de cierre de la Etapa 9 se cumplió: barrido diferencial y tamizaje completos, sin ramas abiertas. Continúe con las demás fuentes, instrumentos, revisión profesional e informe.'],
       informe_final: ['Informe final generado.', 'Pendiente de validación profesional.'],
       validado: ['Evaluación validada.', ''],
     }[c.estado_global] || ['Sin pregunta vigente.', 'Revise la auditoría: el motor no encontró una pregunta autorizada.'];
     cont.innerHTML = `<div class="tarjeta pregunta"><h2>${esc(msj[0])}</h2><p class="tenue">${esc(msj[1])}</p>
-      ${c.estado_global === 'esperando_informe_escolar' ? `<div class="fila"><a class="boton" href="#/caso/${c.id}/escolar">Cargar informe escolar</a>
-      <button class="boton sec" id="bruta">El informe no se podrá obtener</button></div>` : ''}</div>`;
+      ${c.estado_global === 'esperando_informe_escolar' ? `<div class="fila"><a class="boton" href="#/caso/${c.id}/escolar">Cargar informe escolar</a><button class="boton sec" id="bruta">El informe no se podrá obtener</button></div>` : ''}</div>`;
     const br = document.getElementById('bruta');
     if (br) br.onclick = async () => {
-      const motivo = prompt('Motivo por el que el informe escolar no se podrá obtener:');
+      const motivo = window.prompt('Motivo por el que el informe escolar no se podrá obtener:');
       if (!motivo) return;
-      try { await api('POST', `/api/casos/${c.id}/ruta`, { ruta: 'completa', motivo }); aviso('Ruta cambiada a entrevista completa.'); recargar(); } catch (e) { aviso(e.message, true); }
+      try { await api('POST', `/api/casos/${c.id}/ruta`, { ruta: 'completa', motivo }); aviso('Ruta cambiada a Ruta A.'); recargar(); } catch (e) { aviso(e.message, true); }
     };
     return;
   }
-  const esSiNo = q.tipo_dato === 'si_no';
   cont.innerHTML = `
     <div class="tarjeta pregunta">
-      <div class="contexto">${esc(q.dimension)} · ${esc(q.etiqueta_dato)} · turno ${q.turno}</div>
-      <p class="texto" id="ptexto">${esc(q.texto)}</p>
-      <form id="fresp">
-        <label for="resp">Respuesta del apoderado ${esSiNo ? '(puede escribir matices o usar los botones)' : '(texto literal)'}</label>
-        ${q.tipo_dato === 'numero' ? '<input id="resp" type="text" inputmode="numeric" autocomplete="off">' : '<textarea id="resp" placeholder="Escriba la respuesta tal como la expresa el apoderado"></textarea>'}
-        <div class="fila" style="margin-top:10px"><button class="boton" id="benviar">Registrar respuesta</button><span class="tenue peq">Ctrl + Enter</span></div>
-        <div class="opciones">
-          ${esSiNo ? '<button type="button" class="opcion" data-t="si">Sí</button><button type="button" class="opcion" data-t="no">No</button>' : ''}
-          <button type="button" class="opcion inc" data-t="no_se">No sé</button>
-          <button type="button" class="opcion inc" data-t="no_recuerdo">No recuerdo</button>
-        </div>
-      </form>
-      <details class="porque"><summary>¿Por qué esta pregunta?</summary><p>${esc(q.justificacion)}</p><p class="mono">${esc(q.id)}</p></details>
-      ${ultima && ultima.caso === c.id ? `<div class="ultima">Anterior: «${esc(ultima.pregunta)}» → <strong>${esc(ultima.interp)}</strong>${ultima.menciones ? ` · ${esc(ultima.menciones)}` : ''}</div>` : ''}
+      <div class="contexto">${esc(q.fase_nombre || '')} · turno ${q.turno} · <span class="mono">${esc(q.id)}</span></div>
+      <p class="texto">${esc(q.texto)}</p>
+      <div id="fresp">${formPregunta(q)}</div>
+      <details class="porque"><summary>¿Por qué esta pregunta?</summary><p>${esc(q.justificacion)}</p><p class="mono peq">${esc(q.origen || '')}</p></details>
+      ${ultima && ultima.caso === c.id ? `<div class="ultima">Anterior: «${esc(ultima.pregunta)}» → <strong>${esc(ultima.interp)}</strong>${ultima.extra ? ` · ${esc(ultima.extra)}` : ''}</div>` : ''}
     </div>`;
-  const input = document.getElementById('resp');
-  input.focus();
-  const enviar = async (tipo) => {
-    const texto = input.value.trim();
-    if (!texto && !tipo) { aviso('Escriba la respuesta o use un botón.', true); return; }
-    cont.querySelectorAll('button').forEach((b) => { b.disabled = true; });
+  const enviar = async (r) => {
+    cont.querySelectorAll('button, input').forEach((b) => { b.disabled = true; });
     try {
-      const r = await api('POST', `/api/casos/${c.id}/respuestas`, { pregunta_id: q.id, texto, tipo });
-      const i = r.traza.interpretacion;
-      ultima = { caso: c.id, pregunta: q.texto.slice(0, 70) + (q.texto.length > 70 ? '…' : ''),
-        interp: `${et(i.estado_dato)}${i.valor && !['si', 'no'].includes(i.valor) ? `: ${String(i.valor).slice(0, 60)}` : i.valor ? `: ${i.valor === 'si' ? 'Sí' : 'No'}` : ''}`,
-        menciones: i.menciones.length ? `menciones detectadas: ${i.menciones.length}` : '' };
-      if (r.traza.contradiccion) aviso('Se registró una contradicción (queda para revisión profesional).');
-      else if (r.traza.error_api) aviso('La IA no respondió; se usó el intérprete de reglas.', true);
+      const res = await api('POST', `/api/casos/${c.id}/respuestas`, { pregunta_id: q.id, ...r });
+      const i = res.traza.interpretacion;
+      ultima = { caso: c.id, pregunta: q.texto.slice(0, 70) + (q.texto.length > 70 ? '…' : ''), interp: res.traza.entrada.respuesta || i.estado_dato,
+        extra: [i.menciones.length ? `evidencia relacionada: ${i.menciones.map((m) => m.sintoma).join(', ')}` : '', i.estado_dato === 'ambiguo' ? 'información parcial' : ''].filter(Boolean).join(' · ') };
+      if (res.traza.contradiccion) aviso('Se registró una discrepancia (queda para revisión profesional).');
+      else if (res.traza.error_api) aviso('La IA no respondió; se usó el intérprete de reglas.', true);
       recargar();
     } catch (e) {
       aviso(e.message, true);
-      if (e.status === 409) recargar(); else cont.querySelectorAll('button').forEach((b) => { b.disabled = false; });
+      if (e.status === 409) recargar(); else cont.querySelectorAll('button, input').forEach((b) => { b.disabled = false; });
     }
   };
-  document.getElementById('fresp').onsubmit = (e) => { e.preventDefault(); enviar(); };
-  input.onkeydown = (e) => { if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) { e.preventDefault(); enviar(); } };
-  cont.querySelectorAll('.opcion').forEach((b) => { b.onclick = () => enviar(b.dataset.t); });
+  conectarForm(cont, enviar);
 }
 
 // ------------------------------------------------------- expediente ---
 function expediente(cont, v) {
-  const nombreDim = (id) => (id === 'INI' ? 'Datos iniciales' : protocolo.dimensiones.find((d) => d.id === id)?.nombre || id);
-  const slotEt = (s) => protocolo.slots[s]?.etiqueta || s;
+  const I = v.integracion;
   cont.innerHTML = `
     <div class="tarjeta"><h2>Datos iniciales</h2><table class="tabla"><tbody>
-      ${Object.entries(v.iniciales).map(([k, s]) => `<tr><th>${esc(slotEt(k))}</th><td>${esc(s.estado === 'valor' ? sv(s.valor) : et(s.estado))}</td></tr>`).join('')}
+      ${Object.entries(v.iniciales).map(([k, s]) => `<tr><th>${esc(k.replace('_', ' '))}</th><td>${esc(s.estado === 'valor' ? sv(s.valor) : et(s.estado))}</td></tr>`).join('')}
       <tr><th>Ruta</th><td>${esc(v.ruta_justificacion || 'No determinada')}</td></tr></tbody></table></div>
-    <div class="tarjeta"><h2>Dimensiones</h2><div class="desplaza"><table class="tabla"><thead><tr><th>Dimensión</th><th>Estado</th><th>Presencia</th><th>Faltantes</th><th>Preg.</th></tr></thead><tbody>
-      ${v.dimensiones.map((d) => `<tr><td>${esc(d.nombre)}<div class="tenue peq">${esc(DOM[d.dominio])}</div></td><td><span class="estado ${d.estado}">${esc(et(d.estado))}</span></td>
-        <td>${esc(d.slots.presencia.estado === 'valor' ? (d.slots.presencia.valor === 'si' ? 'Sí' : 'No') : et(d.slots.presencia.estado))}</td>
-        <td class="peq">${esc(d.faltantes.map(slotEt).join(', '))}</td><td>${d.preguntas_hechas}</td></tr>`).join('') || '<tr><td colspan="5" class="tenue">Fase inicial en curso.</td></tr>'}
+    ${I ? `<div class="tarjeta"><h2>Estado de la hipótesis</h2><p><strong>${esc(I.resultado.titulo)}</strong></p><p class="tenue peq">${esc(I.resultado.umbral)} Puerta de suficiencia: ${esc(I.puerta)}.</p></div>` : ''}
+    <div class="tarjeta"><h2>Síntomas DSM-5-TR</h2><div class="desplaza"><table class="tabla"><thead><tr><th>Código</th><th>Síntoma</th><th>Estado</th><th>Frecuencia</th><th>Desde</th><th>Contextos</th><th>Prof.</th></tr></thead><tbody>
+      ${v.sintomas.map((s) => `<tr><td class="mono">${s.id}</td><td>${esc(s.nombre)}</td><td><span class="estado ${CLASE_ESTADO(s.estado)}">${esc(s.estado.toLowerCase())}</span></td>
+        <td class="peq">${esc(et(s.frecuencia))}</td><td class="peq">${esc(et(s.desde))}</td><td class="peq">${esc(s.contextos.join(', '))}</td><td>${s.profundizacion}/3</td></tr>`).join('') || '<tr><td colspan="7" class="tenue">Fase inicial en curso.</td></tr>'}
     </tbody></table></div></div>
-    <div class="tarjeta"><h2>Hechos registrados (${v.hechos.length})</h2><p class="tenue peq">Cada dato conserva su fuente y su evidencia literal.</p><div class="desplaza"><table class="tabla"><thead><tr><th>Dimensión · dato</th><th>Estado / valor</th><th>Fuente</th><th>Evidencia</th></tr></thead><tbody>
-      ${v.hechos.map((h) => `<tr><td>${esc(nombreDim(h.dimension_id))}<div class="tenue peq">${esc(slotEt(h.slot))}</div></td>
-        <td>${esc(h.estado === 'valor' ? sv(h.valor) : et(h.estado))}</td><td>${esc(et(h.fuente))}${h.origen === 'mencion_espontanea' ? '<div class="tenue peq">mención espontánea</div>' : ''}</td><td class="peq">${esc(h.evidencia || '')}</td></tr>`).join('')}
+    ${v.barrido ? `<div class="tarjeta"><h2>Barrido diferencial y tamizaje</h2>
+      <p><strong>Barrido diferencial:</strong> ${esc(v.barrido.estado)}${v.barrido.resultado ? ` — ${esc(v.barrido.resultado)}` : ''}</p>
+      <ul>${v.barrido.ramas.map((r) => `<li>${esc(protocolo.barrido.opciones.find((o) => o.codigo === r.clave)?.texto)}: ${esc(r.diferencial)} (${esc(r.estado.toLowerCase())})</li>`).join('')}</ul>
+      <p><strong>Tamizaje médico, sensorial y del sueño:</strong> ${esc(v.tamizaje.estado)} — ${esc(v.tamizaje.resultado)}</p>
+      <ul>${v.tamizaje.ramas.map((r) => `<li>${esc(protocolo.tamizaje.opciones.find((o) => o.codigo === r.categoria)?.texto)} (${esc(r.estado.toLowerCase())})</li>`).join('')}
+      ${v.tamizaje.alertas.map((a) => `<li style="color:var(--ladrillo)"><strong>Requiere valoración profesional:</strong> ${esc(a.motivo)}</li>`).join('')}</ul></div>` : ''}
+    <div class="tarjeta"><h2>Hechos registrados (${v.hechos.length})</h2><p class="tenue peq">Cada dato conserva su fuente y su evidencia literal.</p><div class="desplaza"><table class="tabla"><thead><tr><th>Dato</th><th>Estado / valor</th><th>Fuente</th><th>Evidencia</th></tr></thead><tbody>
+      ${v.hechos.map((h) => `<tr><td class="mono peq">${esc(h.dimension_id)} · ${esc(h.slot)}</td><td>${esc(h.estado === 'valor' ? sv(h.valor) : et(h.estado))}</td><td>${esc(et(h.fuente))}${h.origen === 'mencion_espontanea' ? '<div class="tenue peq">evidencia relacionada</div>' : ''}</td><td class="peq">${esc(h.evidencia || '')}</td></tr>`).join('')}
     </tbody></table></div></div>
-    <div class="tarjeta"><h2>Contradicciones</h2>${v.contradicciones.length ? `<ul>${v.contradicciones.map((c) => `<li>${esc(nombreDim(c.dimension_id))}: ${esc(c.descripcion)} <span class="estado ${c.estado === 'revisada' ? 'ok' : 'mal'}">${esc(c.estado)}</span></li>`).join('')}</ul>` : '<p class="tenue">Sin contradicciones.</p>'}</div>`;
+    <div class="tarjeta"><h2>Discrepancias</h2>${v.contradicciones.length ? `<ul>${v.contradicciones.map((c) => `<li>${esc(c.descripcion)} <span class="estado ${c.estado === 'revisada' ? 'ok' : 'mal'}">${esc(c.estado)}</span></li>`).join('')}</ul>` : '<p class="tenue">Sin discrepancias.</p>'}</div>`;
 }
 
-// ------------------------------------------------------ informe escolar ---
+// ---------------------------------------------- informe escolar y colegio ---
 function escolar(cont, v, recargar) {
   const c = v.caso;
+  const enviar = (v.colegio || []).filter((q) => q.enviar);
   cont.innerHTML = `
     <div class="tarjeta"><h2>Informe escolar</h2>
-      <p class="tenue peq">Ruta actual: ${esc(et(c.ruta) || 'no determinada')}. El texto se procesa y cada dato extraído conserva la frase del informe como evidencia y la fuente «informe escolar».</p>
-      <form id="finf"><label for="tinf">Texto del informe (pegar)</label><textarea id="tinf" style="min-height:180px" placeholder="Pegue aquí el contenido del informe escolar"></textarea>
+      <p class="tenue peq">${c.ruta === 'con_informe' ? 'Ruta B: el informe es la fuente principal de información escolar.' : 'Ruta A: si se obtiene un informe, se incorpora como fuente independiente.'} Cada dato extraído conserva la frase del informe como evidencia.</p>
+      <form id="finf"><label for="tinf">Texto del informe (pegar)</label><textarea id="tinf" style="min-height:160px"></textarea>
       <label for="arch">o cargar archivo de texto (.txt)</label><input id="arch" type="file" accept=".txt,text/plain">
       <div class="fila" style="margin-top:12px"><button class="boton">Procesar informe</button></div></form>
     </div>
-    ${v.informes_escolares.map((i) => `<div class="tarjeta"><div class="fila"><h3 style="margin:0">Informe cargado</h3><span class="espacio"></span><span class="tenue peq">${new Date(i.creado).toLocaleString('es-CL')} · método: ${esc(i.metodo)}</span></div>
-      <table class="tabla" style="margin-top:8px"><thead><tr><th>Dimensión</th><th>Dato</th><th>Valor</th><th>Evidencia</th></tr></thead><tbody>
-      ${i.extraccion.map((h) => `<tr><td>${esc(protocolo.dimensiones.find((d) => d.id === h.dimension_id)?.nombre)}</td><td>${esc(protocolo.slots[h.slot]?.etiqueta)}</td><td>${esc(sv(h.valor))}</td><td class="peq">«${esc(h.evidencia)}»</td></tr>`).join('') || '<tr><td colspan="4" class="tenue">No se extrajeron datos.</td></tr>'}
-      </tbody></table></div>`).join('')}`;
-  document.getElementById('arch').onchange = async (e) => {
-    const f = e.target.files[0]; if (f) document.getElementById('tinf').value = await f.text();
-  };
+    ${v.informes_escolares.map((i) => `<div class="tarjeta"><div class="fila"><h3 style="margin:0">Informe incorporado</h3><span class="espacio"></span><span class="tenue peq">${new Date(i.creado).toLocaleString('es-CL')} · ${esc(i.metodo)}</span></div>
+      <table class="tabla" style="margin-top:8px"><thead><tr><th>Dato</th><th>Valor</th><th>Evidencia</th></tr></thead><tbody>
+      ${i.extraccion.map((h) => `<tr><td class="mono peq">${esc(h.dimension_id)} · ${esc(h.slot)}</td><td>${esc(sv(h.valor))}</td><td class="peq">«${esc(h.evidencia)}»</td></tr>`).join('') || '<tr><td colspan="3" class="tenue">No se extrajeron datos.</td></tr>'}
+      </tbody></table></div>`).join('')}
+    <form class="tarjeta" id="fcol"><h2>Complementación del colegio (Anexo 7-C)</h2>
+      <p class="tenue peq">Solo se envían las preguntas que el informe escolar no responde. Imprima o copie las pendientes y registre aquí las respuestas del colegio (fuente: profesor).</p>
+      ${(v.colegio || []).map((q) => `<div style="border-top:1px solid var(--linea);padding:8px 0">
+        <div class="fila"><span class="mono peq">${q.id}</span><span>${esc(q.texto)}</span><span class="espacio"></span>
+        ${q.cubierta_por_informe ? '<span class="estado ok">cubierta por el informe</span>' : q.respondida ? '<span class="estado ok">respondida</span>' : q.enviar ? '<span class="estado aviso">enviar</span>' : '<span class="estado pendiente">tras el informe</span>'}</div>
+        ${q.respondida ? `<p class="peq tenue">${esc(q.respuesta || '')}</p>` : q.enviar ? `<textarea name="${q.id}" style="min-height:50px" placeholder="Respuesta del colegio"></textarea>` : ''}</div>`).join('')}
+      <div class="fila" style="margin-top:10px">${enviar.length ? '<button class="boton">Registrar respuestas del colegio</button>' : ''}<button type="button" class="boton sec" id="bimpcol">Imprimir preguntas pendientes</button></div>
+    </form>`;
+  document.getElementById('arch').onchange = async (e) => { const f = e.target.files[0]; if (f) document.getElementById('tinf').value = await f.text(); };
   document.getElementById('finf').onsubmit = async (e) => {
     e.preventDefault();
-    try {
-      const r = await api('POST', `/api/casos/${c.id}/informe-escolar`, { texto: document.getElementById('tinf').value });
-      aviso(`Informe procesado: ${r.extraidos.length} datos extraídos${r.contradicciones.length ? `, ${r.contradicciones.length} contradicción(es)` : ''}.`);
-      recargar();
-    } catch (err) { aviso(err.message, true); }
+    try { const r = await api('POST', `/api/casos/${c.id}/informe-escolar`, { texto: document.getElementById('tinf').value }); aviso(`Informe procesado: ${r.extraidos.length} datos${r.contradicciones.length ? `, ${r.contradicciones.length} discrepancia(s)` : ''}.`); recargar(); } catch (err) { aviso(err.message, true); }
   };
+  document.getElementById('fcol').onsubmit = async (e) => {
+    e.preventDefault();
+    const respuestas = [...new FormData(e.target).entries()].filter(([, t]) => String(t).trim()).map(([pregunta_id, texto]) => ({ pregunta_id, texto }));
+    if (!respuestas.length) { aviso('Escriba al menos una respuesta.', true); return; }
+    try { await api('POST', `/api/casos/${c.id}/colegio`, { respuestas }); aviso('Respuestas del colegio registradas.'); recargar(); } catch (err) { aviso(err.message, true); }
+  };
+  document.getElementById('bimpcol').onclick = () => {
+    const w = window.open('', '_blank');
+    if (!w) return;
+    w.document.write(`<title>Preguntas para el colegio — ${esc(c.codigo)}</title><h2>Preguntas de complementación — ${esc(c.codigo)}</h2><ol>${enviar.map((q) => `<li style="margin-bottom:40px">${esc(q.texto)}</li>`).join('')}</ol>`);
+    w.document.close(); w.print();
+  };
+}
+
+// --------------------------------------------- niño / adolescente ---
+function nna(cont, v, recargar) {
+  const c = v.caso; const s = v.nna;
+  if (!s) { cont.innerHTML = '<div class="tarjeta"><p class="tenue">Primero debe registrarse la edad en la entrevista del apoderado.</p></div>'; return; }
+  const titulo = s.fuente === 'nino' ? 'Entrevista al niño o niña (Anexo 7-D)' : 'Entrevista al adolescente (Anexo 7-E)';
+  if (s.cerrada || !s.siguiente) {
+    cont.innerHTML = `<div class="tarjeta"><h2>${titulo}</h2><p>${s.cerrada ? 'Entrevista finalizada.' : 'Todas las preguntas fueron respondidas.'} (${s.respondidas}/${s.banco})</p>
+      ${!s.cerrada ? '<button class="boton" id="bfin">Finalizar entrevista</button>' : ''}</div>`;
+    const b = document.getElementById('bfin'); if (b) b.onclick = async () => { await api('POST', `/api/casos/${c.id}/nna`, { finalizar: true }); recargar(); };
+    return;
+  }
+  const q = s.siguiente;
+  cont.innerHTML = `<div class="tarjeta pregunta"><div class="contexto">${titulo} · ${s.respondidas + 1} de ${s.banco} · fuente propia: no repite la entrevista del apoderado</div>
+    <p class="texto">${esc(q.texto)}</p>
+    <label for="resp">Respuesta del ${s.fuente === 'nino' ? 'niño o niña' : 'adolescente'} (texto literal)</label><textarea id="resp"></textarea>
+    <div class="fila" style="margin-top:10px"><button class="boton" id="benviar">Registrar</button><button class="boton sec" id="bomit">Omitir</button><span class="espacio"></span><button class="boton sec" id="bfin">Finalizar entrevista</button></div></div>`;
+  const post = async (b) => { try { await api('POST', `/api/casos/${c.id}/nna`, b); recargar(); } catch (e) { aviso(e.message, true); } };
+  document.getElementById('benviar').onclick = () => post({ pregunta_id: q.id, texto: document.getElementById('resp').value });
+  document.getElementById('bomit').onclick = () => post({ pregunta_id: q.id, omitir: true });
+  document.getElementById('bfin').onclick = () => post({ finalizar: true });
 }
 
 // ----------------------------------------------------- instrumentos ---
 function instrumentos(cont, v, recargar) {
   const c = v.caso;
-  cont.innerHTML = `<p class="tenue peq">Los resultados de realidad virtual, Nesplora o de un instrumento aislado no determinan por sí solos un diagnóstico.</p>
+  cont.innerHTML = `<p class="tenue peq">La realidad virtual, Nesplora o un instrumento aislado no determinan por sí solos un diagnóstico: aportan evidencia complementaria de las variables que realmente miden (Etapa 9 §18).</p>
   ${v.instrumentos.map((i) => {
     const ev = v.evaluaciones.find((e) => e.instrumento_id === i.id) || {};
     return `<form class="tarjeta finst" data-id="${esc(i.id)}">
-      <div class="fila"><h3 style="margin:0">${esc(i.nombre)}</h3><span class="espacio"></span>${i.obligatorio ? '<span class="estado aviso">Obligatorio</span>' : '<span class="estado pendiente">Opcional</span>'}
-      <span class="estado ${ev.estado === 'realizada' ? 'ok' : 'pendiente'}">${esc(ev.estado || 'pendiente')}</span></div>
+      <div class="fila"><h3 style="margin:0">${esc(i.nombre)}</h3><span class="espacio"></span><span class="estado ${ev.estado === 'realizada' ? 'ok' : 'pendiente'}">${esc(ev.estado || 'pendiente')}</span></div>
       <div class="fila" style="align-items:end">
         <div style="flex:1;min-width:140px"><label>Estado</label><select name="estado">${['pendiente', 'realizada', 'no_aplica'].map((s) => `<option ${ev.estado === s ? 'selected' : ''}>${s}</option>`).join('')}</select></div>
         <div style="flex:1;min-width:140px"><label>Fecha</label><input type="date" name="fecha" value="${esc(ev.fecha || '')}"></div>
         <div style="flex:2;min-width:180px"><label>Aplicador</label><input type="text" name="aplicador" value="${esc(ev.aplicador || '')}"></div>
       </div>
-      <label>Resultados (una línea por indicador: «nombre: valor»)</label>
+      <label>Resultados (una línea por variable: «nombre: valor»; p. ej. «Omisiones: percentil 12»)</label>
       <textarea name="resultados">${esc(ev.resultados ? Object.entries(ev.resultados).map(([k, x]) => `${k}: ${x}`).join('\n') : '')}</textarea>
-      <label>Observaciones (obligatorias si «no_aplica»)</label><textarea name="observaciones" style="min-height:60px">${esc(ev.observaciones || '')}</textarea>
+      <label>Observaciones (condiciones de evaluación; obligatorias si «no_aplica»)</label><textarea name="observaciones" style="min-height:60px">${esc(ev.observaciones || '')}</textarea>
       <div class="fila" style="margin-top:10px"><button class="boton">Guardar</button></div></form>`;
   }).join('')}`;
   cont.querySelectorAll('.finst').forEach((f) => {
     f.onsubmit = async (e) => {
-      e.preventDefault();
-      const fd = new FormData(f);
-      const res = {};
+      e.preventDefault(); const fd = new FormData(f); const res = {};
       for (const l of String(fd.get('resultados')).split('\n')) { const i = l.indexOf(':'); if (i > 0) res[l.slice(0, i).trim()] = l.slice(i + 1).trim(); }
       try {
-        await api('POST', `/api/casos/${c.id}/evaluaciones`, { instrumento_id: f.dataset.id, estado: fd.get('estado'), fecha: fd.get('fecha') || null,
-          aplicador: fd.get('aplicador') || null, resultados: Object.keys(res).length ? res : null, observaciones: fd.get('observaciones') || null });
+        await api('POST', `/api/casos/${c.id}/evaluaciones`, { instrumento_id: f.dataset.id, estado: fd.get('estado'), fecha: fd.get('fecha') || null, aplicador: fd.get('aplicador') || null, resultados: Object.keys(res).length ? res : null, observaciones: fd.get('observaciones') || null });
         aviso('Instrumento registrado.'); recargar();
       } catch (err) { aviso(err.message, true); }
     };
@@ -308,27 +362,24 @@ function instrumentos(cont, v, recargar) {
 function revision(cont, v, recargar) {
   const c = v.caso;
   cont.innerHTML = `
-    <div class="tarjeta"><h2>Contradicciones</h2><p class="tenue peq">Se registran sin resolverlas por suposición. El profesional las revisa y deja constancia; el dato contradictorio se conserva tal cual.</p>
+    <div class="tarjeta"><h2>Discrepancias entre fuentes</h2><p class="tenue peq">Se conservan sin resolver por suposición. El profesional las revisa y deja constancia (Etapa 9 §11).</p>
     ${v.contradicciones.map((x) => `<form class="fcontr" data-id="${x.id}" style="border-top:1px solid var(--linea);padding-top:10px;margin-top:10px">
       <p>${esc(x.descripcion)} <span class="estado ${x.estado === 'revisada' ? 'ok' : 'mal'}">${esc(x.estado)}</span></p>
       ${x.estado === 'revisada' ? `<p class="tenue peq">Revisada por ${esc(x.revisado_por)}: ${esc(x.nota_revision)}</p>` : `
       <label>Nota de revisión</label><textarea name="nota" style="min-height:60px" required></textarea>
       <label>Profesional</label><input type="text" name="prof" required><div class="fila" style="margin-top:8px"><button class="boton">Marcar como revisada</button></div>`}
-    </form>`).join('') || '<p class="tenue">Sin contradicciones.</p>'}</div>
-    <form class="tarjeta" id="finterp"><h2>Interpretación clínica</h2>
-      <p class="tenue peq">Redactada por el profesional responsable. El sistema no genera interpretación clínica.</p>
+    </form>`).join('') || '<p class="tenue">Sin discrepancias.</p>'}</div>
+    <form class="tarjeta" id="finterp"><h2>Interpretación y decisión clínica</h2>
+      <p class="tenue peq">La redacta el profesional responsable. El sistema entrega una hipótesis estructurada; la decisión final no es automática (Etapa 9 §1 y §28).</p>
       <textarea id="tint" style="min-height:160px">${esc(c.interpretacion || '')}</textarea>
       <label>Profesional responsable</label><input type="text" id="pint" value="${esc(c.interpretacion_profesional || '')}">
-      <div class="fila" style="margin-top:10px"><button class="boton">Guardar interpretación</button></div></form>`;
+      <div class="fila" style="margin-top:10px"><button class="boton">Guardar</button></div></form>`;
   cont.querySelectorAll('.fcontr').forEach((f) => {
-    f.onsubmit = async (e) => {
-      e.preventDefault(); const fd = new FormData(f);
-      try { await api('POST', `/api/casos/${c.id}/contradicciones/${f.dataset.id}/revision`, { nota: fd.get('nota'), profesional: fd.get('prof') }); recargar(); } catch (err) { aviso(err.message, true); }
-    };
+    f.onsubmit = async (e) => { e.preventDefault(); const fd = new FormData(f); try { await api('POST', `/api/casos/${c.id}/contradicciones/${f.dataset.id}/revision`, { nota: fd.get('nota'), profesional: fd.get('prof') }); recargar(); } catch (err) { aviso(err.message, true); } };
   });
   document.getElementById('finterp').onsubmit = async (e) => {
     e.preventDefault();
-    try { await api('PUT', `/api/casos/${c.id}/interpretacion`, { texto: document.getElementById('tint').value, profesional: document.getElementById('pint').value }); aviso('Interpretación guardada.'); recargar(); } catch (err) { aviso(err.message, true); }
+    try { await api('PUT', `/api/casos/${c.id}/interpretacion`, { texto: document.getElementById('tint').value, profesional: document.getElementById('pint').value }); aviso('Guardado.'); recargar(); } catch (err) { aviso(err.message, true); }
   };
 }
 
@@ -349,13 +400,10 @@ async function informe(cont, v, recargar) {
       </div></div>
     <article class="tarjeta informe">${inf.html}</article>`;
   document.getElementById('bimprimir').onclick = () => window.print();
-  const bf = document.getElementById('bfinal');
-  bf.onclick = async () => {
-    try { await api('POST', `/api/casos/${c.id}/informes`); aviso('Informe final generado.'); recargar(); } catch (e) { aviso(e.message, true); }
-  };
+  document.getElementById('bfinal').onclick = async () => { try { await api('POST', `/api/casos/${c.id}/informes`); aviso('Informe final generado.'); recargar(); } catch (e) { aviso(e.message, true); } };
   const bv = document.getElementById('bvalidar');
   if (bv) bv.onclick = async () => {
-    const profesional = prompt('Nombre del profesional que valida el informe:');
+    const profesional = window.prompt('Nombre del profesional que valida el informe:');
     if (!profesional) return;
     try { await api('POST', `/api/casos/${c.id}/informes/${ultimoFinal.id}/validacion`, { profesional }); aviso('Informe validado.'); recargar(); } catch (e) { aviso(e.message, true); }
   };
@@ -365,8 +413,7 @@ async function informe(cont, v, recargar) {
 async function auditoria(cont, v) {
   const a = await api('GET', `/api/casos/${v.caso.id}/auditoria`);
   cont.innerHTML = `
-    <div class="tarjeta"><div class="fila"><h2 style="margin:0">Decisiones del motor (${a.decisiones.length})</h2><span class="espacio"></span>
-      <button class="boton sec" id="bdesc">Descargar JSON</button></div>
+    <div class="tarjeta"><div class="fila"><h2 style="margin:0">Decisiones del motor (${a.decisiones.length})</h2><span class="espacio"></span><button class="boton sec" id="bdesc">Descargar JSON</button></div>
       <div class="desplaza"><table class="tabla" style="margin-top:8px"><thead><tr><th>Turno</th><th>Tipo</th><th>Detalle</th></tr></thead><tbody>
       ${a.decisiones.slice().reverse().map((d) => `<tr><td>${d.turno}</td><td class="mono">${esc(d.tipo)}</td><td class="peq">${esc(resumenDecision(d))}</td></tr>`).join('')}
       </tbody></table></div></div>
@@ -380,11 +427,11 @@ async function auditoria(cont, v) {
 function resumenDecision(d) {
   const x = d.detalle;
   switch (d.tipo) {
-    case 'pregunta_seleccionada': return `${x.pregunta_id} — ${x.justificacion}`;
-    case 'respuesta_registrada': return `${x.pregunta_id}: «${x.texto_original || x.tipo_declarado}» → ${x.clasificacion} (${x.interprete})`;
-    case 'preguntas_bloqueadas': return x.bloqueadas.map((b) => `${b.pregunta_id}: ${b.motivos.join('; ')}`).join(' | ');
+    case 'pregunta_seleccionada': return `${x.pregunta_id} [${x.fase}] — ${x.justificacion}`;
+    case 'respuesta_registrada': return `${x.pregunta_id}: «${x.texto_original}» → ${x.estado_dato}${x.valor ? ` (${x.valor})` : ''} [${x.interprete}]`;
+    case 'preguntas_descartadas': return x.descartadas.map((b) => `${b.pregunta_id}: ${b.motivos.join('; ')}`).join(' | ');
     case 'ruta_determinada': return `${x.ruta} — ${x.justificacion}`;
-    case 'mencion_detectada': return x.menciones.map((m) => `${m.dimension_id}: «${m.evidencia}»`).join(' | ');
+    case 'evidencia_relacionada_detectada': return x.menciones.map((m) => `${m.sintoma}: «${m.evidencia}»`).join(' | ');
     default: return JSON.stringify(x);
   }
 }

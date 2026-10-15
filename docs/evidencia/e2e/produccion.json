@@ -1,5 +1,5 @@
 {
-  "generado": "2026-10-15T16:15:55.013Z",
+  "generado": "2026-10-15T18:17:01.155Z",
   "pruebas": [
     {
       "id": "P1",
@@ -48,7 +48,7 @@
       "pasos": [
         {
           "entrada": "node server.js con HOME temporal y PORT=socket",
-          "accion_resultante": "GET /api/casos → 200; BD: ~/tdah-datos/tdah.sqlite; respaldos: tdah-2026-10-15T16-15-54.sqlite",
+          "accion_resultante": "GET /api/casos → 200; BD: ~/tdah-datos/tdah.sqlite; respaldos: tdah-2026-10-15T18-17-00.sqlite",
           "esperado": "200, datos y respaldo fuera de la app",
           "ok": true
         },

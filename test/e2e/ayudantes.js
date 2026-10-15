@@ -31,7 +31,7 @@ export async function crearCaso(api, etiqueta = 'Caso ficticio de prueba') {
 
 export async function vista(api, id) { return (await api.req('GET', `/api/casos/${id}`)).body; }
 
-/** Responde la pregunta vigente. `resp` = {texto, tipo} o función (pregunta) => {texto, tipo}. */
+/** Responde la pregunta vigente. `resp` = {opcion|opciones|texto|tipo} o función (pregunta) => {…}. */
 export async function responder(api, id, resp) {
   const v = await vista(api, id);
   const q = v.caso.pregunta_actual;
@@ -64,7 +64,7 @@ export function crearEvidencia(archivo) {
     paso(p, d) { p.pasos.push(d); },
     pasoDesdeTraza(p, t, esperado, ok) {
       p.pasos.push({
-        entrada: { pregunta: `${t.entrada.pregunta_id} — ${t.entrada.pregunta}`, respuesta: t.entrada.texto || `(botón: ${t.entrada.tipo})` },
+        entrada: { pregunta: `${t.entrada.pregunta_id} — ${t.entrada.pregunta}`, respuesta: t.entrada.respuesta },
         estado_antes: compacto(t.estado_antes),
         decision_motor: t.decision_motor,
         interpretacion: t.interpretacion,
@@ -87,8 +87,9 @@ export function crearEvidencia(archivo) {
 
 function compacto(e) {
   if (!e) return e;
-  const dims = Object.entries(e.dimensiones || {}).filter(([, s]) => s !== 'pendiente').map(([k, s]) => `${k}:${s}`).join(', ');
-  return { turno: e.turno, ruta: e.ruta, fase_inicial_completa: e.fase_inicial_completa, iniciales: e.iniciales, dimensiones_no_pendientes: dims || '(ninguna)', contradicciones_abiertas: e.contradicciones_abiertas };
+  const sint = Object.entries(e.sintomas || {}).map(([k, v]) => `${k}:${v}`).join(', ');
+  return { turno: e.turno, estado_global: e.estado_global, ruta: e.ruta, edad: e.edad, fase_inicial_completa: e.fase_inicial_completa,
+    sintomas: sint || '(sin información)', barrido: e.barrido, tamizaje: e.tamizaje, contradicciones_abiertas: e.contradicciones_abiertas };
 }
 
 function aMarkdown(archivo, pruebas) {

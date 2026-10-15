@@ -1,0 +1,74 @@
+[
+ {
+  "codigo": "R1.1",
+  "sintoma": "Dificultad para prestar atención a detalles / errores por descuido"
+ },
+ {
+  "codigo": "R1.2",
+  "sintoma": "Dificultad para mantener la atención"
+ },
+ {
+  "codigo": "R1.3",
+  "sintoma": "Parece no escuchar cuando se le habla directamente"
+ },
+ {
+  "codigo": "R1.4",
+  "sintoma": "No sigue instrucciones o no completa tareas"
+ },
+ {
+  "codigo": "R1.5",
+  "sintoma": "Dificultad para organizar tareas y actividades"
+ },
+ {
+  "codigo": "R1.6",
+  "sintoma": "Evita o muestra resistencia ante tareas que requieren esfuerzo mental sostenido"
+ },
+ {
+  "codigo": "R1.7",
+  "sintoma": "Pierde objetos necesarios"
+ },
+ {
+  "codigo": "R1.8",
+  "sintoma": "Se distrae fácilmente"
+ },
+ {
+  "codigo": "R1.9",
+  "sintoma": "Es olvidadizo en actividades cotidianas"
+ },
+ {
+  "codigo": "R2.1",
+  "sintoma": "Inquietud motora / mueve manos, pies o se mueve en el asiento"
+ },
+ {
+  "codigo": "R2.2",
+  "sintoma": "Se levanta cuando se espera que permanezca sentado"
+ },
+ {
+  "codigo": "R2.3",
+  "sintoma": "Corre, trepa o presenta inquietud inapropiada para la situación"
+ },
+ {
+  "codigo": "R2.4",
+  "sintoma": "Dificultad para participar tranquilamente en actividades"
+ },
+ {
+  "codigo": "R2.5",
+  "sintoma": "Actúa como si estuviera permanentemente en marcha"
+ },
+ {
+  "codigo": "R2.6",
+  "sintoma": "Habla excesivamente"
+ },
+ {
+  "codigo": "R2.7",
+  "sintoma": "Responde antes de que termine la pregunta"
+ },
+ {
+  "codigo": "R2.8",
+  "sintoma": "Dificultad para esperar su turno"
+ },
+ {
+  "codigo": "R2.9",
+  "sintoma": "Interrumpe o invade actividades de otros"
+ }
+]

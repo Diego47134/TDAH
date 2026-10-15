@@ -32,7 +32,7 @@ export function crearApp({ dbPath, protocoloPath, ia, tokenAcceso = process.env.
     rutas.push({ metodo, re, claves, fn });
   };
 
-  on('GET', '/api/salud', () => ({ ok: true, protocolo: protocolo.version, protocolo_estado: protocolo.estado, ia: clienteIA.habilitada ? clienteIA.modelo : 'deshabilitada (intérprete de reglas)', requiere_token: acceso.modo() !== 'abierto', configuracion_inicial_pendiente: acceso.modo() === 'pendiente',
+  on('GET', '/api/salud', () => ({ ok: true, protocolo: protocolo.version, protocolo_estado: protocolo.estado, ia: clienteIA.habilitada ? `${clienteIA.proveedor}:${clienteIA.modelo}` : 'deshabilitada (intérprete de reglas)', requiere_token: acceso.modo() !== 'abierto', configuracion_inicial_pendiente: acceso.modo() === 'pendiente',
     entorno: produccion ? 'produccion' : 'desarrollo',
     advertencias: [...advertencias, ...(acceso.modo() === 'pendiente' ? ['Falta crear la clave de acceso (abra la aplicación para configurarla).'] : [])] }));
   on('POST', '/api/configuracion-inicial', (_, b) => acceso.configurar(b.clave));
@@ -51,6 +51,9 @@ export function crearApp({ dbPath, protocoloPath, ia, tokenAcceso = process.env.
   on('GET', '/api/casos/:id/informes/:iid', (p) => svc.obtenerInformeFinal(p.id, p.iid));
   on('POST', '/api/casos/:id/informes/:iid/validacion', (p, b) => svc.validarInforme(p.id, p.iid, b));
   on('POST', '/api/casos/:id/propuestas', (p, b) => svc.proponerPregunta(p.id, b));
+  on('GET', '/api/casos/:id/colegio', (p) => svc.colegioPendiente(p.id));
+  on('POST', '/api/casos/:id/colegio', (p, b) => svc.responderColegio(p.id, b));
+  on('POST', '/api/casos/:id/nna', (p, b) => svc.responderNNA(p.id, b));
   on('GET', '/api/casos/:id/auditoria', (p) => svc.auditoria(p.id));
 
   const enviar = (res, status, cuerpo) => {

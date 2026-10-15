@@ -1,0 +1,2275 @@
+VERSIÓN CORREGIDA — INCORPORA REGLA DE SATURACIÓN FUNCIONAL Y CONTROL DE REDUNDANCIA DEL MOTOR ADAPTATIVO
+
+ETAPA 9
+
+ESPECIFICACIÓN OPERATIVA PARA IA DEL MODELO MULTIDIMENSIONAL DEL TDAH
+
+1. PROPÓSITO
+
+La Etapa 9 transforma las Etapas 1–8 en una arquitectura operativa que pueda ser utilizada directamente por una inteligencia artificial.
+
+La IA debe ser capaz de:
+
+-   recibir información;
+
+-   identificar variables;
+
+-   relacionar una misma respuesta con múltiples variables;
+
+-   comparar la información con el desarrollo esperado para la edad;
+
+-   identificar información faltante;
+
+-   seleccionar preguntas;
+
+-   adaptar la entrevista;
+
+-   integrar múltiples fuentes;
+
+-   incorporar evidencia objetiva;
+
+-   contrastar los requerimientos diagnósticos;
+
+-   analizar alternativas y condiciones concurrentes;
+
+-   mantener trazabilidad;
+
+-   generar una salida estructurada;
+
+-   dejar la decisión clínica final bajo responsabilidad profesional.
+
+La Etapa 9 no modifica el modelo científico ni agrega nuevos criterios diagnósticos.
+
+2. PRINCIPIO OPERATIVO CENTRAL
+
+La IA debe trabajar con la siguiente arquitectura:
+
+EDAD
+↓
+ETAPA EVOLUTIVA
+↓
+DESARROLLO NEUROLÓGICO ESPERABLE
+↓
+FUNCIONAMIENTO COGNITIVO ESPERABLE
+↓
+CONDUCTA ESPERABLE
+↓
+INFORMACIÓN OBSERVADA
+↓
+VARIABLES RELACIONADAS
+↓
+COMPARACIÓN CON LO ESPERABLE
+↓
+TRAYECTORIA
+↓
+CONTEXTO Y DEMANDA
+↓
+IMPACTO FUNCIONAL
+↓
+MÚLTIPLES FUENTES
+↓
+EVIDENCIA OBJETIVA / RV
+↓
+EXPLICACIONES ALTERNATIVAS
+↓
+CONTRASTE DIAGNÓSTICO
+↓
+SEIS PERFILES
+↓
+INTEGRACIÓN
+↓
+SALIDA ESTRUCTURADA
+↓
+REVISIÓN PROFESIONAL
+
+La edad constituye una entrada inicial y permanece disponible durante todo el proceso. La trayectoria evolutiva se utiliza como referencia temporal y los rangos de edad son orientativos, no puntos de corte diagnósticos.
+
+3. MODELO DE DATOS DEL CASO
+
+Cada evaluación debe tratarse como un caso clínico único.
+
+3.1 Identificador del caso
+
+CASE_ID
+
+Debe identificar inequívocamente la evaluación y permitir relacionar toda la información correspondiente.
+
+3.2 Estructura conceptual del caso
+
+CASO
+
+├── Identificación
+
+├── Edad / etapa
+
+├── Trayectoria
+
+├── Síntomas diagnósticos
+
+├── Variables funcionales
+
+├── Conductas observables
+
+├── Funcionamiento e impacto
+
+├── Contexto
+
+├── Antecedentes y factores
+
+├── Alternativas / concurrentes
+
+├── Fuentes
+
+├── Evidencia objetiva
+
+├── Realidad Virtual
+
+├── Relaciones entre variables
+
+├── Integración diagnóstica
+
+├── Seis perfiles
+
+├── Trazabilidad
+
+├── Versiones
+
+└── Revisión profesional
+
+4. UNIDAD BÁSICA DE INFORMACIÓN
+
+La IA no debe trabajar solamente con respuestas textuales.
+
+La unidad operacional será:
+
+DATO
+
+→ CONDUCTA
+
+→ VARIABLE
+
+→ CARACTERÍSTICAS
+
+→ EDAD / ETAPA
+
+→ DESARROLLO ESPERADO
+
+→ CONTEXTO
+
+→ TRAYECTORIA
+
+→ IMPACTO
+
+→ FUENTE
+
+→ EVIDENCIA
+
+→ INTERPRETACIÓN
+
+Una misma respuesta puede alimentar múltiples variables.
+
+Ejemplo:
+
+Dato:
+
+"Deja tareas sin terminar"
+
+Conductas posibles:
+
+- abandona
+
+- se distrae
+
+- pierde información
+
+- pierde el objetivo
+
+- requiere recordatorios
+
+- no organiza los pasos
+
+- disminuye el esfuerzo
+
+Variables posibles:
+
+- atención sostenida
+
+- memoria de trabajo
+
+- mantenimiento de objetivos
+
+- persistencia
+
+- planificación
+
+- organización
+
+- regulación del esfuerzo
+
+- distractibilidad
+
+La IA no debe elegir automáticamente una sola explicación.
+
+5. REGLA DE CLASIFICACIÓN
+
+Para cada dato recibido:
+
+1. Conservar dato original.
+
+2. Identificar conducta observable.
+
+3. Identificar todas las variables potencialmente relacionadas.
+
+4. Registrar características de cada variable.
+
+5. Comparar con edad y etapa.
+
+6. Comparar con desarrollo cognitivo esperado.
+
+7. Comparar con conducta esperable.
+
+8. Analizar trayectoria.
+
+9. Analizar contexto y demanda.
+
+10. Analizar impacto.
+
+11. Buscar convergencia o discrepancia.
+
+12. Evaluar alternativas.
+
+13. Determinar qué información falta.
+
+La clasificación no equivale a diagnóstico.
+
+5.1 MOTOR DE INTEGRACIÓN INTRAFUENTE Y ANÁLISIS DEL PATRÓN CONJUNTO
+
+La IA debe analizar las respuestas de una misma fuente como un conjunto además de procesarlas individualmente.
+
+Debe identificar: respuestas que convergen sobre una misma conducta; respuestas que describen distintas partes de una misma cadena funcional; respuestas que fortalecen o debilitan una hipótesis; respuestas contradictorias; y respuestas que aportan información necesaria para desambiguar un candidato DSM.
+
+La integración intrafuente debe responder: ¿estas respuestas forman parte de un patrón común?, ¿qué variables comparten?, ¿qué información adicional permite distinguir entre explicaciones?, ¿qué candidatos DSM quedan abiertos?
+
+No se deben fusionar síntomas DSM distintos por pertenecer a un mismo patrón funcional. Tampoco se debe reducir todo el patrón a una sola variable funcional.
+
+REGLA GENERAL — PRESERVACIÓN DEL DOMINIO DIAGNÓSTICO
+
+Toda conducta relevante debe activar, cuando corresponda, dos recorridos paralelos: posible correspondencia con síntomas/requisitos DSM-5-TR y caracterización funcional, contextual, evolutiva y neuropsicológica.
+
+El motor no debe decidir por adelantado que una conducta es “solo funcional” ni “ya es un síntoma”. Debe caracterizarla y mantener el estado del candidato hasta que exista evidencia suficiente para resolverlo.
+
+El análisis conjunto de respuestas puede aumentar, reducir o matizar la coherencia de un candidato DSM, pero nunca reemplaza la evaluación individual de cada síntoma. Síntomas DSM distintos permanecen distintos aunque formen parte de un mismo patrón funcional.
+
+Una misma conducta puede alimentar múltiples variables funcionales y uno o más candidatos diagnósticos. Las relaciones se almacenan por separado para evitar pérdida diagnóstica y, al mismo tiempo, evitar sobreconteo.
+
+Los ejemplos del banco de preguntas son ilustrativos de la arquitectura y no deben transformarse en reglas exclusivas para una conducta concreta.
+
+Principio de no pérdida diagnóstica: si una conducta posee correspondencia explícita con un síntoma DSM-5-TR, esa correspondencia debe permanecer disponible hasta que la caracterización permita confirmarla, mantenerla como posible, declararla insuficiente o descartarla.
+
+Esta regla no significa que una conducta con correspondencia explícita con un síntoma DSM-5-TR deba excluirse del contraste diagnóstico. La IA debe conservar simultáneamente el candidato diagnóstico y las variables funcionales que permitan comprenderlo.
+
+Una misma respuesta puede alimentar múltiples variables funcionales y también aportar evidencia para uno o más candidatos diagnósticos. Las dos rutas deben mantenerse separadas para el análisis, pero no deben eliminarse entre sí.
+
+6. MOTOR DE ENTREVISTA ADAPTATIVA
+
+REGLA DE PROFUNDIZACIÓN POR EVIDENCIA RELACIONADA
+
+Cuando una respuesta o documento aporta evidencia relacionada con un síntoma DSM pero no demuestra todavía su característica específica, el motor no debe cerrar el síntoma ni saltar a una nueva rama como si no existiera información. Debe formular la mínima pregunta necesaria para resolver exactamente la característica faltante.
+
+Ejemplo general: dificultad con tareas prolongadas + dificultad para iniciar + abandono sin supervisión puede abrir el candidato “evita/rechaza/resiste tareas de esfuerzo mental sostenido”. La IA debe diferenciar si existe evitación/resistencia propiamente tal antes de marcar el síntoma como apoyado. No debe confirmar el síntoma solo por asociación.
+
+6.1 Entrada
+
+La IA recibe:
+
+edad
+
+fuente
+
+pregunta actual
+
+respuesta
+
+información previamente disponible
+
+6.2 Proceso
+
+SI respuesta = NO
+
+registrar
+
+continuar
+
+SI respuesta = NO SABE / NO RECUERDA
+
+registrar como desconocido
+
+no interpretar como ausencia
+
+SI respuesta = OCASIONALMENTE
+
+registrar
+
+evaluar necesidad de profundización
+
+SI respuesta = SÍ
+
+identificar conducta
+
+identificar variables relacionadas
+
+comparar con edad y desarrollo esperado
+
+identificar información faltante
+
+seleccionar pregunta más eficiente
+
+Esto implementa directamente la lógica establecida en la Etapa 7: la IA no debe convertir un “sí” en una batería automática de preguntas. Primero debe analizar qué variables están implicadas y qué necesita saber todavía.
+
+7. MOTOR DE SELECCIÓN DE PREGUNTAS
+
+La IA debe seleccionar la mínima pregunta suficiente.
+
+Regla
+
+INFORMACIÓN DISPONIBLE
+
++
+
+VARIABLES YA CARACTERIZADAS
+
++
+
+INFORMACIÓN FALTANTE
+
++
+
+RELEVANCIA DIAGNÓSTICA
+
++
+
+RELEVANCIA FUNCIONAL
+
++
+
+EDAD / DESARROLLO
+
++
+
+CONTEXTO
+
+=
+
+SIGUIENTE PREGUNTA
+
+La IA debe evitar
+
+preguntar todo
+
+preguntar repetidamente
+
+repetir información ya establecida
+
+preguntar sin relación con una variable
+
+profundizar cuando ya existe información suficiente
+
+La IA puede repetir una pregunta solamente cuando
+
+existe discrepancia
+
+existe información insuficiente
+
+la información cambió
+
+se necesita triangulación
+
+otra fuente aporta una dimensión diferente
+
+La profundidad debe provenir de la selección inteligente de preguntas, no de la cantidad de preguntas.
+
+8. MOTOR EVOLUTIVO
+
+La IA debe disponer de una matriz de referencia evolutiva correspondiente a la edad.
+
+EDAD
+
+→ ETAPA
+
+→ FUNCIÓN EN DESARROLLO
+
+→ FUNCIONAMIENTO COGNITIVO ESPERABLE
+
+→ CONDUCTA ESPERABLE
+
+→ DEMANDA EVOLUTIVA
+
+Después:
+
+CONDUCTA OBSERVADA
+
+vs.
+
+CONDUCTA ESPERABLE
+
+Y:
+
+FUNCIONAMIENTO OBSERVADO
+
+vs.
+
+FUNCIONAMIENTO ESPERABLE
+
+La IA no debe tratar una conducta infantil normal para determinada etapa como evidencia automática de alteración.
+
+Las categorías evolutivas son:
+
+DESARROLLO ESPERADO
+
+DESARROLLO MÁS LENTO
+
+DESARROLLO MENOS EFICIENTE
+
+DESARROLLO VARIABLE
+
+DIFERENCIA PERSISTENTE Y DESPROPORCIONADA
+
+Estas categorías son descriptivas y no diagnósticas.
+
+9. MOTOR DE TRAYECTORIA
+
+La IA debe diferenciar:
+
+INICIO
+
+EVOLUCIÓN
+
+PERSISTENCIA
+
+RECURRENCIA
+
+FLUCTUACIÓN
+
+TRANSFORMACIÓN
+
+AUMENTO DE DEMANDAS
+
+CAMBIOS CON APOYO
+
+CAMBIOS SIN APOYO
+
+PERÍODOS DE MEJOR FUNCIONAMIENTO
+
+Debe distinguir:
+
+inicio de la trayectoria
+
+≠
+
+primera manifestación observable
+
+≠
+
+momento de identificación clínica
+
+También debe registrar si la dificultad se vuelve más evidente cuando aumenta:
+
+duración
+
+complejidad
+
+cantidad de pasos
+
+autonomía
+
+organización
+
+exigencia académica
+
+exigencia inhibitoria
+
+responsabilidad
+
+10. MOTOR DE CONTEXTO
+
+Toda variable relevante debe poder analizarse según:
+
+hogar
+
+colegio
+
+situación social
+
+actividad individual
+
+actividad grupal
+
+estructura
+
+supervisión
+
+motivación
+
+recompensa
+
+duración
+
+complejidad
+
+distractores
+
+demanda cognitiva
+
+apoyos
+
+La IA debe preguntar:
+
+¿Dónde ocurre?
+
+¿Cuándo ocurre?
+
+¿Cuándo no ocurre?
+
+¿Qué cambia cuando aumenta la estructura?
+
+¿Qué cambia cuando disminuye la supervisión?
+
+¿Qué cambia cuando aumenta la demanda?
+
+¿Qué cambia cuando la actividad resulta atractiva?
+
+El contexto modula la expresión del funcionamiento. No debe convertirse automáticamente en causa del trastorno.
+
+11. MOTOR DE TRIANGULACIÓN
+
+Cada información debe almacenar su fuente:
+
+APODERADO
+
+PROFESOR
+
+NIÑO
+
+ADOLESCENTE
+
+PROFESIONAL
+
+DOCUMENTO
+
+OBSERVACIÓN
+
+INSTRUMENTO
+
+EVIDENCIA OBJETIVA
+
+REALIDAD VIRTUAL
+
+La IA debe comparar las fuentes.
+
+Estados posibles
+
+CONVERGENCIA
+
+DISCREPANCIA
+
+INFORMACIÓN INSUFICIENTE
+
+Una discrepancia debe conservarse.
+
+La IA debe investigar si puede explicarse por:
+
+contexto
+
+demanda
+
+observador
+
+supervisión
+
+estructura
+
+motivación
+
+apoyos
+
+condiciones de evaluación
+
+12. MOTOR DE INFORMACIÓN
+
+Toda información deberá tener un estado.
+
+CONFIRMADO
+
+APOYADO POR EVIDENCIA
+
+PROBABLE
+
+POSIBLE
+
+CONTRADICTORIO
+
+DESCONOCIDO
+
+NO INFORMADO
+
+INFORMACIÓN INSUFICIENTE
+
+Reglas obligatorias:
+
+NO INFORMADO ≠ AUSENTE
+
+NO RECORDADO ≠ NO OCURRIÓ
+
+NO IDENTIFICADO ≠ DESCARTADO
+
+NO OBSERVADO POR UNA FUENTE ≠ INEXISTENTE
+
+13. MOTOR DE DIFERENCIAL
+
+La IA debe conservar y explorar explicaciones alternativas y condiciones concurrentes.
+
+Entre ellas:
+
+aprendizaje
+
+lenguaje
+
+sueño
+
+aspectos emocionales
+
+aspectos conductuales
+
+desarrollo
+
+sensorial/perceptual
+
+condiciones físicas
+
+factores ambientales
+
+otras condiciones clínicamente relevantes
+
+Cada posibilidad debe tener un estado:
+
+NO IDENTIFICADA
+
+POSIBLE
+
+PRESENTE
+
+CONDICIÓN CONOCIDA
+
+REQUIERE EVALUACIÓN ADICIONAL
+
+INFORMACIÓN INSUFICIENTE
+
+La existencia de una dificultad no significa automáticamente que se explique por TDAH.
+
+14. MOTOR DIAGNÓSTICO
+
+14.1 REGISTRO INDEPENDIENTE DE LOS 18 SÍNTOMAS DSM-5-TR
+
+14.1.1 AGRUPACIÓN ACUMULATIVA DE EVIDENCIA POR SÍNTOMA
+
+La unidad de integración diagnóstica es el síntoma, no la pregunta ni el documento. Todas las respuestas y observaciones de un mismo caso que aporten evidencia para un síntoma deben acumularse en el mismo registro sintomático.
+
+La IA debe comparar las distintas fuentes para reconocer descripciones equivalentes de una misma conducta. La diferencia de redacción no implica que sean fenómenos distintos.
+
+Cuando el colegio y el apoderado describen el mismo fenómeno motor, por ejemplo inquietud o movimiento frecuente/constante, la evidencia debe reunirse bajo el candidato sintomático correspondiente. No se duplica el síntoma por provenir de dos fuentes.
+
+REGLA DE ACUMULACIÓN Y ESPECIFICIDAD SINTOMÁTICA
+La evidencia de distintas fuentes se acumula dentro del mismo candidato DSM cuando las descripciones son directas o semánticamente equivalentes. La IA no debe exigir repetición literal por fuente, pero tampoco debe completar un síntoma mediante inferencias desde otro síntoma relacionado. Antes de cambiar un estado a APOYADO, el motor debe verificar que la evidencia conjunta cubra realmente la conducta definida por ese síntoma. Evidencia relacionada pero no equivalente mantiene el candidato abierto y activa profundización adaptativa. La misma observación puede aportar a varias dimensiones funcionales, pero el conteo DSM sigue siendo por síntomas diferenciados y específicamente caracterizados.
+
+La convergencia interfuente fortalece el apoyo del síntoma solo cuando las evidencias, consideradas en conjunto, cubren las características del síntoma específico. No se debe usar una conducta motora general para confirmar automáticamente todos los síntomas de hiperactividad.
+
+La ausencia de una descripción explícita en una fuente no invalida por sí sola la evidencia aportada por otra fuente. Debe evaluarse el conjunto del caso y la especificidad del síntoma.
+
+El sistema debe mantener un registro independiente de cada síntoma DSM-5-TR de inatención y de hiperactividad/impulsividad. Cada síntoma debe poder recibir evidencia de múltiples conductas y fuentes sin perder su identidad propia.
+
+Estados operativos permitidos: CONFIRMADO / APOYADO POR EVIDENCIA / PROBABLE / POSIBLE / EVIDENCIA RELACIONADA — REQUIERE CARACTERIZACIÓN / CONTRADICTORIO / DESCONOCIDO / NO INFORMADO / INFORMACIÓN INSUFICIENTE. “NO INFORMADO” solo se utiliza cuando la auditoría global del expediente no encuentra información pertinente para ese síntoma. “EVIDENCIA RELACIONADA — REQUIERE CARACTERIZACIÓN” se utiliza cuando existe información pertinente o convergente que no demuestra todavía la conducta específica del síntoma.
+
+14.2 REGLA DE COBERTURA ANTES DEL CONTEO
+
+14.1.2 AUDITORÍA GLOBAL DEL EXPEDIENTE ANTES DE CERRAR UN SÍNTOMA
+
+Antes de declarar un síntoma como NO INFORMADO, el motor debe recorrer todas las fuentes ya disponibles del mismo caso: entrevista, documentos, colegio, adolescente, observación, instrumentos y RV cuando corresponda.
+
+Para cada síntoma debe distinguir obligatoriamente: A) EVIDENCIA DIRECTA O SEMÁNTICAMENTE EQUIVALENTE; B) EVIDENCIA RELACIONADA PERO NO EQUIVALENTE; C) AUSENCIA DE INFORMACIÓN PERTINENTE.
+
+Si existe evidencia relacionada pero no equivalente, el síntoma no debe quedar como NO INFORMADO. Debe pasar a EVIDENCIA RELACIONADA — REQUIERE CARACTERIZACIÓN y el motor debe evaluar si una pregunta adaptativa mínima puede resolver la característica faltante.
+
+La IA debe esperar a la acumulación suficiente de evidencia antes de cerrar la línea. “Insuficiente” no significa “sin información”: significa que la información disponible, incluso después de integrar las fuentes pertinentes, todavía no permite confirmar o descartar la conducta específica.
+
+El cierre de un síntoma solo puede ocurrir después de esta secuencia: AUDITORÍA DEL EXPEDIENTE → ACUMULACIÓN INTERFUENTE → ANÁLISIS DEL CONJUNTO DE RESPUESTAS → IDENTIFICACIÓN DE LA CARACTERÍSTICA FALTANTE → PREGUNTA ADAPTATIVA SI ES NECESARIA → ACTUALIZACIÓN DEL ESTADO.
+
+REGLA DE ACTIVACIÓN INMEDIATA DE CARACTERIZACIÓN SINTOMÁTICA
+
+Cuando durante cualquier respuesta de la entrevista aparezca una conducta, expresión o dato con correspondencia posible con uno de los 18 síntomas DSM-5-TR, la IA debe activar de inmediato la caracterización específica de ese síntoma si esa característica todavía no está resuelta.
+
+El candidato DSM debe permanecer abierto. La IA debe seleccionar del banco de preguntas de la Etapa 7 la pregunta específica que mejor permita determinar la conducta definida por el síntoma.
+
+La activación de la caracterización no equivale a confirmar el síntoma. Equivale a reconocer una posibilidad diagnóstica que requiere ser comprobada con evidencia específica.
+
+REGLA DE PRIORIDAD: si existe una pregunta general de exploración y, al mismo tiempo, aparece un candidato sintomático DSM-5-TR que requiere caracterización específica, debe priorizarse la pregunta específica, salvo que la información ya esté resuelta o exista una razón clínica/operativa documentada para postergarla.
+
+Después de obtener la respuesta específica, el motor debe integrarla con todas las evidencias previas del mismo caso y con las demás fuentes disponibles antes de actualizar el estado del síntoma.
+
+La profundización continúa solo hasta obtener información suficiente para caracterizar la conducta definida por el síntoma. Si persiste una incertidumbre relevante, el síntoma queda abierto como EVIDENCIA RELACIONADA — REQUIERE CARACTERIZACIÓN o INFORMACIÓN INSUFICIENTE, según corresponda, y puede requerir otra pregunta, otra fuente o un instrumento pertinente.
+
+PROHIBICIÓN: no cerrar como NO INFORMADO un síntoma que tenga evidencia relacionada disponible sin antes auditar el expediente y determinar si una pregunta específica puede resolver la característica faltante.
+
+REGLA ESPECÍFICA — MÁXIMO DE 3 PREGUNTAS POR SÍNTOMA DSM-5-TR
+
+Cuando un síntoma DSM-5-TR aparece por primera vez y requiere caracterización, la IA debe disponer de hasta 3 preguntas específicas de caracterización/profundización para resolver las dimensiones necesarias de ese síntoma. Este límite se aplica al síntoma DSM-5-TR, no solo a la variable funcional relacionada.
+
+Las preguntas deben ser adaptativas. No existe una secuencia fija de tres preguntas. En cada paso el motor debe utilizar toda la información ya registrada del caso y seleccionar únicamente la pregunta que cubra la dimensión relevante que todavía no esté resuelta.
+
+Las dimensiones a priorizar dependen del síntoma y de la información disponible, y pueden incluir: conducta específica que define el síntoma; frecuencia/persistencia; contexto o situación en que ocurre; y otras características necesarias para establecer si la conducta corresponde realmente al síntoma DSM-5-TR.
+
+La cifra de 3 es un máximo de caracterización inicial, no una obligación de realizar 3 preguntas. Si el síntoma queda suficientemente caracterizado antes, se cierra la profundización. Si después de 3 preguntas sigue existiendo una incertidumbre crítica, el síntoma no debe considerarse confirmado por defecto: debe permanecer en estado abierto/insuficiente y el motor puede justificar una excepción, otra fuente o un instrumento pertinente cuando sea necesario.
+
+REGLA DE REUTILIZACIÓN DE INFORMACIÓN DEL MISMO SÍNTOMA
+
+Si el mismo síntoma DSM-5-TR ya fue explorado, la IA debe revisar y reutilizar toda la información previamente registrada de ese síntoma antes de formular una nueva pregunta. No debe reiniciar una caracterización desde cero cuando el síntoma reaparece en otra respuesta o fuente.
+
+Una nueva pregunta solo se justifica para cubrir una dimensión todavía no caracterizada, aclarar una discrepancia, resolver una contradicción, incorporar una nueva fuente o completar una exigencia diagnóstica que permanezca pendiente. La nueva pregunta debe dirigirse exclusivamente a la información faltante.
+
+El contador de preguntas de caracterización debe estar asociado al síntoma DSM-5-TR y a sus dimensiones ya resueltas. Las preguntas equivalentes de distintas fuentes no deben provocar una nueva batería repetitiva; la información debe acumularse bajo el mismo síntoma.
+
+Antes de contar síntomas o declarar insuficiencia de un dominio, el motor debe revisar el conjunto completo de datos ya procesados: respuestas individuales, patrón conjunto de respuestas de cada fuente, evidencias acumuladas por síntoma, documentos, observaciones, instrumentos y realidad virtual cuando corresponda. Debe identificar todas las conductas con correspondencia explícita con un síntoma, reunir las evidencias convergentes de las distintas fuentes y comprobar que cada candidato fue caracterizado sin duplicación.
+
+14.3 REGLA DE NO DUPLICACIÓN
+
+El sistema no puede transformar varias variables funcionales derivadas de una misma conducta en varios síntomas DSM. El recuento se realiza por síntomas DSM diferenciados y no por cantidad de etiquetas funcionales.
+
+14.4 ANÁLISIS DEL CONJUNTO DE RESPUESTAS
+
+Después de procesar cada bloque de respuestas de una fuente, el sistema debe revisar convergencia, discrepancia, cadenas funcionales, condiciones de aparición, diferencias entre tareas o contextos y elementos que aún no pueden desambiguarse. Este análisis debe incorporarse antes del cierre diagnóstico.
+
+El sistema debe mantener separados los resultados diagnóstico y funcional, pero no debe separar artificialmente la evidencia que alimenta ambos. Un mismo dato puede contribuir al contraste DSM-5-TR y a la caracterización multidimensional.
+
+DIAGNÓSTICO FORMAL
+
+de:
+
+CARACTERIZACIÓN MULTIDIMENSIONAL
+
+El diagnóstico debe contrastarse con el marco DSM-5-TR utilizado por el proyecto.
+
+La IA debe comprobar la información necesaria relacionada con:
+
+R1 síntomas de inatención
+
+R2 síntomas de hiperactividad/impulsividad
+
+R3 duración
+
+R4 presencia de varios síntomas antes de los 12 años
+
+R4 no puede cerrarse como apoyado solo por conocer una edad de inicio inferior a 12 años. Debe existir evidencia de varios síntomas relevantes antes de los 12 años. Si únicamente se conoce la edad de inicio de la dificultad general, el estado debe permanecer parcial o insuficiente.
+
+R5 relación con el nivel de desarrollo
+
+R6 presencia en dos o más contextos
+
+R7 interferencia / deterioro funcional
+
+R8 explicaciones alternativas
+
+R9 condiciones concurrentes
+
+R10 múltiples fuentes relevantes
+
+Las variables del modelo no se convierten en nuevos criterios DSM.
+
+CONTROL DE COBERTURA DE SÍNTOMAS
+
+Antes de declarar insuficiente R1 o R2 por falta de síntomas, la IA debe revisar todas las conductas, respuestas y documentos ya procesados que tengan correspondencia explícita con los síntomas DSM-5-TR. Ninguna conducta con correspondencia diagnóstica puede quedar fuera del contraste únicamente por haber sido clasificada también como variable funcional.
+
+El recuento DSM debe evitar duplicaciones: varias variables funcionales derivadas de una misma conducta no generan varios síntomas DSM. Pero una conducta potencialmente diagnóstica tampoco puede desaparecer por quedar asociada a una variable funcional.
+
+15. REGLA DE CONTRASTE DIAGNÓSTICO
+
+La IA debe operar así:
+
+RECOLECTAR
+
+↓
+
+CARACTERIZAR
+
+↓
+
+CONTRASTAR
+
+↓
+
+IDENTIFICAR FALTANTES
+
+↓
+
+EXPLORAR ALTERNATIVAS
+
+↓
+
+INTEGRAR
+
+↓
+
+GENERAR RESULTADO ESTRUCTURADO
+
+↓
+
+REVISIÓN PROFESIONAL
+
+Nunca:
+
+una conducta → diagnóstico
+
+Ni:
+
+una prueba → diagnóstico
+
+Ni:
+
+resultado RV → diagnóstico
+
+Ni:
+
+perfil → diagnóstico
+
+16. MOTOR DE LOS SEIS PERFILES
+
+La información obtenida se integra en:
+
+1. NEUROQUÍMICO
+
+2. ESTRUCTURAL
+
+3. CIRCUITOS / REDES
+
+4. NEUROPSICOLÓGICO
+
+5. CONDUCTUAL
+
+6. CONTEXTUAL
+
+No son seis diagnósticos ni seis subtipos. Son niveles de análisis del mismo caso.
+
+La IA debe trabajar con:
+
+VARIABLE
+
+→ PERFIL RELACIONADO
+
+→ NATURALEZA DE LA RELACIÓN
+
+→ EVIDENCIA QUE LA SUSTENTA
+
+No:
+
+conducta → perfil automático
+
+Límite de inferencia para los perfiles 1–3: cuando la evaluación no disponga de evidencia individual directa sobre neuroquímica, estructura cerebral o conectividad/redes, la IA debe tratarlos exclusivamente como marcos de interpretación teórica de la heterogeneidad y como niveles de conocimiento del modelo. No debe inferir ni presentar como hallazgo individual una alteración neuroquímica, estructural o de circuitos/redes a partir de síntomas, conductas, entrevista, escalas, variables funcionales o realidad virtual.
+
+Solo podrá registrarse evidencia individual en estos perfiles cuando exista una fuente específica y pertinente que realmente la aporte. En ausencia de esa evidencia, el sistema debe indicar explícitamente que se trata de una relación teórica o de plausibilidad y mantener la inferencia en el nivel correspondiente.
+
+17. NEUROFISIOLOGÍA
+
+La neurofisiología permanece como dimensión transversal.
+
+NO = PERFIL 7
+
+Puede relacionarse con:
+
+atención
+
+inhibición
+
+activación
+
+regulación
+
+esfuerzo
+
+variabilidad
+
+respuesta a demandas
+
+Solo debe incorporarse cuando exista información neurofisiológica disponible y pertinente.
+
+18. REALIDAD VIRTUAL
+
+La realidad virtual entra al sistema como:
+
+FUENTE OBJETIVA DE EVIDENCIA
+
+No como criterio diagnóstico independiente.
+
+Flujo:
+
+ENTREVISTA
+
+→ HIPÓTESIS FUNCIONAL
+
+→ RV
+
+→ RESULTADO OBJETIVO
+
+→ CONTRASTE
+
+→ INTEGRACIÓN
+
+Las variables pueden incluir:
+
+tiempo de reacción
+
+variabilidad del tiempo de reacción
+
+omisiones
+
+comisiones
+
+respuestas anticipatorias
+
+inhibición
+
+mantenimiento de objetivos
+
+distractibilidad
+
+persistencia
+
+cambio según condición
+
+desempeño bajo diferentes demandas
+
+La interpretación debe vincular resultado → variable → edad/norma → conducta → trayectoria → contexto → integración.
+
+Regla de integración de RV: la evidencia obtenida mediante realidad virtual debe utilizarse para caracterizar y contrastar las variables que efectivamente mide. No debe recibir un peso numérico predeterminado ni utilizarse para anular o crear automáticamente un criterio diagnóstico. Cuando exista convergencia o discrepancia con otras fuentes, la IA debe conservarla y explicarla dentro del contexto, la trayectoria y las condiciones de evaluación.
+
+19. MOTOR DE INFERENCIA NEUROBIOLÓGICA BASADA EN EVIDENCIA
+
+19.1 Propósito
+
+La IA debe ser capaz de pasar de la descripción de conductas a una caracterización funcional y, cuando exista evidencia suficiente, formular hipótesis explicativas neurobiológicas basadas exclusivamente en literatura científica.
+
+La inferencia debe seguir una cadena explícita y auditable:
+
+CONDUCTA OBSERVABLE → VARIABLE FUNCIONAL → PATRÓN FUNCIONAL → COMPARACIÓN CON DESARROLLO ESPERADO → POSIBLE VULNERABILIDAD DEL NEURODESARROLLO → SISTEMAS/CIRCUITOS ASOCIADOS EN LA LITERATURA → HIPÓTESIS NEUROBIOLÓGICA EXPLICATIVA.
+
+Cada paso debe conservar su propio nivel de evidencia. Una inferencia de nivel superior nunca puede presentarse como si fuera una observación directa del niño.
+
+19.2 Tres niveles de conocimiento
+
+Nivel 1 — Evidencia del caso: información directamente obtenida mediante entrevista, informantes, observación, documentos, escalas, pruebas o realidad virtual.
+
+Nivel 2 — Inferencia funcional: interpretación del patrón de funcionamiento que integra conductas, variables, trayectoria, contexto, impacto y comparación evolutiva.
+
+Nivel 3 — Hipótesis neurobiológica: relación del patrón funcional con mecanismos, circuitos, redes o sistemas neuroquímicos descritos en investigación.
+
+19.3 Regla de profundidad
+
+La profundidad de la inferencia debe ser proporcional a la fuerza y especificidad de la evidencia. Una conducta aislada puede generar una hipótesis funcional inicial, pero no basta para establecer una vulnerabilidad estable ni una hipótesis neurobiológica individual.
+
+19.4 Mapa de sistemas neurobiológicos asociados
+
+No utilizar la categoría 'área cerebral afectada'. Utilizar 'sistemas, circuitos o redes asociados en la literatura científica'.
+
+El sistema puede relacionar patrones funcionales con redes y sistemas descritos en estudios de grupos con TDAH, manteniendo siempre que estas asociaciones son poblacionales y no constituyen biomarcadores individuales.
+
+Atención sostenida y control atencional → redes frontoparietales, cíngulo, ínsula y otros sistemas de control atencional descritos en neuroimagen funcional.
+
+Inhibición y control de respuesta → circuitos fronto-estriatales, regiones frontales inferiores, cíngulo anterior y estriado, con evidencia de convergencia en estudios de inhibición.
+
+Memoria de trabajo → redes frontoparietales y su interacción con sistemas fronto-estriatales.
+
+Recompensa/demora y motivación → circuitos de recompensa, incluido el estriado, y sistemas dopaminérgicos/noradrenérgicos implicados en recompensa, saliencia, motivación y regulación del esfuerzo.
+
+Variabilidad del desempeño → variable funcional robustamente asociada al TDAH; la evidencia no permite asignarla de forma fiable a una estructura única.
+
+Planificación y organización → redes de control ejecutivo, especialmente redes frontoparietales; la asociación neurobiológica es menos específica que en inhibición.
+
+Flexibilidad cognitiva → redes distribuidas de control ejecutivo; mantener lenguaje cauteloso por heterogeneidad.
+
+Regulación emocional → sistemas distribuidos de control, saliencia y procesamiento emocional; no atribuir automáticamente el patrón a una estructura específica.
+
+Actividad motora → sistemas motores, ganglios basales y cerebelo; utilizar asociación general y no localización individual.
+
+19.5 Nivel de evidencia neurobiológica
+
+Clasificar cada relación como: ALTO, MODERADO, LIMITADO o CONTROVERTIDO.
+
+ALTO: convergencia de múltiples estudios, preferentemente revisiones sistemáticas o metaanálisis.
+
+MODERADO: evidencia repetida, pero con heterogeneidad o menor convergencia.
+
+LIMITADO: evidencia preliminar o indirecta.
+
+CONTROVERTIDO: resultados sustancialmente contradictorios.
+
+19.6 Tipo de relación
+
+Cada asociación debe clasificarse además como: asociación, mecanismo plausible, evidencia convergente, evidencia longitudinal, evidencia experimental o hipótesis explicativa.
+
+No utilizar 'causa' salvo que una evidencia causal específica y pertinente lo permita.
+
+19.7 Límite para los perfiles 1–3
+
+Sin evidencia individual directa y pertinente, la IA no puede afirmar que el niño presenta una alteración neuroquímica, estructural o de conectividad. Puede utilizar estos niveles como marcos científicos explicativos de los patrones funcionales observados.
+
+En particular, no debe inferir que existe 'aumento de dopamina', 'déficit de dopamina', 'aumento de noradrenalina' o una alteración específica de receptores, transportadores o circuitos a partir de conducta, entrevista, escalas, pruebas o RV.
+
+19.8 Ejemplo de salida permitida
+
+Conducta observable: presenta dificultad marcada para mantener actividades de baja recompensa inmediata y tiende a desplazarse hacia actividades más estimulantes.
+
+Variables funcionales asociadas: persistencia, regulación del esfuerzo, mantenimiento del objetivo, procesamiento de recompensa/demora, atención sostenida y variabilidad del desempeño.
+
+Patrón contextual: la dificultad aumenta en actividades prolongadas, poco estimulantes o con recompensa demorada y disminuye en actividades altamente estimulantes o con retroalimentación inmediata.
+
+Vulnerabilidad funcional: patrón compatible con mayor dificultad para mantener una conducta orientada a objetivos bajo condiciones de baja recompensa inmediata y alta demanda de autorregulación.
+
+Hipótesis neurobiológica explicativa: el patrón puede ser compatible con modelos neurobiológicos del TDAH que involucran sistemas dopaminérgicos y noradrenérgicos y circuitos relacionados con recompensa, motivación, saliencia y regulación del esfuerzo.
+
+Límite: los datos clínicos no permiten determinar individualmente si existe aumento, disminución o una alteración específica de la señalización dopaminérgica o noradrenérgica.
+
+20. MOTOR DE IDENTIFICACIÓN DE VULNERABILIDADES DEL NEURODESARROLLO
+
+20.1 Propósito
+
+La IA debe identificar, cuando exista evidencia suficiente, áreas de funcionamiento menos eficiente, descendido, variable o vulnerable respecto de lo esperable para la edad y etapa del desarrollo.
+
+20.2 Secuencia
+
+Edad → referencia evolutiva → conducta esperada → conducta observada → diferencia evolutiva → trayectoria → contexto → persistencia → impacto → múltiples fuentes → evidencia objetiva.
+
+20.3 Áreas potenciales
+
+Entre otras: atención sostenida, selección de información, inhibición, memoria de trabajo, seguimiento de instrucciones, mantenimiento de objetivos, control de interferencias, flexibilidad, planificación, organización, persistencia, regulación del esfuerzo, autorregulación, recompensa/demora, actividad motora, autonomía y adaptación al contexto.
+
+20.4 Regla de convergencia
+
+No identificar una vulnerabilidad estable a partir de una sola conducta. Aumentar el respaldo cuando convergen múltiples conductas, variables, contextos, fuentes y/o evidencia objetiva.
+
+20.5 Lenguaje permitido
+
+Utilizar preferentemente: 'funcionamiento menos eficiente para la edad', 'área funcional descendida', 'vulnerabilidad funcional' o 'patrón compatible con una posible vulnerabilidad del neurodesarrollo'.
+
+Evitar convertir estas inferencias en afirmaciones de 'inmadurez cerebral' o 'maduración cerebral retrasada' sin evidencia neurobiológica individual directa.
+
+20.6 Diferenciación diagnóstica
+
+Una vulnerabilidad funcional del neurodesarrollo no equivale a TDAH. Puede coexistir con TDAH, aparecer sin TDAH o estar asociada a otras condiciones del neurodesarrollo.
+
+21. MOTOR DE SUGERENCIAS DE ACCIÓN BASADAS EN EVIDENCIA
+
+21.1 Propósito
+
+La IA debe generar sugerencias de acción derivadas de las dificultades funcionales realmente identificadas, de la edad, el contexto, las fortalezas y el objetivo funcional.
+
+No debe pasar directamente de 'TDAH' a una recomendación genérica.
+
+21.2 Secuencia
+
+ÁREA FUNCIONAL VULNERABLE → CONTEXTO → DEMANDA → OBJETIVO FUNCIONAL → ACCIÓN SUGERIDA → EVIDENCIA CIENTÍFICA → NIVEL DE RESPALDO → CONDICIONES DE APLICACIÓN.
+
+21.3 Principio de personalización
+
+Las acciones deben responder al patrón observado. Una misma vulnerabilidad puede requerir acciones distintas según hogar, colegio, nivel de supervisión, estructura, demanda y autonomía.
+
+21.4 Organización
+
+Cuando se identifiquen dificultades de organización, planificación, manejo de materiales o tiempo, pueden considerarse intervenciones específicas de habilidades organizacionales. La evidencia disponible muestra beneficios en habilidades organizacionales y efectos más modestos sobre inatención y desempeño académico.
+
+21.5 Familia y conducta
+
+Cuando exista un patrón de dificultades conductuales o de autorregulación en el hogar, pueden considerarse intervenciones conductuales y programas de entrenamiento para padres respaldados por la evidencia.
+
+21.6 Contexto escolar
+
+Cuando las dificultades aparezcan en el colegio, pueden considerarse apoyos educativos individualizados, modificaciones ambientales, estrategias conductuales y apoyos organizacionales ajustados a las necesidades identificadas.
+
+21.7 Sueño
+
+Cuando se identifiquen problemas de sueño, la IA debe abrir un módulo específico. Las intervenciones conductuales del sueño cuentan con evidencia de beneficio sobre resultados de sueño en niños con TDAH, aunque la literatura presenta heterogeneidad.
+
+21.8 Actividad física
+
+La actividad física puede aparecer como apoyo complementario cuando sea apropiada para el niño. La literatura reciente muestra efectos sobre síntomas nucleares y funciones ejecutivas, pero la certeza de evidencia varía según resultado y modalidad.
+
+21.9 Fortalezas como punto de intervención
+
+Si una determinada condición mejora el desempeño —por ejemplo, mayor estructura, retroalimentación, interés o apoyo externo—, la IA debe considerar esa condición como recurso para diseñar acciones funcionales.
+
+21.10 Medición del resultado
+
+Cuando sea posible, cada acción debe asociarse a un objetivo observable y un indicador de cambio. Ejemplo: objetivo = aumentar persistencia; acción = dividir una tarea extensa en bloques con metas intermedias; indicador = porcentaje de tarea completada sin abandono.
+
+21.11 Intervenciones de baja evidencia
+
+No presentar como recomendación basada en evidencia una intervención para la cual la literatura sea insuficiente, contradictoria o de baja certeza. En esos casos, indicar la limitación y no convertir plausibilidad teórica en recomendación clínica.
+
+21.12 Intervenciones médicas
+
+Cuando una acción pueda implicar tratamiento farmacológico, la IA debe limitarse a identificar que existe una opción terapéutica respaldada por guías y derivar la decisión, selección, indicación y ajuste al profesional médico responsable. No debe prescribir, dosificar ni modificar tratamientos.
+
+22. MOTOR DE BÚSQUEDA CIENTÍFICA EXTERNA
+
+22.1 Propósito
+
+Cuando la base científica interna no sea suficiente o cuando sea necesario actualizar una recomendación, la IA podrá realizar una búsqueda externa mediante una herramienta/API habilitada para búsqueda científica.
+
+22.2 Fuentes prioritarias
+
+Priorizar PubMed/MEDLINE, Cochrane, guías de la American Academy of Pediatrics (AAP), NICE y otras fuentes científicas previamente autorizadas.
+
+No utilizar blogs, redes sociales, páginas comerciales, contenido promocional o fuentes sin respaldo científico como fundamento de una recomendación clínica.
+
+22.3 Estrategia de búsqueda
+
+La búsqueda debe formularse a partir del problema específico identificado y no desde una etiqueta diagnóstica general.
+
+Estructura: población → vulnerabilidad/variable → contexto → intervención → resultado.
+
+Ejemplo: población infantil/adolescente con TDAH + dificultad organizacional + contexto escolar + intervención organizacional + ensayo controlado o revisión sistemática.
+
+22.4 Criterios de aceptación
+
+Priorizar, en este orden general: guías clínicas actualizadas; revisiones sistemáticas y metaanálisis; ensayos controlados aleatorizados; estudios longitudinales humanos; otros estudios humanos relevantes.
+
+22.5 Regla de privacidad en búsqueda externa
+
+No enviar a servicios externos datos identificables del niño. La búsqueda científica debe utilizar únicamente la información mínima necesaria para caracterizar el problema clínico, eliminando nombres, RUT, dirección, colegio, teléfonos y otros identificadores directos o indirectos cuando no sean necesarios.
+
+22.6 Salida de la búsqueda
+
+Cada recomendación basada en búsqueda externa debe registrar: pregunta científica, fuente, año, población, intervención, resultado, nivel de evidencia, limitaciones y relación con el caso.
+
+22.7 No inventar evidencia
+
+Si la búsqueda no encuentra evidencia suficiente, la IA debe decirlo explícitamente. No debe completar el vacío con conocimiento especulativo.
+
+22.8 Actualización de la base científica
+
+Cuando se utilicen fuentes externas para una recomendación, la evidencia recuperada no sustituye automáticamente la base científica interna. Debe registrarse como evidencia externa/versionada y quedar disponible para revisión y eventual incorporación formal al conocimiento del sistema.
+
+23. MOTOR DE TRAZABILIDAD
+
+Cada conclusión debe poder reconstruirse hacia adelante:
+
+FUENTE
+
+→ DATO
+
+→ CONDUCTA
+
+→ VARIABLE
+
+→ CARACTERÍSTICAS
+
+→ EDAD
+
+→ DESARROLLO ESPERADO
+
+→ CONDUCTA ESPERADA
+
+→ TRAYECTORIA
+
+→ CONTEXTO
+
+→ INTERPRETACIÓN
+
+→ DSM
+
+→ PERFILES
+
+→ INTEGRACIÓN
+
+→ CONCLUSIÓN
+
+Y hacia atrás:
+
+CONCLUSIÓN
+
+→ INTEGRACIÓN
+
+→ EVIDENCIAS
+
+→ INTERPRETACIONES
+
+→ VARIABLES
+
+→ CONDUCTAS
+
+→ DATOS ORIGINALES
+
+→ FUENTES
+
+La arquitectura de trazabilidad del documento establece precisamente que la estructura debe ser relacional y bidireccional, no una cadena rígida.
+
+24. VERSIONADO
+
+Cada procesamiento debe registrar:
+
+versión del modelo
+
+versión de trayectoria
+
+versión de variables
+
+versión de reglas de integración
+
+versión del marco diagnóstico
+
+versión de instrumentos
+
+versión de reglas IA
+
+versión del sistema
+
+Los datos originales no deben sobrescribirse.
+
+Cuando existe una modificación:
+
+DATO ORIGINAL
+
++
+
+NUEVA VERSIÓN
+
++
+
+FECHA
+
++
+
+FUENTE
+
++
+
+MOTIVO
+
++
+
+REGLAS UTILIZADAS
+
+25. PROPAGACIÓN DE CAMBIOS
+
+Si cambia un dato:
+
+DATO MODIFICADO
+
+→ CONDUCTA AFECTADA
+
+→ VARIABLES AFECTADAS
+
+→ INTERPRETACIÓN AFECTADA
+
+→ RELACIÓN DIAGNÓSTICA AFECTADA
+
+→ INTEGRACIÓN AFECTADA
+
+→ CONCLUSIÓN POTENCIALMENTE AFECTADA
+
+La IA debe identificar automáticamente qué elementos necesitan revisión.
+
+26. ESTRUCTURA DE DECISIÓN DE LA IA
+
+La lógica general puede representarse así:
+
+function evaluar_caso(caso):
+
+registrar_identificacion(caso)
+
+edad = caso.edad
+
+etapa = determinar_etapa(edad)
+
+esperado = cargar_referencia_evolutiva(etapa)
+
+iniciar_entrevista()
+
+while informacion_necesaria(caso):
+
+dato = obtener_siguiente_dato()
+
+conducta = identificar_conducta(dato)
+
+variables = identificar_variables_relacionadas(conducta)
+
+comparar(
+
+variables,
+
+edad,
+
+etapa,
+
+esperado,
+
+conducta
+
+)
+
+registrar(
+
+dato,
+
+conducta,
+
+variables
+
+)
+
+actualizar(
+
+trayectoria,
+
+contexto,
+
+impacto,
+
+fuentes
+
+)
+
+faltantes = identificar_informacion_faltante(caso)
+
+if faltantes:
+
+pregunta = seleccionar_minima_pregunta_suficiente(faltantes)
+
+continuar_entrevista(pregunta)
+
+else:
+
+cerrar_rama()
+
+Después:
+
+integrar_fuentes()
+
+identificar_convergencias()
+
+identificar_discrepancias()
+
+evaluar_alternativas()
+
+incorporar_RV_si_corresponde()
+
+contrastar_requerimientos_diagnosticos()
+
+identificar_vulnerabilidades_funcionales()
+
+formular_inferencias_multinivel()
+
+consultar_base_neurobiologica_si_corresponde()
+
+generar_sugerencias_de_accion_basadas_en_evidencia()
+
+verificar_fuente_y_nivel_de_evidencia()
+
+integrar_seis_perfiles()
+
+generar_salida()
+
+enviar_a_revision_profesional()
+
+27. REGLA MAESTRA DEL SISTEMA
+
+La IA debe comportarse según esta lógica:
+
+NO PREGUNTAR POR PREGUNTAR.
+
+NO CLASIFICAR POR APARIENCIA.
+
+NO DIAGNOSTICAR POR UNA VARIABLE.
+
+NO ASIGNAR UNA ÚNICA CAUSA A UNA CONDUCTA.
+
+NO INTERPRETAR DESCONOCIDO COMO AUSENTE.
+
+NO ELIMINAR DISCREPANCIAS.
+
+NO CONVERTIR PERFILES EN SUBTIPOS.
+
+NO CONVERTIR VARIABLES FUNCIONALES EN CRITERIOS DSM.
+
+NO UTILIZAR RV COMO DIAGNÓSTICO AISLADO.
+
+SÍ:
+
+Cada síntoma DSM-5-TR debe agotar primero la caracterización adaptativa necesaria antes de ser clasificado como insuficiente; la IA debe integrar la evidencia existente y evitar toda repetición funcional.
+
+INTEGRAR.
+
+COMPARAR.
+
+CONTRASTAR.
+
+TRIANGULAR.
+
+TRAZAR.
+
+ACTUALIZAR.
+
+28. SALIDA FINAL DEL SISTEMA — INFORME CLÍNICO + AUDITORÍA TÉCNICA
+
+28.1 AUDITORÍA AUTOMÁTICA PREVIA A LA SALIDA
+
+Antes de generar el informe, ejecutar obligatoriamente:
+
+☐ Cobertura de los 18 síntomas DSM-5-TR, individualmente.
+
+☐ Ausencia de pérdida diagnóstica por clasificación funcional.
+
+☐ Ausencia de duplicación de síntomas por una misma conducta.
+
+☐ Integración del conjunto de respuestas de cada fuente.
+
+☐ Convergencias y discrepancias entre fuentes conservadas.
+
+☐ Duración, inicio, desarrollo, contextos, impacto y diferencial revisados.
+
+☐ Realidad virtual utilizada solo como evidencia complementaria de las variables que realmente mide.
+
+☐ Inferencias neurobiológicas separadas de los hallazgos individuales y rotuladas por nivel de evidencia.
+
+☐ Conclusión coherente con la evidencia disponible y con la información faltante.
+
+28.2 SALIDA CLÍNICA LEGIBLE
+
+El informe destinado al profesional debe mostrar el resultado en lenguaje clínico comprensible y no exigir conocimiento de los códigos internos del motor. Debe incluir la síntesis de fuentes, el análisis síntoma por síntoma, el contraste de los demás requisitos diagnósticos, la caracterización funcional, fortalezas, dificultades, zonas de modulación/contexto, trayectoria, integración de realidad virtual, seis perfiles, diferencial, información faltante y conclusión.
+
+Los códigos internos, estados técnicos, reglas de selección de preguntas y trazabilidad detallada se reservan para un anexo técnico o registro de auditoría.
+
+Cuando corresponda, el informe debe diferenciar explícitamente: “umbral de síntomas alcanzado” de “diagnóstico formal sustentado”, porque el número de síntomas no resuelve por sí solo todos los requisitos diagnósticos.
+
+La salida estructurada deberá contener:
+
+1. DIAGNÓSTICO SEGÚN DSM-5-TR
+
+2. TRAYECTORIA EVOLUTIVA
+
+3. FUNCIONAMIENTO COGNITIVO
+
+4. CONDUCTA
+
+5. ÁREAS CON MAYOR DIFICULTAD
+
+6. ÁREAS FORTALECIDAS
+
+7. ÁREAS RELATIVAMENTE PRESERVADAS
+
+8. CONTEXTO Y MODULACIÓN
+
+9. IMPACTO FUNCIONAL
+
+10. SEIS PERFILES
+
+11. RV / EVIDENCIA OBJETIVA
+
+12. EXPLICACIONES ALTERNATIVAS Y
+
+CONDICIONES CONCURRENTES
+
+13. INFORMACIÓN FALTANTE
+
+14. RELEVANCIA DE LA INFORMACIÓN FALTANTE
+
+15. ÁREAS PARA FORTALECIMIENTO
+
+O EVALUACIÓN POSTERIOR
+
+16. INFERENCIAS EXPLICATIVAS MULTINIVEL
+
+17. SUGERENCIAS DE ACCIÓN BASADAS EN EVIDENCIA
+
+18. TRAZABILIDAD DE LA CONCLUSIÓN
+
+19. REVISIÓN PROFESIONAL
+
+REFERENCIAS CIENTÍFICAS DE APOYO PARA LOS MÓDULOS 19–22
+
+[1] American Academy of Pediatrics. Clinical Practice Guideline for the Diagnosis, Evaluation, and Treatment of ADHD in Children and Adolescents. Pediatrics. 2019;144(4):e20192528.
+
+[2] NICE. Attention deficit hyperactivity disorder: diagnosis and management (NG87). Recommendations.
+
+[3] Neural correlates of executive function and attention in children with ADHD: An ALE meta-analysis of task-based functional connectivity studies. Psychiatry Research. DOI: 10.1016/j.psychres.2024.116338. PMID: 39947841.
+
+[4] ADHD and the Choice of Small Immediate Over Larger Delayed Rewards: A Comparative Meta-Analysis of Performance on Simple Choice-Delay and Temporal Discounting Paradigms. Journal of Attention Disorders. PMID: 29806533.
+
+[5] Executive function in children with neurodevelopmental conditions: systematic review and meta-analysis. Nature Human Behaviour. 2024. PMID: 39424962.
+
+[6] Meta-analysis of organizational skills interventions for children and adolescents with ADHD. Clinical Psychology Review. 2017;52:108–123. PMID: 28088557.
+
+[7] Behavioral Parent Training for School-Aged Children With ADHD: A Systematic Review of Randomized Control Trials. Journal of Attention Disorders. PMID: 38083879.
+
+[8] Behavioral Sleep Interventions for Children With ADHD: A Systematic Review and Meta-Analysis. Journal of Attention Disorders. 2022;26(14):1805–1821. PMID: 35758199.
+
+[9] The influence of existing interventions on sleep of youth with ADHD: A meta-analysis of randomized controlled trials. Sleep Medicine Reviews. 2026. PMID: 42096966.
+
+[10] Exercise for core ADHD symptoms and executive functions in children and adolescents with ADHD: A network and dose-response meta-analysis. Journal of Sport and Health Science. 2026. PMID: 42480697.
+
+29. PRINCIPIO FINAL DE LA ETAPA 9
+
+El producto de las Etapas 1–8 no será simplemente un conjunto de documentos almacenados.
+
+Debe convertirse en una arquitectura en la que:
+
+EL MODELO DEFINE QUÉ SIGNIFICA LA INFORMACIÓN
+
+LA TRAYECTORIA DEFINE CONTRA QUÉ REFERENCIA EVOLUTIVA SE COMPARA
+
+LAS VARIABLES DEFINEN QUÉ DEBE SER REGISTRADO
+
+LA ENTREVISTA DEFINE CÓMO OBTENER LA INFORMACIÓN
+
+LA RV APORTA EVIDENCIA OBJETIVA COMPLEMENTARIA
+
+LA TRAZABILIDAD CONSERVA CÓMO SE LLEGÓ A CADA INTERPRETACIÓN
+
+EL MOTOR DE INTEGRACIÓN RELACIONA TODAS LAS FUENTES
+
+EL MARCO DIAGNÓSTICO REALIZA EL CONTRASTE FORMAL
+
+LA IA ORQUESTA EL PROCESO
+
+EL PROFESIONAL REVISA LA INTEGRACIÓN Y LA DECISIÓN CLÍNICA FINAL
+
+La Etapa 9 transforma, por tanto, el modelo científico en una especificación operativa para una IA, capaz de utilizar las reglas, variables, trayectoria evolutiva, entrevista adaptativa, evidencia objetiva, trazabilidad e integración diagnóstica definidas en las Etapas 1–8.
+
+CORRECCIÓN OPERATIVA — MOTOR DE ENTREVISTA ADAPTATIVA
+
+A. PRINCIPIO DE ESTADO OBLIGATORIO
+
+La entrevista debe ejecutarse como una máquina de estados acumulativos.
+No basta con conservar las respuestas. El sistema debe conservar también el estado de cada pregunta y de cada rama de exploración.
+
+En todo momento deben existir, internamente, al menos estos registros:
+
+1. REGISTRO DE DATOS:
+- respuesta original;
+- fuente;
+- fecha/turno si corresponde;
+- información derivada.
+
+2. REGISTRO DE PREGUNTAS:
+- ID de pregunta;
+- texto utilizado;
+- función de la pregunta;
+- rama/variable;
+- estado: NO UTILIZADA / UTILIZADA / RESPONDIDA / PARCIALMENTE RESUELTA / RESUELTA / CERRADA.
+
+3. REGISTRO DE RAMAS:
+- rama activa;
+- información ya establecida;
+- información faltante;
+- estado: ABIERTA / RESUELTA / CERRADA.
+
+4. REGISTRO DE FUENTE:
+- APODERADO / PROFESOR / NIÑO / ADOLESCENTE / PROFESIONAL / DOCUMENTO / OBSERVACIÓN / INSTRUMENTO / EVIDENCIA OBJETIVA / RV.
+
+El estado acumulativo debe actualizarse después de cada respuesta y antes de seleccionar la siguiente pregunta.
+
+B. REGISTRO OBLIGATORIO DE PREGUNTAS UTILIZADAS
+
+Toda pregunta mostrada al usuario queda inmediatamente registrada como UTILIZADA, incluso si posteriormente la respuesta resulta insuficiente.
+
+Una pregunta que haya sido utilizada NO puede volver a seleccionarse en la misma rama cuando cumpla la misma función informativa.
+
+Una reformulación de una pregunta ya utilizada cuenta como la misma pregunta si busca obtener la misma dimensión o información.
+
+Por tanto:
+
+PREGUNTA UTILIZADA
+→ queda bloqueada para selección automática.
+
+La pregunta solo puede volver a utilizarse cuando exista una excepción válida:
+- discrepancia entre fuentes;
+- información contradictoria;
+- información insuficiente que no pudo obtenerse en la primera aplicación;
+- cambio relevante de la información;
+- nueva fuente que exige triangulación.
+
+Cuando exista una excepción, debe registrarse internamente el motivo y la nueva aplicación debe buscar una dimensión adicional, no repetir mecánicamente la pregunta.
+
+C. BARRERA OBLIGATORIA ANTES DE SELECCIONAR UNA PREGUNTA
+
+Antes de mostrar cualquier pregunta, el motor debe ejecutar obligatoriamente esta secuencia:
+
+1. ¿Qué información ya está establecida?
+2. ¿Qué preguntas ya fueron utilizadas?
+3. ¿Qué rama está activa?
+4. ¿Qué información falta realmente?
+5. ¿La pregunta candidata aporta información nueva?
+6. ¿La pregunta candidata es funcionalmente equivalente a una ya utilizada?
+7. ¿La pregunta candidata está permitida por el banco/proyecto?
+8. ¿La pregunta candidata corresponde a la fuente actual?
+9. ¿La pregunta candidata es la mínima suficiente?
+10. ¿La rama debe cerrarse en vez de continuar?
+
+Si la pregunta candidata:
+- ya fue respondida suficientemente → DESCARTAR;
+- ya fue utilizada y busca la misma información → DESCARTAR;
+- no agrega información nueva → DESCARTAR;
+- corresponde a una rama cerrada → DESCARTAR;
+- no está sustentada por el proyecto → DESCARTAR.
+
+Solo puede mostrarse una pregunta que supere todos los controles.
+
+D. SELECCIÓN DE LA SIGUIENTE PREGUNTA
+
+La fórmula anterior de selección debe convertirse en un procedimiento secuencial y no en una recomendación general.
+
+SELECCIONAR_SIGUIENTE_PREGUNTA:
+
+1. Identificar la rama activa.
+2. Construir la lista de información faltante de esa rama.
+3. Eliminar información que ya esté resuelta.
+4. Eliminar preguntas ya utilizadas que cumplan la misma función.
+5. Eliminar preguntas funcionalmente equivalentes.
+6. Priorizar la información con mayor relevancia diagnóstica o funcional.
+7. Priorizar la pregunta mínima suficiente.
+8. Si ninguna pregunta agrega información nueva → CERRAR RAMA.
+9. Si existe una pregunta válida → mostrar UNA sola.
+10. Registrar inmediatamente la pregunta como UTILIZADA.
+
+Nunca recorrer secuencialmente el banco de preguntas por orden numérico, salvo que el propio proyecto establezca expresamente esa secuencia para una etapa concreta.
+
+Esta regla prevalece sobre cualquier instrucción que pudiera interpretarse como obligación de recorrer todas las preguntas disponibles de una rama.
+
+Si existe excepción válida → PERMITIR NUEVA PREGUNTA SOLO SOBRE LA DIMENSIÓN FALTANTE.
+
+Si información_nueva = FALSA → DESCARTAR_CANDIDATO, aunque contador_variable < 3.
+
+Si contador_variable >= 3 Y variable_suficientemente_caracterizada = VERDADERO → SATURAR_VARIABLE → CERRAR_O_CAMBIAR.
+
+El motor debe mantener internamente, para cada variable activa, un contador de preguntas consecutivas y un registro de dimensiones ya caracterizadas. Después de cada respuesta debe actualizar ambos registros antes de seleccionar la siguiente pregunta.
+
+CONTROL OBLIGATORIO:
+
+En una excepción, la nueva pregunta debe dirigirse exclusivamente a la información faltante y no repetir mecánicamente la caracterización ya obtenida.
+
+Una cuarta o posterior pregunta sobre la misma variable solo está permitida cuando exista una justificación adaptativa explícita: discrepancia entre fuentes; información contradictoria; información insuficiente; cambio relevante de la información; triangulación con una nueva fuente; o necesidad de resolver una dimensión obligatoria que todavía no pueda establecerse.
+
+EXCEPCIONES A LA SATURACIÓN:
+
+INFORMACIÓN FALTANTE REAL → PREGUNTA MÍNIMA SUFICIENTE → INFORMACIÓN NUEVA → ACTUALIZACIÓN DEL ESTADO
+
+La pregunta siguiente debe responder a la fórmula:
+
+Antes de mostrar una pregunta, el motor debe determinar si la respuesta esperada agregaría información funcionalmente nueva. Si la nueva pregunta solo reformula, subdivide o vuelve a caracterizar una dimensión ya establecida, debe descartarse aunque utilice palabras diferentes.
+
+PRINCIPIO DE INFORMACIÓN NUEVA:
+
+La cifra de 3 preguntas NO constituye una autorización para hacer siempre 3 preguntas. Si antes de llegar a 3 preguntas la variable ya está suficientemente caracterizada, la rama debe cerrarse o el motor debe cambiar de variable inmediatamente.
+
+- seleccionar una nueva variable solo después de actualizar el estado acumulativo del caso.
+
+- evitar dividir una misma conducta en múltiples preguntas que recojan esencialmente la misma información;
+
+- impedir una cuarta pregunta automática sobre la misma variable;
+
+- cerrar temporalmente esa rama o cambiar a la siguiente variable relevante aún insuficientemente explorada;
+
+Al alcanzar la saturación, el motor debe:
+
+2. Las respuestas obtenidas permiten caracterizar suficientemente la conducta en las dimensiones relevantes disponibles, especialmente conducta observable, contexto/condiciones, frecuencia o variabilidad, impacto funcional y trayectoria cuando corresponda.
+
+1. Se han realizado 3 preguntas consecutivas centradas en la misma variable funcional; y
+
+Una variable se considera SATURADA cuando se cumplen ambas condiciones:
+
+La regla de no repetición debe aplicarse no solo a la pregunta exacta, sino también a la VARIABLE FUNCIONAL que está siendo explorada. Dos preguntas con redacción diferente deben considerarse funcionalmente repetitivas cuando buscan caracterizar esencialmente el mismo fenómeno y no agregan una dimensión nueva.
+
+D.1. REGLA DE SATURACIÓN FUNCIONAL Y CONTROL DE REDUNDANCIA
+
+CONTROL PARA SÍNTOMAS DSM-5-TR: ANTES DE FORMULAR UNA NUEVA PREGUNTA
+
+1. Revisar si el síntoma ya fue explorado.
+
+2. Recuperar toda la evidencia previa del síntoma, sin importar la fuente.
+
+3. Identificar las dimensiones ya resueltas.
+
+4. Identificar únicamente la dimensión faltante.
+
+5. Comprobar el número de preguntas de caracterización ya realizadas para ese síntoma.
+
+6. Si el contador es menor que 3 y existe una dimensión relevante no resuelta, formular una sola pregunta específica.
+
+7. Si el contador alcanza 3, no formular una cuarta pregunta automáticamente. Solo permitir una excepción si existe una justificación explícita y una dimensión crítica aún no resoluble por las fuentes disponibles.
+
+8. Si la dimensión ya está resuelta por información previa, no volver a preguntarla.
+
+E. DIFERENCIA ENTRE PREGUNTA DE BANCO Y PREGUNTA DE CARACTERIZACIÓN
+
+El motor debe distinguir tres funciones:
+
+1. PREGUNTA DE BANCO:
+pregunta definida en Etapa 7/Anexo 7.
+
+2. PREGUNTA DE CARACTERIZACIÓN:
+pregunta necesaria para precisar una conducta que todavía no está suficientemente definida.
+
+3. PREGUNTA DE PROFUNDIZACIÓN:
+pregunta destinada a completar una dimensión que permanece insuficiente después de la caracterización.
+
+Las tres deben registrarse en el mismo REGISTRO DE PREGUNTAS y quedan sujetas a la regla de no repetición funcional.
+
+Una pregunta de caracterización utilizada para aclarar una conducta NO puede volver a formularse posteriormente con la misma finalidad simplemente porque exista una pregunta de banco equivalente.
+
+F. RESPUESTAS BREVES Y CAMBIO DE RAMA
+
+Una respuesta breve no significa automáticamente que la rama esté resuelta.
+
+Después de cada respuesta:
+
+RESPUESTA
+→ REGISTRAR
+→ CARACTERIZAR
+→ DETERMINAR INFORMACIÓN RESUELTA
+→ DETERMINAR INFORMACIÓN FALTANTE
+→ ACTUALIZAR ESTADO DE RAMA
+→ SELECCIONAR O CERRAR.
+
+Si la respuesta permite resolver varias dimensiones simultáneamente, todas deben actualizarse. El motor no debe volver a preguntar una dimensión ya resuelta solamente porque esa dimensión aparezca posteriormente en el banco.
+
+G. ALTERNATIVAS: CONTROL CENTRALIZADO
+
+La decisión sobre alternativas debe realizarse antes de mostrar la pregunta.
+
+1. Si la pregunta explora PRESENCIA/AUSENCIA de una conducta, utilizar exactamente:
+☐ A. SÍ
+☐ B. NO
+☐ C. OCASIONALMENTE
+☐ D. NO SABE / NO RECUERDA
+
+2. Si la pregunta corresponde a otra variable con categorías definidas por el proyecto, utilizar las alternativas definidas por el proyecto.
+
+3. Si no existen alternativas definidas o justificadas por el proyecto, utilizar pregunta abierta.
+
+4. Nunca omitir las cuatro alternativas obligatorias en una pregunta de presencia/ausencia.
+
+5. Nunca agregar las cuatro alternativas a una pregunta que no sea de presencia/ausencia solo para mantener uniformidad.
+
+6. La validación de alternativas debe ocurrir antes de mostrar la pregunta y no después.
+
+El barrido diferencial debe completarse antes de ejecutar el cierre definitivo de la entrevista de esa fuente, salvo que el flujo del proyecto indique expresamente que otra fuente cubrirá esa exploración.
+
+REGLA CRÍTICA: “NO IDENTIFICADO” NO equivale a “DESCARTADO”. El barrido debe dejar trazabilidad del área explorada y de su estado.
+
+Las demás áreas deben abrirse con la pregunta específica mínima necesaria para determinar presencia, temporalidad, relevancia funcional y necesidad de profundización, respetando el motor adaptativo y evitando convertir el barrido en una batería fija.
+
+RAMA EMOCIONAL — PREGUNTA DE APERTURA OBLIGATORIA: cuando se seleccione ASPECTOS EMOCIONALES, preguntar: “¿Existe actualmente, ha existido recientemente o ha existido en el pasado algún problema, situación o experiencia que pueda haber afectado su estado emocional o su funcionamiento emocional?”
+
+Si se selecciona “NO SABE / NO RECUERDA”, registrar las áreas como DESCONOCIDAS y NO interpretarlas como ausencia. El motor podrá requerir triangulación posterior si esas áreas resultan clínicamente relevantes.
+
+Si se selecciona “NINGUNA DE LAS ANTERIORES”, registrar explícitamente el barrido diferencial como EXPLORADO SIN DIFICULTADES REPORTADAS y continuar.
+
+Si se selecciona una o más áreas, el motor debe abrir únicamente las ramas seleccionadas y profundizar de manera adaptativa. No debe recorrer las áreas no seleccionadas.
+
+Pregunta operativa: “Además de las dificultades que hemos conversado, ¿hay alguna de estas áreas que haya presentado, presente o haya presentado anteriormente alguna dificultad relevante para su funcionamiento?”
+
+☐ A. Aprendizaje
+☐ B. Lenguaje o comprensión
+☐ C. Sueño
+☐ D. Aspectos emocionales
+☐ E. Aspectos conductuales
+☐ F. Desarrollo
+☐ G. Aspectos sensoriales o perceptivos
+☐ H. Audición
+☐ I. Visión
+☐ J. Condiciones físicas o de salud
+☐ K. Situaciones familiares o ambientales relevantes
+☐ L. Otro
+☐ M. Ninguna de las anteriores
+☐ N. No sabe / no recuerda
+
+El barrido debe realizarse mediante una sola pregunta de selección de áreas, mostrando directamente la siguiente lista:
+
+Este barrido NO es un cuestionario completo ni una exploración profunda. Su función es determinar si existe información que obligue a abrir una rama específica. La profundidad posterior dependerá exclusivamente de las áreas identificadas.
+
+La entrevista adaptativa NO debe cerrarse únicamente porque la dificultad principal haya sido suficientemente caracterizada. Antes de cerrar la entrevista de una fuente, el motor debe realizar un barrido mínimo obligatorio de áreas alternativas y condiciones concurrentes.
+
+H. BARRIDO DIFERENCIAL OBLIGATORIO ANTES DEL CIERRE
+
+Una rama de entrevista no puede cerrarse definitivamente mientras el barrido diferencial obligatorio no haya sido ejecutado o exista constancia de que esa exploración será cubierta por otra fuente del flujo del proyecto.
+
+H.1. MÓDULO OBLIGATORIO DE TAMIZAJE MÉDICO, SENSORIAL Y DEL SUEÑO
+
+Este módulo operacionaliza el tamizaje complementario establecido en la Etapa 7, apartado 14.1 y Anexo 7. Debe quedar completado antes del cierre de la entrevista de la fuente, salvo que la memoria del caso o una fuente válida ya contenga información suficiente para registrar explícitamente cada dominio.
+
+Pregunta inicial de selección múltiple: “Además de las dificultades que motivaron esta evaluación, ¿se ha observado o diagnosticado alguna de estas situaciones? Seleccione todas las que correspondan”.
+
+A. Episodios breves de desconexión, mirada fija o momentos en que parece no responder normalmente.
+
+B. Dificultades auditivas o sospecha de problemas de audición.
+
+C. Dificultades visuales o problemas de visión que podrían no estar corregidos.
+
+D. Problemas persistentes de sueño, ronquidos intensos, pausas respiratorias durante el sueño o somnolencia diurna marcada.
+
+E. Antecedentes neurológicos relevantes u otras condiciones médicas.
+
+F. Antecedentes endocrinos o metabólicos relevantes.
+
+G. Uso habitual o reciente de medicamentos que pueda ser pertinente para comprender la atención, el sueño, la actividad o la conducta.
+
+H. Sensibilidades sensoriales relevantes ante sonidos, luces, tacto u otros estímulos.
+
+I. Otra situación médica, sensorial, del desarrollo o del sueño que el informante considere importante.
+
+J. Ninguna de las anteriores (opción excluyente).
+
+K. No sé / no recuerdo.
+
+REGLAS OPERATIVAS DEL MÓDULO:
+
+1. Consultar primero la memoria del caso y la información de las fuentes disponibles. No volver a preguntar un dominio que ya esté suficientemente establecido.
+
+2. Si se selecciona una o más categorías, abrir únicamente las ramas seleccionadas y formular una sola pregunta por turno, dirigida a la dimensión relevante que todavía falte.
+
+3. La profundización puede precisar qué ocurre, inicio/temporalidad, frecuencia o recurrencia, impacto funcional, seguimiento/evaluación profesional y fuente del dato. No aplicar automáticamente todas las preguntas del Anexo 7.
+
+4. “Ninguna de las anteriores” es excluyente y registra el tamizaje como EXPLORADO_SIN_DIFICULTADES_REPORTADAS. No equivale a descarte médico definitivo ni anula información previa contradictoria.
+
+5. “No sé / no recuerdo” registra incertidumbre. No se interpreta como ausencia; si el dato es clínicamente relevante, registrar si se requiere triangulación con otra fuente.
+
+6. “Otra situación” requiere una pregunta breve para identificarla; después se abre solo la rama pertinente, si corresponde.
+
+7. Registrar la fuente de cada dato: observación del apoderado, antecedente comunicado por un profesional, documento u otra fuente. Distinguir SÍ, NO, OCASIONALMENTE, NO SABE, NO RECUERDA, NO INFORMADO, INFORMACIÓN PARCIAL e INFORMACIÓN SUFICIENTEMENTE ESTABLECIDA.
+
+8. No concluir que una condición alternativa explica por sí sola las dificultades ni que excluye el TDAH. Registrar su posible relevancia para la integración y revisión profesional.
+
+9. Si se informan episodios preocupantes de desconexión, pausas respiratorias durante el sueño u otra situación que requiera valoración sanitaria, registrar el antecedente y recomendar valoración por un profesional sanitario. No formular diagnóstico médico ni recomendar suspender o modificar medicamentos.
+
+10. El tamizaje puede registrarse como COMPLETADO cuando los dominios pertinentes estén suficientemente explorados, la opción “ninguna” haya sido seleccionada, o la incertidumbre real quede registrada y se haya determinado si requiere triangulación. La entrevista no debe cerrarse mientras el módulo esté NO_REALIZADO o EN_CURSO.
+
+H. CIERRE DE RAMA
+
+Una rama debe cerrarse cuando:
+
+- la variable o requisito ya está suficientemente caracterizado;
+- la información faltante restante no puede obtenerse de la fuente actual;
+- continuar produciría redundancia;
+- las preguntas disponibles no agregarían información relevante;
+- la respuesta permite avanzar a otra rama de mayor valor informativo.
+
+Cerrar una rama NO significa descartar el fenómeno. Significa que esa línea de interrogación ya no requiere otra pregunta en esa fuente y momento.
+
+Estado:
+ABIERTA → PARCIALMENTE RESUELTA → RESUELTA → CERRADA.
+
+I. CONTROL DE FUENTE
+
+El motor debe mantener bloqueada la fuente activa durante la rama.
+
+Si la fuente actual es APODERADO, no debe cambiar espontáneamente a PROFESOR, NIÑO, ADOLESCENTE u otra fuente.
+
+El cambio de fuente solo puede producirse cuando el flujo del proyecto lo indique.
+
+La información obtenida de una fuente nueva se agrega al caso y no reemplaza automáticamente la información previa.
+
+J. ALGORITMO OPERACIONAL CORREGIDO
+
+J.1. PRINCIPIO DE CIERRE
+
+El cierre de una RAMA y el cierre de la ENTREVISTA DE UNA FUENTE son operaciones distintas.
+
+Cerrar una rama no autoriza a cerrar la entrevista.
+
+El cierre de la entrevista solo puede ejecutarse mediante PUEDE_CERRAR_ENTREVISTA(caso).
+
+No existe cierre implícito por ausencia de preguntas, saturación de una variable o caracterización suficiente de la dificultad principal.
+
+J.2. GATE OBLIGATORIO DE CIERRE DE ENTREVISTA
+
+El estado del tamizaje médico, sensorial y del sueño debe almacenarse separado del resultado del tamizaje y separado del barrido diferencial general. “COMPLETADO” significa que el módulo se resolvió operativamente; “EXPLORADO_SIN_DIFICULTADES_REPORTADAS” describe el resultado comunicado y no equivale a descartar médicamente una condición.
+
+function puede_cerrar_entrevista(caso):
+
+if barrido_diferencial(caso) == NO_REALIZADO:
+
+return FALSO
+
+if barrido_diferencial(caso) == EN_CURSO:
+
+return FALSO
+
+if tamizaje_medico_sensorial_sueno(caso) not in [COMPLETADO, COMPLETADO_CON_INCERTIDUMBRE, CUBIERTO_POR_FUENTE]:
+return FALSO
+
+if existen_ramas_abiertas_relevantes(caso):
+
+return FALSO
+
+if existen_areas_desconocidas_que_requieren_exploracion(caso):
+
+return FALSO
+
+if existe_informacion_obligatoria_pendiente(caso):
+
+return FALSO
+
+if otra_fuente_cubrira_exploracion(caso) == VERDADERO:
+
+return VERDADERO
+
+if barrido_diferencial(caso) == COMPLETADO:
+
+return VERDADERO
+
+return FALSO
+
+REGLA ABSOLUTA:
+
+NO SE PUEDE CERRAR LA ENTREVISTA DE UNA FUENTE SI:
+
+BARRIDO_DIFERENCIAL != COMPLETADO
+
+Y
+
+OTRA_FUENTE_CUBRIRA_EXPLORACION != VERDADERO.
+
+J.3. SECUENCIA OBLIGATORIA DESPUÉS DE CADA RESPUESTA
+
+Después de cada respuesta el motor debe ejecutar, en este orden:
+
+1. registrar la respuesta;
+
+2. actualizar la caracterización;
+
+3. identificar información resuelta;
+
+4. identificar información faltante;
+
+5. actualizar el estado de la rama;
+
+6. actualizar contador y dimensiones caracterizadas;
+
+7. determinar si la rama está saturada;
+
+8. si corresponde, cerrar SOLO la rama;
+
+9. verificar si existen otras ramas relevantes abiertas;
+
+10. si no existen, ejecutar PUEDE_CERRAR_ENTREVISTA(caso);
+
+11. si no puede cerrar, ejecutar el barrido diferencial obligatorio o continuar con la exploración pendiente;
+
+12. solo si el gate devuelve VERDADERO, cerrar la entrevista de la fuente.
+
+Esta comprobación es obligatoria antes de cada nueva selección y forma parte del estado operativo del caso.
+
+La regla de información nueva prevalece sobre el contador de preguntas. Que una variable tenga menos de tres preguntas realizadas NO autoriza a formular otra pregunta si la información que busca ya está suficientemente establecida.
+
+Si una pregunta candidata contiene varias dimensiones y algunas ya están resueltas, el motor debe eliminar las dimensiones resueltas y evaluar únicamente la dimensión pendiente. Si no queda ninguna dimensión pendiente, debe DESCARTAR_CANDIDATO.
+
+Si cualquiera de estos controles determina que la pregunta es redundante, debe descartarse antes de mostrarse.
+
+4. VALOR_INFORMATIVO_NUEVO: la pregunta agrega información que todavía no está establecida.
+
+3. EQUIVALENCIA_FUNCIONAL: la pregunta busca esencialmente la misma información que una pregunta anterior.
+
+2. INFORMACION_YA_RESUELTA: la información buscada ya está establecida aunque nunca se haya preguntado literalmente.
+
+1. PREGUNTA_UTILIZADA: la misma pregunta ya fue utilizada.
+
+El motor debe diferenciar cuatro controles:
+
+El control debe reconocer también información entregada espontáneamente por el informante y respuestas que hayan resuelto simultáneamente más de una dimensión.
+
+Si la información solicitada ya está suficientemente establecida → DESCARTAR_CANDIDATO.
+
+INFORMACION_RESUELTA DEL CASO
+
+VS.
+
+FUNCION_INFORMATIVA_DE_LA_PREGUNTA
+
+El motor debe comparar obligatoriamente:
+
+La información se considera RESUELTA cuando ya fue suficientemente establecida por una respuesta anterior, aunque la pregunta que podría haberla obtenido nunca haya sido formulada literalmente.
+
+REGLA FUNDAMENTAL:
+
+Antes de evaluar o mostrar cualquier pregunta candidata, el motor debe determinar qué función informativa pretende obtener esa pregunta y contrastarla con INFORMACION_RESUELTA del caso.
+
+J.4-A. CONTROL OBLIGATORIO DE INFORMACIÓN YA RESPONDIDA
+
+J.4. SECUENCIA DE SELECCIÓN DE PREGUNTA
+
+function siguiente_pregunta(caso):
+
+actualizar_estado_acumulativo(caso)
+
+rama = identificar_rama_activa(caso)
+
+faltantes = identificar_faltantes(rama, caso)
+
+faltantes = eliminar_resueltos(faltantes)
+
+if variable_saturada_y_sin_excepcion(rama, caso):
+
+cerrar_rama(rama)
+
+return continuar_o_verificar_cierre(caso)
+
+candidatos = obtener_preguntas_permitidas(
+
+proyecto,
+
+etapa_7,
+
+anexos,
+
+fuente_actual
+
+)
+
+candidatos = filtrar_por_informacion_faltante(candidatos, faltantes)
+
+candidatos = excluir_preguntas_utilizadas(candidatos, caso)
+
+candidatos = excluir_equivalentes_funcionales(candidatos, caso)
+
+candidatos = excluir_ramas_cerradas(candidatos, caso)
+
+candidatos = excluir_preguntas_sin_valor_nuevo(candidatos, caso)
+
+if candidatos != vacío:
+
+pregunta = seleccionar_minima_pregunta_suficiente(
+
+candidatos,
+
+edad,
+
+desarrollo,
+
+contexto,
+
+relevancia_diagnostica,
+
+relevancia_funcional
+
+)
+
+validar_fuente(pregunta)
+
+validar_tipo(pregunta)
+
+validar_alternativas(pregunta)
+
+registrar_pregunta(pregunta, estado='UTILIZADA', rama=rama)
+
+mostrar_una_sola_pregunta(pregunta)
+
+return
+
+cerrar_rama(rama)
+
+return continuar_o_verificar_cierre(caso)
+
+J.5. CONTINUAR_O_VERIFICAR_CIERRE
+
+function continuar_o_verificar_cierre(caso):
+
+actualizar_estado_acumulativo(caso)
+
+if existen_ramas_abiertas_relevantes(caso):
+
+rama = seleccionar_siguiente_rama(caso)
+
+return siguiente_pregunta(caso)
+
+if barrido_diferencial(caso) == NO_REALIZADO:
+
+ejecutar_barrido_diferencial(caso)
+
+return
+
+if barrido_diferencial(caso) == EN_CURSO:
+
+return siguiente_pregunta(caso)
+
+if tamizaje_medico_sensorial_sueno(caso) == NO_REALIZADO:
+ejecutar_tamizaje_medico_sensorial_sueno(caso)
+return
+
+if tamizaje_medico_sensorial_sueno(caso) == EN_CURSO:
+return siguiente_pregunta(caso)
+
+if existen_areas_desconocidas_que_requieren_exploracion(caso):
+
+return abrir_exploracion_minima_requerida(caso)
+
+if puede_cerrar_entrevista(caso) == VERDADERO:
+
+cerrar_entrevista_de_fuente(caso)
+
+return
+
+return siguiente_pregunta(caso)
+
+J.6. EJECUCIÓN DEL BARRIDO DIFERENCIAL
+
+Si el barrido diferencial no ha sido realizado, NO se permite cerrar la entrevista.
+
+Debe ejecutarse la única pregunta de selección definida en H.
+
+Si la respuesta al BARRIDO DIFERENCIAL GENERAL es NINGUNA DE LAS ANTERIORES:
+
+registrar barrido = COMPLETADO
+
+registrar estado = EXPLORADO_SIN_DIFICULTADES_REPORTADAS
+
+no abrir ramas adicionales
+
+volver a continuar_o_verificar_cierre(caso)
+
+Si la respuesta es NO SABE / NO RECUERDA:
+
+registrar barrido = COMPLETADO
+
+registrar áreas = DESCONOCIDAS
+
+no interpretar como ausencia
+
+determinar si alguna de esas áreas requiere triangulación posterior
+
+Si se selecciona una o más áreas:
+
+registrar barrido = COMPLETADO
+
+abrir únicamente las ramas seleccionadas
+
+profundizar adaptativamente en ellas
+
+no recorrer las áreas no seleccionadas
+
+cerrar cada rama individualmente cuando corresponda
+
+después de cada cierre de rama volver a continuar_o_verificar_cierre(caso)
+
+J.6.1. EJECUCIÓN DEL TAMIZAJE MÉDICO, SENSORIAL Y DEL SUEÑO
+
+Si el módulo no está realizado y no existe información previa suficiente para completarlo, mostrar la pregunta de selección múltiple definida en H.1, con todas sus categorías y opciones de cierre.
+
+Si se selecciona “NINGUNA DE LAS ANTERIORES”, registrar TAMIZAJE_MEDICO_SENSORIAL_SUEÑO_ESTADO = COMPLETADO y TAMIZAJE_MEDICO_SENSORIAL_SUEÑO_RESULTADO = EXPLORADO_SIN_DIFICULTADES_REPORTADAS; cerrar únicamente este módulo y no abrir ramas adicionales, salvo que exista información previa contradictoria. Luego volver a evaluar el gate completo: esta respuesta no marca automáticamente como completado el barrido diferencial general ni cierra por sí sola la entrevista.
+
+Si se selecciona “NO SÉ / NO RECUERDO”, registrar TAMIZAJE_MEDICO_SENSORIAL_SUEÑO_ESTADO = COMPLETADO_CON_INCERTIDUMBRE y TAMIZAJE_MEDICO_SENSORIAL_SUEÑO_RESULTADO = INCERTIDUMBRE; identificar dominios desconocidos y determinar si requieren triangulación posterior. Nunca interpretarlo como ausencia.
+
+Si se seleccionan categorías, registrar TAMIZAJE_MEDICO_SENSORIAL_SUEÑO_ESTADO = EN_CURSO y TAMIZAJE_MEDICO_SENSORIAL_SUEÑO_RESULTADO = HALLAZGOS_REPORTADOS; abrir únicamente las ramas seleccionadas y preguntar adaptativamente solo por información faltante. Después de cerrar cada rama, volver a continuar_o_verificar_cierre(caso).
+
+Si se selecciona “OTRA SITUACIÓN”, solicitar una descripción breve antes de determinar la rama pertinente. No abrir por defecto todas las ramas médicas.
+
+El módulo se registra como COMPLETADO cuando todas las categorías seleccionadas hayan sido exploradas suficientemente, o cuando la información no pueda obtenerse tras una indagación apropiada y la incertidumbre y necesidad de triangulación queden explícitas.
+
+El módulo no diagnostica ni descarta enfermedades. No permite inferir que el TDAH está confirmado o excluido y no autoriza indicaciones farmacológicas.
+
+J.7. PROHIBICIÓN DE CIERRE PREMATURO
+
+NO constituyen condiciones suficientes para cerrar la entrevista:
+
+- que la dificultad principal esté suficientemente caracterizada;
+
+- que una variable haya alcanzado saturación;
+
+- que no queden preguntas válidas en una rama;
+
+- que el informante responda que no hay nada más importante;
+
+- que no existan más preguntas de caracterización del síntoma principal;
+
+- que todas las ramas sintomáticas principales estén cerradas.
+
+En cualquiera de esos casos, el motor debe verificar primero el barrido diferencial y el gate de cierre.
+
+J.8. ESTADO MÍNIMO OBLIGATORIO DE LA ENTREVISTA
+
+El estado interno debe conservar, como mínimo:
+
+- FUENTE_ACTIVA;
+
+- RAMA_ACTIVA;
+
+- RAMAS_ABIERTAS;
+
+- RAMAS_CERRADAS;
+
+- INFORMACION_RESUELTA;
+
+- FUNCIONES_INFORMATIVAS_RESUELTAS;
+
+- INFORMACION_FALTANTE;
+
+- PREGUNTAS_UTILIZADAS;
+
+- EQUIVALENTES_FUNCIONALES_UTILIZADOS;
+
+- CONTADORES_DE_VARIABLE;
+
+- DIMENSIONES_CARACTERIZADAS;
+
+- BARRIDO_DIFERENCIAL;
+
+- TAMIZAJE_MEDICO_SENSORIAL_SUEÑO;
+
+- AREAS_EXPLORADAS;
+
+- AREAS_DESCONOCIDAS;
+
+- OTRA_FUENTE_CUBRIRA_EXPLORACION;
+
+- ESTADO_ENTREVISTA_FUENTE.
+
+Estos estados deben actualizarse antes de cada nueva selección y antes de cualquier intento de cierre.
+
+No existe cierre automático fuera de PUEDE_CERRAR_ENTREVISTA(caso).
+
+K. REGLA DE INTEGRIDAD
+
+El motor no debe confiar en que el modelo recuerde espontáneamente qué preguntó anteriormente.
+
+La memoria de preguntas utilizadas forma parte del estado del caso y debe considerarse una condición obligatoria para cada selección.
+
+Por tanto:
+
+NO ES SUFICIENTE:
+“Recuerda no repetir preguntas.”
+
+DEBE FUNCIONAR COMO:
+“Antes de seleccionar una pregunta, consulta el registro de preguntas utilizadas y elimina cualquier pregunta igual o funcionalmente equivalente.”
+
+Esta diferencia es obligatoria para la ejecución adaptativa.
+
+L. CONTROL FINAL ANTES DE MOSTRAR
+
+Antes de mostrar una pregunta, debe cumplirse simultáneamente:
+
+☐ La pregunta responde a una necesidad real del caso.
+☐ Si el barrido diferencial general ya está completado, verificar si el tamizaje médico, sensorial y del sueño de H.1 está pendiente.
+☐ Consultar la memoria del caso antes de activar o profundizar el tamizaje específico.
+☐ La información solicitada no está ya suficientemente establecida.
+☐ La pregunta no fue utilizada previamente con la misma función.
+☐ La pregunta no es funcionalmente equivalente a otra ya utilizada.
+☐ La rama está abierta.
+☐ La pregunta pertenece al proyecto.
+☐ La fuente es correcta.
+☐ La pregunta tiene una sola dimensión principal.
+☐ La pregunta es clara para el informante.
+☐ Las alternativas corresponden exactamente al tipo de pregunta.
+☐ Si es presencia/ausencia, incluye SÍ/NO/OCASIONALMENTE/NO SABE-NO RECUERDA.
+☐ Si no existen alternativas válidas, utiliza formato abierto.
+☐ La pregunta aporta información nueva.
+☐ No existe otra pregunta más mínima y suficiente.
+☐ Si ninguna pregunta supera el control, cerrar la rama.
+
+☐ La información buscada no está ya resuelta aunque la pregunta literal no haya sido utilizada.
+
+Solo después de superar este control puede mostrarse la pregunta.

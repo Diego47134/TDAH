@@ -1,0 +1,3382 @@
+{
+ "id": "tdah-protocolo",
+ "version": "1.0.0",
+ "estado": "VIGENTE",
+ "aviso": "Protocolo codificado desde los documentos vigentes del proyecto (Etapas 1–7, Etapa 9 corregida y Automatización corregida). El resultado es una hipótesis estructurada sujeta a revisión y decisión del profesional responsable.",
+ "fuentes": [
+  {
+   "archivo": "TDAH_Etapas_1-7.docx",
+   "titulo": "Modelo científico TDAH completo — Etapas 1 a 7 (Etapa 7 modificada)",
+   "sha256": "3bf37ce137386b92f8014e1edbbf69066a98b2f2066465ec4015cac8e8c612c7"
+  },
+  {
+   "archivo": "ETAPA_9_COMPLETA_CORREGIDA_ALINEADA.docx",
+   "titulo": "Etapa 9 — Especificación operativa para IA (versión corregida)",
+   "sha256": "8c14f6303c7fae4f5ec7049d2d5f76db1dd58252c777face5e402b47f3146218"
+  },
+  {
+   "archivo": "AUTOMATIZACION_TDAH_CORREGIDA_COMPLETA.docx",
+   "titulo": "Automatización TDAH — System Prompt, esquema JSON e informe (versión corregida)",
+   "sha256": "4d51c9271d6797b2f6d3ed93b493a0c0d94ad47b08d111352002bcb2fed178ea"
+  }
+ ],
+ "parametros": {
+  "umbral_sintomas": {
+   "menor_17": 6,
+   "desde_17": 5,
+   "origen": "Etapa 4 §3"
+  },
+  "varios_minimo": 2,
+  "varios_origen": "D8 (DSM-5-TR «varios» no cuantifica; parámetro a confirmar por el equipo clínico)",
+  "max_profundizacion_sintoma": 3,
+  "max_origen": "Etapa 9 §14 y D.1; Automatización regla 2",
+  "umbral_similitud_textual": 0.6
+ },
+ "alternativas": {
+  "presencia": [
+   {
+    "codigo": "A",
+    "valor": "si",
+    "texto": "Sí"
+   },
+   {
+    "codigo": "B",
+    "valor": "no",
+    "texto": "No"
+   },
+   {
+    "codigo": "C",
+    "valor": "ocasionalmente",
+    "texto": "Ocasionalmente"
+   },
+   {
+    "codigo": "D",
+    "valor": "no_sabe",
+    "texto": "No sabe / No recuerda",
+    "incierta": true
+   }
+  ],
+  "frecuencia": [
+   {
+    "codigo": "A",
+    "valor": "varias_al_dia",
+    "texto": "Varias veces al día"
+   },
+   {
+    "codigo": "B",
+    "valor": "casi_todos_los_dias",
+    "texto": "Casi todos los días"
+   },
+   {
+    "codigo": "C",
+    "valor": "algunas_por_semana",
+    "texto": "Algunas veces por semana"
+   },
+   {
+    "codigo": "D",
+    "valor": "ocasionalmente",
+    "texto": "Ocasionalmente"
+   },
+   {
+    "codigo": "E",
+    "valor": "no_sabe",
+    "texto": "No sabe / No recuerda",
+    "incierta": true
+   }
+  ],
+  "desde": [
+   {
+    "codigo": "A",
+    "valor": "menos_6_meses",
+    "texto": "Hace menos de 6 meses"
+   },
+   {
+    "codigo": "B",
+    "valor": "mas_6_meses_antes_12",
+    "texto": "Hace más de 6 meses, y comenzó antes de los 12 años"
+   },
+   {
+    "codigo": "C",
+    "valor": "mas_6_meses_desde_12",
+    "texto": "Hace más de 6 meses, y comenzó a los 12 años o después",
+    "edad_min": 12
+   },
+   {
+    "codigo": "D",
+    "valor": "no_sabe",
+    "texto": "No sabe / No recuerda",
+    "incierta": true
+   }
+  ],
+  "contextos": [
+   {
+    "codigo": "A",
+    "valor": "hogar",
+    "texto": "Hogar"
+   },
+   {
+    "codigo": "B",
+    "valor": "colegio",
+    "texto": "Colegio"
+   },
+   {
+    "codigo": "C",
+    "valor": "social",
+    "texto": "Situaciones sociales (con otros niños o adolescentes)"
+   },
+   {
+    "codigo": "D",
+    "valor": "otros",
+    "texto": "Otros contextos relevantes"
+   },
+   {
+    "codigo": "E",
+    "valor": "no_sabe",
+    "texto": "No sabe / No recuerda",
+    "incierta": true,
+    "excluyente": true
+   }
+  ],
+  "si_no_ns": [
+   {
+    "codigo": "A",
+    "valor": "si",
+    "texto": "Sí"
+   },
+   {
+    "codigo": "B",
+    "valor": "no",
+    "texto": "No"
+   },
+   {
+    "codigo": "C",
+    "valor": "no_sabe",
+    "texto": "No sabe / No recuerda",
+    "incierta": true
+   }
+  ]
+ },
+ "fases": [
+  {
+   "id": "F1",
+   "nombre": "Triaje e identificación inicial"
+  },
+  {
+   "id": "F2",
+   "nombre": "Inatención y funciones ejecutivas en el hogar"
+  },
+  {
+   "id": "F3",
+   "nombre": "Hiperactividad e impulsividad en el hogar"
+  },
+  {
+   "id": "F4",
+   "nombre": "Integración del contexto escolar previo"
+  },
+  {
+   "id": "F5",
+   "nombre": "Anamnesis del desarrollo"
+  },
+  {
+   "id": "F8",
+   "nombre": "Triangulación y concordancia multicontextual (contexto, trayectoria, impacto)"
+  },
+  {
+   "id": "F7",
+   "nombre": "Barrido diferencial (incluye exclusión emocional y afectiva)"
+  },
+  {
+   "id": "F6",
+   "nombre": "Tamizaje médico, sensorial y del sueño"
+  },
+  {
+   "id": "F9",
+   "nombre": "Integración sintética y salida diagnóstica"
+  }
+ ],
+ "fases_origen": "Automatización regla 6 (9 etapas de la entrevista); orden F7→F6 según Etapa 9 §J.5 (ver K6)",
+ "inicio": [
+  {
+   "id": "INI-MOTIVO",
+   "objetivo": [
+    "INI",
+    "motivo"
+   ],
+   "tipo": "abierta",
+   "fase": "F1",
+   "texto": "¿Qué está ocurriendo actualmente que motivó esta evaluación?",
+   "origen": "Etapa 7 §4; brief §3"
+  },
+  {
+   "id": "INI-EDAD",
+   "objetivo": [
+    "INI",
+    "edad"
+   ],
+   "tipo": "numero",
+   "fase": "F1",
+   "texto": "¿Qué edad tiene el niño, niña o adolescente evaluado?",
+   "origen": "Etapa 7 §3; Anexo 7-G («la edad se registra primero»)"
+  },
+  {
+   "id": "INI-INF-EXISTE",
+   "objetivo": [
+    "INI",
+    "informe_existe"
+   ],
+   "tipo": "opciones",
+   "alternativas": "si_no_ns",
+   "fase": "F1",
+   "texto": "¿Existe un informe escolar sobre el niño, niña o adolescente?",
+   "origen": "Etapa 7 §5; brief §3"
+  },
+  {
+   "id": "INI-INF-DISP",
+   "objetivo": [
+    "INI",
+    "informe_disponible"
+   ],
+   "tipo": "opciones",
+   "alternativas": "si_no_ns",
+   "fase": "F1",
+   "condicion": {
+    "objetivo": [
+     "INI",
+     "informe_existe"
+    ],
+    "igual": "si"
+   },
+   "texto": "¿El informe escolar está disponible o puede obtenerse para esta evaluación?",
+   "origen": "Etapa 7 §5.2; brief §3"
+  }
+ ],
+ "sintomas": [
+  {
+   "id": "R1.1",
+   "dominio": "inatencion",
+   "nombre": "Dificultad para prestar atención a detalles / errores por descuido",
+   "preguntas": [
+    "A01"
+   ],
+   "palabras_clave": [
+    "errores por descuido",
+    "no se fija en los detalles",
+    "comete errores"
+   ],
+   "area": "atencion",
+   "origen": "Etapa 4 §4–5; Anexo 7-A"
+  },
+  {
+   "id": "R1.2",
+   "dominio": "inatencion",
+   "nombre": "Dificultad para mantener la atención",
+   "preguntas": [
+    "A02"
+   ],
+   "palabras_clave": [
+    "le cuesta mantener la atencion",
+    "se desconcentra",
+    "no se concentra",
+    "pierde la concentracion",
+    "le cuesta concentrarse"
+   ],
+   "area": "atencion_sostenida",
+   "origen": "Etapa 4 §4–5; Anexo 7-A"
+  },
+  {
+   "id": "R1.3",
+   "dominio": "inatencion",
+   "nombre": "Parece no escuchar cuando se le habla directamente",
+   "preguntas": [
+    "A03"
+   ],
+   "palabras_clave": [
+    "no escucha",
+    "parece no escuchar",
+    "no presta atencion cuando le hablan"
+   ],
+   "area": "atencion",
+   "origen": "Etapa 4 §4–5; Anexo 7-A"
+  },
+  {
+   "id": "R1.4",
+   "dominio": "inatencion",
+   "nombre": "No sigue instrucciones o no completa tareas",
+   "preguntas": [
+    "A04",
+    "A05"
+   ],
+   "palabras_clave": [
+    "no sigue instrucciones",
+    "no termina",
+    "deja las tareas",
+    "deja todo a medias",
+    "deja tareas sin terminar"
+   ],
+   "area": "mantenimiento_objetivos",
+   "origen": "Etapa 4 §4–5; Anexo 7-A"
+  },
+  {
+   "id": "R1.5",
+   "dominio": "inatencion",
+   "nombre": "Dificultad para organizar tareas y actividades",
+   "preguntas": [
+    "A06"
+   ],
+   "palabras_clave": [
+    "desordenado",
+    "desordenada",
+    "desorganizado",
+    "desorganizada",
+    "no se organiza"
+   ],
+   "area": "organizacion",
+   "origen": "Etapa 4 §4–5; Anexo 7-A"
+  },
+  {
+   "id": "R1.6",
+   "dominio": "inatencion",
+   "nombre": "Evita o muestra resistencia ante tareas que requieren esfuerzo mental sostenido",
+   "preguntas": [
+    "A07"
+   ],
+   "palabras_clave": [
+    "evita las tareas",
+    "posterga",
+    "no quiere hacer tareas",
+    "evita hacer tareas"
+   ],
+   "area": "regulacion_esfuerzo",
+   "origen": "Etapa 4 §4–5; Anexo 7-A"
+  },
+  {
+   "id": "R1.7",
+   "dominio": "inatencion",
+   "nombre": "Pierde objetos necesarios",
+   "preguntas": [
+    "A08"
+   ],
+   "palabras_clave": [
+    "pierde sus cosas",
+    "pierde las cosas",
+    "pierde cosas",
+    "pierde los utiles",
+    "pierde sus utiles",
+    "pierde utiles",
+    "pierde objetos"
+   ],
+   "area": "organizacion",
+   "origen": "Etapa 4 §4–5; Anexo 7-A"
+  },
+  {
+   "id": "R1.8",
+   "dominio": "inatencion",
+   "nombre": "Se distrae fácilmente",
+   "preguntas": [
+    "A09"
+   ],
+   "palabras_clave": [
+    "se distrae",
+    "distraido",
+    "distraida",
+    "en las nubes"
+   ],
+   "area": "distractibilidad",
+   "origen": "Etapa 4 §4–5; Anexo 7-A"
+  },
+  {
+   "id": "R1.9",
+   "dominio": "inatencion",
+   "nombre": "Es olvidadizo en actividades cotidianas",
+   "preguntas": [
+    "A10"
+   ],
+   "palabras_clave": [
+    "olvidadizo",
+    "olvidadiza",
+    "se le olvida",
+    "olvida"
+   ],
+   "area": "memoria_trabajo",
+   "origen": "Etapa 4 §4–5; Anexo 7-A"
+  },
+  {
+   "id": "R2.1",
+   "dominio": "hiperactividad_impulsividad",
+   "nombre": "Inquietud motora / mueve manos, pies o se mueve en el asiento",
+   "preguntas": [
+    "A12"
+   ],
+   "palabras_clave": [
+    "se mueve mucho",
+    "inquieto",
+    "inquieta",
+    "mueve las manos",
+    "mueve los pies"
+   ],
+   "area": "actividad_motora",
+   "origen": "Etapa 4 §4–5; Anexo 7-A"
+  },
+  {
+   "id": "R2.2",
+   "dominio": "hiperactividad_impulsividad",
+   "nombre": "Se levanta cuando se espera que permanezca sentado",
+   "preguntas": [
+    "A11"
+   ],
+   "palabras_clave": [
+    "se levanta",
+    "no se queda sentado",
+    "no se queda sentada",
+    "se para en clases"
+   ],
+   "area": "actividad_motora",
+   "origen": "Etapa 4 §4–5; Anexo 7-A"
+  },
+  {
+   "id": "R2.3",
+   "dominio": "hiperactividad_impulsividad",
+   "nombre": "Corre, trepa o presenta inquietud inapropiada para la situación",
+   "preguntas": [
+    "A13"
+   ],
+   "palabras_clave": [
+    "corre",
+    "trepa"
+   ],
+   "area": "actividad_motora",
+   "origen": "Etapa 4 §4–5; Anexo 7-A"
+  },
+  {
+   "id": "R2.4",
+   "dominio": "hiperactividad_impulsividad",
+   "nombre": "Dificultad para participar tranquilamente en actividades",
+   "preguntas": [
+    "A14"
+   ],
+   "palabras_clave": [
+    "no juega tranquilo",
+    "no juega tranquila"
+   ],
+   "area": "actividad_motora",
+   "origen": "Etapa 4 §4–5; Anexo 7-A"
+  },
+  {
+   "id": "R2.5",
+   "dominio": "hiperactividad_impulsividad",
+   "nombre": "Actúa como si estuviera permanentemente en marcha",
+   "preguntas": [
+    "A15"
+   ],
+   "palabras_clave": [
+    "como un motor",
+    "no para",
+    "siempre en movimiento",
+    "hiperactivo",
+    "hiperactiva"
+   ],
+   "area": "actividad_motora",
+   "origen": "Etapa 4 §4–5; Anexo 7-A"
+  },
+  {
+   "id": "R2.6",
+   "dominio": "hiperactividad_impulsividad",
+   "nombre": "Habla excesivamente",
+   "preguntas": [
+    "A16"
+   ],
+   "palabras_clave": [
+    "habla mucho",
+    "habla demasiado",
+    "habla sin parar"
+   ],
+   "area": "inhibicion",
+   "origen": "Etapa 4 §4–5; Anexo 7-A"
+  },
+  {
+   "id": "R2.7",
+   "dominio": "hiperactividad_impulsividad",
+   "nombre": "Responde antes de que termine la pregunta",
+   "preguntas": [
+    "A17"
+   ],
+   "palabras_clave": [
+    "responde antes",
+    "contesta antes"
+   ],
+   "area": "inhibicion",
+   "origen": "Etapa 4 §4–5; Anexo 7-A"
+  },
+  {
+   "id": "R2.8",
+   "dominio": "hiperactividad_impulsividad",
+   "nombre": "Dificultad para esperar su turno",
+   "preguntas": [
+    "A18"
+   ],
+   "palabras_clave": [
+    "no espera su turno",
+    "no sabe esperar",
+    "impaciente",
+    "le cuesta esperar"
+   ],
+   "area": "inhibicion",
+   "origen": "Etapa 4 §4–5; Anexo 7-A"
+  },
+  {
+   "id": "R2.9",
+   "dominio": "hiperactividad_impulsividad",
+   "nombre": "Interrumpe o invade actividades de otros",
+   "preguntas": [
+    "A19"
+   ],
+   "palabras_clave": [
+    "interrumpe",
+    "se mete en conversaciones"
+   ],
+   "area": "inhibicion",
+   "origen": "Etapa 4 §4–5; Anexo 7-A"
+  }
+ ],
+ "profundizacion_sintoma": [
+  {
+   "dimension": "frecuencia",
+   "tipo": "opciones",
+   "alternativas": "frecuencia",
+   "base": "¿Con qué frecuencia sucede?",
+   "origen": "Anexo 7-B 5; Automatización regla 2a"
+  },
+  {
+   "dimension": "desde",
+   "tipo": "opciones",
+   "alternativas": "desde",
+   "base": "¿Desde cuándo ocurre?",
+   "origen": "Anexo 7-B 6; Etapa 4 R3–R4; Automatización regla 2b"
+  },
+  {
+   "dimension": "contextos",
+   "tipo": "multiple",
+   "alternativas": "contextos",
+   "base": "¿Dónde ocurre?",
+   "origen": "Etapa 9 §10; Etapa 4 R6"
+  }
+ ],
+ "banco": [
+  {
+   "id": "A01",
+   "texto": "¿Comete errores por no fijarse bien en los detalles?",
+   "seccion": "inatencion",
+   "tipo": "presencia",
+   "fuente": "apoderado",
+   "origen": "Anexo 7-A 1",
+   "sintoma": "R1.1",
+   "objetivo": [
+    "R1.1",
+    "presencia:A01"
+   ]
+  },
+  {
+   "id": "A02",
+   "texto": "¿Le cuesta mantener la atención durante una actividad?",
+   "seccion": "inatencion",
+   "tipo": "presencia",
+   "fuente": "apoderado",
+   "origen": "Anexo 7-A 2",
+   "sintoma": "R1.2",
+   "objetivo": [
+    "R1.2",
+    "presencia:A02"
+   ]
+  },
+  {
+   "id": "A03",
+   "texto": "¿Parece no escuchar cuando se le habla directamente?",
+   "seccion": "inatencion",
+   "tipo": "presencia",
+   "fuente": "apoderado",
+   "origen": "Anexo 7-A 3",
+   "sintoma": "R1.3",
+   "objetivo": [
+    "R1.3",
+    "presencia:A03"
+   ]
+  },
+  {
+   "id": "A04",
+   "texto": "¿Le cuesta seguir instrucciones completas?",
+   "seccion": "inatencion",
+   "tipo": "presencia",
+   "fuente": "apoderado",
+   "origen": "Anexo 7-A 4",
+   "sintoma": "R1.4",
+   "objetivo": [
+    "R1.4",
+    "presencia:A04"
+   ]
+  },
+  {
+   "id": "A05",
+   "texto": "¿Deja tareas o actividades sin terminar?",
+   "seccion": "inatencion",
+   "tipo": "presencia",
+   "fuente": "apoderado",
+   "origen": "Anexo 7-A 5",
+   "sintoma": "R1.4",
+   "objetivo": [
+    "R1.4",
+    "presencia:A05"
+   ]
+  },
+  {
+   "id": "A06",
+   "texto": "¿Le cuesta organizar sus tareas, materiales o actividades?",
+   "seccion": "inatencion",
+   "tipo": "presencia",
+   "fuente": "apoderado",
+   "origen": "Anexo 7-A 6",
+   "sintoma": "R1.5",
+   "objetivo": [
+    "R1.5",
+    "presencia:A06"
+   ]
+  },
+  {
+   "id": "A07",
+   "texto": "¿Evita o posterga actividades que requieren esfuerzo mental durante bastante tiempo?",
+   "seccion": "inatencion",
+   "tipo": "presencia",
+   "fuente": "apoderado",
+   "origen": "Anexo 7-A 7",
+   "sintoma": "R1.6",
+   "objetivo": [
+    "R1.6",
+    "presencia:A07"
+   ]
+  },
+  {
+   "id": "A08",
+   "texto": "¿Pierde con frecuencia cosas que necesita?",
+   "seccion": "inatencion",
+   "tipo": "presencia",
+   "fuente": "apoderado",
+   "origen": "Anexo 7-A 8",
+   "sintoma": "R1.7",
+   "objetivo": [
+    "R1.7",
+    "presencia:A08"
+   ]
+  },
+  {
+   "id": "A09",
+   "texto": "¿Se distrae fácilmente con estímulos que ocurren alrededor?",
+   "seccion": "inatencion",
+   "tipo": "presencia",
+   "fuente": "apoderado",
+   "origen": "Anexo 7-A 9",
+   "sintoma": "R1.8",
+   "objetivo": [
+    "R1.8",
+    "presencia:A09"
+   ]
+  },
+  {
+   "id": "A10",
+   "texto": "¿Olvida con frecuencia cosas que debería recordar?",
+   "seccion": "inatencion",
+   "tipo": "presencia",
+   "fuente": "apoderado",
+   "origen": "Anexo 7-A 10",
+   "sintoma": "R1.9",
+   "objetivo": [
+    "R1.9",
+    "presencia:A10"
+   ]
+  },
+  {
+   "id": "A11",
+   "texto": "¿Le cuesta permanecer sentado cuando se espera que lo haga?",
+   "seccion": "hiperactividad",
+   "tipo": "presencia",
+   "fuente": "apoderado",
+   "origen": "Anexo 7-A 11",
+   "sintoma": "R2.2",
+   "objetivo": [
+    "R2.2",
+    "presencia:A11"
+   ]
+  },
+  {
+   "id": "A12",
+   "texto": "¿Se mueve constantemente o muestra mucha inquietud?",
+   "seccion": "hiperactividad",
+   "tipo": "presencia",
+   "fuente": "apoderado",
+   "origen": "Anexo 7-A 12",
+   "sintoma": "R2.1",
+   "objetivo": [
+    "R2.1",
+    "presencia:A12"
+   ]
+  },
+  {
+   "id": "A13",
+   "texto": "¿Corre, trepa o se mueve excesivamente en situaciones en que debería estar tranquilo?",
+   "seccion": "hiperactividad",
+   "tipo": "presencia",
+   "fuente": "apoderado",
+   "origen": "Anexo 7-A 13",
+   "sintoma": "R2.3",
+   "objetivo": [
+    "R2.3",
+    "presencia:A13"
+   ]
+  },
+  {
+   "id": "A14",
+   "texto": "¿Le cuesta participar en actividades tranquilas?",
+   "seccion": "hiperactividad",
+   "tipo": "presencia",
+   "fuente": "apoderado",
+   "origen": "Anexo 7-A 14",
+   "sintoma": "R2.4",
+   "objetivo": [
+    "R2.4",
+    "presencia:A14"
+   ]
+  },
+  {
+   "id": "A15",
+   "texto": "¿Parece estar permanentemente activo o necesitar estar haciendo algo?",
+   "seccion": "hiperactividad",
+   "tipo": "presencia",
+   "fuente": "apoderado",
+   "origen": "Anexo 7-A 15",
+   "sintoma": "R2.5",
+   "objetivo": [
+    "R2.5",
+    "presencia:A15"
+   ]
+  },
+  {
+   "id": "A16",
+   "texto": "¿Habla más de lo esperable para la situación?",
+   "seccion": "hiperactividad",
+   "tipo": "presencia",
+   "fuente": "apoderado",
+   "origen": "Anexo 7-A 16",
+   "sintoma": "R2.6",
+   "objetivo": [
+    "R2.6",
+    "presencia:A16"
+   ]
+  },
+  {
+   "id": "A17",
+   "texto": "¿Responde antes de que terminen de hacerle una pregunta?",
+   "seccion": "impulsividad",
+   "tipo": "presencia",
+   "fuente": "apoderado",
+   "origen": "Anexo 7-A 17",
+   "sintoma": "R2.7",
+   "objetivo": [
+    "R2.7",
+    "presencia:A17"
+   ]
+  },
+  {
+   "id": "A18",
+   "texto": "¿Le cuesta esperar su turno?",
+   "seccion": "impulsividad",
+   "tipo": "presencia",
+   "fuente": "apoderado",
+   "origen": "Anexo 7-A 18",
+   "sintoma": "R2.8",
+   "objetivo": [
+    "R2.8",
+    "presencia:A18"
+   ]
+  },
+  {
+   "id": "A19",
+   "texto": "¿Interrumpe conversaciones, juegos o actividades de otras personas?",
+   "seccion": "impulsividad",
+   "tipo": "presencia",
+   "fuente": "apoderado",
+   "origen": "Anexo 7-A 19",
+   "sintoma": "R2.9",
+   "objetivo": [
+    "R2.9",
+    "presencia:A19"
+   ]
+  },
+  {
+   "id": "A20",
+   "texto": "¿Actúa rápidamente sin detenerse a pensar qué puede ocurrir después?",
+   "seccion": "impulsividad",
+   "tipo": "presencia",
+   "fuente": "apoderado",
+   "origen": "Anexo 7-A 20",
+   "objetivo": [
+    "A20",
+    "respuesta"
+   ],
+   "area": "inhibicion"
+  },
+  {
+   "id": "A21",
+   "texto": "¿Le cuesta saber por dónde comenzar una tarea?",
+   "seccion": "ejecutivas",
+   "tipo": "presencia",
+   "fuente": "apoderado",
+   "origen": "Anexo 7-A 21",
+   "objetivo": [
+    "A21",
+    "respuesta"
+   ],
+   "area": "planificacion"
+  },
+  {
+   "id": "A22",
+   "texto": "¿Le cuesta recordar varios pasos de una instrucción?",
+   "seccion": "ejecutivas",
+   "tipo": "presencia",
+   "fuente": "apoderado",
+   "origen": "Anexo 7-A 22",
+   "objetivo": [
+    "A22",
+    "respuesta"
+   ],
+   "area": "memoria_trabajo"
+  },
+  {
+   "id": "A23",
+   "texto": "¿Pierde el objetivo de una actividad mientras la está realizando?",
+   "seccion": "ejecutivas",
+   "tipo": "presencia",
+   "fuente": "apoderado",
+   "origen": "Anexo 7-A 23",
+   "objetivo": [
+    "A23",
+    "respuesta"
+   ],
+   "area": "mantenimiento_objetivos"
+  },
+  {
+   "id": "A24",
+   "texto": "¿Le cuesta cambiar de una actividad a otra?",
+   "seccion": "ejecutivas",
+   "tipo": "presencia",
+   "fuente": "apoderado",
+   "origen": "Anexo 7-A 24",
+   "objetivo": [
+    "A24",
+    "respuesta"
+   ],
+   "area": "flexibilidad"
+  },
+  {
+   "id": "A25",
+   "texto": "¿Le cuesta cambiar de estrategia cuando una forma de hacer algo no funciona?",
+   "seccion": "ejecutivas",
+   "tipo": "presencia",
+   "fuente": "apoderado",
+   "origen": "Anexo 7-A 25",
+   "objetivo": [
+    "A25",
+    "respuesta"
+   ],
+   "area": "flexibilidad"
+  },
+  {
+   "id": "A26",
+   "texto": "¿Le cuesta mantenerse en una actividad hasta terminarla?",
+   "seccion": "ejecutivas",
+   "tipo": "presencia",
+   "fuente": "apoderado",
+   "origen": "Anexo 7-A 26",
+   "objetivo": [
+    "A26",
+    "respuesta"
+   ],
+   "area": "persistencia"
+  },
+  {
+   "id": "A27",
+   "texto": "¿Necesita más supervisión que otros niños de su edad para cumplir responsabilidades?",
+   "seccion": "ejecutivas",
+   "tipo": "presencia",
+   "fuente": "apoderado",
+   "origen": "Anexo 7-A 27",
+   "objetivo": [
+    "A27",
+    "respuesta"
+   ],
+   "area": "autonomia"
+  },
+  {
+   "id": "A28",
+   "texto": "¿Su rendimiento cambia mucho de una situación a otra?",
+   "seccion": "ejecutivas",
+   "tipo": "presencia",
+   "fuente": "apoderado",
+   "origen": "Anexo 7-A 28",
+   "objetivo": [
+    "A28",
+    "respuesta"
+   ],
+   "area": "variabilidad"
+  },
+  {
+   "id": "A29",
+   "texto": "¿Las dificultades aumentan cuando la actividad dura bastante tiempo?",
+   "seccion": "contexto",
+   "tipo": "presencia",
+   "fuente": "apoderado",
+   "origen": "Anexo 7-A 29",
+   "objetivo": [
+    "A29",
+    "respuesta"
+   ]
+  },
+  {
+   "id": "A30",
+   "texto": "¿Aumentan cuando la actividad tiene varios pasos o es más compleja?",
+   "seccion": "contexto",
+   "tipo": "presencia",
+   "fuente": "apoderado",
+   "origen": "Anexo 7-A 30",
+   "objetivo": [
+    "A30",
+    "respuesta"
+   ]
+  },
+  {
+   "id": "A31",
+   "texto": "¿Aumentan cuando hay muchos distractores?",
+   "seccion": "contexto",
+   "tipo": "presencia",
+   "fuente": "apoderado",
+   "origen": "Anexo 7-A 31",
+   "objetivo": [
+    "A31",
+    "respuesta"
+   ]
+  },
+  {
+   "id": "A32",
+   "texto": "¿Disminuyen cuando un adulto lo supervisa de cerca?",
+   "seccion": "contexto",
+   "tipo": "presencia",
+   "fuente": "apoderado",
+   "origen": "Anexo 7-A 32",
+   "objetivo": [
+    "A32",
+    "respuesta"
+   ]
+  },
+  {
+   "id": "A33",
+   "texto": "¿Disminuyen cuando la actividad está muy estructurada?",
+   "seccion": "contexto",
+   "tipo": "presencia",
+   "fuente": "apoderado",
+   "origen": "Anexo 7-A 33",
+   "objetivo": [
+    "A33",
+    "respuesta"
+   ]
+  },
+  {
+   "id": "A34",
+   "texto": "¿Funciona mucho mejor cuando la actividad le interesa?",
+   "seccion": "contexto",
+   "tipo": "presencia",
+   "fuente": "apoderado",
+   "origen": "Anexo 7-A 34",
+   "objetivo": [
+    "A34",
+    "respuesta"
+   ]
+  },
+  {
+   "id": "A35",
+   "texto": "¿Le cuesta más cuando la recompensa o el resultado están muy demorados?",
+   "seccion": "contexto",
+   "tipo": "presencia",
+   "fuente": "apoderado",
+   "origen": "Anexo 7-A 35",
+   "objetivo": [
+    "A35",
+    "respuesta"
+   ]
+  },
+  {
+   "id": "A36",
+   "texto": "¿Funciona diferente cuando está solo que cuando un adulto lo acompaña?",
+   "seccion": "contexto",
+   "tipo": "presencia",
+   "fuente": "apoderado",
+   "origen": "Anexo 7-A 36",
+   "objetivo": [
+    "A36",
+    "respuesta"
+   ]
+  },
+  {
+   "id": "A37",
+   "texto": "¿Funciona diferente en casa y en el colegio?",
+   "seccion": "contexto",
+   "tipo": "presencia",
+   "fuente": "apoderado",
+   "origen": "Anexo 7-A 37",
+   "objetivo": [
+    "A37",
+    "respuesta"
+   ]
+  },
+  {
+   "id": "A38",
+   "texto": "¿Recuerda haber observado alguna de estas dificultades antes de los 6 años?",
+   "seccion": "trayectoria",
+   "tipo": "presencia",
+   "fuente": "apoderado",
+   "origen": "Anexo 7-A 38",
+   "objetivo": [
+    "A38",
+    "respuesta"
+   ]
+  },
+  {
+   "id": "A39",
+   "texto": "¿Ya existían algunas de estas dificultades antes de entrar al colegio?",
+   "seccion": "trayectoria",
+   "tipo": "presencia",
+   "fuente": "apoderado",
+   "origen": "Anexo 7-A 39",
+   "objetivo": [
+    "A39",
+    "respuesta"
+   ]
+  },
+  {
+   "id": "A40",
+   "texto": "¿Las dificultades han estado presentes durante largos períodos?",
+   "seccion": "trayectoria",
+   "tipo": "presencia",
+   "fuente": "apoderado",
+   "origen": "Anexo 7-A 40",
+   "objetivo": [
+    "A40",
+    "respuesta"
+   ]
+  },
+  {
+   "id": "A41",
+   "texto": "¿Han aumentado a medida que aumentaron las exigencias?",
+   "seccion": "trayectoria",
+   "tipo": "presencia",
+   "fuente": "apoderado",
+   "origen": "Anexo 7-A 41",
+   "objetivo": [
+    "A41",
+    "respuesta"
+   ]
+  },
+  {
+   "id": "A42",
+   "texto": "¿Hay etapas en que funcionaba claramente mejor?",
+   "seccion": "trayectoria",
+   "tipo": "presencia",
+   "fuente": "apoderado",
+   "origen": "Anexo 7-A 42",
+   "objetivo": [
+    "A42",
+    "respuesta"
+   ]
+  },
+  {
+   "id": "A43",
+   "texto": "¿Ha habido períodos en que las dificultades prácticamente desaparecieron?",
+   "seccion": "trayectoria",
+   "tipo": "presencia",
+   "fuente": "apoderado",
+   "origen": "Anexo 7-A 43",
+   "objetivo": [
+    "A43",
+    "respuesta"
+   ]
+  },
+  {
+   "id": "A44",
+   "texto": "¿Las dificultades aumentan cuando disminuyen los apoyos o la supervisión?",
+   "seccion": "trayectoria",
+   "tipo": "presencia",
+   "fuente": "apoderado",
+   "origen": "Anexo 7-A 44",
+   "objetivo": [
+    "A44",
+    "respuesta"
+   ]
+  },
+  {
+   "id": "A45",
+   "texto": "¿Las dificultades se han mantenido a pesar de cambios de colegio, profesores o actividades?",
+   "seccion": "trayectoria",
+   "tipo": "presencia",
+   "fuente": "apoderado",
+   "origen": "Anexo 7-A 45",
+   "objetivo": [
+    "A45",
+    "respuesta"
+   ]
+  },
+  {
+   "id": "A46",
+   "texto": "¿Estas dificultades afectan su rendimiento escolar?",
+   "seccion": "impacto",
+   "tipo": "presencia",
+   "fuente": "apoderado",
+   "origen": "Anexo 7-A 46",
+   "objetivo": [
+    "A46",
+    "respuesta"
+   ]
+  },
+  {
+   "id": "A47",
+   "texto": "¿Afectan la convivencia familiar?",
+   "seccion": "impacto",
+   "tipo": "presencia",
+   "fuente": "apoderado",
+   "origen": "Anexo 7-A 47",
+   "objetivo": [
+    "A47",
+    "respuesta"
+   ]
+  },
+  {
+   "id": "A48",
+   "texto": "¿Afectan sus relaciones con otros niños o adolescentes?",
+   "seccion": "impacto",
+   "tipo": "presencia",
+   "fuente": "apoderado",
+   "origen": "Anexo 7-A 48",
+   "objetivo": [
+    "A48",
+    "respuesta"
+   ]
+  },
+  {
+   "id": "A49",
+   "texto": "¿Afectan actividades cotidianas?",
+   "seccion": "impacto",
+   "tipo": "presencia",
+   "fuente": "apoderado",
+   "origen": "Anexo 7-A 49",
+   "objetivo": [
+    "A49",
+    "respuesta"
+   ]
+  },
+  {
+   "id": "A50",
+   "texto": "¿Necesita más ayuda que otros niños de su edad para realizar actividades que debería poder hacer con mayor autonomía?",
+   "seccion": "impacto",
+   "tipo": "presencia",
+   "fuente": "apoderado",
+   "origen": "Anexo 7-A 50",
+   "objetivo": [
+    "A50",
+    "respuesta"
+   ]
+  },
+  {
+   "id": "A51",
+   "texto": "¿Estas dificultades generan frustración, conflictos o consecuencias importantes?",
+   "seccion": "impacto",
+   "tipo": "presencia",
+   "fuente": "apoderado",
+   "origen": "Anexo 7-A 51",
+   "objetivo": [
+    "A51",
+    "respuesta"
+   ]
+  },
+  {
+   "id": "A52",
+   "texto": "¿Cuál considera que es actualmente la principal dificultad de funcionamiento?",
+   "seccion": "impacto",
+   "tipo": "abierta",
+   "fuente": "apoderado",
+   "origen": "Anexo 7-A 52",
+   "objetivo": [
+    "A52",
+    "respuesta"
+   ]
+  },
+  {
+   "id": "A53",
+   "texto": "¿Hubo alguna preocupación relevante durante su desarrollo temprano?",
+   "seccion": "desarrollo",
+   "tipo": "presencia",
+   "fuente": "apoderado",
+   "origen": "Anexo 7-A 53",
+   "objetivo": [
+    "A53",
+    "respuesta"
+   ]
+  },
+  {
+   "id": "A54",
+   "texto": "¿Existieron dificultades de lenguaje, motricidad, aprendizaje o regulación?",
+   "seccion": "desarrollo",
+   "tipo": "presencia",
+   "fuente": "apoderado",
+   "origen": "Anexo 7-A 54",
+   "objetivo": [
+    "A54",
+    "respuesta"
+   ]
+  },
+  {
+   "id": "A55",
+   "texto": "¿Hubo alguna circunstancia relevante durante el embarazo, parto o período neonatal?",
+   "seccion": "desarrollo",
+   "tipo": "presencia",
+   "fuente": "apoderado",
+   "origen": "Anexo 7-A 55",
+   "objetivo": [
+    "A55",
+    "respuesta"
+   ]
+  },
+  {
+   "id": "A56",
+   "texto": "¿Presenta actualmente dificultades importantes de sueño?",
+   "seccion": "desarrollo",
+   "tipo": "presencia",
+   "fuente": "apoderado",
+   "origen": "Anexo 7-A 56",
+   "objetivo": [
+    "A56",
+    "respuesta"
+   ]
+  },
+  {
+   "id": "A57",
+   "texto": "¿Existen antecedentes familiares relevantes de TDAH u otras dificultades del neurodesarrollo?",
+   "seccion": "desarrollo",
+   "tipo": "presencia",
+   "fuente": "apoderado",
+   "origen": "Anexo 7-A 57",
+   "objetivo": [
+    "A57",
+    "respuesta"
+   ]
+  },
+  {
+   "id": "A58",
+   "texto": "¿Ha existido alguna situación familiar, escolar o ambiental importante que pueda haber afectado su funcionamiento?",
+   "seccion": "desarrollo",
+   "tipo": "presencia",
+   "fuente": "apoderado",
+   "origen": "Anexo 7-A 58",
+   "objetivo": [
+    "A58",
+    "respuesta"
+   ]
+  },
+  {
+   "id": "A59",
+   "texto": "¿Las dificultades aparecen especialmente en determinadas materias o tipos de tareas?",
+   "seccion": "alternativas",
+   "tipo": "presencia",
+   "fuente": "apoderado",
+   "origen": "Anexo 7-A 59",
+   "objetivo": [
+    "A59",
+    "respuesta"
+   ]
+  },
+  {
+   "id": "A60",
+   "texto": "¿Ha presentado dificultades importantes para comprender instrucciones o lenguaje?",
+   "seccion": "alternativas",
+   "tipo": "presencia",
+   "fuente": "apoderado",
+   "origen": "Anexo 7-A 60",
+   "objetivo": [
+    "A60",
+    "respuesta"
+   ]
+  },
+  {
+   "id": "A61",
+   "texto": "¿Las dificultades aumentan cuando duerme mal o está cansado?",
+   "seccion": "alternativas",
+   "tipo": "presencia",
+   "fuente": "apoderado",
+   "origen": "Anexo 7-A 61",
+   "objetivo": [
+    "A61",
+    "respuesta"
+   ]
+  },
+  {
+   "id": "A62",
+   "texto": "¿Aparecen principalmente cuando está preocupado, triste, ansioso o frustrado?",
+   "seccion": "alternativas",
+   "tipo": "presencia",
+   "fuente": "apoderado",
+   "origen": "Anexo 7-A 62",
+   "objetivo": [
+    "A62",
+    "respuesta"
+   ]
+  },
+  {
+   "id": "A63",
+   "texto": "¿Existen conductas desafiantes u oposicionistas que puedan explicar parte de las dificultades?",
+   "seccion": "alternativas",
+   "tipo": "presencia",
+   "fuente": "apoderado",
+   "origen": "Anexo 7-A 63",
+   "objetivo": [
+    "A63",
+    "respuesta"
+   ]
+  },
+  {
+   "id": "A64",
+   "texto": "¿Existen otras dificultades del desarrollo que también estén presentes?",
+   "seccion": "alternativas",
+   "tipo": "presencia",
+   "fuente": "apoderado",
+   "origen": "Anexo 7-A 64",
+   "objetivo": [
+    "A64",
+    "respuesta"
+   ]
+  },
+  {
+   "id": "A65",
+   "texto": "¿Presenta sensibilidad importante al ruido, luz, tacto u otros estímulos?",
+   "seccion": "alternativas",
+   "tipo": "presencia",
+   "fuente": "apoderado",
+   "origen": "Anexo 7-A 65",
+   "objetivo": [
+    "A65",
+    "respuesta"
+   ]
+  },
+  {
+   "id": "A66",
+   "texto": "¿Existe alguna condición médica, tratamiento o medicamento que pueda influir en su funcionamiento?",
+   "seccion": "alternativas",
+   "tipo": "presencia",
+   "fuente": "apoderado",
+   "origen": "Anexo 7-A 66",
+   "objetivo": [
+    "A66",
+    "respuesta"
+   ]
+  }
+ ],
+ "banco_profundizacion": [
+  {
+   "id": "B01",
+   "texto": "¿Puede contarme un ejemplo concreto?"
+  },
+  {
+   "id": "B02",
+   "texto": "¿Qué ocurrió exactamente?"
+  },
+  {
+   "id": "B03",
+   "texto": "¿Qué hizo el niño/a?"
+  },
+  {
+   "id": "B04",
+   "texto": "¿Qué ocurrió justo antes?"
+  },
+  {
+   "id": "B05",
+   "texto": "¿Con qué frecuencia sucede?"
+  },
+  {
+   "id": "B06",
+   "texto": "¿Desde cuándo ocurre?"
+  },
+  {
+   "id": "B07",
+   "texto": "¿Sucede siempre o depende de la situación?"
+  },
+  {
+   "id": "B08",
+   "texto": "¿El problema está principalmente en comenzar, mantener, organizar, recordar o terminar?"
+  },
+  {
+   "id": "B09",
+   "texto": "¿Pierde información mientras realiza la actividad?"
+  },
+  {
+   "id": "B10",
+   "texto": "¿Pierde el objetivo de lo que estaba haciendo?"
+  },
+  {
+   "id": "B11",
+   "texto": "¿Se distrae con estímulos externos?"
+  },
+  {
+   "id": "B12",
+   "texto": "¿Cambia de actividad antes de terminar?"
+  },
+  {
+   "id": "B13",
+   "texto": "¿Necesita recordatorios para volver a la tarea?"
+  },
+  {
+   "id": "B14",
+   "texto": "¿Sabe qué tiene que hacer, pero le cuesta hacerlo de manera sostenida?"
+  },
+  {
+   "id": "B15",
+   "texto": "¿Qué cosas puede hacer por sí mismo que antes necesitaban ayuda?"
+  },
+  {
+   "id": "B16",
+   "texto": "¿Qué cosas todavía requieren una ayuda que usted considera mayor de la esperable para su edad?"
+  },
+  {
+   "id": "B17",
+   "texto": "¿Esta dificultad ha aumentado a medida que se esperaba mayor autonomía?"
+  },
+  {
+   "id": "B18",
+   "texto": "¿Qué debería poder hacer actualmente que todavía le resulta difícil?"
+  },
+  {
+   "id": "B19",
+   "texto": "¿En qué situaciones ocurre más?"
+  },
+  {
+   "id": "B20",
+   "texto": "¿En qué situaciones ocurre menos?"
+  },
+  {
+   "id": "B21",
+   "texto": "¿Qué cambia cuando recibe ayuda?"
+  },
+  {
+   "id": "B22",
+   "texto": "¿Qué ocurre cuando aumenta la exigencia?"
+  },
+  {
+   "id": "B23",
+   "texto": "¿Qué ocurre cuando disminuye la supervisión?"
+  },
+  {
+   "id": "B24",
+   "texto": "¿Qué pasa cuando la actividad le interesa?"
+  },
+  {
+   "id": "B25",
+   "texto": "¿Qué pasa cuando la actividad no le interesa?"
+  },
+  {
+   "id": "B26",
+   "texto": "¿Qué ocurre cuando hay muchos distractores?"
+  },
+  {
+   "id": "B27",
+   "texto": "¿Desde qué edad lo recuerda?"
+  },
+  {
+   "id": "B28",
+   "texto": "¿Siempre fue así o apareció posteriormente?"
+  },
+  {
+   "id": "B29",
+   "texto": "¿Qué cambió cuando aumentaron las exigencias?"
+  },
+  {
+   "id": "B30",
+   "texto": "¿Hubo algún período en que funcionara mejor?"
+  },
+  {
+   "id": "B31",
+   "texto": "¿Qué era diferente en ese período?"
+  },
+  {
+   "id": "B32",
+   "texto": "¿Qué consecuencia concreta produce esta dificultad?"
+  },
+  {
+   "id": "B33",
+   "texto": "¿Qué actividades se ven más afectadas?"
+  },
+  {
+   "id": "B34",
+   "texto": "¿Necesita más apoyo del que necesita un niño de edad similar?"
+  },
+  {
+   "id": "B35",
+   "texto": "¿Esta dificultad aparece en general o principalmente bajo una condición específica?"
+  },
+  {
+   "id": "B36",
+   "texto": "¿Qué condición parece hacerla aparecer o empeorar?"
+  },
+  {
+   "id": "B37",
+   "texto": "¿Existe otra explicación que pueda estar contribuyendo a esta dificultad?"
+  }
+ ],
+ "bloques": [
+  {
+   "id": "impulsividad_funcional",
+   "fase": "F3",
+   "regla": "siempre",
+   "preguntas": [
+    "A20"
+   ],
+   "max": 1,
+   "origen": "Etapa 7 §9 (impulsividad: actuar sin considerar consecuencias)"
+  },
+  {
+   "id": "ejecutivas",
+   "fase": "F2",
+   "regla": "dominio_positivo:inatencion",
+   "preguntas": [
+    "A21",
+    "A22",
+    "A23",
+    "A24",
+    "A25",
+    "A27",
+    "A28",
+    "A26"
+   ],
+   "max": 5,
+   "origen": "Etapa 7 §9 (organización y funciones ejecutivas); Anexo 7-A 21–28"
+  },
+  {
+   "id": "desarrollo",
+   "fase": "F5",
+   "regla": "siempre",
+   "preguntas": [
+    "A53",
+    "A55",
+    "A57",
+    "A58"
+   ],
+   "max": 4,
+   "origen": "Automatización regla 6 (Etapa 5 de la entrevista: anamnesis del desarrollo); Anexo 7-A 53–58"
+  },
+  {
+   "id": "contexto",
+   "fase": "F8",
+   "regla": "algun_sintoma_positivo",
+   "preguntas": [
+    "A37",
+    "A32",
+    "A34",
+    "A31",
+    "A29",
+    "A30",
+    "A33",
+    "A35",
+    "A36"
+   ],
+   "max": 5,
+   "origen": "Etapa 7 §12; Etapa 9 §10; Anexo 7-A 29–37"
+  },
+  {
+   "id": "trayectoria",
+   "fase": "F8",
+   "regla": "algun_sintoma_positivo",
+   "preguntas": [
+    "A38",
+    "A40",
+    "A41",
+    "A42",
+    "A39",
+    "A43",
+    "A44",
+    "A45"
+   ],
+   "max": 5,
+   "origen": "Etapa 7 §7 (requisito obligatorio); Etapa 9 §9; Anexo 7-A 38–45"
+  },
+  {
+   "id": "impacto",
+   "fase": "F8",
+   "regla": "algun_sintoma_positivo",
+   "preguntas": [
+    "A46",
+    "A47",
+    "A48",
+    "A49",
+    "A50",
+    "A51",
+    "A52"
+   ],
+   "max": 7,
+   "origen": "Etapa 7 §13; Etapa 4 R7; Anexo 7-A 46–52"
+  }
+ ],
+ "equivalencias": [
+  {
+   "id": "EQ-TERMINAR",
+   "descripcion": "Dejar sin terminar / mantenerse hasta terminar",
+   "preguntas": [
+    "A05",
+    "A26"
+   ]
+  },
+  {
+   "id": "EQ-SUPERVISION",
+   "descripcion": "Más supervisión / más ayuda que otros niños de su edad",
+   "preguntas": [
+    "A27",
+    "A50"
+   ]
+  },
+  {
+   "id": "EQ-SUENO",
+   "descripcion": "Dificultades importantes de sueño (cubiertas por el tamizaje, categoría D)",
+   "preguntas": [
+    "A56",
+    "TAM:D"
+   ]
+  },
+  {
+   "id": "EQ-SENSORIAL",
+   "descripcion": "Sensibilidad sensorial (cubierta por el tamizaje, categoría H)",
+   "preguntas": [
+    "A65",
+    "TAM:H"
+   ]
+  },
+  {
+   "id": "EQ-MEDICO",
+   "descripcion": "Condición médica o medicamento (cubiertos por el tamizaje, categorías E y G)",
+   "preguntas": [
+    "A66",
+    "TAM:E",
+    "TAM:G"
+   ]
+  },
+  {
+   "id": "EQ-FAMILIAR",
+   "descripcion": "Situación familiar o ambiental relevante",
+   "preguntas": [
+    "A58",
+    "BAR:K"
+   ]
+  }
+ ],
+ "barrido": {
+  "id": "BARRIDO",
+  "texto": "Además de las dificultades que hemos conversado, ¿hay alguna de estas áreas que haya presentado, presente o haya presentado anteriormente alguna dificultad relevante para su funcionamiento?",
+  "tipo": "multiple",
+  "fase": "F7",
+  "origen": "Etapa 9 §H; Automatización regla 3",
+  "opciones": [
+   {
+    "codigo": "A",
+    "texto": "Aprendizaje",
+    "valor": "A"
+   },
+   {
+    "codigo": "B",
+    "texto": "Lenguaje o comprensión",
+    "valor": "B"
+   },
+   {
+    "codigo": "C",
+    "texto": "Sueño",
+    "valor": "C",
+    "deriva_tamizaje": "D"
+   },
+   {
+    "codigo": "D",
+    "texto": "Aspectos emocionales",
+    "valor": "D"
+   },
+   {
+    "codigo": "E",
+    "texto": "Aspectos conductuales",
+    "valor": "E"
+   },
+   {
+    "codigo": "F",
+    "texto": "Desarrollo",
+    "valor": "F"
+   },
+   {
+    "codigo": "G",
+    "texto": "Aspectos sensoriales o perceptivos",
+    "valor": "G"
+   },
+   {
+    "codigo": "H",
+    "texto": "Audición",
+    "valor": "H",
+    "deriva_tamizaje": "B"
+   },
+   {
+    "codigo": "I",
+    "texto": "Visión",
+    "valor": "I",
+    "deriva_tamizaje": "C"
+   },
+   {
+    "codigo": "J",
+    "texto": "Condiciones físicas o de salud",
+    "valor": "J",
+    "deriva_tamizaje": "E"
+   },
+   {
+    "codigo": "K",
+    "texto": "Situaciones familiares o ambientales relevantes",
+    "valor": "K"
+   },
+   {
+    "codigo": "L",
+    "texto": "Otro",
+    "valor": "L"
+   },
+   {
+    "codigo": "M",
+    "texto": "Ninguna de las anteriores",
+    "valor": "M",
+    "excluyente": true,
+    "ninguna": true
+   },
+   {
+    "codigo": "N",
+    "texto": "No sabe / no recuerda",
+    "valor": "N",
+    "excluyente": true,
+    "incierta": true
+   }
+  ],
+  "ramas": {
+   "A": [
+    {
+     "id": "BAR-A-1",
+     "texto": "¿Las dificultades aparecen especialmente en determinadas materias o tipos de tareas?",
+     "tipo": "presencia",
+     "origen": "Anexo 7-A 59",
+     "equivale_a": "A59"
+    },
+    {
+     "id": "BAR-A-DESDE",
+     "texto": "¿Desde cuándo ocurre?",
+     "tipo": "opciones",
+     "origen": "Anexo 7-B 6",
+     "alternativas": "desde"
+    },
+    {
+     "id": "BAR-A-IMPACTO",
+     "texto": "¿Qué consecuencia concreta produce esta dificultad?",
+     "tipo": "abierta",
+     "origen": "Anexo 7-B 32"
+    }
+   ],
+   "B": [
+    {
+     "id": "BAR-B-1",
+     "texto": "¿Ha presentado dificultades importantes para comprender instrucciones o lenguaje?",
+     "tipo": "presencia",
+     "origen": "Anexo 7-A 60",
+     "equivale_a": "A60"
+    },
+    {
+     "id": "BAR-B-DESDE",
+     "texto": "¿Desde cuándo ocurre?",
+     "tipo": "opciones",
+     "origen": "Anexo 7-B 6",
+     "alternativas": "desde"
+    },
+    {
+     "id": "BAR-B-IMPACTO",
+     "texto": "¿Qué consecuencia concreta produce esta dificultad?",
+     "tipo": "abierta",
+     "origen": "Anexo 7-B 32"
+    }
+   ],
+   "C": [
+    {
+     "id": "BAR-C-1",
+     "texto": "¿Las dificultades aumentan cuando duerme mal o está cansado?",
+     "tipo": "presencia",
+     "origen": "Anexo 7-A 61",
+     "equivale_a": "A61"
+    },
+    {
+     "id": "BAR-C-DESDE",
+     "texto": "¿Desde cuándo ocurre?",
+     "tipo": "opciones",
+     "origen": "Anexo 7-B 6",
+     "alternativas": "desde"
+    }
+   ],
+   "D": [
+    {
+     "id": "BAR-D-1",
+     "texto": "¿Existe actualmente, ha existido recientemente o ha existido en el pasado algún problema, situación o experiencia que pueda haber afectado su estado emocional o su funcionamiento emocional?",
+     "tipo": "presencia",
+     "origen": "Etapa 9 §H (pregunta de apertura obligatoria)"
+    },
+    {
+     "id": "BAR-D-2",
+     "texto": "¿Aparecen principalmente cuando está preocupado, triste, ansioso o frustrado?",
+     "tipo": "presencia",
+     "origen": "Anexo 7-A 62",
+     "equivale_a": "A62"
+    },
+    {
+     "id": "BAR-D-DESDE",
+     "texto": "¿Desde cuándo ocurre?",
+     "tipo": "opciones",
+     "origen": "Anexo 7-B 6",
+     "alternativas": "desde"
+    }
+   ],
+   "E": [
+    {
+     "id": "BAR-E-1",
+     "texto": "¿Existen conductas desafiantes u oposicionistas que puedan explicar parte de las dificultades?",
+     "tipo": "presencia",
+     "origen": "Anexo 7-A 63",
+     "equivale_a": "A63"
+    },
+    {
+     "id": "BAR-E-DESDE",
+     "texto": "¿Desde cuándo ocurre?",
+     "tipo": "opciones",
+     "origen": "Anexo 7-B 6",
+     "alternativas": "desde"
+    },
+    {
+     "id": "BAR-E-IMPACTO",
+     "texto": "¿Qué consecuencia concreta produce esta dificultad?",
+     "tipo": "abierta",
+     "origen": "Anexo 7-B 32"
+    }
+   ],
+   "F": [
+    {
+     "id": "BAR-F-1",
+     "texto": "¿Existieron dificultades de lenguaje, motricidad, aprendizaje o regulación?",
+     "tipo": "presencia",
+     "origen": "Anexo 7-A 54",
+     "equivale_a": "A54"
+    },
+    {
+     "id": "BAR-F-2",
+     "texto": "¿Existen otras dificultades del desarrollo que también estén presentes?",
+     "tipo": "presencia",
+     "origen": "Anexo 7-A 64",
+     "equivale_a": "A64"
+    },
+    {
+     "id": "BAR-F-DESDE",
+     "texto": "¿Desde cuándo ocurre?",
+     "tipo": "opciones",
+     "origen": "Anexo 7-B 6",
+     "alternativas": "desde"
+    }
+   ],
+   "G": [
+    {
+     "id": "BAR-G-1",
+     "texto": "¿Presenta sensibilidad importante al ruido, luz, tacto u otros estímulos?",
+     "tipo": "presencia",
+     "origen": "Anexo 7-A 65",
+     "equivale_a": "A65"
+    },
+    {
+     "id": "BAR-G-IMPACTO",
+     "texto": "¿Qué consecuencia concreta produce esta dificultad?",
+     "tipo": "abierta",
+     "origen": "Anexo 7-B 32"
+    }
+   ],
+   "H": [],
+   "I": [],
+   "J": [
+    {
+     "id": "BAR-J-1",
+     "texto": "¿Existe alguna condición médica, tratamiento o medicamento que pueda influir en su funcionamiento?",
+     "tipo": "presencia",
+     "origen": "Anexo 7-A 66",
+     "equivale_a": "A66"
+    },
+    {
+     "id": "BAR-J-IMPACTO",
+     "texto": "¿Qué consecuencia concreta produce esta dificultad?",
+     "tipo": "abierta",
+     "origen": "Anexo 7-B 32"
+    }
+   ],
+   "K": [
+    {
+     "id": "BAR-K-1",
+     "texto": "¿Ha existido alguna situación familiar, escolar o ambiental importante que pueda haber afectado su funcionamiento?",
+     "tipo": "presencia",
+     "origen": "Anexo 7-A 58",
+     "equivale_a": "A58"
+    },
+    {
+     "id": "BAR-K-DESDE",
+     "texto": "¿Desde cuándo ocurre?",
+     "tipo": "opciones",
+     "origen": "Anexo 7-B 6",
+     "alternativas": "desde"
+    },
+    {
+     "id": "BAR-K-IMPACTO",
+     "texto": "¿Qué consecuencia concreta produce esta dificultad?",
+     "tipo": "abierta",
+     "origen": "Anexo 7-B 32"
+    }
+   ],
+   "L": [
+    {
+     "id": "BAR-L-1",
+     "texto": "¿Podría describir brevemente qué ha observado o qué antecedente le han informado?",
+     "tipo": "abierta",
+     "origen": "Anexo 7-F I"
+    }
+   ]
+  }
+ },
+ "tamizaje": {
+  "id": "TAMIZAJE",
+  "texto": "Además de las dificultades que motivaron esta evaluación, ¿se ha observado o diagnosticado alguna de estas situaciones? Seleccione todas las que correspondan",
+  "tipo": "multiple",
+  "fase": "F6",
+  "origen": "Etapa 7 §14.1; Anexo 7-F; Etapa 9 §H.1 y J.6.1",
+  "opciones": [
+   {
+    "codigo": "A",
+    "texto": "Episodios breves de desconexión, mirada fija o momentos en que parece no responder normalmente.",
+    "valor": "A"
+   },
+   {
+    "codigo": "B",
+    "texto": "Dificultades auditivas o sospecha de problemas de audición.",
+    "valor": "B"
+   },
+   {
+    "codigo": "C",
+    "texto": "Dificultades visuales o problemas de visión que podrían no estar corregidos.",
+    "valor": "C"
+   },
+   {
+    "codigo": "D",
+    "texto": "Problemas persistentes de sueño, ronquidos intensos, pausas respiratorias durante el sueño o somnolencia diurna marcada.",
+    "valor": "D"
+   },
+   {
+    "codigo": "E",
+    "texto": "Antecedentes neurológicos relevantes u otras condiciones médicas.",
+    "valor": "E"
+   },
+   {
+    "codigo": "F",
+    "texto": "Antecedentes endocrinos o metabólicos relevantes.",
+    "valor": "F"
+   },
+   {
+    "codigo": "G",
+    "texto": "Uso habitual o reciente de medicamentos que pueda ser pertinente para comprender la atención, el sueño, la actividad o la conducta.",
+    "valor": "G"
+   },
+   {
+    "codigo": "H",
+    "texto": "Sensibilidades sensoriales relevantes ante sonidos, luces, tacto u otros estímulos.",
+    "valor": "H"
+   },
+   {
+    "codigo": "I",
+    "texto": "Otra situación médica, sensorial, del desarrollo o del sueño que el informante considere importante.",
+    "valor": "I"
+   },
+   {
+    "codigo": "J",
+    "texto": "Ninguna de las anteriores.",
+    "valor": "J",
+    "excluyente": true,
+    "ninguna": true
+   },
+   {
+    "codigo": "K",
+    "texto": "No sé / no recuerdo.",
+    "valor": "K",
+    "excluyente": true,
+    "incierta": true
+   }
+  ],
+  "categorias": {
+   "A": {
+    "nombre": "Episodios de desconexión",
+    "preguntas": [
+     {
+      "id": "TAM-A-1",
+      "texto": "¿Qué ocurre exactamente?",
+      "tipo": "abierta",
+      "origen": "Anexo 7-F A (pregunta 1)"
+     },
+     {
+      "id": "TAM-A-3",
+      "texto": "¿Con qué frecuencia suceden?",
+      "tipo": "opciones",
+      "origen": "Anexo 7-F A (pregunta 3)",
+      "alternativas": "frecuencia"
+     },
+     {
+      "id": "TAM-A-5",
+      "texto": "¿Ha sido evaluado por un profesional por esta situación?",
+      "tipo": "opciones",
+      "origen": "Anexo 7-F A (pregunta 5)",
+      "alternativas": "si_no_ns",
+      "evaluado_profesional": true
+     }
+    ],
+    "alerta_sanitaria": true,
+    "nota": null
+   },
+   "B": {
+    "nombre": "Audición",
+    "preguntas": [
+     {
+      "id": "TAM-B-1",
+      "texto": "¿Qué dificultad se ha observado?",
+      "tipo": "abierta",
+      "origen": "Anexo 7-F B (pregunta 1)"
+     },
+     {
+      "id": "TAM-B-2",
+      "texto": "¿Se ha realizado una evaluación auditiva?",
+      "tipo": "opciones",
+      "origen": "Anexo 7-F B (pregunta 2)",
+      "alternativas": "si_no_ns"
+     },
+     {
+      "id": "TAM-B-3",
+      "texto": "¿Utiliza alguna ayuda o tratamiento?",
+      "tipo": "opciones",
+      "origen": "Anexo 7-F B (pregunta 3)",
+      "alternativas": "si_no_ns"
+     }
+    ],
+    "alerta_sanitaria": false,
+    "nota": null
+   },
+   "C": {
+    "nombre": "Visión",
+    "preguntas": [
+     {
+      "id": "TAM-C-1",
+      "texto": "¿Qué dificultad se ha observado?",
+      "tipo": "abierta",
+      "origen": "Anexo 7-F C (pregunta 1)"
+     },
+     {
+      "id": "TAM-C-2",
+      "texto": "¿Se ha evaluado la visión?",
+      "tipo": "opciones",
+      "origen": "Anexo 7-F C (pregunta 2)",
+      "alternativas": "si_no_ns"
+     },
+     {
+      "id": "TAM-C-4",
+      "texto": "¿Persiste la dificultad con la corrección que utiliza?",
+      "tipo": "opciones",
+      "origen": "Anexo 7-F C (pregunta 4)",
+      "alternativas": "si_no_ns"
+     }
+    ],
+    "alerta_sanitaria": false,
+    "nota": null
+   },
+   "D": {
+    "nombre": "Sueño",
+    "preguntas": [
+     {
+      "id": "TAM-D-1",
+      "texto": "¿Qué problema se observa?",
+      "tipo": "abierta",
+      "origen": "Anexo 7-F D (pregunta 1)"
+     },
+     {
+      "id": "TAM-D-3",
+      "texto": "¿Hay ronquidos intensos o pausas respiratorias observadas?",
+      "tipo": "opciones",
+      "origen": "Anexo 7-F D (pregunta 3)",
+      "alternativas": "si_no_ns",
+      "alerta_si": "si"
+     },
+     {
+      "id": "TAM-D-5",
+      "texto": "¿Ha sido evaluado por un profesional?",
+      "tipo": "opciones",
+      "origen": "Anexo 7-F D (pregunta 5)",
+      "alternativas": "si_no_ns",
+      "evaluado_profesional": true
+     }
+    ],
+    "alerta_sanitaria": false,
+    "nota": null
+   },
+   "E": {
+    "nombre": "Antecedentes médicos o neurológicos",
+    "preguntas": [
+     {
+      "id": "TAM-E-1",
+      "texto": "¿Cuál es la condición o antecedente?",
+      "tipo": "abierta",
+      "origen": "Anexo 7-F E (pregunta 1)"
+     },
+     {
+      "id": "TAM-E-3",
+      "texto": "¿Recibe seguimiento o tratamiento?",
+      "tipo": "opciones",
+      "origen": "Anexo 7-F E (pregunta 3)",
+      "alternativas": "si_no_ns"
+     },
+     {
+      "id": "TAM-E-4",
+      "texto": "¿Ha cambiado junto con las dificultades que motivaron la evaluación?",
+      "tipo": "opciones",
+      "origen": "Anexo 7-F E (pregunta 4)",
+      "alternativas": "si_no_ns"
+     }
+    ],
+    "alerta_sanitaria": false,
+    "nota": null
+   },
+   "F": {
+    "nombre": "Antecedentes endocrinos o metabólicos",
+    "preguntas": [
+     {
+      "id": "TAM-F-1",
+      "texto": "¿Qué antecedente se ha identificado?",
+      "tipo": "abierta",
+      "origen": "Anexo 7-F F (pregunta 1)"
+     },
+     {
+      "id": "TAM-F-2",
+      "texto": "¿Recibe seguimiento o tratamiento?",
+      "tipo": "opciones",
+      "origen": "Anexo 7-F F (pregunta 2)",
+      "alternativas": "si_no_ns"
+     },
+     {
+      "id": "TAM-F-3",
+      "texto": "¿Hay información médica disponible que deba incorporarse?",
+      "tipo": "opciones",
+      "origen": "Anexo 7-F F (pregunta 3)",
+      "alternativas": "si_no_ns"
+     }
+    ],
+    "alerta_sanitaria": false,
+    "nota": null
+   },
+   "G": {
+    "nombre": "Medicamentos",
+    "preguntas": [
+     {
+      "id": "TAM-G-1",
+      "texto": "¿Qué medicamento utiliza?",
+      "tipo": "abierta",
+      "origen": "Anexo 7-F G (pregunta 1)"
+     },
+     {
+      "id": "TAM-G-2",
+      "texto": "¿Desde cuándo?",
+      "tipo": "abierta",
+      "origen": "Anexo 7-F G (pregunta 2)"
+     },
+     {
+      "id": "TAM-G-3",
+      "texto": "¿Se han observado cambios coincidentes con su inicio o con cambios indicados por el profesional tratante?",
+      "tipo": "opciones",
+      "origen": "Anexo 7-F G (pregunta 3)",
+      "alternativas": "si_no_ns"
+     }
+    ],
+    "alerta_sanitaria": false,
+    "nota": "El sistema no debe recomendar suspender ni modificar medicación."
+   },
+   "H": {
+    "nombre": "Sensibilidades sensoriales",
+    "preguntas": [
+     {
+      "id": "TAM-H-1",
+      "texto": "¿Qué estímulos generan la dificultad?",
+      "tipo": "abierta",
+      "origen": "Anexo 7-F H (pregunta 1)"
+     },
+     {
+      "id": "TAM-H-3",
+      "texto": "¿En qué contextos aparece?",
+      "tipo": "abierta",
+      "origen": "Anexo 7-F H (pregunta 3)"
+     },
+     {
+      "id": "TAM-H-4",
+      "texto": "¿Cómo afecta las actividades cotidianas?",
+      "tipo": "abierta",
+      "origen": "Anexo 7-F H (pregunta 4)"
+     }
+    ],
+    "alerta_sanitaria": false,
+    "nota": null
+   },
+   "I": {
+    "nombre": "Otra situación",
+    "preguntas": [
+     {
+      "id": "TAM-I-1",
+      "texto": "¿Podría describir brevemente qué ha observado o qué antecedente le han informado?",
+      "tipo": "abierta",
+      "origen": "Anexo 7-F I (pregunta 1)"
+     }
+    ],
+    "alerta_sanitaria": false,
+    "nota": null
+   }
+  },
+  "estados": [
+   "NO_REALIZADO",
+   "EN_CURSO",
+   "COMPLETADO",
+   "COMPLETADO_CON_INCERTIDUMBRE",
+   "CUBIERTO_POR_FUENTE"
+  ],
+  "resultados": [
+   "EXPLORADO_SIN_DIFICULTADES_REPORTADAS",
+   "HALLAZGOS_REPORTADOS",
+   "INCERTIDUMBRE",
+   "NO_APLICA",
+   "NO_DETERMINADO"
+  ]
+ },
+ "ruta_a_escolar": [
+  {
+   "id": "RA-C01",
+   "texto": "Según lo que usted sabe del colegio: ¿Qué dificultades observa actualmente en el funcionamiento del estudiante?",
+   "tipo": "abierta",
+   "fuente": "apoderado",
+   "base": "C01",
+   "origen": "Etapa 7 §5.1; Anexo 7-C 01"
+  },
+  {
+   "id": "RA-C03",
+   "texto": "Según lo que usted sabe del colegio: ¿En qué situaciones se presentan con mayor claridad?",
+   "tipo": "abierta",
+   "fuente": "apoderado",
+   "base": "C03",
+   "origen": "Etapa 7 §5.1; Anexo 7-C 03"
+  },
+  {
+   "id": "RA-C04",
+   "texto": "Según lo que usted sabe del colegio: ¿En qué situaciones funciona mejor?",
+   "tipo": "abierta",
+   "fuente": "apoderado",
+   "base": "C04",
+   "origen": "Etapa 7 §5.1; Anexo 7-C 04"
+  },
+  {
+   "id": "RA-C08",
+   "texto": "Según lo que usted sabe del colegio: ¿Existe impacto académico o social relevante?",
+   "tipo": "abierta",
+   "fuente": "apoderado",
+   "base": "C08",
+   "origen": "Etapa 7 §5.1; Anexo 7-C 08"
+  }
+ ],
+ "colegio": [
+  {
+   "id": "C01",
+   "texto": "¿Qué dificultades observa actualmente en el funcionamiento del estudiante?",
+   "tipo": "abierta",
+   "fuente": "profesor",
+   "origen": "Anexo 7-C 1",
+   "cubierta_por": "algun_sintoma"
+  },
+  {
+   "id": "C02",
+   "texto": "¿Desde cuándo las observa?",
+   "tipo": "abierta",
+   "fuente": "profesor",
+   "origen": "Anexo 7-C 2",
+   "cubierta_por": "desde"
+  },
+  {
+   "id": "C03",
+   "texto": "¿En qué situaciones se presentan con mayor claridad?",
+   "tipo": "abierta",
+   "fuente": "profesor",
+   "origen": "Anexo 7-C 3",
+   "cubierta_por": "contextos"
+  },
+  {
+   "id": "C04",
+   "texto": "¿En qué situaciones funciona mejor?",
+   "tipo": "abierta",
+   "fuente": "profesor",
+   "origen": "Anexo 7-C 4"
+  },
+  {
+   "id": "C05",
+   "texto": "¿Cómo responde frente a actividades prolongadas o con varios pasos?",
+   "tipo": "abierta",
+   "fuente": "profesor",
+   "origen": "Anexo 7-C 5"
+  },
+  {
+   "id": "C06",
+   "texto": "¿Cómo funciona cuando disminuye la supervisión?",
+   "tipo": "abierta",
+   "fuente": "profesor",
+   "origen": "Anexo 7-C 6"
+  },
+  {
+   "id": "C07",
+   "texto": "¿Presenta dificultades de atención, seguimiento de instrucciones, organización, persistencia o impulsividad?",
+   "tipo": "abierta",
+   "fuente": "profesor",
+   "origen": "Anexo 7-C 7",
+   "cubierta_por": "algun_sintoma"
+  },
+  {
+   "id": "C08",
+   "texto": "¿Existe impacto académico o social relevante?",
+   "tipo": "abierta",
+   "fuente": "profesor",
+   "origen": "Anexo 7-C 8",
+   "cubierta_por": "impacto_academico"
+  },
+  {
+   "id": "C09",
+   "texto": "¿Cómo se compara su funcionamiento con el esperado para estudiantes de edad similar?",
+   "tipo": "abierta",
+   "fuente": "profesor",
+   "origen": "Anexo 7-C 9"
+  },
+  {
+   "id": "C10",
+   "texto": "¿Existe alguna dificultad de aprendizaje, lenguaje, conducta o desarrollo que considere relevante?",
+   "tipo": "abierta",
+   "fuente": "profesor",
+   "origen": "Anexo 7-C 10"
+  },
+  {
+   "id": "C11",
+   "texto": "¿Cómo ha evolucionado su funcionamiento durante el período observado?",
+   "tipo": "abierta",
+   "fuente": "profesor",
+   "origen": "Anexo 7-C 11"
+  },
+  {
+   "id": "C12",
+   "texto": "¿Hay alguna información importante que no aparezca en el informe?",
+   "tipo": "abierta",
+   "fuente": "profesor",
+   "origen": "Anexo 7-C 12"
+  }
+ ],
+ "nino": [
+  {
+   "id": "D01",
+   "texto": "¿Qué cosas sientes que te cuestan más en el colegio o en tu casa?",
+   "tipo": "abierta",
+   "fuente": "nino",
+   "origen": "Anexo 7-D 1"
+  },
+  {
+   "id": "D02",
+   "texto": "¿En qué situaciones te cuesta más?",
+   "tipo": "abierta",
+   "fuente": "nino",
+   "origen": "Anexo 7-D 2"
+  },
+  {
+   "id": "D03",
+   "texto": "¿Hay situaciones en que te resulta mucho más fácil?",
+   "tipo": "abierta",
+   "fuente": "nino",
+   "origen": "Anexo 7-D 3"
+  },
+  {
+   "id": "D04",
+   "texto": "Cuando tienes que concentrarte durante bastante tiempo, ¿qué te pasa?",
+   "tipo": "abierta",
+   "fuente": "nino",
+   "origen": "Anexo 7-D 4"
+  },
+  {
+   "id": "D05",
+   "texto": "Cuando empiezas a distraerte, ¿qué haces?",
+   "tipo": "abierta",
+   "fuente": "nino",
+   "origen": "Anexo 7-D 5"
+  },
+  {
+   "id": "D06",
+   "texto": "¿Te cuesta recordar lo que tienes que hacer?",
+   "tipo": "abierta",
+   "fuente": "nino",
+   "origen": "Anexo 7-D 6"
+  },
+  {
+   "id": "D07",
+   "texto": "¿Te cuesta organizar tus cosas o saber por dónde empezar?",
+   "tipo": "abierta",
+   "fuente": "nino",
+   "origen": "Anexo 7-D 7"
+  },
+  {
+   "id": "D08",
+   "texto": "¿Te pasa que empiezas algo y después lo dejas?",
+   "tipo": "abierta",
+   "fuente": "nino",
+   "origen": "Anexo 7-D 8"
+  },
+  {
+   "id": "D09",
+   "texto": "¿Te cuesta esperar tu turno?",
+   "tipo": "abierta",
+   "fuente": "nino",
+   "origen": "Anexo 7-D 9"
+  },
+  {
+   "id": "D10",
+   "texto": "¿Te pasa que interrumpes o respondes antes de tiempo?",
+   "tipo": "abierta",
+   "fuente": "nino",
+   "origen": "Anexo 7-D 10"
+  },
+  {
+   "id": "D11",
+   "texto": "¿Te cuesta estar quieto cuando debes hacerlo?",
+   "tipo": "abierta",
+   "fuente": "nino",
+   "origen": "Anexo 7-D 11"
+  },
+  {
+   "id": "D12",
+   "texto": "¿Qué cosas te ayudan a concentrarte o terminar algo?",
+   "tipo": "abierta",
+   "fuente": "nino",
+   "origen": "Anexo 7-D 12"
+  }
+ ],
+ "adolescente": [
+  {
+   "id": "E01",
+   "texto": "¿Qué cosas sientes que te cuestan más actualmente?",
+   "tipo": "abierta",
+   "fuente": "adolescente",
+   "origen": "Anexo 7-E 1"
+  },
+  {
+   "id": "E02",
+   "texto": "¿En qué situaciones esas dificultades aparecen con mayor claridad?",
+   "tipo": "abierta",
+   "fuente": "adolescente",
+   "origen": "Anexo 7-E 2"
+  },
+  {
+   "id": "E03",
+   "texto": "¿En qué situaciones funcionas mejor?",
+   "tipo": "abierta",
+   "fuente": "adolescente",
+   "origen": "Anexo 7-E 3"
+  },
+  {
+   "id": "E04",
+   "texto": "Cuando necesitas concentrarte durante bastante tiempo, ¿qué ocurre?",
+   "tipo": "abierta",
+   "fuente": "adolescente",
+   "origen": "Anexo 7-E 4"
+  },
+  {
+   "id": "E05",
+   "texto": "¿Qué pasa cuando una tarea tiene muchos pasos?",
+   "tipo": "abierta",
+   "fuente": "adolescente",
+   "origen": "Anexo 7-E 5"
+  },
+  {
+   "id": "E06",
+   "texto": "¿Cómo te organizas para estudiar o cumplir responsabilidades?",
+   "tipo": "abierta",
+   "fuente": "adolescente",
+   "origen": "Anexo 7-E 6"
+  },
+  {
+   "id": "E07",
+   "texto": "¿Qué pasa cuando tienes que hacer algo que no te interesa?",
+   "tipo": "abierta",
+   "fuente": "adolescente",
+   "origen": "Anexo 7-E 7"
+  },
+  {
+   "id": "E08",
+   "texto": "¿Qué pasa cuando algo te interesa mucho?",
+   "tipo": "abierta",
+   "fuente": "adolescente",
+   "origen": "Anexo 7-E 8"
+  },
+  {
+   "id": "E09",
+   "texto": "¿Te cuesta comenzar, mantener o terminar actividades?",
+   "tipo": "abierta",
+   "fuente": "adolescente",
+   "origen": "Anexo 7-E 9"
+  },
+  {
+   "id": "E10",
+   "texto": "¿Te cuesta recordar instrucciones, fechas o cosas que tienes que hacer?",
+   "tipo": "abierta",
+   "fuente": "adolescente",
+   "origen": "Anexo 7-E 10"
+  },
+  {
+   "id": "E11",
+   "texto": "¿Te cuesta esperar, controlar respuestas o evitar interrumpir?",
+   "tipo": "abierta",
+   "fuente": "adolescente",
+   "origen": "Anexo 7-E 11"
+  },
+  {
+   "id": "E12",
+   "texto": "¿Sientes inquietud o necesidad de estar haciendo algo constantemente?",
+   "tipo": "abierta",
+   "fuente": "adolescente",
+   "origen": "Anexo 7-E 12"
+  },
+  {
+   "id": "E13",
+   "texto": "¿Qué cambia cuando nadie te supervisa?",
+   "tipo": "abierta",
+   "fuente": "adolescente",
+   "origen": "Anexo 7-E 13"
+  },
+  {
+   "id": "E14",
+   "texto": "¿Qué estrategias utilizas para compensar estas dificultades?",
+   "tipo": "abierta",
+   "fuente": "adolescente",
+   "origen": "Anexo 7-E 14"
+  },
+  {
+   "id": "E15",
+   "texto": "¿En qué afectan tus estudios, relaciones o vida diaria?",
+   "tipo": "abierta",
+   "fuente": "adolescente",
+   "origen": "Anexo 7-E 15"
+  },
+  {
+   "id": "E16",
+   "texto": "¿Hay algo que los adultos interpreten mal sobre lo que te ocurre?",
+   "tipo": "abierta",
+   "fuente": "adolescente",
+   "origen": "Anexo 7-E 16"
+  },
+  {
+   "id": "E17",
+   "texto": "¿Hay situaciones en que los demás creen que tienes una dificultad, pero tú sientes que funciona de otra manera?",
+   "tipo": "abierta",
+   "fuente": "adolescente",
+   "origen": "Anexo 7-E 17"
+  },
+  {
+   "id": "E18",
+   "texto": "¿Hay algo importante que no te haya preguntado?",
+   "tipo": "abierta",
+   "fuente": "adolescente",
+   "origen": "Anexo 7-E 18"
+  }
+ ],
+ "etapas_edad": [
+  {
+   "desde": 2,
+   "hasta": 3,
+   "etapa": "2–3 años"
+  },
+  {
+   "desde": 4,
+   "hasta": 5,
+   "etapa": "4–5 años"
+  },
+  {
+   "desde": 6,
+   "hasta": 7,
+   "etapa": "6–7 años"
+  },
+  {
+   "desde": 8,
+   "hasta": 10,
+   "etapa": "8–10 años"
+  },
+  {
+   "desde": 11,
+   "hasta": 13,
+   "etapa": "11–13 años"
+  },
+  {
+   "desde": 14,
+   "hasta": 17,
+   "etapa": "14–17 años"
+  }
+ ],
+ "trayectoria_etapa2": {
+  "etapas": [
+   "2–3 años",
+   "4–5 años",
+   "6–7 años",
+   "8–10 años",
+   "11–13 años",
+   "14–17 años"
+  ],
+  "dominios": [
+   {
+    "dominio": "Atención",
+    "por_etapa": {
+     "2–3 años": "Atención breve y fácilmente desplazable",
+     "4–5 años": "Mayor permanencia en actividades breves",
+     "6–7 años": "Mayor atención dirigida",
+     "8–10 años": "Mayor duración y mantenimiento",
+     "11–13 años": "Mayor coordinación de demandas",
+     "14–17 años": "Atención más autónoma y estratégica"
+    },
+    "respaldo": "ALTO"
+   },
+   {
+    "dominio": "Selección de información",
+    "por_etapa": {
+     "2–3 años": "Selección limitada ante múltiples estímulos",
+     "4–5 años": "Mayor orientación hacia información relevante",
+     "6–7 años": "Comienza a filtrar distractores",
+     "8–10 años": "Mejor selección frente a distractores",
+     "11–13 años": "Selección entre múltiples demandas",
+     "14–17 años": "Priorización de información"
+    },
+    "respaldo": "ALTO"
+   },
+   {
+    "dominio": "Atención sostenida",
+    "por_etapa": {
+     "2–3 años": "Breve",
+     "4–5 años": "Aumenta en actividades estructuradas",
+     "6–7 años": "Mayor permanencia",
+     "8–10 años": "Mayor mantenimiento",
+     "11–13 años": "Actividades prolongadas",
+     "14–17 años": "Tareas prolongadas y complejas"
+    },
+    "respaldo": "ALTO"
+   },
+   {
+    "dominio": "Inhibición",
+    "por_etapa": {
+     "2–3 años": "Control limitado",
+     "4–5 años": "Control inhibitorio emergente",
+     "6–7 años": "Mayor control de respuestas",
+     "8–10 años": "Mayor consistencia",
+     "11–13 años": "Mayor autorregulación",
+     "14–17 años": "Mayor control y demora de respuesta"
+    },
+    "respaldo": "MUY ALTO"
+   },
+   {
+    "dominio": "Respuestas anticipatorias",
+    "por_etapa": {
+     "2–3 años": "Frecuentes ante espera o respuesta inmediata",
+     "4–5 años": "Comienzan a disminuir",
+     "6–7 años": "Mayor control",
+     "8–10 años": "Menor respuesta anticipatoria",
+     "11–13 años": "Mayor capacidad para esperar",
+     "14–17 años": "Mayor control de respuesta"
+    },
+    "respaldo": "ALTO"
+   },
+   {
+    "dominio": "Memoria de trabajo",
+    "por_etapa": {
+     "2–3 años": "Capacidad limitada",
+     "4–5 años": "Secuencias sencillas",
+     "6–7 años": "Mantiene información para la tarea",
+     "8–10 años": "Mantiene varios elementos",
+     "11–13 años": "Manipula e integra información",
+     "14–17 años": "Integra información compleja"
+    },
+    "respaldo": "MUY ALTO"
+   },
+   {
+    "dominio": "Seguimiento de instrucciones",
+    "por_etapa": {
+     "2–3 años": "Instrucciones simples",
+     "4–5 años": "Secuencias sencillas",
+     "6–7 años": "Secuencias escolares",
+     "8–10 años": "Varios pasos",
+     "11–13 años": "Instrucciones más complejas",
+     "14–17 años": "Ejecución progresivamente autónoma"
+    },
+    "respaldo": "MODERADO–ALTO"
+   },
+   {
+    "dominio": "Mantenimiento de información relevante",
+    "por_etapa": {
+     "2–3 años": "Muy breve",
+     "4–5 años": "Mantiene información sencilla",
+     "6–7 años": "Mantiene información necesaria",
+     "8–10 años": "Mantiene varios elementos relevantes",
+     "11–13 años": "Integra información durante la tarea",
+     "14–17 años": "Mantiene información compleja"
+    },
+    "respaldo": "MUY ALTO"
+   },
+   {
+    "dominio": "Mantenimiento de objetivos",
+    "por_etapa": {
+     "2–3 años": "Objetivos inmediatos",
+     "4–5 años": "Objetivos simples",
+     "6–7 años": "Mantiene objetivo durante la tarea",
+     "8–10 años": "Mantiene objetivos ante distractores",
+     "11–13 años": "Mantiene objetivos entre demandas",
+     "14–17 años": "Mantiene objetivos complejos y futuros"
+    },
+    "respaldo": "ALTO"
+   },
+   {
+    "dominio": "Distractibilidad",
+    "por_etapa": {
+     "2–3 años": "Alta sensibilidad a estímulos competitivos",
+     "4–5 años": "Puede perder el foco",
+     "6–7 años": "Comienza a filtrar distractores",
+     "8–10 años": "Mayor resistencia",
+     "11–13 años": "Mayor regulación",
+     "14–17 años": "Mayor manejo estratégico"
+    },
+    "respaldo": "ALTO"
+   },
+   {
+    "dominio": "Control de interferencias",
+    "por_etapa": {
+     "2–3 años": "Muy limitado",
+     "4–5 años": "Emergente",
+     "6–7 años": "En desarrollo",
+     "8–10 años": "Mayor control",
+     "11–13 años": "Mayor regulación",
+     "14–17 años": "Control más estratégico"
+    },
+    "respaldo": "ALTO"
+   },
+   {
+    "dominio": "Cambio de actividad",
+    "por_etapa": {
+     "2–3 años": "Necesita ayuda",
+     "4–5 años": "Cambia con apoyo",
+     "6–7 años": "Cambia siguiendo instrucciones",
+     "8–10 años": "Alterna demandas",
+     "11–13 años": "Cambia con menor supervisión",
+     "14–17 años": "Cambia entre actividades complejas"
+    },
+    "respaldo": "ALTO"
+   },
+   {
+    "dominio": "Flexibilidad cognitiva",
+    "por_etapa": {
+     "2–3 años": "Inicial",
+     "4–5 años": "Aumenta progresivamente",
+     "6–7 años": "Adaptación a cambios",
+     "8–10 años": "Cambio de estrategias",
+     "11–13 años": "Adaptación contextual",
+     "14–17 años": "Modificación autónoma de planes"
+    },
+    "respaldo": "ALTO"
+   },
+   {
+    "dominio": "Cambio de estrategia",
+    "por_etapa": {
+     "2–3 años": "Predominio de respuesta inmediata",
+     "4–5 años": "Puede aceptar alternativas con ayuda",
+     "6–7 años": "Comienza a modificar estrategias",
+     "8–10 años": "Puede cambiar una estrategia ineficaz",
+     "11–13 años": "Adapta estrategias",
+     "14–17 años": "Selecciona y modifica estrategias"
+    },
+    "respaldo": "ALTO"
+   },
+   {
+    "dominio": "Planificación",
+    "por_etapa": {
+     "2–3 años": "Acción y secuencia inmediata",
+     "4–5 años": "Pequeñas secuencias",
+     "6–7 años": "Planificación inicial",
+     "8–10 años": "Varios pasos",
+     "11–13 años": "Distribución temporal",
+     "14–17 años": "Proyectos y objetivos futuros"
+    },
+    "respaldo": "ALTO"
+   },
+   {
+    "dominio": "Organización",
+    "por_etapa": {
+     "2–3 años": "Principalmente externa",
+     "4–5 años": "Rutinas y orden con ayuda",
+     "6–7 años": "Materiales básicos",
+     "8–10 años": "Responsabilidades escolares",
+     "11–13 años": "Múltiples responsabilidades",
+     "14–17 años": "Tiempo, prioridades y proyectos"
+    },
+    "respaldo": "MODERADO–ALTO"
+   },
+   {
+    "dominio": "Conducta orientada a objetivos",
+    "por_etapa": {
+     "2–3 años": "Objetivos concretos",
+     "4–5 años": "Objetivos simples",
+     "6–7 años": "Metas inmediatas",
+     "8–10 años": "Mantiene metas durante tareas",
+     "11–13 años": "Coordina varias demandas hacia objetivos",
+     "14–17 años": "Objetivos futuros"
+    },
+    "respaldo": "ALTO"
+   },
+   {
+    "dominio": "Persistencia",
+    "por_etapa": {
+     "2–3 años": "Dependiente del interés",
+     "4–5 años": "Actividades breves",
+     "6–7 años": "Puede continuar con apoyo",
+     "8–10 años": "Mayor mantenimiento del esfuerzo",
+     "11–13 años": "Mayor persistencia",
+     "14–17 años": "Mayor mantenimiento autónomo"
+    },
+    "respaldo": "MODERADO–ALTO"
+   },
+   {
+    "dominio": "Regulación del esfuerzo",
+    "por_etapa": {
+     "2–3 años": "Muy dependiente de apoyo e interés",
+     "4–5 años": "Esfuerzo breve",
+     "6–7 años": "Mayor mantenimiento",
+     "8–10 años": "Mayor capacidad ante demandas",
+     "11–13 años": "Mayor regulación",
+     "14–17 años": "Regulación orientada a objetivos"
+    },
+    "respaldo": "MODERADO–ALTO"
+   },
+   {
+    "dominio": "Recompensa / demora",
+    "por_etapa": {
+     "2–3 años": "Predominio de recompensa inmediata",
+     "4–5 años": "Puede esperar brevemente",
+     "6–7 años": "Aumenta capacidad de espera",
+     "8–10 años": "Mayor tolerancia a demora",
+     "11–13 años": "Objetivos futuros",
+     "14–17 años": "Mayor postergación de recompensa"
+    },
+    "respaldo": "ALTO"
+   },
+   {
+    "dominio": "Autorregulación",
+    "por_etapa": {
+     "2–3 años": "Principalmente externa",
+     "4–5 años": "Con ayuda adulta",
+     "6–7 años": "Mayor control voluntario",
+     "8–10 años": "Estrategias propias emergentes",
+     "11–13 años": "Mayor independencia",
+     "14–17 años": "Autorregulación progresiva"
+    },
+    "respaldo": "ALTO"
+   },
+   {
+    "dominio": "Variabilidad del desempeño",
+    "por_etapa": {
+     "2–3 años": "Muy dependiente de interés y situación",
+     "4–5 años": "Cambia según tarea",
+     "6–7 años": "Aumenta estabilidad, pero continúa variación",
+     "8–10 años": "Puede variar según demanda",
+     "11–13 años": "Variabilidad según condiciones",
+     "14–17 años": "Mayor regulación, aunque persiste variabilidad individual"
+    },
+    "respaldo": "MODERADO–ALTO"
+   },
+   {
+    "dominio": "Actividad motora",
+    "por_etapa": {
+     "2–3 años": "Movimiento elevado compatible con etapa",
+     "4–5 años": "Mayor ajuste al contexto",
+     "6–7 años": "Mayor adaptación a demanda escolar",
+     "8–10 años": "Mayor regulación",
+     "11–13 años": "Mayor regulación contextual",
+     "14–17 años": "Ajuste progresivo al contexto"
+    },
+    "respaldo": "MODERADO"
+   },
+   {
+    "dominio": "Espera",
+    "por_etapa": {
+     "2–3 años": "Limitada",
+     "4–5 años": "Puede esperar brevemente",
+     "6–7 años": "Puede esperar en situaciones estructuradas",
+     "8–10 años": "Mayor tolerancia",
+     "11–13 años": "Mayor control de respuesta",
+     "14–17 años": "Mayor demora voluntaria"
+    },
+    "respaldo": "ALTO"
+   },
+   {
+    "dominio": "Turnos",
+    "por_etapa": {
+     "2–3 años": "Requiere apoyo",
+     "4–5 años": "Puede turnarse en juegos",
+     "6–7 años": "Sigue turnos y reglas",
+     "8–10 años": "Mayor cumplimiento",
+     "11–13 años": "Mayor regulación social",
+     "14–17 años": "Mayor autorregulación"
+    },
+    "respaldo": "ALTO"
+   },
+   {
+    "dominio": "Juego",
+    "por_etapa": {
+     "2–3 años": "Exploración y juego simbólico inicial",
+     "4–5 años": "Juego simbólico y reglas simples",
+     "6–7 años": "Juegos reglados",
+     "8–10 años": "Actividades estructuradas",
+     "11–13 años": "Actividades con múltiples objetivos",
+     "14–17 años": "Actividades complejas orientadas a objetivos"
+    },
+    "respaldo": "MUY ALTO para primeros años; menor evidencia normativa específica posteriormente"
+   },
+   {
+    "dominio": "Actividad estructurada",
+    "por_etapa": {
+     "2–3 años": "Dependencia adulta",
+     "4–5 años": "Participación breve",
+     "6–7 años": "Actividad dirigida",
+     "8–10 años": "Actividades más prolongadas",
+     "11–13 años": "Actividades complejas",
+     "14–17 años": "Proyectos complejos"
+    },
+    "respaldo": "MODERADO–ALTO"
+   },
+   {
+    "dominio": "Autonomía",
+    "por_etapa": {
+     "2–3 años": "Alta dependencia",
+     "4–5 años": "Autonomía básica",
+     "6–7 años": "Independencia inicial",
+     "8–10 años": "Responsabilidad creciente",
+     "11–13 años": "Organización personal",
+     "14–17 años": "Autonomía progresiva"
+    },
+    "respaldo": "MODERADO–ALTO"
+   },
+   {
+    "dominio": "Adaptación al contexto",
+    "por_etapa": {
+     "2–3 años": "Alta dependencia de estructura",
+     "4–5 años": "Ajuste a reglas y situaciones",
+     "6–7 años": "Adaptación a demandas escolares",
+     "8–10 años": "Menor necesidad de estructura",
+     "11–13 años": "Mayor adaptación",
+     "14–17 años": "Mayor autorregulación contextual"
+    },
+    "respaldo": "MODERADO–ALTO"
+   }
+  ]
+ },
+ "perfiles": [
+  {
+   "Perfil": "1. Neuroquímico",
+   "Nivel global de evidencia": "ALTO",
+   "Qué representa": "Sistemas neuroquímicos implicados en la regulación de procesos y circuitos relevantes"
+  },
+  {
+   "Perfil": "2. Estructural",
+   "Nivel global de evidencia": "MEDIO–ALTO",
+   "Qué representa": "Diferencias neuroanatómicas y de trayectoria observadas principalmente a nivel grupal"
+  },
+  {
+   "Perfil": "3. Circuitos / Redes",
+   "Nivel global de evidencia": "ALTO",
+   "Qué representa": "Interacción funcional entre sistemas cerebrales distribuidos"
+  },
+  {
+   "Perfil": "4. Neuropsicológico",
+   "Nivel global de evidencia": "ALTO",
+   "Qué representa": "Procesos cognitivos y ejecutivos"
+  },
+  {
+   "Perfil": "5. Conductual",
+   "Nivel global de evidencia": "MUY ALTO",
+   "Qué representa": "Manifestación observable y clínicamente relevante"
+  },
+  {
+   "Perfil": "6. Contextual",
+   "Nivel global de evidencia": "MEDIO–ALTO",
+   "Qué representa": "Modulación del funcionamiento según condiciones individuales, ambientales y de tarea"
+  }
+ ],
+ "areas": [
+  {
+   "id": "atencion",
+   "nombre": "Atención",
+   "dominio_e2": "Atención",
+   "sistemas": "redes frontoparietales, cíngulo, ínsula y otros sistemas de control atencional descritos en neuroimagen funcional.",
+   "esperable_por_etapa": {
+    "2–3 años": "Atención breve y fácilmente desplazable",
+    "4–5 años": "Mayor permanencia en actividades breves",
+    "6–7 años": "Mayor atención dirigida",
+    "8–10 años": "Mayor duración y mantenimiento",
+    "11–13 años": "Mayor coordinación de demandas",
+    "14–17 años": "Atención más autónoma y estratégica"
+   },
+   "respaldo": "ALTO"
+  },
+  {
+   "id": "atencion_sostenida",
+   "nombre": "Atención sostenida",
+   "dominio_e2": "Atención sostenida",
+   "sistemas": "redes frontoparietales, cíngulo, ínsula y otros sistemas de control atencional descritos en neuroimagen funcional.",
+   "esperable_por_etapa": {
+    "2–3 años": "Breve",
+    "4–5 años": "Aumenta en actividades estructuradas",
+    "6–7 años": "Mayor permanencia",
+    "8–10 años": "Mayor mantenimiento",
+    "11–13 años": "Actividades prolongadas",
+    "14–17 años": "Tareas prolongadas y complejas"
+   },
+   "respaldo": "ALTO"
+  },
+  {
+   "id": "distractibilidad",
+   "nombre": "Distractibilidad / selección de información",
+   "dominio_e2": "Distractibilidad",
+   "sistemas": "redes frontoparietales, cíngulo, ínsula y otros sistemas de control atencional descritos en neuroimagen funcional.",
+   "esperable_por_etapa": {
+    "2–3 años": "Alta sensibilidad a estímulos competitivos",
+    "4–5 años": "Puede perder el foco",
+    "6–7 años": "Comienza a filtrar distractores",
+    "8–10 años": "Mayor resistencia",
+    "11–13 años": "Mayor regulación",
+    "14–17 años": "Mayor manejo estratégico"
+   },
+   "respaldo": "ALTO"
+  },
+  {
+   "id": "inhibicion",
+   "nombre": "Inhibición y control de respuesta",
+   "dominio_e2": "Inhibición",
+   "sistemas": "circuitos fronto-estriatales, regiones frontales inferiores, cíngulo anterior y estriado, con evidencia de convergencia en estudios de inhibición.",
+   "esperable_por_etapa": {
+    "2–3 años": "Control limitado",
+    "4–5 años": "Control inhibitorio emergente",
+    "6–7 años": "Mayor control de respuestas",
+    "8–10 años": "Mayor consistencia",
+    "11–13 años": "Mayor autorregulación",
+    "14–17 años": "Mayor control y demora de respuesta"
+   },
+   "respaldo": "MUY ALTO"
+  },
+  {
+   "id": "memoria_trabajo",
+   "nombre": "Memoria de trabajo",
+   "dominio_e2": "Memoria de trabajo",
+   "sistemas": "redes frontoparietales y su interacción con sistemas fronto-estriatales.",
+   "esperable_por_etapa": {
+    "2–3 años": "Capacidad limitada",
+    "4–5 años": "Secuencias sencillas",
+    "6–7 años": "Mantiene información para la tarea",
+    "8–10 años": "Mantiene varios elementos",
+    "11–13 años": "Manipula e integra información",
+    "14–17 años": "Integra información compleja"
+   },
+   "respaldo": "MUY ALTO"
+  },
+  {
+   "id": "mantenimiento_objetivos",
+   "nombre": "Mantenimiento de objetivos",
+   "dominio_e2": "Mantenimiento de objetivos",
+   "sistemas": "redes frontoparietales y su interacción con sistemas fronto-estriatales.",
+   "esperable_por_etapa": {
+    "2–3 años": "Objetivos inmediatos",
+    "4–5 años": "Objetivos simples",
+    "6–7 años": "Mantiene objetivo durante la tarea",
+    "8–10 años": "Mantiene objetivos ante distractores",
+    "11–13 años": "Mantiene objetivos entre demandas",
+    "14–17 años": "Mantiene objetivos complejos y futuros"
+   },
+   "respaldo": "ALTO"
+  },
+  {
+   "id": "planificacion",
+   "nombre": "Planificación",
+   "dominio_e2": "Planificación",
+   "sistemas": "redes de control ejecutivo, especialmente redes frontoparietales; la asociación neurobiológica es menos específica que en inhibición.",
+   "esperable_por_etapa": {
+    "2–3 años": "Acción y secuencia inmediata",
+    "4–5 años": "Pequeñas secuencias",
+    "6–7 años": "Planificación inicial",
+    "8–10 años": "Varios pasos",
+    "11–13 años": "Distribución temporal",
+    "14–17 años": "Proyectos y objetivos futuros"
+   },
+   "respaldo": "ALTO"
+  },
+  {
+   "id": "organizacion",
+   "nombre": "Organización",
+   "dominio_e2": "Organización",
+   "sistemas": "redes de control ejecutivo, especialmente redes frontoparietales; la asociación neurobiológica es menos específica que en inhibición.",
+   "esperable_por_etapa": {
+    "2–3 años": "Principalmente externa",
+    "4–5 años": "Rutinas y orden con ayuda",
+    "6–7 años": "Materiales básicos",
+    "8–10 años": "Responsabilidades escolares",
+    "11–13 años": "Múltiples responsabilidades",
+    "14–17 años": "Tiempo, prioridades y proyectos"
+   },
+   "respaldo": "MODERADO–ALTO"
+  },
+  {
+   "id": "flexibilidad",
+   "nombre": "Flexibilidad cognitiva",
+   "dominio_e2": "Flexibilidad cognitiva",
+   "sistemas": "redes distribuidas de control ejecutivo; mantener lenguaje cauteloso por heterogeneidad.",
+   "esperable_por_etapa": {
+    "2–3 años": "Inicial",
+    "4–5 años": "Aumenta progresivamente",
+    "6–7 años": "Adaptación a cambios",
+    "8–10 años": "Cambio de estrategias",
+    "11–13 años": "Adaptación contextual",
+    "14–17 años": "Modificación autónoma de planes"
+   },
+   "respaldo": "ALTO"
+  },
+  {
+   "id": "persistencia",
+   "nombre": "Persistencia",
+   "dominio_e2": "Persistencia",
+   "sistemas": "circuitos de recompensa, incluido el estriado, y sistemas dopaminérgicos/noradrenérgicos implicados en recompensa, saliencia, motivación y regulación del esfuerzo.",
+   "esperable_por_etapa": {
+    "2–3 años": "Dependiente del interés",
+    "4–5 años": "Actividades breves",
+    "6–7 años": "Puede continuar con apoyo",
+    "8–10 años": "Mayor mantenimiento del esfuerzo",
+    "11–13 años": "Mayor persistencia",
+    "14–17 años": "Mayor mantenimiento autónomo"
+   },
+   "respaldo": "MODERADO–ALTO"
+  },
+  {
+   "id": "regulacion_esfuerzo",
+   "nombre": "Regulación del esfuerzo",
+   "dominio_e2": "Regulación del esfuerzo",
+   "sistemas": "circuitos de recompensa, incluido el estriado, y sistemas dopaminérgicos/noradrenérgicos implicados en recompensa, saliencia, motivación y regulación del esfuerzo.",
+   "esperable_por_etapa": {
+    "2–3 años": "Muy dependiente de apoyo e interés",
+    "4–5 años": "Esfuerzo breve",
+    "6–7 años": "Mayor mantenimiento",
+    "8–10 años": "Mayor capacidad ante demandas",
+    "11–13 años": "Mayor regulación",
+    "14–17 años": "Regulación orientada a objetivos"
+   },
+   "respaldo": "MODERADO–ALTO"
+  },
+  {
+   "id": "variabilidad",
+   "nombre": "Variabilidad del desempeño",
+   "dominio_e2": "Variabilidad del desempeño",
+   "sistemas": "variable funcional robustamente asociada al TDAH; la evidencia no permite asignarla de forma fiable a una estructura única.",
+   "esperable_por_etapa": {
+    "2–3 años": "Muy dependiente de interés y situación",
+    "4–5 años": "Cambia según tarea",
+    "6–7 años": "Aumenta estabilidad, pero continúa variación",
+    "8–10 años": "Puede variar según demanda",
+    "11–13 años": "Variabilidad según condiciones",
+    "14–17 años": "Mayor regulación, aunque persiste variabilidad individual"
+   },
+   "respaldo": "MODERADO–ALTO"
+  },
+  {
+   "id": "actividad_motora",
+   "nombre": "Actividad motora",
+   "dominio_e2": "Actividad motora",
+   "sistemas": "sistemas motores, ganglios basales y cerebelo; utilizar asociación general y no localización individual.",
+   "esperable_por_etapa": {
+    "2–3 años": "Movimiento elevado compatible con etapa",
+    "4–5 años": "Mayor ajuste al contexto",
+    "6–7 años": "Mayor adaptación a demanda escolar",
+    "8–10 años": "Mayor regulación",
+    "11–13 años": "Mayor regulación contextual",
+    "14–17 años": "Ajuste progresivo al contexto"
+   },
+   "respaldo": "MODERADO"
+  },
+  {
+   "id": "autonomia",
+   "nombre": "Autonomía",
+   "dominio_e2": "Autonomía",
+   "sistemas": null,
+   "esperable_por_etapa": {
+    "2–3 años": "Alta dependencia",
+    "4–5 años": "Autonomía básica",
+    "6–7 años": "Independencia inicial",
+    "8–10 años": "Responsabilidad creciente",
+    "11–13 años": "Organización personal",
+    "14–17 años": "Autonomía progresiva"
+   },
+   "respaldo": "MODERADO–ALTO"
+  }
+ ],
+ "sugerencias": [
+  {
+   "id": "organizacion",
+   "areas": [
+    "organizacion",
+    "planificacion"
+   ],
+   "texto": "Cuando se identifiquen dificultades de organización, planificación, manejo de materiales o tiempo, pueden considerarse intervenciones específicas de habilidades organizacionales. La evidencia disponible muestra beneficios en habilidades organizacionales y efectos más modestos sobre inatención y desempeño académico.",
+   "refs": [
+    6
+   ],
+   "origen": "Etapa 9 §21.4"
+  },
+  {
+   "id": "familia",
+   "areas": [
+    "inhibicion",
+    "actividad_motora",
+    "autonomia"
+   ],
+   "texto": "Cuando exista un patrón de dificultades conductuales o de autorregulación en el hogar, pueden considerarse intervenciones conductuales y programas de entrenamiento para padres respaldados por la evidencia.",
+   "refs": [
+    7
+   ],
+   "origen": "Etapa 9 §21.5"
+  },
+  {
+   "id": "escolar",
+   "areas": [
+    "atencion",
+    "atencion_sostenida",
+    "distractibilidad",
+    "mantenimiento_objetivos"
+   ],
+   "texto": "Cuando las dificultades aparezcan en el colegio, pueden considerarse apoyos educativos individualizados, modificaciones ambientales, estrategias conductuales y apoyos organizacionales ajustados a las necesidades identificadas.",
+   "refs": [
+    1,
+    2
+   ],
+   "origen": "Etapa 9 §21.6"
+  },
+  {
+   "id": "sueno",
+   "tamizaje": "D",
+   "texto": "Cuando se identifiquen problemas de sueño, la IA debe abrir un módulo específico. Las intervenciones conductuales del sueño cuentan con evidencia de beneficio sobre resultados de sueño en niños con TDAH, aunque la literatura presenta heterogeneidad.",
+   "refs": [
+    8,
+    9
+   ],
+   "origen": "Etapa 9 §21.7"
+  },
+  {
+   "id": "actividad_fisica",
+   "areas": [
+    "actividad_motora",
+    "inhibicion",
+    "memoria_trabajo"
+   ],
+   "texto": "La actividad física puede aparecer como apoyo complementario cuando sea apropiada para el niño. La literatura reciente muestra efectos sobre síntomas nucleares y funciones ejecutivas, pero la certeza de evidencia varía según resultado y modalidad.",
+   "refs": [
+    10
+   ],
+   "origen": "Etapa 9 §21.8"
+  },
+  {
+   "id": "fortalezas",
+   "recursos": true,
+   "texto": "Si una determinada condición mejora el desempeño —por ejemplo, mayor estructura, retroalimentación, interés o apoyo externo—, la IA debe considerar esa condición como recurso para diseñar acciones funcionales.",
+   "refs": [],
+   "origen": "Etapa 9 §21.9"
+  },
+  {
+   "id": "medicas",
+   "siempre": true,
+   "texto": "Cuando una acción pueda implicar tratamiento farmacológico, la IA debe limitarse a identificar que existe una opción terapéutica respaldada por guías y derivar la decisión, selección, indicación y ajuste al profesional médico responsable. No debe prescribir, dosificar ni modificar tratamientos.",
+   "refs": [
+    1,
+    2
+   ],
+   "origen": "Etapa 9 §21.12"
+  }
+ ],
+ "referencias": {
+  "1": "American Academy of Pediatrics. Clinical Practice Guideline for the Diagnosis, Evaluation, and Treatment of ADHD in Children and Adolescents. Pediatrics. 2019;144(4):e20192528.",
+  "2": "NICE. Attention deficit hyperactivity disorder: diagnosis and management (NG87). Recommendations.",
+  "3": "Neural correlates of executive function and attention in children with ADHD: An ALE meta-analysis of task-based functional connectivity studies. Psychiatry Research. DOI: 10.1016/j.psychres.2024.116338. PMID: 39947841.",
+  "4": "ADHD and the Choice of Small Immediate Over Larger Delayed Rewards: A Comparative Meta-Analysis of Performance on Simple Choice-Delay and Temporal Discounting Paradigms. Journal of Attention Disorders. PMID: 29806533.",
+  "5": "Executive function in children with neurodevelopmental conditions: systematic review and meta-analysis. Nature Human Behaviour. 2024. PMID: 39424962.",
+  "6": "Meta-analysis of organizational skills interventions for children and adolescents with ADHD. Clinical Psychology Review. 2017;52:108–123. PMID: 28088557.",
+  "7": "Behavioral Parent Training for School-Aged Children With ADHD: A Systematic Review of Randomized Control Trials. Journal of Attention Disorders. PMID: 38083879.",
+  "8": "Behavioral Sleep Interventions for Children With ADHD: A Systematic Review and Meta-Analysis. Journal of Attention Disorders. 2022;26(14):1805–1821. PMID: 35758199.",
+  "9": "The influence of existing interventions on sleep of youth with ADHD: A meta-analysis of randomized controlled trials. Sleep Medicine Reviews. 2026. PMID: 42096966.",
+  "10": "Exercise for core ADHD symptoms and executive functions in children and adolescents with ADHD: A network and dose-response meta-analysis. Journal of Sport and Health Science. 2026. PMID: 42480697."
+ },
+ "instrumentos": [
+  {
+   "id": "RV",
+   "nombre": "Realidad virtual del proyecto (evidencia objetiva complementaria)",
+   "obligatorio": false,
+   "objetivo": true
+  },
+  {
+   "id": "NESPLORA",
+   "nombre": "Nesplora (evidencia objetiva complementaria)",
+   "obligatorio": false,
+   "objetivo": true
+  },
+  {
+   "id": "ESCALA-APODERADO",
+   "nombre": "Escala o cuestionario — apoderado",
+   "obligatorio": false
+  },
+  {
+   "id": "ESCALA-DOCENTE",
+   "nombre": "Escala o cuestionario — docente",
+   "obligatorio": false
+  },
+  {
+   "id": "NEUROPSICOLOGICA",
+   "nombre": "Evaluación neuropsicológica",
+   "obligatorio": false
+  },
+  {
+   "id": "OTRO",
+   "nombre": "Otro instrumento o documento clínico",
+   "obligatorio": false
+  }
+ ],
+ "instrumentos_origen": "Ningún documento vigente define instrumentos obligatorios (Etapa 8 — RV — no entregada): todos opcionales, D9",
+ "requisitos_informe_final": [
+  "fase_inicial_completa",
+  "entrevista_apoderado_cerrada",
+  "informe_escolar_segun_ruta",
+  "contradicciones_revisadas",
+  "decision_profesional"
+ ]
+}

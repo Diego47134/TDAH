@@ -1,0 +1,7782 @@
+ETAPA 1
+
+MODELO CIENTÍFICO Y ARQUITECTURA MULTIDIMENSIONAL DEL TDAH INFANTIL
+
+1. PROPÓSITO
+
+Establecer la base científica y conceptual del proyecto para comprender el TDAH infantil como un fenómeno del neurodesarrollo, multifactorial y heterogéneo.
+
+Esta etapa define:
+
+-   qué entendemos por TDAH;
+
+-   qué niveles de funcionamiento deben considerarse;
+
+-   cómo se organiza la evidencia científica;
+
+-   cuáles son los seis perfiles multidimensionales;
+
+-   qué representa cada perfil;
+
+-   qué tipo de evidencia sustenta cada nivel;
+
+-   cómo se relacionan los diferentes niveles;
+
+-   qué límites deben respetarse al interpretar la evidencia.
+
+Esta etapa constituye la base conceptual de las etapas posteriores.
+
+2. ¿QUÉ ES EL TDAH?
+
+El TDAH es un trastorno del neurodesarrollo caracterizado por un patrón persistente de inatención y/o hiperactividad-impulsividad, cuya expresión puede cambiar según la persona y la etapa del desarrollo.
+
+No debe entenderse únicamente como:
+
+-   un problema de conducta;
+
+-   un problema aislado de atención;
+
+-   una dificultad exclusivamente escolar;
+
+-   una alteración explicable por un único mecanismo.
+
+La expresión del funcionamiento debe interpretarse considerando el desarrollo esperado para la edad.
+
+El documento base establece esta perspectiva como principio general del modelo.
+
+3. EL TDAH ES MULTIFACTORIAL Y HETEROGÉNEO
+
+El TDAH no responde a una única causa.
+
+Su desarrollo y expresión pueden involucrar la interacción entre:
+
+-   factores genéticos;
+
+-   factores prenatales;
+
+-   factores perinatales;
+
+-   desarrollo cerebral;
+
+-   factores neurobiológicos;
+
+-   ambiente;
+
+-   contexto familiar;
+
+-   experiencias durante el desarrollo.
+
+La presencia de un factor asociado no significa que ese factor sea necesariamente la causa del TDAH.
+
+Regla fundamental
+
+Factor de riesgo ≠ causa demostrada.
+
+La heterogeneidad implica que los niños con TDAH no necesariamente presentan las mismas características neurobiológicas, neuropsicológicas, conductuales o contextuales.
+
+4. FACTORES GENÉTICOS
+
+La genética tiene una participación importante en el riesgo de desarrollar TDAH.
+
+El modelo considera una arquitectura poligénica, en la que múltiples variantes pueden contribuir al riesgo individual.
+
+La susceptibilidad genética interactúa con otros factores del desarrollo y del ambiente.
+
+Por ello, la genética debe incorporarse como parte de una explicación multifactorial y no como una determinación individual del trastorno.
+
+5. FACTORES PRENATALES Y PERINATALES
+
+Se han estudiado asociaciones entre TDAH y diversos factores prenatales y perinatales, entre ellos:
+
+-   exposición prenatal a tabaco;
+
+-   alcohol y otras sustancias;
+
+-   prematuridad;
+
+-   bajo peso al nacer;
+
+-   complicaciones perinatales;
+
+-   determinados factores ambientales;
+
+-   adversidad y estrés temprano.
+
+Estas asociaciones deben interpretarse diferenciando claramente:
+
+asociación → incidencia o modulación potencial → causalidad.
+
+El modelo no atribuye automáticamente a estos factores una alteración específica del niño.
+
+6. DESARROLLO CEREBRAL
+
+El TDAH debe comprenderse dentro del desarrollo del sistema nervioso.
+
+Durante la infancia y adolescencia se producen cambios progresivos en:
+
+-   corteza cerebral;
+
+-   sustancia blanca;
+
+-   estructuras subcorticales;
+
+-   cerebelo;
+
+-   conexiones cerebrales;
+
+-   redes funcionales;
+
+-   funciones ejecutivas.
+
+Los estudios de neuroimagen muestran diferencias de trayectoria cerebral entre grupos con y sin TDAH, pero existe heterogeneidad importante.
+
+Por tanto:
+
+No existe un marcador estructural individual capaz de diagnosticar TDAH.
+
+Las diferencias observadas en investigación corresponden principalmente a patrones de grupo y deben interpretarse dentro de la variabilidad individual.
+
+7. PRINCIPIO DE HETEROGENEIDAD
+
+El TDAH no presenta un único patrón neurobiológico.
+
+Puede existir variabilidad en:
+
+-   sistemas neuroquímicos;
+
+-   estructuras cerebrales;
+
+-   circuitos y redes;
+
+-   funciones neuropsicológicas;
+
+-   manifestaciones conductuales;
+
+-   condiciones contextuales.
+
+Por ello, el proyecto no pretende buscar “el cerebro con TDAH”, sino organizar diferentes niveles de evidencia que pueden contribuir a comprender el funcionamiento particular de cada niño.
+
+8. LOS SEIS PERFILES MULTIDIMENSIONALES
+
+Los seis perfiles representan niveles de análisis del mismo niño.
+
+No son seis tipos de TDAH.
+
+No son seis subtipos.
+
+No son seis diagnósticos.
+
+La estructura es:
+
+Factores genéticos + prenatales + perinatales + del desarrollo + familiares + ambientales
+
+↓
+
+1. Neuroquímico
+
+↓
+
+2. Estructural
+
+↓
+
+3. Circuitos / Redes
+
+↓
+
+4. Neuropsicológico
+
+↓
+
+5. Conductual
+
+↔
+
+6. Contextual
+
+Los perfiles permiten organizar la evidencia desde los mecanismos neurobiológicos hasta la expresión funcional observable.
+
+9. PERFIL 1 — NEUROQUÍMICO
+
+Definición
+
+Comprende la señalización y regulación de sistemas neuromoduladores, principalmente:
+
+-   dopaminérgicos;
+
+-   noradrenérgicos.
+
+Estos sistemas participan en procesos relacionados con:
+
+-   atención;
+
+-   selección de estímulos;
+
+-   motivación;
+
+-   esfuerzo;
+
+-   recompensa;
+
+-   anticipación;
+
+-   aprendizaje;
+
+-   control ejecutivo.
+
+Mecanismos considerados
+
+La regulación neuroquímica puede involucrar diferentes mecanismos:
+
+-   disponibilidad;
+
+-   síntesis;
+
+-   almacenamiento;
+
+-   liberación;
+
+-   recaptación;
+
+-   transporte;
+
+-   actividad de transportadores;
+
+-   receptores;
+
+-   sensibilidad receptorial;
+
+-   metabolismo;
+
+-   dinámica temporal de la señal;
+
+-   interacción dopaminérgica-noradrenérgica.
+
+Procesos asociados
+
+-   atención;
+
+-   inhibición;
+
+-   control ejecutivo;
+
+-   motivación;
+
+-   procesamiento de recompensa;
+
+-   regulación del esfuerzo;
+
+-   regulación de la respuesta.
+
+Conductas asociadas
+
+Pueden observarse:
+
+-   dificultad para mantener la atención;
+
+-   impulsividad;
+
+-   variabilidad del rendimiento;
+
+-   dificultad para mantener una conducta orientada a una meta;
+
+-   mayor dificultad frente a recompensas demoradas;
+
+-   dificultad para mantener determinadas tareas cuando aumentan las demandas.
+
+Estas conductas no permiten identificar por sí mismas un mecanismo neuroquímico específico.
+
+Nivel global de evidencia
+
+ALTO.
+
+El respaldo corresponde principalmente a investigación neurobiológica y neurofarmacológica sobre sistemas dopaminérgicos y noradrenérgicos relacionados con atención, control, motivación y recompensa.
+
+10. PERFIL 2 — ESTRUCTURAL
+
+Definición
+
+Comprende la maduración y organización de:
+
+-   corteza cerebral;
+
+-   sustancia blanca;
+
+-   estructuras subcorticales;
+
+-   cerebelo;
+
+-   conexiones estructurales.
+
+Procesos asociados
+
+Las estructuras involucradas participan en:
+
+-   control ejecutivo;
+
+-   inhibición;
+
+-   atención;
+
+-   memoria de trabajo;
+
+-   planificación;
+
+-   regulación conductual;
+
+-   coordinación motora;
+
+-   procesamiento temporal.
+
+Conductas asociadas
+
+Pueden observarse:
+
+-   dificultad para organizar actividades;
+
+-   dificultad para seguir secuencias de instrucciones;
+
+-   dificultad para mantener información relevante;
+
+-   dificultad para completar tareas;
+
+-   impulsividad;
+
+-   dificultades académicas.
+
+Estas conductas no permiten identificar una alteración estructural específica.
+
+Nivel global de evidencia
+
+MEDIO–ALTO.
+
+Los estudios de neuroimagen han identificado diferencias estructurales asociadas al TDAH, especialmente en determinadas estructuras subcorticales y trayectorias de maduración, pero existe heterogeneidad y no constituyen un marcador diagnóstico individual.
+
+11. PERFIL 3 — CIRCUITOS / REDES
+
+Definición
+
+Comprende la organización e interacción funcional de sistemas relacionados con:
+
+-   atención;
+
+-   control ejecutivo;
+
+-   saliencia;
+
+-   recompensa;
+
+-   regulación conductual;
+
+-   integración entre redes cerebrales de gran escala.
+
+Sistemas estudiados
+
+Entre ellos:
+
+-   redes frontoparietales;
+
+-   redes atencionales;
+
+-   red de saliencia;
+
+-   red por defecto (DMN);
+
+-   circuitos frontoestriatales;
+
+-   sistemas relacionados con recompensa.
+
+Procesos asociados
+
+-   selección de información;
+
+-   mantenimiento de objetivos;
+
+-   control ejecutivo;
+
+-   orientación atencional;
+
+-   cambio de tareas;
+
+-   control de interferencias;
+
+-   regulación de distractores;
+
+-   integración de información.
+
+Conductas asociadas
+
+Pueden observarse:
+
+-   distractibilidad;
+
+-   pérdida del objetivo;
+
+-   cambios frecuentes de actividad;
+
+-   errores frente a distractores;
+
+-   pérdida de instrucciones;
+
+-   variabilidad del desempeño;
+
+-   dificultad para mantener objetivos.
+
+Nivel global de evidencia
+
+ALTO.
+
+La investigación mediante neuroimagen funcional muestra diferencias de activación y conectividad relacionadas con atención y funciones ejecutivas en grupos con TDAH, pero no existe una única configuración de redes que caracterice a todos los casos.
+
+12. PERFIL 4 — NEUROPSICOLÓGICO
+
+Definición
+
+Comprende los procesos cognitivos y ejecutivos que pueden evaluarse funcionalmente.
+
+Incluye:
+
+-   atención sostenida;
+
+-   atención selectiva;
+
+-   inhibición;
+
+-   memoria de trabajo;
+
+-   flexibilidad cognitiva;
+
+-   planificación;
+
+-   organización;
+
+-   control ejecutivo;
+
+-   vigilancia;
+
+-   regulación del esfuerzo;
+
+-   regulación relacionada con recompensa y demora;
+
+-   procesamiento temporal.
+
+Procesos asociados
+
+-   selección atencional;
+
+-   mantenimiento de la atención;
+
+-   inhibición de respuestas;
+
+-   actualización de información;
+
+-   memoria de trabajo;
+
+-   cambio de estrategia;
+
+-   planificación;
+
+-   control de interferencias;
+
+-   regulación de la respuesta.
+
+Conductas asociadas
+
+Pueden observarse:
+
+-   omisiones;
+
+-   errores de comisión;
+
+-   respuestas impulsivas;
+
+-   respuestas anticipatorias;
+
+-   pérdida de información;
+
+-   dificultad para cambiar de estrategia;
+
+-   problemas de planificación;
+
+-   variabilidad del rendimiento.
+
+Variables objetivables
+
+Cuando se dispone de evaluación objetiva pueden estudiarse, según el instrumento:
+
+-   tiempo de reacción;
+
+-   variabilidad del tiempo de reacción;
+
+-   omisiones;
+
+-   comisiones;
+
+-   respuestas anticipatorias;
+
+-   inhibición;
+
+-   memoria de trabajo;
+
+-   flexibilidad;
+
+-   persistencia;
+
+-   desempeño bajo diferentes condiciones.
+
+La variabilidad del tiempo de reacción constituye una variable particularmente estudiada en TDAH.
+
+Nivel global de evidencia
+
+ALTO.
+
+Existe evidencia de diferencias asociadas al TDAH en múltiples procesos atencionales y ejecutivos, pero no existe un único déficit neuropsicológico presente en todos los niños.
+
+13. PERFIL 5 — CONDUCTUAL
+
+Definición
+
+Representa la manifestación observable del funcionamiento.
+
+Incluye:
+
+Inatención
+
+-   distracción;
+
+-   omisiones;
+
+-   pérdida de instrucciones;
+
+-   dificultad para terminar tareas;
+
+-   olvidos;
+
+-   desorganización;
+
+-   dificultad para mantener esfuerzo.
+
+Hiperactividad
+
+-   movimiento excesivo;
+
+-   dificultad para permanecer sentado;
+
+-   actividad motora elevada;
+
+-   inquietud.
+
+Impulsividad
+
+-   responder antes de tiempo;
+
+-   interrumpir;
+
+-   dificultad para esperar;
+
+-   actuar antes de evaluar consecuencias.
+
+También puede observarse:
+
+-   variabilidad conductual;
+
+-   dificultad para regular actividad;
+
+-   dificultad para mantener determinadas actividades.
+
+Condiciones de observación
+
+La conducta debe analizarse considerando:
+
+-   frecuencia;
+
+-   intensidad;
+
+-   duración;
+
+-   persistencia;
+
+-   variabilidad;
+
+-   contexto;
+
+-   situación;
+
+-   demanda;
+
+-   impacto funcional.
+
+Nivel global de evidencia
+
+MUY ALTO.
+
+Es el nivel directamente observable y clínicamente relevante, y constituye la manifestación central utilizada por los sistemas diagnósticos actuales.
+
+La conducta, sin embargo, no permite por sí sola determinar qué procesos neuropsicológicos, mecanismos neurobiológicos o condiciones contextuales están involucrados.
+
+14. PERFIL 6 — CONTEXTUAL
+
+Definición
+
+Analiza cómo cambia el funcionamiento según las condiciones en que el niño debe actuar.
+
+Incluye:
+
+-   hogar;
+
+-   escuela;
+
+-   actividades sociales;
+
+-   actividades estructuradas;
+
+-   actividades poco estructuradas;
+
+-   situaciones individuales;
+
+-   situaciones grupales.
+
+Condiciones relevantes
+
+-   estructura;
+
+-   supervisión;
+
+-   motivación;
+
+-   recompensa;
+
+-   duración;
+
+-   complejidad;
+
+-   distractores;
+
+-   demanda cognitiva;
+
+-   condiciones ambientales.
+
+Procesos modulados
+
+El contexto puede modificar las demandas sobre:
+
+-   atención;
+
+-   inhibición;
+
+-   memoria de trabajo;
+
+-   control ejecutivo;
+
+-   mantenimiento de objetivos;
+
+-   regulación conductual;
+
+-   esfuerzo cognitivo.
+
+Conductas asociadas
+
+El mismo niño puede mostrar cambios en:
+
+-   atención;
+
+-   impulsividad;
+
+-   actividad motora;
+
+-   persistencia;
+
+-   organización;
+
+-   rendimiento.
+
+Pregunta central
+
+¿Qué ocurre con el desempeño cuando cambia la condición?
+
+Por ejemplo:
+
+-   ¿aumentan los errores?
+
+-   ¿aumenta la variabilidad?
+
+-   ¿disminuye la persistencia?
+
+-   ¿cambia la inhibición?
+
+-   ¿mejora con mayor estructura?
+
+-   ¿empeora con distractores?
+
+-   ¿cambia con la duración?
+
+Nivel global de evidencia
+
+MEDIO–ALTO.
+
+Existe respaldo para considerar que las condiciones ambientales y las demandas de las tareas pueden modificar la expresión y el impacto funcional de las dificultades. Esto no significa que el contexto produzca TDAH.
+
+15. RESUMEN GENERAL DE LOS SEIS PERFILES
+
+  ------------------------------------------------------------------------------------------------------------------------------------------
+  Perfil                 Nivel global de evidencia   Qué representa
+  ---------------------- --------------------------- ---------------------------------------------------------------------------------------
+  1. Neuroquímico        ALTO                        Sistemas neuroquímicos implicados en la regulación de procesos y circuitos relevantes
+
+  2. Estructural         MEDIO–ALTO                  Diferencias neuroanatómicas y de trayectoria observadas principalmente a nivel grupal
+
+  3. Circuitos / Redes   ALTO                        Interacción funcional entre sistemas cerebrales distribuidos
+
+  4. Neuropsicológico    ALTO                        Procesos cognitivos y ejecutivos
+
+  5. Conductual          MUY ALTO                    Manifestación observable y clínicamente relevante
+
+  6. Contextual          MEDIO–ALTO                  Modulación del funcionamiento según condiciones individuales, ambientales y de tarea
+  ------------------------------------------------------------------------------------------------------------------------------------------
+
+La evidencia no tiene que ser del mismo tipo para los seis perfiles.
+
+16. QUÉ TIPO DE EVIDENCIA REPRESENTA CADA PERFIL
+
+Perfiles 1–3
+
+Principalmente evidencia procedente de:
+
+-   neurobiología;
+
+-   neuroimagen;
+
+-   estudios mecanísticos;
+
+-   estudios funcionales.
+
+Perfil 4
+
+Principalmente evidencia procedente de:
+
+-   investigación neuropsicológica;
+
+-   tareas experimentales;
+
+-   estudios objetivos del funcionamiento;
+
+-   metaanálisis de funciones cognitivas.
+
+Perfil 5
+
+Principalmente evidencia procedente de:
+
+-   observación;
+
+-   evaluación clínica;
+
+-   síntomas y conducta cotidiana;
+
+-   criterios diagnósticos.
+
+Perfil 6
+
+Principalmente evidencia procedente de:
+
+-   observación contextual;
+
+-   estudios sobre demandas;
+
+-   funcionamiento en distintos ambientes;
+
+-   condiciones que modifican la expresión de las dificultades.
+
+17. NEUROFISIOLOGÍA COMO DIMENSIÓN TRANSVERSAL
+
+La neurofisiología no constituye un séptimo perfil.
+
+Es una dimensión transversal que puede aportar información sobre la actividad y dinámica funcional del sistema nervioso mediante técnicas como:
+
+-   EEG;
+
+-   otras medidas neurofisiológicas.
+
+Esta información puede integrarse con:
+
+-   estructura;
+
+-   circuitos;
+
+-   procesos neuropsicológicos;
+
+-   conducta;
+
+-   contexto.
+
+Por lo tanto:
+
+1–6 = perfiles
+
+Neurofisiología = dimensión transversal.
+
+18. RELACIÓN ENTRE LOS PERFILES
+
+Los perfiles no deben interpretarse como compartimentos independientes.
+
+Una misma conducta puede estar relacionada con múltiples niveles.
+
+Por ejemplo:
+
+dificultad para completar una tarea
+
+puede relacionarse con:
+
+-   atención;
+
+-   memoria de trabajo;
+
+-   mantenimiento del objetivo;
+
+-   planificación;
+
+-   organización;
+
+-   persistencia;
+
+-   regulación del esfuerzo;
+
+-   distractibilidad;
+
+-   contexto.
+
+Por ello, el modelo no debe buscar una correspondencia de:
+
+una conducta → un perfil.
+
+Debe permitir:
+
+una conducta → múltiples variables → múltiples niveles de análisis.
+
+19. PRINCIPIO DE CONVERGENCIA
+
+La fortaleza del modelo proviene de la convergencia de diferentes niveles de evidencia y, especialmente, de la integración acumulativa de evidencias que distintas fuentes aportan sobre los mismos síntomas y patrones funcionales.
+
+Puede existir:
+
+convergencia
+
+cuando diferentes fuentes y niveles describen un patrón compatible.
+
+También puede existir:
+
+discrepancia
+
+cuando diferentes fuentes o niveles muestran resultados diferentes.
+
+Las discrepancias no deben eliminarse automáticamente.
+
+Pueden proporcionar información sobre:
+
+-   contexto;
+
+-   demanda;
+
+-   modalidad de evaluación;
+
+-   características de la tarea;
+
+-   supervisión;
+
+-   variabilidad individual.
+
+20. REGLAS CIENTÍFICAS DEL MODELO
+
+Regla 1
+
+No transformar automáticamente asociación en causalidad.
+
+Regla 2
+
+Un factor asociado al TDAH no implica que sea la causa del trastorno.
+
+Regla 3
+
+Una conducta no permite identificar por sí sola una alteración neuroquímica, estructural o de redes.
+
+Regla 4
+
+Los hallazgos neurobiológicos poblacionales no deben convertirse en biomarcadores individuales.
+
+Regla 5
+
+No existe una única alteración neurobiológica presente en todos los niños con TDAH.
+
+Regla 6
+
+Las dificultades neuropsicológicas no son exclusivas del TDAH.
+
+Regla 7
+
+El contexto puede modular la expresión del funcionamiento sin constituir necesariamente la causa del trastorno.
+
+Regla 8
+
+Los seis perfiles no representan seis tipos ni seis subtipos de TDAH.
+
+Regla 9
+
+No todos los niños tienen que presentar exactamente las mismas características en los seis perfiles.
+
+Regla 10
+
+Cada afirmación debe interpretarse según el tipo de evidencia que realmente la sustenta.
+
+La jerarquía general de interpretación es:
+
+evidencia directa → evidencia consistente pero heterogénea → asociación estadística → hipótesis.
+
+21. PRINCIPIO CENTRAL DEL MODELO MULTIDIMENSIONAL
+
+El modelo no busca responder solamente:
+
+¿Tiene esta conducta?
+
+Busca comprender:
+
+¿Qué diferencia funcional existe, en qué nivel puede expresarse, cómo se relacionan los distintos niveles y bajo qué condiciones aparece?
+
+Por ello, la conducta constituye el punto de observación más cercano al funcionamiento cotidiano, mientras que los demás perfiles permiten organizar hipótesis sobre los procesos y mecanismos relacionados.
+
+22. CONCLUSIÓN DE LA ETAPA 1
+
+La evidencia disponible permite sostener el TDAH como un trastorno del neurodesarrollo heterogéneo y multifactorial, cuyo funcionamiento puede organizarse mediante seis niveles de análisis:
+
+1. Neuroquímico
+2. Estructural
+3. Circuitos / Redes
+4. Neuropsicológico
+5. Conductual
+6. Contextual
+
+Estos perfiles no constituyen subtipos.
+
+Constituyen una arquitectura multidimensional para organizar la evidencia sobre el funcionamiento de un mismo niño.
+
+La principal conclusión de esta etapa es:
+
+El TDAH no puede reducirse a una única alteración neuroquímica, estructural, de redes, neuropsicológica, conductual o contextual. Su comprensión requiere integrar diferentes niveles de evidencia dentro de una perspectiva de neurodesarrollo y heterogeneidad individual.
+
+Esta etapa constituye la base científica sobre la cual se construyen:
+
+Etapa 2 — Trayectoria evolutiva 2–17 años
+Etapa 3 — Variables observables y estructura de datos
+Etapa 4 — Correspondencia con requerimientos diagnósticos
+Etapa 5 — Integración y contraste diagnóstico
+Etapa 6 — Trazabilidad y auditoría
+Etapa 7 — Entrevista adaptativa
+Etapa 8 — Tecnología de evaluación mediante realidad virtual
+Etapa 9 — Arquitectura e implementación de IA
+
+ETAPA 2
+
+TRAYECTORIA EVOLUTIVA 2–17 AÑOS
+
+Manual de referencia para la evaluación del desarrollo y futuro software
+
+Propósito
+
+Esta tabla constituye la trayectoria evolutiva de referencia del modelo.
+
+Integra las funciones y conductas esperables que anteriormente se encontraban distribuidas entre las tablas evolutivas de los seis perfiles.
+
+Su función es establecer una referencia para responder:
+
+¿Qué funciones se encuentran en desarrollo, qué conductas son razonablemente esperables para la etapa y qué demandas evolutivas enfrenta el niño?
+
+La secuencia de interpretación es:
+
+Edad → desarrollo esperado → función en desarrollo → conducta esperable → demanda evolutiva → conducta observada → diferencia → trayectoria individual → integración de los seis perfiles.
+
+Los rangos de edad son orientativos y no constituyen puntos de corte diagnósticos.
+
+1. REGLA CIENTÍFICA DE CONSTRUCCIÓN
+
+La trayectoria utiliza solamente afirmaciones que pueden ser sustentadas por evidencia del desarrollo.
+
+La evidencia puede provenir de:
+
+-   estudios longitudinales;
+
+-   estudios normativos;
+
+-   revisiones sistemáticas;
+
+-   metaanálisis;
+
+-   estudios experimentales de desarrollo;
+
+-   hitos evolutivos poblacionales.
+
+No se asignan porcentajes ni edades específicas cuando la fuente no los proporciona.
+
+Cuando existe evidencia sobre el desarrollo de una función, pero no sobre una conducta cotidiana específica, se describe la función y se evita convertirla en un supuesto hito universal.
+
+2. NIVEL DE RESPALDO CIENTÍFICO
+
+Para esta trayectoria se utiliza:
+
+MUY ALTO
+
+Existe evidencia convergente proveniente de metaanálisis, revisiones sistemáticas, grandes muestras normativas/longitudinales o referencias poblacionales bien establecidas.
+
+ALTO
+
+Existe evidencia consistente de estudios longitudinales, normativos o múltiples estudios convergentes.
+
+MODERADO–ALTO
+
+Existe evidencia consistente, pero la evidencia normativa específica por edad o la correspondencia entre función y conducta cotidiana es más limitada.
+
+MODERADO
+
+Existe evidencia parcial, indirecta o menos consistente para establecer una trayectoria normativa precisa.
+
+INSUFICIENTE
+
+No existe evidencia suficiente para utilizar la afirmación como referencia evolutiva.
+
+El nivel científico no significa que todos los niños deban presentar exactamente esa conducta. Indica la fuerza de la evidencia que respalda la trayectoria descrita.
+
+3. MATRIZ GENERAL DE LA TRAYECTORIA
+
+  ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  Dominio                                  2–3 años                                       4–5 años                                        6–7 años                                       8–10 años                               11–13 años                                 14–17 años                                                  Respaldo científico
+  ---------------------------------------- ---------------------------------------------- ----------------------------------------------- ---------------------------------------------- --------------------------------------- ------------------------------------------ ----------------------------------------------------------- ----------------------------------------------------------------------------------
+  Atención                                 Atención breve y fácilmente desplazable        Mayor permanencia en actividades breves         Mayor atención dirigida                        Mayor duración y mantenimiento          Mayor coordinación de demandas             Atención más autónoma y estratégica                         ALTO
+
+  Selección de información                 Selección limitada ante múltiples estímulos    Mayor orientación hacia información relevante   Comienza a filtrar distractores                Mejor selección frente a distractores   Selección entre múltiples demandas         Priorización de información                                 ALTO
+
+  Atención sostenida                       Breve                                          Aumenta en actividades estructuradas            Mayor permanencia                              Mayor mantenimiento                     Actividades prolongadas                    Tareas prolongadas y complejas                              ALTO
+
+  Inhibición                               Control limitado                               Control inhibitorio emergente                   Mayor control de respuestas                    Mayor consistencia                      Mayor autorregulación                      Mayor control y demora de respuesta                         MUY ALTO
+
+  Respuestas anticipatorias                Frecuentes ante espera o respuesta inmediata   Comienzan a disminuir                           Mayor control                                  Menor respuesta anticipatoria           Mayor capacidad para esperar               Mayor control de respuesta                                  ALTO
+
+  Memoria de trabajo                       Capacidad limitada                             Secuencias sencillas                            Mantiene información para la tarea             Mantiene varios elementos               Manipula e integra información             Integra información compleja                                MUY ALTO
+
+  Seguimiento de instrucciones             Instrucciones simples                          Secuencias sencillas                            Secuencias escolares                           Varios pasos                            Instrucciones más complejas                Ejecución progresivamente autónoma                          MODERADO–ALTO
+
+  Mantenimiento de información relevante   Muy breve                                      Mantiene información sencilla                   Mantiene información necesaria                 Mantiene varios elementos relevantes    Integra información durante la tarea       Mantiene información compleja                               MUY ALTO
+
+  Mantenimiento de objetivos               Objetivos inmediatos                           Objetivos simples                               Mantiene objetivo durante la tarea             Mantiene objetivos ante distractores    Mantiene objetivos entre demandas          Mantiene objetivos complejos y futuros                      ALTO
+
+  Distractibilidad                         Alta sensibilidad a estímulos competitivos     Puede perder el foco                            Comienza a filtrar distractores                Mayor resistencia                       Mayor regulación                           Mayor manejo estratégico                                    ALTO
+
+  Control de interferencias                Muy limitado                                   Emergente                                       En desarrollo                                  Mayor control                           Mayor regulación                           Control más estratégico                                     ALTO
+
+  Cambio de actividad                      Necesita ayuda                                 Cambia con apoyo                                Cambia siguiendo instrucciones                 Alterna demandas                        Cambia con menor supervisión               Cambia entre actividades complejas                          ALTO
+
+  Flexibilidad cognitiva                   Inicial                                        Aumenta progresivamente                         Adaptación a cambios                           Cambio de estrategias                   Adaptación contextual                      Modificación autónoma de planes                             ALTO
+
+  Cambio de estrategia                     Predominio de respuesta inmediata              Puede aceptar alternativas con ayuda            Comienza a modificar estrategias               Puede cambiar una estrategia ineficaz   Adapta estrategias                         Selecciona y modifica estrategias                           ALTO
+
+  Planificación                            Acción y secuencia inmediata                   Pequeñas secuencias                             Planificación inicial                          Varios pasos                            Distribución temporal                      Proyectos y objetivos futuros                               ALTO
+
+  Organización                             Principalmente externa                         Rutinas y orden con ayuda                       Materiales básicos                             Responsabilidades escolares             Múltiples responsabilidades                Tiempo, prioridades y proyectos                             MODERADO–ALTO
+
+  Conducta orientada a objetivos           Objetivos concretos                            Objetivos simples                               Metas inmediatas                               Mantiene metas durante tareas           Coordina varias demandas hacia objetivos   Objetivos futuros                                           ALTO
+
+  Persistencia                             Dependiente del interés                        Actividades breves                              Puede continuar con apoyo                      Mayor mantenimiento del esfuerzo        Mayor persistencia                         Mayor mantenimiento autónomo                                MODERADO–ALTO
+
+  Regulación del esfuerzo                  Muy dependiente de apoyo e interés             Esfuerzo breve                                  Mayor mantenimiento                            Mayor capacidad ante demandas           Mayor regulación                           Regulación orientada a objetivos                            MODERADO–ALTO
+
+  Recompensa / demora                      Predominio de recompensa inmediata             Puede esperar brevemente                        Aumenta capacidad de espera                    Mayor tolerancia a demora               Objetivos futuros                          Mayor postergación de recompensa                            ALTO
+
+  Autorregulación                          Principalmente externa                         Con ayuda adulta                                Mayor control voluntario                       Estrategias propias emergentes          Mayor independencia                        Autorregulación progresiva                                  ALTO
+
+  Variabilidad del desempeño               Muy dependiente de interés y situación         Cambia según tarea                              Aumenta estabilidad, pero continúa variación   Puede variar según demanda              Variabilidad según condiciones             Mayor regulación, aunque persiste variabilidad individual   MODERADO–ALTO
+
+  Actividad motora                         Movimiento elevado compatible con etapa        Mayor ajuste al contexto                        Mayor adaptación a demanda escolar             Mayor regulación                        Mayor regulación contextual                Ajuste progresivo al contexto                               MODERADO
+
+  Espera                                   Limitada                                       Puede esperar brevemente                        Puede esperar en situaciones estructuradas     Mayor tolerancia                        Mayor control de respuesta                 Mayor demora voluntaria                                     ALTO
+
+  Turnos                                   Requiere apoyo                                 Puede turnarse en juegos                        Sigue turnos y reglas                          Mayor cumplimiento                      Mayor regulación social                    Mayor autorregulación                                       ALTO
+
+  Juego                                    Exploración y juego simbólico inicial          Juego simbólico y reglas simples                Juegos reglados                                Actividades estructuradas               Actividades con múltiples objetivos        Actividades complejas orientadas a objetivos                MUY ALTO para primeros años; menor evidencia normativa específica posteriormente
+
+  Actividad estructurada                   Dependencia adulta                             Participación breve                             Actividad dirigida                             Actividades más prolongadas             Actividades complejas                      Proyectos complejos                                         MODERADO–ALTO
+
+  Autonomía                                Alta dependencia                               Autonomía básica                                Independencia inicial                          Responsabilidad creciente               Organización personal                      Autonomía progresiva                                        MODERADO–ALTO
+
+  Adaptación al contexto                   Alta dependencia de estructura                 Ajuste a reglas y situaciones                   Adaptación a demandas escolares                Menor necesidad de estructura           Mayor adaptación                           Mayor autorregulación contextual                            MODERADO–ALTO
+  ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+La base para los dominios ejecutivos es especialmente sólida: un metaanálisis de 2024 sintetizó 180 estudios sobre atención, inhibición, flexibilidad, planificación y memoria de trabajo en menores de 18 años; además, existen datos normativos de 3–21 años para funciones ejecutivas y estudios longitudinales específicos de planificación.
+
+La memoria de trabajo tiene actualmente una evidencia especialmente robusta: un metaanálisis de 2026 reunió 99 estudios y 35.858 participantes de 3–17 años y encontró una trayectoria positiva, con mayores incrementos entre aproximadamente 3 y 8 años y desaceleración posterior.
+
+4. ETAPA 2–3 AÑOS
+
+Etapa funcional
+
+Exploración + juego + interacción + rutinas + regulación principalmente externa.
+
+Atención
+
+Conductas esperables
+
+-   atención breve;
+
+-   atención fácilmente desplazable;
+
+-   mayor concentración durante actividades atractivas;
+
+-   cambio frecuente de foco;
+
+-   necesidad de redirección adulta.
+
+Respaldo científico: ALTO
+
+La atención y el autocontrol se encuentran en desarrollo temprano; existen estudios longitudinales desde los 2–3 años.
+
+Inhibición
+
+Conductas esperables
+
+-   control limitado;
+
+-   respuestas rápidas;
+
+-   puede actuar antes de completar una instrucción;
+
+-   necesita ayuda para detenerse.
+
+Respaldo científico: MUY ALTO
+
+El control inhibitorio presenta cambios evolutivos documentados desde los primeros años.
+
+Memoria de trabajo
+
+Conductas esperables
+
+-   sigue instrucciones simples;
+
+-   mantiene una consigna breve;
+
+-   puede perder información cuando aumenta la cantidad de elementos.
+
+Respaldo científico: ALTO
+
+Flexibilidad
+
+Conductas esperables
+
+-   puede presentar dificultad ante cambios;
+
+-   necesita anticipación;
+
+-   puede requerir ayuda para abandonar una actividad.
+
+Respaldo científico: ALTO
+
+Planificación
+
+Conductas esperables
+
+-   acciones dirigidas hacia objetivos inmediatos;
+
+-   secuencias simples;
+
+-   organización principalmente proporcionada por el adulto.
+
+Respaldo científico: MODERADO–ALTO
+
+Juego
+
+Conductas esperables
+
+-   exploración;
+
+-   juego funcional;
+
+-   aparición del juego simbólico.
+
+Respaldo científico: MUY ALTO para los hitos generales de desarrollo temprano.
+
+Autonomía
+
+Alta dependencia del adulto.
+
+Respaldo científico: MODERADO–ALTO
+
+Demanda evolutiva
+
+Explorar → jugar → seguir rutinas → comenzar a regularse con ayuda.
+
+5. ETAPA 4–5 AÑOS
+
+Etapa funcional
+
+Preescolar + juego organizado + reglas + instrucciones + mayor autorregulación.
+
+Atención
+
+Puede:
+
+-   mantener una actividad breve;
+
+-   escuchar una actividad breve;
+
+-   completar actividades cortas;
+
+-   mantener mejor la atención cuando la actividad resulta atractiva.
+
+A los 5 años, el CDC incluye atención durante aproximadamente 5–10 minutos en determinadas actividades como escuchar una historia o hacer manualidades. Esta cifra es específica de esas actividades y no constituye un tiempo universal de atención.
+
+Respaldo científico: MUY ALTO para ese hito específico; ALTO para la trayectoria general.
+
+Inhibición
+
+Puede:
+
+-   seguir reglas sencillas;
+
+-   detener respuestas con indicación;
+
+-   esperar brevemente;
+
+-   controlar progresivamente respuestas impulsivas.
+
+Respaldo científico: MUY ALTO
+
+Espera y turnos
+
+Puede:
+
+-   esperar brevemente;
+
+-   turnarse;
+
+-   seguir reglas durante juegos.
+
+El CDC establece como hito de 5 años seguir reglas o turnarse en juegos con otros niños.
+
+Respaldo científico: MUY ALTO
+
+Memoria de trabajo e instrucciones
+
+Puede:
+
+-   mantener secuencias sencillas;
+
+-   recordar qué debe hacer;
+
+-   mantener una instrucción mientras ejecuta una actividad.
+
+Respaldo científico: ALTO
+
+Flexibilidad
+
+Puede:
+
+-   cambiar de actividad;
+
+-   aceptar reglas diferentes;
+
+-   considerar otra estrategia con ayuda.
+
+Respaldo científico: ALTO
+
+Planificación
+
+Puede:
+
+-   anticipar pequeños pasos;
+
+-   organizar una secuencia;
+
+-   dirigir acciones hacia un objetivo.
+
+Estudios experimentales de 4–5 años muestran desarrollo de la planificación y búsqueda anticipada.
+
+Respaldo científico: ALTO
+
+Juego
+
+Juego simbólico más elaborado y juegos con reglas sencillas.
+
+Respaldo científico: MUY ALTO
+
+Autonomía
+
+Autonomía básica en rutinas.
+
+El CDC también incluye a los 5 años tareas domésticas simples dentro de sus hitos.
+
+Respaldo científico: ALTO para hitos concretos; MODERADO–ALTO para una trayectoria general de autonomía.
+
+Demanda evolutiva
+
+Juego organizado → preescolar → reglas → instrucciones → turnos → autonomía básica.
+
+6. ETAPA 6–7 AÑOS
+
+Etapa funcional
+
+Inicio/consolidación de escolaridad formal.
+
+Atención
+
+Puede:
+
+-   mantener atención durante actividades dirigidas;
+
+-   seguir explicaciones;
+
+-   permanecer en una tarea durante períodos crecientes;
+
+-   regresar a la tarea después de una distracción con apoyo.
+
+Respaldo científico: ALTO
+
+Inhibición
+
+Puede:
+
+-   esperar;
+
+-   seguir reglas;
+
+-   controlar progresivamente impulsos;
+
+-   inhibir respuestas en situaciones estructuradas.
+
+Respaldo científico: MUY ALTO
+
+Memoria de trabajo
+
+Puede:
+
+-   mantener información necesaria para la tarea;
+
+-   recordar instrucciones;
+
+-   utilizar información mientras ejecuta una actividad.
+
+Respaldo científico: MUY ALTO
+
+Seguimiento de instrucciones
+
+Puede seguir secuencias de instrucciones escolares con apoyo progresivamente menor.
+
+Respaldo científico: MODERADO–ALTO
+
+Mantenimiento de objetivos
+
+Puede mantener objetivos concretos durante una actividad.
+
+Respaldo científico: ALTO
+
+Distractores e interferencia
+
+Puede comenzar a:
+
+-   filtrar distractores;
+
+-   mantener el objetivo;
+
+-   regresar al foco con apoyo.
+
+Respaldo científico: ALTO
+
+Flexibilidad
+
+Puede:
+
+-   cambiar de actividad;
+
+-   adaptarse a nuevas reglas;
+
+-   modificar estrategias sencillas.
+
+Respaldo científico: ALTO
+
+Planificación
+
+Puede:
+
+-   anticipar pasos;
+
+-   ordenar acciones;
+
+-   organizar tareas sencillas.
+
+Los estudios de planificación muestran desarrollo progresivo desde los 6 años.
+
+Respaldo científico: ALTO
+
+Organización
+
+Comienza a organizar materiales y responsabilidades básicas.
+
+Respaldo científico: MODERADO–ALTO
+
+Persistencia
+
+Puede continuar tareas con apoyo.
+
+Respaldo científico: MODERADO–ALTO
+
+Autonomía
+
+Aumenta progresivamente la independencia.
+
+Respaldo científico: MODERADO–ALTO
+
+Demanda evolutiva
+
+Escolaridad → atención dirigida → instrucciones → permanencia → reglas → autonomía inicial.
+
+7. ETAPA 8–10 AÑOS
+
+Etapa funcional
+
+Aumento de carga académica y de demandas ejecutivas.
+
+Atención
+
+Puede:
+
+-   mantener actividades más prolongadas;
+
+-   seleccionar información relevante;
+
+-   mantener objetivos frente a distractores;
+
+-   recuperar el foco;
+
+-   cambiar entre demandas.
+
+Un estudio de atención sostenida entre 5 y 12 años encontró desarrollo rápido entre aproximadamente 5–6 y 8–9 años, seguido de una estabilización relativa en algunos indicadores.
+
+Respaldo científico: ALTO
+
+Inhibición
+
+Puede:
+
+-   controlar respuestas impulsivas;
+
+-   esperar;
+
+-   revisar antes de responder;
+
+-   reducir respuestas anticipatorias.
+
+Respaldo científico: MUY ALTO
+
+Memoria de trabajo
+
+Puede:
+
+-   mantener varios elementos;
+
+-   seguir instrucciones de varios pasos;
+
+-   mantener información relevante mientras ejecuta;
+
+-   utilizar información almacenada durante la tarea.
+
+La evidencia de desarrollo de memoria de trabajo entre 3 y 17 años es especialmente fuerte.
+
+Respaldo científico: MUY ALTO
+
+Mantenimiento de objetivos
+
+Puede mantener una meta frente a distractores e interferencias.
+
+Respaldo científico: ALTO
+
+Flexibilidad y cambio de estrategia
+
+Puede:
+
+-   cambiar de actividad;
+
+-   alternar demandas;
+
+-   modificar una estrategia que no funciona.
+
+Respaldo científico: ALTO
+
+Planificación
+
+Puede:
+
+-   organizar varios pasos;
+
+-   anticipar necesidades;
+
+-   dividir parcialmente una tarea.
+
+Los estudios de planificación muestran mejor desempeño con la edad durante esta etapa.
+
+Respaldo científico: ALTO
+
+Organización
+
+Aumenta la responsabilidad por:
+
+-   materiales;
+
+-   tareas;
+
+-   actividades escolares.
+
+Respaldo científico: MODERADO–ALTO
+
+Persistencia
+
+Puede sostener esfuerzo en tareas menos atractivas.
+
+Respaldo científico: MODERADO–ALTO
+
+Autorregulación
+
+Comienza a utilizar estrategias propias.
+
+La autorregulación muestra trayectorias de crecimiento heterogéneas durante la infancia.
+
+Respaldo científico: ALTO
+
+Variabilidad
+
+El desempeño puede cambiar según:
+
+-   estructura;
+
+-   distractores;
+
+-   duración;
+
+-   complejidad;
+
+-   motivación;
+
+-   supervisión.
+
+Respaldo científico: MODERADO–ALTO
+
+Demanda evolutiva
+
+Mayor carga académica → tareas prolongadas → múltiples instrucciones → distractores → organización → menor supervisión.
+
+8. ETAPA 11–13 AÑOS
+
+Etapa funcional
+
+Transición hacia mayor autonomía y múltiples responsabilidades.
+
+Atención
+
+Puede:
+
+-   mantener objetivos durante actividades prolongadas;
+
+-   seleccionar información;
+
+-   coordinar varias demandas;
+
+-   recuperar el foco con menor ayuda.
+
+Respaldo científico: ALTO
+
+Inhibición
+
+Puede progresivamente:
+
+-   controlar respuestas;
+
+-   revisar;
+
+-   considerar consecuencias;
+
+-   retrasar respuestas inmediatas.
+
+Respaldo científico: MUY ALTO
+
+Memoria de trabajo
+
+Puede:
+
+-   mantener información;
+
+-   manipular información;
+
+-   integrar instrucciones;
+
+-   mantener objetivos entre actividades.
+
+Respaldo científico: MUY ALTO
+
+Flexibilidad
+
+Puede:
+
+-   cambiar estrategias;
+
+-   cambiar entre demandas;
+
+-   adaptar respuestas según la situación.
+
+Respaldo científico: ALTO
+
+Planificación
+
+Puede:
+
+-   planificar trabajos;
+
+-   organizar pasos;
+
+-   distribuir actividades;
+
+-   anticipar necesidades;
+
+-   comenzar a organizar tiempos.
+
+La planificación sigue mostrando cambios durante los primeros años de adolescencia.
+
+Respaldo científico: ALTO
+
+Organización
+
+Puede manejar progresivamente:
+
+-   materiales;
+
+-   horarios;
+
+-   tareas;
+
+-   múltiples responsabilidades.
+
+Respaldo científico: MODERADO–ALTO
+
+Conducta orientada a objetivos
+
+Puede mantener objetivos mientras coordina diferentes demandas.
+
+Respaldo científico: ALTO
+
+Persistencia y esfuerzo
+
+Mayor capacidad para mantener el esfuerzo ante tareas menos atractivas y objetivos demorados.
+
+Respaldo científico: MODERADO–ALTO
+
+Autorregulación
+
+Mayor participación en la regulación independiente.
+
+Respaldo científico: ALTO
+
+Demanda evolutiva
+
+Múltiples asignaturas → planificación → organización personal → responsabilidades → autonomía.
+
+9. ETAPA 14–17 AÑOS
+
+Etapa funcional
+
+Adolescencia + aumento de autonomía + planificación futura.
+
+Las funciones ejecutivas continúan desarrollándose durante la adolescencia; no deben considerarse completamente maduras al comienzo de esta etapa. Los datos normativos y longitudinales abarcan desde la infancia hasta la adolescencia tardía.
+
+Atención
+
+Puede progresivamente:
+
+-   mantener atención durante tareas prolongadas;
+
+-   seleccionar información;
+
+-   priorizar información;
+
+-   administrar distractores;
+
+-   recuperar el foco;
+
+-   distribuir atención entre demandas.
+
+Respaldo científico: ALTO
+
+Inhibición
+
+Puede progresivamente:
+
+-   detener respuestas;
+
+-   evaluar alternativas;
+
+-   considerar consecuencias;
+
+-   retrasar respuestas;
+
+-   posponer recompensas.
+
+Respaldo científico: MUY ALTO
+
+Memoria de trabajo
+
+Puede:
+
+-   mantener objetivos complejos;
+
+-   manipular información;
+
+-   integrar diferentes fuentes;
+
+-   coordinar información durante tareas prolongadas.
+
+El metaanálisis de 2026 confirma desarrollo continuo de memoria de trabajo entre 3 y 17 años, con una trayectoria curvilínea y variaciones según la tarea.
+
+Respaldo científico: MUY ALTO
+
+Flexibilidad
+
+Puede:
+
+-   modificar estrategias;
+
+-   cambiar planes;
+
+-   adaptarse a obstáculos;
+
+-   considerar alternativas.
+
+Respaldo científico: ALTO
+
+Planificación
+
+Puede progresivamente:
+
+-   establecer objetivos;
+
+-   dividir proyectos;
+
+-   organizar tiempos;
+
+-   priorizar;
+
+-   anticipar consecuencias;
+
+-   planificar a mayor plazo.
+
+Un estudio de planificación entre 10 y 30 años encontró desarrollo hasta aproximadamente los 17 años para problemas relativamente sencillos, mientras que tareas más complejas continuaban mostrando cambios posteriormente.
+
+Respaldo científico: ALTO
+
+Organización
+
+Puede progresivamente:
+
+-   administrar horarios;
+
+-   organizar proyectos;
+
+-   priorizar obligaciones;
+
+-   manejar múltiples responsabilidades.
+
+Respaldo científico: MODERADO–ALTO
+
+Conducta orientada a objetivos
+
+Puede mantener conductas dirigidas hacia objetivos futuros.
+
+Respaldo científico: ALTO
+
+Persistencia y esfuerzo
+
+Puede mantener esfuerzo hacia objetivos aunque la recompensa sea distante.
+
+Respaldo científico: MODERADO–ALTO
+
+Autorregulación
+
+Puede:
+
+-   utilizar estrategias propias;
+
+-   reconocer dificultades;
+
+-   buscar ayuda;
+
+-   modificar estrategias;
+
+-   regular progresivamente su conducta.
+
+Respaldo científico: ALTO
+
+Actividad motora
+
+La hiperactividad motora tiende a disminuir con el desarrollo en las trayectorias de TDAH, aunque la variabilidad individual es importante.
+
+Respaldo científico: MODERADO para establecer una norma conductual general; ALTO para la tendencia longitudinal específica de síntomas de TDAH.
+
+Autonomía
+
+Funcionamiento progresivamente autónomo.
+
+Respaldo científico: MODERADO–ALTO
+
+Demanda evolutiva
+
+Autonomía → planificación futura → priorización → múltiples responsabilidades → transición hacia funcionamiento adulto.
+
+10. TRAYECTORIAS TRANSVERSALES
+
+Atención
+
+Orientar → mantener → seleccionar → filtrar → distribuir → recuperar el foco → autorregular.
+
+Respaldo global: ALTO
+
+Inhibición
+
+Respuesta inmediata → detener con ayuda → esperar → inhibir → revisar → anticipar consecuencias.
+
+Respaldo global: MUY ALTO
+
+Memoria de trabajo
+
+Mantener información breve → seguir secuencias → mantener varios elementos → manipular → integrar información compleja.
+
+Respaldo global: MUY ALTO
+
+Seguimiento de instrucciones
+
+Instrucción simple → secuencia sencilla → varios elementos → múltiples pasos → instrucciones complejas.
+
+Respaldo global: MODERADO–ALTO
+
+Mantenimiento de objetivos
+
+Objetivo inmediato → objetivo simple → mantenimiento durante tarea → mantenimiento frente a distractores → objetivos múltiples → objetivos futuros.
+
+Respaldo global: ALTO
+
+Flexibilidad
+
+Cambiar con ayuda → cambiar actividad → adaptar reglas → cambiar estrategia → modificar planes.
+
+Respaldo global: ALTO
+
+Planificación
+
+Acción inmediata → secuencia simple → varios pasos → organización temporal → planificación futura.
+
+Respaldo global: ALTO
+
+Organización
+
+Organización externa → participación → materiales → responsabilidades → múltiples demandas → autonomía.
+
+Respaldo global: MODERADO–ALTO
+
+Persistencia
+
+Dependencia del interés → persistencia breve → continuidad con apoyo → esfuerzo sostenido → mantenimiento autónomo.
+
+Respaldo global: MODERADO–ALTO
+
+Autorregulación
+
+Regulación externa → regulación con ayuda → control voluntario → estrategias propias → regulación autónoma.
+
+Respaldo global: ALTO
+
+11. QUÉ SIGNIFICA EL NIVEL CIENTÍFICO
+
+El nivel científico no significa:
+
+“Todo niño debe comportarse exactamente de esta manera.”
+
+Significa:
+
+“La evidencia disponible permite sostener con este grado de confianza que esta función o trayectoria cambia de esta manera durante el desarrollo.”
+
+Esto es especialmente importante porque existe mayor evidencia normativa para algunas funciones cognitivas que para algunas conductas cotidianas.
+
+Por ejemplo:
+
+Memoria de trabajo → MUY ALTO
+
+porque existe evidencia normativa y metaanalítica amplia.
+
+Planificación → ALTO
+
+porque existen estudios evolutivos específicos y longitudinales.
+
+Atención sostenida → ALTO
+
+por estudios normativos y longitudinales, aunque la expresión depende de la tarea.
+
+Turnos a los 5 años → MUY ALTO
+
+porque existe un hito poblacional explícito del CDC.
+
+Organización cotidiana a los 11–13 años → MODERADO–ALTO
+
+porque es una síntesis evolutiva razonable, pero no existe una única norma poblacional universal que establezca exactamente qué nivel de organización debe presentar cada adolescente.
+
+12. PRINCIPIO DE USO EN LA EVALUACIÓN
+
+La tabla debe utilizarse así:
+
+Edad
+
+↓
+
+Qué función se encuentra en desarrollo
+
+↓
+
+Qué conducta es compatible con esa etapa
+
+↓
+
+Qué demanda enfrenta
+
+↓
+
+Qué conducta observamos
+
+↓
+
+Qué diferencia existe
+
+↓
+
+Qué tan frecuente, intensa, persistente y funcionalmente relevante es
+
+↓
+
+Cómo ha evolucionado
+
+↓
+
+Qué condiciones modifican su expresión
+
+↓
+
+Integración de los seis perfiles
+
+13. COMPENSACIÓN
+
+Debe registrarse también la diferencia entre:
+
+CAPACIDAD
+
+EFICIENCIA
+
+AUTONOMÍA
+
+Un niño puede realizar una función adecuadamente cuando existe:
+
+-   estructura;
+
+-   supervisión;
+
+-   recordatorios;
+
+-   reducción de distractores;
+
+-   apoyo externo.
+
+Por ello, el software debe registrar:
+
+¿Puede hacerlo?
+
+y además:
+
+¿En qué condiciones puede hacerlo?
+
+y:
+
+¿Cuánto apoyo necesita?
+
+14. CATEGORÍAS DE TRAYECTORIA
+
+La trayectoria individual puede describirse como:
+
+Desarrollo esperado
+
+Progresión compatible con la etapa.
+
+Desarrollo más lento
+
+La función progresa, pero a menor ritmo.
+
+Desarrollo menos eficiente
+
+La función está presente, pero requiere mayor esfuerzo, tiempo o apoyo.
+
+Desarrollo variable
+
+El desempeño fluctúa considerablemente.
+
+Diferencia persistente y desproporcionada
+
+La diferencia se mantiene, supera lo esperable para la etapa y presenta impacto funcional.
+
+Estas categorías son descriptivas, no diagnósticas.
+
+15. PRINCIPIO FINAL
+
+La trayectoria evolutiva concentra la referencia temporal del modelo y reúne las funciones y conductas esperables que estaban distribuidas entre los seis perfiles. El nivel científico agregado indica cuán sólida es la evidencia que respalda cada trayectoria, sin convertir la tabla en un conjunto de puntos de corte diagnósticos.
+
+REFERENCIAS CIENTÍFICAS CENTRALES
+
+[1] Sadozai AK, et al. Executive function in children with neurodevelopmental conditions: a systematic review and meta-analysis. Nature Human Behaviour. 2024. Revisión sistemática y metaanálisis de 180 estudios sobre siete dominios ejecutivos.
+
+[2] Developmental differentiation of executive functions using the NIH Toolbox Cognition Battery. Muestra normativa de 1.020 participantes de 3–21 años.
+
+[3] Song & Cheng. The developmental trajectories of working memory updating from early childhood to adolescence: A meta-analysis. British Journal of Psychology. 2026. 99 estudios, 35.858 participantes, 3–17 años.
+
+[4] Injoque-Ricle I, et al. Tower of London: planning development in children from 6 to 13 years of age.
+
+[5] Looking ahead from age 6 to 13: a deeper insight into the development of planning ability.
+
+[6] Thinking around the corner: the development of planning abilities. Estudio de planificación en niños de 4–5 años.
+
+[7] The development of sustained attention in children: the effect of age and task load. Estudio normativo de atención sostenida entre 5 y 12 años.
+
+[8] The development of self-regulation across early childhood. Estudio longitudinal de 1.386 niños entre 3 y 7 años, con diferentes trayectorias de desarrollo.
+
+[9] CDC. Milestones by 5 Years. Los hitos corresponden a conductas que al menos 75% de los niños puede realizar a determinada edad. Incluye atención de 5–10 minutos en actividades específicas, turnos/reglas y tareas domésticas simples.
+
+[10] CDC. Milestones by 2, 3, 4 and 5 Years. Referencias poblacionales para desarrollo temprano.
+
+ETAPA 3
+
+MATRIZ MAESTRA DE VARIABLES OBSERVABLES Y ESTRUCTURA DE DATOS PARA LA EVALUACIÓN MULTIDIMENSIONAL DEL TDAH
+
+1. PROPÓSITO
+
+La Etapa 3 transforma el modelo conceptual en una estructura organizada de variables que permita recoger, registrar, comparar e integrar información mediante el futuro sistema de IA.
+
+La matriz define:
+
+-   qué información se necesita obtener;
+
+-   qué variable representa esa información;
+
+-   cómo se manifiesta;
+
+-   cómo evoluciona;
+
+-   en qué contexto aparece;
+
+-   qué impacto produce;
+
+-   quién proporciona la información;
+
+-   qué evidencia objetiva puede existir;
+
+-   y cómo puede relacionarse con los seis perfiles.
+
+Esta etapa define qué información debe recoger el sistema, no las preguntas concretas que se utilizarán para obtenerla.
+
+2. PRINCIPIO CENTRAL
+
+La evaluación parte de la siguiente secuencia:
+
+Edad
+
+↓
+
+Desarrollo esperable
+
+↓
+
+Conducta esperable
+
+↓
+
+Conducta observada
+
+↓
+
+Diferencia respecto de lo esperable
+
+↓
+
+Trayectoria de esa diferencia
+
+↓
+
+Funcionamiento e impacto
+
+↓
+
+Contexto
+
+↓
+
+Integración de los seis perfiles
+
+↓
+
+Diagnóstico diferencial
+
+↓
+
+Hipótesis diagnóstica
+
+Los rangos de edad son referencias evolutivas orientativas y no puntos de corte diagnósticos.
+
+3. ESTRUCTURA DE LA INFORMACIÓN
+
+Cada variable deberá poder ser descrita mediante:
+
+3.1 Variable
+Qué queremos conocer.
+
+3.2 Conducta observable
+Cómo se manifiesta.
+
+3.3 Edad/etapa
+Qué sería esperable para esa etapa.
+
+3.4 Inicio
+Desde cuándo está presente.
+
+3.5 Evolución
+Cómo ha cambiado.
+
+3.6 Frecuencia
+Con qué frecuencia ocurre.
+
+3.7 Intensidad
+Con qué magnitud ocurre.
+
+3.8 Duración
+Cuánto dura la manifestación o el patrón.
+
+3.9 Persistencia
+Si se mantiene a través del tiempo.
+
+3.10 Contexto
+En qué condiciones aparece.
+
+3.11 Variabilidad
+Cómo cambia según las condiciones.
+
+3.12 Impacto
+Qué consecuencias produce.
+
+3.13 Fuente
+Quién proporciona la información.
+
+3.14 Consistencia
+Si diferentes fuentes coinciden.
+
+3.15 Evidencia objetiva
+Si existe observación o medida objetiva.
+
+3.16 Relación con perfiles
+Qué perfiles puede informar.
+
+3.17 Relaciones intrafuente y patrón conjunto de respuestas
+
+3.17.1 PRINCIPIO DE CONJUNTO
+
+Las respuestas de una misma fuente no deben interpretarse como unidades aisladas. Después de registrar cada respuesta, la IA debe actualizar una representación acumulativa del caso y revisar qué otras respuestas de esa fuente la refuerzan, matizan, contradicen o permiten desambiguarla.
+
+3.17.2 CONVERGENCIA INTRAFUENTE
+
+Cuando varias respuestas describan componentes relacionados de un mismo patrón funcional, deben integrarse como evidencia convergente. La convergencia aumenta la coherencia descriptiva del patrón, pero no convierte automáticamente esa convergencia en un diagnóstico.
+
+3.17.3 DIVERGENCIA INTRAFUENTE
+
+Cuando una misma fuente entrega respuestas aparentemente incompatibles, la discrepancia debe conservarse y utilizarse para explorar condiciones de aparición, variabilidad, demandas, apoyos, motivación, contexto o posibles diferencias temporales. No debe promediarse ni eliminarse.
+
+3.17.4 ANÁLISIS DEL PATRÓN ANTES DEL CIERRE
+
+Antes de cerrar una rama, el sistema debe revisar si el conjunto de respuestas ya permite identificar un patrón suficientemente caracterizado y si existen candidatos DSM o variables funcionales que permanecen sin suficiente evidencia. El objetivo es evitar tanto la fragmentación de una misma historia en respuestas independientes como la simplificación prematura en una sola explicación.
+
+Las respuestas proporcionadas por una misma fuente deben analizarse no solo de manera individual, sino también como un conjunto. El sistema debe identificar si varias respuestas describen conductas relacionadas, un mismo encadenamiento funcional, un patrón convergente o posibles discrepancias.
+
+La integración intrafuente no reemplaza el análisis individual de cada dato. Su finalidad es determinar si distintas respuestas se apoyan mutuamente, qué variables comparten, qué información falta y qué hipótesis funcionales explican mejor el patrón conjunto.
+
+Una misma conducta puede mantener simultáneamente una correspondencia diagnóstica y varias relaciones funcionales. El análisis del patrón conjunto debe ayudar a desambiguar esas relaciones, pero nunca borrar una posible correspondencia con un síntoma DSM-5-TR.
+
+4. BLOQUE A — IDENTIFICACIÓN Y ETAPA EVOLUTIVA
+
+A1. Edad cronológica
+
+-   Edad actual.
+
+A2. Etapa evolutiva
+
+-   2–3 años
+
+-   4–5 años
+
+-   6–7 años
+
+-   8–10 años
+
+-   11–13 años
+
+-   14–17 años
+
+A3. Curso y situación escolar
+
+-   Curso.
+
+-   Nivel educacional.
+
+-   Trayectoria escolar.
+
+-   Demandas actuales.
+
+A4. Nivel de autonomía esperable
+
+-   Nivel de independencia correspondiente a la etapa evolutiva.
+
+5. BLOQUE B — TRAYECTORIA EVOLUTIVA
+
+Objetivo
+
+Reconstruir cómo se desarrolla el patrón a través del tiempo.
+
+B1. Inicio de la dificultad
+
+B1.1 Edad aproximada de inicio
+
+B1.2 Primera manifestación observada
+
+B1.3 Persona que la identificó inicialmente
+
+B1.4 Contexto inicial
+
+B1.5 Presencia antes de la escolarización
+
+B1.6 Presencia al inicio de la escolarización
+
+B2. Evolución de la dificultad
+
+B2.1 Aumento
+
+B2.2 Disminución
+
+B2.3 Persistencia
+
+B2.4 Fluctuación
+
+B2.5 Transformación de la manifestación
+
+B2.6 Aparición de nuevas dificultades
+
+B3. Aumento de las demandas del desarrollo esperables para el rango de edad
+
+Objetivo
+
+Determinar si la dificultad se hizo más evidente cuando aumentaron las demandas propias de una nueva etapa del desarrollo.
+
+B3.1 Cambio de etapa
+
+B3.2 Aumento de autonomía esperada
+
+B3.3 Aumento de duración de las actividades
+
+B3.4 Aumento de complejidad
+
+B3.5 Aumento de cantidad de pasos
+
+B3.6 Aumento de exigencia organizativa
+
+B3.7 Disminución de supervisión
+
+B3.8 Aumento de exigencia académica
+
+Tipos de aumento de demanda
+
+-   Mayor duración.
+
+-   Mayor complejidad.
+
+-   Mayor cantidad de información.
+
+-   Mayor cantidad de pasos.
+
+-   Mayor necesidad de organización.
+
+-   Mayor necesidad de autonomía.
+
+-   Mayor exigencia inhibitoria.
+
+-   Menor supervisión.
+
+-   Mayor responsabilidad académica.
+
+B4. Nivel de autonomía y apoyo requerido a lo largo del desarrollo
+
+B4.1 Autonomía esperada
+
+B4.2 Autonomía observada
+
+B4.3 Apoyo requerido
+
+B4.4 Dependencia de supervisión
+
+B4.5 Dependencia de estructura
+
+B4.6 Cambio al disminuir el apoyo
+
+B4.7 Cambio al aumentar el apoyo
+
+Concepto de compensación
+
+La compensación no constituye una variable diagnóstica independiente.
+
+Puede utilizarse posteriormente como concepto descriptivo cuando un desempeño adecuado depende de apoyos externos, estructura o supervisión.
+
+B5. Persistencia longitudinal
+
+B5.1 Continuidad
+
+B5.2 Recurrencia
+
+B5.3 Persistencia en diferentes períodos
+
+B5.4 Persistencia pese a cambios de contexto
+
+B5.5 Períodos de disminución o remisión
+
+B5.6 Duración del patrón sintomático
+
+6. BLOQUE C — SÍNTOMAS DIAGNÓSTICOS
+
+C1. Inatención
+
+C1.1
+
+Dificultades relacionadas con atención a detalles.
+
+C1.2
+
+Dificultad para mantener la atención.
+
+C1.3
+
+Dificultad para escuchar o mantener atención cuando se le habla.
+
+C1.4
+
+Dificultad para seguir instrucciones o completar tareas.
+
+C1.5
+
+Dificultad para organizar tareas y actividades.
+
+C1.6
+
+Evitación o resistencia ante tareas que requieren esfuerzo mental sostenido.
+
+C1.7
+
+Pérdida de objetos necesarios.
+
+C1.8
+
+Distracción fácil.
+
+C1.9
+
+Olvidos en actividades cotidianas.
+
+C2. Hiperactividad
+
+C2.1
+
+Inquietud motora.
+
+C2.2
+
+Dificultad para permanecer sentado.
+
+C2.3
+
+Actividad motora inapropiada para la situación.
+
+C2.4
+
+Dificultad para participar tranquilamente en actividades.
+
+C2.5
+
+Actividad excesiva o sensación de estar permanentemente en marcha.
+
+C2.6
+
+Habla excesiva.
+
+C3. Impulsividad
+
+C3.1
+
+Responder antes de tiempo.
+
+C3.2
+
+Dificultad para esperar el turno.
+
+C3.3
+
+Interrumpir o invadir actividades de otros.
+
+C3.4
+
+Actuar antes de evaluar consecuencias.
+
+REGLA DE DOBLE MAPEO DIAGNÓSTICO–FUNCIONAL
+
+REGLA DE INTEGRACIÓN INTERFUENTE POR SÍNTOMA
+
+Las evidencias procedentes de distintas fuentes deben integrarse por síntoma y por caso, no tratarse como unidades independientes solo porque aparezcan en documentos o respuestas diferentes.
+
+Para cada uno de los 18 síntomas DSM-5-TR debe existir un registro acumulativo de evidencia. Ese registro puede recibir observaciones del apoderado, colegio, adolescente, documentos, observación, instrumentos y realidad virtual cuando corresponda.
+
+3.17.5 REGLA DE EVIDENCIA ACUMULADA POR SÍNTOMA
+La integración entre fuentes no exige que cada fuente describa por separado todas las características de un síntoma. Cuando dos o más fuentes del mismo caso aportan descripciones directas o semánticamente equivalentes, esas evidencias pueden acumularse bajo el mismo candidato DSM-5-TR. La evidencia acumulada solo puede elevar el estado del candidato cuando, considerada en conjunto, caracteriza las características relevantes de ese síntoma específico. Una conducta meramente relacionada, compatible con otro síntoma o explicable por una variable funcional no debe utilizarse para completar artificialmente un síntoma distinto.
+Regla práctica: EVIDENCIA DIRECTA/EQUIVALENTE → ACUMULAR; EVIDENCIA RELACIONADA PERO NO EQUIVALENTE → MANTENER COMO CANDIDATO Y PROFUNDIZAR; AUSENCIA DE EVIDENCIA → NO INFORMADO/INSUFICIENTE.
+Ejemplo no exclusivo: “movimiento constante” informado por el apoderado y “movimiento frecuente” informado por el colegio pueden reunirse como evidencia convergente del mismo fenómeno motor. Esa convergencia puede apoyar el síntoma de actividad permanente cuando el contexto y la frecuencia aportados realmente lo caracterizan; no permite inferir automáticamente que la persona se levanta del asiento, habla excesivamente o tiene dificultad para participar tranquilamente.
+
+Cuando dos o más fuentes describan una misma conducta o un fenómeno funcional semánticamente equivalente que corresponda al mismo síntoma, la IA debe reunir esas evidencias bajo el mismo candidato DSM. La coincidencia no requiere que las fuentes utilicen las mismas palabras.
+
+La convergencia entre fuentes puede aumentar el nivel de apoyo de un síntoma, pero solo cuando la evidencia conjunta caracteriza realmente ese síntoma específico. Una conducta relacionada no debe utilizarse para confirmar otro síntoma distinto por mera semejanza.
+
+Ejemplo no exclusivo: si el apoderado describe inquietud o movimiento constante y el colegio informa movimiento frecuente en situaciones escolares, ambas observaciones deben integrarse como evidencia convergente del mismo caso y del mismo fenómeno motor. No se cuentan dos veces. Esa convergencia puede apoyar el síntoma de inquietud motora; no confirma automáticamente otros síntomas de hiperactividad que requieren características específicas adicionales.
+
+Regla de identidad del caso: todas las fuentes y sus observaciones se vinculan al mismo CASE_ID. El origen de la información cambia la fuente de evidencia, no convierte la observación en un caso distinto.
+
+Toda conducta relevante debe recorrer simultáneamente dos vías: (1) posible correspondencia con síntomas o requerimientos DSM-5-TR y (2) variables funcionales, neuropsicológicas, contextuales y de trayectoria.
+
+La correspondencia diagnóstica no debe inferirse solo porque exista una variable funcional, pero tampoco debe eliminarse una correspondencia diagnóstica porque la conducta tenga explicaciones funcionales alternativas. El sistema debe mantener ambas vías activas hasta que la información permita resolverlas.
+
+Cuando una conducta pueda corresponder explícitamente a un síntoma DSM-5-TR, ese candidato debe conservarse aunque también se relacione con varias variables funcionales. El recuento DSM se realiza por síntomas distintos y suficientemente caracterizados, sin duplicar una misma conducta como varios síntomas.
+
+7. BLOQUE D — PROCESOS FUNCIONALES Y NEUROPSICOLÓGICOS
+
+D1. ATENCIÓN
+
+D1.1 Atención general
+
+Capacidad para orientar y mantener recursos atencionales.
+
+D1.2 Selección de información
+
+Capacidad para seleccionar información relevante.
+
+D1.3 Atención sostenida
+
+Capacidad para mantener el desempeño durante una actividad prolongada.
+
+D2. INHIBICIÓN Y CONTROL DE RESPUESTA
+
+D2.1 Inhibición
+
+Capacidad para frenar una respuesta cuando corresponde.
+
+D2.2 Control de respuestas
+
+Capacidad para regular la ejecución de una respuesta.
+
+D2.3 Respuestas anticipatorias
+
+Tendencia a responder antes del momento adecuado.
+
+D2.4 Espera y turnos
+
+Capacidad para esperar y regular la conducta durante situaciones de turno.
+
+D3. MEMORIA DE TRABAJO Y MANTENIMIENTO
+
+D3.1 Memoria de trabajo
+
+Capacidad para mantener y manipular información.
+
+D3.2 Seguimiento de instrucciones
+
+Capacidad para mantener y ejecutar instrucciones.
+
+D3.3 Mantenimiento de información relevante
+
+Capacidad para conservar información necesaria durante la actividad.
+
+D3.4 Mantenimiento de objetivos
+
+Capacidad para mantener presente la meta de una actividad.
+
+D4. DISTRACCIÓN, INTERFERENCIA Y FLEXIBILIDAD
+
+D4.1 Distractibilidad
+
+D4.2 Control de interferencias
+
+D4.3 Cambio de actividad
+
+D4.4 Flexibilidad cognitiva
+
+D4.5 Cambio de estrategia
+
+D5. FUNCIONES EJECUTIVAS Y AUTORREGULACIÓN
+
+D5.1 Planificación
+
+D5.2 Organización
+
+D5.3 Conducta orientada a objetivos
+
+D5.4 Persistencia
+
+D5.5 Regulación del esfuerzo
+
+D5.6 Recompensa y demora
+
+D5.7 Autorregulación
+
+D6. VARIABILIDAD DEL DESEMPEÑO
+
+D6.1 Variabilidad
+
+Cambios del desempeño:
+
+-   entre actividades;
+
+-   dentro de una misma actividad;
+
+-   entre contextos;
+
+-   según motivación;
+
+-   según supervisión;
+
+-   según demanda.
+
+D7. ACTIVIDAD, AUTONOMÍA Y ADAPTACIÓN
+
+D7.1 Actividad motora
+
+D7.2 Juego y actividad estructurada
+
+D7.3 Autonomía
+
+D7.4 Adaptación a las demandas del contexto
+
+Los siete subbloques anteriores integran los 28 dominios evolutivos definidos previamente.
+
+8. BLOQUE E — CONDUCTAS OBSERVABLES
+
+E1. Manifestaciones de inatención
+
+E1.1
+
+Distracción.
+
+E1.2
+
+Omisiones.
+
+E1.3
+
+Pérdida de instrucciones.
+
+E1.4
+
+Olvidos.
+
+E1.5
+
+Dificultad para terminar.
+
+E1.6
+
+Pérdida del objetivo.
+
+E1.7
+
+Necesidad de recordatorios.
+
+E1.8
+
+Desorganización.
+
+E1.9
+
+REGLA GENERAL — PRESERVACIÓN DE CANDIDATOS DIAGNÓSTICOS
+
+Toda conducta relevante debe conservarse simultáneamente en el dominio descriptivo, en el dominio funcional y, cuando exista correspondencia explícita, en el dominio de posibles síntomas o requerimientos DSM-5-TR. Ninguna ruta puede borrar a las otras.
+
+Cuando una conducta sea compatible con un síntoma DSM-5-TR, el sistema debe abrir y mantener ese candidato hasta disponer de información suficiente para clasificarlo como apoyado, confirmado, posible, insuficiente, contradictorio o descartado por evidencia suficiente.
+
+La conducta debe caracterizarse antes de decidir su estado diagnóstico: qué ocurre exactamente, con qué frecuencia, en qué contextos, desde cuándo, con qué impacto, bajo qué demandas o apoyos y si existen explicaciones alternativas.
+
+La misma conducta puede aportar información a varias variables funcionales y a un candidato DSM. Esa convergencia no autoriza a contarla varias veces como síntomas distintos. El recuento diagnóstico se realiza por síntomas DSM diferenciados, no por número de variables derivadas.
+
+Ejemplo de aplicación, sin constituir una regla exclusiva: una actividad que queda sin finalizar puede aportar información sobre un síntoma DSM relacionado con finalizar tareas y, al mismo tiempo, sobre atención, seguimiento de instrucciones, mantenimiento de objetivos, organización, planificación, persistencia, regulación del esfuerzo, distractibilidad, duración, complejidad, motivación, estructura o supervisión. La arquitectura general se aplica del mismo modo a otras conductas.
+
+Abandono de tareas.
+
+E2. Manifestaciones de hiperactividad
+
+E2.1
+
+Movimiento excesivo.
+
+E2.2
+
+Inquietud.
+
+E2.3
+
+Levantarse.
+
+E2.4
+
+Cambio constante de actividad.
+
+E2.5
+
+Dificultad para permanecer en una actividad.
+
+E3. Manifestaciones de impulsividad
+
+E3.1
+
+Responder antes de tiempo.
+
+E3.2
+
+Interrumpir.
+
+E3.3
+
+No esperar.
+
+E3.4
+
+Actuar sin anticipar consecuencias.
+
+E3.5
+
+Responder anticipadamente.
+
+E4. Manifestaciones ejecutivas y organizativas
+
+E4.1
+
+Dificultad para organizar.
+
+E4.2
+
+Dificultad con tareas de varios pasos.
+
+E4.3
+
+Dificultad para planificar.
+
+E4.4
+
+Dificultad para iniciar.
+
+E4.5
+
+Dificultad para terminar.
+
+E4.6
+
+Dependencia de supervisión.
+
+E4.7
+
+Necesidad de estructura externa.
+
+9. BLOQUE F — FUNCIONAMIENTO E IMPACTO
+
+F1. Funcionamiento académico
+
+F1.1
+
+Rendimiento.
+
+F1.2
+
+Tareas.
+
+F1.3
+
+Pruebas.
+
+F1.4
+
+Trabajos.
+
+F1.5
+
+Cumplimiento.
+
+F1.6
+
+Organización escolar.
+
+F1.7
+
+Entrega de actividades.
+
+F1.8
+
+Pérdida de materiales.
+
+F2. Funcionamiento familiar
+
+F2.1
+
+Rutinas.
+
+F2.2
+
+Cumplimiento de instrucciones.
+
+F2.3
+
+Conflictos.
+
+F2.4
+
+Necesidad de supervisión.
+
+F2.5
+
+Organización cotidiana.
+
+F2.6
+
+Autonomía.
+
+F3. Funcionamiento social
+
+F3.1
+
+Relaciones con pares.
+
+F3.2
+
+Interrupciones.
+
+F3.3
+
+Espera.
+
+F3.4
+
+Regulación social.
+
+F3.5
+
+Conflictos.
+
+F3.6
+
+Participación grupal.
+
+F4. Funcionamiento cotidiano
+
+F4.1
+
+Organización personal.
+
+F4.2
+
+Responsabilidades.
+
+F4.3
+
+Manejo de tiempos.
+
+F4.4
+
+Actividades propias de la edad.
+
+F5. Impacto funcional
+
+F5.1
+
+Magnitud.
+
+F5.2
+
+Frecuencia.
+
+F5.3
+
+Consecuencias.
+
+F5.4
+
+Interferencia.
+
+F5.5
+
+Necesidad de ayuda.
+
+F5.6
+
+Necesidad de supervisión adicional.
+
+F5.7
+
+Relación entre dificultad e impacto funcional.
+
+10. BLOQUE G — CONTEXTO Y MODULACIÓN
+
+G1. Lugar
+
+G1.1
+
+Hogar.
+
+G1.2
+
+Colegio.
+
+G1.3
+
+Situaciones sociales.
+
+G1.4
+
+Actividades extracurriculares.
+
+G2. Estructura
+
+G2.1
+
+Alta estructura.
+
+G2.2
+
+Baja estructura.
+
+G3. Supervisión
+
+G3.1
+
+Alta.
+
+G3.2
+
+Moderada.
+
+G3.3
+
+Baja.
+
+G4. Motivación
+
+G4.1
+
+Actividad atractiva.
+
+G4.2
+
+Actividad poco atractiva.
+
+G5. Recompensa
+
+G5.1
+
+Inmediata.
+
+G5.2
+
+Demorada.
+
+G5.3
+
+Sin recompensa evidente.
+
+G6. Duración
+
+G6.1
+
+Actividad breve.
+
+G6.2
+
+Actividad prolongada.
+
+G7. Complejidad
+
+G7.1
+
+Simple.
+
+G7.2
+
+Varios pasos.
+
+G7.3
+
+Compleja.
+
+G8. Distractores
+
+G8.1
+
+Pocos.
+
+G8.2
+
+Muchos.
+
+G9. Demanda cognitiva
+
+G9.1
+
+Baja.
+
+G9.2
+
+Moderada.
+
+G9.3
+
+Alta.
+
+G10. Situación social
+
+G10.1
+
+Individual.
+
+G10.2
+
+Pequeño grupo.
+
+G10.3
+
+Grupo amplio.
+
+G11. Apoyos disponibles
+
+G11.1
+
+Supervisión.
+
+G11.2
+
+Estructuración externa.
+
+G11.3
+
+Recordatorios.
+
+G11.4
+
+Otros apoyos pertinentes.
+
+G12. Presencia del patrón por contexto
+
+G12.1
+
+Hogar.
+
+G12.2
+
+Colegio.
+
+G12.3
+
+Situaciones sociales.
+
+G12.4
+
+Otros contextos relevantes.
+
+G13. Distribución contextual del patrón
+
+G13.1
+
+Presente en un contexto.
+
+G13.2
+
+Presente en dos o más contextos.
+
+11. BLOQUE H — ANTECEDENTES Y FACTORES ASOCIADOS
+
+H1. Antecedentes familiares
+
+H1.1
+
+TDAH familiar.
+
+H1.2
+
+Antecedentes del neurodesarrollo.
+
+H1.3
+
+Otros antecedentes relevantes.
+
+H2. Antecedentes prenatales
+
+H2.1
+
+Tabaco.
+
+H2.2
+
+Alcohol.
+
+H2.3
+
+Otras sustancias.
+
+H2.4
+
+Estrés prenatal.
+
+H2.5
+
+Otros antecedentes pertinentes.
+
+H3. Antecedentes perinatales
+
+H3.1
+
+Prematuridad.
+
+H3.2
+
+Bajo peso.
+
+H3.3
+
+Complicaciones perinatales.
+
+H3.4
+
+Otros antecedentes neonatales relevantes.
+
+H4. Desarrollo
+
+H4.1
+
+Desarrollo motor.
+
+H4.2
+
+Lenguaje.
+
+H4.3
+
+Regulación.
+
+H4.4
+
+Autonomía.
+
+H4.5
+
+Trayectoria escolar.
+
+H5. Sueño
+
+H5.1
+
+Duración.
+
+H5.2
+
+Calidad.
+
+H5.3
+
+Problemas de sueño.
+
+H5.4
+
+Somnolencia.
+
+H5.5
+
+Variaciones relevantes.
+
+H6. Ambiente y adversidad
+
+H6.1
+
+Adversidad psicosocial.
+
+H6.2
+
+Conflicto familiar.
+
+H6.3
+
+Cambios ambientales relevantes.
+
+H6.4
+
+Organización familiar.
+
+H6.5
+
+Demandas ambientales.
+
+H7. Condiciones de vida
+
+H7.1
+
+Factores socioeconómicos relevantes.
+
+H7.2
+
+Cambios importantes del entorno.
+
+H7.3
+
+Acontecimientos vitales relevantes.
+
+12. BLOQUE I — EXPLICACIONES ALTERNATIVAS Y CONDICIONES CONCURRENTES
+
+I1. Aprendizaje
+
+Dificultades de aprendizaje que puedan afectar rendimiento, atención o conducta.
+
+I2. Lenguaje
+
+Dificultades de comprensión, expresión o procesamiento del lenguaje.
+
+I3. Sueño
+
+Problemas de sueño, duración insuficiente, mala calidad o somnolencia.
+
+I4. Aspectos emocionales
+
+Dificultades emocionales que puedan modificar atención, motivación, conducta o desempeño.
+
+I5. Aspectos conductuales
+
+Patrones conductuales cuya explicación pueda no corresponder exclusivamente a TDAH.
+
+I6. Desarrollo
+
+Dificultades o antecedentes del desarrollo que puedan contribuir al patrón observado.
+
+I7. Factores sensoriales y perceptivos
+
+I7.1 Audición
+
+-   Dificultades auditivas.
+
+-   Antecedentes de pérdida auditiva.
+
+-   Fluctuaciones de audición.
+
+-   Dificultad para comprender en ambientes ruidosos.
+
+I7.2 Sensibilidad al ruido
+
+-   Molestia intensa frente a determinados sonidos.
+
+-   Dificultad para permanecer en ambientes ruidosos.
+
+-   Evitación o irritabilidad frente al ruido.
+
+-   Cambios de atención o conducta asociados al ambiente sonoro.
+
+I7.3 Visión
+
+-   Dificultades visuales conocidas.
+
+-   Problemas visuales no corregidos.
+
+-   Molestias visuales durante determinadas actividades.
+
+I7.4 Sensibilidad a la luz
+
+-   Molestia o intolerancia frente a luz intensa.
+
+-   Evitación de determinados ambientes luminosos.
+
+-   Cambios de concentración o conducta asociados a determinadas condiciones de iluminación.
+
+-   Otras molestias asociadas que requieran consideración clínica.
+
+I7.5 Sensibilidad sensorial
+
+-   Sensibilidad auditiva.
+
+-   Sensibilidad visual.
+
+-   Sensibilidad táctil.
+
+-   Sensibilidad frente a determinadas características ambientales.
+
+-   Respuestas conductuales asociadas a experiencias sensoriales.
+
+I8. Condiciones físicas relevantes
+
+Condiciones que puedan influir en atención, sueño, energía, regulación o rendimiento.
+
+I9. Otros factores clínicamente relevantes
+
+Cualquier otra condición que pueda explicar, modificar, acompañar o requerir evaluación adicional.
+
+I10. Estado del hallazgo
+
+Cada condición identificada podrá registrarse como:
+
+-   No identificado.
+
+-   Posible.
+
+-   Presente.
+
+-   Condición conocida.
+
+-   Requiere evaluación adicional.
+
+-   Información insuficiente.
+
+13. BLOQUE J — FUENTE Y CALIDAD DE LA INFORMACIÓN
+
+J1. Fuente
+
+J1.1
+
+Apoderado.
+
+J1.2
+
+Profesor.
+
+J1.3
+
+Niño/adolescente.
+
+J1.4
+
+Profesional.
+
+J1.5
+
+Documento/antecedente.
+
+J1.6
+
+Realidad virtual.
+
+J2. Tipo de evidencia
+
+J2.1
+
+Relato.
+
+J2.2
+
+Observación.
+
+J2.3
+
+Cuestionario.
+
+J2.4
+
+Registro.
+
+J2.5
+
+Medida objetiva.
+
+J2.6
+
+Desempeño en RV.
+
+J3. Concordancia
+
+J3.1
+
+Coincidencia entre fuentes.
+
+J3.2
+
+Diferencia entre fuentes.
+
+J3.3
+
+Información insuficiente.
+
+14. BLOQUE K — REALIDAD VIRTUAL
+
+La realidad virtual constituye una fuente adicional de información objetiva.
+
+K1
+
+Tiempo de reacción.
+
+K2
+
+Variabilidad del tiempo de reacción.
+
+K3
+
+Omisiones.
+
+K4
+
+Comisiones.
+
+K5
+
+Respuestas anticipatorias.
+
+K6
+
+Inhibición.
+
+K7
+
+Mantenimiento de objetivos.
+
+K8
+
+Distractibilidad.
+
+K9
+
+Persistencia.
+
+K10
+
+Cambio del desempeño según condición.
+
+K11
+
+Desempeño bajo diferentes demandas.
+
+Las variables definitivas dependerán de las características y capacidades del sistema de realidad virtual seleccionado.
+
+15. RELACIÓN CON LOS SEIS PERFILES
+
+Los seis perfiles no constituyen seis cuestionarios independientes.
+
+La información obtenida a través de los bloques A–K será integrada posteriormente.
+
+Perfil 1 — Neuroquímico
+
+Puede recibir información funcional relacionada con:
+
+-   atención;
+
+-   inhibición;
+
+-   persistencia;
+
+-   esfuerzo;
+
+-   recompensa;
+
+-   demora;
+
+-   variabilidad.
+
+Su interpretación es funcional y mecanística; la conducta no permite identificar por sí misma una alteración neuroquímica individual específica.
+
+Perfil 2 — Estructural
+
+Puede recibir información relacionada con:
+
+-   organización;
+
+-   planificación;
+
+-   seguimiento de instrucciones;
+
+-   memoria de trabajo;
+
+-   control de respuestas;
+
+-   conducta orientada a objetivos.
+
+Las conductas no permiten identificar por sí mismas una alteración estructural individual específica.
+
+Perfil 3 — Circuitos/redes
+
+Puede integrar información relacionada con:
+
+-   selección;
+
+-   distractibilidad;
+
+-   interferencia;
+
+-   cambio;
+
+-   mantenimiento de objetivos;
+
+-   variabilidad.
+
+Perfil 4 — Neuropsicológico
+
+Integra principalmente:
+
+-   atención;
+
+-   inhibición;
+
+-   memoria de trabajo;
+
+-   flexibilidad;
+
+-   planificación;
+
+-   organización;
+
+-   esfuerzo;
+
+-   recompensa;
+
+-   variabilidad.
+
+Perfil 5 — Conductual
+
+Integra principalmente:
+
+-   inatención;
+
+-   hiperactividad;
+
+-   impulsividad;
+
+-   desorganización;
+
+-   dificultad para seguir instrucciones;
+
+-   dificultad para mantener actividades;
+
+-   variabilidad conductual.
+
+Perfil 6 — Contextual
+
+Integra:
+
+-   hogar;
+
+-   colegio;
+
+-   estructura;
+
+-   supervisión;
+
+-   motivación;
+
+-   recompensa;
+
+-   duración;
+
+-   complejidad;
+
+-   distractores;
+
+-   demanda cognitiva;
+
+-   apoyos.
+
+16. ESTRUCTURA OPERATIVA DE LA MATRIZ
+
+La información seguirá el siguiente recorrido:
+
+A — Identificación y edad
+
+↓
+
+B — Trayectoria
+
+↓
+
+C — Síntomas diagnósticos
+
+↓
+
+D — Procesos funcionales
+
+↓
+
+E — Conductas observables
+
+↓
+
+F — Funcionamiento e impacto
+
+↓
+
+G — Contexto y modulación
+
+↓
+
+H — Antecedentes y factores
+
+↓
+
+I — Explicaciones alternativas y condiciones concurrentes
+
+↓
+
+J — Fuente y calidad de información
+
+↓
+
+K — Realidad virtual
+
+↓
+
+Integración de los seis perfiles
+
+17. PRINCIPIO OPERATIVO PARA LA FUTURA IA
+
+La IA deberá seguir la siguiente secuencia:
+
+1. Identificar qué variable necesita conocer.
+
+2. Determinar qué información ya está disponible.
+
+3. Identificar qué información falta.
+
+4. Seleccionar la pregunta más eficiente para obtenerla.
+
+5. Registrar la respuesta en la variable correspondiente.
+
+6. Actualizar las variables cubiertas.
+
+7. Identificar nuevas necesidades de información.
+
+8. Integrar progresivamente la información del caso.
+
+La unidad básica será:
+
+Variable → pregunta → respuesta → clasificación → variables cubiertas → información faltante → nueva pregunta → integración.
+
+18. RESULTADO DE LA ETAPA 3
+
+La matriz define el mapa de información que deberá ser capaz de recoger el futuro sistema de evaluación.
+
+La estructura permite separar:
+
+qué queremos conocer
+
+de
+
+cómo se manifiesta
+
+de
+
+cuándo apareció
+
+de
+
+cómo evolucionó
+
+de
+
+qué demandas aumentaron la dificultad
+
+de
+
+qué nivel de autonomía presenta
+
+de
+
+cuánto apoyo necesita
+
+de
+
+en qué condiciones aparece
+
+de
+
+qué impacto produce
+
+de
+
+qué factores pueden modificar o explicar el patrón
+
+de
+
+quién proporciona la información
+
+de
+
+qué evidencia objetiva existe.
+
+La Etapa 3 queda preparada para el desarrollo de la Matriz de Trazabilidad Diagnóstica de la Etapa 4.
+
+Definiciones:
+
+Manifestaciones nucleares” se refiere a los síntomas centrales del TDAH: principalmente inatención y/o hiperactividad-impulsividad. Es decir, el núcleo que luego debe contrastarse con edad, persistencia, contexto e impacto
+
+Esto permite que una misma respuesta pueda alimentar múltiples variables sin multiplicar innecesariamente el número de preguntas.
+
+La matriz queda así preparada para la siguiente etapa:
+
+ETAPA 4 — CRUCE DE LAS VARIABLES CON LOS REQUERIMIENTOS DIAGNÓSTICOS Y CLÍNICOS.
+
+ETAPA 4
+
+MATRIZ DE CORRESPONDENCIA ENTRE EL MODELO MULTIDIMENSIONAL Y LOS REQUERIMIENTOS DIAGNÓSTICOS
+
+1. OBJETIVO
+
+Establecer la correspondencia entre:
+
+Requerimiento diagnóstico
+
+→ Variable de la Etapa 3
+
+→ Fuente de información
+
+→ Futura pregunta o instrumento
+
+→ Integración final
+
+La Etapa 4 determina qué información es:
+
+-   indispensable para la evaluación diagnóstica;
+
+-   necesaria para la caracterización funcional;
+
+-   complementaria;
+
+-   propia de la arquitectura multidimensional.
+
+2. REQUERIMIENTOS DIAGNÓSTICOS
+
+La evaluación deberá permitir determinar:
+
+R1. Síntomas de inatención
+
+R2. Síntomas de hiperactividad/impulsividad
+
+R3. Duración de los síntomas
+
+R4. Presencia de varios síntomas antes de los 12 años
+
+R5. Inadecuación o desproporción respecto del nivel de desarrollo
+
+R6. Presencia de síntomas en dos o más contextos
+
+R7. Interferencia o deterioro funcional
+
+R8. Ausencia de una explicación alternativa que explique mejor el patrón
+
+R9. Pesquisa de condiciones concurrentes
+
+R10. Información proveniente de múltiples fuentes relevantes
+
+La evaluación del TDAH debe determinar el cumplimiento de los criterios diagnósticos, considerar información de padres/cuidadores y fuentes escolares relevantes, documentar síntomas e interferencia en diferentes contextos y considerar explicaciones alternativas y condiciones concurrentes.
+
+3. CANTIDAD DE SÍNTOMAS
+
+Para los criterios DSM-5:
+
+Menores de 17 años
+
+6 o más síntomas de inatención y/o
+6 o más síntomas de hiperactividad/impulsividad.
+
+Desde los 17 años cumplidos
+
+5 o más síntomas de inatención y/o
+5 o más síntomas de hiperactividad/impulsividad.
+
+4. R1 — SÍNTOMAS DE INATENCIÓN
+
+  ------------------------------------------------------------------------------------------
+  Código   Síntoma
+  -------- ---------------------------------------------------------------------------------
+  R1.1     Dificultad para prestar atención a detalles / errores por descuido
+
+  R1.2     Dificultad para mantener la atención
+
+  R1.3     Parece no escuchar cuando se le habla directamente
+
+  R1.4     No sigue instrucciones o no completa tareas
+
+  R1.5     Dificultad para organizar tareas y actividades
+
+  R1.6     Evita o muestra resistencia ante tareas que requieren esfuerzo mental sostenido
+
+  R1.7     Pierde objetos necesarios
+
+  R1.8     Se distrae fácilmente
+
+  R1.9     Es olvidadizo en actividades cotidianas
+  ------------------------------------------------------------------------------------------
+
+Correspondencia con la Etapa 3
+
+C1
+
+-   
+
+D1
+
+-   
+
+D3
+
+-   
+
+D5
+
+-   
+
+E1
+
+5. R2 — SÍNTOMAS DE HIPERACTIVIDAD/IMPULSIVIDAD
+
+  --------------------------------------------------------------------------
+  Código   Síntoma
+  -------- -----------------------------------------------------------------
+  R2.1     Inquietud motora / mueve manos, pies o se mueve en el asiento
+
+  R2.2     Se levanta cuando se espera que permanezca sentado
+
+  R2.3     Corre, trepa o presenta inquietud inapropiada para la situación
+
+  R2.4     Dificultad para participar tranquilamente en actividades
+
+  R2.5     Actúa como si estuviera permanentemente en marcha
+
+  R2.6     Habla excesivamente
+
+  R2.7     Responde antes de que termine la pregunta
+
+  R2.8     Dificultad para esperar su turno
+
+  R2.9     Interrumpe o invade actividades de otros
+  --------------------------------------------------------------------------
+
+Correspondencia con la Etapa 3
+
+C2
+
+-   
+
+C3
+
+-   
+
+D2
+
+-   
+
+D7
+
+-   
+
+E2
+
+-   
+
+E3
+
+6. R3 — DURACIÓN
+
+Requisito
+
+Los síntomas deben estar presentes durante al menos seis meses y ser inconsistentes con el nivel de desarrollo.
+
+Correspondencia con la Etapa 3
+
+B2 — Evolución
+
+B5 — Persistencia longitudinal
+
+B5.6 — Duración del patrón sintomático
+
+Variable diagnóstica
+
+R3.1 — Presencia del patrón durante ≥6 meses
+
+7. R4 — INICIO ANTES DE LOS 12 AÑOS
+
+Requisito
+
+Varios síntomas deben haber estado presentes antes de los 12 años.
+
+Correspondencia con la Etapa 3
+
+B1 — Inicio
+
+B2 — Evolución
+
+B3 — Aumento de demandas
+
+Variables
+
+R4.1 — Edad de inicio de dificultades
+
+R4.2 — Presencia de varios síntomas relevantes antes de los 12 años
+
+Regla de cierre R4: una edad de inicio anterior a los 12 años no basta por sí sola. Debe existir evidencia de varios síntomas relevantes antes de esa edad. Si solo se conoce la edad de inicio de la dificultad general, R4 permanece en estado parcial o insuficiente.
+
+R4.3 — Evidencia de síntomas en diferentes etapas del desarrollo
+
+8. R5 — RELACIÓN CON EL NIVEL DE DESARROLLO
+
+Requisito
+
+Los síntomas deben ser incompatibles con el nivel de desarrollo esperado o excesivos respecto de lo esperable para la edad.
+
+Correspondencia con la Etapa 3
+
+A1 — Edad
+
+A2 — Etapa evolutiva
+
+B3 — Aumento de demandas
+
+D — Procesos funcionales
+
+E — Conductas observables
+
+Variables
+
+R5.1 — Conducta esperable para la edad
+
+R5.2 — Conducta observada
+
+R5.3 — Diferencia respecto de lo esperable
+
+R5.4 — Magnitud de la diferencia
+
+R5.5 — Persistencia de la diferencia
+
+9. R6 — PRESENCIA EN DOS O MÁS CONTEXTOS
+
+Requisito
+
+Varios síntomas deben estar presentes en dos o más contextos relevantes.
+
+Correspondencia con la Etapa 3
+
+G1 — Lugar
+
+G12 — Presencia del patrón por contexto
+
+G13 — Distribución contextual
+
+J1 — Fuente
+
+Variables
+
+R6.1 — Hogar
+
+R6.2 — Colegio
+
+R6.3 — Situaciones sociales
+
+R6.4 — Otros contextos relevantes
+
+R6.5 — Presencia del patrón en dos o más contextos
+
+10. R7 — INTERFERENCIA O DETERIORO FUNCIONAL
+
+Requisito
+
+Debe existir evidencia de interferencia o disminución de la calidad del funcionamiento social, escolar o laboral.
+
+Correspondencia con la Etapa 3
+
+F1 — Funcionamiento académico
+
+F2 — Funcionamiento familiar
+
+F3 — Funcionamiento social
+
+F4 — Funcionamiento cotidiano
+
+F5 — Impacto funcional
+
+Variables
+
+R7.1 — Impacto académico
+
+R7.2 — Impacto familiar
+
+R7.3 — Impacto social
+
+R7.4 — Impacto sobre autonomía
+
+R7.5 — Impacto sobre responsabilidades
+
+R7.6 — Magnitud de interferencia
+
+R7.7 — Consecuencias funcionales
+
+R7.8 — Relación entre dificultad e impacto
+
+11. R8 — EXPLICACIONES ALTERNATIVAS
+
+Requisito
+
+Los síntomas no deben estar mejor explicados por otra condición.
+
+Correspondencia con la Etapa 3
+
+I — Explicaciones alternativas y condiciones concurrentes
+
+Variables
+
+R8.1 — Aprendizaje
+
+R8.2 — Lenguaje
+
+R8.3 — Sueño
+
+R8.4 — Aspectos emocionales
+
+R8.5 — Aspectos conductuales
+
+R8.6 — Desarrollo
+
+R8.7 — Factores sensoriales y perceptivos
+
+R8.8 — Condiciones físicas
+
+R8.9 — Otros factores clínicamente relevantes
+
+12. R9 — CONDICIONES CONCURRENTES
+
+La evaluación debe pesquisar condiciones emocionales, conductuales, del desarrollo y físicas que puedan coexistir con TDAH.
+
+Correspondencia con la Etapa 3
+
+I1–I10
+
+Variables
+
+R9.1 — Indicadores emocionales
+
+R9.2 — Indicadores conductuales
+
+R9.3 — Indicadores de aprendizaje
+
+R9.4 — Indicadores de lenguaje
+
+R9.5 — Indicadores de otros trastornos del neurodesarrollo
+
+R9.6 — Indicadores de problemas de sueño
+
+R9.7 — Indicadores de condiciones físicas
+
+R9.8 — Indicadores sensoriales/perceptivos
+
+R9.9 — Otras condiciones concurrentes relevantes
+
+R9.10 — Necesidad de evaluación adicional
+
+13. R10 — MÚLTIPLES FUENTES DE INFORMACIÓN
+
+La evaluación debe incorporar información de padres/cuidadores y fuentes escolares relevantes, junto con otras fuentes clínicas pertinentes.
+
+Correspondencia con la Etapa 3
+
+J — Fuente y calidad de información
+
+Variables
+
+R10.1 — Apoderado
+
+R10.2 — Profesor
+
+R10.3 — Niño/adolescente
+
+R10.4 — Profesional
+
+R10.5 — Documentación
+
+R10.6 — Realidad virtual
+
+Variables de concordancia
+
+R10.7 — Coincidencia entre fuentes
+
+R10.8 — Diferencia entre fuentes
+
+R10.9 — Información insuficiente
+
+14. MATRIZ GENERAL DE COBERTURA
+
+  -----------------------------------------------------------------------------------
+  Requerimiento                             Etapa 3                  Estado
+  ----------------------------------------- ------------------------ ----------------
+  Síntomas de inatención                    C1, D1, D3, D5, E1       Cubierto
+
+  Síntomas de hiperactividad/impulsividad   C2, C3, D2, D7, E2, E3   Cubierto
+
+  Duración ≥6 meses                         B2, B5, B5.6             Cubierto
+
+  Inicio antes de 12 años                   B1, B2, B3               Cubierto
+
+  Relación con desarrollo                   A, B3, D, E              Cubierto
+
+  Dos o más contextos                       G12, G13, J              Cubierto
+
+  Deterioro funcional                       F                        Cubierto
+
+  Explicaciones alternativas                I                        Cubierto
+
+  Condiciones concurrentes                  I                        Cubierto
+
+  Información de padres/cuidadores          J                        Cubierto
+
+  Información escolar                       J + G                    Cubierto
+
+  Información del niño/adolescente          J                        Cubierto
+
+  Evidencia objetiva                        K                        Complementario
+
+  Trayectoria evolutiva                     B                        Modelo propio
+
+  Seis perfiles                             Integración              Modelo propio
+
+  Sensibilidad sensorial                    I7                       Complementario
+  -----------------------------------------------------------------------------------
+
+15. NÚCLEO DIAGNÓSTICO
+
+La evaluación diagnóstica deberá integrar:
+
+Síntomas
+
+↓
+
+Duración
+
+↓
+
+Inicio
+
+↓
+
+Nivel de desarrollo
+
+↓
+
+Dos o más contextos
+
+↓
+
+Interferencia funcional
+
+↓
+
+Explicaciones alternativas
+
+↓
+
+Condiciones concurrentes
+
+↓
+
+Múltiples fuentes
+
+16. CARACTERIZACIÓN FUNCIONAL
+
+La evaluación integral incorporará además:
+
+Trayectoria
+
+↓
+
+Funciones
+
+↓
+
+Conductas
+
+↓
+
+Autonomía
+
+↓
+
+Contexto
+
+↓
+
+Variabilidad
+
+↓
+
+Respuesta a demandas y apoyos
+
+17. ARQUITECTURA MULTIDIMENSIONAL
+
+La información será integrada adicionalmente mediante:
+
+Perfil 1
+
+Neuroquímico.
+
+Perfil 2
+
+Estructural.
+
+Perfil 3
+
+Circuitos/redes.
+
+Perfil 4
+
+Neuropsicológico.
+
+Perfil 5
+
+Conductual.
+
+Perfil 6
+
+Contextual.
+
+Los seis perfiles representan niveles diferentes de análisis y no seis tipos diferentes de TDAH.
+
+18. REALIDAD VIRTUAL
+
+La realidad virtual se considera:
+
+Fuente complementaria de evidencia objetiva.
+
+Sus resultados serán integrados con:
+
+-   entrevista;
+
+-   trayectoria;
+
+-   conducta;
+
+-   funcionamiento;
+
+-   contexto;
+
+-   información escolar;
+
+-   otras fuentes pertinentes.
+
+La RV no constituye un criterio diagnóstico independiente ni un perfil adicional.
+
+19. RESULTADO DE LA ETAPA 4
+
+La Etapa 4 establece la correspondencia entre:
+
+Requisito diagnóstico
+
+→ Variable
+
+→ Fuente
+
+→ Futura pregunta o instrumento
+
+→ Respuesta
+
+→ Interpretación
+
+→ Perfil o perfiles informados
+
+Esta estructura permitirá construir la siguiente etapa:
+
+MATRIZ DE TRAZABILIDAD DIAGNÓSTICA
+
+La Matriz de Trazabilidad deberá establecer para cada requisito y variable:
+
+-   pregunta;
+
+-   fuente;
+
+-   tipo de respuesta;
+
+-   información que cubre;
+
+-   variables adicionales que aporta;
+
+-   criterio de interpretación;
+
+-   relación con el modelo multidimensional.
+
+-   
+
+ETAPA 5 — MOTOR DE INTEGRACIÓN Y CONTRASTE DIAGNÓSTICO DEL TDAH
+
+CORRECCIÓN DE ARQUITECTURA — COBERTURA SINTOMÁTICA Y SÍNTESIS CLÍNICA
+
+El motor diagnóstico debe mantener un registro independiente para cada uno de los 9 síntomas de inatención y cada uno de los 9 síntomas de hiperactividad/impulsividad. Cada síntoma puede recibir evidencia desde cualquier conducta, respuesta, documento, informante u observación pertinente.
+
+La evidencia funcional no sustituye al registro sintomático. Del mismo modo, el registro sintomático no reemplaza la caracterización funcional. Ambos registros deben permanecer vinculados mediante trazabilidad.
+
+Antes de declarar que el número de síntomas es insuficiente, el sistema debe ejecutar una auditoría de cobertura: revisar todas las conductas y fuentes procesadas, comprobar qué síntomas tienen correspondencia explícita, verificar que cada candidato fue caracterizado y comprobar que no existan duplicaciones.
+
+El informe clínico final no debe presentar los códigos internos R1, R2, etc. como si fueran lenguaje clínico suficiente. Debe mostrar cada síntoma en lenguaje comprensible, indicar si existe evidencia suficiente o si permanece incierto y señalar las fuentes que lo apoyan. Los códigos y reglas de trazabilidad pueden quedar en un anexo técnico.
+
+1. PROPÓSITO DE LA ETAPA
+
+La Etapa 5 constituye el motor de integración y contraste diagnóstico del sistema.
+
+Su función es integrar toda la información obtenida durante la evaluación y contrastarla con los criterios diagnósticos del DSM-5-TR, manteniendo simultáneamente una caracterización profunda e individualizada del funcionamiento del niño.
+
+La Etapa 5 debe producir dos resultados diferenciados:
+
+Resultado A — Contraste diagnóstico
+
+Determinar si la información reunida permite sostener los requisitos diagnósticos del TDAH establecidos por DSM-5-TR.
+
+Resultado B — Caracterización multidimensional del funcionamiento
+
+Describir cómo funciona el niño, cuáles son sus principales áreas de dificultad, cuáles son sus áreas fortalecidas, cómo evoluciona su funcionamiento, en qué condiciones aumenta o disminuye la dificultad y qué impacto produce.
+
+Por tanto:
+
+DSM-5-TR = marco diagnóstico formal.
+
+Modelo multidimensional = profundidad de la caracterización funcional.
+
+2. PRINCIPIO CENTRAL
+
+2.1 REGISTRO INDEPENDIENTE DE LOS 18 SÍNTOMAS DSM-5-TR
+
+Cada uno de los nueve síntomas de inatención y de los nueve síntomas de hiperactividad/impulsividad debe mantenerse como una unidad diagnóstica independiente.
+
+La evidencia de un síntoma puede provenir de múltiples conductas y fuentes. La caracterización funcional puede explicar o modular esa evidencia, pero no puede borrar el candidato diagnóstico cuando existe correspondencia explícita.
+
+El recuento se realiza por síntomas DSM diferenciados y suficientemente caracterizados. Varias variables funcionales derivadas de una misma conducta no crean síntomas adicionales.
+
+El sistema no debe reducir la evaluación a:
+
+“¿Tiene TDAH?”
+
+Debe construir primero una representación individual del funcionamiento:
+
+Edad
+↓
+Desarrollo esperable
+↓
+Funcionamiento cognitivo esperable
+↓
+Conducta esperable
+↓
+Conducta observada
+↓
+Diferencia respecto de lo esperable
+↓
+Trayectoria
+↓
+Variables funcionales
+↓
+Contexto y demandas
+↓
+Impacto funcional
+↓
+Fuentes
+↓
+Evidencia objetiva / RV
+↓
+Explicaciones alternativas y condiciones concurrentes
+↓
+Contraste DSM-5-TR
+↓
+Integración multidimensional
+↓
+Resultado diagnóstico + caracterización funcional
+
+La comparación con el desarrollo es una herramienta de interpretación del funcionamiento. No constituye, por sí sola, un criterio DSM-5-TR adicional.
+
+3. POSICIÓN DEL DSM-5-TR DENTRO DEL PROYECTO
+
+Debe quedar explícitamente establecido:
+
+El diagnóstico de TDAH se contrasta de acuerdo con los criterios diagnósticos del DSM-5-TR.
+
+Nuestro modelo no modifica esos criterios.
+
+Nuestro modelo:
+
+-   organiza la información necesaria;
+
+-   contextualiza la conducta;
+
+-   incorpora la trayectoria;
+
+-   caracteriza el funcionamiento cognitivo;
+
+-   analiza la conducta;
+
+-   analiza el contexto;
+
+-   integra múltiples fuentes;
+
+-   incorpora evidencia objetiva complementaria;
+
+-   identifica áreas de dificultad;
+
+-   identifica áreas fortalecidas;
+
+-   analiza explicaciones alternativas;
+
+-   caracteriza los seis perfiles.
+
+Por tanto:
+
+DSM-5-TR → determina el marco diagnóstico.
+
+Modelo multidimensional → aporta profundidad clínica y funcional.
+
+El sistema debe dejar clara esta separación en el informe final.
+
+4. DIFERENCIA ENTRE ETAPA 4 Y ETAPA 5
+
+ETAPA 4 — CORRESPONDENCIA
+
+Pregunta:
+
+¿Qué información de nuestro modelo permite evaluar cada criterio diagnóstico?
+
+Produce:
+
+criterio → variables → fuentes → preguntas / instrumentos
+
+ETAPA 5 — CONTRASTE E INTEGRACIÓN
+
+Pregunta:
+
+¿Qué demuestra la información efectivamente obtenida respecto de cada criterio y qué revela sobre el funcionamiento global del niño?
+
+Produce:
+
+criterio → evidencia → estado del criterio → integración diagnóstica + caracterización funcional
+
+Por tanto:
+
+ETAPA 4 = CORRESPONDENCIA
+
+ETAPA 5 = CONTRASTE E INTEGRACIÓN
+
+ETAPA 6 = TRAZABILIDAD Y AUDITORÍA
+
+5. DOBLE SALIDA DE LA ETAPA 5
+
+La Etapa 5 debe producir dos resultados simultáneos.
+
+SALIDA A — DIAGNÓSTICA
+
+Resultado del contraste con DSM-5-TR.
+
+SALIDA B — FUNCIONAL
+
+Caracterización profunda del funcionamiento individual.
+
+Ambas salidas deben mantenerse diferenciadas.
+
+6. DOMINIO DIAGNÓSTICO Y DOMINIO FUNCIONAL
+
+DOMINIO DIAGNÓSTICO
+
+Incluye exclusivamente los elementos necesarios para el contraste con DSM-5-TR.
+
+DOMINIO FUNCIONAL
+
+Incluye:
+
+-   funcionamiento cognitivo;
+
+-   funciones neuropsicológicas;
+
+-   conducta;
+
+-   trayectoria;
+
+-   contexto;
+
+-   impacto;
+
+-   áreas de mayor dificultad;
+
+-   áreas fortalecidas;
+
+-   variabilidad;
+
+-   fortalezas relativas;
+
+-   seis perfiles;
+
+-   evidencia objetiva complementaria.
+
+Una variable funcional no constituye por sí sola un criterio DSM-5-TR. Sin embargo, el hecho de que una conducta pueda explicarse funcionalmente no elimina una correspondencia diagnóstica explícita. Cuando exista esa correspondencia, ambas rutas deben mantenerse y contrastarse por separado hasta resolver el estado de la evidencia.
+
+7. CRITERIOS DIAGNÓSTICOS DSM-5-TR
+
+Este es el núcleo formal del contraste diagnóstico.
+
+La evaluación debe mantener separados los síntomas del criterio A de los demás requisitos necesarios para establecer el diagnóstico.
+
+7.1 SÍNTOMAS DE INATENCIÓN
+
+Deben contrastarse los nueve síntomas:
+
+1.  dificultad para prestar atención a los detalles o cometer errores por descuido;
+
+2.  dificultad para mantener la atención;
+
+3.  parecer no escuchar cuando se le habla directamente;
+
+4.  dificultad para seguir instrucciones y finalizar tareas;
+
+5.  dificultad para organizar tareas y actividades;
+
+6.  evitar, rechazar o mostrar resistencia ante tareas que requieren esfuerzo mental sostenido;
+
+7.  perder objetos necesarios para las actividades;
+
+8.  distraerse fácilmente;
+
+9.  olvidar actividades cotidianas.
+
+7.2 SÍNTOMAS DE HIPERACTIVIDAD / IMPULSIVIDAD
+
+Deben contrastarse los nueve síntomas:
+
+1.  inquietud motora;
+
+2.  levantarse del asiento cuando se espera permanecer sentado;
+
+3.  correr o trepar en situaciones inapropiadas;
+
+4.  dificultad para participar tranquilamente;
+
+5.  actuar como si estuviera “en marcha” o impulsado por un motor;
+
+6.  hablar excesivamente;
+
+7.  responder antes de que termine la pregunta;
+
+8.  dificultad para esperar el turno;
+
+9.  interrumpir o invadir actividades de otras personas.
+
+Para personas menores de 17 años, el marco DSM-5-TR utiliza seis o más síntomas de inatención y/o seis o más de hiperactividad-impulsividad; desde los 17 años cumplidos, el umbral es de cinco en cada dominio.
+
+7.3 PERSISTENCIA DE LOS SÍNTOMAS
+
+Debe determinarse si los síntomas han estado presentes durante al menos seis meses y si el patrón se mantiene más allá de una situación puntual.
+
+La IA debe utilizar:
+
+-   trayectoria;
+
+-   continuidad;
+
+-   recurrencia;
+
+-   persistencia;
+
+-   fluctuaciones;
+
+-   períodos de disminución;
+
+-   cambios de manifestación.
+
+La persistencia debe analizarse longitudinalmente, no como una fotografía del momento actual.
+
+7.4 PRESENCIA DE VARIOS SÍNTOMAS ANTES DE LOS 12 AÑOS
+
+Debe determinarse si varios síntomas estaban presentes antes de los 12 años.
+
+La IA debe reconstruir:
+
+-   historia temprana;
+
+-   etapa preescolar;
+
+-   primeros años escolares;
+
+-   manifestaciones antes del aumento de demandas;
+
+-   edad de primera manifestación;
+
+-   edad de primera identificación.
+
+Debe diferenciar:
+
+inicio de la trayectoria
+
+de
+
+primera manifestación evidente
+
+y de
+
+momento de identificación clínica.
+
+El requisito DSM-5 cambió el límite de inicio desde antes de los 7 años a la presencia de varios síntomas antes de los 12 años.
+
+7.5 PRESENCIA DE VARIOS SÍNTOMAS EN DOS O MÁS CONTEXTOS
+
+Debe determinarse si varios síntomas están presentes en dos o más contextos relevantes.
+
+Los contextos pueden incluir:
+
+Hogar y familia
+
+-   hogar;
+
+-   actividades familiares;
+
+-   reuniones familiares;
+
+-   familia extensa.
+
+Educación
+
+-   aula;
+
+-   tareas;
+
+-   recreos;
+
+-   actividades académicas;
+
+-   actividades extracurriculares.
+
+Social
+
+-   amigos;
+
+-   compañeros;
+
+-   cumpleaños;
+
+-   fiestas;
+
+-   reuniones.
+
+Recreativo
+
+-   deportes;
+
+-   clubes;
+
+-   juegos;
+
+-   academias;
+
+-   actividades de interés.
+
+Otros
+
+-   consultas;
+
+-   espacios terapéuticos;
+
+-   actividades estructuradas;
+
+-   otros contextos relevantes.
+
+El contexto físico/social debe diferenciarse de las características de la tarea.
+
+La AAP establece la necesidad de documentar síntomas e interferencia en más de un contexto y obtener información de diferentes observadores.
+
+7.6 INTERFERENCIA O REDUCCIÓN DE LA CALIDAD DEL FUNCIONAMIENTO
+
+Debe existir evidencia clara de interferencia o reducción de la calidad del funcionamiento.
+
+Debe analizarse:
+
+-   funcionamiento académico;
+
+-   funcionamiento familiar;
+
+-   funcionamiento social;
+
+-   actividades cotidianas;
+
+-   autonomía;
+
+-   organización;
+
+-   participación;
+
+-   cumplimiento de responsabilidades.
+
+La cadena de análisis será:
+
+dificultad → consecuencia → impacto funcional
+
+Ejemplo:
+
+dificultad para mantener la atención
+→ pierde instrucciones
+→ completa menos tareas
+→ necesita supervisión adicional
+→ impacto académico.
+
+7.7 LOS SÍNTOMAS NO SE EXPLICAN MEJOR POR OTRA CONDICIÓN
+
+La IA debe analizar si otra condición explica mejor el patrón observado.
+
+Entre las posibilidades relevantes:
+
+-   dificultades de aprendizaje;
+
+-   dificultades del lenguaje;
+
+-   alteraciones del sueño;
+
+-   ansiedad;
+
+-   depresión;
+
+-   otras condiciones emocionales;
+
+-   otras condiciones conductuales;
+
+-   otras condiciones del neurodesarrollo;
+
+-   dificultades sensoriales;
+
+-   dificultades auditivas;
+
+-   dificultades visuales;
+
+-   condiciones físicas;
+
+-   otros factores clínicamente relevantes.
+
+La AAP recomienda considerar condiciones emocionales, conductuales, del neurodesarrollo y físicas que puedan coexistir o afectar la interpretación de los síntomas.
+
+7.8 CONDICIONES CONCURRENTES
+
+Debe diferenciarse:
+
+otra condición explica mejor el patrón
+
+de
+
+otra condición coexiste y contribuye al funcionamiento.
+
+La existencia de otra condición no implica automáticamente ausencia de TDAH.
+
+La presencia de síntomas compatibles con TDAH tampoco permite ignorar otra condición.
+
+Debe realizarse integración clínica.
+
+8. NO CONFUNDIR SÍNTOMAS DSM-5-TR CON VARIABLES FUNCIONALES
+
+REGLA COMPLEMENTARIA — ACUMULACIÓN Y MADURACIÓN DE LA EVIDENCIA
+
+La acumulación de evidencia es por síntoma y por caso: múltiples fuentes pueden fortalecer un mismo síntoma sin duplicarlo. La convergencia entre fuentes solo confirma un síntoma cuando la evidencia conjunta cubre la conducta definida por ese síntoma. La convergencia no autoriza a completar automáticamente otro síntoma distinto.
+
+Cuando exista evidencia relacionada, el estado no debe presentarse simplemente como NO INFORMADO. Debe registrarse como EVIDENCIA RELACIONADA — REQUIERE CARACTERIZACIÓN, manteniendo el síntoma abierto y activando profundización adaptativa cuando la información faltante sea diagnósticamente relevante.
+
+Antes de etiquetar un síntoma como NO INFORMADO o cerrar una línea diagnóstica como INSUFICIENTE, la IA debe auditar todo el expediente disponible y preguntar: (1) ¿existe evidencia directa?, (2) ¿existe evidencia relacionada pero no equivalente?, (3) ¿qué característica específica falta para resolver el síntoma?, y (4) ¿puede obtenerse esa característica mediante una pregunta adaptativa mínima?
+
+Una conducta o dificultad puede contener evidencia pertinente para un síntoma DSM-5-TR y, simultáneamente, para una o más variables funcionales. La clasificación funcional no elimina la correspondencia diagnóstica y la correspondencia diagnóstica no impide la caracterización funcional.
+
+Las siguientes variables pueden ser muy importantes:
+
+-   atención sostenida;
+
+-   memoria de trabajo;
+
+-   inhibición;
+
+-   flexibilidad;
+
+-   planificación;
+
+-   organización;
+
+-   persistencia;
+
+-   regulación del esfuerzo;
+
+-   variabilidad del rendimiento;
+
+-   respuestas anticipatorias.
+
+Pero ninguna debe transformarse automáticamente en un nuevo síntoma DSM-5-TR.
+
+Por ejemplo:
+
+dificultad de memoria de trabajo ≠ síntoma diagnóstico DSM-5-TR independiente.
+
+Esto protege la arquitectura contra la incorporación inadvertida de criterios no validados.
+
+9. DESARROLLO ESPERABLE
+
+La referencia evolutiva debe analizarse mediante:
+
+Edad
+→ desarrollo esperable
+→ funcionamiento cognitivo esperable
+→ conducta esperable
+
+y luego:
+
+funcionamiento observado + conducta observada
+
+Esto permite comparar el funcionamiento del niño con lo esperable para su etapa.
+
+10. FUNCIONAMIENTO COGNITIVO ESPERABLE
+
+Debe incorporarse explícitamente la referencia evolutiva de:
+
+-   atención;
+
+-   inhibición;
+
+-   memoria de trabajo;
+
+-   flexibilidad;
+
+-   planificación;
+
+-   organización;
+
+-   autorregulación;
+
+-   regulación del esfuerzo;
+
+-   autonomía;
+
+-   adaptación a las demandas.
+
+El funcionamiento cognitivo esperable y la conducta esperable no son equivalentes.
+
+11. CONDUCTA ESPERABLE
+
+La conducta esperable representa cómo deberían manifestarse funcionalmente las capacidades en la vida cotidiana.
+
+Puede incluir:
+
+-   seguir instrucciones;
+
+-   esperar turnos;
+
+-   permanecer en actividades;
+
+-   regular actividad;
+
+-   completar tareas;
+
+-   organizar actividades;
+
+-   aumentar progresivamente la autonomía.
+
+La conducta debe interpretarse siempre en relación con la etapa del desarrollo.
+
+12. DIFERENCIA EVOLUTIVA
+
+La IA debe determinar:
+
+¿Existe una diferencia relevante entre el funcionamiento observado y lo esperable para esa etapa?
+
+La diferencia adquiere especial relevancia cuando:
+
+-   es consistente;
+
+-   se mantiene en el tiempo;
+
+-   aparece en situaciones pertinentes;
+
+-   afecta el funcionamiento;
+
+-   y no existe una explicación alternativa que explique mejor el patrón.
+
+El mapa evolutivo del proyecto establece precisamente la secuencia edad → desarrollo esperado → conducta esperada → conducta observada → diferencia.
+
+13. TRAYECTORIA EVOLUTIVA
+
+La IA debe reconstruir:
+
+Inicio
+
+-   edad;
+
+-   primera manifestación;
+
+-   fuente inicial;
+
+-   contexto inicial.
+
+Evolución
+
+-   aumento;
+
+-   disminución;
+
+-   persistencia;
+
+-   fluctuación;
+
+-   transformación.
+
+Aumento de demandas
+
+-   mayor complejidad;
+
+-   mayor duración;
+
+-   mayor autonomía;
+
+-   menor supervisión;
+
+-   mayor organización;
+
+-   mayor carga académica.
+
+Apoyos
+
+-   estructura;
+
+-   supervisión;
+
+-   ayudas;
+
+-   apoyos escolares;
+
+-   condiciones ambientales.
+
+La trayectoria es una dimensión transversal, no un séptimo perfil.
+
+14. CONTEXTO
+
+La IA debe analizar:
+
+¿Dónde aparece?
+
+y:
+
+¿Bajo qué condiciones aumenta o disminuye?
+
+Debe observar:
+
+-   hogar;
+
+-   escuela;
+
+-   social;
+
+-   recreativo;
+
+-   extracurricular;
+
+-   otros contextos relevantes.
+
+Y además:
+
+-   estructura;
+
+-   distractores;
+
+-   duración;
+
+-   complejidad;
+
+-   supervisión;
+
+-   motivación;
+
+-   recompensa;
+
+-   demanda cognitiva;
+
+-   necesidad de autonomía.
+
+El contexto modifica la expresión del funcionamiento y debe integrarse con la trayectoria individual.
+
+15. IMPACTO FUNCIONAL
+
+La IA debe determinar qué consecuencias produce la dificultad.
+
+Debe identificar:
+
+-   impacto académico;
+
+-   impacto familiar;
+
+-   impacto social;
+
+-   impacto cotidiano;
+
+-   impacto sobre autonomía;
+
+-   impacto sobre organización;
+
+-   impacto sobre responsabilidades.
+
+16. FUENTES DE INFORMACIÓN
+
+Deben mantenerse separadas:
+
+-   padre;
+
+-   madre;
+
+-   cuidador;
+
+-   profesor;
+
+-   personal escolar;
+
+-   niño;
+
+-   adolescente;
+
+-   profesional;
+
+-   documentos;
+
+-   observación;
+
+-   RV.
+
+No se debe promediar automáticamente la información de distintas fuentes.
+
+17. CONVERGENCIA Y DISCREPANCIA
+
+Convergencia
+
+Varias fuentes o métodos describen un patrón semejante.
+
+Discrepancia
+
+Las fuentes o métodos describen comportamientos diferentes.
+
+La discrepancia debe conservarse.
+
+Ejemplo:
+
+Casa → dificultad baja
+
+Colegio → dificultad alta
+
+No debe convertirse automáticamente en:
+
+“dificultad moderada”.
+
+Debe analizarse qué características del contexto explican la diferencia.
+
+Regla operativa para R6 — Presencia en dos o más contextos: si la afectación está demostrada en un contexto y no está demostrada en otro, la IA no debe promediar, compensar ni asumir que existe presencia en dos contextos. R6 debe permanecer como información insuficiente/no demostrado hasta obtener evidencia pertinente de un segundo contexto.
+
+Si un contexto presenta afectación importante y otro informa ausencia o afectación mínima, la IA debe registrar una "discrepancia contextual crítica", conservar ambas fuentes y activar una búsqueda de información adicional sobre el segundo contexto o una revisión de la validez y especificidad de las fuentes disponibles.
+
+18. INFORMACIÓN CRÍTICA Y NO CRÍTICA
+
+La IA debe distinguir dos tipos de información faltante.
+
+18.1 INFORMACIÓN CRÍTICA PARA EL DIAGNÓSTICO
+
+18.2 AUDITORÍA DE SÍNTOMAS ANTES DE LA CONCLUSIÓN
+
+Antes de formular la conclusión, comprobar: (1) los 18 síntomas DSM fueron considerados individualmente; (2) no se perdió ningún candidato por haber sido clasificado también como variable funcional; (3) una misma conducta no fue contada varias veces; (4) la evidencia de cada síntoma puede vincularse a una fuente; (5) los síntomas inciertos permanecen como inciertos y no se convierten en ausentes; y (6) los demás requisitos diagnósticos se evaluaron por separado.
+
+18.3 ESTRUCTURA RECOMENDADA DEL INFORME CLÍNICO FINAL
+
+A. Datos de identificación y motivo de consulta.
+
+B. Integración de fuentes: síntesis de apoderado, colegio, adolescente, observación, documentos y realidad virtual, destacando convergencias y discrepancias.
+
+C. Análisis de síntomas DSM-5-TR: síntoma por síntoma, en lenguaje clínico comprensible, indicando evidencia, fuentes y estado; incluir el número total de síntomas suficientemente sustentados en cada dominio cuando corresponda.
+
+D. Contraste de los demás requisitos diagnósticos: duración, presencia de varios síntomas antes de los 12 años, relación con el nivel de desarrollo, presencia en dos o más contextos, interferencia funcional, explicaciones alternativas y condiciones concurrentes.
+
+E. Caracterización funcional: principales dificultades, fortalezas, áreas relativamente preservadas, moduladores contextuales, trayectoria, autonomía, apoyos y zonas en que el funcionamiento tiende a deteriorarse o mejorar.
+
+F. Integración de realidad virtual: variables objetivas realmente medidas, convergencias y discrepancias con las demás fuentes y limitaciones.
+
+G. Seis perfiles multidimensionales, como niveles de caracterización y no como subtipos diagnósticos.
+
+H. Diagnóstico o estado de la hipótesis diagnóstica, diferenciando claramente entre umbral sintomático y cumplimiento del conjunto de requisitos necesarios para una conclusión formal.
+
+I. Información faltante, diferencial y puntos que requieren revisión profesional.
+
+J. Anexo técnico de trazabilidad y auditoría, cuando se requiera.
+
+Incluye información necesaria para establecer adecuadamente:
+
+-   síntomas;
+
+-   duración;
+
+-   inicio;
+
+-   presencia en múltiples contextos;
+
+-   impacto funcional;
+
+-   explicaciones alternativas.
+
+Si falta información crítica:
+
+no debe cerrarse una conclusión diagnóstica definitiva.
+
+18.4 INFORMACIÓN RELEVANTE NO CRÍTICA
+
+Información útil para comprender la trayectoria y el funcionamiento, pero cuya ausencia no necesariamente impide establecer el diagnóstico.
+
+Ejemplos:
+
+-   determinados antecedentes prenatales;
+
+-   determinados antecedentes perinatales;
+
+-   peso al nacer;
+
+-   determinados antecedentes familiares;
+
+-   determinados factores ambientales.
+
+19. INFORMACIÓN HISTÓRICA NO DISPONIBLE
+
+Cuando la familia no recuerde un antecedente:
+
+Estado = información no disponible / incierta.
+
+No debe transformarse en:
+
+“no ocurrió”.
+
+Ejemplo:
+
+Complicaciones perinatales: no recuerda.
+
+Resultado:
+
+Información no disponible.
+
+No:
+
+Sin complicaciones perinatales.
+
+Cuando la información histórica sea insuficiente para establecer R4 (presencia de varios síntomas antes de los 12 años), la IA debe buscar fuentes retrospectivas pertinentes, por ejemplo: antecedentes escolares, informes previos, documentos clínicos, registros disponibles y otros informantes que puedan aportar información sobre etapas anteriores del desarrollo.
+
+Si después de esta búsqueda no puede establecerse de manera suficientemente sustentada la presencia de varios síntomas antes de los 12 años, R4 debe permanecer como información insuficiente y la puerta de suficiencia diagnóstica no debe cerrarse como si el criterio estuviera confirmado.
+
+20. PUERTA DE SUFICIENCIA DIAGNÓSTICA
+
+Antes de cerrar el contraste diagnóstico, la IA debe comprobar:
+
+Síntomas
+
+¿Existe información suficiente?
+
+Duración
+
+¿Existe información suficiente?
+
+Inicio
+
+¿Puede establecerse la presencia de varios síntomas antes de los 12 años?
+
+Contextos
+
+¿Existe información suficiente sobre al menos dos contextos relevantes?
+
+Impacto
+
+¿Existe evidencia funcional suficiente?
+
+Alternativas
+
+¿Se consideraron explicaciones alternativas relevantes?
+
+Fuentes
+
+¿Existe información procedente de fuentes pertinentes?
+
+Contradicciones
+
+¿Existen discrepancias críticas que todavía no han sido resueltas?
+
+21. RESULTADO DE LA PUERTA DE SUFICIENCIA
+
+PUERTA ABIERTA
+
+Existe información crítica suficiente.
+
+→ Se puede realizar el contraste diagnóstico.
+
+PUERTA CERRADA
+
+Falta información crítica.
+
+→ No se debe cerrar la conclusión diagnóstica.
+
+→ Debe especificarse qué falta.
+
+PUERTA ABIERTA CON INCERTIDUMBRE
+
+Existe información suficiente, pero permanecen discrepancias relevantes.
+
+→ Se informa la incertidumbre y se requiere revisión clínica.
+
+22. REALIDAD VIRTUAL
+
+La RV constituye una etapa propia del proyecto como tecnología de evaluación.
+
+En la Etapa 5 sus resultados se incorporan como evidencia complementaria.
+
+La estructura será:
+
+tarea → condición → resultado → variable → interpretación funcional → integración con otras fuentes
+
+La RV puede aportar información sobre:
+
+-   tiempo de reacción;
+
+-   variabilidad;
+
+-   omisiones;
+
+-   comisiones;
+
+-   respuestas anticipatorias;
+
+-   inhibición;
+
+-   distractibilidad;
+
+-   persistencia;
+
+-   mantenimiento de objetivos;
+
+-   desempeño ante cambios de condición.
+
+Regla:
+
+resultado de RV ≠ diagnóstico de TDAH.
+
+La AAP señala que las pruebas neuropsicológicas pueden ayudar a clarificar fortalezas y debilidades, pero no han demostrado mejorar por sí mismas la precisión diagnóstica en la mayoría de los casos.
+
+23. INTEGRACIÓN DE LOS SEIS PERFILES
+
+Una vez realizado el contraste diagnóstico, la IA debe caracterizar el funcionamiento mediante los seis perfiles:
+
+1. Neuroquímico
+
+Nivel explicativo y mecanístico.
+
+2. Estructural
+
+Nivel neuroanatómico explicativo.
+
+3. Circuitos / Redes
+
+Nivel funcional de sistemas distribuidos.
+
+4. Neuropsicológico
+
+Procesos funcionales.
+
+5. Conductual
+
+Manifestaciones observables.
+
+6. Contextual
+
+Modulación del funcionamiento según las condiciones.
+
+Los seis perfiles no son subtipos ni criterios diagnósticos.
+
+El mapa científico del proyecto establece que representan distintos niveles de análisis del mismo niño.
+
+24. TIPO DE RELACIÓN ENTRE VARIABLE Y PERFIL
+
+Una variable puede relacionarse con más de un perfil.
+
+La IA debe especificar el tipo de relación:
+
+-   funcional directa;
+
+-   conductual directa;
+
+-   contextual/moduladora;
+
+-   indirecta funcional;
+
+-   mecanística;
+
+-   explicativa.
+
+Ejemplo:
+
+Dificultad para mantener la atención
+
+→ Neuropsicológico: relación funcional directa
+→ Conductual: manifestación observable
+→ Contextual: relación moduladora
+→ Circuitos/redes: relación indirecta funcional
+→ Neuroquímico: relación mecanística indirecta
+→ Estructural: relación explicativa indirecta.
+
+25. NO EXISTE PUNTAJE DE PERFILES
+
+No debe utilizarse:
+
+cantidad de perfiles comprometidos = TDAH
+
+ni:
+
+cantidad de perfiles = gravedad.
+
+Los perfiles tienen como función:
+
+-   caracterizar;
+
+-   integrar;
+
+-   formular hipótesis;
+
+-   identificar dificultades;
+
+-   identificar áreas fortalecidas;
+
+-   comprender la modulación contextual.
+
+26. ÁREAS CON MAYOR DIFICULTAD
+
+La IA debe identificar las áreas donde exista evidencia consistente de:
+
+-   mayor dificultad;
+
+-   menor eficiencia;
+
+-   dificultad dependiente del contexto;
+
+-   diferencia relevante respecto de lo esperable.
+
+Ejemplos:
+
+-   atención sostenida;
+
+-   atención selectiva;
+
+-   inhibición;
+
+-   memoria de trabajo;
+
+-   flexibilidad;
+
+-   planificación;
+
+-   organización;
+
+-   persistencia;
+
+-   regulación del esfuerzo;
+
+-   autonomía.
+
+La expresión:
+
+“área descendida”
+
+debe utilizarse solamente cuando exista una referencia objetiva y validada que permita establecer un descenso.
+
+En ausencia de una medida normativa suficiente, debe utilizarse:
+
+“área con mayor dificultad” o “área de menor eficiencia observada”.
+
+27. ÁREAS FORTALECIDAS
+
+La IA debe identificar activamente:
+
+áreas fortalecidas o recursos funcionales.
+
+Pueden incluir:
+
+-   comprensión verbal;
+
+-   razonamiento;
+
+-   memoria;
+
+-   flexibilidad;
+
+-   control en tareas estructuradas;
+
+-   persistencia en actividades motivantes;
+
+-   habilidades sociales;
+
+-   autonomía;
+
+-   regulación en determinados contextos.
+
+“Área fortalecida” no significa necesariamente rendimiento superior al promedio.
+
+Significa:
+
+recurso funcional relevante dentro del perfil individual.
+
+28. RESULTADO CUANDO SE SOSTIENE TDAH
+
+Cuando el contraste con DSM-5-TR respalde TDAH, la salida debe contener:
+
+Resultado diagnóstico según DSM-5-TR
+
+-   
+
+presentación correspondiente
+
+-   
+
+fundamento diagnóstico
+
+-   
+
+trayectoria
+
+-   
+
+funcionamiento cognitivo
+
+-   
+
+conducta
+
+-   
+
+principales áreas con dificultad
+
+-   
+
+áreas fortalecidas
+
+-   
+
+contextos de mayor dificultad
+
+-   
+
+contextos de mejor funcionamiento
+
+-   
+
+impacto funcional
+
+-   
+
+seis perfiles
+
+-   
+
+RV/evidencia objetiva
+
+-   
+
+condiciones concurrentes relevantes
+
+-   
+
+áreas de fortalecimiento o evaluación posterior.
+
+29. RESULTADO CUANDO NO SE SOSTIENE TDAH
+
+Cuando no se reúnen los requisitos suficientes para TDAH, el sistema no debe entregar solamente “No TDAH”.
+
+Debe entregar:
+
+Resultado respecto de DSM-5-TR
+
+-   
+
+áreas con mayor dificultad
+
+-   
+
+áreas fortalecidas
+
+-   
+
+áreas relativamente preservadas
+
+-   
+
+funcionamiento cognitivo
+
+-   
+
+conducta
+
+-   
+
+trayectoria
+
+-   
+
+contextos
+
+-   
+
+impacto
+
+-   
+
+seis perfiles
+
+-   
+
+factores moduladores
+
+-   
+
+explicaciones alternativas a explorar.
+
+Por tanto:
+
+No TDAH ≠ ausencia de dificultades.
+
+30. RESULTADO CUANDO FALTA INFORMACIÓN CRÍTICA
+
+La salida debe ser:
+
+INFORMACIÓN INSUFICIENTE PARA ESTABLECER UNA CONCLUSIÓN DIAGNÓSTICA
+
+Debe especificar:
+
+qué falta
+
+por qué es importante
+
+qué información sí está disponible
+
+qué caracterización funcional puede realizarse con los datos actuales
+
+qué debería evaluarse para completar el contraste
+
+31. RESULTADO CUANDO EXISTE UNA EXPLICACIÓN ALTERNATIVA RELEVANTE
+
+La salida debe indicar:
+
+resultado del contraste DSM-5-TR
+
+-   
+
+hallazgos principales
+
+-   
+
+áreas de dificultad
+
+-   
+
+áreas fortalecidas
+
+-   
+
+trayectoria
+
+-   
+
+contexto
+
+-   
+
+condición o explicación a explorar
+
+-   
+
+información necesaria para resolverla.
+
+No debe establecer automáticamente otro diagnóstico si la información disponible no permite hacerlo.
+
+32. MATRIZ MAESTRA DEL CONTRASTE DSM-5-TR
+
+  --------------------------------------------------------------------------------------------------------------------------
+  Criterio / requisito                    Evidencia   Fuente(s)   Trayectoria   Contexto   Impacto   Alternativas   Estado
+  --------------------------------------- ----------- ----------- ------------- ---------- --------- -------------- --------
+  Síntomas de inatención                  ...         ...         ...           ...        ...       ...            ...
+
+  Síntomas H/I                            ...         ...         ...           ...        ...       ...            ...
+
+  Persistencia ≥6 meses                   ...         ...         ...           ...        ...       ...            ...
+
+  Varios síntomas antes de 12 años        ...         ...         ...           ...        ...       ...            ...
+
+  Varios síntomas en ≥2 contextos         ...         ...         ...           ...        ...       ...            ...
+
+  Interferencia funcional                 ...         ...         ...           ...        ...       ...            ...
+
+  No mejor explicado por otra condición   ...         ...         ...           ...        ...       ...            ...
+  --------------------------------------------------------------------------------------------------------------------------
+
+Esta matriz constituye el núcleo del contraste diagnóstico.
+
+33. MATRIZ MAESTRA DE CARACTERIZACIÓN FUNCIONAL
+
+  -----------------------------------------------------------------------------------------------------------------------------------------------------
+  Área                 Funcionamiento cognitivo esperable   Conducta esperable   Funcionamiento observado   Contexto   Trayectoria   Impacto   Estado
+  -------------------- ------------------------------------ -------------------- -------------------------- ---------- ------------- --------- --------
+  Atención             ...                                  ...                  ...                        ...        ...           ...       ...
+
+  Inhibición           ...                                  ...                  ...                        ...        ...           ...       ...
+
+  Memoria de trabajo   ...                                  ...                  ...                        ...        ...           ...       ...
+
+  Flexibilidad         ...                                  ...                  ...                        ...        ...           ...       ...
+
+  Planificación        ...                                  ...                  ...                        ...        ...           ...       ...
+
+  Organización         ...                                  ...                  ...                        ...        ...           ...       ...
+
+  Persistencia         ...                                  ...                  ...                        ...        ...           ...       ...
+  -----------------------------------------------------------------------------------------------------------------------------------------------------
+
+Esta matriz constituye la base de la caracterización funcional individual.
+
+34. MATRIZ DE ÁREAS DE DIFICULTAD Y FORTALEZAS
+
+  -----------------------------------------------------------------------------------------------------
+  Área                 Evidencia   Estado funcional           Contexto   Impacto   Tipo de evidencia
+  -------------------- ----------- -------------------------- ---------- --------- --------------------
+  Atención             ...         Mayor dificultad           ...        ...       Entrevista/RV/etc.
+
+  Inhibición           ...         Fortalecida                ...        ...       ...
+
+  Memoria de trabajo   ...         Relativamente preservada   ...        ...       ...
+
+  Organización         ...         Mayor dificultad           ...        ...       ...
+
+  Flexibilidad         ...         Variable                   ...        ...       ...
+  -----------------------------------------------------------------------------------------------------
+
+Esta matriz permitirá que la salida final no sea solamente una lista de déficits.
+
+35. RESULTADO INTEGRADO
+
+La evaluación completa debe producir:
+
+A. Resultado diagnóstico
+
+Resultado según DSM-5-TR
+
+B. Fundamento diagnóstico
+
+Evidencia utilizada para cada criterio.
+
+C. Trayectoria
+
+Inicio, evolución, persistencia y cambios asociados al desarrollo.
+
+D. Funcionamiento cognitivo
+
+Comparación con el desarrollo esperable.
+
+E. Conducta
+
+Manifestaciones observables.
+
+F. Áreas con mayor dificultad
+
+Dónde existe mayor dificultad funcional.
+
+G. Áreas fortalecidas
+
+Qué recursos funcionales presenta.
+
+H. Contexto
+
+Cuándo aumenta o disminuye la dificultad.
+
+I. Impacto funcional
+
+Qué consecuencias produce.
+
+J. Seis perfiles
+
+Caracterización multidimensional.
+
+K. RV / evidencia objetiva
+
+Resultados y significado funcional.
+
+L. Diagnóstico diferencial
+
+Alternativas y condiciones concurrentes.
+
+M. Información faltante
+
+Qué falta y si afecta o no la conclusión.
+
+N. Áreas para fortalecimiento o evaluación posterior
+
+Aspectos donde el profesional podría concentrar posteriormente su trabajo.
+
+36. FUNCIÓN DE LA IA DENTRO DE LA ETAPA 5
+
+La IA actúa como motor integrador.
+
+Debe:
+
+organizar información
+↓
+detectar relaciones
+↓
+comparar con referencia evolutiva
+↓
+identificar información faltante
+↓
+detectar contradicciones
+↓
+integrar trayectoria
+↓
+integrar contexto
+↓
+integrar fuentes
+↓
+incorporar evidencia objetiva/RV
+↓
+contrastar DSM-5-TR
+↓
+integrar los seis perfiles
+↓
+identificar dificultades
+↓
+identificar áreas fortalecidas
+↓
+analizar explicaciones alternativas
+↓
+generar la salida estructurada
+
+La IA es el mecanismo de integración; no constituye por sí misma un criterio diagnóstico adicional.
+
+37. PRINCIPIO DE SEPARACIÓN DIAGNÓSTICO–APORTE DEL MODELO
+
+Este principio debe aparecer explícitamente en el sistema y en el informe:
+
+El resultado diagnóstico de TDAH se establece mediante el contraste con los criterios del DSM-5-TR y la evaluación clínica correspondiente.
+
+Adicionalmente, el modelo multidimensional aporta una caracterización profunda del funcionamiento individual del niño, incluyendo trayectoria evolutiva, funcionamiento cognitivo, conducta, contexto, impacto funcional, seis perfiles, áreas con mayor dificultad, áreas fortalecidas y evidencia objetiva complementaria.
+
+El modelo multidimensional no modifica, reemplaza ni agrega criterios diagnósticos al DSM-5-TR.
+
+Esta separación es fundamental para que el profesional pueda distinguir claramente:
+
+qué parte corresponde al diagnóstico
+
+de
+
+qué parte corresponde al aporte adicional del modelo.
+
+38. PRINCIPIOS DE SEGURIDAD DEL MOTOR DIAGNÓSTICO
+
+La IA deberá respetar:
+
+1. DSM-5-TR define los requisitos diagnósticos.
+
+2. El diagnóstico no se establece mediante una prueba aislada.
+
+3. La RV no establece por sí sola el diagnóstico.
+
+4. Una escala no establece por sí sola el diagnóstico.
+
+5. Una conducta aislada no establece el diagnóstico.
+
+6. Las variables funcionales no se convierten en nuevos síntomas DSM-5-TR.
+
+7. El funcionamiento cognitivo esperable se analiza como parte de la caracterización del desarrollo, no como requisito diagnóstico adicional.
+
+8. La conducta esperable y el funcionamiento cognitivo esperable deben permanecer diferenciados.
+
+9. La trayectoria es transversal y no constituye un séptimo perfil.
+
+10. Los seis perfiles no son subtipos.
+
+11. Los seis perfiles no son criterios diagnósticos.
+
+12. Una variable puede relacionarse con varios perfiles.
+
+13. La relación variable–perfil debe especificar su naturaleza.
+
+14. No informado ≠ ausente.
+
+15. No recordado ≠ no ocurrido.
+
+16. No observado por una fuente ≠ inexistente.
+
+17. Las discrepancias entre fuentes deben conservarse.
+
+18. La información crítica faltante impide cerrar una conclusión diagnóstica suficientemente sustentada.
+
+19. La información no crítica faltante no debe bloquear automáticamente la evaluación.
+
+20. No TDAH ≠ ausencia de dificultades funcionales.
+
+21. TDAH ≠ compromiso de todas las áreas funcionales.
+
+22. Deben identificarse áreas con mayor dificultad y áreas fortalecidas.
+
+23. “Área descendida” requiere evidencia normativa adecuada.
+
+24. El diagnóstico y la caracterización funcional deben mantenerse separados.
+
+25. La conclusión debe quedar disponible para revisión y validación clínica profesional.
+
+39. PRINCIPIO DEFINITIVO DE LA ETAPA 5
+
+La Etapa 5 responde simultáneamente dos preguntas:
+
+PREGUNTA DIAGNÓSTICA
+
+¿La información reunida permite sostener los criterios diagnósticos de TDAH establecidos por DSM-5-TR?
+
+PREGUNTA FUNCIONAL
+
+¿Cómo funciona este niño, cuáles son sus áreas de mayor dificultad, cuáles son sus áreas fortalecidas, cómo ha evolucionado y qué condiciones modifican su funcionamiento?
+
+Por tanto:
+
+DSM-5-TR → diagnóstico
+
+Modelo multidimensional → profundidad de caracterización
+
+IA → integración de toda la información y generación del informe estructurado
+
+Profesional competente → revisión y determinación clínica del diagnóstico formal
+
+40. SALIDA FINAL
+
+La salida completa del sistema debe ser conceptualmente:
+
+DIAGNÓSTICO SEGÚN DSM-5-TR
+
+-   
+
+TRAYECTORIA EVOLUTIVA
+
+-   
+
+FUNCIONAMIENTO COGNITIVO
+
+-   
+
+CONDUCTA
+
+-   
+
+ÁREAS CON MAYOR DIFICULTAD
+
+-   
+
+ÁREAS FORTALECIDAS
+
+-   
+
+ÁREAS RELATIVAMENTE PRESERVADAS
+
+-   
+
+CONTEXTO Y MODULACIÓN
+
+-   
+
+IMPACTO FUNCIONAL
+
+-   
+
+SEIS PERFILES
+
+-   
+
+RV / EVIDENCIA OBJETIVA
+
+-   
+
+EXPLICACIONES ALTERNATIVAS Y CONDICIONES CONCURRENTES
+
+-   
+
+INFORMACIÓN FALTANTE Y SU RELEVANCIA
+
+-   
+
+ÁREAS PARA FORTALECIMIENTO O EVALUACIÓN POSTERIOR
+
+De esta manera, el sistema no solamente responde:
+
+“¿Se sostiene TDAH?”
+
+sino también:
+
+“¿Cómo funciona este niño?”
+
+y:
+
+“¿Dónde están sus principales dificultades y recursos?”
+
+Ese doble resultado constituye la salida completa de la Etapa 5.
+
+ETAPA 6 — ARQUITECTURA DE TRAZABILIDAD Y AUDITORÍA DIAGNÓSTICA
+
+1. Propósito
+
+La Etapa 6 establece cómo el sistema puede reconstruir, de manera transparente y verificable, el camino que conduce desde la información recogida durante la evaluación hasta cada interpretación, relación diagnóstica e integración final.
+
+La trazabilidad no consiste solamente en registrar de dónde proviene una conclusión. Debe permitir reconstruir:
+
+qué información ingresó → qué se observó → cómo se clasificó → qué variables se relacionaron → qué características presentaba cada variable → en qué etapa evolutiva se encontraba → qué era esperable para esa edad → cómo se comportaba en el tiempo y en distintos contextos → cómo se interpretó → qué relación tuvo con los criterios diagnósticos → cómo se relacionó con los seis perfiles → qué evidencias convergieron o discreparon → qué explicaciones alternativas fueron consideradas → cómo se integró todo → qué conclusión se obtuvo → y qué revisión profesional corresponde.
+
+La trazabilidad debe permitir también realizar el camino inverso:
+
+conclusión → integración → evidencias → interpretaciones → variables → conductas → datos originales → fuente.
+
+2. Ubicación dentro del modelo
+
+La Etapa 6 se construye sobre las etapas anteriores:
+
+1.  Modelo científico.
+
+2.  Trayectoria evolutiva.
+
+3.  Variables observables.
+
+4.  Correspondencia con requerimientos diagnósticos.
+
+5.  Integración y contraste diagnóstico.
+
+6.  Trazabilidad y auditoría diagnóstica.
+
+7.  Banco de preguntas / entrevista adaptativa.
+
+8.  Realidad Virtual como tecnología de evaluación.
+
+9.  Arquitectura e implementación operativa de IA.
+
+La trazabilidad no constituye un nuevo perfil, una nueva dimensión diagnóstica ni un nuevo criterio DSM-5-TR.
+
+Es una arquitectura transversal de evidencia y reconstrucción.
+
+3. Qué es trazabilidad
+
+La trazabilidad es la capacidad del sistema para identificar y reconstruir la relación entre:
+
+-   fuente;
+
+-   información original;
+
+-   conducta observable;
+
+-   clasificación;
+
+-   variables funcionales;
+
+-   características de las variables;
+
+-   edad y etapa evolutiva;
+
+-   desarrollo cognitivo esperable;
+
+-   conducta esperable;
+
+-   trayectoria;
+
+-   contexto y demanda;
+
+-   interpretación funcional;
+
+-   criterios diagnósticos;
+
+-   perfiles multidimensionales;
+
+-   alternativas y condiciones concurrentes;
+
+-   convergencias y discrepancias;
+
+-   integración;
+
+-   conclusión;
+
+-   revisión profesional.
+
+Cada conclusión relevante debe poder responder:
+
+¿De qué evidencia proviene?
+
+Y también:
+
+¿Qué elementos fueron necesarios para llegar a ella?
+
+4. La arquitectura es un grafo, no una cadena lineal
+
+La información no debe entenderse como una secuencia rígida en la que cada dato conduce exclusivamente a una única variable y cada variable a una única conclusión.
+
+La arquitectura es un grafo de relaciones.
+
+Un mismo dato puede relacionarse con varias variables.
+
+Una misma variable puede recibir evidencia de múltiples fuentes.
+
+Una interpretación puede depender simultáneamente de:
+
+-   variables funcionales;
+
+-   edad;
+
+-   etapa;
+
+-   desarrollo esperado;
+
+-   conducta esperada;
+
+-   trayectoria;
+
+-   contexto;
+
+-   impacto;
+
+-   múltiples fuentes;
+
+-   evidencia objetiva;
+
+-   criterios diagnósticos;
+
+-   perfiles;
+
+-   alternativas o condiciones concurrentes.
+
+Por ello, la secuencia siguiente debe entenderse como una ruta de reconstrucción, no como una arquitectura exclusivamente lineal:
+
+Fuente / historia
+→ dato original
+→ conducta observable
+→ clasificación
+→ variables
+→ características
+→ edad y etapa
+→ desarrollo cognitivo y conducta esperables
+→ trayectoria
+→ contexto/demanda
+→ interpretación
+→ DSM-5-TR / perfiles
+→ convergencias y discrepancias
+→ alternativas/concurrentes
+→ integración
+→ conclusión
+→ revisión profesional.
+
+La arquitectura real permite relaciones laterales y bidireccionales entre estos elementos.
+
+5. Matriz maestra de trazabilidad
+
+  -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  Elemento                         Proviene de                                                                  Se relaciona con                         Puede influir en
+  -------------------------------- ---------------------------------------------------------------------------- ---------------------------------------- ------------------------------------
+  Fuente                           apoderado, profesor, niño/adolescente, profesional, documentos, evaluación   datos                                    calidad y contexto de la evidencia
+
+  Historia                         antecedentes longitudinales                                                  trayectoria, factores, evolución         interpretación
+
+  Dato original                    fuente                                                                       conducta, clasificación                  variables
+
+  Conducta observable              dato original                                                                variables, edad, contexto                interpretación
+
+  Clasificación                    dato + reglas del modelo                                                     variables                                interpretación
+
+  Variables                        conducta y datos                                                             características, trayectoria, contexto   interpretación
+
+  Características                  observación longitudinal/contextual                                          variables                                interpretación
+
+  Edad/etapa                       identificación + trayectoria                                                 desarrollo esperado, conducta esperada   interpretación
+
+  Desarrollo cognitivo esperable   trayectoria evolutiva                                                        variables cognitivas                     diferencia evolutiva
+
+  Conducta esperable               trayectoria evolutiva                                                        conducta observada                       diferencia evolutiva
+
+  Trayectoria                      historia longitudinal                                                        variables, contexto, demandas            interpretación
+
+  Factores/antecedentes            historia y otras fuentes                                                     contexto, trayectoria                    hipótesis funcional
+
+  Contexto/demanda                 evaluación                                                                   variables, conducta, funcionamiento      interpretación
+
+  Impacto                          múltiples fuentes                                                            funcionamiento                           relevancia clínica
+
+  Interpretación funcional         integración de evidencia                                                     DSM, perfiles, alternativas              integración
+
+  DSM-5-TR                         marco diagnóstico                                                            evidencia sintomática                    contraste diagnóstico
+
+  Seis perfiles                    modelo multidimensional                                                      variables e interpretación               caracterización
+
+  Alternativas/concurrentes        evaluación diferencial                                                       variables, síntomas, contexto            interpretación
+
+  Convergencias/discrepancias      múltiples fuentes                                                            integración                              confianza de interpretación
+
+  Evidencia objetiva/RV            instrumentos/fuentes                                                         variables                                fortalecimiento o contraste
+
+  Integración                      todos los elementos relevantes                                               conclusión                               resultado
+
+  Conclusión                       integración                                                                  revisión profesional                     resultado final
+
+  Revisión profesional             profesional responsable                                                      conclusión                               decisión clínica final
+  -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+6. Historia y antecedentes
+
+La historia constituye una fuente longitudinal de información.
+
+Permite conocer:
+
+-   cuándo aparecieron determinadas dificultades;
+
+-   cómo evolucionaron;
+
+-   en qué circunstancias aparecieron;
+
+-   qué ocurrió antes;
+
+-   qué ocurrió posteriormente;
+
+-   qué apoyos existieron;
+
+-   qué cambios se produjeron;
+
+-   cómo evolucionaron las demandas.
+
+Dentro de la historia pueden existir factores y antecedentes específicos, por ejemplo:
+
+-   prenatales;
+
+-   perinatales;
+
+-   familiares;
+
+-   ambientales;
+
+-   del desarrollo;
+
+-   sueño;
+
+-   condiciones de vida;
+
+-   experiencias relevantes.
+
+Estos factores no deben confundirse con la trayectoria.
+
+Distinción fundamental
+
+Historia: fuente longitudinal que contiene información sobre el desarrollo y los acontecimientos relevantes.
+
+Factores/antecedentes: contenidos específicos de esa historia que pueden relacionarse con el desarrollo, contexto o funcionamiento.
+
+Trayectoria: evolución temporal de las dificultades y del funcionamiento, incluyendo aparición, persistencia, cambio, compensación funcional, aumento de demandas y modificaciones asociadas a apoyos o condiciones.
+
+Los factores prenatales, perinatales, familiares o ambientales no forman parte de la trayectoria como tal.
+
+7. Dato original
+
+El dato original debe conservarse sin transformarlo inmediatamente en una interpretación.
+
+Ejemplo:
+
+Dato original:
+“Dejó la tarea incompleta.”
+
+Este dato no debe convertirse automáticamente en:
+
+“Dificultad de persistencia.”
+
+Puede relacionarse con múltiples variables.
+
+8. Conducta observable
+
+El sistema debe identificar qué conducta concreta representa el dato.
+
+Ejemplo:
+
+Dato: tarea incompleta.
+
+Posibles conductas observables:
+
+-   abandona antes de terminar;
+
+-   cambia de actividad;
+
+-   pierde información necesaria;
+
+-   se distrae;
+
+-   necesita múltiples recordatorios;
+
+-   no mantiene el objetivo;
+
+-   no organiza los pasos;
+
+-   disminuye el esfuerzo;
+
+-   responde antes de completar una instrucción.
+
+La conducta observable constituye un puente entre el dato original y las variables funcionales.
+
+9. Clasificación
+
+La clasificación organiza el dato dentro del modelo.
+
+Puede determinar, por ejemplo, que una información corresponde a:
+
+-   atención;
+
+-   inhibición;
+
+-   memoria de trabajo;
+
+-   persistencia;
+
+-   planificación;
+
+-   organización;
+
+-   regulación del esfuerzo;
+
+-   distractibilidad;
+
+-   actividad motora;
+
+-   autonomía;
+
+-   adaptación al contexto.
+
+La clasificación no equivale todavía a una conclusión diagnóstica.
+
+10. Una o más variables relacionadas
+
+Un dato puede relacionarse con más de una variable.
+
+Por ejemplo, “tarea incompleta” puede relacionarse con:
+
+-   atención sostenida;
+
+-   memoria de trabajo;
+
+-   mantenimiento de objetivos;
+
+-   planificación;
+
+-   organización;
+
+-   persistencia;
+
+-   regulación del esfuerzo;
+
+-   distractibilidad;
+
+-   flexibilidad;
+
+-   control de interferencias.
+
+El sistema no debe asignar automáticamente una única causa funcional a una conducta.
+
+Debe conservar las relaciones posibles y utilizar posteriormente la información contextual, longitudinal y convergente para determinar cuáles están mejor sustentadas.
+
+11. Características de cada variable
+
+Cada variable puede describirse mediante:
+
+-   frecuencia;
+
+-   intensidad;
+
+-   duración;
+
+-   persistencia;
+
+-   variabilidad;
+
+-   condiciones de aparición;
+
+-   condiciones de disminución;
+
+-   contexto;
+
+-   demanda;
+
+-   supervisión;
+
+-   estructura;
+
+-   motivación;
+
+-   recompensa;
+
+-   impacto;
+
+-   evolución temporal.
+
+Esto permite diferenciar, por ejemplo:
+
+“ocurre ocasionalmente”
+
+de
+
+“ocurre de manera persistente y desproporcionada para la etapa evolutiva”.
+
+12. Edad y etapa evolutiva
+
+La edad y la etapa deben formar parte explícita de la trazabilidad.
+
+No basta con almacenar la edad cronológica.
+
+El sistema debe considerar:
+
+-   edad;
+
+-   etapa evolutiva;
+
+-   demandas propias de esa etapa;
+
+-   nivel de autonomía esperado;
+
+-   desarrollo cognitivo esperado;
+
+-   conducta esperada.
+
+La edad constituye un elemento de referencia para interpretar la conducta.
+
+13. Desarrollo cognitivo esperado
+
+La interpretación debe considerar qué funciones cognitivas se esperan en determinada etapa.
+
+Entre ellas:
+
+-   atención;
+
+-   inhibición;
+
+-   memoria de trabajo;
+
+-   flexibilidad;
+
+-   planificación;
+
+-   organización;
+
+-   autorregulación;
+
+-   persistencia;
+
+-   regulación del esfuerzo;
+
+-   mantenimiento de objetivos;
+
+-   adaptación a demandas crecientes.
+
+La conducta observada debe compararse con el nivel de funcionamiento esperable para la etapa.
+
+14. Conducta esperada
+
+También debe registrarse qué conducta sería esperable para esa edad y contexto.
+
+Por ejemplo:
+
+-   capacidad de esperar turnos;
+
+-   seguir instrucciones;
+
+-   permanecer en una actividad;
+
+-   cambiar de actividad;
+
+-   jugar de manera estructurada;
+
+-   organizar materiales;
+
+-   completar actividades;
+
+-   regular la actividad motora;
+
+-   actuar con creciente autonomía.
+
+La diferencia entre conducta esperada y observada constituye una pieza central de la interpretación evolutiva.
+
+15. Trayectoria
+
+La trayectoria debe registrar:
+
+-   inicio;
+
+-   primera manifestación observable;
+
+-   evolución;
+
+-   persistencia;
+
+-   recurrencia;
+
+-   aumento o disminución;
+
+-   transformación de la manifestación;
+
+-   cambios asociados al aumento de demandas;
+
+-   cambios asociados a apoyos;
+
+-   modificaciones con mayor autonomía;
+
+-   aparición de nuevas dificultades;
+
+-   períodos de mejor funcionamiento.
+
+Debe distinguirse:
+
+1.  inicio de la trayectoria;
+
+2.  manifestación observable;
+
+3.  identificación clínica.
+
+La edad en que una dificultad fue identificada no necesariamente corresponde al inicio de la trayectoria.
+
+16. Contexto y demanda
+
+La trazabilidad debe registrar las condiciones en las que aparece o disminuye una dificultad.
+
+Entre ellas:
+
+-   hogar;
+
+-   escuela;
+
+-   relaciones sociales;
+
+-   actividades recreativas;
+
+-   actividades extracurriculares;
+
+-   situaciones estructuradas;
+
+-   situaciones no estructuradas;
+
+-   supervisión;
+
+-   distractores;
+
+-   duración;
+
+-   complejidad;
+
+-   motivación;
+
+-   recompensa;
+
+-   demanda cognitiva;
+
+-   trabajo individual;
+
+-   trabajo grupal;
+
+-   apoyos disponibles.
+
+El mismo niño puede presentar diferentes niveles de funcionamiento según estas condiciones.
+
+17. Interpretación funcional
+
+La interpretación debe responder:
+
+¿Qué significa funcionalmente la información disponible?
+
+Ejemplo:
+
+Se observa dificultad persistente para completar actividades que requieren mantener un objetivo durante períodos prolongados, especialmente cuando disminuye la supervisión y aumenta la demanda de organización.
+
+Esta interpretación integra varias variables y no atribuye automáticamente la conducta a una única explicación.
+
+18. Relación con DSM-5-TR
+
+La trazabilidad debe identificar cuándo una evidencia:
+
+-   apoya un síntoma;
+
+-   contradice un síntoma;
+
+-   es insuficiente para determinarlo;
+
+-   aporta información contextual pero no constituye por sí misma un criterio;
+
+-   aporta información sobre duración;
+
+-   aporta información sobre presencia en múltiples contextos;
+
+-   aporta información sobre interferencia;
+
+-   aporta información para el diagnóstico diferencial.
+
+La relación con DSM-5-TR debe quedar explícita.
+
+19. Relación con los seis perfiles
+
+Cada variable puede relacionarse con uno o más perfiles:
+
+1.  Neuroquímico.
+
+2.  Estructural.
+
+3.  Circuitos / Redes.
+
+4.  Neuropsicológico.
+
+5.  Conductual.
+
+6.  Contextual.
+
+La relación con un perfil constituye una caracterización multidimensional, no un diagnóstico independiente.
+
+No se asignará automáticamente un perfil a partir de una conducta aislada.
+
+20. Neurofisiología
+
+La neurofisiología permanece como dimensión transversal.
+
+No constituye un séptimo perfil.
+
+Puede relacionarse con:
+
+-   procesos de atención;
+
+-   inhibición;
+
+-   activación;
+
+-   regulación;
+
+-   esfuerzo;
+
+-   variabilidad del desempeño;
+
+-   respuesta a demandas.
+
+Su función dentro de la trazabilidad es conectar determinados hallazgos funcionales con mecanismos neurofisiológicos cuando exista evidencia suficiente.
+
+21. Convergencias y discrepancias
+
+La trazabilidad debe registrar la relación entre diferentes fuentes.
+
+Convergencia
+
+Cuando distintas fuentes entregan información compatible.
+
+Ejemplo:
+
+-   profesor informa dificultad persistente;
+
+-   apoderado informa una dificultad semejante;
+
+-   observación clínica muestra el mismo patrón;
+
+-   evaluación objetiva reproduce una dificultad relacionada.
+
+Discrepancia
+
+Cuando las fuentes difieren.
+
+La discrepancia no debe eliminarse.
+
+Debe conservarse y analizarse considerando:
+
+-   contexto;
+
+-   demanda;
+
+-   observador;
+
+-   etapa;
+
+-   condiciones de evaluación;
+
+-   estructura;
+
+-   motivación;
+
+-   apoyos.
+
+22. Explicaciones alternativas y condiciones concurrentes
+
+La trazabilidad debe conservar las hipótesis alternativas consideradas.
+
+Entre ellas:
+
+-   dificultades de aprendizaje;
+
+-   dificultades de lenguaje;
+
+-   problemas de sueño;
+
+-   condiciones emocionales;
+
+-   problemas conductuales;
+
+-   dificultades del desarrollo;
+
+-   condiciones sensoriales o perceptuales;
+
+-   condiciones físicas;
+
+-   factores ambientales;
+
+-   otras condiciones clínicamente relevantes.
+
+Debe registrarse el estado de cada posibilidad:
+
+-   no identificada;
+
+-   posible;
+
+-   presente;
+
+-   conocida;
+
+-   requiere evaluación adicional;
+
+-   información insuficiente.
+
+23. Estados de la información
+
+El sistema debe distinguir entre:
+
+-   confirmado;
+
+-   apoyado por evidencia;
+
+-   probable;
+
+-   posible;
+
+-   contradictorio;
+
+-   desconocido;
+
+-   no informado;
+
+-   información insuficiente.
+
+“No informado” no significa “ausente”.
+
+“No identificado” no significa “descartado”.
+
+Esta distinción es esencial para la trazabilidad.
+
+24. Fuente y calidad de la evidencia
+
+Cada información debe conservar su fuente.
+
+Posibles fuentes:
+
+-   apoderado;
+
+-   profesor;
+
+-   niño;
+
+-   adolescente;
+
+-   profesional;
+
+-   documentos;
+
+-   instrumentos;
+
+-   observación;
+
+-   evaluación objetiva;
+
+-   Realidad Virtual cuando corresponda.
+
+La calidad de la evidencia puede analizarse internamente considerando:
+
+-   fuente;
+
+-   especificidad;
+
+-   consistencia;
+
+-   convergencia;
+
+-   contexto;
+
+-   objetividad;
+
+-   suficiencia.
+
+La evaluación de calidad no debe transformarse necesariamente en un puntaje clínico.
+
+25. Realidad Virtual
+
+La Realidad Virtual no constituye una capa de trazabilidad independiente.
+
+Es una tecnología de evaluación que se incorporará posteriormente, en la Etapa 8.
+
+Cuando se utilice, sus resultados ingresarán al sistema como una fuente de evidencia.
+
+Podrá aportar información sobre:
+
+-   tiempo de reacción;
+
+-   variabilidad del tiempo de reacción;
+
+-   omisiones;
+
+-   errores de comisión;
+
+-   respuestas anticipatorias;
+
+-   inhibición;
+
+-   mantenimiento de objetivos;
+
+-   distractibilidad;
+
+-   persistencia;
+
+-   desempeño frente a cambios de condición;
+
+-   desempeño frente a distintas demandas.
+
+Su incorporación deberá mantener exactamente la misma trazabilidad que cualquier otra fuente.
+
+26. Versionado
+
+La trazabilidad debe permitir identificar qué versión del sistema produjo cada interpretación.
+
+Debe registrarse automáticamente, cuando corresponda:
+
+-   versión del modelo científico;
+
+-   versión de la trayectoria evolutiva;
+
+-   versión de la matriz de variables;
+
+-   versión de las reglas de integración;
+
+-   versión del marco diagnóstico;
+
+-   versión de instrumentos;
+
+-   versión de reglas de IA;
+
+-   versión del sistema utilizado.
+
+Esto no significa “versionar” el hecho clínico como si el hecho histórico cambiara.
+
+Los datos originales deben conservarse.
+
+Si un registro se corrige, amplía o modifica, debe conservarse:
+
+-   registro original;
+
+-   nueva versión;
+
+-   fecha;
+
+-   fuente;
+
+-   motivo de modificación;
+
+-   sistema/reglas bajo los cuales se realizó la modificación.
+
+De esta manera puede reconstruirse qué información estaba disponible y qué reglas estaban vigentes en cada momento.
+
+27. Propagación de cambios
+
+Cuando un elemento cambia, el sistema debe identificar automáticamente qué elementos dependían de él.
+
+Ejemplo:
+
+dato original modificado
+→ conducta observable afectada
+→ variables relacionadas
+→ interpretación afectada
+→ relación diagnóstica afectada
+→ integración afectada
+→ conclusión potencialmente afectada.
+
+El sistema debe identificar la necesidad de recalcular o revisar las dependencias correspondientes.
+
+El profesional no debería tener que reconstruir manualmente toda la cadena.
+
+28. Auditoría hacia adelante
+
+La auditoría hacia adelante parte del dato.
+
+Pregunta:
+
+¿Cómo llegó este dato a influir en la conclusión?
+
+Debe poder reconstruirse:
+
+fuente → dato → conducta → clasificación → variables → características → edad/etapa → desarrollo esperado → conducta esperada → trayectoria → contexto → interpretación → DSM/perfiles → integración → conclusión.
+
+29. Auditoría hacia atrás
+
+La auditoría hacia atrás parte de la conclusión.
+
+Pregunta:
+
+¿Qué evidencia sustenta esta conclusión?
+
+Debe poder reconstruirse:
+
+conclusión → integración → evidencias → interpretaciones → variables → conductas → datos originales → fuentes.
+
+También debe mostrar:
+
+-   qué información fue decisiva;
+
+-   qué información fue complementaria;
+
+-   qué información era insuficiente;
+
+-   qué alternativas fueron consideradas;
+
+-   qué discrepancias existieron;
+
+-   qué elementos quedaron pendientes.
+
+30. Reconstrucción completa de un dato
+
+Ejemplo:
+
+Dato original
+
+“Tarea incompleta.”
+
+Conductas observables posibles
+
+-   abandona antes de terminar;
+
+-   cambia de actividad;
+
+-   pierde información;
+
+-   se distrae;
+
+-   requiere recordatorios;
+
+-   no mantiene el objetivo;
+
+-   presenta dificultades de organización.
+
+Variables relacionadas
+
+-   atención sostenida;
+
+-   memoria de trabajo;
+
+-   mantenimiento de objetivos;
+
+-   persistencia;
+
+-   planificación;
+
+-   organización;
+
+-   regulación del esfuerzo;
+
+-   distractibilidad.
+
+Características
+
+Se analiza:
+
+-   frecuencia;
+
+-   duración;
+
+-   intensidad;
+
+-   persistencia;
+
+-   variabilidad;
+
+-   contexto;
+
+-   demanda;
+
+-   supervisión;
+
+-   evolución.
+
+Edad y etapa
+
+Se determina qué nivel de funcionamiento era esperable.
+
+Conducta esperada
+
+Se determina qué capacidad de completar y mantener la actividad corresponde a esa etapa.
+
+Trayectoria
+
+Se determina cuándo apareció, cómo evolucionó y si persistió.
+
+Contexto
+
+Se analiza si ocurre:
+
+-   en casa;
+
+-   en escuela;
+
+-   en actividades estructuradas;
+
+-   en actividades no estructuradas;
+
+-   con o sin supervisión;
+
+-   frente a diferentes demandas.
+
+Interpretación funcional
+
+Se determina qué patrón funcional está mejor sustentado.
+
+DSM-5-TR
+
+Se determina si aporta evidencia a uno o más síntomas o requisitos diagnósticos.
+
+Perfiles
+
+Se establece su relación con uno o más de los seis perfiles.
+
+Convergencia/discrepancia
+
+Se compara con las demás fuentes.
+
+Alternativas/concurrentes
+
+Se verifica si existe otra explicación relevante.
+
+Integración
+
+Se integra con el resto de la evidencia.
+
+Conclusión
+
+Se genera únicamente después de completar la integración correspondiente.
+
+31. Revisión profesional
+
+La trazabilidad no reemplaza el juicio profesional.
+
+El sistema puede:
+
+-   organizar;
+
+-   relacionar;
+
+-   comparar;
+
+-   detectar inconsistencias;
+
+-   identificar información faltante;
+
+-   reconstruir evidencia;
+
+-   mostrar dependencias;
+
+-   generar hipótesis;
+
+-   señalar discrepancias;
+
+-   integrar información.
+
+La decisión clínica formal permanece bajo responsabilidad profesional.
+
+32. Diferencia entre sistema y profesional
+
+Sistema
+
+Debe garantizar:
+
+-   organización;
+
+-   trazabilidad;
+
+-   consistencia;
+
+-   recuperación de evidencia;
+
+-   identificación de información faltante;
+
+-   propagación de cambios;
+
+-   versionado;
+
+-   reconstrucción hacia adelante;
+
+-   reconstrucción hacia atrás.
+
+Profesional
+
+Debe:
+
+-   revisar la información;
+
+-   valorar su pertinencia;
+
+-   considerar el contexto clínico;
+
+-   evaluar explicaciones alternativas;
+
+-   interpretar la integración;
+
+-   revisar la conclusión;
+
+-   realizar o confirmar la decisión diagnóstica correspondiente.
+
+33. Arquitectura gráfica conceptual
+
+La arquitectura debe visualizarse como una red de relaciones:
+
+HISTORIA / FUENTES
+↕
+DATOS ORIGINALES
+↕
+CONDUCTAS OBSERVABLES
+↔ EDAD / ETAPA
+↔ DESARROLLO COGNITIVO ESPERADO
+↔ CONDUCTA ESPERADA
+↕
+CLASIFICACIÓN
+↔ VARIABLES FUNCIONALES
+↔ CARACTERÍSTICAS
+↔ TRAYECTORIA
+↔ CONTEXTO / DEMANDA
+↕
+INTERPRETACIÓN FUNCIONAL
+↔ DSM-5-TR
+↔ SEIS PERFILES
+↔ ALTERNATIVAS / CONCURRENTES
+↕
+CONVERGENCIAS / DISCREPANCIAS
+↕
+INTEGRACIÓN
+↕
+CONCLUSIÓN
+↕
+REVISIÓN PROFESIONAL
+
+Los factores y antecedentes pueden relacionarse con historia, contexto, trayectoria e interpretación.
+
+La Realidad Virtual, cuando corresponda, ingresa como una fuente adicional de evidencia y se conecta con los datos y variables correspondientes.
+
+La representación anterior es una guía conceptual. La arquitectura real es relacional y bidireccional, no una cadena rígida.
+
+34. Reglas maestras de trazabilidad
+
+1.  Ninguna conclusión relevante debe quedar sin evidencia identificable.
+
+2.  El dato original debe conservarse separado de la interpretación.
+
+3.  Una conducta puede relacionarse con múltiples variables.
+
+4.  Una variable puede recibir evidencia de múltiples fuentes.
+
+5.  Edad y etapa deben formar parte de la interpretación.
+
+6.  Debe registrarse el desarrollo cognitivo esperable.
+
+7.  Debe registrarse la conducta esperable.
+
+8.  La trayectoria debe diferenciarse de los factores y antecedentes.
+
+9.  Los factores prenatales, perinatales, familiares y ambientales no deben confundirse con trayectoria.
+
+10. El contexto debe formar parte de la interpretación.
+
+11. La relación con DSM-5-TR debe quedar explícita.
+
+12. La relación con los seis perfiles debe quedar explícita cuando corresponda.
+
+13. Las discrepancias entre fuentes deben conservarse.
+
+14. Las explicaciones alternativas y condiciones concurrentes deben quedar registradas.
+
+15. Información desconocida no debe interpretarse como ausencia.
+
+16. La Realidad Virtual es una fuente tecnológica de evidencia, no un nuevo perfil ni una capa de trazabilidad.
+
+17. El versionado debe ser automático.
+
+18. Los datos originales no deben sobrescribirse.
+
+19. Los cambios deben poder propagarse a las conclusiones dependientes.
+
+20. Toda conclusión debe poder auditarse hacia adelante y hacia atrás.
+
+21. La trazabilidad debe permitir reconstruir qué información y reglas estaban disponibles al momento de cada conclusión.
+
+22. La integración automática no reemplaza la revisión profesional.
+
+35. Resultado esperado de la Etapa 6
+
+Al finalizar esta etapa, el sistema debe ser capaz de responder de manera reconstruible:
+
+¿Qué se observó?
+
+¿Quién lo informó o cómo se obtuvo?
+
+¿Qué conducta representa?
+
+¿Con qué variables se relaciona?
+
+¿Qué características presenta?
+
+¿Qué era esperable para esa edad y etapa?
+
+¿Cómo ha evolucionado?
+
+¿En qué contextos ocurre?
+
+¿Qué impacto produce?
+
+¿Qué interpretación funcional se obtuvo?
+
+¿Qué relación tiene con los requerimientos diagnósticos?
+
+¿Cómo se relaciona con los seis perfiles?
+
+¿Qué evidencia converge o discrepa?
+
+¿Qué explicaciones alternativas o concurrentes fueron consideradas?
+
+¿Qué información falta o permanece incierta?
+
+¿Cómo se llegó a la integración?
+
+¿Qué sustenta la conclusión?
+
+¿Qué versión del sistema y de sus reglas intervino?
+
+¿Puede un profesional reconstruir todo el proceso y revisarlo?
+
+Si estas preguntas pueden responderse de manera estructurada, la información deja de ser solamente un conjunto de respuestas y se transforma en un sistema auditable de evidencia clínica.
+
+36. Cierre de la Etapa 6
+
+La Etapa 6 queda definida como la arquitectura de trazabilidad y auditoría diagnóstica del modelo multidimensional.
+
+Su función no es agregar nuevos criterios ni modificar el diagnóstico.
+
+Su función es garantizar que exista una relación reconstruible entre:
+
+evidencia → observación → variables → desarrollo → trayectoria → contexto → interpretación → diagnóstico → perfiles → integración → conclusión.
+
+La arquitectura conserva tanto la información que sustenta una conclusión como la incertidumbre, las discrepancias, las alternativas y la información faltante.
+
+Con ello, el modelo queda preparado para las etapas siguientes, en las que esta arquitectura podrá utilizarse para construir la entrevista adaptativa, incorporar tecnologías de evaluación y posteriormente implementar la lógica operativa de IA.
+
+ETAPA 7 — BANCO DE PREGUNTAS Y ENTREVISTA ADAPTATIVA
+
+1. Propósito
+
+La Etapa 7 transforma el modelo científico desarrollado en las etapas anteriores en una entrevista diagnóstica estructurada, evolutiva, multidimensional, adaptativa y eficiente.
+
+Su objetivo no es aplicar un cuestionario fijo ni recorrer mecánicamente una lista de síntomas. Su objetivo es obtener progresivamente la información necesaria para caracterizar las dificultades, establecer su trayectoria y persistencia, comparar el funcionamiento con lo esperable para la edad, explorar las áreas relevantes para TDAH, identificar explicaciones alternativas y evitar preguntas redundantes.
+
+2. Principio fundamental de la entrevista
+
+La entrevista debe seguir la lógica: ¿Qué ocurre? → ¿Cómo ocurre? → ¿Dónde ocurre? → ¿Desde cuándo ocurre? → ¿Con qué frecuencia ocurre? → ¿Es persistente? → ¿Cómo ha evolucionado? → ¿En qué condiciones aparece o disminuye? → ¿Qué impacto produce? → ¿Es esperable para su etapa del desarrollo? → ¿Existen explicaciones alternativas?
+
+No todas estas dimensiones deben preguntarse mediante preguntas independientes. La IA debe utilizar la información ya entregada y preguntar únicamente aquello que todavía sea necesario.
+
+3. Información inicial obligatoria
+
+Antes de iniciar la entrevista debe estar disponible: edad del niño/adolescente, etapa del desarrollo correspondiente y motivo de consulta.
+
+A partir de la edad, la entrevista mantiene como marco permanente: edad → etapa evolutiva → desarrollo neurológico esperable → funcionamiento cognitivo esperable → conducta esperable.
+
+La información del desarrollo no debe utilizarse para asumir que una conducta es patológica. Debe utilizarse para determinar si existe una diferencia relevante respecto de lo esperable.
+
+4. Punto de entrada obligatorio
+
+La entrevista no debe comenzar con una lista de síntomas de TDAH.
+
+Después de obtener la edad y el motivo de consulta, debe realizarse la pregunta abierta:
+
+“¿Qué está ocurriendo actualmente que motivó esta evaluación?”
+
+La respuesta debe registrarse respetando su contenido. Si identifica una dificultad pero no permite saber exactamente qué ocurre, la siguiente pregunta debe caracterizar la conducta antes de preguntar por frecuencia, duración, trayectoria o impacto.
+
+No se debe asumir previamente TDAH, inatención, hiperactividad, impulsividad ni una causa o explicación.
+
+5. Ruta del apoderado según información escolar
+
+5.1. Ruta A — Apoderado sin informe escolar disponible
+
+Cuando no existe informe escolar disponible o no puede obtenerse en ese momento, el apoderado debe aportar, dentro de lo que conozca, información sobre funcionamiento escolar, dificultades observadas, trayectoria escolar, rendimiento, situaciones en que aparecen las dificultades, situaciones en que funciona mejor, seguimiento de instrucciones, organización, persistencia, atención, impulsividad, autonomía e impacto académico y funcional.
+
+Esta información corresponde a información del apoderado sobre el contexto escolar y no equivale a una observación directa del colegio. Si posteriormente se obtiene un informe escolar, éste debe incorporarse como fuente independiente.
+
+5.2. Ruta B — Apoderado con informe escolar disponible o que puede obtenerse
+
+Si existe un informe escolar o puede obtenerse, primero debe determinarse qué información relevante contiene.
+
+El apoderado debe ser utilizado principalmente para funcionamiento en casa, desarrollo, trayectoria, antecedentes, autonomía, responsabilidades, conducta observable, contexto familiar e impacto cotidiano.
+
+La información escolar debe obtenerse preferentemente mediante el informe. No debe repetirse al apoderado una batería completa de preguntas escolares si el informe ya contiene la información necesaria.
+
+Sólo deben formularse preguntas escolares adicionales cuando el informe no contenga información relevante, sea demasiado general, exista contradicción o sea necesario aclarar un punto crítico o información posterior al informe.
+
+6. Caracterización inicial de una dificultad
+
+Cuando aparece una conducta o dificultad, la entrevista debe determinar primero qué significa concretamente. Por ejemplo, ante “se desconcentra”, debe establecer qué hace cuando se desconcentra, qué estaba haciendo, en qué situaciones ocurre y qué ocurre después, antes de activar las preguntas de profundización.
+
+7. Persistencia y trayectoria — requisito obligatorio
+
+La presencia actual de una conducta no equivale por sí sola a persistencia.
+
+Cuando una dificultad sea relevante para la evaluación de TDAH, la entrevista debe determinar, cuando corresponda: cuándo comenzó, si estuvo presente anteriormente, cuánto tiempo lleva ocurriendo, si ha sido continua, recurrente o variable, cómo ha evolucionado, si ha aumentado, disminuido o cambiado y si existe evidencia de continuidad suficiente para caracterizarla como persistente.
+
+Una conducta relevante no debe considerarse suficientemente caracterizada si su trayectoria temporal permanece sin explorar cuando ésta es necesaria para la evaluación.
+
+La entrevista debe intentar obtener activamente esta información. Si después de una indagación apropiada el informante realmente no puede establecerla, debe registrarse como desconocida o no determinada, sin convertirla en ausencia.
+
+8. Comparación con el desarrollo
+
+Toda dificultad relevante debe interpretarse en relación con: edad → etapa del desarrollo → funcionamiento esperado → conducta observada.
+
+La entrevista debe considerar, según la etapa, autonomía, capacidad de mantener objetivos, atención, inhibición, organización, memoria de trabajo, planificación, persistencia, regulación del esfuerzo y adaptación a diferentes demandas.
+
+No se debe asumir que una conducta es patológica simplemente porque existe. Debe determinarse si representa una dificultad significativa respecto del funcionamiento esperado para esa etapa.
+
+9. Áreas centrales relacionadas con TDAH
+
+La entrevista debe disponer de preguntas para explorar, cuando corresponda:
+
+• Inatención: mantenimiento de la atención, distractibilidad, seguimiento de instrucciones, escucha, errores por falta de atención, finalización de tareas, pérdida de objetos y mantenimiento de objetivos.
+
+• Hiperactividad: inquietud, dificultad para permanecer quieto, necesidad de estar constantemente haciendo algo, actividad excesiva y regulación del nivel de actividad.
+
+• Impulsividad: responder antes de tiempo, interrumpir, dificultad para esperar, actuar sin considerar consecuencias e inhibir respuestas.
+
+• Organización y funciones ejecutivas: iniciar, mantener y terminar actividades, organizar materiales, secuenciar tareas, planificar, administrar el tiempo y mantener responsabilidades.
+
+Estas preguntas constituyen un banco disponible y no una batería que deba aplicarse completa a todos los casos.
+
+10. Regla de activación adaptativa
+
+Cuando aparece una dificultad, la IA debe analizarla en relación con: conducta → variables relacionadas → edad → etapa → desarrollo esperado → funcionamiento esperado → contexto → trayectoria → impacto.
+
+Sólo después debe seleccionar la pregunta de mayor valor informativo.
+
+La secuencia es: respuesta → identificar qué ya se sabe → identificar qué falta → eliminar preguntas redundantes → seleccionar una sola pregunta necesaria.
+
+11. Profundización adaptativa
+
+Las preguntas de profundización pueden explorar, según lo que todavía falte: ejemplo concreto, frecuencia, intensidad, duración, persistencia, inicio, evolución, trayectoria, contexto, demanda, supervisión, estructura, motivación, recompensa, condiciones facilitadoras, condiciones que dificultan, impacto, estrategias compensatorias y explicaciones alternativas.
+
+La IA debe detener una línea de indagación cuando la información obtenida sea suficiente.
+
+12. Variabilidad y contexto
+
+No basta con establecer que una conducta ocurre. Debe investigarse, cuando sea relevante, dónde ocurre, dónde no ocurre, con qué actividades aparece, con qué actividades disminuye, qué ocurre cuando aumenta la demanda, cuando existe o disminuye la supervisión, frente a actividades interesantes o poco motivantes, y cuando la actividad está estructurada o requiere mayor autonomía.
+
+La variabilidad debe utilizarse para caracterizar el funcionamiento y no para descartar automáticamente una dificultad.
+
+13. Impacto funcional
+
+Cuando una dificultad esté suficientemente caracterizada, debe determinarse su impacto en las áreas pertinentes: académico, familiar, social, autonomía, responsabilidades y funcionamiento cotidiano.
+
+No debe asumirse impacto únicamente por la presencia de la conducta.
+
+14. Barrido de explicaciones alternativas y condiciones que pueden confundirse con TDAH
+
+La entrevista debe incorporar un barrido diferencial adaptativo. Debe poder explorar, cuando sean pertinentes:
+
+• Aspectos emocionales y cambios emocionales relevantes.
+
+• Acontecimientos vitales y familiares, incluidos cambios o situaciones estresantes.
+
+• Aprendizaje y funcionamiento académico, incluidas dificultades específicas de aprendizaje o lenguaje.
+
+• Aspectos sensoriales: audición, visión y sensibilidades sensoriales relevantes.
+
+• Condiciones médicas y neurológicas, antecedentes relevantes y tratamientos.
+
+• Sueño, incluidos ronquidos intensos, pausas respiratorias o somnolencia diurna, cuando sea pertinente.
+
+• Sustancias o exposiciones, cuando corresponda.
+
+• Factores motivacionales, relacionales y de autoridad.
+
+Estos dominios no constituyen un diagnóstico alternativo automático ni una batería fija. Son áreas de cobertura diferencial.
+
+14.1. Tamizaje médico, sensorial y de factores diferenciales
+
+Este tamizaje complementa el banco de preguntas existente. No reemplaza los criterios del DSM-5-TR, no constituye un diagnóstico y no supone que una condición concurrente descarte el TDAH.
+
+Pregunta inicial de tamizaje (respuesta múltiple):
+
+“Además de las dificultades que motivaron esta evaluación, ¿se ha observado o diagnosticado alguna de las siguientes situaciones? Puedes seleccionar todas las que correspondan.”
+
+1. Episodios breves de desconexión, mirada fija o momentos en que parece no responder normalmente.
+
+2. Dificultades auditivas o sospecha de problemas de audición.
+
+3. Dificultades visuales o problemas de visión que podrían no estar corregidos.
+
+4. Problemas persistentes de sueño, ronquidos intensos, pausas respiratorias durante el sueño o somnolencia diurna marcada.
+
+5. Antecedentes neurológicos relevantes u otras condiciones médicas que puedan afectar el funcionamiento.
+
+6. Antecedentes endocrinos o metabólicos relevantes.
+
+7. Uso habitual o reciente de medicamentos que pueda ser pertinente para comprender cambios en la atención, el sueño, la actividad o la conducta.
+
+8. Sensibilidades sensoriales relevantes, por ejemplo, ante sonidos, luces, tacto u otros estímulos.
+
+9. Otra situación médica, sensorial, del desarrollo o del sueño que el informante considere importante.
+
+10. Ninguna de las anteriores.
+
+11. No sé / no recuerdo.
+
+Regla de respuesta:
+
+La pregunta se presenta como selección múltiple. “Ninguna de las anteriores” debe ser una opción excluyente de las demás. “No sé / no recuerdo” no equivale a una respuesta negativa.
+
+Regla de bifurcación adaptativa:
+
+Registro de estado obligatorio: la respuesta del tamizaje se guarda en dos campos separados: (a) estado operativo del módulo y (b) resultado informado. Si se marca “Ninguna de las anteriores”, el estado del módulo pasa a COMPLETADO y el resultado a EXPLORADO_SIN_DIFICULTADES_REPORTADAS. Esto cierra solo el módulo de tamizaje; no completa automáticamente el barrido diferencial general ni la entrevista completa.
+
+• Si se marca una o más categorías, la Etapa 9 activa únicamente la profundización correspondiente a esas categorías, utilizando primero la información ya registrada en la memoria del caso.
+
+• Si se marca “Ninguna de las anteriores”, se registra el módulo como COMPLETADO y el resultado como EXPLORADO_SIN_DIFICULTADES_REPORTADAS; no se abren ramas adicionales, salvo que exista información previa contradictoria o pendiente de aclaración. Después se continúa con la evaluación del resto de los requisitos de cierre.
+
+• Si se marca “No sé / no recuerdo”, se conserva la incertidumbre y no se registra la categoría como descartada.
+
+• Si se marca “Otra situación”, se solicita una descripción breve y el motor determina qué rama existente corresponde o si hace falta una aclaración específica.
+
+• Si la información ya está suficientemente establecida, no se vuelve a preguntar. Se profundiza solo cuando falte un dato relevante, exista ambigüedad o haya contradicción.
+
+Regla de interpretación y seguridad:
+
+El tamizaje identifica factores que pueden contribuir a las dificultades, coexistir con ellas o requerir evaluación adicional. No permite atribuir causalidad ni descartar por sí solo el TDAH.
+
+Los episodios de desconexión o falta de respuesta deben caracterizarse con cuidado y quedar señalados para revisión profesional cuando corresponda. La IA no debe asignarles un diagnóstico.
+
+Cuando se informen pausas respiratorias durante el sueño, episodios de desconexión preocupantes u otros signos que requieran valoración médica, el sistema debe registrar el antecedente y recomendar revisión por un profesional sanitario; no debe intentar resolverlo mediante preguntas de TDAH ni sugerir cambios de medicación.
+
+Criterio de cierre del módulo:
+
+El módulo puede cerrarse cuando las categorías pertinentes hayan sido exploradas suficientemente, o cuando la información no pueda obtenerse tras una indagación apropiada y esa incertidumbre quede explícitamente registrada. Una respuesta negativa no equivale a un descarte médico definitivo.
+
+15. Regla de no repetición
+
+Una información suficientemente establecida no debe volver a preguntarse.
+
+La repetición sólo está permitida cuando se requiere triangulación, existe discrepancia, la información puede haber cambiado, la primera respuesta fue insuficiente, una nueva fuente debe aportar una dimensión diferente o es necesario aclarar una contradicción.
+
+La IA debe reconocer equivalencias semánticas entre preguntas y no repetir una pregunta simplemente porque aparece formulada de otra manera en el banco.
+
+16. Estados de la información
+
+La entrevista debe diferenciar claramente: SÍ; NO; OCASIONALMENTE; NO SABE; NO RECUERDA; NO INFORMADO; INFORMACIÓN PARCIAL; INFORMACIÓN SUFICIENTEMENTE ESTABLECIDA.
+
+NO SABE ≠ NO. NO RECUERDA ≠ NO. NO INFORMADO ≠ AUSENTE. INFORMACIÓN PARCIAL ≠ INFORMACIÓN SUFICIENTE.
+
+17. Fuentes de información
+
+Las fuentes deben mantenerse diferenciadas.
+
+• Apoderado: desarrollo, trayectoria, hogar, autonomía, conducta observable, impacto, antecedentes y funcionamiento cotidiano.
+
+• Colegio: preferentemente informe escolar e información complementaria sólo cuando sea necesaria.
+
+• Niño/adolescente: experiencia subjetiva, percepción de dificultades, estudios, organización, esfuerzo, atención, impulsividad, autonomía, estrategias, impacto y diferencias entre contextos.
+
+La entrevista del niño/adolescente no debe repetir mecánicamente la del apoderado.
+
+18. Regla de mínima pregunta suficiente
+
+La entrevista debe utilizar la regla: preguntar → obtener información → comparar → precisar → establecer → continuar.
+
+Cuando una variable está suficientemente caracterizada, la entrevista debe continuar hacia otra necesidad relevante. No debe seguir preguntando simplemente porque todavía existen preguntas disponibles en el banco.
+
+19. Criterio de cierre de una línea de indagación
+
+Una línea puede cerrarse cuando la conducta está suficientemente caracterizada, las dimensiones relevantes han sido establecidas, la persistencia y el curso fueron determinados cuando correspondía, el contexto está suficientemente caracterizado, el impacto fue determinado cuando corresponde y la comparación evolutiva puede realizarse.
+
+Cerrar una línea no significa cerrar la entrevista.
+
+20. Criterio de cierre de la entrevista
+
+La entrevista completa sólo puede finalizar cuando:
+
+1. El motivo de consulta está caracterizado.
+
+2. Las dificultades relevantes están caracterizadas.
+
+3. Las áreas centrales relacionadas con TDAH han sido exploradas cuando corresponde.
+
+4. La trayectoria y persistencia relevantes han sido investigadas.
+
+5. Existe información suficiente para la comparación evolutiva.
+
+6. Los contextos relevantes han sido explorados.
+
+7. El impacto relevante ha sido establecido.
+
+8. La ruta escolar correspondiente ha sido utilizada.
+
+9. Las fuentes necesarias han sido consideradas.
+
+10. El barrido diferencial pertinente ha sido realizado, incluido el tamizaje médico, sensorial y del sueño cuando corresponda.
+
+11. No quedan ramas clínicamente relevantes sin explorar.
+
+12. Las incertidumbres que realmente no pudieron resolverse quedan identificadas como tales.
+
+La entrevista no puede cerrarse simplemente porque una respuesta indique “falta información”. Cuando falta información necesaria, debe intentarse obtenerla mediante una pregunta adaptativa antes de considerar esa dimensión como desconocida.
+
+21. Principio final de la Etapa 7
+
+La Etapa 7 debe producir una entrevista adaptativa, no un cuestionario.
+
+NO ASUMIR → CARACTERIZAR → PROFUNDIZAR → ESTABLECER PERSISTENCIA Y TRAYECTORIA → COMPARAR CON DESARROLLO → EVALUAR CONTEXTO E IMPACTO → EXPLORAR TDAH → EXPLORAR ALTERNATIVAS Y FACTORES MÉDICOS/SENSORIALES → EVITAR REPETICIÓN → COMPLETAR COBERTURA → CERRAR.
+
+La Etapa 7 define cómo debe realizarse la entrevista. La Etapa 9 define posteriormente cómo el motor determina qué información falta, qué pregunta corresponde y cuándo está autorizado el cierre.
+
+ANEXO 7 — PREGUNTAS DE EVALUACIÓN ADAPTATIVA
+
+A. PADRES / APODERADOS
+
+Respuesta inicial
+
+SÍ | NO | OCASIONALMENTE | NO SABE / NO RECUERDA
+
+INATENCIÓN
+
+1.  ¿Comete errores por no fijarse bien en los detalles?
+
+2.  ¿Le cuesta mantener la atención durante una actividad?
+
+3.  ¿Parece no escuchar cuando se le habla directamente?
+
+4.  ¿Le cuesta seguir instrucciones completas?
+
+5.  ¿Deja tareas o actividades sin terminar?
+
+6.  ¿Le cuesta organizar sus tareas, materiales o actividades?
+
+7.  ¿Evita o posterga actividades que requieren esfuerzo mental durante bastante tiempo?
+
+8.  ¿Pierde con frecuencia cosas que necesita?
+
+9.  ¿Se distrae fácilmente con estímulos que ocurren alrededor?
+
+10. ¿Olvida con frecuencia cosas que debería recordar?
+
+HIPERACTIVIDAD
+
+11. ¿Le cuesta permanecer sentado cuando se espera que lo haga?
+
+12. ¿Se mueve constantemente o muestra mucha inquietud?
+
+13. ¿Corre, trepa o se mueve excesivamente en situaciones en que debería estar tranquilo?
+
+14. ¿Le cuesta participar en actividades tranquilas?
+
+15. ¿Parece estar permanentemente activo o necesitar estar haciendo algo?
+
+16. ¿Habla más de lo esperable para la situación?
+
+IMPULSIVIDAD
+
+17. ¿Responde antes de que terminen de hacerle una pregunta?
+
+18. ¿Le cuesta esperar su turno?
+
+19. ¿Interrumpe conversaciones, juegos o actividades de otras personas?
+
+20. ¿Actúa rápidamente sin detenerse a pensar qué puede ocurrir después?
+
+ORGANIZACIÓN Y FUNCIONES EJECUTIVAS
+
+21. ¿Le cuesta saber por dónde comenzar una tarea?
+
+22. ¿Le cuesta recordar varios pasos de una instrucción?
+
+23. ¿Pierde el objetivo de una actividad mientras la está realizando?
+
+24. ¿Le cuesta cambiar de una actividad a otra?
+
+25. ¿Le cuesta cambiar de estrategia cuando una forma de hacer algo no funciona?
+
+26. ¿Le cuesta mantenerse en una actividad hasta terminarla?
+
+27. ¿Necesita más supervisión que otros niños de su edad para cumplir responsabilidades?
+
+28. ¿Su rendimiento cambia mucho de una situación a otra?
+
+CONTEXTO
+
+29. ¿Las dificultades aumentan cuando la actividad dura bastante tiempo?
+
+30. ¿Aumentan cuando la actividad tiene varios pasos o es más compleja?
+
+31. ¿Aumentan cuando hay muchos distractores?
+
+32. ¿Disminuyen cuando un adulto lo supervisa de cerca?
+
+33. ¿Disminuyen cuando la actividad está muy estructurada?
+
+34. ¿Funciona mucho mejor cuando la actividad le interesa?
+
+35. ¿Le cuesta más cuando la recompensa o el resultado están muy demorados?
+
+36. ¿Funciona diferente cuando está solo que cuando un adulto lo acompaña?
+
+37. ¿Funciona diferente en casa y en el colegio?
+
+TRAYECTORIA
+
+38. ¿Recuerda haber observado alguna de estas dificultades antes de los 6 años?
+
+39. ¿Ya existían algunas de estas dificultades antes de entrar al colegio?
+
+40. ¿Las dificultades han estado presentes durante largos períodos?
+
+41. ¿Han aumentado a medida que aumentaron las exigencias?
+
+42. ¿Hay etapas en que funcionaba claramente mejor?
+
+43. ¿Ha habido períodos en que las dificultades prácticamente desaparecieron?
+
+44. ¿Las dificultades aumentan cuando disminuyen los apoyos o la supervisión?
+
+45. ¿Las dificultades se han mantenido a pesar de cambios de colegio, profesores o actividades?
+
+FUNCIONAMIENTO E IMPACTO
+
+46. ¿Estas dificultades afectan su rendimiento escolar?
+
+47. ¿Afectan la convivencia familiar?
+
+48. ¿Afectan sus relaciones con otros niños o adolescentes?
+
+49. ¿Afectan actividades cotidianas?
+
+50. ¿Necesita más ayuda que otros niños de su edad para realizar actividades que debería poder hacer con mayor autonomía?
+
+51. ¿Estas dificultades generan frustración, conflictos o consecuencias importantes?
+
+52. ¿Cuál considera que es actualmente la principal dificultad de funcionamiento?
+
+DESARROLLO Y ANTECEDENTES
+
+53. ¿Hubo alguna preocupación relevante durante su desarrollo temprano?
+
+54. ¿Existieron dificultades de lenguaje, motricidad, aprendizaje o regulación?
+
+55. ¿Hubo alguna circunstancia relevante durante el embarazo, parto o período neonatal?
+
+56. ¿Presenta actualmente dificultades importantes de sueño?
+
+57. ¿Existen antecedentes familiares relevantes de TDAH u otras dificultades del neurodesarrollo?
+
+58. ¿Ha existido alguna situación familiar, escolar o ambiental importante que pueda haber afectado su funcionamiento?
+
+EXPLICACIONES ALTERNATIVAS
+
+59. ¿Las dificultades aparecen especialmente en determinadas materias o tipos de tareas?
+
+60. ¿Ha presentado dificultades importantes para comprender instrucciones o lenguaje?
+
+61. ¿Las dificultades aumentan cuando duerme mal o está cansado?
+
+62. ¿Aparecen principalmente cuando está preocupado, triste, ansioso o frustrado?
+
+63. ¿Existen conductas desafiantes u oposicionistas que puedan explicar parte de las dificultades?
+
+64. ¿Existen otras dificultades del desarrollo que también estén presentes?
+
+65. ¿Presenta sensibilidad importante al ruido, luz, tacto u otros estímulos?
+
+66. ¿Existe alguna condición médica, tratamiento o medicamento que pueda influir en su funcionamiento?
+
+B. PREGUNTAS QUE LA IA DESPLIEGA DESPUÉS DE UN “SÍ”
+
+Estas preguntas se seleccionan según:
+
+edad + etapa + desarrollo neurológico esperable + funcionamiento cognitivo esperable + conducta esperable + variables relacionadas.
+
+Para aclarar la conducta
+
+1.  ¿Puede contarme un ejemplo concreto?
+
+2.  ¿Qué ocurrió exactamente?
+
+3.  ¿Qué hizo el niño/a?
+
+4.  ¿Qué ocurrió justo antes?
+
+5.  ¿Con qué frecuencia sucede?
+
+6.  ¿Desde cuándo ocurre?
+
+7.  ¿Sucede siempre o depende de la situación?
+
+Para identificar la variable involucrada
+
+8.  ¿El problema está principalmente en comenzar, mantener, organizar, recordar o terminar?
+
+9.  ¿Pierde información mientras realiza la actividad?
+
+10. ¿Pierde el objetivo de lo que estaba haciendo?
+
+11. ¿Se distrae con estímulos externos?
+
+12. ¿Cambia de actividad antes de terminar?
+
+13. ¿Necesita recordatorios para volver a la tarea?
+
+14. ¿Sabe qué tiene que hacer, pero le cuesta hacerlo de manera sostenida?
+
+Para comparar con la edad
+
+15. ¿Qué cosas puede hacer por sí mismo que antes necesitaban ayuda?
+
+16. ¿Qué cosas todavía requieren una ayuda que usted considera mayor de la esperable para su edad?
+
+17. ¿Esta dificultad ha aumentado a medida que se esperaba mayor autonomía?
+
+18. ¿Qué debería poder hacer actualmente que todavía le resulta difícil?
+
+Para contexto
+
+19. ¿En qué situaciones ocurre más?
+
+20. ¿En qué situaciones ocurre menos?
+
+21. ¿Qué cambia cuando recibe ayuda?
+
+22. ¿Qué ocurre cuando aumenta la exigencia?
+
+23. ¿Qué ocurre cuando disminuye la supervisión?
+
+24. ¿Qué pasa cuando la actividad le interesa?
+
+25. ¿Qué pasa cuando la actividad no le interesa?
+
+26. ¿Qué ocurre cuando hay muchos distractores?
+
+Para trayectoria
+
+27. ¿Desde qué edad lo recuerda?
+
+28. ¿Siempre fue así o apareció posteriormente?
+
+29. ¿Qué cambió cuando aumentaron las exigencias?
+
+30. ¿Hubo algún período en que funcionara mejor?
+
+31. ¿Qué era diferente en ese período?
+
+Para impacto
+
+32. ¿Qué consecuencia concreta produce esta dificultad?
+
+33. ¿Qué actividades se ven más afectadas?
+
+34. ¿Necesita más apoyo del que necesita un niño de edad similar?
+
+Para diferencial
+
+35. ¿Esta dificultad aparece en general o principalmente bajo una condición específica?
+
+36. ¿Qué condición parece hacerla aparecer o empeorar?
+
+37. ¿Existe otra explicación que pueda estar contribuyendo a esta dificultad?
+
+C. COLEGIO — PREGUNTAS DE COMPLEMENTACIÓN
+
+Estas preguntas solo se envían cuando el informe escolar no contiene la información necesaria.
+
+1.  ¿Qué dificultades observa actualmente en el funcionamiento del estudiante?
+
+2.  ¿Desde cuándo las observa?
+
+3.  ¿En qué situaciones se presentan con mayor claridad?
+
+4.  ¿En qué situaciones funciona mejor?
+
+5.  ¿Cómo responde frente a actividades prolongadas o con varios pasos?
+
+6.  ¿Cómo funciona cuando disminuye la supervisión?
+
+7.  ¿Presenta dificultades de atención, seguimiento de instrucciones, organización, persistencia o impulsividad?
+
+8.  ¿Existe impacto académico o social relevante?
+
+9.  ¿Cómo se compara su funcionamiento con el esperado para estudiantes de edad similar?
+
+10. ¿Existe alguna dificultad de aprendizaje, lenguaje, conducta o desarrollo que considere relevante?
+
+11. ¿Cómo ha evolucionado su funcionamiento durante el período observado?
+
+12. ¿Hay alguna información importante que no aparezca en el informe?
+
+Regla: si el informe escolar ya responde estas preguntas, no se envían nuevamente.
+
+D. NIÑO / NIÑA
+
+1.  ¿Qué cosas sientes que te cuestan más en el colegio o en tu casa?
+
+2.  ¿En qué situaciones te cuesta más?
+
+3.  ¿Hay situaciones en que te resulta mucho más fácil?
+
+4.  Cuando tienes que concentrarte durante bastante tiempo, ¿qué te pasa?
+
+5.  Cuando empiezas a distraerte, ¿qué haces?
+
+6.  ¿Te cuesta recordar lo que tienes que hacer?
+
+7.  ¿Te cuesta organizar tus cosas o saber por dónde empezar?
+
+8.  ¿Te pasa que empiezas algo y después lo dejas?
+
+9.  ¿Te cuesta esperar tu turno?
+
+10. ¿Te pasa que interrumpes o respondes antes de tiempo?
+
+11. ¿Te cuesta estar quieto cuando debes hacerlo?
+
+12. ¿Qué cosas te ayudan a concentrarte o terminar algo?
+
+E. ADOLESCENTE
+
+1.  ¿Qué cosas sientes que te cuestan más actualmente?
+
+2.  ¿En qué situaciones esas dificultades aparecen con mayor claridad?
+
+3.  ¿En qué situaciones funcionas mejor?
+
+4.  Cuando necesitas concentrarte durante bastante tiempo, ¿qué ocurre?
+
+5.  ¿Qué pasa cuando una tarea tiene muchos pasos?
+
+6.  ¿Cómo te organizas para estudiar o cumplir responsabilidades?
+
+7.  ¿Qué pasa cuando tienes que hacer algo que no te interesa?
+
+8.  ¿Qué pasa cuando algo te interesa mucho?
+
+9.  ¿Te cuesta comenzar, mantener o terminar actividades?
+
+10. ¿Te cuesta recordar instrucciones, fechas o cosas que tienes que hacer?
+
+11. ¿Te cuesta esperar, controlar respuestas o evitar interrumpir?
+
+12. ¿Sientes inquietud o necesidad de estar haciendo algo constantemente?
+
+13. ¿Qué cambia cuando nadie te supervisa?
+
+14. ¿Qué estrategias utilizas para compensar estas dificultades?
+
+15. ¿En qué afectan tus estudios, relaciones o vida diaria?
+
+16. ¿Hay algo que los adultos interpreten mal sobre lo que te ocurre?
+
+17. ¿Hay situaciones en que los demás creen que tienes una dificultad, pero tú sientes que funciona de otra manera?
+
+18. ¿Hay algo importante que no te haya preguntado?
+
+F. TAMIZAJE MÉDICO, SENSORIAL Y DE FACTORES DIFERENCIALES
+
+Pregunta inicial (selección múltiple):
+
+Además de las dificultades que motivaron esta evaluación, ¿se ha observado o diagnosticado alguna de estas situaciones? Puedes seleccionar todas las que correspondan.
+
+1. Episodios breves de desconexión, mirada fija o momentos en que parece no responder normalmente.
+
+2. Dificultades auditivas o sospecha de problemas de audición.
+
+3. Dificultades visuales o problemas de visión que podrían no estar corregidos.
+
+4. Problemas persistentes de sueño, ronquidos intensos, pausas respiratorias durante el sueño o somnolencia diurna marcada.
+
+5. Antecedentes neurológicos relevantes u otras condiciones médicas.
+
+6. Antecedentes endocrinos o metabólicos relevantes.
+
+7. Uso habitual o reciente de medicamentos que pueda ser pertinente para comprender el funcionamiento.
+
+8. Sensibilidades sensoriales relevantes ante sonidos, luces, tacto u otros estímulos.
+
+9. Otra situación médica, sensorial, del desarrollo o del sueño que considere importante.
+
+10. Ninguna de las anteriores.
+
+11. No sé / no recuerdo.
+
+Regla de aplicación:
+
+La pregunta es de selección múltiple; “Ninguna de las anteriores” es excluyente. “No sé / no recuerdo” se registra como incertidumbre, nunca como ausencia.
+
+Preguntas de profundización — solo para las categorías seleccionadas:
+
+A. Episodios de desconexión: ¿qué ocurre exactamente?, ¿cuánto suelen durar?, ¿con qué frecuencia suceden?, ¿responde cuando le hablan durante el episodio?, ¿ha sido evaluado por un profesional por esta situación?
+
+B. Audición: ¿qué dificultad se ha observado?, ¿se ha realizado una evaluación auditiva?, ¿utiliza alguna ayuda o tratamiento?, ¿en qué situaciones se nota más?
+
+C. Visión: ¿qué dificultad se ha observado?, ¿se ha evaluado la visión?, ¿usa lentes u otra corrección?, ¿persiste la dificultad con la corrección que utiliza?
+
+D. Sueño: ¿qué problema se observa?, ¿desde cuándo?, ¿hay ronquidos intensos o pausas respiratorias observadas?, ¿presenta cansancio o somnolencia durante el día?, ¿ha sido evaluado por un profesional?
+
+E. Antecedentes médicos o neurológicos: ¿cuál es la condición o antecedente?, ¿desde cuándo?, ¿recibe seguimiento o tratamiento?, ¿ha cambiado junto con las dificultades que motivaron la evaluación?
+
+F. Antecedentes endocrinos o metabólicos: ¿qué antecedente se ha identificado?, ¿recibe seguimiento o tratamiento?, ¿hay información médica disponible que deba incorporarse?
+
+G. Medicamentos: ¿qué medicamento utiliza?, ¿desde cuándo?, ¿se han observado cambios coincidentes con su inicio o con cambios indicados por el profesional tratante? El sistema no debe recomendar suspender ni modificar medicación.
+
+H. Sensibilidades sensoriales: ¿qué estímulos generan la dificultad?, ¿qué reacción se observa?, ¿en qué contextos aparece?, ¿cómo afecta las actividades cotidianas?
+
+I. Otra situación: ¿podría describir brevemente qué ha observado o qué antecedente le han informado?
+
+Reglas para la Etapa 9:
+
+• Activar únicamente las preguntas relacionadas con las categorías seleccionadas y con la información que todavía falte.
+
+• Consultar la memoria del caso antes de preguntar y evitar repetir datos suficientemente establecidos.
+
+• Registrar la fuente del dato: observación del apoderado, antecedente comunicado por un profesional, documento u otra fuente.
+
+• Distinguir SÍ, NO, OCASIONALMENTE, NO SÉ, NO RECUERDO, NO INFORMADO, INFORMACIÓN PARCIAL e INFORMACIÓN SUFICIENTEMENTE ESTABLECIDA.
+
+• No concluir que una condición alternativa explica las dificultades ni que excluye el TDAH. Registrar su posible relevancia para la integración y la revisión profesional.
+
+• Si se describen episodios de desconexión preocupantes, pausas respiratorias durante el sueño u otra situación que requiera evaluación sanitaria, dejar constancia y señalar la necesidad de valoración profesional, sin formular un diagnóstico.
+
+G. REGLA OPERATIVA DEL ANEXO
+
+La edad se registra primero.
+
+Después:
+
+preguntas núcleo → respuesta → identificación de la conducta → variables relacionadas → comparación inmediata con el desarrollo esperable para esa edad → preguntas adaptativas necesarias → cierre.
+
+La IA no debe hacer todas las preguntas de profundización.
+
+Debe seleccionar únicamente las que aporten información todavía necesaria para comprender el caso.
+
+El banco puede ser amplio.
+La entrevista visible debe ser breve.

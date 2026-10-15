@@ -1,0 +1,360 @@
+{
+ "etapas": [
+  "2–3 años",
+  "4–5 años",
+  "6–7 años",
+  "8–10 años",
+  "11–13 años",
+  "14–17 años"
+ ],
+ "dominios": [
+  {
+   "dominio": "Atención",
+   "por_etapa": {
+    "2–3 años": "Atención breve y fácilmente desplazable",
+    "4–5 años": "Mayor permanencia en actividades breves",
+    "6–7 años": "Mayor atención dirigida",
+    "8–10 años": "Mayor duración y mantenimiento",
+    "11–13 años": "Mayor coordinación de demandas",
+    "14–17 años": "Atención más autónoma y estratégica"
+   },
+   "respaldo": "ALTO"
+  },
+  {
+   "dominio": "Selección de información",
+   "por_etapa": {
+    "2–3 años": "Selección limitada ante múltiples estímulos",
+    "4–5 años": "Mayor orientación hacia información relevante",
+    "6–7 años": "Comienza a filtrar distractores",
+    "8–10 años": "Mejor selección frente a distractores",
+    "11–13 años": "Selección entre múltiples demandas",
+    "14–17 años": "Priorización de información"
+   },
+   "respaldo": "ALTO"
+  },
+  {
+   "dominio": "Atención sostenida",
+   "por_etapa": {
+    "2–3 años": "Breve",
+    "4–5 años": "Aumenta en actividades estructuradas",
+    "6–7 años": "Mayor permanencia",
+    "8–10 años": "Mayor mantenimiento",
+    "11–13 años": "Actividades prolongadas",
+    "14–17 años": "Tareas prolongadas y complejas"
+   },
+   "respaldo": "ALTO"
+  },
+  {
+   "dominio": "Inhibición",
+   "por_etapa": {
+    "2–3 años": "Control limitado",
+    "4–5 años": "Control inhibitorio emergente",
+    "6–7 años": "Mayor control de respuestas",
+    "8–10 años": "Mayor consistencia",
+    "11–13 años": "Mayor autorregulación",
+    "14–17 años": "Mayor control y demora de respuesta"
+   },
+   "respaldo": "MUY ALTO"
+  },
+  {
+   "dominio": "Respuestas anticipatorias",
+   "por_etapa": {
+    "2–3 años": "Frecuentes ante espera o respuesta inmediata",
+    "4–5 años": "Comienzan a disminuir",
+    "6–7 años": "Mayor control",
+    "8–10 años": "Menor respuesta anticipatoria",
+    "11–13 años": "Mayor capacidad para esperar",
+    "14–17 años": "Mayor control de respuesta"
+   },
+   "respaldo": "ALTO"
+  },
+  {
+   "dominio": "Memoria de trabajo",
+   "por_etapa": {
+    "2–3 años": "Capacidad limitada",
+    "4–5 años": "Secuencias sencillas",
+    "6–7 años": "Mantiene información para la tarea",
+    "8–10 años": "Mantiene varios elementos",
+    "11–13 años": "Manipula e integra información",
+    "14–17 años": "Integra información compleja"
+   },
+   "respaldo": "MUY ALTO"
+  },
+  {
+   "dominio": "Seguimiento de instrucciones",
+   "por_etapa": {
+    "2–3 años": "Instrucciones simples",
+    "4–5 años": "Secuencias sencillas",
+    "6–7 años": "Secuencias escolares",
+    "8–10 años": "Varios pasos",
+    "11–13 años": "Instrucciones más complejas",
+    "14–17 años": "Ejecución progresivamente autónoma"
+   },
+   "respaldo": "MODERADO–ALTO"
+  },
+  {
+   "dominio": "Mantenimiento de información relevante",
+   "por_etapa": {
+    "2–3 años": "Muy breve",
+    "4–5 años": "Mantiene información sencilla",
+    "6–7 años": "Mantiene información necesaria",
+    "8–10 años": "Mantiene varios elementos relevantes",
+    "11–13 años": "Integra información durante la tarea",
+    "14–17 años": "Mantiene información compleja"
+   },
+   "respaldo": "MUY ALTO"
+  },
+  {
+   "dominio": "Mantenimiento de objetivos",
+   "por_etapa": {
+    "2–3 años": "Objetivos inmediatos",
+    "4–5 años": "Objetivos simples",
+    "6–7 años": "Mantiene objetivo durante la tarea",
+    "8–10 años": "Mantiene objetivos ante distractores",
+    "11–13 años": "Mantiene objetivos entre demandas",
+    "14–17 años": "Mantiene objetivos complejos y futuros"
+   },
+   "respaldo": "ALTO"
+  },
+  {
+   "dominio": "Distractibilidad",
+   "por_etapa": {
+    "2–3 años": "Alta sensibilidad a estímulos competitivos",
+    "4–5 años": "Puede perder el foco",
+    "6–7 años": "Comienza a filtrar distractores",
+    "8–10 años": "Mayor resistencia",
+    "11–13 años": "Mayor regulación",
+    "14–17 años": "Mayor manejo estratégico"
+   },
+   "respaldo": "ALTO"
+  },
+  {
+   "dominio": "Control de interferencias",
+   "por_etapa": {
+    "2–3 años": "Muy limitado",
+    "4–5 años": "Emergente",
+    "6–7 años": "En desarrollo",
+    "8–10 años": "Mayor control",
+    "11–13 años": "Mayor regulación",
+    "14–17 años": "Control más estratégico"
+   },
+   "respaldo": "ALTO"
+  },
+  {
+   "dominio": "Cambio de actividad",
+   "por_etapa": {
+    "2–3 años": "Necesita ayuda",
+    "4–5 años": "Cambia con apoyo",
+    "6–7 años": "Cambia siguiendo instrucciones",
+    "8–10 años": "Alterna demandas",
+    "11–13 años": "Cambia con menor supervisión",
+    "14–17 años": "Cambia entre actividades complejas"
+   },
+   "respaldo": "ALTO"
+  },
+  {
+   "dominio": "Flexibilidad cognitiva",
+   "por_etapa": {
+    "2–3 años": "Inicial",
+    "4–5 años": "Aumenta progresivamente",
+    "6–7 años": "Adaptación a cambios",
+    "8–10 años": "Cambio de estrategias",
+    "11–13 años": "Adaptación contextual",
+    "14–17 años": "Modificación autónoma de planes"
+   },
+   "respaldo": "ALTO"
+  },
+  {
+   "dominio": "Cambio de estrategia",
+   "por_etapa": {
+    "2–3 años": "Predominio de respuesta inmediata",
+    "4–5 años": "Puede aceptar alternativas con ayuda",
+    "6–7 años": "Comienza a modificar estrategias",
+    "8–10 años": "Puede cambiar una estrategia ineficaz",
+    "11–13 años": "Adapta estrategias",
+    "14–17 años": "Selecciona y modifica estrategias"
+   },
+   "respaldo": "ALTO"
+  },
+  {
+   "dominio": "Planificación",
+   "por_etapa": {
+    "2–3 años": "Acción y secuencia inmediata",
+    "4–5 años": "Pequeñas secuencias",
+    "6–7 años": "Planificación inicial",
+    "8–10 años": "Varios pasos",
+    "11–13 años": "Distribución temporal",
+    "14–17 años": "Proyectos y objetivos futuros"
+   },
+   "respaldo": "ALTO"
+  },
+  {
+   "dominio": "Organización",
+   "por_etapa": {
+    "2–3 años": "Principalmente externa",
+    "4–5 años": "Rutinas y orden con ayuda",
+    "6–7 años": "Materiales básicos",
+    "8–10 años": "Responsabilidades escolares",
+    "11–13 años": "Múltiples responsabilidades",
+    "14–17 años": "Tiempo, prioridades y proyectos"
+   },
+   "respaldo": "MODERADO–ALTO"
+  },
+  {
+   "dominio": "Conducta orientada a objetivos",
+   "por_etapa": {
+    "2–3 años": "Objetivos concretos",
+    "4–5 años": "Objetivos simples",
+    "6–7 años": "Metas inmediatas",
+    "8–10 años": "Mantiene metas durante tareas",
+    "11–13 años": "Coordina varias demandas hacia objetivos",
+    "14–17 años": "Objetivos futuros"
+   },
+   "respaldo": "ALTO"
+  },
+  {
+   "dominio": "Persistencia",
+   "por_etapa": {
+    "2–3 años": "Dependiente del interés",
+    "4–5 años": "Actividades breves",
+    "6–7 años": "Puede continuar con apoyo",
+    "8–10 años": "Mayor mantenimiento del esfuerzo",
+    "11–13 años": "Mayor persistencia",
+    "14–17 años": "Mayor mantenimiento autónomo"
+   },
+   "respaldo": "MODERADO–ALTO"
+  },
+  {
+   "dominio": "Regulación del esfuerzo",
+   "por_etapa": {
+    "2–3 años": "Muy dependiente de apoyo e interés",
+    "4–5 años": "Esfuerzo breve",
+    "6–7 años": "Mayor mantenimiento",
+    "8–10 años": "Mayor capacidad ante demandas",
+    "11–13 años": "Mayor regulación",
+    "14–17 años": "Regulación orientada a objetivos"
+   },
+   "respaldo": "MODERADO–ALTO"
+  },
+  {
+   "dominio": "Recompensa / demora",
+   "por_etapa": {
+    "2–3 años": "Predominio de recompensa inmediata",
+    "4–5 años": "Puede esperar brevemente",
+    "6–7 años": "Aumenta capacidad de espera",
+    "8–10 años": "Mayor tolerancia a demora",
+    "11–13 años": "Objetivos futuros",
+    "14–17 años": "Mayor postergación de recompensa"
+   },
+   "respaldo": "ALTO"
+  },
+  {
+   "dominio": "Autorregulación",
+   "por_etapa": {
+    "2–3 años": "Principalmente externa",
+    "4–5 años": "Con ayuda adulta",
+    "6–7 años": "Mayor control voluntario",
+    "8–10 años": "Estrategias propias emergentes",
+    "11–13 años": "Mayor independencia",
+    "14–17 años": "Autorregulación progresiva"
+   },
+   "respaldo": "ALTO"
+  },
+  {
+   "dominio": "Variabilidad del desempeño",
+   "por_etapa": {
+    "2–3 años": "Muy dependiente de interés y situación",
+    "4–5 años": "Cambia según tarea",
+    "6–7 años": "Aumenta estabilidad, pero continúa variación",
+    "8–10 años": "Puede variar según demanda",
+    "11–13 años": "Variabilidad según condiciones",
+    "14–17 años": "Mayor regulación, aunque persiste variabilidad individual"
+   },
+   "respaldo": "MODERADO–ALTO"
+  },
+  {
+   "dominio": "Actividad motora",
+   "por_etapa": {
+    "2–3 años": "Movimiento elevado compatible con etapa",
+    "4–5 años": "Mayor ajuste al contexto",
+    "6–7 años": "Mayor adaptación a demanda escolar",
+    "8–10 años": "Mayor regulación",
+    "11–13 años": "Mayor regulación contextual",
+    "14–17 años": "Ajuste progresivo al contexto"
+   },
+   "respaldo": "MODERADO"
+  },
+  {
+   "dominio": "Espera",
+   "por_etapa": {
+    "2–3 años": "Limitada",
+    "4–5 años": "Puede esperar brevemente",
+    "6–7 años": "Puede esperar en situaciones estructuradas",
+    "8–10 años": "Mayor tolerancia",
+    "11–13 años": "Mayor control de respuesta",
+    "14–17 años": "Mayor demora voluntaria"
+   },
+   "respaldo": "ALTO"
+  },
+  {
+   "dominio": "Turnos",
+   "por_etapa": {
+    "2–3 años": "Requiere apoyo",
+    "4–5 años": "Puede turnarse en juegos",
+    "6–7 años": "Sigue turnos y reglas",
+    "8–10 años": "Mayor cumplimiento",
+    "11–13 años": "Mayor regulación social",
+    "14–17 años": "Mayor autorregulación"
+   },
+   "respaldo": "ALTO"
+  },
+  {
+   "dominio": "Juego",
+   "por_etapa": {
+    "2–3 años": "Exploración y juego simbólico inicial",
+    "4–5 años": "Juego simbólico y reglas simples",
+    "6–7 años": "Juegos reglados",
+    "8–10 años": "Actividades estructuradas",
+    "11–13 años": "Actividades con múltiples objetivos",
+    "14–17 años": "Actividades complejas orientadas a objetivos"
+   },
+   "respaldo": "MUY ALTO para primeros años; menor evidencia normativa específica posteriormente"
+  },
+  {
+   "dominio": "Actividad estructurada",
+   "por_etapa": {
+    "2–3 años": "Dependencia adulta",
+    "4–5 años": "Participación breve",
+    "6–7 años": "Actividad dirigida",
+    "8–10 años": "Actividades más prolongadas",
+    "11–13 años": "Actividades complejas",
+    "14–17 años": "Proyectos complejos"
+   },
+   "respaldo": "MODERADO–ALTO"
+  },
+  {
+   "dominio": "Autonomía",
+   "por_etapa": {
+    "2–3 años": "Alta dependencia",
+    "4–5 años": "Autonomía básica",
+    "6–7 años": "Independencia inicial",
+    "8–10 años": "Responsabilidad creciente",
+    "11–13 años": "Organización personal",
+    "14–17 años": "Autonomía progresiva"
+   },
+   "respaldo": "MODERADO–ALTO"
+  },
+  {
+   "dominio": "Adaptación al contexto",
+   "por_etapa": {
+    "2–3 años": "Alta dependencia de estructura",
+    "4–5 años": "Ajuste a reglas y situaciones",
+    "6–7 años": "Adaptación a demandas escolares",
+    "8–10 años": "Menor necesidad de estructura",
+    "11–13 años": "Mayor adaptación",
+    "14–17 años": "Mayor autorregulación contextual"
+   },
+   "respaldo": "MODERADO–ALTO"
+  }
+ ]
+}

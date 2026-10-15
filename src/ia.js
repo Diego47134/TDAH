@@ -1,6 +1,6 @@
-// Integración con la API del modelo de IA (Anthropic Messages API).
-// La IA SOLO interpreta respuestas y extrae datos del informe escolar; nunca elige preguntas.
-// Toda salida se valida contra un esquema; ante error o salida inválida se usa el intérprete de reglas.
+// Integración con la API del modelo de IA (configurable: Anthropic u OpenAI).
+// La IA SOLO interpreta respuestas libres y extrae datos del informe escolar; nunca selecciona
+// preguntas (Etapa 9 §K; brief §2). Toda salida se valida; ante error se usa el intérprete de reglas.
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -12,33 +12,39 @@ export class ErrorIA extends Error {
   constructor(msg, detalle) { super(msg); this.detalle = detalle; }
 }
 
+const PROVEEDORES = {
+  anthropic: { url: 'https://api.anthropic.com/v1/messages', modelo: 'claude-sonnet-5-5', clave: 'ANTHROPIC_API_KEY' },
+  openai: { url: 'https://api.openai.com/v1/chat/completions', modelo: 'gpt-4o', clave: 'OPENAI_API_KEY' },
+};
+
 export function crearClienteIA({
-  apiKey = process.env.ANTHROPIC_API_KEY,
-  modelo = process.env.ANTHROPIC_MODEL || 'claude-sonnet-5-5',
-  url = process.env.ANTHROPIC_API_URL || 'https://api.anthropic.com/v1/messages',
-  timeoutMs = Number(process.env.IA_TIMEOUT_MS || 20000),
-  fetchImpl = globalThis.fetch,
+  proveedor = process.env.IA_PROVEEDOR || (process.env.OPENAI_API_KEY && !process.env.ANTHROPIC_API_KEY ? 'openai' : 'anthropic'),
+  apiKey, modelo, url, timeoutMs = Number(process.env.IA_TIMEOUT_MS || 20000), fetchImpl = globalThis.fetch,
 } = {}) {
-  const habilitada = Boolean(apiKey);
+  const conf = PROVEEDORES[proveedor];
+  if (!conf) throw new Error(`Proveedor de IA no soportado: ${proveedor}`);
+  apiKey ??= process.env[conf.clave];
+  modelo ??= process.env.IA_MODELO || (proveedor === 'anthropic' ? process.env.ANTHROPIC_MODEL : process.env.OPENAI_MODEL) || conf.modelo;
+  url ??= process.env.IA_API_URL || conf.url;
   const systemMaestro = leerPrompt('system-maestro.md');
 
   async function llamar(instruccion, contenido) {
     const ctrl = new AbortController();
     const t = setTimeout(() => ctrl.abort(), timeoutMs);
+    const system = `${systemMaestro}\n\n${instruccion}`;
+    const cuerpo = proveedor === 'anthropic'
+      ? { model: modelo, max_tokens: 1500, temperature: 0, system, messages: [{ role: 'user', content: contenido }] }
+      : { model: modelo, temperature: 0, response_format: { type: 'json_object' }, messages: [{ role: 'system', content: system }, { role: 'user', content: contenido }] };
+    const headers = proveedor === 'anthropic'
+      ? { 'content-type': 'application/json', 'x-api-key': apiKey, 'anthropic-version': '2023-06-01' }
+      : { 'content-type': 'application/json', authorization: `Bearer ${apiKey}` };
     try {
-      const res = await fetchImpl(url, {
-        method: 'POST',
-        signal: ctrl.signal,
-        headers: { 'content-type': 'application/json', 'x-api-key': apiKey, 'anthropic-version': '2023-06-01' },
-        body: JSON.stringify({
-          model: modelo, max_tokens: 1500, temperature: 0,
-          system: `${systemMaestro}\n\n${instruccion}`,
-          messages: [{ role: 'user', content: contenido }],
-        }),
-      });
+      const res = await fetchImpl(url, { method: 'POST', signal: ctrl.signal, headers, body: JSON.stringify(cuerpo) });
       if (!res.ok) throw new ErrorIA(`API respondió ${res.status}`, { status: res.status, cuerpo: (await res.text()).slice(0, 500) });
       const data = await res.json();
-      const texto = (data.content || []).filter((c) => c.type === 'text').map((c) => c.text).join('');
+      const texto = proveedor === 'anthropic'
+        ? (data.content || []).filter((c) => c.type === 'text').map((c) => c.text).join('')
+        : data.choices?.[0]?.message?.content || '';
       const m = texto.match(/\{[\s\S]*\}/);
       if (!m) throw new ErrorIA('La respuesta de la IA no contiene JSON', { texto: texto.slice(0, 500) });
       try { return JSON.parse(m[0]); } catch { throw new ErrorIA('JSON inválido desde la IA', { texto: m[0].slice(0, 500) }); }
@@ -49,34 +55,33 @@ export function crearClienteIA({
     } finally { clearTimeout(t); }
   }
 
-  /** Clasifica una respuesta y detecta menciones de otras conductas. */
-  async function interpretarRespuesta({ pregunta, slotTipo, texto, protocolo }) {
-    const dims = protocolo.dimensiones.map((d) => `${d.id}: ${d.nombre}`).join('\n');
+  /** Asigna una respuesta libre a una de las alternativas autorizadas de la pregunta. */
+  async function interpretarRespuesta({ pregunta, texto }) {
     const salida = await llamar(leerPrompt('prompt-ejecucion.md'), JSON.stringify({
-      pregunta_autorizada: { id: pregunta.id, texto: pregunta.texto, tipo_dato: slotTipo, invertida: !!pregunta.invertida },
+      pregunta_autorizada: { id: pregunta.id, texto: pregunta.texto, tipo: pregunta.tipo },
+      alternativas: (pregunta.opciones || []).map((o) => ({ codigo: o.codigo, texto: o.texto })),
       respuesta_literal: texto,
-      dimensiones_validas: dims,
     }));
-    const clas = ['si', 'no', 'no_se', 'no_recuerdo', 'ambiguo', 'valor'];
-    if (!clas.includes(salida.clasificacion)) throw new ErrorIA('Clasificación fuera del esquema', { salida });
-    const ids = new Set(protocolo.dimensiones.map((d) => d.id));
-    const menciones = (Array.isArray(salida.menciones) ? salida.menciones : [])
-      .filter((m) => ids.has(m.dimension_id) && typeof m.evidencia === 'string')
-      .map((m) => ({ dimension_id: m.dimension_id, evidencia: m.evidencia.slice(0, 300) }));
-    return { clasificacion: salida.clasificacion, valor: salida.valor ?? null, menciones };
+    const codigos = new Set((pregunta.opciones || []).map((o) => o.codigo));
+    if (salida.codigo != null && !codigos.has(salida.codigo)) throw new ErrorIA('Alternativa fuera del esquema', { salida });
+    return { codigo: salida.codigo ?? null };
   }
 
-  /** Extrae hechos estructurados de un informe escolar. */
+  /** Extrae hechos del informe escolar, cada uno con su frase literal. */
   async function extraerInformeEscolar({ texto, protocolo }) {
-    const dims = protocolo.dimensiones.filter((d) => d.dominio !== 'tamizaje')
-      .map((d) => `${d.id} (${d.nombre}) slots: presencia, ${d.esenciales.join(', ')}`).join('\n');
-    const salida = await llamar(leerPrompt('prompt-extraccion-informe.md'), JSON.stringify({ dimensiones: dims, informe: texto }));
+    const sintomas = protocolo.sintomas.map((s) => `${s.id}: ${s.nombre}`).join('\n');
+    const salida = await llamar(leerPrompt('prompt-extraccion-informe.md'), JSON.stringify({ sintomas, informe: texto }));
     if (!Array.isArray(salida.hechos)) throw new ErrorIA('Extracción sin arreglo «hechos»', { salida });
-    return salida.hechos.filter((h) => protocolo.dimensionesPorId.has(h.dimension_id)
-      && ['presencia', ...protocolo.dimensionesPorId.get(h.dimension_id).esenciales].includes(h.slot)
-      && typeof h.evidencia === 'string' && h.evidencia.trim()
-      && (h.slot !== 'presencia' || ['si', 'no'].includes(h.valor)));
+    const out = [];
+    for (const h of salida.hechos) {
+      if (typeof h.evidencia !== 'string' || !h.evidencia.trim() || !texto.includes(h.evidencia.trim())) continue; // evidencia literal obligatoria
+      if (h.sintoma && protocolo.sintomasPorId.has(h.sintoma) && ['si', 'no'].includes(h.presencia)) {
+        out.push({ dimension_id: h.sintoma, slot: 'presencia:informe', valor: h.presencia, evidencia: h.evidencia.trim() });
+      } else if (h.dato === 'impacto_academico') out.push({ dimension_id: 'INF', slot: 'impacto_academico', valor: 'si', evidencia: h.evidencia.trim() });
+      else if (h.dato === 'desde') out.push({ dimension_id: 'INF', slot: 'desde', valor: h.evidencia.trim(), evidencia: h.evidencia.trim() });
+    }
+    return out;
   }
 
-  return { habilitada, modelo, interpretarRespuesta, extraerInformeEscolar };
+  return { habilitada: Boolean(apiKey), proveedor, modelo, interpretarRespuesta, extraerInformeEscolar };
 }

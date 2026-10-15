@@ -1,77 +1,63 @@
 // Caso de prueba TOTALMENTE FICTICIO. No contiene información de pacientes reales.
 // El guion responde según el identificador de la pregunta que el MOTOR elija: si el motor
 // pregunta algo distinto, el guion se adapta (las respuestas no siguen una lista fija).
+// Las respuestas usan los códigos de alternativa del protocolo (A Sí · B No · C Ocasionalmente ·
+// D No sabe/No recuerda) o texto libre en preguntas abiertas.
 
 export const ETIQUETA = 'Caso ficticio A (demostración)';
 
+/** Síntomas que el apoderado ficticio refiere (presencia «A» = Sí). */
+export const SINTOMAS_SI = ['R1.1', 'R1.2', 'R1.3', 'R1.4', 'R1.6', 'R1.7', 'R1.8', 'R1.9', 'R2.9'];
+/** Síntoma con respuesta «No sabe / No recuerda». */
+export const SINTOMA_NS = 'R1.5';
+
 export const GUION = {
-  'INI-MOTIVO': 'Desde primero básico se distrae mucho en clases y le cuesta terminar las tareas; además duerme mal.',
-  'INI-EDAD': '8 años',
-  'INI-INF-EXISTE': 'Sí, la profesora jefe hizo uno',
-  'INI-INF-DISP': 'Sí, el colegio lo puede enviar',
-  'INA-SOST-FRECUENCIA': 'Varias veces al día',
-  'INA-SOST-CONTEXTOS': 'En la casa con las tareas y también lo dicen en el colegio',
-  'INA-SOST-INICIO': 'Desde los 5 o 6 años, cuando entró a kínder',
-  'INA-SOST-IMPACTO': 'Las tareas le toman el doble de tiempo y hay discusiones en la casa',
-  'TAM-SUENO-DESCRIPCION': 'Le cuesta dormirse y se despierta en la noche, desde hace un año',
-  'TAM-SUENO-EVALUADO_PROFESIONAL': { tipo: 'no_se' },
-  'INA-ORG-P1': 'Sí, siempre hay que recordarle',
-  'INA-ORG-FRECUENCIA': 'Todos los días',
-  'INA-ORG-CONTEXTOS': 'En la casa y en el colegio',
-  'INA-ORG-INICIO': { tipo: 'no_recuerdo' },
-  'INA-ORG-IMPACTO': 'Llega con tareas incompletas al colegio',
-  'INA-OLV-P1': 'A veces',
-  'INA-OLV-P2': 'Sí, bastantes veces',
-  'INA-OLV-FRECUENCIA': 'Una o dos veces por semana',
-  'INA-OLV-CONTEXTOS': 'Colegio, sobre todo con útiles y la colación',
-  'INA-OLV-INICIO': 'Desde que entró al colegio',
-  'INA-OLV-IMPACTO': 'Hay que reponer materiales y a veces le anotan',
-  'HIP-MOT-P1': 'No, en la casa es tranquilo',
-  'IMP-ESPERA-P1': 'No',
-  'IMP-INTERR-P1': 'Sí',
-  'IMP-INTERR-FRECUENCIA': 'Algunas veces por semana',
-  'IMP-INTERR-CONTEXTOS': 'Sobre todo en la casa, en las comidas',
-  'IMP-INTERR-INICIO': 'No sé',
-  'IMP-INTERR-IMPACTO': 'Molesta a sus hermanos, pero no es lo principal',
-  'DES-HITOS-P1': 'No, todo normal',
-  'TRA-EVOL-P1': 'Sí, este año empeoró',
-  'TRA-EVOL-DESCRIPCION': 'Antes se notaba menos; con más exigencia escolar aumentaron las dificultades',
-  'AUT-RUTINAS-P1': 'Sí, hay que ayudarlo a vestirse y preparar la mochila',
-  'AUT-RUTINAS-DESCRIPCION': 'Necesita supervisión diaria para las rutinas de la mañana',
-  'FUN-FAMILIA-P1': 'Sí',
-  'FUN-FAMILIA-DESCRIPCION': 'Las tareas generan tensión y discusiones casi a diario',
-  'FUN-PARES-P1': 'No, tiene amigos',
-  'ESC-AULA-P1': 'No que yo sepa, nunca nos han dicho nada',
-  'TAM-VISION-P1': 'No',
-  'TAM-AUDICION-P1': 'No',
-  'TAM-MEDICO-P1': 'No',
+  'INI-MOTIVO': { texto: 'Desde primero básico se distrae mucho en clases y le cuesta terminar las tareas.' },
+  'INI-EDAD': { texto: '8 años' },
+  'INI-INF-EXISTE': { opcion: 'A' },
+  'INI-INF-DISP': { opcion: 'A' },
+  BARRIDO: { opciones: ['C'] },      // Sueño → deriva la categoría D del tamizaje
+  TAMIZAJE: { opciones: ['D'] },
+  A52: { texto: 'Lo que más preocupa es que se está quedando atrás en lectura y se frustra.' },
 };
 
+const SIMBOLO = { A01: 'R1.1', A02: 'R1.2', A03: 'R1.3', A04: 'R1.4', A05: 'R1.4', A06: 'R1.5', A07: 'R1.6', A08: 'R1.7', A09: 'R1.8', A10: 'R1.9',
+  A12: 'R2.1', A11: 'R2.2', A13: 'R2.3', A14: 'R2.4', A15: 'R2.5', A16: 'R2.6', A17: 'R2.7', A18: 'R2.8', A19: 'R2.9' };
+
 export function respuestaPorDefecto(q) {
-  if (q.tipo_dato === 'si_no') return { texto: 'No' };
-  if (q.tipo_dato === 'numero') return { texto: '9' };
-  return { texto: 'Dato de prueba (sin guion)' };
+  if (q.tipo === 'numero') return { texto: '8' };
+  if (q.tipo === 'abierta') return { texto: 'Dato de prueba ficticio.' };
+  if (q.tipo === 'multiple') return { opciones: [q.opciones[0].codigo] };
+  return { opcion: 'B' };
 }
 
 export function respuestaPara(q) {
-  const g = GUION[q.id];
-  if (g == null) return respuestaPorDefecto(q);
-  return typeof g === 'string' ? { texto: g } : { texto: g.texto ?? '', tipo: g.tipo };
+  if (GUION[q.id]) return GUION[q.id];
+  const s = SIMBOLO[q.id];
+  if (s) return { opcion: SINTOMAS_SI.includes(s) ? 'A' : s === SINTOMA_NS ? 'D' : 'B' };
+  if (/-FRECUENCIA$/.test(q.id)) return { opcion: 'A' };
+  if (/-DESDE$/.test(q.id)) return { opcion: 'B' };
+  if (/-CONTEXTOS$/.test(q.id)) return { opciones: ['A', 'B'] };
+  if (/^BAR-C-/.test(q.id) || /^TAM-D-/.test(q.id)) return q.tipo === 'abierta' ? { texto: 'Le cuesta dormirse; ronca algunas noches.' } : { opcion: 'A' };
+  if (['A22', 'A25', 'A38', 'A47', 'A50'].includes(q.id)) return { opcion: 'A' };
+  return respuestaPorDefecto(q);
 }
 
-export const INFORME_ESCOLAR = `Informe de profesora jefe (documento ficticio para pruebas).
-El estudiante se distrae frecuentemente durante las clases y necesita apoyo para iniciar las tareas.
-Es inquieto: se para de su puesto varias veces por clase.
-Presenta notas bajas en Lenguaje y Matemática durante el primer semestre.`;
+/** Informe escolar ficticio (Ruta B). */
+export const INFORME_ESCOLAR = [
+  'Informe de la profesora jefe (ficticio).',
+  'En clases se distrae con facilidad, varias veces al día, con ruidos o compañeros.',
+  'No termina las tareas que comienza y deja guías incompletas.',
+  'Pierde sus útiles con frecuencia.',
+  'No interrumpe a sus compañeros.',
+  'Su rendimiento ha bajado este semestre, sobre todo en lenguaje.',
+  'Las dificultades se observan desde primero básico.',
+].join('\n');
 
+/** Instrumentos ficticios (todos opcionales en el protocolo vigente). */
 export const INSTRUMENTOS = [
-  { instrumento_id: 'ESCALA-APODERADO', estado: 'realizada', fecha: '2026-10-10', aplicador: 'Profesional de prueba',
-    resultados: { 'Inatención (ficticio)': '18/27', 'Hiperactividad-impulsividad (ficticio)': '9/27' } },
-  { instrumento_id: 'ESCALA-DOCENTE', estado: 'realizada', fecha: '2026-10-12', aplicador: 'Profesora jefe (ficticia)',
-    resultados: { 'Inatención (ficticio)': '21/27', 'Hiperactividad-impulsividad (ficticio)': '14/27' } },
-  { instrumento_id: 'NESPLORA', estado: 'realizada', fecha: '2026-10-14', aplicador: 'Profesional de prueba',
-    resultados: { 'Omisiones (ficticio)': 'percentil 12', 'Comisiones (ficticio)': 'percentil 40' },
-    observaciones: 'Valores ficticios para la demostración técnica.' },
+  { instrumento_id: 'NESPLORA', estado: 'realizada', fecha: '2026-10-01', aplicador: 'Profesional de prueba', resultados: { atencion_sostenida: 'bajo lo esperado (ficticio)', impulsividad: 'dentro de lo esperado (ficticio)' }, observaciones: 'Resultado ficticio de demostración.' },
+  { instrumento_id: 'ESCALA-DOCENTE', estado: 'no_aplica', observaciones: 'El informe escolar narrativo cubre la información del docente (ficticio).' },
 ];
 
-export const INTERPRETACION = '[TEXTO DE DEMOSTRACIÓN — caso ficticio, sin valor clínico] El profesional responsable redacta aquí su interpretación integrando entrevista, informe escolar, instrumentos, explicaciones alternativas (p. ej. el sueño, pendiente de verificación) y la discrepancia entre contextos registrada.';
+export const INTERPRETACION = 'Texto de demostración (ficticio): el profesional integra la entrevista, el informe escolar y la evaluación complementaria; considera la discrepancia en R2.9 y la información de sueño antes de concluir.';

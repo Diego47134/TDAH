@@ -90,6 +90,8 @@ label { display: block; font-size: .85rem; color: var(--tenue); margin: 10px 0 4
 .flujo li span:first-of-type { flex: 1; }
 .dims { list-style: none; padding: 0; margin: 0; font-size: .85rem; }
 .dims li { display: flex; justify-content: space-between; align-items: flex-start; gap: 6px; padding: 4px 0; }
+.dims li > span:first-child { min-width: 0; overflow-wrap: anywhere; }
+.dims li .estado { flex-shrink: 0; max-width: 48%; white-space: normal; text-align: center; line-height: 1.25; }
 .dims .dom { font-size: .7rem; text-transform: uppercase; letter-spacing: .06em; color: var(--tenue); margin-top: 8px; }
 
 .pestanas { display: flex; gap: 4px; border-bottom: 1px solid var(--linea); margin-bottom: 16px; overflow-x: auto; }
@@ -136,3 +138,25 @@ details.porque p { background: var(--papel); border-left: 3px solid var(--acento
   body { background: #fff; color: #000; }
   .tarjeta { border: 0; padding: 0; }
 }
+
+/* Alternativas del protocolo (A–N) */
+.opciones-lista { display: grid; gap: 8px; margin-top: 14px; }
+.opciones-lista .opcion { display: flex; align-items: center; gap: 10px; text-align: left; font-weight: 500; }
+.opcion .letra { flex: 0 0 auto; display: inline-grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: var(--linea); font-weight: 700; font-size: .8rem; }
+.opcion.check { cursor: pointer; }
+.opcion.check input { margin: 0; }
+.opcion.check:has(input:checked) { border-color: var(--acento); background: color-mix(in srgb, var(--acento) 10%, var(--papel)); }
+.opcion:disabled { opacity: .5; cursor: progress; }
+details.libre { margin-top: 12px; }
+details.libre summary { cursor: pointer; color: var(--tenue); font-size: .88rem; }
+details.libre textarea { width: 100%; margin-top: 8px; }
+.porque { font-size: .82rem; color: var(--tenue); margin-top: 6px; }
+.contexto { font-size: .82rem; color: var(--tenue); margin-bottom: 6px; }
+.ico.si { color: #1b7f4b; } .ico.no { color: #b3261e; }
+.estado.mal { background: #fde7e7; color: #8a1c1c; }
+.dom { font-size: .78rem; color: var(--tenue); }
+.fcontr textarea, .finst textarea { width: 100%; }
+.tabla-informe { overflow-x: auto; margin: 10px 0; }
+.tabla-informe table { width: 100%; border-collapse: collapse; font-size: .85rem; }
+.tabla-informe th, .tabla-informe td { border: 1px solid var(--linea); padding: 6px 8px; text-align: left; vertical-align: top; }
+.tabla-informe th { background: color-mix(in srgb, var(--linea) 50%, transparent); }

@@ -38,7 +38,7 @@ En **Set environment variables** (o después en *Environment variables* del pane
 
 | Variable | Valor | ¿Obligatoria? |
 |---|---|---|
-| `ANTHROPIC_API_KEY` | clave de la API de IA | No (sin ella funciona con el intérprete de reglas) |
+| `ANTHROPIC_API_KEY` u `OPENAI_API_KEY` (+ `IA_PROVEEDOR`) | clave de la API de IA | No (sin ella funciona con el intérprete de reglas) |
 | `APP_ACCESS_TOKEN` | clave fija de acceso | No (por defecto la clave se crea en la app) |
 
 También puedes usar **Import .env** con el archivo `.env.hostinger.example` completado (nunca lo subas al repositorio con valores reales).
