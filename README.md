@@ -9,7 +9,7 @@ Aplicación (PWA + backend + base de datos integrada) que ejecuta la **entrevist
 Requisitos: **Node.js 22.13 o superior** (incluye SQLite integrado). No hay dependencias que instalar.
 
 ```bash
-git clone https://github.com/Diego47134/tdah.git
+git clone https://github.com/Diego47134/TDAH.git
 cd tdah
 npm run dev                 # desarrollo local: http://127.0.0.1:3000 (sin token)
 ```

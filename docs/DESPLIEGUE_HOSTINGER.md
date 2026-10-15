@@ -5,7 +5,7 @@ La aplicación ya está preparada para el hosting **Node.js administrado** de Ho
 ## 0. Requisitos
 
 - **Plan:** Hostinger *Business Web Hosting* o un plan *Cloud* (Startup, Professional, Enterprise). Los planes Premium/Single no ejecutan apps Node.js. En un VPS también funciona, con Docker (ver al final).
-- **Repositorio:** `Diego47134/tdah` en GitHub (Hostinger pedirá autorizar el acceso a tu cuenta de GitHub, porque el repositorio es privado).
+- **Repositorio:** `Diego47134/TDAH` en GitHub (Hostinger pedirá autorizar el acceso a tu cuenta de GitHub, porque el repositorio es privado).
 - **Dominio:** comprado en Hostinger o en otro registrador.
 
 > Si el dominio ya tiene un sitio web creado en tu plan, Hostinger exige eliminar ese sitio antes de asignar el dominio a la app Node.js.
@@ -22,7 +22,7 @@ Guárdalo en un lugar seguro: se lo darás solo a los profesionales que usarán 
 
 ## 2. Crear la app Node.js
 
-En el panel de Hostinger: **Sitios web → Agregar sitio web → Aplicación web Node.js → Importar desde GitHub** y elegir `Diego47134/tdah`, rama `main`.
+En el panel de Hostinger: **Sitios web → Agregar sitio web → Aplicación web Node.js → Importar desde GitHub** y elegir `Diego47134/TDAH`, rama `main`.
 
 Configuración del despliegue:
 
@@ -95,7 +95,7 @@ Variables opcionales: `DATA_DIR` (carpeta de datos), `BACKUP_EVERY_HOURS`, `BACK
 ## Alternativa: VPS de Hostinger con Docker
 
 ```bash
-git clone https://github.com/Diego47134/tdah.git && cd tdah
+git clone https://github.com/Diego47134/TDAH.git && cd tdah
 docker build -t tdah .
 docker run -d --restart unless-stopped -p 3000:3000 -v tdah-datos:/data \
   -e APP_ACCESS_TOKEN='tu-token' tdah
