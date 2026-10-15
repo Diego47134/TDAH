@@ -141,3 +141,28 @@ test('P4 · advierte si la base de datos quedaría dentro de la carpeta de despl
     fs.rmSync(home, { recursive: true, force: true });
   }
 });
+
+test('P5 · server.js se puede cargar con require(), como lo hace Hostinger (LiteSpeed lsnode)', async () => {
+  const p = ev.prueba('P5', 'Carga con require()', 'El hosting carga el archivo de entrada con require(): no debe haber await de nivel superior.');
+  const home = fs.mkdtempSync(path.join(os.tmpdir(), 'tdah-home-'));
+  const socket = path.join(home, 'app.sock');
+  const entrada = path.resolve('server.js');
+  const env = { ...process.env, HOME: home, PORT: socket, BACKUP_DISABLED: '1' };
+  delete env.NODE_ENV; delete env.DB_PATH; delete env.HOST; delete env.APP_ACCESS_TOKEN;
+  const proc = spawn(process.execPath, ['--disable-warning=ExperimentalWarning', '-e', `require(${JSON.stringify(entrada)})`], { env });
+  let salida = '';
+  proc.stdout.on('data', (d) => { salida += d; }); proc.stderr.on('data', (d) => { salida += d; });
+  try {
+    for (let i = 0; i < 50 && !fs.existsSync(socket); i++) await new Promise((r) => setTimeout(r, 100));
+    assert.doesNotMatch(salida, /ERR_REQUIRE_ASYNC_MODULE/, salida);
+    const r = await peticionSocket(socket, '/api/salud');
+    assert.equal(r.status, 200, salida);
+    assert.equal(JSON.parse(r.body).configuracion_inicial_pendiente, true);
+    ev.paso(p, { entrada: `node -e "require('server.js')"`, accion_resultante: `GET /api/salud → ${r.status}`, esperado: '200 sin ERR_REQUIRE_ASYNC_MODULE', ok: true });
+    ev.cerrar(p, true);
+  } finally {
+    proc.kill('SIGTERM');
+    await new Promise((ok) => proc.once('exit', ok));
+    fs.rmSync(home, { recursive: true, force: true });
+  }
+});

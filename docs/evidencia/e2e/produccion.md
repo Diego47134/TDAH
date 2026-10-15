@@ -1,6 +1,6 @@
 # Evidencia E2E — produccion
 
-Generado: 2026-10-15T16:10:47.703Z
+Generado: 2026-10-15T16:15:55.013Z
 
 ## P1 · Configuración inicial de la clave — **APROBADA**
 
@@ -45,7 +45,7 @@ Requisito: Simula Hostinger: HOME propio, PORT como socket, token configurado, S
 ### Paso 1
 
 - **entrada:** node server.js con HOME temporal y PORT=socket
-- **accion_resultante:** GET /api/casos → 200; BD: ~/tdah-datos/tdah.sqlite; respaldos: tdah-2026-10-15T16-10-47.sqlite
+- **accion_resultante:** GET /api/casos → 200; BD: ~/tdah-datos/tdah.sqlite; respaldos: tdah-2026-10-15T16-15-54.sqlite
 - **esperado:** 200, datos y respaldo fuera de la app
 - **ok:** true
 
@@ -53,4 +53,15 @@ Requisito: Simula Hostinger: HOME propio, PORT como socket, token configurado, S
 
 - **entrada:** SIGTERM (detención por inactividad)
 - **accion_resultante:** Proceso terminó con código 0
+- **ok:** true
+
+## P5 · Carga con require() — **APROBADA**
+
+Requisito: El hosting carga el archivo de entrada con require(): no debe haber await de nivel superior.
+
+### Paso 1
+
+- **entrada:** node -e "require('server.js')"
+- **accion_resultante:** GET /api/salud → 200
+- **esperado:** 200 sin ERR_REQUIRE_ASYNC_MODULE
 - **ok:** true
