@@ -1,6 +1,6 @@
 # Evidencia E2E — informe-y-adversos
 
-Generado: 2026-10-15T15:24:54.565Z
+Generado: 2026-10-15T16:10:46.843Z
 
 ## E11 · Informe desde el expediente — **APROBADA**
 

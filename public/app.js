@@ -29,7 +29,8 @@ async function api(metodo, ruta, cuerpo) {
   }
   document.getElementById('conexion').hidden = true;
   const datos = await r.json().catch(() => ({}));
-  if (r.status === 401) { pedirToken(); throw new Error('Se requiere el token de acceso.'); }
+  if (r.status === 401) { pedirToken(token ? 'La clave ingresada no es correcta.' : ''); const e = new Error('Se requiere la clave de acceso.'); e.status = 401; throw e; }
+  if (r.status === 503 && datos.configuracion_inicial) { configuracionInicial(); const e = new Error('Configuración inicial pendiente.'); e.status = 401; throw e; }
   if (!r.ok) { const e = new Error(datos.error || `Error ${r.status}`); e.detalle = datos.detalle; e.status = r.status; throw e; }
   return datos;
 }
@@ -40,14 +41,34 @@ function aviso(msg, error = false) {
   clearTimeout(aviso.t); aviso.t = setTimeout(() => { a.className = 'aviso'; }, 3800);
 }
 
-function pedirToken() {
+function pedirToken(error = '') {
   $app.innerHTML = `<div class="tarjeta" style="max-width:420px;margin:40px auto">
-    <h2>Acceso</h2><p class="tenue">Este servidor requiere un token de acceso.</p>
-    <form id="ftoken"><label for="tok">Token</label><input id="tok" type="password" autocomplete="current-password" required>
+    <h2>Acceso</h2><p class="tenue">Ingrese la clave de acceso del sistema.</p>
+    ${error ? `<p style="color:var(--ladrillo)">${esc(error)}</p>` : ''}
+    <form id="ftoken"><label for="tok">Clave de acceso</label><input id="tok" type="password" autocomplete="current-password" required>
     <div class="fila" style="margin-top:12px"><button class="boton">Entrar</button></div></form></div>`;
   document.getElementById('ftoken').onsubmit = (e) => {
     e.preventDefault(); token = document.getElementById('tok').value.trim();
     sessionStorage.setItem('tdah_token', token); enrutar();
+  };
+}
+
+function configuracionInicial() {
+  $app.innerHTML = `<div class="tarjeta" style="max-width:460px;margin:40px auto">
+    <h2>Configuración inicial</h2>
+    <p class="tenue">Cree la clave de acceso del sistema. La necesitarán todos los profesionales para entrar. Se guarda cifrada y no se puede recuperar: anótela en un lugar seguro.</p>
+    <form id="fconf"><label for="c1">Nueva clave (mínimo 12 caracteres)</label><input id="c1" type="password" autocomplete="new-password" minlength="12" required>
+    <label for="c2">Repita la clave</label><input id="c2" type="password" autocomplete="new-password" minlength="12" required>
+    <div class="fila" style="margin-top:12px"><button class="boton">Crear clave y entrar</button></div></form></div>`;
+  document.getElementById('fconf').onsubmit = async (e) => {
+    e.preventDefault();
+    const c1 = document.getElementById('c1').value; const c2 = document.getElementById('c2').value;
+    if (c1 !== c2) { aviso('Las claves no coinciden.', true); return; }
+    try {
+      await api('POST', '/api/configuracion-inicial', { clave: c1 });
+      token = c1; sessionStorage.setItem('tdah_token', token);
+      aviso('Clave creada.'); enrutar();
+    } catch (err) { aviso(err.message, true); }
   };
 }
 
@@ -58,6 +79,7 @@ async function enrutar() {
   try {
     if (!protocolo) {
       const salud = await api('GET', '/api/salud');
+      if (salud.configuracion_inicial_pendiente) { configuracionInicial(); return; }
       protocolo = await api('GET', '/api/protocolo');
       const b = document.getElementById('protocolo');
       b.textContent = `Protocolo ${protocolo.version}${protocolo.estado === 'PROVISIONAL' ? ' · provisional' : ''} · IA: ${salud.ia.startsWith('deshab') ? 'reglas' : 'activa'}`;
@@ -67,7 +89,7 @@ async function enrutar() {
     if (partes[0] === 'caso' && partes[1]) await vistaCaso(partes[1], partes[2] || 'entrevista');
     else await vistaCasos();
   } catch (e) {
-    if (e.status !== 401 && !/token/.test(e.message)) $app.innerHTML = `<div class="tarjeta"><h2>No se pudo cargar</h2><p>${esc(e.message)}</p><button class="boton sec" id="breintentar">Reintentar</button></div>`;
+    if (e.status !== 401) $app.innerHTML = `<div class="tarjeta"><h2>No se pudo cargar</h2><p>${esc(e.message)}</p><button class="boton sec" id="breintentar">Reintentar</button></div>`;
     const b = document.getElementById('breintentar'); if (b) b.onclick = () => location.reload();
   }
 }

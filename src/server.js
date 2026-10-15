@@ -2,13 +2,13 @@
 import http from 'node:http';
 import fs from 'node:fs';
 import path from 'node:path';
-import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { abrirDB } from './db.js';
 import { cargarProtocolo, resumenProtocolo } from './protocolo.js';
 import { crearServicio, ErrorServicio } from './servicio.js';
 import { crearClienteIA } from './ia.js';
 import { registrarError } from './expediente.js';
+import { crearControlAcceso } from './acceso.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PUBLICO = path.join(__dirname, '..', 'public');
@@ -18,10 +18,9 @@ const MIME = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; cha
 export function crearApp({ dbPath, protocoloPath, ia, tokenAcceso = process.env.APP_ACCESS_TOKEN,
   produccion = process.env.NODE_ENV === 'production', advertencias = [] } = {}) {
   const db = abrirDB(dbPath);
-  // En producción (dominio público) la API exige token: sin él, la app no expone datos.
-  const faltaToken = produccion && !tokenAcceso;
-  if (faltaToken) advertencias.push('Falta configurar APP_ACCESS_TOKEN: la API está bloqueada hasta definirlo.');
-  else if (produccion && tokenAcceso.length < 16) advertencias.push('APP_ACCESS_TOKEN es corto; use al menos 16 caracteres aleatorios.');
+  // En producción (dominio público) la API exige token o clave: sin ellos no expone datos.
+  const acceso = crearControlAcceso({ db, tokenEntorno: tokenAcceso || '', produccion });
+  if (produccion && tokenAcceso && tokenAcceso.length < 16) advertencias.push('APP_ACCESS_TOKEN es corto; use al menos 16 caracteres aleatorios.');
   const protocolo = cargarProtocolo(protocoloPath);
   const clienteIA = ia ?? crearClienteIA();
   const svc = crearServicio({ db, protocolo, ia: clienteIA });
@@ -33,7 +32,10 @@ export function crearApp({ dbPath, protocoloPath, ia, tokenAcceso = process.env.
     rutas.push({ metodo, re, claves, fn });
   };
 
-  on('GET', '/api/salud', () => ({ ok: true, protocolo: protocolo.version, protocolo_estado: protocolo.estado, ia: clienteIA.habilitada ? clienteIA.modelo : 'deshabilitada (intérprete de reglas)', requiere_token: Boolean(tokenAcceso), entorno: produccion ? 'produccion' : 'desarrollo', advertencias }));
+  on('GET', '/api/salud', () => ({ ok: true, protocolo: protocolo.version, protocolo_estado: protocolo.estado, ia: clienteIA.habilitada ? clienteIA.modelo : 'deshabilitada (intérprete de reglas)', requiere_token: acceso.modo() !== 'abierto', configuracion_inicial_pendiente: acceso.modo() === 'pendiente',
+    entorno: produccion ? 'produccion' : 'desarrollo',
+    advertencias: [...advertencias, ...(acceso.modo() === 'pendiente' ? ['Falta crear la clave de acceso (abra la aplicación para configurarla).'] : [])] }));
+  on('POST', '/api/configuracion-inicial', (_, b) => acceso.configurar(b.clave));
   on('GET', '/api/protocolo', () => resumenProtocolo(protocolo));
   on('GET', '/api/casos', () => svc.listarCasos());
   on('POST', '/api/casos', (_, b) => svc.crearCaso(b));
@@ -63,13 +65,17 @@ export function crearApp({ dbPath, protocoloPath, ia, tokenAcceso = process.env.
     res.setHeader('x-frame-options', 'DENY');
     res.setHeader('content-security-policy', "default-src 'self'; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'");
     if (url.pathname.startsWith('/api/')) {
-      if (faltaToken && url.pathname !== '/api/salud') {
-        return enviar(res, 503, { error: 'La aplicación aún no está configurada: defina la variable de entorno APP_ACCESS_TOKEN en Hostinger y vuelva a desplegar.' });
+      const libre = url.pathname === '/api/salud' || url.pathname === '/api/configuracion-inicial';
+      const modo = acceso.modo();
+      if (!libre && modo === 'pendiente') {
+        return enviar(res, 503, { error: 'La aplicación aún no tiene clave de acceso. Ábrala en el navegador para crearla.', configuracion_inicial: true });
       }
-      if (tokenAcceso && url.pathname !== '/api/salud') {
+      if (!libre && (modo === 'entorno' || modo === 'clave')) {
         const t = (req.headers.authorization || '').replace(/^Bearer\s+/i, '');
-        const ok = t.length === tokenAcceso.length && crypto.timingSafeEqual(Buffer.from(t), Buffer.from(tokenAcceso));
-        if (!ok) return enviar(res, 401, { error: 'Token de acceso inválido o ausente.' });
+        const ip = String(req.headers['x-forwarded-for'] || req.socket.remoteAddress || '').split(',')[0].trim();
+        const v = acceso.verificar(t, ip);
+        if (v === 'bloqueado') return enviar(res, 429, { error: 'Demasiados intentos fallidos. Espere unos minutos.' });
+        if (v !== 'ok') return enviar(res, 401, { error: 'Clave de acceso inválida o ausente.' });
       }
       const r = rutas.find((x) => x.metodo === req.method && x.re.test(url.pathname));
       if (!r) return enviar(res, 404, { error: 'Ruta no encontrada.' });

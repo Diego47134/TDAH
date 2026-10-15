@@ -1,16 +1,30 @@
 # Evidencia E2E — produccion
 
-Generado: 2026-10-15T15:24:55.265Z
+Generado: 2026-10-15T16:10:47.703Z
 
-## P1 · Token obligatorio en producción — **APROBADA**
+## P1 · Configuración inicial de la clave — **APROBADA**
 
-Requisito: Un dominio público nunca expone el expediente sin token.
+Requisito: Un dominio público nunca expone el expediente sin clave; la primera clave se crea desde la app y queda cifrada.
 
 ### Paso 1
 
-- **entrada:** GET /api/casos sin token configurado
-- **accion_resultante:** HTTP 503
-- **esperado:** 503 con instrucción
+- **entrada:** GET /api/casos antes de configurar
+- **accion_resultante:** HTTP 503 (configuracion_inicial)
+- **esperado:** 503
+- **ok:** true
+
+### Paso 2
+
+- **entrada:** Clave corta / clave válida / segundo intento
+- **accion_resultante:** 400 / 200 / 409
+- **esperado:** Solo una configuración inicial
+- **ok:** true
+
+### Paso 3
+
+- **entrada:** Sin clave / clave incorrecta / clave correcta; reinicio del servidor
+- **accion_resultante:** 401 / 401 / 200; tras reiniciar sigue configurada
+- **esperado:** Clave cifrada (scrypt) y persistente
 - **ok:** true
 
 ## P2 · Acceso con token y cabeceras — **APROBADA**
@@ -31,7 +45,7 @@ Requisito: Simula Hostinger: HOME propio, PORT como socket, token configurado, S
 ### Paso 1
 
 - **entrada:** node server.js con HOME temporal y PORT=socket
-- **accion_resultante:** GET /api/casos → 200; BD: ~/tdah-datos/tdah.sqlite; respaldos: tdah-2026-10-15T15-24-54.sqlite
+- **accion_resultante:** GET /api/casos → 200; BD: ~/tdah-datos/tdah.sqlite; respaldos: tdah-2026-10-15T16-10-47.sqlite
 - **esperado:** 200, datos y respaldo fuera de la app
 - **ok:** true
 

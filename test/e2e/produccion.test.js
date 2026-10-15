@@ -20,19 +20,51 @@ async function levantar(opts) {
   return { app, base };
 }
 
-test('P1 · en producción sin APP_ACCESS_TOKEN la API queda bloqueada con un mensaje claro', async () => {
-  const p = ev.prueba('P1', 'Token obligatorio en producción', 'Un dominio público nunca expone el expediente sin token.');
-  const { app, base } = await levantar({ produccion: true, tokenAcceso: '', advertencias: [] });
+test('P1 · en producción sin token ni clave: API bloqueada hasta la configuración inicial, que se hace una sola vez', async () => {
+  const p = ev.prueba('P1', 'Configuración inicial de la clave', 'Un dominio público nunca expone el expediente sin clave; la primera clave se crea desde la app y queda cifrada.');
+  const dbPath = rutaDBTemporal();
+  let app = crearApp({ dbPath, ia: { habilitada: false }, produccion: true, tokenAcceso: '', advertencias: [] });
+  await new Promise((ok) => app.server.listen(0, '127.0.0.1', ok));
+  let base = `http://127.0.0.1:${app.server.address().port}`;
+  const post = (b, ruta, cuerpo, h = {}) => fetch(`${b}${ruta}`, { method: 'POST', headers: { 'content-type': 'application/json', ...h }, body: JSON.stringify(cuerpo) });
   try {
     const r = await fetch(`${base}/api/casos`);
     assert.equal(r.status, 503);
-    assert.match((await r.json()).error, /APP_ACCESS_TOKEN/);
+    assert.equal((await r.json()).configuracion_inicial, true);
     const s = await (await fetch(`${base}/api/salud`)).json();
-    assert.equal(s.entorno, 'produccion');
-    assert.ok(s.advertencias.some((a) => /APP_ACCESS_TOKEN/.test(a)));
-    assert.equal((await fetch(`${base}/`)).status, 200, 'la interfaz carga y muestra el mensaje');
-    ev.paso(p, { entrada: 'GET /api/casos sin token configurado', accion_resultante: `HTTP ${r.status}`, esperado: '503 con instrucción', ok: true });
+    assert.equal(s.configuracion_inicial_pendiente, true);
+    assert.equal((await fetch(`${base}/`)).status, 200, 'la interfaz carga y ofrece crear la clave');
+    ev.paso(p, { entrada: 'GET /api/casos antes de configurar', accion_resultante: `HTTP ${r.status} (configuracion_inicial)`, esperado: '503', ok: true });
+
+    assert.equal((await post(base, '/api/configuracion-inicial', { clave: 'corta' })).status, 400);
+    const clave = 'clave-inicial-de-prueba';
+    assert.equal((await post(base, '/api/configuracion-inicial', { clave })).status, 200);
+    assert.equal((await post(base, '/api/configuracion-inicial', { clave: 'otra-clave-distinta' })).status, 409, 'no se puede reemplazar');
+    ev.paso(p, { entrada: 'Clave corta / clave válida / segundo intento', accion_resultante: '400 / 200 / 409', esperado: 'Solo una configuración inicial', ok: true });
+
+    const dbHash = app.db.prepare("SELECT valor FROM config WHERE clave='acceso'").get().valor;
+    assert.ok(!dbHash.includes(clave), 'la clave no se guarda en texto plano');
+    assert.equal((await fetch(`${base}/api/casos`)).status, 401);
+    assert.equal((await fetch(`${base}/api/casos`, { headers: { authorization: 'Bearer incorrecta-123' } })).status, 401);
+    assert.equal((await fetch(`${base}/api/casos`, { headers: { authorization: `Bearer ${clave}` } })).status, 200);
+
+    await app.cerrar(); // reinicio: la clave persiste en la base de datos
+    app = crearApp({ dbPath, ia: { habilitada: false }, produccion: true, tokenAcceso: '', advertencias: [] });
+    await new Promise((ok) => app.server.listen(0, '127.0.0.1', ok));
+    base = `http://127.0.0.1:${app.server.address().port}`;
+    assert.equal((await (await fetch(`${base}/api/salud`)).json()).configuracion_inicial_pendiente, false);
+    assert.equal((await fetch(`${base}/api/casos`, { headers: { authorization: `Bearer ${clave}` } })).status, 200);
+    ev.paso(p, { entrada: 'Sin clave / clave incorrecta / clave correcta; reinicio del servidor', accion_resultante: '401 / 401 / 200; tras reiniciar sigue configurada', esperado: 'Clave cifrada (scrypt) y persistente', ok: true });
     ev.cerrar(p, true);
+  } finally { await app.cerrar(); }
+});
+
+test('P1b · intentos fallidos repetidos se bloquean temporalmente', async () => {
+  const { app, base } = await levantar({ produccion: true, tokenAcceso: 'token-de-prueba-0123456789', advertencias: [] });
+  try {
+    let ultimo;
+    for (let i = 0; i < 21; i++) ultimo = (await fetch(`${base}/api/casos`, { headers: { authorization: 'Bearer mala' } })).status;
+    assert.equal(ultimo, 429);
   } finally { await app.cerrar(); }
 });
 

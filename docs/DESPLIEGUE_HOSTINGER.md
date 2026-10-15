@@ -10,15 +10,11 @@ La aplicación ya está preparada para el hosting **Node.js administrado** de Ho
 
 > Si el dominio ya tiene un sitio web creado en tu plan, Hostinger exige eliminar ese sitio antes de asignar el dominio a la app Node.js.
 
-## 1. Generar el token de acceso
+## 1. Clave de acceso
 
-Es la «contraseña» compartida para entrar a la aplicación. Debe tener al menos 16 caracteres aleatorios. Puedes generarlo con un gestor de contraseñas o en una terminal:
+No hace falta configurar nada en Hostinger. La **primera vez que se abre la app** muestra «Configuración inicial» y pide crear la clave de acceso (mínimo 12 caracteres). Se guarda cifrada (scrypt) en la base de datos y desde entonces se pide a cada profesional al entrar. Ábrela tú apenas termine el despliegue, para que nadie más la cree antes.
 
-```bash
-openssl rand -base64 24
-```
-
-Guárdalo en un lugar seguro: se lo darás solo a los profesionales que usarán el sistema.
+Alternativa: definir la variable de entorno `APP_ACCESS_TOKEN`; si existe, tiene prioridad sobre la clave creada en la app.
 
 ## 2. Crear la app Node.js
 
@@ -42,12 +38,12 @@ En **Set environment variables** (o después en *Environment variables* del pane
 
 | Variable | Valor | ¿Obligatoria? |
 |---|---|---|
-| `APP_ACCESS_TOKEN` | el token del paso 1 | **Sí** (sin ella la app muestra «La aplicación aún no está configurada») |
 | `ANTHROPIC_API_KEY` | clave de la API de IA | No (sin ella funciona con el intérprete de reglas) |
+| `APP_ACCESS_TOKEN` | clave fija de acceso | No (por defecto la clave se crea en la app) |
 
 También puedes usar **Import .env** con el archivo `.env.hostinger.example` completado (nunca lo subas al repositorio con valores reales).
 
-No hace falta definir `PORT`, `HOST`, `NODE_ENV` ni `DB_PATH`: `server.js` usa valores seguros por defecto.
+**Ninguna variable es obligatoria.** Si Hostinger propone `PORT`, `HOST` o `DB_PATH` (las toma del archivo de ejemplo), elimínalas: no hace falta definir `PORT`, `HOST`, `NODE_ENV` ni `DB_PATH`: `server.js` usa valores seguros por defecto.
 
 Pulsa **Deploy**. Cada `git push` a `main` vuelve a desplegar automáticamente.
 
@@ -64,8 +60,9 @@ Cuando el despliegue termine, la app queda en un dominio temporal de Hostinger. 
 
 ## 4. Verificar
 
-1. Abre `https://tudominio/api/salud`. Debe mostrar `"entorno": "produccion"`, `"requiere_token": true` y `"advertencias": []`.
-2. Abre `https://tudominio`, ingresa el token y crea un caso de prueba con un seudónimo.
+1. Abre `https://tudominio` y crea la clave de acceso en la pantalla «Configuración inicial».
+2. Abre `https://tudominio/api/salud`. Debe mostrar `"entorno": "produccion"`, `"configuracion_inicial_pendiente": false` y `"advertencias": []`.
+3. Crea un caso de prueba con un seudónimo.
 3. En el navegador (Chrome/Edge en el computador, o «Agregar a pantalla de inicio» en el celular) la app se puede instalar como PWA.
 
 Si `advertencias` no está vacío, el texto indica qué falta corregir.
@@ -87,8 +84,8 @@ Variables opcionales: `DATA_DIR` (carpeta de datos), `BACKUP_EVERY_HOURS`, `BACK
 | Síntoma | Causa y solución |
 |---|---|
 | El despliegue falla con «no es compatible» | Seleccionar **Node.js 24.x** en la configuración (la app requiere 22.13 o superior). |
-| La página dice «La aplicación aún no está configurada» | Falta `APP_ACCESS_TOKEN`. Agregarla y guardar (redespliega). |
-| Pide el token una y otra vez | El token ingresado no coincide con `APP_ACCESS_TOKEN`. |
+| Olvidé la clave de acceso | Definir `APP_ACCESS_TOKEN` en las variables de entorno (tiene prioridad) o, con el Administrador de archivos/SSH, borrar la fila `acceso` de la tabla `config` en `~/tdah-datos/tdah.sqlite` para volver a la configuración inicial. |
+| «La clave ingresada no es correcta» | La clave no coincide; tras 20 intentos fallidos en 10 minutos el acceso se bloquea temporalmente. |
 | La primera carga tras horas sin uso tarda unos segundos | Normal: Hostinger detiene la app sin tráfico y la vuelve a iniciar con la siguiente visita. Los datos no se pierden. |
 | `advertencias` menciona «dentro de la carpeta de despliegue» | Se definió `DB_PATH` dentro de la app. Borrar esa variable para usar `~/tdah-datos`. |
 
