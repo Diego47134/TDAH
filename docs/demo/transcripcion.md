@@ -1,6 +1,6 @@
 # Demostración E2E — caso ficticio
 
-Generado: 2026-10-16T00:19:49.325Z  
+Generado: 2026-10-16T00:23:52.558Z  
 Datos 100 % ficticios. El guion responde según la pregunta que **elige el motor**; no es una lista fija.
 
 Caso: **CASO-0001** (Caso ficticio A (demostración))
@@ -728,7 +728,7 @@ Preguntas a enviar al colegio: C04, C05, C06, C09, C10, C11, C12.
 
 ## 4. Bloqueo de informe prematuro
 
-Intento de informe final antes de la revisión profesional → POST /api/casos/2dab63f4-6803-4dd0-aa5c-5c36d34abc47/informes → 409: Evaluación pendiente: no se puede generar el informe final.
+Intento de informe final antes de la revisión profesional → POST /api/casos/3fa18a7a-9506-4aec-874a-4da5d0e42814/informes → 409: Evaluación pendiente: no se puede generar el informe final.
 
 ## 5. Revisión profesional
 

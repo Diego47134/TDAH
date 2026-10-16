@@ -2,7 +2,7 @@
   "decisiones": [
     {
       "id": 1,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 0,
       "tipo": "consentimiento_registrado",
       "detalle": {
@@ -13,11 +13,11 @@
         "profesional": "Profesional de prueba",
         "version_politica": "1.0 (15-10-2026)"
       },
-      "creado": "2026-10-16T00:19:49.352Z"
+      "creado": "2026-10-16T00:23:52.584Z"
     },
     {
       "id": 2,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 0,
       "tipo": "caso_creado",
       "detalle": {
@@ -41,11 +41,11 @@
           }
         ]
       },
-      "creado": "2026-10-16T00:19:49.352Z"
+      "creado": "2026-10-16T00:23:52.584Z"
     },
     {
       "id": 3,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 1,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -101,11 +101,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:49.354Z"
+      "creado": "2026-10-16T00:23:52.586Z"
     },
     {
       "id": 4,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 1,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -115,11 +115,11 @@
         "estado_dato": "valor",
         "valor": "Desde primero básico se distrae mucho en clases y le cuesta terminar las tareas."
       },
-      "creado": "2026-10-16T00:19:49.375Z"
+      "creado": "2026-10-16T00:23:52.610Z"
     },
     {
       "id": 5,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 1,
       "tipo": "evidencia_relacionada_detectada",
       "detalle": {
@@ -133,11 +133,11 @@
         ],
         "regla": "Etapa 9 §14.2: activación inmediata de caracterización, sin confirmar el síntoma por asociación."
       },
-      "creado": "2026-10-16T00:19:49.376Z"
+      "creado": "2026-10-16T00:23:52.611Z"
     },
     {
       "id": 6,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 2,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -193,11 +193,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:49.378Z"
+      "creado": "2026-10-16T00:23:52.613Z"
     },
     {
       "id": 7,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 2,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -207,11 +207,11 @@
         "estado_dato": "valor",
         "valor": "8"
       },
-      "creado": "2026-10-16T00:19:49.391Z"
+      "creado": "2026-10-16T00:23:52.625Z"
     },
     {
       "id": 8,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 3,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -267,11 +267,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:49.393Z"
+      "creado": "2026-10-16T00:23:52.626Z"
     },
     {
       "id": 9,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 3,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -281,11 +281,11 @@
         "estado_dato": "valor",
         "valor": "si"
       },
-      "creado": "2026-10-16T00:19:49.410Z"
+      "creado": "2026-10-16T00:23:52.637Z"
     },
     {
       "id": 10,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 4,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -346,11 +346,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:49.411Z"
+      "creado": "2026-10-16T00:23:52.638Z"
     },
     {
       "id": 11,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 4,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -360,22 +360,22 @@
         "estado_dato": "valor",
         "valor": "si"
       },
-      "creado": "2026-10-16T00:19:49.422Z"
+      "creado": "2026-10-16T00:23:52.648Z"
     },
     {
       "id": 12,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 4,
       "tipo": "ruta_determinada",
       "detalle": {
         "ruta": "con_informe",
         "justificacion": "Ruta B (Etapa 7 §5.2): existe informe escolar disponible; el apoderado se centra en hogar, desarrollo, trayectoria, autonomía e impacto, y solo se pregunta lo que el informe no resuelva."
       },
-      "creado": "2026-10-16T00:19:49.422Z"
+      "creado": "2026-10-16T00:23:52.648Z"
     },
     {
       "id": 13,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 5,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -438,11 +438,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:49.425Z"
+      "creado": "2026-10-16T00:23:52.650Z"
     },
     {
       "id": 14,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 5,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -452,11 +452,11 @@
         "estado_dato": "valor",
         "valor": "si"
       },
-      "creado": "2026-10-16T00:19:49.449Z"
+      "creado": "2026-10-16T00:23:52.674Z"
     },
     {
       "id": 15,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 6,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -524,11 +524,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:49.453Z"
+      "creado": "2026-10-16T00:23:52.676Z"
     },
     {
       "id": 16,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 6,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -538,11 +538,11 @@
         "estado_dato": "valor",
         "valor": "varias_al_dia"
       },
-      "creado": "2026-10-16T00:19:49.469Z"
+      "creado": "2026-10-16T00:23:52.692Z"
     },
     {
       "id": 17,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 7,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -610,11 +610,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:49.475Z"
+      "creado": "2026-10-16T00:23:52.699Z"
     },
     {
       "id": 18,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 7,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -624,11 +624,11 @@
         "estado_dato": "valor",
         "valor": "mas_6_meses_antes_12"
       },
-      "creado": "2026-10-16T00:19:49.491Z"
+      "creado": "2026-10-16T00:23:52.715Z"
     },
     {
       "id": 19,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 8,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -701,11 +701,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:49.492Z"
+      "creado": "2026-10-16T00:23:52.717Z"
     },
     {
       "id": 20,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 8,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -715,11 +715,11 @@
         "estado_dato": "valor",
         "valor": "hogar,colegio"
       },
-      "creado": "2026-10-16T00:19:49.506Z"
+      "creado": "2026-10-16T00:23:52.731Z"
     },
     {
       "id": 21,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 9,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -782,11 +782,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:49.507Z"
+      "creado": "2026-10-16T00:23:52.733Z"
     },
     {
       "id": 22,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 9,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -796,11 +796,11 @@
         "estado_dato": "valor",
         "valor": "si"
       },
-      "creado": "2026-10-16T00:19:49.520Z"
+      "creado": "2026-10-16T00:23:52.745Z"
     },
     {
       "id": 23,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 10,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -869,11 +869,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:49.522Z"
+      "creado": "2026-10-16T00:23:52.747Z"
     },
     {
       "id": 24,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 10,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -883,11 +883,11 @@
         "estado_dato": "valor",
         "valor": "varias_al_dia"
       },
-      "creado": "2026-10-16T00:19:49.531Z"
+      "creado": "2026-10-16T00:23:52.758Z"
     },
     {
       "id": 25,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 11,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -956,11 +956,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:49.533Z"
+      "creado": "2026-10-16T00:23:52.759Z"
     },
     {
       "id": 26,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 11,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -970,11 +970,11 @@
         "estado_dato": "valor",
         "valor": "mas_6_meses_antes_12"
       },
-      "creado": "2026-10-16T00:19:49.544Z"
+      "creado": "2026-10-16T00:23:52.771Z"
     },
     {
       "id": 27,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 12,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -1048,11 +1048,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:49.546Z"
+      "creado": "2026-10-16T00:23:52.773Z"
     },
     {
       "id": 28,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 12,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -1062,11 +1062,11 @@
         "estado_dato": "valor",
         "valor": "hogar,colegio"
       },
-      "creado": "2026-10-16T00:19:49.556Z"
+      "creado": "2026-10-16T00:23:52.784Z"
     },
     {
       "id": 29,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 13,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -1130,11 +1130,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:49.558Z"
+      "creado": "2026-10-16T00:23:52.786Z"
     },
     {
       "id": 30,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 13,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -1144,11 +1144,11 @@
         "estado_dato": "valor",
         "valor": "si"
       },
-      "creado": "2026-10-16T00:19:49.569Z"
+      "creado": "2026-10-16T00:23:52.796Z"
     },
     {
       "id": 31,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 14,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -1218,11 +1218,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:49.570Z"
+      "creado": "2026-10-16T00:23:52.798Z"
     },
     {
       "id": 32,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 14,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -1232,11 +1232,11 @@
         "estado_dato": "valor",
         "valor": "varias_al_dia"
       },
-      "creado": "2026-10-16T00:19:49.581Z"
+      "creado": "2026-10-16T00:23:52.808Z"
     },
     {
       "id": 33,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 15,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -1306,11 +1306,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:49.582Z"
+      "creado": "2026-10-16T00:23:52.810Z"
     },
     {
       "id": 34,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 15,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -1320,11 +1320,11 @@
         "estado_dato": "valor",
         "valor": "mas_6_meses_antes_12"
       },
-      "creado": "2026-10-16T00:19:49.594Z"
+      "creado": "2026-10-16T00:23:52.883Z"
     },
     {
       "id": 35,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 16,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -1399,11 +1399,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:49.596Z"
+      "creado": "2026-10-16T00:23:52.885Z"
     },
     {
       "id": 36,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 16,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -1413,11 +1413,11 @@
         "estado_dato": "valor",
         "valor": "hogar,colegio"
       },
-      "creado": "2026-10-16T00:19:49.611Z"
+      "creado": "2026-10-16T00:23:52.898Z"
     },
     {
       "id": 37,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 17,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -1482,11 +1482,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:49.613Z"
+      "creado": "2026-10-16T00:23:52.900Z"
     },
     {
       "id": 38,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 17,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -1496,11 +1496,11 @@
         "estado_dato": "valor",
         "valor": "si"
       },
-      "creado": "2026-10-16T00:19:49.626Z"
+      "creado": "2026-10-16T00:23:52.911Z"
     },
     {
       "id": 39,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 18,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -1571,11 +1571,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:49.628Z"
+      "creado": "2026-10-16T00:23:52.913Z"
     },
     {
       "id": 40,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 18,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -1585,11 +1585,11 @@
         "estado_dato": "valor",
         "valor": "varias_al_dia"
       },
-      "creado": "2026-10-16T00:19:49.640Z"
+      "creado": "2026-10-16T00:23:52.927Z"
     },
     {
       "id": 41,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 19,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -1660,11 +1660,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:49.643Z"
+      "creado": "2026-10-16T00:23:52.928Z"
     },
     {
       "id": 42,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 19,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -1674,11 +1674,11 @@
         "estado_dato": "valor",
         "valor": "mas_6_meses_antes_12"
       },
-      "creado": "2026-10-16T00:19:49.653Z"
+      "creado": "2026-10-16T00:23:52.938Z"
     },
     {
       "id": 43,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 20,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -1754,11 +1754,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:49.655Z"
+      "creado": "2026-10-16T00:23:52.939Z"
     },
     {
       "id": 44,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 20,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -1768,11 +1768,11 @@
         "estado_dato": "valor",
         "valor": "hogar,colegio"
       },
-      "creado": "2026-10-16T00:19:49.667Z"
+      "creado": "2026-10-16T00:23:52.952Z"
     },
     {
       "id": 45,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 21,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -1838,11 +1838,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:49.669Z"
+      "creado": "2026-10-16T00:23:52.954Z"
     },
     {
       "id": 46,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 21,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -1852,11 +1852,11 @@
         "estado_dato": "valor",
         "valor": "si"
       },
-      "creado": "2026-10-16T00:19:49.680Z"
+      "creado": "2026-10-16T00:23:52.966Z"
     },
     {
       "id": 47,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 22,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -1928,11 +1928,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:49.682Z"
+      "creado": "2026-10-16T00:23:52.968Z"
     },
     {
       "id": 48,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 22,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -1942,11 +1942,11 @@
         "estado_dato": "valor",
         "valor": "varias_al_dia"
       },
-      "creado": "2026-10-16T00:19:49.696Z"
+      "creado": "2026-10-16T00:23:52.988Z"
     },
     {
       "id": 49,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 23,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -2018,11 +2018,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:49.698Z"
+      "creado": "2026-10-16T00:23:52.991Z"
     },
     {
       "id": 50,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 23,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -2032,11 +2032,11 @@
         "estado_dato": "valor",
         "valor": "mas_6_meses_antes_12"
       },
-      "creado": "2026-10-16T00:19:49.711Z"
+      "creado": "2026-10-16T00:23:53.018Z"
     },
     {
       "id": 51,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 24,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -2113,11 +2113,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:49.714Z"
+      "creado": "2026-10-16T00:23:53.020Z"
     },
     {
       "id": 52,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 24,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -2127,11 +2127,11 @@
         "estado_dato": "valor",
         "valor": "hogar,colegio"
       },
-      "creado": "2026-10-16T00:19:49.736Z"
+      "creado": "2026-10-16T00:23:53.031Z"
     },
     {
       "id": 53,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 25,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -2198,11 +2198,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:49.738Z"
+      "creado": "2026-10-16T00:23:53.034Z"
     },
     {
       "id": 54,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 25,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -2212,11 +2212,11 @@
         "estado_dato": "no_sabe",
         "valor": null
       },
-      "creado": "2026-10-16T00:19:49.750Z"
+      "creado": "2026-10-16T00:23:53.056Z"
     },
     {
       "id": 55,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 26,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -2284,11 +2284,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:49.753Z"
+      "creado": "2026-10-16T00:23:53.061Z"
     },
     {
       "id": 56,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 26,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -2298,11 +2298,11 @@
         "estado_dato": "valor",
         "valor": "si"
       },
-      "creado": "2026-10-16T00:19:49.769Z"
+      "creado": "2026-10-16T00:23:53.081Z"
     },
     {
       "id": 57,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 27,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -2376,11 +2376,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:49.771Z"
+      "creado": "2026-10-16T00:23:53.085Z"
     },
     {
       "id": 58,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 27,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -2390,11 +2390,11 @@
         "estado_dato": "valor",
         "valor": "varias_al_dia"
       },
-      "creado": "2026-10-16T00:19:49.783Z"
+      "creado": "2026-10-16T00:23:53.105Z"
     },
     {
       "id": 59,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 28,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -2468,11 +2468,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:49.785Z"
+      "creado": "2026-10-16T00:23:53.108Z"
     },
     {
       "id": 60,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 28,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -2482,11 +2482,11 @@
         "estado_dato": "valor",
         "valor": "mas_6_meses_antes_12"
       },
-      "creado": "2026-10-16T00:19:49.801Z"
+      "creado": "2026-10-16T00:23:53.139Z"
     },
     {
       "id": 61,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 29,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -2565,11 +2565,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:49.804Z"
+      "creado": "2026-10-16T00:23:53.142Z"
     },
     {
       "id": 62,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 29,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -2579,11 +2579,11 @@
         "estado_dato": "valor",
         "valor": "hogar,colegio"
       },
-      "creado": "2026-10-16T00:19:49.817Z"
+      "creado": "2026-10-16T00:23:53.156Z"
     },
     {
       "id": 63,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 30,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -2652,11 +2652,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:49.819Z"
+      "creado": "2026-10-16T00:23:53.159Z"
     },
     {
       "id": 64,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 30,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -2666,11 +2666,11 @@
         "estado_dato": "valor",
         "valor": "si"
       },
-      "creado": "2026-10-16T00:19:49.834Z"
+      "creado": "2026-10-16T00:23:53.174Z"
     },
     {
       "id": 65,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 31,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -2745,11 +2745,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:49.836Z"
+      "creado": "2026-10-16T00:23:53.178Z"
     },
     {
       "id": 66,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 31,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -2759,11 +2759,11 @@
         "estado_dato": "valor",
         "valor": "varias_al_dia"
       },
-      "creado": "2026-10-16T00:19:49.850Z"
+      "creado": "2026-10-16T00:23:53.196Z"
     },
     {
       "id": 67,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 32,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -2838,11 +2838,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:49.852Z"
+      "creado": "2026-10-16T00:23:53.200Z"
     },
     {
       "id": 68,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 32,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -2852,11 +2852,11 @@
         "estado_dato": "valor",
         "valor": "mas_6_meses_antes_12"
       },
-      "creado": "2026-10-16T00:19:49.867Z"
+      "creado": "2026-10-16T00:23:53.219Z"
     },
     {
       "id": 69,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 33,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -2936,11 +2936,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:49.870Z"
+      "creado": "2026-10-16T00:23:53.222Z"
     },
     {
       "id": 70,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 33,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -2950,11 +2950,11 @@
         "estado_dato": "valor",
         "valor": "hogar,colegio"
       },
-      "creado": "2026-10-16T00:19:49.884Z"
+      "creado": "2026-10-16T00:23:53.240Z"
     },
     {
       "id": 71,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 34,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -3024,11 +3024,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:49.886Z"
+      "creado": "2026-10-16T00:23:53.244Z"
     },
     {
       "id": 72,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 34,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -3038,11 +3038,11 @@
         "estado_dato": "valor",
         "valor": "si"
       },
-      "creado": "2026-10-16T00:19:49.902Z"
+      "creado": "2026-10-16T00:23:53.270Z"
     },
     {
       "id": 73,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 35,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -3118,11 +3118,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:49.905Z"
+      "creado": "2026-10-16T00:23:53.272Z"
     },
     {
       "id": 74,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 35,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -3132,11 +3132,11 @@
         "estado_dato": "valor",
         "valor": "varias_al_dia"
       },
-      "creado": "2026-10-16T00:19:49.919Z"
+      "creado": "2026-10-16T00:23:53.286Z"
     },
     {
       "id": 75,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 36,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -3212,11 +3212,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:49.922Z"
+      "creado": "2026-10-16T00:23:53.288Z"
     },
     {
       "id": 76,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 36,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -3226,11 +3226,11 @@
         "estado_dato": "valor",
         "valor": "mas_6_meses_antes_12"
       },
-      "creado": "2026-10-16T00:19:49.944Z"
+      "creado": "2026-10-16T00:23:53.302Z"
     },
     {
       "id": 77,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 37,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -3311,11 +3311,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:49.947Z"
+      "creado": "2026-10-16T00:23:53.305Z"
     },
     {
       "id": 78,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 37,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -3325,11 +3325,11 @@
         "estado_dato": "valor",
         "valor": "hogar,colegio"
       },
-      "creado": "2026-10-16T00:19:49.961Z"
+      "creado": "2026-10-16T00:23:53.318Z"
     },
     {
       "id": 79,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 38,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -3400,11 +3400,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:49.964Z"
+      "creado": "2026-10-16T00:23:53.320Z"
     },
     {
       "id": 80,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 38,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -3414,11 +3414,11 @@
         "estado_dato": "valor",
         "valor": "no"
       },
-      "creado": "2026-10-16T00:19:49.987Z"
+      "creado": "2026-10-16T00:23:53.340Z"
     },
     {
       "id": 81,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 39,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -3489,11 +3489,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:49.992Z"
+      "creado": "2026-10-16T00:23:53.342Z"
     },
     {
       "id": 82,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 39,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -3503,11 +3503,11 @@
         "estado_dato": "valor",
         "valor": "si"
       },
-      "creado": "2026-10-16T00:19:50.013Z"
+      "creado": "2026-10-16T00:23:53.356Z"
     },
     {
       "id": 83,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 40,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -3578,11 +3578,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:50.016Z"
+      "creado": "2026-10-16T00:23:53.359Z"
     },
     {
       "id": 84,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 40,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -3592,11 +3592,11 @@
         "estado_dato": "valor",
         "valor": "no"
       },
-      "creado": "2026-10-16T00:19:50.034Z"
+      "creado": "2026-10-16T00:23:53.373Z"
     },
     {
       "id": 85,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 41,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -3667,11 +3667,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:50.039Z"
+      "creado": "2026-10-16T00:23:53.376Z"
     },
     {
       "id": 86,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 41,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -3681,11 +3681,11 @@
         "estado_dato": "valor",
         "valor": "no"
       },
-      "creado": "2026-10-16T00:19:50.058Z"
+      "creado": "2026-10-16T00:23:53.389Z"
     },
     {
       "id": 87,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 42,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -3756,11 +3756,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:50.061Z"
+      "creado": "2026-10-16T00:23:53.391Z"
     },
     {
       "id": 88,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 42,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -3770,11 +3770,11 @@
         "estado_dato": "valor",
         "valor": "si"
       },
-      "creado": "2026-10-16T00:19:50.077Z"
+      "creado": "2026-10-16T00:23:53.407Z"
     },
     {
       "id": 89,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 43,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -3845,11 +3845,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:50.080Z"
+      "creado": "2026-10-16T00:23:53.410Z"
     },
     {
       "id": 90,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 43,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -3859,11 +3859,11 @@
         "estado_dato": "valor",
         "valor": "no"
       },
-      "creado": "2026-10-16T00:19:50.094Z"
+      "creado": "2026-10-16T00:23:53.423Z"
     },
     {
       "id": 91,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 44,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -3935,11 +3935,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:50.097Z"
+      "creado": "2026-10-16T00:23:53.426Z"
     },
     {
       "id": 92,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 44,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -3949,11 +3949,11 @@
         "estado_dato": "valor",
         "valor": "no"
       },
-      "creado": "2026-10-16T00:19:50.114Z"
+      "creado": "2026-10-16T00:23:53.442Z"
     },
     {
       "id": 93,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 45,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -4026,11 +4026,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:50.117Z"
+      "creado": "2026-10-16T00:23:53.445Z"
     },
     {
       "id": 94,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 45,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -4040,11 +4040,11 @@
         "estado_dato": "valor",
         "valor": "no"
       },
-      "creado": "2026-10-16T00:19:50.133Z"
+      "creado": "2026-10-16T00:23:53.460Z"
     },
     {
       "id": 95,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 46,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -4118,11 +4118,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:50.135Z"
+      "creado": "2026-10-16T00:23:53.463Z"
     },
     {
       "id": 96,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 46,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -4132,11 +4132,11 @@
         "estado_dato": "valor",
         "valor": "no"
       },
-      "creado": "2026-10-16T00:19:50.153Z"
+      "creado": "2026-10-16T00:23:53.481Z"
     },
     {
       "id": 97,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 47,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -4211,11 +4211,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:50.156Z"
+      "creado": "2026-10-16T00:23:53.484Z"
     },
     {
       "id": 98,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 47,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -4225,11 +4225,11 @@
         "estado_dato": "valor",
         "valor": "no"
       },
-      "creado": "2026-10-16T00:19:50.172Z"
+      "creado": "2026-10-16T00:23:53.500Z"
     },
     {
       "id": 99,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 48,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -4305,11 +4305,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:50.175Z"
+      "creado": "2026-10-16T00:23:53.504Z"
     },
     {
       "id": 100,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 48,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -4319,11 +4319,11 @@
         "estado_dato": "valor",
         "valor": "no"
       },
-      "creado": "2026-10-16T00:19:50.194Z"
+      "creado": "2026-10-16T00:23:53.523Z"
     },
     {
       "id": 101,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 49,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -4400,11 +4400,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:50.198Z"
+      "creado": "2026-10-16T00:23:53.526Z"
     },
     {
       "id": 102,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 49,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -4414,11 +4414,11 @@
         "estado_dato": "valor",
         "valor": "no"
       },
-      "creado": "2026-10-16T00:19:50.217Z"
+      "creado": "2026-10-16T00:23:53.543Z"
     },
     {
       "id": 103,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 50,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -4496,11 +4496,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:50.222Z"
+      "creado": "2026-10-16T00:23:53.546Z"
     },
     {
       "id": 104,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 50,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -4510,11 +4510,11 @@
         "estado_dato": "valor",
         "valor": "no"
       },
-      "creado": "2026-10-16T00:19:50.244Z"
+      "creado": "2026-10-16T00:23:53.571Z"
     },
     {
       "id": 105,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 51,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -4593,11 +4593,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:50.247Z"
+      "creado": "2026-10-16T00:23:53.574Z"
     },
     {
       "id": 106,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 51,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -4607,11 +4607,11 @@
         "estado_dato": "valor",
         "valor": "si"
       },
-      "creado": "2026-10-16T00:19:50.263Z"
+      "creado": "2026-10-16T00:23:53.605Z"
     },
     {
       "id": 107,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 52,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -4696,11 +4696,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:50.266Z"
+      "creado": "2026-10-16T00:23:53.608Z"
     },
     {
       "id": 108,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 52,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -4710,11 +4710,11 @@
         "estado_dato": "valor",
         "valor": "varias_al_dia"
       },
-      "creado": "2026-10-16T00:19:50.292Z"
+      "creado": "2026-10-16T00:23:53.627Z"
     },
     {
       "id": 109,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 53,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -4799,11 +4799,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:50.296Z"
+      "creado": "2026-10-16T00:23:53.630Z"
     },
     {
       "id": 110,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 53,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -4813,11 +4813,11 @@
         "estado_dato": "valor",
         "valor": "mas_6_meses_antes_12"
       },
-      "creado": "2026-10-16T00:19:50.314Z"
+      "creado": "2026-10-16T00:23:53.648Z"
     },
     {
       "id": 111,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 54,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -4907,11 +4907,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:50.317Z"
+      "creado": "2026-10-16T00:23:53.651Z"
     },
     {
       "id": 112,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 54,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -4921,11 +4921,11 @@
         "estado_dato": "valor",
         "valor": "hogar,colegio"
       },
-      "creado": "2026-10-16T00:19:50.333Z"
+      "creado": "2026-10-16T00:23:53.666Z"
     },
     {
       "id": 113,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 55,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -5005,11 +5005,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:50.336Z"
+      "creado": "2026-10-16T00:23:53.671Z"
     },
     {
       "id": 114,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 55,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -5019,11 +5019,11 @@
         "estado_dato": "valor",
         "valor": "no"
       },
-      "creado": "2026-10-16T00:19:50.354Z"
+      "creado": "2026-10-16T00:23:53.700Z"
     },
     {
       "id": 115,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 56,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -5103,11 +5103,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:50.357Z"
+      "creado": "2026-10-16T00:23:53.706Z"
     },
     {
       "id": 116,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 56,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -5117,11 +5117,11 @@
         "estado_dato": "valor",
         "valor": "no"
       },
-      "creado": "2026-10-16T00:19:50.371Z"
+      "creado": "2026-10-16T00:23:53.722Z"
     },
     {
       "id": 117,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 57,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -5201,11 +5201,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:50.374Z"
+      "creado": "2026-10-16T00:23:53.725Z"
     },
     {
       "id": 118,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 57,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -5215,11 +5215,11 @@
         "estado_dato": "valor",
         "valor": "no"
       },
-      "creado": "2026-10-16T00:19:50.395Z"
+      "creado": "2026-10-16T00:23:53.744Z"
     },
     {
       "id": 119,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 58,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -5299,11 +5299,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:50.399Z"
+      "creado": "2026-10-16T00:23:53.749Z"
     },
     {
       "id": 120,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 58,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -5313,11 +5313,11 @@
         "estado_dato": "valor",
         "valor": "no"
       },
-      "creado": "2026-10-16T00:19:50.414Z"
+      "creado": "2026-10-16T00:23:53.770Z"
     },
     {
       "id": 121,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 59,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -5402,11 +5402,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:50.417Z"
+      "creado": "2026-10-16T00:23:53.774Z"
     },
     {
       "id": 122,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 59,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -5416,11 +5416,11 @@
         "estado_dato": "valor",
         "valor": "no"
       },
-      "creado": "2026-10-16T00:19:50.435Z"
+      "creado": "2026-10-16T00:23:53.790Z"
     },
     {
       "id": 123,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 60,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -5500,11 +5500,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:50.438Z"
+      "creado": "2026-10-16T00:23:53.793Z"
     },
     {
       "id": 124,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 60,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -5514,11 +5514,11 @@
         "estado_dato": "valor",
         "valor": "no"
       },
-      "creado": "2026-10-16T00:19:50.457Z"
+      "creado": "2026-10-16T00:23:53.809Z"
     },
     {
       "id": 125,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 61,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -5598,11 +5598,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:50.460Z"
+      "creado": "2026-10-16T00:23:53.813Z"
     },
     {
       "id": 126,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 61,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -5612,11 +5612,11 @@
         "estado_dato": "valor",
         "valor": "no"
       },
-      "creado": "2026-10-16T00:19:50.476Z"
+      "creado": "2026-10-16T00:23:53.833Z"
     },
     {
       "id": 127,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 62,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -5696,11 +5696,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:50.479Z"
+      "creado": "2026-10-16T00:23:53.836Z"
     },
     {
       "id": 128,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 62,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -5710,11 +5710,11 @@
         "estado_dato": "valor",
         "valor": "no"
       },
-      "creado": "2026-10-16T00:19:50.496Z"
+      "creado": "2026-10-16T00:23:53.852Z"
     },
     {
       "id": 129,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 63,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -5794,11 +5794,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:50.500Z"
+      "creado": "2026-10-16T00:23:53.855Z"
     },
     {
       "id": 130,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 63,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -5808,11 +5808,11 @@
         "estado_dato": "valor",
         "valor": "no"
       },
-      "creado": "2026-10-16T00:19:50.520Z"
+      "creado": "2026-10-16T00:23:53.872Z"
     },
     {
       "id": 131,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 64,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -5892,11 +5892,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:50.523Z"
+      "creado": "2026-10-16T00:23:53.877Z"
     },
     {
       "id": 132,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 64,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -5906,11 +5906,11 @@
         "estado_dato": "valor",
         "valor": "no"
       },
-      "creado": "2026-10-16T00:19:50.539Z"
+      "creado": "2026-10-16T00:23:53.903Z"
     },
     {
       "id": 133,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 65,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -5990,11 +5990,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:50.542Z"
+      "creado": "2026-10-16T00:23:53.907Z"
     },
     {
       "id": 134,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 65,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -6004,11 +6004,11 @@
         "estado_dato": "valor",
         "valor": "si"
       },
-      "creado": "2026-10-16T00:19:50.559Z"
+      "creado": "2026-10-16T00:23:53.925Z"
     },
     {
       "id": 135,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 66,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -6088,11 +6088,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:50.562Z"
+      "creado": "2026-10-16T00:23:53.928Z"
     },
     {
       "id": 136,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 66,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -6102,11 +6102,11 @@
         "estado_dato": "valor",
         "valor": "no"
       },
-      "creado": "2026-10-16T00:19:50.581Z"
+      "creado": "2026-10-16T00:23:53.946Z"
     },
     {
       "id": 137,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 67,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -6186,11 +6186,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:50.584Z"
+      "creado": "2026-10-16T00:23:53.950Z"
     },
     {
       "id": 138,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 67,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -6200,11 +6200,11 @@
         "estado_dato": "valor",
         "valor": "no"
       },
-      "creado": "2026-10-16T00:19:50.604Z"
+      "creado": "2026-10-16T00:23:53.973Z"
     },
     {
       "id": 139,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 68,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -6284,11 +6284,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:50.608Z"
+      "creado": "2026-10-16T00:23:53.976Z"
     },
     {
       "id": 140,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 68,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -6298,11 +6298,11 @@
         "estado_dato": "valor",
         "valor": "no"
       },
-      "creado": "2026-10-16T00:19:50.624Z"
+      "creado": "2026-10-16T00:23:53.995Z"
     },
     {
       "id": 141,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 69,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -6382,11 +6382,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:50.628Z"
+      "creado": "2026-10-16T00:23:53.999Z"
     },
     {
       "id": 142,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 69,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -6396,11 +6396,11 @@
         "estado_dato": "valor",
         "valor": "no"
       },
-      "creado": "2026-10-16T00:19:50.648Z"
+      "creado": "2026-10-16T00:23:54.019Z"
     },
     {
       "id": 143,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 70,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -6480,11 +6480,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:50.652Z"
+      "creado": "2026-10-16T00:23:54.022Z"
     },
     {
       "id": 144,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 70,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -6494,11 +6494,11 @@
         "estado_dato": "valor",
         "valor": "no"
       },
-      "creado": "2026-10-16T00:19:50.674Z"
+      "creado": "2026-10-16T00:23:54.045Z"
     },
     {
       "id": 145,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 71,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -6578,11 +6578,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:50.678Z"
+      "creado": "2026-10-16T00:23:54.048Z"
     },
     {
       "id": 146,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 71,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -6592,11 +6592,11 @@
         "estado_dato": "valor",
         "valor": "si"
       },
-      "creado": "2026-10-16T00:19:50.698Z"
+      "creado": "2026-10-16T00:23:54.066Z"
     },
     {
       "id": 147,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 72,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -6676,11 +6676,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:50.701Z"
+      "creado": "2026-10-16T00:23:54.069Z"
     },
     {
       "id": 148,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 72,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -6690,11 +6690,11 @@
         "estado_dato": "valor",
         "valor": "no"
       },
-      "creado": "2026-10-16T00:19:50.724Z"
+      "creado": "2026-10-16T00:23:54.086Z"
     },
     {
       "id": 149,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 73,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -6774,11 +6774,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:50.728Z"
+      "creado": "2026-10-16T00:23:54.090Z"
     },
     {
       "id": 150,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 73,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -6788,11 +6788,11 @@
         "estado_dato": "valor",
         "valor": "no"
       },
-      "creado": "2026-10-16T00:19:50.746Z"
+      "creado": "2026-10-16T00:23:54.110Z"
     },
     {
       "id": 151,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 74,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -6877,11 +6877,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:50.749Z"
+      "creado": "2026-10-16T00:23:54.113Z"
     },
     {
       "id": 152,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 74,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -6891,11 +6891,11 @@
         "estado_dato": "valor",
         "valor": "si"
       },
-      "creado": "2026-10-16T00:19:50.767Z"
+      "creado": "2026-10-16T00:23:54.132Z"
     },
     {
       "id": 153,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 75,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -6975,11 +6975,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:50.770Z"
+      "creado": "2026-10-16T00:23:54.137Z"
     },
     {
       "id": 154,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 75,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -6989,11 +6989,11 @@
         "estado_dato": "valor",
         "valor": "no"
       },
-      "creado": "2026-10-16T00:19:50.791Z"
+      "creado": "2026-10-16T00:23:54.156Z"
     },
     {
       "id": 155,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 76,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -7073,11 +7073,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:50.795Z"
+      "creado": "2026-10-16T00:23:54.159Z"
     },
     {
       "id": 156,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 76,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -7087,11 +7087,11 @@
         "estado_dato": "valor",
         "valor": "Lo que más preocupa es que se está quedando atrás en lectura y se frustra."
       },
-      "creado": "2026-10-16T00:19:50.812Z"
+      "creado": "2026-10-16T00:23:54.180Z"
     },
     {
       "id": 157,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 77,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -7171,11 +7171,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:50.816Z"
+      "creado": "2026-10-16T00:23:54.183Z"
     },
     {
       "id": 158,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 77,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -7185,11 +7185,11 @@
         "estado_dato": "valor",
         "valor": "C"
       },
-      "creado": "2026-10-16T00:19:50.836Z"
+      "creado": "2026-10-16T00:23:54.200Z"
     },
     {
       "id": 159,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 78,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -7269,11 +7269,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:50.841Z"
+      "creado": "2026-10-16T00:23:54.204Z"
     },
     {
       "id": 160,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 78,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -7283,11 +7283,11 @@
         "estado_dato": "valor",
         "valor": "si"
       },
-      "creado": "2026-10-16T00:19:50.864Z"
+      "creado": "2026-10-16T00:23:54.222Z"
     },
     {
       "id": 161,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 79,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -7367,11 +7367,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:50.868Z"
+      "creado": "2026-10-16T00:23:54.225Z"
     },
     {
       "id": 162,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 79,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -7381,11 +7381,11 @@
         "estado_dato": "valor",
         "valor": "mas_6_meses_antes_12"
       },
-      "creado": "2026-10-16T00:19:50.887Z"
+      "creado": "2026-10-16T00:23:54.247Z"
     },
     {
       "id": 163,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 80,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -7470,11 +7470,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:50.891Z"
+      "creado": "2026-10-16T00:23:54.251Z"
     },
     {
       "id": 164,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 80,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -7484,11 +7484,11 @@
         "estado_dato": "valor",
         "valor": "D"
       },
-      "creado": "2026-10-16T00:19:50.916Z"
+      "creado": "2026-10-16T00:23:54.268Z"
     },
     {
       "id": 165,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 81,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -7568,11 +7568,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:50.921Z"
+      "creado": "2026-10-16T00:23:54.272Z"
     },
     {
       "id": 166,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 81,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -7582,11 +7582,11 @@
         "estado_dato": "valor",
         "valor": "Le cuesta dormirse; ronca algunas noches."
       },
-      "creado": "2026-10-16T00:19:50.959Z"
+      "creado": "2026-10-16T00:23:54.289Z"
     },
     {
       "id": 167,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 82,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -7666,11 +7666,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:50.966Z"
+      "creado": "2026-10-16T00:23:54.293Z"
     },
     {
       "id": 168,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 82,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -7680,11 +7680,11 @@
         "estado_dato": "valor",
         "valor": "si"
       },
-      "creado": "2026-10-16T00:19:50.992Z"
+      "creado": "2026-10-16T00:23:54.314Z"
     },
     {
       "id": 169,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 83,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -7764,11 +7764,11 @@
           "contradicciones_abiertas": 0
         }
       },
-      "creado": "2026-10-16T00:19:50.997Z"
+      "creado": "2026-10-16T00:23:54.318Z"
     },
     {
       "id": 170,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 83,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -7778,21 +7778,21 @@
         "estado_dato": "valor",
         "valor": "si"
       },
-      "creado": "2026-10-16T00:19:51.017Z"
+      "creado": "2026-10-16T00:23:54.336Z"
     },
     {
       "id": 171,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 83,
       "tipo": "espera_informe_escolar",
       "detalle": {
         "justificacion": "La entrevista del apoderado está completa; la información escolar se obtiene del informe (Ruta B). Al incorporarlo, solo se preguntarán sus vacíos."
       },
-      "creado": "2026-10-16T00:19:51.020Z"
+      "creado": "2026-10-16T00:23:54.339Z"
     },
     {
       "id": 172,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 83,
       "tipo": "discrepancia_registrada",
       "detalle": {
@@ -7801,11 +7801,11 @@
         "slot": "presencia",
         "descripcion": "«Interrumpe o invade actividades de otros»: apoderado informa «Sí» y informe_escolar informa «No». Puede explicarse por contexto, demanda, observador o supervisión (Etapa 9 §11); se conserva sin resolver."
       },
-      "creado": "2026-10-16T00:19:51.053Z"
+      "creado": "2026-10-16T00:23:54.370Z"
     },
     {
       "id": 173,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 83,
       "tipo": "informe_escolar_cargado",
       "detalle": {
@@ -7820,11 +7820,11 @@
         ],
         "discrepancias": 1
       },
-      "creado": "2026-10-16T00:19:51.053Z"
+      "creado": "2026-10-16T00:23:54.370Z"
     },
     {
       "id": 174,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 84,
       "tipo": "pregunta_seleccionada",
       "detalle": {
@@ -7904,11 +7904,11 @@
           "contradicciones_abiertas": 1
         }
       },
-      "creado": "2026-10-16T00:19:51.058Z"
+      "creado": "2026-10-16T00:23:54.374Z"
     },
     {
       "id": 175,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 84,
       "tipo": "respuesta_registrada",
       "detalle": {
@@ -7918,11 +7918,11 @@
         "estado_dato": "valor",
         "valor": "Dato de prueba ficticio."
       },
-      "creado": "2026-10-16T00:19:51.080Z"
+      "creado": "2026-10-16T00:23:54.397Z"
     },
     {
       "id": 176,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 84,
       "tipo": "preguntas_descartadas",
       "detalle": {
@@ -7936,11 +7936,11 @@
           }
         ]
       },
-      "creado": "2026-10-16T00:19:51.085Z"
+      "creado": "2026-10-16T00:23:54.402Z"
     },
     {
       "id": 177,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 84,
       "tipo": "entrevista_cerrada",
       "detalle": {
@@ -7950,11 +7950,11 @@
           "motivos": []
         }
       },
-      "creado": "2026-10-16T00:19:51.086Z"
+      "creado": "2026-10-16T00:23:54.403Z"
     },
     {
       "id": 178,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 84,
       "tipo": "evaluacion_registrada",
       "detalle": {
@@ -7962,22 +7962,22 @@
         "estado": "realizada",
         "fecha": "2026-10-01"
       },
-      "creado": "2026-10-16T00:19:51.113Z"
+      "creado": "2026-10-16T00:23:54.433Z"
     },
     {
       "id": 179,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 84,
       "tipo": "evaluacion_registrada",
       "detalle": {
         "instrumento_id": "ESCALA-DOCENTE",
         "estado": "no_aplica"
       },
-      "creado": "2026-10-16T00:19:51.129Z"
+      "creado": "2026-10-16T00:23:54.453Z"
     },
     {
       "id": 180,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 84,
       "tipo": "complementacion_colegio",
       "detalle": {
@@ -7985,11 +7985,11 @@
           "C04"
         ]
       },
-      "creado": "2026-10-16T00:19:51.179Z"
+      "creado": "2026-10-16T00:23:54.474Z"
     },
     {
       "id": 181,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 84,
       "tipo": "preguntas_descartadas",
       "detalle": {
@@ -8003,11 +8003,11 @@
           }
         ]
       },
-      "creado": "2026-10-16T00:19:51.184Z"
+      "creado": "2026-10-16T00:23:54.482Z"
     },
     {
       "id": 182,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 84,
       "tipo": "entrevista_cerrada",
       "detalle": {
@@ -8017,11 +8017,11 @@
           "motivos": []
         }
       },
-      "creado": "2026-10-16T00:19:51.185Z"
+      "creado": "2026-10-16T00:23:54.482Z"
     },
     {
       "id": 183,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 84,
       "tipo": "asentimiento_nna_registrado",
       "detalle": {
@@ -8029,43 +8029,43 @@
         "profesional": "Profesional de prueba",
         "medio": "verbal_registrado"
       },
-      "creado": "2026-10-16T00:19:51.204Z"
+      "creado": "2026-10-16T00:23:54.504Z"
     },
     {
       "id": 184,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 84,
       "tipo": "respuesta_nna",
       "detalle": {
         "pregunta_id": "D04",
         "omitida": false
       },
-      "creado": "2026-10-16T00:19:51.214Z"
+      "creado": "2026-10-16T00:23:54.521Z"
     },
     {
       "id": 185,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 84,
       "tipo": "respuesta_nna",
       "detalle": {
         "pregunta_id": "D05",
         "omitida": false
       },
-      "creado": "2026-10-16T00:19:51.224Z"
+      "creado": "2026-10-16T00:23:54.535Z"
     },
     {
       "id": 186,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 84,
       "tipo": "entrevista_nna_finalizada",
       "detalle": {
         "respondidas": 2
       },
-      "creado": "2026-10-16T00:19:51.235Z"
+      "creado": "2026-10-16T00:23:54.546Z"
     },
     {
       "id": 187,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 84,
       "tipo": "informe_final_bloqueado",
       "detalle": {
@@ -8084,11 +8084,11 @@
           }
         ]
       },
-      "creado": "2026-10-16T00:19:51.247Z"
+      "creado": "2026-10-16T00:23:54.556Z"
     },
     {
       "id": 188,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 84,
       "tipo": "contradiccion_revisada",
       "detalle": {
@@ -8096,45 +8096,45 @@
         "profesional": "Profesional de prueba",
         "nota": "Discrepancia entre contextos casa/colegio; se conserva para la integración clínica."
       },
-      "creado": "2026-10-16T00:19:51.258Z"
+      "creado": "2026-10-16T00:23:54.566Z"
     },
     {
       "id": 189,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 84,
       "tipo": "decision_profesional_registrada",
       "detalle": {
         "profesional": "Profesional de prueba"
       },
-      "creado": "2026-10-16T00:19:51.267Z"
+      "creado": "2026-10-16T00:23:54.580Z"
     },
     {
       "id": 190,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 84,
       "tipo": "informe_final_generado",
       "detalle": {
         "informe_id": 1
       },
-      "creado": "2026-10-16T00:19:51.281Z"
+      "creado": "2026-10-16T00:23:54.608Z"
     },
     {
       "id": 191,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 84,
       "tipo": "informe_validado",
       "detalle": {
         "informe_id": 1,
         "profesional": "Profesional de prueba"
       },
-      "creado": "2026-10-16T00:19:51.293Z"
+      "creado": "2026-10-16T00:23:54.623Z"
     }
   ],
   "errores": [],
   "preguntas": [
     {
       "id": 1,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 1,
       "pregunta_id": "INI-MOTIVO",
       "dimension_id": "INI",
@@ -8142,13 +8142,13 @@
       "especificidad": 0,
       "texto": "¿Qué está ocurriendo actualmente que motivó esta evaluación?",
       "justificacion": "Secuencia inicial obligatoria (paso 1 de 3).",
-      "presentada": "2026-10-16T00:19:49.354Z",
-      "respondida": "2026-10-16T00:19:49.375Z",
+      "presentada": "2026-10-16T00:23:52.586Z",
+      "respondida": "2026-10-16T00:23:52.610Z",
       "estado": "respondida"
     },
     {
       "id": 2,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 2,
       "pregunta_id": "INI-EDAD",
       "dimension_id": "INI",
@@ -8156,13 +8156,13 @@
       "especificidad": 0,
       "texto": "¿Qué edad tiene el niño, niña o adolescente evaluado?",
       "justificacion": "Secuencia inicial obligatoria (paso 2 de 3).",
-      "presentada": "2026-10-16T00:19:49.378Z",
-      "respondida": "2026-10-16T00:19:49.391Z",
+      "presentada": "2026-10-16T00:23:52.613Z",
+      "respondida": "2026-10-16T00:23:52.624Z",
       "estado": "respondida"
     },
     {
       "id": 3,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 3,
       "pregunta_id": "INI-INF-EXISTE",
       "dimension_id": "INI",
@@ -8170,13 +8170,13 @@
       "especificidad": 0,
       "texto": "¿Existe un informe escolar sobre el niño, niña o adolescente?",
       "justificacion": "Secuencia inicial obligatoria (paso 3 de 3).",
-      "presentada": "2026-10-16T00:19:49.392Z",
-      "respondida": "2026-10-16T00:19:49.410Z",
+      "presentada": "2026-10-16T00:23:52.626Z",
+      "respondida": "2026-10-16T00:23:52.637Z",
       "estado": "respondida"
     },
     {
       "id": 4,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 4,
       "pregunta_id": "INI-INF-DISP",
       "dimension_id": "INI",
@@ -8184,13 +8184,13 @@
       "especificidad": 0,
       "texto": "¿El informe escolar está disponible o puede obtenerse para esta evaluación?",
       "justificacion": "Secuencia inicial obligatoria (paso 4 de 4).",
-      "presentada": "2026-10-16T00:19:49.411Z",
-      "respondida": "2026-10-16T00:19:49.421Z",
+      "presentada": "2026-10-16T00:23:52.638Z",
+      "respondida": "2026-10-16T00:23:52.647Z",
       "estado": "respondida"
     },
     {
       "id": 5,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 5,
       "pregunta_id": "A09",
       "dimension_id": "R1.8",
@@ -8198,13 +8198,13 @@
       "especificidad": 0,
       "texto": "¿Se distrae fácilmente con estímulos que ocurren alrededor?",
       "justificacion": "Activación inmediata (Etapa 9 §14.2): se mencionó una conducta con posible correspondencia con «Se distrae fácilmente» (R1.8); se usa la pregunta específica del banco para caracterizarla, sin confirmarla por asociación.",
-      "presentada": "2026-10-16T00:19:49.425Z",
-      "respondida": "2026-10-16T00:19:49.449Z",
+      "presentada": "2026-10-16T00:23:52.650Z",
+      "respondida": "2026-10-16T00:23:52.674Z",
       "estado": "respondida"
     },
     {
       "id": 6,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 6,
       "pregunta_id": "R1.8-FRECUENCIA",
       "dimension_id": "R1.8",
@@ -8212,13 +8212,13 @@
       "especificidad": 0,
       "texto": "Sobre «se distrae fácilmente con estímulos que ocurren alrededor»: ¿Con qué frecuencia sucede?",
       "justificacion": "Profundización del síntoma R1.8 «Se distrae fácilmente» (1/3): falta «frecuencia». Prioridad de la Automatización (regla 2a: frecuencia e intensidad).",
-      "presentada": "2026-10-16T00:19:49.453Z",
-      "respondida": "2026-10-16T00:19:49.469Z",
+      "presentada": "2026-10-16T00:23:52.676Z",
+      "respondida": "2026-10-16T00:23:52.692Z",
       "estado": "respondida"
     },
     {
       "id": 7,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 7,
       "pregunta_id": "R1.8-DESDE",
       "dimension_id": "R1.8",
@@ -8226,13 +8226,13 @@
       "especificidad": 0,
       "texto": "Sobre «se distrae fácilmente con estímulos que ocurren alrededor»: ¿Desde cuándo ocurre?",
       "justificacion": "Profundización del síntoma R1.8 «Se distrae fácilmente» (2/3): falta «desde». Permite contrastar R3 (≥6 meses) y R4 (antes de los 12 años).",
-      "presentada": "2026-10-16T00:19:49.474Z",
-      "respondida": "2026-10-16T00:19:49.491Z",
+      "presentada": "2026-10-16T00:23:52.699Z",
+      "respondida": "2026-10-16T00:23:52.715Z",
       "estado": "respondida"
     },
     {
       "id": 8,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 8,
       "pregunta_id": "R1.8-CONTEXTOS",
       "dimension_id": "R1.8",
@@ -8240,13 +8240,13 @@
       "especificidad": 0,
       "texto": "Sobre «se distrae fácilmente con estímulos que ocurren alrededor»: ¿Dónde ocurre?",
       "justificacion": "Profundización del síntoma R1.8 «Se distrae fácilmente» (3/3): falta «contextos». Permite contrastar R6 (dos o más contextos).",
-      "presentada": "2026-10-16T00:19:49.492Z",
-      "respondida": "2026-10-16T00:19:49.505Z",
+      "presentada": "2026-10-16T00:23:52.717Z",
+      "respondida": "2026-10-16T00:23:52.731Z",
       "estado": "respondida"
     },
     {
       "id": 9,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 9,
       "pregunta_id": "A01",
       "dimension_id": "R1.1",
@@ -8254,13 +8254,13 @@
       "especificidad": 0,
       "texto": "¿Comete errores por no fijarse bien en los detalles?",
       "justificacion": "Cobertura individual de los 18 síntomas DSM-5-TR (Etapa 9 §14.1): R1.1 «Dificultad para prestar atención a detalles / errores por descuido» sin información del apoderado.",
-      "presentada": "2026-10-16T00:19:49.507Z",
-      "respondida": "2026-10-16T00:19:49.519Z",
+      "presentada": "2026-10-16T00:23:52.733Z",
+      "respondida": "2026-10-16T00:23:52.745Z",
       "estado": "respondida"
     },
     {
       "id": 10,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 10,
       "pregunta_id": "R1.1-FRECUENCIA",
       "dimension_id": "R1.1",
@@ -8268,13 +8268,13 @@
       "especificidad": 0,
       "texto": "Sobre «comete errores por no fijarse bien en los detalles»: ¿Con qué frecuencia sucede?",
       "justificacion": "Profundización del síntoma R1.1 «Dificultad para prestar atención a detalles / errores por descuido» (1/3): falta «frecuencia». Prioridad de la Automatización (regla 2a: frecuencia e intensidad).",
-      "presentada": "2026-10-16T00:19:49.521Z",
-      "respondida": "2026-10-16T00:19:49.531Z",
+      "presentada": "2026-10-16T00:23:52.747Z",
+      "respondida": "2026-10-16T00:23:52.757Z",
       "estado": "respondida"
     },
     {
       "id": 11,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 11,
       "pregunta_id": "R1.1-DESDE",
       "dimension_id": "R1.1",
@@ -8282,13 +8282,13 @@
       "especificidad": 0,
       "texto": "Sobre «comete errores por no fijarse bien en los detalles»: ¿Desde cuándo ocurre?",
       "justificacion": "Profundización del síntoma R1.1 «Dificultad para prestar atención a detalles / errores por descuido» (2/3): falta «desde». Permite contrastar R3 (≥6 meses) y R4 (antes de los 12 años).",
-      "presentada": "2026-10-16T00:19:49.533Z",
-      "respondida": "2026-10-16T00:19:49.544Z",
+      "presentada": "2026-10-16T00:23:52.759Z",
+      "respondida": "2026-10-16T00:23:52.771Z",
       "estado": "respondida"
     },
     {
       "id": 12,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 12,
       "pregunta_id": "R1.1-CONTEXTOS",
       "dimension_id": "R1.1",
@@ -8296,13 +8296,13 @@
       "especificidad": 0,
       "texto": "Sobre «comete errores por no fijarse bien en los detalles»: ¿Dónde ocurre?",
       "justificacion": "Profundización del síntoma R1.1 «Dificultad para prestar atención a detalles / errores por descuido» (3/3): falta «contextos». Permite contrastar R6 (dos o más contextos).",
-      "presentada": "2026-10-16T00:19:49.545Z",
-      "respondida": "2026-10-16T00:19:49.556Z",
+      "presentada": "2026-10-16T00:23:52.772Z",
+      "respondida": "2026-10-16T00:23:52.784Z",
       "estado": "respondida"
     },
     {
       "id": 13,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 13,
       "pregunta_id": "A02",
       "dimension_id": "R1.2",
@@ -8310,13 +8310,13 @@
       "especificidad": 0,
       "texto": "¿Le cuesta mantener la atención durante una actividad?",
       "justificacion": "Cobertura individual de los 18 síntomas DSM-5-TR (Etapa 9 §14.1): R1.2 «Dificultad para mantener la atención» sin información del apoderado.",
-      "presentada": "2026-10-16T00:19:49.557Z",
-      "respondida": "2026-10-16T00:19:49.569Z",
+      "presentada": "2026-10-16T00:23:52.785Z",
+      "respondida": "2026-10-16T00:23:52.796Z",
       "estado": "respondida"
     },
     {
       "id": 14,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 14,
       "pregunta_id": "R1.2-FRECUENCIA",
       "dimension_id": "R1.2",
@@ -8324,13 +8324,13 @@
       "especificidad": 0,
       "texto": "Sobre «le cuesta mantener la atención durante una actividad»: ¿Con qué frecuencia sucede?",
       "justificacion": "Profundización del síntoma R1.2 «Dificultad para mantener la atención» (1/3): falta «frecuencia». Prioridad de la Automatización (regla 2a: frecuencia e intensidad).",
-      "presentada": "2026-10-16T00:19:49.570Z",
-      "respondida": "2026-10-16T00:19:49.580Z",
+      "presentada": "2026-10-16T00:23:52.798Z",
+      "respondida": "2026-10-16T00:23:52.808Z",
       "estado": "respondida"
     },
     {
       "id": 15,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 15,
       "pregunta_id": "R1.2-DESDE",
       "dimension_id": "R1.2",
@@ -8338,13 +8338,13 @@
       "especificidad": 0,
       "texto": "Sobre «le cuesta mantener la atención durante una actividad»: ¿Desde cuándo ocurre?",
       "justificacion": "Profundización del síntoma R1.2 «Dificultad para mantener la atención» (2/3): falta «desde». Permite contrastar R3 (≥6 meses) y R4 (antes de los 12 años).",
-      "presentada": "2026-10-16T00:19:49.582Z",
-      "respondida": "2026-10-16T00:19:49.594Z",
+      "presentada": "2026-10-16T00:23:52.809Z",
+      "respondida": "2026-10-16T00:23:52.883Z",
       "estado": "respondida"
     },
     {
       "id": 16,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 16,
       "pregunta_id": "R1.2-CONTEXTOS",
       "dimension_id": "R1.2",
@@ -8352,13 +8352,13 @@
       "especificidad": 0,
       "texto": "Sobre «le cuesta mantener la atención durante una actividad»: ¿Dónde ocurre?",
       "justificacion": "Profundización del síntoma R1.2 «Dificultad para mantener la atención» (3/3): falta «contextos». Permite contrastar R6 (dos o más contextos).",
-      "presentada": "2026-10-16T00:19:49.595Z",
-      "respondida": "2026-10-16T00:19:49.611Z",
+      "presentada": "2026-10-16T00:23:52.885Z",
+      "respondida": "2026-10-16T00:23:52.898Z",
       "estado": "respondida"
     },
     {
       "id": 17,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 17,
       "pregunta_id": "A03",
       "dimension_id": "R1.3",
@@ -8366,13 +8366,13 @@
       "especificidad": 0,
       "texto": "¿Parece no escuchar cuando se le habla directamente?",
       "justificacion": "Cobertura individual de los 18 síntomas DSM-5-TR (Etapa 9 §14.1): R1.3 «Parece no escuchar cuando se le habla directamente» sin información del apoderado.",
-      "presentada": "2026-10-16T00:19:49.613Z",
-      "respondida": "2026-10-16T00:19:49.626Z",
+      "presentada": "2026-10-16T00:23:52.899Z",
+      "respondida": "2026-10-16T00:23:52.911Z",
       "estado": "respondida"
     },
     {
       "id": 18,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 18,
       "pregunta_id": "R1.3-FRECUENCIA",
       "dimension_id": "R1.3",
@@ -8380,13 +8380,13 @@
       "especificidad": 0,
       "texto": "Sobre «parece no escuchar cuando se le habla directamente»: ¿Con qué frecuencia sucede?",
       "justificacion": "Profundización del síntoma R1.3 «Parece no escuchar cuando se le habla directamente» (1/3): falta «frecuencia». Prioridad de la Automatización (regla 2a: frecuencia e intensidad).",
-      "presentada": "2026-10-16T00:19:49.628Z",
-      "respondida": "2026-10-16T00:19:49.640Z",
+      "presentada": "2026-10-16T00:23:52.913Z",
+      "respondida": "2026-10-16T00:23:52.927Z",
       "estado": "respondida"
     },
     {
       "id": 19,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 19,
       "pregunta_id": "R1.3-DESDE",
       "dimension_id": "R1.3",
@@ -8394,13 +8394,13 @@
       "especificidad": 0,
       "texto": "Sobre «parece no escuchar cuando se le habla directamente»: ¿Desde cuándo ocurre?",
       "justificacion": "Profundización del síntoma R1.3 «Parece no escuchar cuando se le habla directamente» (2/3): falta «desde». Permite contrastar R3 (≥6 meses) y R4 (antes de los 12 años).",
-      "presentada": "2026-10-16T00:19:49.641Z",
-      "respondida": "2026-10-16T00:19:49.653Z",
+      "presentada": "2026-10-16T00:23:52.928Z",
+      "respondida": "2026-10-16T00:23:52.938Z",
       "estado": "respondida"
     },
     {
       "id": 20,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 20,
       "pregunta_id": "R1.3-CONTEXTOS",
       "dimension_id": "R1.3",
@@ -8408,13 +8408,13 @@
       "especificidad": 0,
       "texto": "Sobre «parece no escuchar cuando se le habla directamente»: ¿Dónde ocurre?",
       "justificacion": "Profundización del síntoma R1.3 «Parece no escuchar cuando se le habla directamente» (3/3): falta «contextos». Permite contrastar R6 (dos o más contextos).",
-      "presentada": "2026-10-16T00:19:49.655Z",
-      "respondida": "2026-10-16T00:19:49.667Z",
+      "presentada": "2026-10-16T00:23:52.939Z",
+      "respondida": "2026-10-16T00:23:52.952Z",
       "estado": "respondida"
     },
     {
       "id": 21,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 21,
       "pregunta_id": "A04",
       "dimension_id": "R1.4",
@@ -8422,13 +8422,13 @@
       "especificidad": 0,
       "texto": "¿Le cuesta seguir instrucciones completas?",
       "justificacion": "Cobertura individual de los 18 síntomas DSM-5-TR (Etapa 9 §14.1): R1.4 «No sigue instrucciones o no completa tareas» sin información del apoderado.",
-      "presentada": "2026-10-16T00:19:49.669Z",
-      "respondida": "2026-10-16T00:19:49.680Z",
+      "presentada": "2026-10-16T00:23:52.953Z",
+      "respondida": "2026-10-16T00:23:52.966Z",
       "estado": "respondida"
     },
     {
       "id": 22,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 22,
       "pregunta_id": "R1.4-FRECUENCIA",
       "dimension_id": "R1.4",
@@ -8436,13 +8436,13 @@
       "especificidad": 0,
       "texto": "Sobre «le cuesta seguir instrucciones completas»: ¿Con qué frecuencia sucede?",
       "justificacion": "Profundización del síntoma R1.4 «No sigue instrucciones o no completa tareas» (1/3): falta «frecuencia». Prioridad de la Automatización (regla 2a: frecuencia e intensidad).",
-      "presentada": "2026-10-16T00:19:49.682Z",
-      "respondida": "2026-10-16T00:19:49.696Z",
+      "presentada": "2026-10-16T00:23:52.967Z",
+      "respondida": "2026-10-16T00:23:52.988Z",
       "estado": "respondida"
     },
     {
       "id": 23,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 23,
       "pregunta_id": "R1.4-DESDE",
       "dimension_id": "R1.4",
@@ -8450,13 +8450,13 @@
       "especificidad": 0,
       "texto": "Sobre «le cuesta seguir instrucciones completas»: ¿Desde cuándo ocurre?",
       "justificacion": "Profundización del síntoma R1.4 «No sigue instrucciones o no completa tareas» (2/3): falta «desde». Permite contrastar R3 (≥6 meses) y R4 (antes de los 12 años).",
-      "presentada": "2026-10-16T00:19:49.698Z",
-      "respondida": "2026-10-16T00:19:49.711Z",
+      "presentada": "2026-10-16T00:23:52.990Z",
+      "respondida": "2026-10-16T00:23:53.018Z",
       "estado": "respondida"
     },
     {
       "id": 24,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 24,
       "pregunta_id": "R1.4-CONTEXTOS",
       "dimension_id": "R1.4",
@@ -8464,13 +8464,13 @@
       "especificidad": 0,
       "texto": "Sobre «le cuesta seguir instrucciones completas»: ¿Dónde ocurre?",
       "justificacion": "Profundización del síntoma R1.4 «No sigue instrucciones o no completa tareas» (3/3): falta «contextos». Permite contrastar R6 (dos o más contextos).",
-      "presentada": "2026-10-16T00:19:49.714Z",
-      "respondida": "2026-10-16T00:19:49.736Z",
+      "presentada": "2026-10-16T00:23:53.020Z",
+      "respondida": "2026-10-16T00:23:53.031Z",
       "estado": "respondida"
     },
     {
       "id": 25,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 25,
       "pregunta_id": "A06",
       "dimension_id": "R1.5",
@@ -8478,13 +8478,13 @@
       "especificidad": 0,
       "texto": "¿Le cuesta organizar sus tareas, materiales o actividades?",
       "justificacion": "Cobertura individual de los 18 síntomas DSM-5-TR (Etapa 9 §14.1): R1.5 «Dificultad para organizar tareas y actividades» sin información del apoderado.",
-      "presentada": "2026-10-16T00:19:49.738Z",
-      "respondida": "2026-10-16T00:19:49.750Z",
+      "presentada": "2026-10-16T00:23:53.033Z",
+      "respondida": "2026-10-16T00:23:53.056Z",
       "estado": "respondida"
     },
     {
       "id": 26,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 26,
       "pregunta_id": "A07",
       "dimension_id": "R1.6",
@@ -8492,13 +8492,13 @@
       "especificidad": 0,
       "texto": "¿Evita o posterga actividades que requieren esfuerzo mental durante bastante tiempo?",
       "justificacion": "Cobertura individual de los 18 síntomas DSM-5-TR (Etapa 9 §14.1): R1.6 «Evita o muestra resistencia ante tareas que requieren esfuerzo mental sostenido» sin información del apoderado.",
-      "presentada": "2026-10-16T00:19:49.752Z",
-      "respondida": "2026-10-16T00:19:49.768Z",
+      "presentada": "2026-10-16T00:23:53.060Z",
+      "respondida": "2026-10-16T00:23:53.081Z",
       "estado": "respondida"
     },
     {
       "id": 27,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 27,
       "pregunta_id": "R1.6-FRECUENCIA",
       "dimension_id": "R1.6",
@@ -8506,13 +8506,13 @@
       "especificidad": 0,
       "texto": "Sobre «evita o posterga actividades que requieren esfuerzo mental durante bastante tiempo»: ¿Con qué frecuencia sucede?",
       "justificacion": "Profundización del síntoma R1.6 «Evita o muestra resistencia ante tareas que requieren esfuerzo mental sostenido» (1/3): falta «frecuencia». Prioridad de la Automatización (regla 2a: frecuencia e intensidad).",
-      "presentada": "2026-10-16T00:19:49.770Z",
-      "respondida": "2026-10-16T00:19:49.783Z",
+      "presentada": "2026-10-16T00:23:53.084Z",
+      "respondida": "2026-10-16T00:23:53.104Z",
       "estado": "respondida"
     },
     {
       "id": 28,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 28,
       "pregunta_id": "R1.6-DESDE",
       "dimension_id": "R1.6",
@@ -8520,13 +8520,13 @@
       "especificidad": 0,
       "texto": "Sobre «evita o posterga actividades que requieren esfuerzo mental durante bastante tiempo»: ¿Desde cuándo ocurre?",
       "justificacion": "Profundización del síntoma R1.6 «Evita o muestra resistencia ante tareas que requieren esfuerzo mental sostenido» (2/3): falta «desde». Permite contrastar R3 (≥6 meses) y R4 (antes de los 12 años).",
-      "presentada": "2026-10-16T00:19:49.785Z",
-      "respondida": "2026-10-16T00:19:49.801Z",
+      "presentada": "2026-10-16T00:23:53.107Z",
+      "respondida": "2026-10-16T00:23:53.138Z",
       "estado": "respondida"
     },
     {
       "id": 29,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 29,
       "pregunta_id": "R1.6-CONTEXTOS",
       "dimension_id": "R1.6",
@@ -8534,13 +8534,13 @@
       "especificidad": 0,
       "texto": "Sobre «evita o posterga actividades que requieren esfuerzo mental durante bastante tiempo»: ¿Dónde ocurre?",
       "justificacion": "Profundización del síntoma R1.6 «Evita o muestra resistencia ante tareas que requieren esfuerzo mental sostenido» (3/3): falta «contextos». Permite contrastar R6 (dos o más contextos).",
-      "presentada": "2026-10-16T00:19:49.803Z",
-      "respondida": "2026-10-16T00:19:49.817Z",
+      "presentada": "2026-10-16T00:23:53.141Z",
+      "respondida": "2026-10-16T00:23:53.156Z",
       "estado": "respondida"
     },
     {
       "id": 30,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 30,
       "pregunta_id": "A08",
       "dimension_id": "R1.7",
@@ -8548,13 +8548,13 @@
       "especificidad": 0,
       "texto": "¿Pierde con frecuencia cosas que necesita?",
       "justificacion": "Cobertura individual de los 18 síntomas DSM-5-TR (Etapa 9 §14.1): R1.7 «Pierde objetos necesarios» sin información del apoderado.",
-      "presentada": "2026-10-16T00:19:49.819Z",
-      "respondida": "2026-10-16T00:19:49.834Z",
+      "presentada": "2026-10-16T00:23:53.158Z",
+      "respondida": "2026-10-16T00:23:53.174Z",
       "estado": "respondida"
     },
     {
       "id": 31,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 31,
       "pregunta_id": "R1.7-FRECUENCIA",
       "dimension_id": "R1.7",
@@ -8562,13 +8562,13 @@
       "especificidad": 0,
       "texto": "Sobre «pierde con frecuencia cosas que necesita»: ¿Con qué frecuencia sucede?",
       "justificacion": "Profundización del síntoma R1.7 «Pierde objetos necesarios» (1/3): falta «frecuencia». Prioridad de la Automatización (regla 2a: frecuencia e intensidad).",
-      "presentada": "2026-10-16T00:19:49.836Z",
-      "respondida": "2026-10-16T00:19:49.849Z",
+      "presentada": "2026-10-16T00:23:53.177Z",
+      "respondida": "2026-10-16T00:23:53.196Z",
       "estado": "respondida"
     },
     {
       "id": 32,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 32,
       "pregunta_id": "R1.7-DESDE",
       "dimension_id": "R1.7",
@@ -8576,13 +8576,13 @@
       "especificidad": 0,
       "texto": "Sobre «pierde con frecuencia cosas que necesita»: ¿Desde cuándo ocurre?",
       "justificacion": "Profundización del síntoma R1.7 «Pierde objetos necesarios» (2/3): falta «desde». Permite contrastar R3 (≥6 meses) y R4 (antes de los 12 años).",
-      "presentada": "2026-10-16T00:19:49.851Z",
-      "respondida": "2026-10-16T00:19:49.867Z",
+      "presentada": "2026-10-16T00:23:53.199Z",
+      "respondida": "2026-10-16T00:23:53.219Z",
       "estado": "respondida"
     },
     {
       "id": 33,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 33,
       "pregunta_id": "R1.7-CONTEXTOS",
       "dimension_id": "R1.7",
@@ -8590,13 +8590,13 @@
       "especificidad": 0,
       "texto": "Sobre «pierde con frecuencia cosas que necesita»: ¿Dónde ocurre?",
       "justificacion": "Profundización del síntoma R1.7 «Pierde objetos necesarios» (3/3): falta «contextos». Permite contrastar R6 (dos o más contextos).",
-      "presentada": "2026-10-16T00:19:49.869Z",
-      "respondida": "2026-10-16T00:19:49.883Z",
+      "presentada": "2026-10-16T00:23:53.222Z",
+      "respondida": "2026-10-16T00:23:53.240Z",
       "estado": "respondida"
     },
     {
       "id": 34,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 34,
       "pregunta_id": "A10",
       "dimension_id": "R1.9",
@@ -8604,13 +8604,13 @@
       "especificidad": 0,
       "texto": "¿Olvida con frecuencia cosas que debería recordar?",
       "justificacion": "Cobertura individual de los 18 síntomas DSM-5-TR (Etapa 9 §14.1): R1.9 «Es olvidadizo en actividades cotidianas» sin información del apoderado.",
-      "presentada": "2026-10-16T00:19:49.886Z",
-      "respondida": "2026-10-16T00:19:49.902Z",
+      "presentada": "2026-10-16T00:23:53.243Z",
+      "respondida": "2026-10-16T00:23:53.270Z",
       "estado": "respondida"
     },
     {
       "id": 35,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 35,
       "pregunta_id": "R1.9-FRECUENCIA",
       "dimension_id": "R1.9",
@@ -8618,13 +8618,13 @@
       "especificidad": 0,
       "texto": "Sobre «olvida con frecuencia cosas que debería recordar»: ¿Con qué frecuencia sucede?",
       "justificacion": "Profundización del síntoma R1.9 «Es olvidadizo en actividades cotidianas» (1/3): falta «frecuencia». Prioridad de la Automatización (regla 2a: frecuencia e intensidad).",
-      "presentada": "2026-10-16T00:19:49.905Z",
-      "respondida": "2026-10-16T00:19:49.919Z",
+      "presentada": "2026-10-16T00:23:53.272Z",
+      "respondida": "2026-10-16T00:23:53.285Z",
       "estado": "respondida"
     },
     {
       "id": 36,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 36,
       "pregunta_id": "R1.9-DESDE",
       "dimension_id": "R1.9",
@@ -8632,13 +8632,13 @@
       "especificidad": 0,
       "texto": "Sobre «olvida con frecuencia cosas que debería recordar»: ¿Desde cuándo ocurre?",
       "justificacion": "Profundización del síntoma R1.9 «Es olvidadizo en actividades cotidianas» (2/3): falta «desde». Permite contrastar R3 (≥6 meses) y R4 (antes de los 12 años).",
-      "presentada": "2026-10-16T00:19:49.921Z",
-      "respondida": "2026-10-16T00:19:49.944Z",
+      "presentada": "2026-10-16T00:23:53.287Z",
+      "respondida": "2026-10-16T00:23:53.302Z",
       "estado": "respondida"
     },
     {
       "id": 37,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 37,
       "pregunta_id": "R1.9-CONTEXTOS",
       "dimension_id": "R1.9",
@@ -8646,13 +8646,13 @@
       "especificidad": 0,
       "texto": "Sobre «olvida con frecuencia cosas que debería recordar»: ¿Dónde ocurre?",
       "justificacion": "Profundización del síntoma R1.9 «Es olvidadizo en actividades cotidianas» (3/3): falta «contextos». Permite contrastar R6 (dos o más contextos).",
-      "presentada": "2026-10-16T00:19:49.947Z",
-      "respondida": "2026-10-16T00:19:49.961Z",
+      "presentada": "2026-10-16T00:23:53.304Z",
+      "respondida": "2026-10-16T00:23:53.318Z",
       "estado": "respondida"
     },
     {
       "id": 38,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 38,
       "pregunta_id": "A21",
       "dimension_id": "A21",
@@ -8660,13 +8660,13 @@
       "especificidad": 0,
       "texto": "¿Le cuesta saber por dónde comenzar una tarea?",
       "justificacion": "Bloque «ejecutivas» (Etapa 7 §9 (organización y funciones ejecutivas); Anexo 7-A 21–28). Mínima pregunta suficiente: 1 de máx. 5.",
-      "presentada": "2026-10-16T00:19:49.963Z",
-      "respondida": "2026-10-16T00:19:49.987Z",
+      "presentada": "2026-10-16T00:23:53.320Z",
+      "respondida": "2026-10-16T00:23:53.339Z",
       "estado": "respondida"
     },
     {
       "id": 39,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 39,
       "pregunta_id": "A22",
       "dimension_id": "A22",
@@ -8674,13 +8674,13 @@
       "especificidad": 0,
       "texto": "¿Le cuesta recordar varios pasos de una instrucción?",
       "justificacion": "Bloque «ejecutivas» (Etapa 7 §9 (organización y funciones ejecutivas); Anexo 7-A 21–28). Mínima pregunta suficiente: 2 de máx. 5.",
-      "presentada": "2026-10-16T00:19:49.991Z",
-      "respondida": "2026-10-16T00:19:50.013Z",
+      "presentada": "2026-10-16T00:23:53.342Z",
+      "respondida": "2026-10-16T00:23:53.356Z",
       "estado": "respondida"
     },
     {
       "id": 40,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 40,
       "pregunta_id": "A23",
       "dimension_id": "A23",
@@ -8688,13 +8688,13 @@
       "especificidad": 0,
       "texto": "¿Pierde el objetivo de una actividad mientras la está realizando?",
       "justificacion": "Bloque «ejecutivas» (Etapa 7 §9 (organización y funciones ejecutivas); Anexo 7-A 21–28). Mínima pregunta suficiente: 3 de máx. 5.",
-      "presentada": "2026-10-16T00:19:50.015Z",
-      "respondida": "2026-10-16T00:19:50.034Z",
+      "presentada": "2026-10-16T00:23:53.358Z",
+      "respondida": "2026-10-16T00:23:53.373Z",
       "estado": "respondida"
     },
     {
       "id": 41,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 41,
       "pregunta_id": "A24",
       "dimension_id": "A24",
@@ -8702,13 +8702,13 @@
       "especificidad": 0,
       "texto": "¿Le cuesta cambiar de una actividad a otra?",
       "justificacion": "Bloque «ejecutivas» (Etapa 7 §9 (organización y funciones ejecutivas); Anexo 7-A 21–28). Mínima pregunta suficiente: 4 de máx. 5.",
-      "presentada": "2026-10-16T00:19:50.038Z",
-      "respondida": "2026-10-16T00:19:50.058Z",
+      "presentada": "2026-10-16T00:23:53.375Z",
+      "respondida": "2026-10-16T00:23:53.389Z",
       "estado": "respondida"
     },
     {
       "id": 42,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 42,
       "pregunta_id": "A25",
       "dimension_id": "A25",
@@ -8716,13 +8716,13 @@
       "especificidad": 0,
       "texto": "¿Le cuesta cambiar de estrategia cuando una forma de hacer algo no funciona?",
       "justificacion": "Bloque «ejecutivas» (Etapa 7 §9 (organización y funciones ejecutivas); Anexo 7-A 21–28). Mínima pregunta suficiente: 5 de máx. 5.",
-      "presentada": "2026-10-16T00:19:50.061Z",
-      "respondida": "2026-10-16T00:19:50.077Z",
+      "presentada": "2026-10-16T00:23:53.391Z",
+      "respondida": "2026-10-16T00:23:53.407Z",
       "estado": "respondida"
     },
     {
       "id": 43,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 43,
       "pregunta_id": "A12",
       "dimension_id": "R2.1",
@@ -8730,13 +8730,13 @@
       "especificidad": 0,
       "texto": "¿Se mueve constantemente o muestra mucha inquietud?",
       "justificacion": "Cobertura individual de los 18 síntomas DSM-5-TR (Etapa 9 §14.1): R2.1 «Inquietud motora / mueve manos, pies o se mueve en el asiento» sin información del apoderado.",
-      "presentada": "2026-10-16T00:19:50.079Z",
-      "respondida": "2026-10-16T00:19:50.094Z",
+      "presentada": "2026-10-16T00:23:53.409Z",
+      "respondida": "2026-10-16T00:23:53.423Z",
       "estado": "respondida"
     },
     {
       "id": 44,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 44,
       "pregunta_id": "A11",
       "dimension_id": "R2.2",
@@ -8744,13 +8744,13 @@
       "especificidad": 0,
       "texto": "¿Le cuesta permanecer sentado cuando se espera que lo haga?",
       "justificacion": "Cobertura individual de los 18 síntomas DSM-5-TR (Etapa 9 §14.1): R2.2 «Se levanta cuando se espera que permanezca sentado» sin información del apoderado.",
-      "presentada": "2026-10-16T00:19:50.096Z",
-      "respondida": "2026-10-16T00:19:50.114Z",
+      "presentada": "2026-10-16T00:23:53.425Z",
+      "respondida": "2026-10-16T00:23:53.442Z",
       "estado": "respondida"
     },
     {
       "id": 45,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 45,
       "pregunta_id": "A13",
       "dimension_id": "R2.3",
@@ -8758,13 +8758,13 @@
       "especificidad": 0,
       "texto": "¿Corre, trepa o se mueve excesivamente en situaciones en que debería estar tranquilo?",
       "justificacion": "Cobertura individual de los 18 síntomas DSM-5-TR (Etapa 9 §14.1): R2.3 «Corre, trepa o presenta inquietud inapropiada para la situación» sin información del apoderado.",
-      "presentada": "2026-10-16T00:19:50.117Z",
-      "respondida": "2026-10-16T00:19:50.132Z",
+      "presentada": "2026-10-16T00:23:53.444Z",
+      "respondida": "2026-10-16T00:23:53.460Z",
       "estado": "respondida"
     },
     {
       "id": 46,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 46,
       "pregunta_id": "A14",
       "dimension_id": "R2.4",
@@ -8772,13 +8772,13 @@
       "especificidad": 0,
       "texto": "¿Le cuesta participar en actividades tranquilas?",
       "justificacion": "Cobertura individual de los 18 síntomas DSM-5-TR (Etapa 9 §14.1): R2.4 «Dificultad para participar tranquilamente en actividades» sin información del apoderado.",
-      "presentada": "2026-10-16T00:19:50.135Z",
-      "respondida": "2026-10-16T00:19:50.153Z",
+      "presentada": "2026-10-16T00:23:53.463Z",
+      "respondida": "2026-10-16T00:23:53.481Z",
       "estado": "respondida"
     },
     {
       "id": 47,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 47,
       "pregunta_id": "A15",
       "dimension_id": "R2.5",
@@ -8786,13 +8786,13 @@
       "especificidad": 0,
       "texto": "¿Parece estar permanentemente activo o necesitar estar haciendo algo?",
       "justificacion": "Cobertura individual de los 18 síntomas DSM-5-TR (Etapa 9 §14.1): R2.5 «Actúa como si estuviera permanentemente en marcha» sin información del apoderado.",
-      "presentada": "2026-10-16T00:19:50.156Z",
-      "respondida": "2026-10-16T00:19:50.172Z",
+      "presentada": "2026-10-16T00:23:53.483Z",
+      "respondida": "2026-10-16T00:23:53.500Z",
       "estado": "respondida"
     },
     {
       "id": 48,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 48,
       "pregunta_id": "A16",
       "dimension_id": "R2.6",
@@ -8800,13 +8800,13 @@
       "especificidad": 0,
       "texto": "¿Habla más de lo esperable para la situación?",
       "justificacion": "Cobertura individual de los 18 síntomas DSM-5-TR (Etapa 9 §14.1): R2.6 «Habla excesivamente» sin información del apoderado.",
-      "presentada": "2026-10-16T00:19:50.175Z",
-      "respondida": "2026-10-16T00:19:50.194Z",
+      "presentada": "2026-10-16T00:23:53.503Z",
+      "respondida": "2026-10-16T00:23:53.523Z",
       "estado": "respondida"
     },
     {
       "id": 49,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 49,
       "pregunta_id": "A17",
       "dimension_id": "R2.7",
@@ -8814,13 +8814,13 @@
       "especificidad": 0,
       "texto": "¿Responde antes de que terminen de hacerle una pregunta?",
       "justificacion": "Cobertura individual de los 18 síntomas DSM-5-TR (Etapa 9 §14.1): R2.7 «Responde antes de que termine la pregunta» sin información del apoderado.",
-      "presentada": "2026-10-16T00:19:50.197Z",
-      "respondida": "2026-10-16T00:19:50.217Z",
+      "presentada": "2026-10-16T00:23:53.526Z",
+      "respondida": "2026-10-16T00:23:53.543Z",
       "estado": "respondida"
     },
     {
       "id": 50,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 50,
       "pregunta_id": "A18",
       "dimension_id": "R2.8",
@@ -8828,13 +8828,13 @@
       "especificidad": 0,
       "texto": "¿Le cuesta esperar su turno?",
       "justificacion": "Cobertura individual de los 18 síntomas DSM-5-TR (Etapa 9 §14.1): R2.8 «Dificultad para esperar su turno» sin información del apoderado.",
-      "presentada": "2026-10-16T00:19:50.221Z",
-      "respondida": "2026-10-16T00:19:50.244Z",
+      "presentada": "2026-10-16T00:23:53.546Z",
+      "respondida": "2026-10-16T00:23:53.571Z",
       "estado": "respondida"
     },
     {
       "id": 51,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 51,
       "pregunta_id": "A19",
       "dimension_id": "R2.9",
@@ -8842,13 +8842,13 @@
       "especificidad": 0,
       "texto": "¿Interrumpe conversaciones, juegos o actividades de otras personas?",
       "justificacion": "Cobertura individual de los 18 síntomas DSM-5-TR (Etapa 9 §14.1): R2.9 «Interrumpe o invade actividades de otros» sin información del apoderado.",
-      "presentada": "2026-10-16T00:19:50.247Z",
-      "respondida": "2026-10-16T00:19:50.263Z",
+      "presentada": "2026-10-16T00:23:53.573Z",
+      "respondida": "2026-10-16T00:23:53.604Z",
       "estado": "respondida"
     },
     {
       "id": 52,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 52,
       "pregunta_id": "R2.9-FRECUENCIA",
       "dimension_id": "R2.9",
@@ -8856,13 +8856,13 @@
       "especificidad": 0,
       "texto": "Sobre «interrumpe conversaciones, juegos o actividades de otras personas»: ¿Con qué frecuencia sucede?",
       "justificacion": "Profundización del síntoma R2.9 «Interrumpe o invade actividades de otros» (1/3): falta «frecuencia». Prioridad de la Automatización (regla 2a: frecuencia e intensidad).",
-      "presentada": "2026-10-16T00:19:50.266Z",
-      "respondida": "2026-10-16T00:19:50.292Z",
+      "presentada": "2026-10-16T00:23:53.607Z",
+      "respondida": "2026-10-16T00:23:53.627Z",
       "estado": "respondida"
     },
     {
       "id": 53,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 53,
       "pregunta_id": "R2.9-DESDE",
       "dimension_id": "R2.9",
@@ -8870,13 +8870,13 @@
       "especificidad": 0,
       "texto": "Sobre «interrumpe conversaciones, juegos o actividades de otras personas»: ¿Desde cuándo ocurre?",
       "justificacion": "Profundización del síntoma R2.9 «Interrumpe o invade actividades de otros» (2/3): falta «desde». Permite contrastar R3 (≥6 meses) y R4 (antes de los 12 años).",
-      "presentada": "2026-10-16T00:19:50.295Z",
-      "respondida": "2026-10-16T00:19:50.314Z",
+      "presentada": "2026-10-16T00:23:53.629Z",
+      "respondida": "2026-10-16T00:23:53.648Z",
       "estado": "respondida"
     },
     {
       "id": 54,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 54,
       "pregunta_id": "R2.9-CONTEXTOS",
       "dimension_id": "R2.9",
@@ -8884,13 +8884,13 @@
       "especificidad": 0,
       "texto": "Sobre «interrumpe conversaciones, juegos o actividades de otras personas»: ¿Dónde ocurre?",
       "justificacion": "Profundización del síntoma R2.9 «Interrumpe o invade actividades de otros» (3/3): falta «contextos». Permite contrastar R6 (dos o más contextos).",
-      "presentada": "2026-10-16T00:19:50.317Z",
-      "respondida": "2026-10-16T00:19:50.333Z",
+      "presentada": "2026-10-16T00:23:53.651Z",
+      "respondida": "2026-10-16T00:23:53.666Z",
       "estado": "respondida"
     },
     {
       "id": 55,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 55,
       "pregunta_id": "A20",
       "dimension_id": "A20",
@@ -8898,13 +8898,13 @@
       "especificidad": 0,
       "texto": "¿Actúa rápidamente sin detenerse a pensar qué puede ocurrir después?",
       "justificacion": "Bloque «impulsividad_funcional» (Etapa 7 §9 (impulsividad: actuar sin considerar consecuencias)). Mínima pregunta suficiente: 1 de máx. 1.",
-      "presentada": "2026-10-16T00:19:50.335Z",
-      "respondida": "2026-10-16T00:19:50.354Z",
+      "presentada": "2026-10-16T00:23:53.670Z",
+      "respondida": "2026-10-16T00:23:53.700Z",
       "estado": "respondida"
     },
     {
       "id": 56,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 56,
       "pregunta_id": "A53",
       "dimension_id": "A53",
@@ -8912,13 +8912,13 @@
       "especificidad": 0,
       "texto": "¿Hubo alguna preocupación relevante durante su desarrollo temprano?",
       "justificacion": "Bloque «desarrollo» (Automatización regla 6 (Etapa 5 de la entrevista: anamnesis del desarrollo); Anexo 7-A 53–58). Mínima pregunta suficiente: 1 de máx. 4.",
-      "presentada": "2026-10-16T00:19:50.356Z",
-      "respondida": "2026-10-16T00:19:50.371Z",
+      "presentada": "2026-10-16T00:23:53.705Z",
+      "respondida": "2026-10-16T00:23:53.722Z",
       "estado": "respondida"
     },
     {
       "id": 57,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 57,
       "pregunta_id": "A55",
       "dimension_id": "A55",
@@ -8926,13 +8926,13 @@
       "especificidad": 0,
       "texto": "¿Hubo alguna circunstancia relevante durante el embarazo, parto o período neonatal?",
       "justificacion": "Bloque «desarrollo» (Automatización regla 6 (Etapa 5 de la entrevista: anamnesis del desarrollo); Anexo 7-A 53–58). Mínima pregunta suficiente: 2 de máx. 4.",
-      "presentada": "2026-10-16T00:19:50.374Z",
-      "respondida": "2026-10-16T00:19:50.395Z",
+      "presentada": "2026-10-16T00:23:53.724Z",
+      "respondida": "2026-10-16T00:23:53.744Z",
       "estado": "respondida"
     },
     {
       "id": 58,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 58,
       "pregunta_id": "A57",
       "dimension_id": "A57",
@@ -8940,13 +8940,13 @@
       "especificidad": 0,
       "texto": "¿Existen antecedentes familiares relevantes de TDAH u otras dificultades del neurodesarrollo?",
       "justificacion": "Bloque «desarrollo» (Automatización regla 6 (Etapa 5 de la entrevista: anamnesis del desarrollo); Anexo 7-A 53–58). Mínima pregunta suficiente: 3 de máx. 4.",
-      "presentada": "2026-10-16T00:19:50.398Z",
-      "respondida": "2026-10-16T00:19:50.414Z",
+      "presentada": "2026-10-16T00:23:53.748Z",
+      "respondida": "2026-10-16T00:23:53.770Z",
       "estado": "respondida"
     },
     {
       "id": 59,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 59,
       "pregunta_id": "A58",
       "dimension_id": "A58",
@@ -8954,13 +8954,13 @@
       "especificidad": 0,
       "texto": "¿Ha existido alguna situación familiar, escolar o ambiental importante que pueda haber afectado su funcionamiento?",
       "justificacion": "Bloque «desarrollo» (Automatización regla 6 (Etapa 5 de la entrevista: anamnesis del desarrollo); Anexo 7-A 53–58). Mínima pregunta suficiente: 4 de máx. 4.",
-      "presentada": "2026-10-16T00:19:50.417Z",
-      "respondida": "2026-10-16T00:19:50.434Z",
+      "presentada": "2026-10-16T00:23:53.773Z",
+      "respondida": "2026-10-16T00:23:53.790Z",
       "estado": "respondida"
     },
     {
       "id": 60,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 60,
       "pregunta_id": "A37",
       "dimension_id": "A37",
@@ -8968,13 +8968,13 @@
       "especificidad": 0,
       "texto": "¿Funciona diferente en casa y en el colegio?",
       "justificacion": "Bloque «contexto» (Etapa 7 §12; Etapa 9 §10; Anexo 7-A 29–37). Mínima pregunta suficiente: 1 de máx. 5.",
-      "presentada": "2026-10-16T00:19:50.438Z",
-      "respondida": "2026-10-16T00:19:50.457Z",
+      "presentada": "2026-10-16T00:23:53.793Z",
+      "respondida": "2026-10-16T00:23:53.809Z",
       "estado": "respondida"
     },
     {
       "id": 61,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 61,
       "pregunta_id": "A32",
       "dimension_id": "A32",
@@ -8982,13 +8982,13 @@
       "especificidad": 0,
       "texto": "¿Disminuyen cuando un adulto lo supervisa de cerca?",
       "justificacion": "Bloque «contexto» (Etapa 7 §12; Etapa 9 §10; Anexo 7-A 29–37). Mínima pregunta suficiente: 2 de máx. 5.",
-      "presentada": "2026-10-16T00:19:50.460Z",
-      "respondida": "2026-10-16T00:19:50.475Z",
+      "presentada": "2026-10-16T00:23:53.812Z",
+      "respondida": "2026-10-16T00:23:53.833Z",
       "estado": "respondida"
     },
     {
       "id": 62,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 62,
       "pregunta_id": "A34",
       "dimension_id": "A34",
@@ -8996,13 +8996,13 @@
       "especificidad": 0,
       "texto": "¿Funciona mucho mejor cuando la actividad le interesa?",
       "justificacion": "Bloque «contexto» (Etapa 7 §12; Etapa 9 §10; Anexo 7-A 29–37). Mínima pregunta suficiente: 3 de máx. 5.",
-      "presentada": "2026-10-16T00:19:50.478Z",
-      "respondida": "2026-10-16T00:19:50.496Z",
+      "presentada": "2026-10-16T00:23:53.836Z",
+      "respondida": "2026-10-16T00:23:53.852Z",
       "estado": "respondida"
     },
     {
       "id": 63,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 63,
       "pregunta_id": "A31",
       "dimension_id": "A31",
@@ -9010,13 +9010,13 @@
       "especificidad": 0,
       "texto": "¿Aumentan cuando hay muchos distractores?",
       "justificacion": "Bloque «contexto» (Etapa 7 §12; Etapa 9 §10; Anexo 7-A 29–37). Mínima pregunta suficiente: 4 de máx. 5.",
-      "presentada": "2026-10-16T00:19:50.499Z",
-      "respondida": "2026-10-16T00:19:50.520Z",
+      "presentada": "2026-10-16T00:23:53.854Z",
+      "respondida": "2026-10-16T00:23:53.872Z",
       "estado": "respondida"
     },
     {
       "id": 64,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 64,
       "pregunta_id": "A29",
       "dimension_id": "A29",
@@ -9024,13 +9024,13 @@
       "especificidad": 0,
       "texto": "¿Las dificultades aumentan cuando la actividad dura bastante tiempo?",
       "justificacion": "Bloque «contexto» (Etapa 7 §12; Etapa 9 §10; Anexo 7-A 29–37). Mínima pregunta suficiente: 5 de máx. 5.",
-      "presentada": "2026-10-16T00:19:50.523Z",
-      "respondida": "2026-10-16T00:19:50.539Z",
+      "presentada": "2026-10-16T00:23:53.876Z",
+      "respondida": "2026-10-16T00:23:53.903Z",
       "estado": "respondida"
     },
     {
       "id": 65,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 65,
       "pregunta_id": "A38",
       "dimension_id": "A38",
@@ -9038,13 +9038,13 @@
       "especificidad": 0,
       "texto": "¿Recuerda haber observado alguna de estas dificultades antes de los 6 años?",
       "justificacion": "Bloque «trayectoria» (Etapa 7 §7 (requisito obligatorio); Etapa 9 §9; Anexo 7-A 38–45). Mínima pregunta suficiente: 1 de máx. 5.",
-      "presentada": "2026-10-16T00:19:50.542Z",
-      "respondida": "2026-10-16T00:19:50.558Z",
+      "presentada": "2026-10-16T00:23:53.906Z",
+      "respondida": "2026-10-16T00:23:53.925Z",
       "estado": "respondida"
     },
     {
       "id": 66,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 66,
       "pregunta_id": "A40",
       "dimension_id": "A40",
@@ -9052,13 +9052,13 @@
       "especificidad": 0,
       "texto": "¿Las dificultades han estado presentes durante largos períodos?",
       "justificacion": "Bloque «trayectoria» (Etapa 7 §7 (requisito obligatorio); Etapa 9 §9; Anexo 7-A 38–45). Mínima pregunta suficiente: 2 de máx. 5.",
-      "presentada": "2026-10-16T00:19:50.561Z",
-      "respondida": "2026-10-16T00:19:50.581Z",
+      "presentada": "2026-10-16T00:23:53.928Z",
+      "respondida": "2026-10-16T00:23:53.946Z",
       "estado": "respondida"
     },
     {
       "id": 67,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 67,
       "pregunta_id": "A41",
       "dimension_id": "A41",
@@ -9066,13 +9066,13 @@
       "especificidad": 0,
       "texto": "¿Han aumentado a medida que aumentaron las exigencias?",
       "justificacion": "Bloque «trayectoria» (Etapa 7 §7 (requisito obligatorio); Etapa 9 §9; Anexo 7-A 38–45). Mínima pregunta suficiente: 3 de máx. 5.",
-      "presentada": "2026-10-16T00:19:50.584Z",
-      "respondida": "2026-10-16T00:19:50.604Z",
+      "presentada": "2026-10-16T00:23:53.949Z",
+      "respondida": "2026-10-16T00:23:53.973Z",
       "estado": "respondida"
     },
     {
       "id": 68,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 68,
       "pregunta_id": "A42",
       "dimension_id": "A42",
@@ -9080,13 +9080,13 @@
       "especificidad": 0,
       "texto": "¿Hay etapas en que funcionaba claramente mejor?",
       "justificacion": "Bloque «trayectoria» (Etapa 7 §7 (requisito obligatorio); Etapa 9 §9; Anexo 7-A 38–45). Mínima pregunta suficiente: 4 de máx. 5.",
-      "presentada": "2026-10-16T00:19:50.607Z",
-      "respondida": "2026-10-16T00:19:50.624Z",
+      "presentada": "2026-10-16T00:23:53.976Z",
+      "respondida": "2026-10-16T00:23:53.995Z",
       "estado": "respondida"
     },
     {
       "id": 69,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 69,
       "pregunta_id": "A39",
       "dimension_id": "A39",
@@ -9094,13 +9094,13 @@
       "especificidad": 0,
       "texto": "¿Ya existían algunas de estas dificultades antes de entrar al colegio?",
       "justificacion": "Bloque «trayectoria» (Etapa 7 §7 (requisito obligatorio); Etapa 9 §9; Anexo 7-A 38–45). Mínima pregunta suficiente: 5 de máx. 5.",
-      "presentada": "2026-10-16T00:19:50.627Z",
-      "respondida": "2026-10-16T00:19:50.648Z",
+      "presentada": "2026-10-16T00:23:53.998Z",
+      "respondida": "2026-10-16T00:23:54.019Z",
       "estado": "respondida"
     },
     {
       "id": 70,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 70,
       "pregunta_id": "A46",
       "dimension_id": "A46",
@@ -9108,13 +9108,13 @@
       "especificidad": 0,
       "texto": "¿Estas dificultades afectan su rendimiento escolar?",
       "justificacion": "Bloque «impacto» (Etapa 7 §13; Etapa 4 R7; Anexo 7-A 46–52). Mínima pregunta suficiente: 1 de máx. 7.",
-      "presentada": "2026-10-16T00:19:50.651Z",
-      "respondida": "2026-10-16T00:19:50.674Z",
+      "presentada": "2026-10-16T00:23:54.022Z",
+      "respondida": "2026-10-16T00:23:54.045Z",
       "estado": "respondida"
     },
     {
       "id": 71,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 71,
       "pregunta_id": "A47",
       "dimension_id": "A47",
@@ -9122,13 +9122,13 @@
       "especificidad": 0,
       "texto": "¿Afectan la convivencia familiar?",
       "justificacion": "Bloque «impacto» (Etapa 7 §13; Etapa 4 R7; Anexo 7-A 46–52). Mínima pregunta suficiente: 2 de máx. 7.",
-      "presentada": "2026-10-16T00:19:50.677Z",
-      "respondida": "2026-10-16T00:19:50.698Z",
+      "presentada": "2026-10-16T00:23:54.048Z",
+      "respondida": "2026-10-16T00:23:54.066Z",
       "estado": "respondida"
     },
     {
       "id": 72,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 72,
       "pregunta_id": "A48",
       "dimension_id": "A48",
@@ -9136,13 +9136,13 @@
       "especificidad": 0,
       "texto": "¿Afectan sus relaciones con otros niños o adolescentes?",
       "justificacion": "Bloque «impacto» (Etapa 7 §13; Etapa 4 R7; Anexo 7-A 46–52). Mínima pregunta suficiente: 3 de máx. 7.",
-      "presentada": "2026-10-16T00:19:50.701Z",
-      "respondida": "2026-10-16T00:19:50.724Z",
+      "presentada": "2026-10-16T00:23:54.069Z",
+      "respondida": "2026-10-16T00:23:54.086Z",
       "estado": "respondida"
     },
     {
       "id": 73,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 73,
       "pregunta_id": "A49",
       "dimension_id": "A49",
@@ -9150,13 +9150,13 @@
       "especificidad": 0,
       "texto": "¿Afectan actividades cotidianas?",
       "justificacion": "Bloque «impacto» (Etapa 7 §13; Etapa 4 R7; Anexo 7-A 46–52). Mínima pregunta suficiente: 4 de máx. 7.",
-      "presentada": "2026-10-16T00:19:50.727Z",
-      "respondida": "2026-10-16T00:19:50.746Z",
+      "presentada": "2026-10-16T00:23:54.089Z",
+      "respondida": "2026-10-16T00:23:54.110Z",
       "estado": "respondida"
     },
     {
       "id": 74,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 74,
       "pregunta_id": "A50",
       "dimension_id": "A50",
@@ -9164,13 +9164,13 @@
       "especificidad": 0,
       "texto": "¿Necesita más ayuda que otros niños de su edad para realizar actividades que debería poder hacer con mayor autonomía?",
       "justificacion": "Bloque «impacto» (Etapa 7 §13; Etapa 4 R7; Anexo 7-A 46–52). Mínima pregunta suficiente: 5 de máx. 7.",
-      "presentada": "2026-10-16T00:19:50.748Z",
-      "respondida": "2026-10-16T00:19:50.767Z",
+      "presentada": "2026-10-16T00:23:54.113Z",
+      "respondida": "2026-10-16T00:23:54.131Z",
       "estado": "respondida"
     },
     {
       "id": 75,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 75,
       "pregunta_id": "A51",
       "dimension_id": "A51",
@@ -9178,13 +9178,13 @@
       "especificidad": 0,
       "texto": "¿Estas dificultades generan frustración, conflictos o consecuencias importantes?",
       "justificacion": "Bloque «impacto» (Etapa 7 §13; Etapa 4 R7; Anexo 7-A 46–52). Mínima pregunta suficiente: 6 de máx. 7.",
-      "presentada": "2026-10-16T00:19:50.770Z",
-      "respondida": "2026-10-16T00:19:50.791Z",
+      "presentada": "2026-10-16T00:23:54.136Z",
+      "respondida": "2026-10-16T00:23:54.156Z",
       "estado": "respondida"
     },
     {
       "id": 76,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 76,
       "pregunta_id": "A52",
       "dimension_id": "A52",
@@ -9192,13 +9192,13 @@
       "especificidad": 0,
       "texto": "¿Cuál considera que es actualmente la principal dificultad de funcionamiento?",
       "justificacion": "Bloque «impacto» (Etapa 7 §13; Etapa 4 R7; Anexo 7-A 46–52). Mínima pregunta suficiente: 7 de máx. 7.",
-      "presentada": "2026-10-16T00:19:50.794Z",
-      "respondida": "2026-10-16T00:19:50.812Z",
+      "presentada": "2026-10-16T00:23:54.159Z",
+      "respondida": "2026-10-16T00:23:54.179Z",
       "estado": "respondida"
     },
     {
       "id": 77,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 77,
       "pregunta_id": "BARRIDO",
       "dimension_id": "BARRIDO",
@@ -9206,13 +9206,13 @@
       "especificidad": 0,
       "texto": "Además de las dificultades que hemos conversado, ¿hay alguna de estas áreas que haya presentado, presente o haya presentado anteriormente alguna dificultad relevante para su funcionamiento?",
       "justificacion": "Barrido diferencial obligatorio antes del cierre (Etapa 9 §H; regla absoluta J.2).",
-      "presentada": "2026-10-16T00:19:50.815Z",
-      "respondida": "2026-10-16T00:19:50.836Z",
+      "presentada": "2026-10-16T00:23:54.183Z",
+      "respondida": "2026-10-16T00:23:54.200Z",
       "estado": "respondida"
     },
     {
       "id": 78,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 78,
       "pregunta_id": "BAR-C-1",
       "dimension_id": "BAR-C",
@@ -9220,13 +9220,13 @@
       "especificidad": 0,
       "texto": "¿Las dificultades aumentan cuando duerme mal o está cansado?",
       "justificacion": "Rama abierta del barrido diferencial: «Sueño». Solo se abren las áreas seleccionadas.",
-      "presentada": "2026-10-16T00:19:50.840Z",
-      "respondida": "2026-10-16T00:19:50.864Z",
+      "presentada": "2026-10-16T00:23:54.203Z",
+      "respondida": "2026-10-16T00:23:54.222Z",
       "estado": "respondida"
     },
     {
       "id": 79,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 79,
       "pregunta_id": "BAR-C-DESDE",
       "dimension_id": "BAR-C",
@@ -9234,13 +9234,13 @@
       "especificidad": 0,
       "texto": "¿Desde cuándo ocurre?",
       "justificacion": "Rama abierta del barrido diferencial: «Sueño». Solo se abren las áreas seleccionadas.",
-      "presentada": "2026-10-16T00:19:50.867Z",
-      "respondida": "2026-10-16T00:19:50.887Z",
+      "presentada": "2026-10-16T00:23:54.225Z",
+      "respondida": "2026-10-16T00:23:54.247Z",
       "estado": "respondida"
     },
     {
       "id": 80,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 80,
       "pregunta_id": "TAMIZAJE",
       "dimension_id": "TAMIZAJE",
@@ -9248,13 +9248,13 @@
       "especificidad": 0,
       "texto": "Además de las dificultades que motivaron esta evaluación, ¿se ha observado o diagnosticado alguna de estas situaciones? Seleccione todas las que correspondan",
       "justificacion": "Módulo obligatorio de tamizaje médico, sensorial y del sueño (Etapa 9 §H.1); la entrevista no puede cerrarse mientras esté NO_REALIZADO o EN_CURSO.",
-      "presentada": "2026-10-16T00:19:50.890Z",
-      "respondida": "2026-10-16T00:19:50.916Z",
+      "presentada": "2026-10-16T00:23:54.250Z",
+      "respondida": "2026-10-16T00:23:54.268Z",
       "estado": "respondida"
     },
     {
       "id": 81,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 81,
       "pregunta_id": "TAM-D-1",
       "dimension_id": "TAM-D",
@@ -9262,13 +9262,13 @@
       "especificidad": 0,
       "texto": "¿Qué problema se observa?",
       "justificacion": "Categoría seleccionada del tamizaje: «Sueño»; una sola pregunta por turno sobre la dimensión que falta.",
-      "presentada": "2026-10-16T00:19:50.921Z",
-      "respondida": "2026-10-16T00:19:50.959Z",
+      "presentada": "2026-10-16T00:23:54.271Z",
+      "respondida": "2026-10-16T00:23:54.289Z",
       "estado": "respondida"
     },
     {
       "id": 82,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 82,
       "pregunta_id": "TAM-D-3",
       "dimension_id": "TAM-D",
@@ -9276,13 +9276,13 @@
       "especificidad": 0,
       "texto": "¿Hay ronquidos intensos o pausas respiratorias observadas?",
       "justificacion": "Categoría seleccionada del tamizaje: «Sueño»; una sola pregunta por turno sobre la dimensión que falta.",
-      "presentada": "2026-10-16T00:19:50.964Z",
-      "respondida": "2026-10-16T00:19:50.992Z",
+      "presentada": "2026-10-16T00:23:54.292Z",
+      "respondida": "2026-10-16T00:23:54.314Z",
       "estado": "respondida"
     },
     {
       "id": 83,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 83,
       "pregunta_id": "TAM-D-5",
       "dimension_id": "TAM-D",
@@ -9290,13 +9290,13 @@
       "especificidad": 0,
       "texto": "¿Ha sido evaluado por un profesional?",
       "justificacion": "Categoría seleccionada del tamizaje: «Sueño»; una sola pregunta por turno sobre la dimensión que falta.",
-      "presentada": "2026-10-16T00:19:50.996Z",
-      "respondida": "2026-10-16T00:19:51.017Z",
+      "presentada": "2026-10-16T00:23:54.317Z",
+      "respondida": "2026-10-16T00:23:54.335Z",
       "estado": "respondida"
     },
     {
       "id": 84,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 84,
       "pregunta_id": "RA-C04",
       "dimension_id": "RA",
@@ -9304,15 +9304,15 @@
       "especificidad": 0,
       "texto": "Según lo que usted sabe del colegio: ¿En qué situaciones funciona mejor?",
       "justificacion": "Ruta B (Etapa 7 §5.2): el informe escolar no contiene esta información; se pregunta solo el vacío.",
-      "presentada": "2026-10-16T00:19:51.057Z",
-      "respondida": "2026-10-16T00:19:51.080Z",
+      "presentada": "2026-10-16T00:23:54.373Z",
+      "respondida": "2026-10-16T00:23:54.397Z",
       "estado": "respondida"
     }
   ],
   "respuestas": [
     {
       "id": 1,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 1,
       "pregunta_id": "INI-MOTIVO",
       "texto_original": "Desde primero básico se distrae mucho en clases y le cuesta terminar las tareas.",
@@ -9321,11 +9321,11 @@
       "valor": "Desde primero básico se distrae mucho en clases y le cuesta terminar las tareas.",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:49.375Z"
+      "creado": "2026-10-16T00:23:52.610Z"
     },
     {
       "id": 2,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 2,
       "pregunta_id": "INI-EDAD",
       "texto_original": "8 años",
@@ -9334,11 +9334,11 @@
       "valor": "8",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:49.391Z"
+      "creado": "2026-10-16T00:23:52.624Z"
     },
     {
       "id": 3,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 3,
       "pregunta_id": "INI-INF-EXISTE",
       "texto_original": "A. Sí",
@@ -9347,11 +9347,11 @@
       "valor": "si",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:49.410Z"
+      "creado": "2026-10-16T00:23:52.637Z"
     },
     {
       "id": 4,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 4,
       "pregunta_id": "INI-INF-DISP",
       "texto_original": "A. Sí",
@@ -9360,11 +9360,11 @@
       "valor": "si",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:49.421Z"
+      "creado": "2026-10-16T00:23:52.647Z"
     },
     {
       "id": 5,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 5,
       "pregunta_id": "A09",
       "texto_original": "A. Sí",
@@ -9373,11 +9373,11 @@
       "valor": "si",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:49.449Z"
+      "creado": "2026-10-16T00:23:52.674Z"
     },
     {
       "id": 6,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 6,
       "pregunta_id": "R1.8-FRECUENCIA",
       "texto_original": "A. Varias veces al día",
@@ -9386,11 +9386,11 @@
       "valor": "varias_al_dia",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:49.469Z"
+      "creado": "2026-10-16T00:23:52.692Z"
     },
     {
       "id": 7,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 7,
       "pregunta_id": "R1.8-DESDE",
       "texto_original": "B. Hace más de 6 meses, y comenzó antes de los 12 años",
@@ -9399,11 +9399,11 @@
       "valor": "mas_6_meses_antes_12",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:49.490Z"
+      "creado": "2026-10-16T00:23:52.715Z"
     },
     {
       "id": 8,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 8,
       "pregunta_id": "R1.8-CONTEXTOS",
       "texto_original": "A. Hogar; B. Colegio",
@@ -9412,11 +9412,11 @@
       "valor": "hogar,colegio",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:49.505Z"
+      "creado": "2026-10-16T00:23:52.731Z"
     },
     {
       "id": 9,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 9,
       "pregunta_id": "A01",
       "texto_original": "A. Sí",
@@ -9425,11 +9425,11 @@
       "valor": "si",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:49.519Z"
+      "creado": "2026-10-16T00:23:52.745Z"
     },
     {
       "id": 10,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 10,
       "pregunta_id": "R1.1-FRECUENCIA",
       "texto_original": "A. Varias veces al día",
@@ -9438,11 +9438,11 @@
       "valor": "varias_al_dia",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:49.531Z"
+      "creado": "2026-10-16T00:23:52.757Z"
     },
     {
       "id": 11,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 11,
       "pregunta_id": "R1.1-DESDE",
       "texto_original": "B. Hace más de 6 meses, y comenzó antes de los 12 años",
@@ -9451,11 +9451,11 @@
       "valor": "mas_6_meses_antes_12",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:49.544Z"
+      "creado": "2026-10-16T00:23:52.771Z"
     },
     {
       "id": 12,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 12,
       "pregunta_id": "R1.1-CONTEXTOS",
       "texto_original": "A. Hogar; B. Colegio",
@@ -9464,11 +9464,11 @@
       "valor": "hogar,colegio",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:49.556Z"
+      "creado": "2026-10-16T00:23:52.784Z"
     },
     {
       "id": 13,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 13,
       "pregunta_id": "A02",
       "texto_original": "A. Sí",
@@ -9477,11 +9477,11 @@
       "valor": "si",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:49.569Z"
+      "creado": "2026-10-16T00:23:52.796Z"
     },
     {
       "id": 14,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 14,
       "pregunta_id": "R1.2-FRECUENCIA",
       "texto_original": "A. Varias veces al día",
@@ -9490,11 +9490,11 @@
       "valor": "varias_al_dia",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:49.580Z"
+      "creado": "2026-10-16T00:23:52.808Z"
     },
     {
       "id": 15,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 15,
       "pregunta_id": "R1.2-DESDE",
       "texto_original": "B. Hace más de 6 meses, y comenzó antes de los 12 años",
@@ -9503,11 +9503,11 @@
       "valor": "mas_6_meses_antes_12",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:49.594Z"
+      "creado": "2026-10-16T00:23:52.883Z"
     },
     {
       "id": 16,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 16,
       "pregunta_id": "R1.2-CONTEXTOS",
       "texto_original": "A. Hogar; B. Colegio",
@@ -9516,11 +9516,11 @@
       "valor": "hogar,colegio",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:49.611Z"
+      "creado": "2026-10-16T00:23:52.898Z"
     },
     {
       "id": 17,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 17,
       "pregunta_id": "A03",
       "texto_original": "A. Sí",
@@ -9529,11 +9529,11 @@
       "valor": "si",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:49.626Z"
+      "creado": "2026-10-16T00:23:52.911Z"
     },
     {
       "id": 18,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 18,
       "pregunta_id": "R1.3-FRECUENCIA",
       "texto_original": "A. Varias veces al día",
@@ -9542,11 +9542,11 @@
       "valor": "varias_al_dia",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:49.640Z"
+      "creado": "2026-10-16T00:23:52.927Z"
     },
     {
       "id": 19,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 19,
       "pregunta_id": "R1.3-DESDE",
       "texto_original": "B. Hace más de 6 meses, y comenzó antes de los 12 años",
@@ -9555,11 +9555,11 @@
       "valor": "mas_6_meses_antes_12",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:49.653Z"
+      "creado": "2026-10-16T00:23:52.938Z"
     },
     {
       "id": 20,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 20,
       "pregunta_id": "R1.3-CONTEXTOS",
       "texto_original": "A. Hogar; B. Colegio",
@@ -9568,11 +9568,11 @@
       "valor": "hogar,colegio",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:49.667Z"
+      "creado": "2026-10-16T00:23:52.952Z"
     },
     {
       "id": 21,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 21,
       "pregunta_id": "A04",
       "texto_original": "A. Sí",
@@ -9581,11 +9581,11 @@
       "valor": "si",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:49.680Z"
+      "creado": "2026-10-16T00:23:52.966Z"
     },
     {
       "id": 22,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 22,
       "pregunta_id": "R1.4-FRECUENCIA",
       "texto_original": "A. Varias veces al día",
@@ -9594,11 +9594,11 @@
       "valor": "varias_al_dia",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:49.696Z"
+      "creado": "2026-10-16T00:23:52.988Z"
     },
     {
       "id": 23,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 23,
       "pregunta_id": "R1.4-DESDE",
       "texto_original": "B. Hace más de 6 meses, y comenzó antes de los 12 años",
@@ -9607,11 +9607,11 @@
       "valor": "mas_6_meses_antes_12",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:49.711Z"
+      "creado": "2026-10-16T00:23:53.018Z"
     },
     {
       "id": 24,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 24,
       "pregunta_id": "R1.4-CONTEXTOS",
       "texto_original": "A. Hogar; B. Colegio",
@@ -9620,11 +9620,11 @@
       "valor": "hogar,colegio",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:49.736Z"
+      "creado": "2026-10-16T00:23:53.031Z"
     },
     {
       "id": 25,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 25,
       "pregunta_id": "A06",
       "texto_original": "D. No sabe / No recuerda",
@@ -9633,11 +9633,11 @@
       "valor": null,
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:49.750Z"
+      "creado": "2026-10-16T00:23:53.056Z"
     },
     {
       "id": 26,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 26,
       "pregunta_id": "A07",
       "texto_original": "A. Sí",
@@ -9646,11 +9646,11 @@
       "valor": "si",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:49.768Z"
+      "creado": "2026-10-16T00:23:53.081Z"
     },
     {
       "id": 27,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 27,
       "pregunta_id": "R1.6-FRECUENCIA",
       "texto_original": "A. Varias veces al día",
@@ -9659,11 +9659,11 @@
       "valor": "varias_al_dia",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:49.783Z"
+      "creado": "2026-10-16T00:23:53.104Z"
     },
     {
       "id": 28,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 28,
       "pregunta_id": "R1.6-DESDE",
       "texto_original": "B. Hace más de 6 meses, y comenzó antes de los 12 años",
@@ -9672,11 +9672,11 @@
       "valor": "mas_6_meses_antes_12",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:49.801Z"
+      "creado": "2026-10-16T00:23:53.138Z"
     },
     {
       "id": 29,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 29,
       "pregunta_id": "R1.6-CONTEXTOS",
       "texto_original": "A. Hogar; B. Colegio",
@@ -9685,11 +9685,11 @@
       "valor": "hogar,colegio",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:49.817Z"
+      "creado": "2026-10-16T00:23:53.156Z"
     },
     {
       "id": 30,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 30,
       "pregunta_id": "A08",
       "texto_original": "A. Sí",
@@ -9698,11 +9698,11 @@
       "valor": "si",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:49.834Z"
+      "creado": "2026-10-16T00:23:53.174Z"
     },
     {
       "id": 31,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 31,
       "pregunta_id": "R1.7-FRECUENCIA",
       "texto_original": "A. Varias veces al día",
@@ -9711,11 +9711,11 @@
       "valor": "varias_al_dia",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:49.849Z"
+      "creado": "2026-10-16T00:23:53.196Z"
     },
     {
       "id": 32,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 32,
       "pregunta_id": "R1.7-DESDE",
       "texto_original": "B. Hace más de 6 meses, y comenzó antes de los 12 años",
@@ -9724,11 +9724,11 @@
       "valor": "mas_6_meses_antes_12",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:49.867Z"
+      "creado": "2026-10-16T00:23:53.219Z"
     },
     {
       "id": 33,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 33,
       "pregunta_id": "R1.7-CONTEXTOS",
       "texto_original": "A. Hogar; B. Colegio",
@@ -9737,11 +9737,11 @@
       "valor": "hogar,colegio",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:49.883Z"
+      "creado": "2026-10-16T00:23:53.240Z"
     },
     {
       "id": 34,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 34,
       "pregunta_id": "A10",
       "texto_original": "A. Sí",
@@ -9750,11 +9750,11 @@
       "valor": "si",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:49.902Z"
+      "creado": "2026-10-16T00:23:53.270Z"
     },
     {
       "id": 35,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 35,
       "pregunta_id": "R1.9-FRECUENCIA",
       "texto_original": "A. Varias veces al día",
@@ -9763,11 +9763,11 @@
       "valor": "varias_al_dia",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:49.919Z"
+      "creado": "2026-10-16T00:23:53.285Z"
     },
     {
       "id": 36,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 36,
       "pregunta_id": "R1.9-DESDE",
       "texto_original": "B. Hace más de 6 meses, y comenzó antes de los 12 años",
@@ -9776,11 +9776,11 @@
       "valor": "mas_6_meses_antes_12",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:49.944Z"
+      "creado": "2026-10-16T00:23:53.302Z"
     },
     {
       "id": 37,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 37,
       "pregunta_id": "R1.9-CONTEXTOS",
       "texto_original": "A. Hogar; B. Colegio",
@@ -9789,11 +9789,11 @@
       "valor": "hogar,colegio",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:49.961Z"
+      "creado": "2026-10-16T00:23:53.318Z"
     },
     {
       "id": 38,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 38,
       "pregunta_id": "A21",
       "texto_original": "B. No",
@@ -9802,11 +9802,11 @@
       "valor": "no",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:49.987Z"
+      "creado": "2026-10-16T00:23:53.339Z"
     },
     {
       "id": 39,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 39,
       "pregunta_id": "A22",
       "texto_original": "A. Sí",
@@ -9815,11 +9815,11 @@
       "valor": "si",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:50.013Z"
+      "creado": "2026-10-16T00:23:53.356Z"
     },
     {
       "id": 40,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 40,
       "pregunta_id": "A23",
       "texto_original": "B. No",
@@ -9828,11 +9828,11 @@
       "valor": "no",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:50.034Z"
+      "creado": "2026-10-16T00:23:53.373Z"
     },
     {
       "id": 41,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 41,
       "pregunta_id": "A24",
       "texto_original": "B. No",
@@ -9841,11 +9841,11 @@
       "valor": "no",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:50.058Z"
+      "creado": "2026-10-16T00:23:53.388Z"
     },
     {
       "id": 42,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 42,
       "pregunta_id": "A25",
       "texto_original": "A. Sí",
@@ -9854,11 +9854,11 @@
       "valor": "si",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:50.077Z"
+      "creado": "2026-10-16T00:23:53.407Z"
     },
     {
       "id": 43,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 43,
       "pregunta_id": "A12",
       "texto_original": "B. No",
@@ -9867,11 +9867,11 @@
       "valor": "no",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:50.094Z"
+      "creado": "2026-10-16T00:23:53.423Z"
     },
     {
       "id": 44,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 44,
       "pregunta_id": "A11",
       "texto_original": "B. No",
@@ -9880,11 +9880,11 @@
       "valor": "no",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:50.114Z"
+      "creado": "2026-10-16T00:23:53.442Z"
     },
     {
       "id": 45,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 45,
       "pregunta_id": "A13",
       "texto_original": "B. No",
@@ -9893,11 +9893,11 @@
       "valor": "no",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:50.132Z"
+      "creado": "2026-10-16T00:23:53.460Z"
     },
     {
       "id": 46,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 46,
       "pregunta_id": "A14",
       "texto_original": "B. No",
@@ -9906,11 +9906,11 @@
       "valor": "no",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:50.153Z"
+      "creado": "2026-10-16T00:23:53.481Z"
     },
     {
       "id": 47,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 47,
       "pregunta_id": "A15",
       "texto_original": "B. No",
@@ -9919,11 +9919,11 @@
       "valor": "no",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:50.172Z"
+      "creado": "2026-10-16T00:23:53.500Z"
     },
     {
       "id": 48,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 48,
       "pregunta_id": "A16",
       "texto_original": "B. No",
@@ -9932,11 +9932,11 @@
       "valor": "no",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:50.194Z"
+      "creado": "2026-10-16T00:23:53.523Z"
     },
     {
       "id": 49,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 49,
       "pregunta_id": "A17",
       "texto_original": "B. No",
@@ -9945,11 +9945,11 @@
       "valor": "no",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:50.217Z"
+      "creado": "2026-10-16T00:23:53.543Z"
     },
     {
       "id": 50,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 50,
       "pregunta_id": "A18",
       "texto_original": "B. No",
@@ -9958,11 +9958,11 @@
       "valor": "no",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:50.244Z"
+      "creado": "2026-10-16T00:23:53.571Z"
     },
     {
       "id": 51,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 51,
       "pregunta_id": "A19",
       "texto_original": "A. Sí",
@@ -9971,11 +9971,11 @@
       "valor": "si",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:50.263Z"
+      "creado": "2026-10-16T00:23:53.604Z"
     },
     {
       "id": 52,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 52,
       "pregunta_id": "R2.9-FRECUENCIA",
       "texto_original": "A. Varias veces al día",
@@ -9984,11 +9984,11 @@
       "valor": "varias_al_dia",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:50.292Z"
+      "creado": "2026-10-16T00:23:53.627Z"
     },
     {
       "id": 53,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 53,
       "pregunta_id": "R2.9-DESDE",
       "texto_original": "B. Hace más de 6 meses, y comenzó antes de los 12 años",
@@ -9997,11 +9997,11 @@
       "valor": "mas_6_meses_antes_12",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:50.314Z"
+      "creado": "2026-10-16T00:23:53.648Z"
     },
     {
       "id": 54,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 54,
       "pregunta_id": "R2.9-CONTEXTOS",
       "texto_original": "A. Hogar; B. Colegio",
@@ -10010,11 +10010,11 @@
       "valor": "hogar,colegio",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:50.333Z"
+      "creado": "2026-10-16T00:23:53.666Z"
     },
     {
       "id": 55,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 55,
       "pregunta_id": "A20",
       "texto_original": "B. No",
@@ -10023,11 +10023,11 @@
       "valor": "no",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:50.354Z"
+      "creado": "2026-10-16T00:23:53.700Z"
     },
     {
       "id": 56,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 56,
       "pregunta_id": "A53",
       "texto_original": "B. No",
@@ -10036,11 +10036,11 @@
       "valor": "no",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:50.371Z"
+      "creado": "2026-10-16T00:23:53.722Z"
     },
     {
       "id": 57,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 57,
       "pregunta_id": "A55",
       "texto_original": "B. No",
@@ -10049,11 +10049,11 @@
       "valor": "no",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:50.395Z"
+      "creado": "2026-10-16T00:23:53.744Z"
     },
     {
       "id": 58,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 58,
       "pregunta_id": "A57",
       "texto_original": "B. No",
@@ -10062,11 +10062,11 @@
       "valor": "no",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:50.414Z"
+      "creado": "2026-10-16T00:23:53.770Z"
     },
     {
       "id": 59,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 59,
       "pregunta_id": "A58",
       "texto_original": "B. No",
@@ -10075,11 +10075,11 @@
       "valor": "no",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:50.434Z"
+      "creado": "2026-10-16T00:23:53.790Z"
     },
     {
       "id": 60,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 60,
       "pregunta_id": "A37",
       "texto_original": "B. No",
@@ -10088,11 +10088,11 @@
       "valor": "no",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:50.457Z"
+      "creado": "2026-10-16T00:23:53.809Z"
     },
     {
       "id": 61,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 61,
       "pregunta_id": "A32",
       "texto_original": "B. No",
@@ -10101,11 +10101,11 @@
       "valor": "no",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:50.475Z"
+      "creado": "2026-10-16T00:23:53.833Z"
     },
     {
       "id": 62,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 62,
       "pregunta_id": "A34",
       "texto_original": "B. No",
@@ -10114,11 +10114,11 @@
       "valor": "no",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:50.496Z"
+      "creado": "2026-10-16T00:23:53.852Z"
     },
     {
       "id": 63,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 63,
       "pregunta_id": "A31",
       "texto_original": "B. No",
@@ -10127,11 +10127,11 @@
       "valor": "no",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:50.520Z"
+      "creado": "2026-10-16T00:23:53.872Z"
     },
     {
       "id": 64,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 64,
       "pregunta_id": "A29",
       "texto_original": "B. No",
@@ -10140,11 +10140,11 @@
       "valor": "no",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:50.539Z"
+      "creado": "2026-10-16T00:23:53.903Z"
     },
     {
       "id": 65,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 65,
       "pregunta_id": "A38",
       "texto_original": "A. Sí",
@@ -10153,11 +10153,11 @@
       "valor": "si",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:50.558Z"
+      "creado": "2026-10-16T00:23:53.925Z"
     },
     {
       "id": 66,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 66,
       "pregunta_id": "A40",
       "texto_original": "B. No",
@@ -10166,11 +10166,11 @@
       "valor": "no",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:50.581Z"
+      "creado": "2026-10-16T00:23:53.946Z"
     },
     {
       "id": 67,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 67,
       "pregunta_id": "A41",
       "texto_original": "B. No",
@@ -10179,11 +10179,11 @@
       "valor": "no",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:50.604Z"
+      "creado": "2026-10-16T00:23:53.973Z"
     },
     {
       "id": 68,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 68,
       "pregunta_id": "A42",
       "texto_original": "B. No",
@@ -10192,11 +10192,11 @@
       "valor": "no",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:50.624Z"
+      "creado": "2026-10-16T00:23:53.995Z"
     },
     {
       "id": 69,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 69,
       "pregunta_id": "A39",
       "texto_original": "B. No",
@@ -10205,11 +10205,11 @@
       "valor": "no",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:50.648Z"
+      "creado": "2026-10-16T00:23:54.019Z"
     },
     {
       "id": 70,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 70,
       "pregunta_id": "A46",
       "texto_original": "B. No",
@@ -10218,11 +10218,11 @@
       "valor": "no",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:50.673Z"
+      "creado": "2026-10-16T00:23:54.045Z"
     },
     {
       "id": 71,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 71,
       "pregunta_id": "A47",
       "texto_original": "A. Sí",
@@ -10231,11 +10231,11 @@
       "valor": "si",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:50.698Z"
+      "creado": "2026-10-16T00:23:54.066Z"
     },
     {
       "id": 72,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 72,
       "pregunta_id": "A48",
       "texto_original": "B. No",
@@ -10244,11 +10244,11 @@
       "valor": "no",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:50.724Z"
+      "creado": "2026-10-16T00:23:54.086Z"
     },
     {
       "id": 73,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 73,
       "pregunta_id": "A49",
       "texto_original": "B. No",
@@ -10257,11 +10257,11 @@
       "valor": "no",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:50.745Z"
+      "creado": "2026-10-16T00:23:54.109Z"
     },
     {
       "id": 74,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 74,
       "pregunta_id": "A50",
       "texto_original": "A. Sí",
@@ -10270,11 +10270,11 @@
       "valor": "si",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:50.767Z"
+      "creado": "2026-10-16T00:23:54.131Z"
     },
     {
       "id": 75,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 75,
       "pregunta_id": "A51",
       "texto_original": "B. No",
@@ -10283,11 +10283,11 @@
       "valor": "no",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:50.791Z"
+      "creado": "2026-10-16T00:23:54.156Z"
     },
     {
       "id": 76,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 76,
       "pregunta_id": "A52",
       "texto_original": "Lo que más preocupa es que se está quedando atrás en lectura y se frustra.",
@@ -10296,11 +10296,11 @@
       "valor": "Lo que más preocupa es que se está quedando atrás en lectura y se frustra.",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:50.812Z"
+      "creado": "2026-10-16T00:23:54.179Z"
     },
     {
       "id": 77,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 77,
       "pregunta_id": "BARRIDO",
       "texto_original": "C. Sueño",
@@ -10309,11 +10309,11 @@
       "valor": "C",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:50.836Z"
+      "creado": "2026-10-16T00:23:54.200Z"
     },
     {
       "id": 78,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 78,
       "pregunta_id": "BAR-C-1",
       "texto_original": "A. Sí",
@@ -10322,11 +10322,11 @@
       "valor": "si",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:50.864Z"
+      "creado": "2026-10-16T00:23:54.222Z"
     },
     {
       "id": 79,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 79,
       "pregunta_id": "BAR-C-DESDE",
       "texto_original": "B. Hace más de 6 meses, y comenzó antes de los 12 años",
@@ -10335,11 +10335,11 @@
       "valor": "mas_6_meses_antes_12",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:50.886Z"
+      "creado": "2026-10-16T00:23:54.247Z"
     },
     {
       "id": 80,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 80,
       "pregunta_id": "TAMIZAJE",
       "texto_original": "D. Problemas persistentes de sueño, ronquidos intensos, pausas respiratorias durante el sueño o somnolencia diurna marcada.",
@@ -10348,11 +10348,11 @@
       "valor": "D",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:50.915Z"
+      "creado": "2026-10-16T00:23:54.268Z"
     },
     {
       "id": 81,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 81,
       "pregunta_id": "TAM-D-1",
       "texto_original": "Le cuesta dormirse; ronca algunas noches.",
@@ -10361,11 +10361,11 @@
       "valor": "Le cuesta dormirse; ronca algunas noches.",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:50.959Z"
+      "creado": "2026-10-16T00:23:54.289Z"
     },
     {
       "id": 82,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 82,
       "pregunta_id": "TAM-D-3",
       "texto_original": "A. Sí",
@@ -10374,11 +10374,11 @@
       "valor": "si",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:50.992Z"
+      "creado": "2026-10-16T00:23:54.314Z"
     },
     {
       "id": 83,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 83,
       "pregunta_id": "TAM-D-5",
       "texto_original": "A. Sí",
@@ -10387,11 +10387,11 @@
       "valor": "si",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:51.017Z"
+      "creado": "2026-10-16T00:23:54.335Z"
     },
     {
       "id": 84,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 84,
       "pregunta_id": "RA-C04",
       "texto_original": "Dato de prueba ficticio.",
@@ -10400,11 +10400,11 @@
       "valor": "Dato de prueba ficticio.",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:51.080Z"
+      "creado": "2026-10-16T00:23:54.397Z"
     },
     {
       "id": 85,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 84,
       "pregunta_id": "C04",
       "texto_original": "Necesita apoyo para organizar sus materiales (respuesta ficticia del colegio).",
@@ -10413,11 +10413,11 @@
       "valor": "Necesita apoyo para organizar sus materiales (respuesta ficticia del colegio).",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:51.179Z"
+      "creado": "2026-10-16T00:23:54.474Z"
     },
     {
       "id": 86,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 84,
       "pregunta_id": "D04",
       "texto_original": "A veces me distraigo cuando hay ruido.",
@@ -10426,11 +10426,11 @@
       "valor": "A veces me distraigo cuando hay ruido.",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:51.214Z"
+      "creado": "2026-10-16T00:23:54.521Z"
     },
     {
       "id": 87,
-      "caso_id": "2dab63f4-6803-4dd0-aa5c-5c36d34abc47",
+      "caso_id": "3fa18a7a-9506-4aec-874a-4da5d0e42814",
       "turno": 84,
       "pregunta_id": "D05",
       "texto_original": "Me cuesta terminar las guías.",
@@ -10439,7 +10439,7 @@
       "valor": "Me cuesta terminar las guías.",
       "interprete": "reglas",
       "detalle": null,
-      "creado": "2026-10-16T00:19:51.224Z"
+      "creado": "2026-10-16T00:23:54.535Z"
     }
   ]
 }
