@@ -144,6 +144,7 @@ CREATE TABLE IF NOT EXISTS consentimientos (
   relacion TEXT,                   -- madre | padre | tutor_legal | otro_representante | nna
   medio TEXT NOT NULL,             -- escrito_firmado | electronico | verbal_registrado
   profesional TEXT NOT NULL,
+  acepta_ia_externa INTEGER NOT NULL DEFAULT 0,
   version_politica TEXT NOT NULL,
   revocado TEXT,
   creado TEXT NOT NULL
@@ -185,6 +186,38 @@ CREATE TABLE IF NOT EXISTS referencias_caso (
   UNIQUE(caso_id, referencia)
 );
 
+-- Documentos adjuntos al caso (archivo original en disco, texto extraído y resultado de la extracción)
+CREATE TABLE IF NOT EXISTS documentos (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  caso_id TEXT NOT NULL REFERENCES casos(id),
+  clase TEXT NOT NULL,             -- entrevista_apoderado | informe_escolar | informe_rv | consentimiento | otro
+  nombre TEXT NOT NULL,
+  tipo_mime TEXT,
+  bytes INTEGER NOT NULL,
+  sha256 TEXT NOT NULL,
+  archivo TEXT NOT NULL,           -- ruta relativa dentro de la carpeta de documentos
+  texto TEXT,                      -- texto extraído (seudonimizado)
+  metodo TEXT,                     -- ia | reglas | sin_extraccion
+  extraccion TEXT,                 -- JSON verificado
+  estado TEXT NOT NULL,            -- procesado | guardado | error
+  detalle TEXT,
+  profesional TEXT,
+  creado TEXT NOT NULL
+);
+
+-- Sesiones de realidad virtual recibidas en tiempo real desde el casco (aplicación del proyecto)
+CREATE TABLE IF NOT EXISTS rv_sesiones (
+  id TEXT PRIMARY KEY,
+  caso_id TEXT NOT NULL REFERENCES casos(id),
+  estado TEXT NOT NULL,            -- en_curso | finalizada | cancelada
+  dispositivo TEXT,
+  tarea TEXT,
+  metricas TEXT NOT NULL,          -- JSON: última medición de cada variable
+  eventos INTEGER NOT NULL DEFAULT 0,
+  creado TEXT NOT NULL,
+  actualizado TEXT NOT NULL
+);
+
 CREATE TABLE IF NOT EXISTS informes (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   caso_id TEXT NOT NULL REFERENCES casos(id),
@@ -202,8 +235,16 @@ export function abrirDB(ruta = process.env.DB_PATH || 'data/tdah.sqlite') {
   if (ruta !== ':memory:') fs.mkdirSync(path.dirname(path.resolve(ruta)), { recursive: true });
   const db = new DatabaseSync(ruta);
   db.exec(ESQUEMA);
+  migrar(db);
   db.prepare("INSERT OR IGNORE INTO meta(clave, valor) VALUES ('esquema_version', '1')").run();
   return db;
+}
+
+/** Migraciones aditivas para bases existentes (nunca borran datos). */
+function migrar(db) {
+  const columnas = (t) => db.prepare(`PRAGMA table_info(${t})`).all().map((c) => c.name);
+  if (!columnas('consentimientos').includes('acepta_ia_externa')) db.exec('ALTER TABLE consentimientos ADD COLUMN acepta_ia_externa INTEGER NOT NULL DEFAULT 0');
+  if (!columnas('informes').includes('redaccion')) db.exec('ALTER TABLE informes ADD COLUMN redaccion TEXT');
 }
 
 /** Ejecuta fn dentro de una transacción; revierte ante cualquier error. */

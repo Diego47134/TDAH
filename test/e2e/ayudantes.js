@@ -12,8 +12,8 @@ export function rutaDBTemporal() {
   return path.join(os.tmpdir(), `tdah-e2e-${crypto.randomUUID()}.sqlite`);
 }
 
-export async function iniciarApp({ dbPath = rutaDBTemporal(), buscador } = {}) {
-  const app = crearApp({ dbPath, buscador, tokenAcceso: '' });
+export async function iniciarApp({ dbPath = rutaDBTemporal(), buscador, ia = { habilitada: false } } = {}) {
+  const app = crearApp({ dbPath, buscador, ia, tokenAcceso: '' });
   await new Promise((ok) => app.server.listen(0, '127.0.0.1', ok));
   const base = `http://127.0.0.1:${app.server.address().port}`;
   const req = async (metodo, ruta, cuerpo) => {

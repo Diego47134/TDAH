@@ -8,6 +8,9 @@ import { cargarProtocolo, resumenProtocolo } from './protocolo.js';
 import { crearServicio, ErrorServicio } from './servicio.js';
 import { registrarError } from './expediente.js';
 import { crearControlAcceso } from './acceso.js';
+import { crearClienteIA } from './ia.js';
+import { carpetaDocumentos } from './documentos.js';
+import crypto from 'node:crypto';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PUBLICO = path.join(__dirname, '..', 'public');
@@ -29,14 +32,15 @@ export function completarDatosResponsable(html, env = process.env) {
 const MIME = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8',
   '.webmanifest': 'application/manifest+json', '.json': 'application/json', '.svg': 'image/svg+xml', '.png': 'image/png', '.ico': 'image/x-icon' };
 
-export function crearApp({ dbPath, protocoloPath, buscador, tokenAcceso = process.env.APP_ACCESS_TOKEN,
+export function crearApp({ dbPath, protocoloPath, buscador, ia, rvToken = process.env.RV_DEVICE_TOKEN, tokenAcceso = process.env.APP_ACCESS_TOKEN,
   produccion = process.env.NODE_ENV === 'production', advertencias = [] } = {}) {
   const db = abrirDB(dbPath);
   // En producción (dominio público) la API exige token o clave: sin ellos no expone datos.
   const acceso = crearControlAcceso({ db, tokenEntorno: tokenAcceso || '', produccion });
   if (produccion && tokenAcceso && tokenAcceso.length < 16) advertencias.push('APP_ACCESS_TOKEN es corto; use al menos 16 caracteres aleatorios.');
   const protocolo = cargarProtocolo(protocoloPath);
-  const svc = crearServicio({ db, protocolo, ...(buscador ? { buscador } : {}) });
+  const clienteIA = ia ?? crearClienteIA();
+  const svc = crearServicio({ db, protocolo, ia: clienteIA, carpetaDocs: carpetaDocumentos(dbPath || process.env.DB_PATH), ...(buscador ? { buscador } : {}) });
 
   const rutas = [];
   const on = (metodo, patron, fn) => {
@@ -45,7 +49,7 @@ export function crearApp({ dbPath, protocoloPath, buscador, tokenAcceso = proces
     rutas.push({ metodo, re, claves, fn });
   };
 
-  on('GET', '/api/salud', () => ({ ok: true, protocolo: protocolo.version, protocolo_estado: protocolo.estado, requiere_token: acceso.modo() !== 'abierto', configuracion_inicial_pendiente: acceso.modo() === 'pendiente',
+  on('GET', '/api/salud', () => ({ ok: true, protocolo: protocolo.version, protocolo_estado: protocolo.estado, ia: clienteIA.habilitada ? `${clienteIA.nombre}:${clienteIA.modelo}` : 'no configurada', requiere_token: acceso.modo() !== 'abierto', configuracion_inicial_pendiente: acceso.modo() === 'pendiente',
     entorno: produccion ? 'produccion' : 'desarrollo',
     advertencias: [...advertencias, ...(acceso.modo() === 'pendiente' ? ['Falta crear la clave de acceso (abra la aplicación para configurarla).'] : [])] }));
   on('POST', '/api/configuracion-inicial', (_, b) => acceso.configurar(b.clave));
@@ -69,6 +73,11 @@ export function crearApp({ dbPath, protocoloPath, buscador, tokenAcceso = proces
   on('POST', '/api/casos/:id/nna', (p, b) => svc.responderNNA(p.id, b));
   on('GET', '/api/bibliografia/sugerencias', () => svc.bibliografiaSugerencias());
   on('GET', '/api/bibliografia', (_p, _b, q) => svc.buscarBibliografia({ consulta: q.get('q'), fuente: q.get('fuente') || 'europepmc', cantidad: q.get('n') }));
+  on('POST', '/api/casos/:id/documentos', (p, b) => svc.subirDocumento(p.id, b));
+  on('GET', '/api/casos/:id/documentos/:did/archivo', (p) => ({ __archivo: svc.descargarDocumento(p.id, p.did) }));
+  on('POST', '/api/rv/sesiones', (_p, b) => svc.rvIniciar(b.caso_id || svc.idPorCodigo(b.caso_codigo), b));
+  on('POST', '/api/rv/sesiones/:sid/datos', (p, b) => svc.rvDatos(p.sid, b));
+  on('POST', '/api/rv/sesiones/:sid/finalizar', (p, b) => svc.rvFinalizar(p.sid, b));
   on('POST', '/api/consultas', (_p, b) => svc.preguntar(b));
   on('POST', '/api/casos/:id/consultas/:cid/atendida', (p, b) => svc.marcarConsultaAtendida(p.id, p.cid, b));
   on('POST', '/api/casos/:id/referencias', (p, b) => svc.agregarReferencia(p.id, b));
@@ -93,7 +102,10 @@ export function crearApp({ dbPath, protocoloPath, buscador, tokenAcceso = proces
       if (!libre && modo === 'pendiente') {
         return enviar(res, 503, { error: 'La aplicación aún no tiene clave de acceso. Ábrala en el navegador para crearla.', configuracion_inicial: true });
       }
-      if (!libre && (modo === 'entorno' || modo === 'clave')) {
+      // El casco de realidad virtual se autentica con su propio token y solo accede a /api/rv/*.
+      const tokRV = String(req.headers['x-rv-token'] || '');
+      const esCasco = url.pathname.startsWith('/api/rv/') && rvToken && tokRV.length === rvToken.length && crypto.timingSafeEqual(Buffer.from(tokRV), Buffer.from(rvToken));
+      if (!libre && !esCasco && (modo === 'entorno' || modo === 'clave')) {
         const t = (req.headers.authorization || '').replace(/^Bearer\s+/i, '');
         const ip = String(req.headers['x-forwarded-for'] || req.socket.remoteAddress || '').split(',')[0].trim();
         const v = acceso.verificar(t, ip);
@@ -108,11 +120,18 @@ export function crearApp({ dbPath, protocoloPath, buscador, tokenAcceso = proces
         let body = {};
         if (['POST', 'PUT', 'DELETE'].includes(req.method)) {
           const chunks = []; let n = 0;
-          for await (const c of req) { n += c.length; if (n > 2_000_000) throw new ErrorServicio(413, 'Cuerpo demasiado grande.'); chunks.push(c); }
+          const limite = /\/documentos$/.test(url.pathname) ? 22_000_000 : 2_000_000;
+          for await (const c of req) { n += c.length; if (n > limite) throw new ErrorServicio(413, 'Cuerpo demasiado grande.'); chunks.push(c); }
           const raw = Buffer.concat(chunks).toString('utf8');
           try { body = raw ? JSON.parse(raw) : {}; } catch { throw new ErrorServicio(400, 'JSON inválido.'); }
         }
         const out = await r.fn(params, body, url.searchParams);
+        if (out && out.__archivo) {
+          const a = out.__archivo;
+          res.writeHead(200, { 'content-type': a.tipo_mime || 'application/octet-stream', 'cache-control': 'no-store',
+            'content-disposition': `attachment; filename*=UTF-8''${encodeURIComponent(a.nombre)}` });
+          return res.end(a.contenido);
+        }
         return enviar(res, req.method === 'POST' && r.re.source.includes('casos$') ? 201 : 200, out);
       } catch (e) {
         if (e instanceof ErrorServicio) return enviar(res, e.status, { error: e.message, detalle: e.detalle ?? null });

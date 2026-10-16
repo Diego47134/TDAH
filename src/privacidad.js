@@ -22,7 +22,7 @@ export function validarConsentimiento(c) {
   if (!RELACIONES.includes(c.relacion)) throw new ErrorConsentimiento(`Relación con el niño, niña o adolescente no válida (${RELACIONES.join(', ')}).`);
   if (!MEDIOS.includes(c.medio)) throw new ErrorConsentimiento(`Medio de consentimiento no válido (${MEDIOS.join(', ')}).`);
   return { tipo: 'tratamiento_datos', otorgante: otorgante.slice(0, 160), relacion: c.relacion, medio: c.medio, profesional: profesional.slice(0, 120),
-    version_politica: VERSION_POLITICA };
+    acepta_ia_externa: c.acepta_ia_externa === true, version_politica: VERSION_POLITICA };
 }
 
 /** Asentimiento del niño, niña o adolescente (derecho a ser oído e informado; Ley 21.331 art. 25). */
@@ -34,4 +34,6 @@ export function validarAsentimiento(a) {
     profesional: profesional.slice(0, 120), version_politica: VERSION_POLITICA };
 }
 
+/** ¿Autorizó el representante el procesamiento de documentos y respuestas por el proveedor externo de IA? */
+export const permiteIA = (ctx) => (ctx.consentimientos || []).some((c) => c.tipo === 'tratamiento_datos' && c.acepta_ia_externa && !c.revocado);
 export const tieneAsentimiento = (ctx) => (ctx.consentimientos || []).some((c) => c.tipo === 'asentimiento_nna' && !c.revocado);

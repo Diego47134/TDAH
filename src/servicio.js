@@ -1,3 +1,4 @@
+import crypto from 'node:crypto';
 // Backend de control del flujo de evaluación. Orquesta motor, validador, intérprete,
 // persistencia y auditoría. El software controla estado y transiciones.
 import * as X from './expediente.js';
@@ -13,7 +14,11 @@ import { evaluarRequisitos, generarInforme, markdownAHtml } from './informe.js';
 import { integrar } from './integracion.js';
 import { crearBuscador, ErrorBusqueda, SUGERIDAS, FUENTES, validarConsulta } from './bibliografia.js';
 import { crearConsultas } from './consultas.js';
-import { validarConsentimiento, validarAsentimiento, tieneAsentimiento, ErrorConsentimiento, VERSION_POLITICA } from './privacidad.js';
+import { CLASES, MAX_BYTES, ErrorDocumento, carpetaDocumentos, extraerTexto, guardarArchivo, leerArchivo } from './documentos.js';
+import { esquemaPara, verificarExtraccion } from './extraccion.js';
+import { seudonimizar, nombresDelCaso } from './anonimizar.js';
+import { VARIABLES_RV, validarMetricas } from './rv.js';
+import { validarConsentimiento, validarAsentimiento, tieneAsentimiento, permiteIA, ErrorConsentimiento, VERSION_POLITICA } from './privacidad.js';
 
 export class ErrorServicio extends Error {
   constructor(status, mensaje, detalle) { super(mensaje); this.status = status; this.detalle = detalle; }
@@ -25,7 +30,7 @@ const vistaPregunta = (q, extra = {}) => ({
   objetivo: q.objetivo, ...extra,
 });
 
-export function crearServicio({ db, protocolo, buscador = crearBuscador() }) {
+export function crearServicio({ db, protocolo, buscador = crearBuscador(), ia = { habilitada: false }, carpetaDocs = carpetaDocumentos(null) }) {
   const P = protocolo;
   const ctxDe = (id, fuente = 'apoderado') => {
     const c = X.contexto(db, P, id);
@@ -114,8 +119,37 @@ export function crearServicio({ db, protocolo, buscador = crearBuscador() }) {
     return reg;
   }
 
-  function interpretar(q, r) {
-    try { return interpretarRespuesta(q, r); } catch (e) { if (e instanceof ErrorEntrada) throw new ErrorServicio(400, e.message); throw e; }
+  async function interpretar(q, r, ctx) {
+    let res;
+    try { res = interpretarRespuesta(q, r); } catch (e) { if (e instanceof ErrorEntrada) throw new ErrorServicio(400, e.message); throw e; }
+    let errorIA = null; let interprete = 'reglas';
+    const textoLibre = r.texto && !r.opcion && !r.opciones && !r.tipo;
+    if (ia?.habilitada && permiteIA(ctx) && textoLibre && ['presencia', 'opciones'].includes(q.tipo)) {
+      try {
+        const s = await ia.interpretarRespuesta({ pregunta: q, texto: seudonimizar(r.texto, nombresDelCaso(ctx)) });
+        if (s.codigo) { res = interpretarRespuesta(q, { opcion: s.codigo, texto: r.texto }); interprete = 'ia'; }
+      } catch (e) { errorIA = { mensaje: e.message, detalle: e.detalle }; }
+    }
+    return { res, interprete: errorIA ? 'reglas (contingencia)' : interprete, errorIA };
+  }
+
+  /** Incorpora hechos del informe escolar (por reglas, IA verificada o carga manual). */
+  function incorporarInformeEscolar(casoId, { texto, extraidos, metodo, documento = null, datos = [], puntajes = [] }) {
+    const ctx0 = ctxDe(casoId);
+    return transaccion(db, () => {
+      db.prepare('INSERT INTO informes_escolares (caso_id, texto, extraccion, metodo, creado) VALUES (?, ?, ?, ?, ?)')
+        .run(casoId, String(texto || '(extracción estructurada)'), JSON.stringify({ hechos: extraidos, documento, datos, puntajes }), metodo, ahora());
+      for (const h of extraidos) {
+        X.agregarHecho(db, P, casoId, { ...h, estado: 'valor', fuente: 'informe_escolar', origen: documento ? `extraccion:${documento.clase}` : 'extraccion', categorico: h.slot !== 'desde' });
+      }
+      for (const d of datos) {
+        X.agregarHecho(db, P, casoId, { dimension_id: 'INF', slot: d.dato, estado: 'valor', valor: d.dato === 'impacto_academico' ? 'si' : d.valor, fuente: 'informe_escolar', origen: documento ? `extraccion:${documento.clase}` : 'extraccion', evidencia: d.evidencia });
+      }
+      const disc = detectarDiscrepancias(casoId, ctx0.caso.turno);
+      X.registrarDecision(db, casoId, ctx0.caso.turno, 'informe_escolar_cargado', { metodo, clase: documento?.clase || null, instrumento: documento?.instrumento || null, hechos: extraidos.length, datos: datos.length, puntajes: puntajes.length, sintomas: [...new Set(extraidos.map((h) => h.dimension_id))], discrepancias: disc.length });
+      const resultado = revalidarActual(casoId);
+      return { extraidos, metodo, documento, contradicciones: disc, resultado, vista: api.vista(casoId) };
+    });
   }
 
   // ------------------------------------------------------------ API ---
@@ -153,6 +187,8 @@ export function crearServicio({ db, protocolo, buscador = crearBuscador() }) {
         hechos: ctx.hechos, contradicciones: ctx.contradicciones, informes_escolares: ctx.informesEscolares,
         evaluaciones: ctx.evaluaciones, instrumentos: P.instrumentos, requisitos: req, informes,
         consentimientos: ctx.consentimientos, version_politica: VERSION_POLITICA, referencias: ctx.referencias, consultas: ctx.consultas,
+        documentos: ctx.documentos, clases_documento: CLASES, ia: { habilitada: Boolean(ia?.habilitada), autorizada: permiteIA(ctx), proveedor: ia?.nombre || null, pais: ia?.pais || null },
+        rv_sesiones: db.prepare('SELECT * FROM rv_sesiones WHERE caso_id = ? ORDER BY creado').all(casoId).map((s) => ({ ...s, metricas: JSON.parse(s.metricas) })),
         colegio: ini ? api.colegioPendiente(casoId, ctx) : null,
         nna: ini ? api.nnaEstado(casoId, ctx) : null,
         flujo: flujo(ctx, req, informes),
@@ -169,13 +205,16 @@ export function crearServicio({ db, protocolo, buscador = crearBuscador() }) {
       }
       texto = String(texto ?? '').slice(0, 4000);
       const q = P.preguntas.get(actual.id);
-      const res = interpretar(q, { opcion, opciones, texto, tipo });
-      const interprete = 'reglas';
+      const { res, interprete, errorIA } = await interpretar(q, { opcion, opciones, texto, tipo }, ctx0);
 
       return transaccion(db, () => {
         const ctx = ctxDe(casoId);
         if (ctx.caso.turno !== actual.turno) throw new ErrorServicio(409, 'El caso cambió mientras se procesaba la respuesta; recargue.');
         const antes = resumenEstado(ctx);
+        if (errorIA) {
+          X.registrarError(db, casoId, 'api_ia', errorIA.mensaje, errorIA.detalle);
+          X.registrarDecision(db, casoId, actual.turno, 'error_api_ia', { mensaje: errorIA.mensaje, accion: 'Se usó el intérprete de reglas (contingencia).' });
+        }
         const original = texto || (res.codigos || [res.codigo || opcion]).filter(Boolean).map((c) => `${c}. ${q.opciones?.find((o) => o.codigo === c)?.texto ?? ''}`).join('; ') || tipo || '';
         const respuestaId = X.registrarRespuesta(db, casoId, actual.turno, {
           pregunta_id: q.id, texto_original: original, tipo_declarado: tipo || (opcion ? `opcion:${opcion}` : opciones ? `opciones:${opciones.join(',')}` : null),
@@ -197,11 +236,12 @@ export function crearServicio({ db, protocolo, buscador = crearBuscador() }) {
         return {
           traza: {
             entrada: { pregunta_id: q.id, pregunta: q.texto, respuesta: original, opcion: opcion || null, opciones: opciones || null },
-            interpretacion: { clasificacion: res.clasificacion, estado_dato: res.estado, valor: res.valor, menciones },
+            interpretacion: { clasificacion: res.clasificacion, estado_dato: res.estado, valor: res.valor, interprete, menciones },
             estado_antes: antes,
             decision_motor: resultado.accion === 'preguntar' ? { accion: 'preguntar', pregunta_id: resultado.pregunta.id, justificacion: resultado.pregunta.justificacion } : resultado,
             pregunta_resultante: resultado.pregunta?.texto ?? null,
             estado_despues: resumenEstado(ctxF),
+            error_api: errorIA?.mensaje || null,
             contradiccion: contradiccion || discrepancias[0] || null,
           },
           vista: api.vista(casoId),
@@ -212,23 +252,138 @@ export function crearServicio({ db, protocolo, buscador = crearBuscador() }) {
     async cargarInformeEscolar(casoId, { texto = '', hechos } = {}) {
       const ctx0 = ctxDe(casoId);
       if (!String(texto).trim() && !hechos) throw new ErrorServicio(400, 'Debe enviar el texto del informe o una extracción estructurada.');
-      let extraidos; let metodo;
       if (hechos) {
+        let extraidos;
         try { extraidos = validarExtraccionManual(P, hechos); } catch (e) { throw new ErrorServicio(400, e.message); }
-        metodo = 'estructurada_manual';
-      } else { extraidos = extraerPorReglas(P, texto); metodo = 'reglas'; }
-      return transaccion(db, () => {
-        db.prepare('INSERT INTO informes_escolares (caso_id, texto, extraccion, metodo, creado) VALUES (?, ?, ?, ?, ?)')
-          .run(casoId, String(texto || '(extracción estructurada)'), JSON.stringify(extraidos), metodo, ahora());
-        for (const h of extraidos) {
-          X.agregarHecho(db, P, casoId, { ...h, estado: 'valor', fuente: 'informe_escolar', origen: 'extraccion', categorico: h.slot !== 'desde' });
+        return incorporarInformeEscolar(casoId, { texto, extraidos, metodo: 'estructurada_manual' });
+      }
+      return incorporarInformeEscolar(casoId, { texto, extraidos: extraerPorReglas(P, texto), metodo: 'reglas' });
+    },
+
+    // ---------------------------------------------------- documentos adjuntos ---
+    async subirDocumento(casoId, { nombre, contenido_base64, clase = 'otro', ocultar = [], profesional } = {}) {
+      const ctx = ctxDe(casoId);
+      if (!CLASES[clase]) throw new ErrorServicio(400, 'Tipo de documento no válido.');
+      if (!String(nombre || '').trim() || !contenido_base64) throw new ErrorServicio(400, 'Adjunte un archivo.');
+      const buf = Buffer.from(String(contenido_base64), 'base64');
+      if (!buf.length) throw new ErrorServicio(400, 'El archivo está vacío.');
+      if (buf.length > MAX_BYTES) throw new ErrorServicio(413, 'El archivo supera los 15 MB.');
+      let ext;
+      try { ext = await extraerTexto(buf, nombre); } catch (e) { if (e instanceof ErrorDocumento) throw new ErrorServicio(e.status, e.message); throw e; }
+      const guardado = guardarArchivo(carpetaDocs, casoId, nombre, buf);
+      const texto = seudonimizar(ext.texto, nombresDelCaso(ctx, Array.isArray(ocultar) ? ocultar : String(ocultar).split(',')));
+      const usarIA = ia?.habilitada && permiteIA(ctx) && ['entrevista_apoderado', 'informe_escolar', 'informe_rv'].includes(clase) && !ext.advertencia;
+      let verif = null; let metodo = 'sin_extraccion'; let detalle = ext.advertencia; let errorIA = null;
+      if (usarIA) {
+        try {
+          const salida = await ia.extraerDocumento({ tipo: clase, texto: texto.slice(0, 60000), esquema: esquemaPara(P, clase) });
+          verif = verificarExtraccion(P, clase, salida, texto); metodo = 'ia';
+        } catch (e) { errorIA = e; }
+      }
+      if (!verif && clase === 'informe_escolar' && !ext.advertencia) {
+        verif = { documento: { clase: 'informe_general' }, respuestas: [], hechos: extraerPorReglas(P, texto), datos: [], puntajes: [], rv: { variables: [], limitaciones: [] }, descartados: [] };
+        metodo = errorIA ? 'reglas (contingencia)' : 'reglas';
+      }
+      if (!verif && !detalle) {
+        detalle = clase === 'entrevista_apoderado' || clase === 'informe_rv'
+          ? (errorIA ? `No fue posible procesar el documento con IA (${errorIA.message}); quedó guardado para revisión manual.` : 'Documento guardado. Para extraer sus datos automáticamente se requiere IA habilitada y autorizada en el consentimiento.')
+          : 'Documento guardado.';
+      }
+      let aplicado = { respuestas: 0, hechos: 0, rv: 0 };
+      const docId = transaccion(db, () => {
+        if (errorIA) X.registrarError(db, casoId, 'api_ia', errorIA.message, errorIA.detalle);
+        const r = db.prepare(`INSERT INTO documentos (caso_id, clase, nombre, tipo_mime, bytes, sha256, archivo, texto, metodo, extraccion, estado, detalle, profesional, creado)
+                              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`)
+          .run(casoId, clase, String(nombre).slice(0, 200), ext.tipo_mime, guardado.bytes, guardado.sha256, guardado.archivo, texto, metodo,
+            verif ? JSON.stringify({ ...verif, respuestas: verif.respuestas.map((x) => ({ pregunta_id: x.q.id, valor: x.res.valor, estado: x.res.estado, evidencia: x.evidencia })) }) : null,
+            verif ? 'procesado' : 'guardado', detalle || null, String(profesional || '').slice(0, 120) || null, ahora());
+        const id = Number(r.lastInsertRowid);
+        if (verif && clase === 'entrevista_apoderado') {
+          const t = ctxDe(casoId).caso.turno;
+          for (const { q, res, evidencia } of verif.respuestas) {
+            if (X.hechos(db, casoId).some((h) => h.dimension_id === q.objetivo[0] && h.slot === q.objetivo[1] && h.fuente === 'apoderado')) continue; // no sobrescribe lo ya respondido
+            const rid = X.registrarRespuesta(db, casoId, t, { pregunta_id: q.id, texto_original: evidencia, tipo_declarado: 'documento', clasificacion: res.clasificacion, valor: res.valor, interprete: 'ia-documento' });
+            X.agregarHecho(db, P, casoId, { dimension_id: q.objetivo[0], slot: q.objetivo[1], estado: res.estado, valor: res.valor, fuente: 'apoderado', origen: 'documento', evidencia, respuesta_id: rid, pregunta_id: q.id, categorico: q.tipo !== 'abierta' });
+            aplicado.respuestas++;
+          }
+          for (const d of verif.datos) X.agregarHecho(db, P, casoId, { dimension_id: 'DOC', slot: d.dato, estado: 'valor', valor: d.valor, fuente: 'apoderado', origen: 'documento', evidencia: d.evidencia });
+          detectarDiscrepancias(casoId, t);
         }
-        const disc = detectarDiscrepancias(casoId, ctx0.caso.turno);
-        X.registrarDecision(db, casoId, ctx0.caso.turno, 'informe_escolar_cargado', { metodo, hechos: extraidos.length, sintomas: [...new Set(extraidos.map((h) => h.dimension_id))], discrepancias: disc.length });
-        const resultado = revalidarActual(casoId);
-        return { extraidos, metodo, contradicciones: disc, resultado, vista: api.vista(casoId) };
+        if (verif && clase === 'informe_rv' && verif.rv.variables.length) {
+          const inst = /nesplora|aula/i.test(verif.documento.instrumento || '') ? 'NESPLORA' : 'RV';
+          db.prepare(`INSERT INTO evaluaciones (caso_id, instrumento_id, estado, fecha, aplicador, resultados, observaciones, actualizado) VALUES (?, ?, 'realizada', ?, ?, ?, ?, ?)
+                      ON CONFLICT(caso_id, instrumento_id) DO UPDATE SET estado = 'realizada', fecha = excluded.fecha, resultados = excluded.resultados, observaciones = excluded.observaciones, actualizado = excluded.actualizado`)
+            .run(casoId, inst, verif.documento.fecha || ahora().slice(0, 10), verif.documento.autor || null,
+              JSON.stringify({ variables: verif.rv.variables, limitaciones: verif.rv.limitaciones, documento: verif.documento, documento_id: id }),
+              `Extraído del documento «${String(nombre).slice(0, 80)}»${verif.rv.limitaciones.length ? `. Limitaciones: ${verif.rv.limitaciones.join('; ')}` : ''}`, ahora());
+          aplicado.rv = verif.rv.variables.length;
+        }
+        X.registrarDecision(db, casoId, ctxDe(casoId).caso.turno, 'documento_subido', { id, clase, metodo, sha256: guardado.sha256, descartados: verif?.descartados.length || 0, aplicado });
+        return id;
+      });
+      let resultado = null;
+      if (verif && clase === 'informe_escolar') {
+        resultado = incorporarInformeEscolar(casoId, { texto, extraidos: verif.hechos, metodo, documento: verif.documento, datos: verif.datos, puntajes: verif.puntajes });
+        aplicado.hechos = verif.hechos.length;
+      } else if (verif && clase === 'entrevista_apoderado') {
+        transaccion(db, () => revalidarActual(casoId));
+      }
+      return { id: docId, metodo, detalle, aplicado, descartados: verif?.descartados || [], documento: verif?.documento || null, vista: resultado?.vista || api.vista(casoId) };
+    },
+
+    descargarDocumento(casoId, docId) {
+      ctxDe(casoId);
+      const d = db.prepare('SELECT * FROM documentos WHERE id = ? AND caso_id = ?').get(Number(docId), casoId);
+      if (!d) throw new ErrorServicio(404, 'Documento no encontrado.');
+      return { nombre: d.nombre, tipo_mime: d.tipo_mime, contenido: leerArchivo(carpetaDocs, d.archivo) };
+    },
+
+    // ---------------------------------- realidad virtual en tiempo real (casco) ---
+    idPorCodigo(codigo) {
+      const c = db.prepare('SELECT id FROM casos WHERE codigo = ?').get(String(codigo || '').trim().toUpperCase());
+      if (!c) throw new ErrorServicio(404, 'Caso no encontrado (indique caso_id o caso_codigo, p. ej. CASO-0001).');
+      return c.id;
+    },
+
+    rvIniciar(casoId, { dispositivo, tarea } = {}) {
+      const ctx = ctxDe(casoId);
+      const id = crypto.randomUUID();
+      const t = ahora();
+      db.prepare("INSERT INTO rv_sesiones (id, caso_id, estado, dispositivo, tarea, metricas, eventos, creado, actualizado) VALUES (?, ?, 'en_curso', ?, ?, '{}', 0, ?, ?)")
+        .run(id, casoId, String(dispositivo || '').slice(0, 80) || null, String(tarea || '').slice(0, 80) || null, t, t);
+      X.registrarDecision(db, casoId, ctx.caso.turno, 'rv_sesion_iniciada', { sesion: id, dispositivo: dispositivo || null, tarea: tarea || null });
+      return { sesion_id: id, variables: VARIABLES_RV };
+    },
+
+    rvDatos(sesionId, { metricas = {}, eventos = 0 } = {}) {
+      const s = db.prepare('SELECT * FROM rv_sesiones WHERE id = ?').get(String(sesionId));
+      if (!s) throw new ErrorServicio(404, 'Sesión de realidad virtual no encontrada.');
+      if (s.estado !== 'en_curso') throw new ErrorServicio(409, 'La sesión ya terminó.');
+      let m;
+      try { m = validarMetricas(metricas); } catch (e) { throw new ErrorServicio(400, e.message); }
+      const actual = { ...JSON.parse(s.metricas), ...m };
+      db.prepare('UPDATE rv_sesiones SET metricas = ?, eventos = eventos + ?, actualizado = ? WHERE id = ?').run(JSON.stringify(actual), Math.max(0, Number(eventos) || 0), ahora(), s.id);
+      return { ok: true, metricas: actual };
+    },
+
+    rvFinalizar(sesionId, { limitaciones = [], profesional } = {}) {
+      const s = db.prepare('SELECT * FROM rv_sesiones WHERE id = ?').get(String(sesionId));
+      if (!s) throw new ErrorServicio(404, 'Sesión de realidad virtual no encontrada.');
+      if (s.estado !== 'en_curso') throw new ErrorServicio(409, 'La sesión ya terminó.');
+      const met = JSON.parse(s.metricas);
+      const variables = Object.entries(met).map(([k, v]) => ({ variable: VARIABLES_RV.find((x) => x.id === k)?.nombre || k, id: k, resultado: v.valor != null ? `${v.valor}${v.unidad ? ` ${v.unidad}` : ''}` : '', interpretacion_del_documento: v.interpretacion || '', percentil: v.percentil ?? null }));
+      return transaccion(db, () => {
+        db.prepare("UPDATE rv_sesiones SET estado = 'finalizada', actualizado = ? WHERE id = ?").run(ahora(), s.id);
+        db.prepare(`INSERT INTO evaluaciones (caso_id, instrumento_id, estado, fecha, aplicador, resultados, observaciones, actualizado) VALUES (?, 'RV', 'realizada', ?, ?, ?, ?, ?)
+                    ON CONFLICT(caso_id, instrumento_id) DO UPDATE SET estado = 'realizada', fecha = excluded.fecha, aplicador = excluded.aplicador, resultados = excluded.resultados, observaciones = excluded.observaciones, actualizado = excluded.actualizado`)
+          .run(s.caso_id, ahora().slice(0, 10), String(profesional || '').slice(0, 120) || null,
+            JSON.stringify({ variables, limitaciones: (Array.isArray(limitaciones) ? limitaciones : []).map(String), sesion_id: s.id, dispositivo: s.dispositivo, tarea: s.tarea, eventos: s.eventos }),
+            `Sesión de realidad virtual en tiempo real (${s.dispositivo || 'casco'}${s.tarea ? `, tarea ${s.tarea}` : ''}).`, ahora());
+        X.registrarDecision(db, s.caso_id, ctxDe(s.caso_id).caso.turno, 'rv_sesion_finalizada', { sesion: s.id, variables: variables.length, eventos: s.eventos });
+        return api.vista(s.caso_id);
       });
     },
+
 
     cambiarRuta(casoId, { ruta: nueva, motivo }) {
       if (!['con_informe', 'completa'].includes(nueva)) throw new ErrorServicio(400, 'Ruta no válida.');
@@ -463,6 +618,16 @@ export function crearServicio({ db, protocolo, buscador = crearBuscador() }) {
       if (caso_id) ctxDe(caso_id);
       let r;
       try { r = await consultas.responder({ pregunta, quien, pregunta_id }); } catch (e) { if (e.status) throw new ErrorServicio(e.status, e.message); throw e; }
+      // Redacción en español a partir de las fuentes encontradas (sin agregar información).
+      const ctxC = caso_id ? ctxDe(caso_id) : null;
+      if (ia?.habilitada && (!ctxC || permiteIA(ctxC)) && ['app', 'internet'].includes(r.origen) && r.respuestas.length) {
+        const fragmentos = r.respuestas.map((x, i) => ({ n: i + 1, texto: x.cita || `${x.titulo}: ${x.texto}`, fuente: x.articulo ? `${x.articulo.titulo} (${x.articulo.revista || ''} ${x.articulo.anio || ''})` : x.fuente }));
+        try {
+          const s = await ia.redactarRespuesta({ pregunta: seudonimizar(pregunta, ctxC ? nombresDelCaso(ctxC) : []), publico: quien, fragmentos });
+          const citas = (Array.isArray(s.citas) ? s.citas : []).map(Number).filter((n) => n >= 1 && n <= fragmentos.length);
+          if (typeof s.respuesta === 'string' && s.respuesta.trim() && s.suficiente !== false && citas.length) r = { ...r, redactada: s.respuesta.trim().slice(0, 2000), citas };
+        } catch (e) { X.registrarError(db, caso_id || null, 'api_ia', e.message, e.detalle); }
+      }
       return transaccion(db, () => {
         const id = Number(db.prepare('INSERT INTO consultas (caso_id, quien, pregunta, pregunta_id, origen, respuesta, creado) VALUES (?, ?, ?, ?, ?, ?, ?)')
           .run(caso_id || null, quien, String(pregunta).trim().slice(0, 300), pregunta_id || null, r.origen, JSON.stringify(r), ahora()).lastInsertRowid);

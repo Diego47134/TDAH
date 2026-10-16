@@ -51,7 +51,11 @@ export function contradicciones(db, casoId) {
 
 export function informesEscolares(db, casoId) {
   return db.prepare('SELECT * FROM informes_escolares WHERE caso_id = ? ORDER BY id').all(casoId)
-    .map((r) => ({ ...r, extraccion: parse(r.extraccion) }));
+    .map((r) => {
+      const ex = parse(r.extraccion);
+      return Array.isArray(ex) ? { ...r, extraccion: ex, documento: null, datos: [], puntajes: [] }
+        : { ...r, extraccion: ex?.hechos || [], documento: ex?.documento || null, datos: ex?.datos || [], puntajes: ex?.puntajes || [] };
+    });
 }
 
 export function evaluaciones(db, casoId) {
@@ -153,6 +157,7 @@ export function contexto(db, protocolo, casoId) {
     evaluaciones: evaluaciones(db, casoId),
     consentimientos: consentimientos(db, casoId),
     referencias: referenciasCaso(db, casoId),
+    documentos: db.prepare('SELECT id, clase, nombre, tipo_mime, bytes, sha256, metodo, estado, detalle, profesional, creado, extraccion FROM documentos WHERE caso_id = ? ORDER BY id').all(casoId).map((d) => ({ ...d, extraccion: d.extraccion ? JSON.parse(d.extraccion) : null })),
     consultas: db.prepare('SELECT * FROM consultas WHERE caso_id = ? ORDER BY id').all(casoId).map((c) => ({ ...c, respuesta: JSON.parse(c.respuesta) })),
   };
 }
@@ -164,12 +169,12 @@ export function referenciasCaso(db, casoId) {
 
 export function consentimientos(db, casoId) {
   return db.prepare('SELECT * FROM consentimientos WHERE caso_id = ? ORDER BY id').all(casoId)
-;
+    .map((c) => ({ ...c, acepta_ia_externa: Boolean(c.acepta_ia_externa) }));
 }
 
 export function registrarConsentimiento(db, casoId, c) {
-  const r = db.prepare(`INSERT INTO consentimientos (caso_id, tipo, otorgante, relacion, medio, profesional, version_politica, creado)
-                        VALUES (?, ?, ?, ?, ?, ?, ?, ?)`)
-    .run(casoId, c.tipo, c.otorgante, c.relacion ?? null, c.medio, c.profesional, c.version_politica, ahora());
+  const r = db.prepare(`INSERT INTO consentimientos (caso_id, tipo, otorgante, relacion, medio, profesional, acepta_ia_externa, version_politica, creado)
+                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`)
+    .run(casoId, c.tipo, c.otorgante, c.relacion ?? null, c.medio, c.profesional, c.acepta_ia_externa ? 1 : 0, c.version_politica, ahora());
   return Number(r.lastInsertRowid);
 }

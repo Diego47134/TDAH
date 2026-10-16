@@ -1,6 +1,7 @@
 // Integración y contraste diagnóstico (Etapa 4, Etapa 5 y Etapa 9 §14–21, §28).
 // Todo se calcula desde el expediente; nada se completa por inferencia. El resultado es una
 // hipótesis estructurada: la decisión clínica final corresponde al profesional.
+import { analizarRV } from './rv.js';
 import {
   evaluarSintomas, estadoSlot, estadoPregunta, edad, etapaEvolutiva, estadoBarrido, estadoTamizaje, ruta, INCIERTOS,
 } from './motor.js';
@@ -116,6 +117,8 @@ export function integrar(ctx) {
     perfiles: perfiles(ctx, sintomas, areas, recursos), inferencias: inferencias(ctx, areas),
     sugerencias: sugerencias(ctx, areas, recursos, tam), barrido: bar, tamizaje: tam,
     auditoria: auditoria(ctx, sintomas, R), informacionFaltante: faltante(ctx, sintomas, R),
+    realidadVirtual: analizarRV(ctx.evaluaciones, sintomas),
+    fuentesDocumentales: fuentesDocumentales(ctx),
   };
 }
 
@@ -215,4 +218,15 @@ function faltante(ctx, sintomas, R) {
     if (INCIERTOS.includes(st.estado)) L.push({ que: ctx.protocolo.preguntas.get(q).texto + ' → no sabe / no recuerda', relevancia: 'RELEVANTE NO CRÍTICA', porque: 'Información histórica no disponible: no se transforma en «no ocurrió» (Etapa 5 §19).' });
   }
   return L;
+}
+
+/** Calidad de la evidencia por fuente documental (no todos los documentos tienen el mismo alcance). */
+function fuentesDocumentales(ctx) {
+  const ETQ = { escala_estandarizada: 'Escala estandarizada', observacion_narrativa: 'Observación narrativa', informe_general: 'Informe general', entrevista_apoderado: 'Entrevista al apoderado (documento)', informe_rv: 'Informe de realidad virtual', otro: 'Otro documento' };
+  return (ctx.informesEscolares || []).map((i) => {
+    const doc = i.documento;
+    return { metodo: i.metodo, clase: doc?.clase || 'informe_general', clase_texto: ETQ[doc?.clase] || 'Informe general', instrumento: doc?.instrumento || null, autor: doc?.autor || null, fecha: doc?.fecha || null,
+      puntajes: i.puntajes || [], datos: i.datos || [],
+      alcance: doc?.clase === 'escala_estandarizada' ? 'Resultado normado del instrumento; se interpreta según su manual.' : doc?.clase === 'observacion_narrativa' ? 'Impresión cualitativa del docente; no equivale a un resultado estandarizado.' : 'Información general del establecimiento.' };
+  });
 }
