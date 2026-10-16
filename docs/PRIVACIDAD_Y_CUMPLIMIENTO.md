@@ -17,6 +17,7 @@ Revisión al 15-10-2026. Este documento resume cómo la plataforma aborda la nor
 - **Consentimiento informado del representante legal** (`POST /api/casos` con `consentimiento`): otorgante, relación (madre, padre, tutor legal, otro representante legal), medio (escrito firmado, electrónico, verbal registrado), profesional y versión de la política. Sin él, el caso no se crea (prueba L1).
 - **Asentimiento del niño, niña o adolescente** (`POST /api/casos/:id/nna` con `asentimiento`) antes de su entrevista (prueba A7).
 - **Sin servicios externos de procesamiento**: todas las respuestas se interpretan en el servidor de la aplicación; los datos no se envían a terceros.
+- **Preguntas a la app**: cuando la app no tiene respuesta propia, busca automáticamente en Europe PMC. No envía el texto de la pregunta: solo términos clínicos reconocidos por un diccionario fijo (p. ej. «melatonina» → «melatonin»), de modo que nombres u otros datos escritos por el usuario nunca salen del servidor (prueba Q2).
 - **Búsqueda bibliográfica en internet** (Europe PMC y PubMed): solo salen los términos que escribe el profesional; se rechazan búsquedas con RUT, correo o teléfono (prueba B2).
 - **Derecho de acceso y portabilidad**: exportación íntegra en JSON, registrada en la auditoría (prueba L2).
 - **Avisos legales**: `/privacidad.html` y `/terminos.html`, enlazados en la interfaz y en el formulario de consentimiento; sección «Consentimiento, confidencialidad y alcance» en todo informe (prueba L3).

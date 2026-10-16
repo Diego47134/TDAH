@@ -194,3 +194,13 @@ mark.pendiente { background: var(--ambar-suave); color: var(--ambar); padding: 0
 #fbib .fila { flex-wrap: wrap; }
 #fbib .fila select { width: auto; flex: 0 1 260px; }
 #fbib .fila .boton { flex: 0 0 auto; }
+
+/* Preguntas a la app */
+details.duda { margin-top: 10px; }
+details.duda summary { cursor: pointer; color: var(--acento); font-size: .9rem; }
+.caja-pregunta { margin-top: 8px; }
+.respuesta-app .resp { margin-top: 10px; padding: 10px 12px; border-left: 3px solid var(--acento); background: var(--papel); border-radius: 0 8px 8px 0; }
+.respuesta-app .resp.sin { border-left-color: var(--ambar); background: var(--ambar-suave); }
+.respuesta-app .resp p { margin: 6px 0; }
+.respuesta-app .etq { font-size: .72rem; text-transform: uppercase; letter-spacing: .05em; color: var(--tenue); margin-bottom: 4px; }
+.respuesta-app blockquote { margin: 8px 0 4px; padding: 0 0 0 10px; border-left: 2px solid var(--linea); font-style: italic; }

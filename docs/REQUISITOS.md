@@ -52,6 +52,7 @@ Estado al 15-10-2026, protocolo vigente 1.0.0 (generado desde los tres documento
 | ✅ | Asentimiento del niño, niña o adolescente antes de su entrevista | A7 |
 | ✅ | Derecho de acceso y portabilidad | L2 |
 | ✅ | Búsqueda de evidencia en internet sin enviar datos del paciente; referencias en el informe | B1–B4 |
+| ✅ | Preguntas del profesional y del apoderado: respuesta propia y, si no la hay, búsqueda automática en internet con citas textuales | Q1–Q4 |
 | ✅ | Política de privacidad, términos de uso y aviso en el informe | L3 · `PRIVACIDAD_Y_CUMPLIMIENTO.md` |
 | ❌ | Cuentas por profesional, cifrado en reposo, contratos de encargo, evaluación de impacto | Pendientes del responsable (ver `PRIVACIDAD_Y_CUMPLIMIENTO.md`) |
 

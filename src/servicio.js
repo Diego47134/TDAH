@@ -12,6 +12,7 @@ import { extraerPorReglas, validarExtraccionManual } from './informeEscolar.js';
 import { evaluarRequisitos, generarInforme, markdownAHtml } from './informe.js';
 import { integrar } from './integracion.js';
 import { crearBuscador, ErrorBusqueda, SUGERIDAS, FUENTES, validarConsulta } from './bibliografia.js';
+import { crearConsultas } from './consultas.js';
 import { validarConsentimiento, validarAsentimiento, tieneAsentimiento, ErrorConsentimiento, VERSION_POLITICA } from './privacidad.js';
 
 export class ErrorServicio extends Error {
@@ -151,7 +152,7 @@ export function crearServicio({ db, protocolo, buscador = crearBuscador() }) {
         integracion: I && { puerta: I.puerta, resultado: I.resultado, requisitos: Object.fromEntries(Object.entries(I.requisitos).map(([k, v]) => [k, { nombre: v.nombre, estado: v.estado }])), areas: I.areas.map(({ id, nombre, estado }) => ({ id, nombre, estado })) },
         hechos: ctx.hechos, contradicciones: ctx.contradicciones, informes_escolares: ctx.informesEscolares,
         evaluaciones: ctx.evaluaciones, instrumentos: P.instrumentos, requisitos: req, informes,
-        consentimientos: ctx.consentimientos, version_politica: VERSION_POLITICA, referencias: ctx.referencias,
+        consentimientos: ctx.consentimientos, version_politica: VERSION_POLITICA, referencias: ctx.referencias, consultas: ctx.consultas,
         colegio: ini ? api.colegioPendiente(casoId, ctx) : null,
         nna: ini ? api.nnaEstado(casoId, ctx) : null,
         flujo: flujo(ctx, req, informes),
@@ -457,6 +458,30 @@ export function crearServicio({ db, protocolo, buscador = crearBuscador() }) {
       return { ...r, en_cache: false, fecha };
     },
 
+    /** Pregunta libre del profesional o del apoderado: responde con la app y, si no alcanza, busca sola en internet. */
+    async preguntar({ pregunta, quien = 'profesional', caso_id, pregunta_id } = {}) {
+      if (caso_id) ctxDe(caso_id);
+      let r;
+      try { r = await consultas.responder({ pregunta, quien, pregunta_id }); } catch (e) { if (e.status) throw new ErrorServicio(e.status, e.message); throw e; }
+      return transaccion(db, () => {
+        const id = Number(db.prepare('INSERT INTO consultas (caso_id, quien, pregunta, pregunta_id, origen, respuesta, creado) VALUES (?, ?, ?, ?, ?, ?, ?)')
+          .run(caso_id || null, quien, String(pregunta).trim().slice(0, 300), pregunta_id || null, r.origen, JSON.stringify(r), ahora()).lastInsertRowid);
+        if (caso_id) {
+          const t = ctxDe(caso_id).caso.turno;
+          X.registrarDecision(db, caso_id, t, quien === 'apoderado' ? 'consulta_apoderado' : 'consulta_profesional', { id, origen: r.origen, terminos_enviados: r.terminos_enviados });
+        }
+        return { id, ...r };
+      });
+    },
+
+    marcarConsultaAtendida(casoId, consultaId, { profesional } = {}) {
+      const ctx = ctxDe(casoId);
+      const r = db.prepare('UPDATE consultas SET atendida = ? WHERE id = ? AND caso_id = ?').run(ahora(), Number(consultaId), casoId);
+      if (!r.changes) throw new ErrorServicio(404, 'Consulta no encontrada.');
+      X.registrarDecision(db, casoId, ctx.caso.turno, 'consulta_atendida', { id: Number(consultaId), profesional: profesional || null });
+      return api.vista(casoId);
+    },
+
     agregarReferencia(casoId, { referencia_id, fuente, nota, profesional } = {}) {
       const ctx = ctxDe(casoId);
       if (!String(profesional ?? '').trim()) throw new ErrorServicio(400, 'Indique el profesional que agrega la referencia.');
@@ -489,6 +514,7 @@ export function crearServicio({ db, protocolo, buscador = crearBuscador() }) {
       };
     },
   };
+  const consultas = crearConsultas(P, { buscarInternet: (a) => api.buscarBibliografia(a) });
   return api;
 }
 

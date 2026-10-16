@@ -160,6 +160,20 @@ CREATE TABLE IF NOT EXISTS busquedas_bibliograficas (
 );
 CREATE INDEX IF NOT EXISTS ix_busquedas ON busquedas_bibliograficas(fuente, consulta, creado);
 
+-- Preguntas del profesional o del apoderado y cómo se respondieron (app, internet o sin respuesta)
+CREATE TABLE IF NOT EXISTS consultas (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  caso_id TEXT,
+  quien TEXT NOT NULL,             -- profesional | apoderado
+  pregunta TEXT NOT NULL,
+  pregunta_id TEXT,                -- pregunta de la entrevista en pantalla, si aplica
+  origen TEXT NOT NULL,            -- app | internet | sin_respuesta
+  respuesta TEXT NOT NULL,
+  atendida TEXT,                   -- fecha en que el profesional la revisó
+  creado TEXT NOT NULL
+);
+CREATE INDEX IF NOT EXISTS ix_consultas ON consultas(caso_id, id);
+
 -- Referencias que el profesional asocia a un caso (aparecen en el informe)
 CREATE TABLE IF NOT EXISTS referencias_caso (
   id INTEGER PRIMARY KEY AUTOINCREMENT,

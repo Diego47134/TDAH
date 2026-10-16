@@ -1,6 +1,6 @@
 # Informe de evaluación — CASO-0001
 
-**Estado:** VALIDADO por Profesional de prueba el 2026-10-15
+**Estado:** VALIDADO por Profesional de prueba el 2026-10-16
 
 > Informe generado desde el expediente estructurado con el protocolo tdah-protocolo 1.0.0. Es una hipótesis estructurada: la decisión clínica final corresponde al profesional responsable (Etapa 9 §1 y §28). Las inferencias no se presentan como hechos documentados.
 
@@ -10,7 +10,7 @@
 - **Motivo de consulta (literal):** Desde primero básico se distrae mucho en clases y le cuesta terminar las tareas.
 - **Edad:** 8 años · **Etapa evolutiva (Etapa 2):** 8–10 años
 - **Ruta:** Ruta B (Etapa 7 §5.2): existe informe escolar disponible; el apoderado se centra en hogar, desarrollo, trayectoria, autonomía e impacto, y solo se pregunta lo que el informe no resuelva.
-- **Fecha de generación:** 2026-10-15
+- **Fecha de generación:** 2026-10-16
 
 ## Auditoría automática previa a la salida
 
@@ -374,9 +374,9 @@ _Fuente → dato original → pregunta → síntoma (Etapa 9 §23). El registro 
 
 Texto de demostración (ficticio): el profesional integra la entrevista, el informe escolar y la evaluación complementaria; considera la discrepancia en R2.9 y la información de sueño antes de concluir.
 
-_Redactada por: Profesional de prueba (2026-10-15)._
+_Redactada por: Profesional de prueba (2026-10-16)._
 
-**Validado por Profesional de prueba** el 2026-10-15.
+**Validado por Profesional de prueba** el 2026-10-16.
 
 ## Referencias científicas de apoyo (Etapa 9)
 
@@ -393,7 +393,7 @@ _Redactada por: Profesional de prueba (2026-10-15)._
 
 ## Consentimiento, confidencialidad y alcance de este informe
 
-- Consentimiento informado del representante legal (madre), medio escrito firmado, obtenido por Profesional de prueba el 2026-10-15 (política de privacidad versión 1.0 (15-10-2026)).
-- Asentimiento del niño, niña o adolescente registrado por Profesional de prueba el 2026-10-15.
+- Consentimiento informado del representante legal (madre), medio escrito firmado, obtenido por Profesional de prueba el 2026-10-16 (política de privacidad versión 1.0 (15-10-2026)).
+- Asentimiento del niño, niña o adolescente registrado por Profesional de prueba el 2026-10-16.
 
 _Documento confidencial que contiene datos sensibles de salud (Ley 19.628, modificada por la Ley 21.719; Ley 20.584). Su uso se limita a la finalidad de evaluación clínica para la que fue elaborado y no puede comunicarse a terceros sin autorización del representante legal, salvo en los casos que la ley permite. Este informe es una herramienta de apoyo: no constituye por sí mismo un diagnóstico; la interpretación, el diagnóstico y las indicaciones son responsabilidad exclusiva del profesional de salud que lo valida. Ningún diagnóstico de salud mental puede usarse para discriminar a la persona evaluada (Ley 21.331, art. 9 N° 15)._

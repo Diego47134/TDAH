@@ -1,0 +1,176 @@
+// Preguntas del profesional y del apoderado. La app responde primero con su propio contenido
+// (protocolo y glosario); si no encuentra una respuesta, busca sola en internet (Europe PMC) y
+// muestra párrafos TEXTUALES de las fuentes, con su cita. No redacta respuestas propias.
+// Privacidad: a internet solo se envían términos clínicos reconocidos por el glosario de traducción,
+// nunca el texto libre escrito por el usuario.
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { normalizar } from './protocolo.js';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const GLOSARIO = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'protocol', 'datos', 'glosario.json'), 'utf8')).entradas;
+
+export const PUBLICOS = ['profesional', 'apoderado'];
+const VACIAS = new Set(('a al algo alguna alguno como con cual cuales cuando de del el ella ella ellos en es esa ese esta este esto estos hay la las le les lo los me mi mis mas o para pero por porque que se si sin su sus te tu un una uno unos y ya ha han usted ud sobre puede pueden debo deberia tiene tienen hijo hija mi nino nina esta son ser hace hacer cuanto cuanta cuantos qué cómo').split(' '));
+const raiz = (w) => w.replace(/mente$/, '').replace(/(es|s)$/, '').slice(0, 5);
+const palabras = (t) => normalizar(t).split(' ').filter((w) => w.length > 2 && !VACIAS.has(w));
+
+// Términos clínicos en español → término de búsqueda en inglés (solo estos salen a internet).
+const TRADUCCION = Object.entries({
+  inatencion: 'inattention', atencion: 'attention', distraccion: 'distractibility', distrae: 'distractibility', concentracion: 'concentration', concentrarse: 'concentration',
+  hiperactividad: 'hyperactivity', hiperactivo: 'hyperactivity', impulsividad: 'impulsivity', impulsivo: 'impulsivity',
+  sueno: 'sleep', dormir: 'sleep', insomnio: 'insomnia', ronquido: 'snoring', ansiedad: 'anxiety', depresion: 'depression', animo: 'mood',
+  aprendizaje: 'learning disorder', dislexia: 'dyslexia', lenguaje: 'language disorder', autismo: 'autism', vision: 'vision', audicion: 'hearing', oido: 'hearing',
+  epilepsia: 'epilepsy', ausencias: 'absence seizures', medicamento: 'medication', medicacion: 'medication', farmaco: 'pharmacological', metilfenidato: 'methylphenidate',
+  tratamiento: 'treatment', terapia: 'therapy', conductual: 'behavioral', padres: 'parents', familia: 'family', profesor: 'teacher', docente: 'teacher', colegio: 'school', escuela: 'school',
+  rendimiento: 'academic performance', notas: 'academic performance', adolescente: 'adolescents', adolescencia: 'adolescents', infancia: 'children', preescolar: 'preschool', adulto: 'adults',
+  inicio: 'age of onset', diagnostico: 'diagnosis', diagnosticar: 'diagnosis', criterio: 'diagnostic criteria', dsm: 'DSM-5', entrevista: 'diagnostic interview',
+  escala: 'rating scale', cuestionario: 'questionnaire', prevalencia: 'prevalence', genetica: 'genetics', hereditario: 'heritability', prematuro: 'preterm birth', embarazo: 'pregnancy',
+  pantalla: 'screen time', dieta: 'diet', alimentacion: 'diet', ejercicio: 'physical activity', deporte: 'physical activity', ejecutiva: 'executive function', memoria: 'working memory',
+  organizacion: 'organizational skills', emocional: 'emotional dysregulation', emociones: 'emotional dysregulation', oposicionista: 'oppositional defiant disorder', tics: 'tic disorder',
+  sintoma: 'symptoms', comorbilidad: 'comorbidity', diferencial: 'differential diagnosis', pronostico: 'outcomes', evolucion: 'long-term outcomes', ninas: 'girls', mujeres: 'girls',
+  melatonina: 'melatonin', atomoxetina: 'atomoxetine', guanfacina: 'guanfacine', clonidina: 'clonidine', lisdexanfetamina: 'lisdexamfetamine', anfetamina: 'amphetamine',
+  omega: 'omega-3', neurofeedback: 'neurofeedback', mindfulness: 'mindfulness', psicoeducacion: 'psychoeducation', parental: 'parent training', crianza: 'parenting',
+  bullying: 'bullying', acoso: 'bullying', trauma: 'trauma', maltrato: 'maltreatment', duelo: 'bereavement', divorcio: 'parental divorce', tiroides: 'thyroid', anemia: 'iron deficiency',
+  hierro: 'iron deficiency', plomo: 'lead exposure', alcohol: 'prenatal alcohol', tabaco: 'prenatal smoking', apnea: 'sleep apnea', duerme: 'sleep', duermen: 'sleep', cansancio: 'fatigue',
+  rabietas: 'temper outbursts', agresividad: 'aggression', irritabilidad: 'irritability', autoestima: 'self-esteem', habilidades: 'social skills', amigos: 'peer relationships', pares: 'peer relationships',
+  lectura: 'reading', matematica: 'mathematics', escritura: 'writing', motricidad: 'motor coordination', coordinacion: 'motor coordination', videojuegos: 'video games', azucar: 'sugar',
+  presentacion: 'presentation', combinado: 'combined presentation', inatento: 'inattentive presentation', subtipo: 'subtypes', estimulante: 'stimulant', cafeina: 'caffeine',
+}).map(([es, en]) => ({ r: raiz(es), es, en }));
+
+function terminosClinicos(texto) {
+  const vistos = new Map();
+  for (const w of palabras(texto)) {
+    const t = TRADUCCION.find((x) => x.r === raiz(w));
+    if (t && !vistos.has(t.en)) vistos.set(t.en, t.es);
+  }
+  return [...vistos.entries()].map(([en, es]) => ({ en, es }));
+}
+
+/** Base local: glosario + contenido del protocolo vigente. */
+export function construirBase(P) {
+  const base = GLOSARIO.map((g) => ({ ...g, fuente: 'Glosario de la aplicación' }));
+  for (const s of P.sintomas) {
+    base.push({ id: `S-${s.id}`, publico: PUBLICOS, titulo: `Síntoma ${s.id}: ${s.nombre}`, terminos: [normalizar(s.nombre), ...s.palabras_clave],
+      texto: `Es uno de los ${P.sintomas.length} síntomas del DSM-5-TR que se evalúan (${s.dominio === 'inatencion' ? 'inatención' : 'hiperactividad/impulsividad'}). En la entrevista se explora como «${s.conducta}». Si está presente, se pregunta con qué frecuencia ocurre, desde cuándo y en qué lugares.`,
+      fuente: `Protocolo del proyecto (${s.origen})`, sintoma: s.id });
+  }
+  for (const a of P.areas) {
+    const esp = Object.entries(a.esperable_por_etapa || {}).map(([k, v]) => `${k}: ${v}`).join('; ');
+    base.push({ id: `A-${a.id}`, publico: ['profesional'], titulo: `Área funcional: ${a.nombre}`, terminos: [normalizar(a.nombre), a.id],
+      texto: `${esp ? `Lo esperable por edad (Etapa 2) — ${esp}.` : ''}${a.sistemas ? ` Sistemas implicados: ${a.sistemas}` : ''}${a.respaldo ? ` Nivel de respaldo: ${a.respaldo}.` : ''}`.trim(), fuente: 'Protocolo del proyecto (Etapa 2 y Etapa 9 §19)' });
+  }
+  for (const s of P.sugerencias || []) {
+    base.push({ id: `SUG-${s.id}`, publico: ['profesional'], titulo: `Sugerencia basada en evidencia: ${s.id.replace(/_/g, ' ')}`, terminos: [s.id.replace(/_/g, ' '), ...(s.areas || [])],
+      texto: `${s.texto}${(s.refs || []).length ? ` Referencias: ${(s.refs || []).map((r) => `[${r}] ${P.referencias[r] || ''}`).join(' ')}` : ''}`, fuente: `Protocolo del proyecto (${s.origen})` });
+  }
+  return base.map((e) => ({ ...e, _frases: (e.terminos || []).map(normalizar).filter(Boolean), _raices: new Set(palabras(`${e.titulo} ${e.texto} ${(e.terminos || []).join(' ')}`).map(raiz)) }));
+}
+
+function buscarLocal(base, pregunta, quien) {
+  const n = ` ${normalizar(pregunta)} `;
+  const rs = palabras(pregunta).map(raiz);
+  const puntajes = base.filter((e) => e.publico.includes(quien)).map((e) => {
+    const frases = e._frases.filter((f) => f.length > 2 && n.includes(` ${f} `)).length;
+    const comunes = rs.filter((r) => e._raices.has(r)).length;
+    return { e, puntaje: frases * 3 + comunes, frases, comunes };
+  }).filter((x) => x.frases >= 1 || x.comunes >= 2).sort((a, b) => b.puntaje - a.puntaje);
+  if (!puntajes.length || puntajes[0].puntaje < 3) return [];
+  const tope = puntajes[0].puntaje;
+  return puntajes.filter((x) => x.puntaje >= Math.max(3, tope * 0.75)).slice(0, 2).map((x) => x.e);
+}
+
+/** Pregunta de la entrevista → entrada local que la explica (para «¿qué significa esta pregunta?»). */
+function explicarPregunta(base, P, preguntaId) {
+  const q = P.preguntas.get(preguntaId);
+  if (!q) return [];
+  if (q.sintoma) return base.filter((e) => e.sintoma === q.sintoma || (q.dimension === 'desde' && e.id === 'G-EDAD12') || (q.dimension === 'contextos' && e.id === 'G-CONTEXTOS')).slice(0, 2);
+  const porGrupo = { barrido: 'G-BARRIDO', rama_barrido: 'G-SUENO', tamizaje: 'G-SUENO', rama_tamizaje: 'G-SUENO', ruta_a: 'G-INFORME-ESCOLAR', inicio: 'G-INFORME-ESCOLAR' };
+  const id = q.objetivo?.[1] === 'motivo' || q.objetivo?.[1] === 'edad' ? null : porGrupo[q.grupo];
+  return id ? base.filter((e) => e.id === id) : [];
+}
+
+const GENERICA = /(que significa|no entiendo|no comprendo|a que se refiere|que quiere decir|explique|explicar|no se que responder)/;
+
+/** Oraciones de los resúmenes que mejor responden, textuales y con su cita. */
+function extraerCitas(resultados, terminos, max = 3) {
+  const claves = terminos.flatMap((t) => [t.en.toLowerCase(), t.es]).map((s) => normalizar(s)).filter(Boolean);
+  const cand = [];
+  for (const r of resultados) {
+    if (!r.resumen) continue;
+    const oraciones = r.resumen.split(/(?<=[.!?])\s+(?=[A-ZÁÉÍÓÚÑ])/).map((s) => s.trim()).filter((s) => s.length >= 50 && s.length <= 600);
+    for (const o of oraciones) {
+      const no = ` ${normalizar(o)} `;
+      const hits = claves.filter((k) => no.includes(` ${k}`)).length;
+      if (!hits) continue;
+      const conclusion = /^(conclusi|in conclusion|these (results|findings)|our (results|findings)|results)/i.test(o) ? 0.5 : 0;
+      cand.push({ puntaje: hits + conclusion + (/\badhd\b|\btdah\b/i.test(o) ? 0.5 : 0), cita: o, articulo: r });
+    }
+  }
+  cand.sort((a, b) => b.puntaje - a.puntaje);
+  const out = []; const usados = new Map();
+  for (const c of cand) {
+    if ((usados.get(c.articulo.id) || 0) >= 1) continue;
+    usados.set(c.articulo.id, 1);
+    out.push({ cita: c.cita, articulo: { id: c.articulo.id, titulo: c.articulo.titulo, autores: c.articulo.autores, revista: c.articulo.revista, anio: c.articulo.anio, url: c.articulo.url, doi: c.articulo.doi, pmid: c.articulo.pmid } });
+    if (out.length >= max) break;
+  }
+  return out;
+}
+
+/**
+ * @param buscarInternet async ({consulta, fuente, cantidad}) → {resultados, total}
+ */
+export function crearConsultas(P, { buscarInternet }) {
+  const base = construirBase(P);
+  return {
+    base,
+    async responder({ pregunta, quien = 'profesional', pregunta_id } = {}) {
+      const texto = String(pregunta ?? '').replace(/\s+/g, ' ').trim();
+      if (texto.length < 3) throw Object.assign(new Error('Escriba su pregunta.'), { status: 400 });
+      if (texto.length > 300) throw Object.assign(new Error('La pregunta es demasiado larga (máximo 300 caracteres).'), { status: 400 });
+      if (!PUBLICOS.includes(quien)) throw Object.assign(new Error('Destinatario no válido.'), { status: 400 });
+
+      // 1. Contenido propio de la app.
+      const generica = pregunta_id && (GENERICA.test(normalizar(texto)) || palabras(texto).length <= 1);
+      let locales = generica ? explicarPregunta(base, P, pregunta_id) : [];
+      if (!locales.length) {
+        // Solo vale la respuesta propia si cubre todos los conceptos clínicos de la pregunta
+        // (p. ej. «melatonina» no está en el glosario → se busca en internet).
+        const conceptos = terminosClinicos(texto).map((t) => raiz(t.es));
+        locales = buscarLocal(base, texto, quien).filter((e) => conceptos.every((r) => e._raices.has(r)));
+      }
+      if (locales.length) {
+        return { origen: 'app', respuestas: locales.map((e) => ({ titulo: e.titulo, texto: e.texto, fuente: e.fuente })), terminos_enviados: [] };
+      }
+
+      // 2. Búsqueda automática en internet (solo términos clínicos reconocidos).
+      const terminos = terminosClinicos(texto);
+      if (!terminos.length) {
+        return { origen: 'sin_respuesta', respuestas: [], terminos_enviados: [],
+          aviso: quien === 'apoderado' ? 'No encontramos una respuesta. Su pregunta quedó registrada para que el profesional la responda.' : 'No se reconocieron términos clínicos para buscar en internet. Reformule con términos como «criterios», «inicio», «sueño», «entrevista», «tratamiento».' };
+      }
+      const intentos = [];
+      for (let k = Math.min(terminos.length, 3); k >= 1; k--) {
+        const sel = terminos.slice(0, k);
+        intentos.push(quien === 'apoderado'
+          ? { consulta: `TDAH ${sel.map((t) => t.es).join(' ')} LANG:"spa"`, sel }
+          : { consulta: `ADHD ${sel.map((t) => (t.en.includes(' ') ? `"${t.en}"` : t.en)).join(' ')}`, sel });
+      }
+      let r = null; let usada = null; let errorRed = null;
+      for (const it of intentos) {
+        try { r = await buscarInternet({ consulta: it.consulta, fuente: 'europepmc', cantidad: 15 }); } catch (e) { errorRed = e; break; }
+        if (r.resultados.some((x) => x.resumen)) { usada = it; break; }
+      }
+      if (errorRed) return { origen: 'sin_respuesta', respuestas: [], terminos_enviados: terminos.map((t) => t.en), aviso: `No fue posible buscar en internet: ${errorRed.message}` };
+      const citas = usada ? extraerCitas(r.resultados, usada.sel) : [];
+      if (!citas.length) {
+        return { origen: 'sin_respuesta', respuestas: [], terminos_enviados: terminos.map((t) => t.en),
+          aviso: quien === 'apoderado' ? 'No encontramos una respuesta. Su pregunta quedó registrada para que el profesional la responda.' : 'La búsqueda en internet no encontró párrafos que respondan la pregunta.' };
+      }
+      return { origen: 'internet', consulta_enviada: usada.consulta, terminos_enviados: usada.sel.map((t) => (quien === 'apoderado' ? t.es : t.en)), fuente: 'Europe PMC',
+        respuestas: citas, aviso: 'Fragmentos textuales de publicaciones científicas encontradas automáticamente. No son una respuesta de la app ni reemplazan la opinión del profesional.' };
+    },
+  };
+}

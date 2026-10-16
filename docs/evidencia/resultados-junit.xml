@@ -1,66 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <testsuites>
-	<testcase name="B1 · búsqueda en Europe PMC y PubMed con resultados normalizados" time="0.098687" classname="test"/>
-	<testcase name="B2 · las búsquedas no pueden contener datos personales" time="0.058920" classname="test"/>
-	<testcase name="B3 · fuente caída: error claro y auditado, sin afectar la app" time="0.052037" classname="test"/>
-	<testcase name="B4 · referencias agregadas al caso aparecen en el informe y quedan auditadas" time="0.146778" classname="test"/>
-	<testcase name="E01 · la entrevista comienza en el orden establecido" time="0.176715" classname="test"/>
-	<testcase name="E02 · la ruta cambia según la existencia del informe escolar" time="4.874311" classname="test"/>
-	<testcase name="E03/E13 · las respuestas persisten entre turnos y sesiones; un caso interrumpido continúa en el punto exacto" time="2.241158" classname="test"/>
-	<testcase name="E04 · la pregunta siguiente depende de la respuesta y del estado real del expediente" time="0.186252" classname="test"/>
-	<testcase name="E05 · no se repiten preguntas resueltas, ni equivalentes funcionales" time="2.197495" classname="test"/>
-	<testcase name="E06 · profundiza un síntoma presente con un máximo de 3 preguntas (frecuencia, desde, contextos)" time="2.263400" classname="test"/>
-	<testcase name="E07 · «no sé» y «no recuerdo» no se interpretan como negativas" time="0.154304" classname="test"/>
-	<testcase name="E08 · no se cierra la entrevista sin barrido diferencial ni tamizaje" time="2.147407" classname="test"/>
-	<testcase name="E09 · el tamizaje médico, sensorial y del sueño funciona sin duplicaciones" time="2.094499" classname="test"/>
-	<testcase name="E10 · los datos del informe escolar se conservan con su fuente y evidencia literal" time="2.016058" classname="test"/>
-	<testcase name="E11 · el informe final refleja los datos reales, las discrepancias y la incertidumbre" time="2.308822" classname="test"/>
-	<testcase name="E12 · el sistema bloquea preguntas no autorizadas e informes prematuros" time="0.049440" classname="test"/>
-	<testcase name="A1 · respuestas ambiguas: no se suponen; la pregunta se mantiene hasta obtener una alternativa" time="0.107382" classname="test"/>
-	<testcase name="A2 · discrepancia entre fuentes: se registra y bloquea el informe hasta su revisión" time="2.162154" classname="test"/>
-	<testcase name="A5 · datos faltantes y entradas inválidas" time="0.052914" classname="test"/>
-	<testcase name="A6 · cambio de ruta cuando el informe finalmente no se puede obtener" time="2.154545" classname="test"/>
-	<testcase name="A7 · complementación del colegio (Anexo 7-C) y entrevista al niño/niña (Anexo 7-D)" time="2.094535" classname="test"/>
-	<testcase name="L1 · sin consentimiento informado del representante legal no se crea el caso" time="0.116047" classname="test"/>
-	<testcase name="L2 · derecho de acceso y portabilidad: exportación íntegra y auditada del expediente" time="0.116147" classname="test"/>
-	<testcase name="L3 · política de privacidad y términos publicados; el informe declara consentimiento y alcance" time="0.047102" classname="test"/>
-	<testcase name="P1 · en producción sin token ni clave: API bloqueada hasta la configuración inicial, que se hace una sola vez" time="0.335091" classname="test"/>
-	<testcase name="P1b · intentos fallidos repetidos se bloquean temporalmente" time="0.050472" classname="test"/>
-	<testcase name="P2 · con token: sin cabecera 401, con cabecera 200; cabeceras de seguridad presentes" time="0.033673" classname="test"/>
-	<testcase name="P3 · server.js (entrada de Hostinger): socket, datos fuera de la carpeta de despliegue, respaldo y cierre ordenado" time="0.232398" classname="test"/>
-	<testcase name="P4 · advierte si la base de datos quedaría dentro de la carpeta de despliegue" time="0.216355" classname="test"/>
-	<testcase name="P5 · server.js se puede cargar con require(), como lo hace Hostinger (LiteSpeed lsnode)" time="0.230398" classname="test"/>
-	<testcase name="presencia: los códigos A–D corresponden a Sí / No / Ocasionalmente / No sabe-No recuerda" time="0.003040" classname="test"/>
-	<testcase name="texto libre: distingue sí, no, ocasionalmente, no sé y no recuerdo" time="0.001894" classname="test"/>
-	<testcase name="«no sé» y «no recuerdo» nunca se convierten en negativa" time="0.000416" classname="test"/>
-	<testcase name="no confunde el reflexivo «no se distrae» con «no sé»" time="0.000186" classname="test"/>
-	<testcase name="respuestas ambiguas quedan como ambiguas (no se suponen)" time="0.000264" classname="test"/>
-	<testcase name="alternativas inválidas o combinaciones excluyentes se rechazan" time="0.000801" classname="test"/>
-	<testcase name="selección múltiple: contextos y «No sabe» de contextos" time="0.000361" classname="test"/>
-	<testcase name="alternativas por texto: frecuencia «varias veces al día» → código A" time="0.000372" classname="test"/>
-	<testcase name="números: dígitos y palabras" time="0.000737" classname="test"/>
-	<testcase name="texto libre en preguntas abiertas se conserva literal" time="0.000643" classname="test"/>
-	<testcase name="menciones espontáneas: detecta conductas y respeta negaciones" time="0.000756" classname="test"/>
-	<testcase name="protocolo vigente: 18 síntomas, alternativas obligatorias y validación referencial" time="0.009649" classname="test"/>
-	<testcase name="fase inicial: orden estricto motivo → edad → informe escolar → disponibilidad" time="0.030615" classname="test"/>
-	<testcase name="fase inicial: la disponibilidad solo se pregunta si el informe existe" time="0.012106" classname="test"/>
-	<testcase name="ruta: disponible → Ruta B (con_informe); no existe / no sabe / no disponible → Ruta A (completa)" time="0.051919" classname="test"/>
-	<testcase name="activación inmediata (Etapa 9 §14.2): una conducta mencionada en el motivo se caracteriza primero" time="0.011866" classname="test"/>
-	<testcase name="profundización: con presencia «Sí» se preguntan como máximo frecuencia, desde y contextos" time="0.032608" classname="test"/>
-	<testcase name="ausencia: con «No» no se profundiza el síntoma" time="0.012350" classname="test"/>
-	<testcase name="«No sabe / No recuerda» no es negativa: el síntoma queda DESCONOCIDO, no NO REFERIDO" time="0.014213" classname="test"/>
-	<testcase name="validador: bloquea preguntas externas, repetidas, reformuladas y equivalentes" time="0.107673" classname="test"/>
-	<testcase name="similitud textual detecta reformulaciones" time="0.000696" classname="test"/>
-	<testcase name="barrido diferencial: el tamizaje no se adelanta al barrido y «Sueño» deriva la categoría D" time="0.692970" classname="test"/>
-	<testcase name="gate de cierre: no cierra con barrido pendiente; cierra con barrido y tamizaje completos" time="0.720141" classname="test"/>
-	<testcase name="tamizaje con «No sabe» queda COMPLETADO_CON_INCERTIDUMBRE (no se interpreta como ausencia)" time="0.689862" classname="test"/>
-	<testcase name="«Ocasionalmente»: se registra y se evalúa la profundización cuantificando solo la frecuencia (Etapa 9 §6.2)" time="0.017882" classname="test"/>
-	<!-- tests 55 -->
+	<testcase name="B1 · búsqueda en Europe PMC y PubMed con resultados normalizados" time="0.099133" classname="test"/>
+	<testcase name="B2 · las búsquedas no pueden contener datos personales" time="0.056607" classname="test"/>
+	<testcase name="B3 · fuente caída: error claro y auditado, sin afectar la app" time="0.050525" classname="test"/>
+	<testcase name="B4 · referencias agregadas al caso aparecen en el informe y quedan auditadas" time="0.120664" classname="test"/>
+	<testcase name="Q1 · el apoderado pregunta y la app responde con su propio contenido (sin internet)" time="0.191652" classname="test"/>
+	<testcase name="Q2 · si la app no sabe, busca sola en internet y muestra fragmentos textuales citados" time="0.075955" classname="test"/>
+	<testcase name="Q3 · sin respuesta: queda registrada para el profesional, que la marca como atendida" time="0.066228" classname="test"/>
+	<testcase name="Q4 · internet no disponible: aviso claro, la app sigue funcionando" time="0.047341" classname="test"/>
+	<testcase name="E01 · la entrevista comienza en el orden establecido" time="0.159150" classname="test"/>
+	<testcase name="E02 · la ruta cambia según la existencia del informe escolar" time="4.252386" classname="test"/>
+	<testcase name="E03/E13 · las respuestas persisten entre turnos y sesiones; un caso interrumpido continúa en el punto exacto" time="1.950287" classname="test"/>
+	<testcase name="E04 · la pregunta siguiente depende de la respuesta y del estado real del expediente" time="0.160631" classname="test"/>
+	<testcase name="E05 · no se repiten preguntas resueltas, ni equivalentes funcionales" time="2.195007" classname="test"/>
+	<testcase name="E06 · profundiza un síntoma presente con un máximo de 3 preguntas (frecuencia, desde, contextos)" time="2.078883" classname="test"/>
+	<testcase name="E07 · «no sé» y «no recuerdo» no se interpretan como negativas" time="0.132843" classname="test"/>
+	<testcase name="E08 · no se cierra la entrevista sin barrido diferencial ni tamizaje" time="2.062863" classname="test"/>
+	<testcase name="E09 · el tamizaje médico, sensorial y del sueño funciona sin duplicaciones" time="1.950324" classname="test"/>
+	<testcase name="E10 · los datos del informe escolar se conservan con su fuente y evidencia literal" time="1.933226" classname="test"/>
+	<testcase name="E11 · el informe final refleja los datos reales, las discrepancias y la incertidumbre" time="2.445873" classname="test"/>
+	<testcase name="E12 · el sistema bloquea preguntas no autorizadas e informes prematuros" time="0.061829" classname="test"/>
+	<testcase name="A1 · respuestas ambiguas: no se suponen; la pregunta se mantiene hasta obtener una alternativa" time="0.106007" classname="test"/>
+	<testcase name="A2 · discrepancia entre fuentes: se registra y bloquea el informe hasta su revisión" time="2.219178" classname="test"/>
+	<testcase name="A5 · datos faltantes y entradas inválidas" time="0.052294" classname="test"/>
+	<testcase name="A6 · cambio de ruta cuando el informe finalmente no se puede obtener" time="2.082513" classname="test"/>
+	<testcase name="A7 · complementación del colegio (Anexo 7-C) y entrevista al niño/niña (Anexo 7-D)" time="2.191271" classname="test"/>
+	<testcase name="L1 · sin consentimiento informado del representante legal no se crea el caso" time="0.111467" classname="test"/>
+	<testcase name="L2 · derecho de acceso y portabilidad: exportación íntegra y auditada del expediente" time="0.138772" classname="test"/>
+	<testcase name="L3 · política de privacidad y términos publicados; el informe declara consentimiento y alcance" time="0.073012" classname="test"/>
+	<testcase name="P1 · en producción sin token ni clave: API bloqueada hasta la configuración inicial, que se hace una sola vez" time="0.380257" classname="test"/>
+	<testcase name="P1b · intentos fallidos repetidos se bloquean temporalmente" time="0.048658" classname="test"/>
+	<testcase name="P2 · con token: sin cabecera 401, con cabecera 200; cabeceras de seguridad presentes" time="0.027306" classname="test"/>
+	<testcase name="P3 · server.js (entrada de Hostinger): socket, datos fuera de la carpeta de despliegue, respaldo y cierre ordenado" time="0.231763" classname="test"/>
+	<testcase name="P4 · advierte si la base de datos quedaría dentro de la carpeta de despliegue" time="0.215358" classname="test"/>
+	<testcase name="P5 · server.js se puede cargar con require(), como lo hace Hostinger (LiteSpeed lsnode)" time="0.226641" classname="test"/>
+	<testcase name="presencia: los códigos A–D corresponden a Sí / No / Ocasionalmente / No sabe-No recuerda" time="0.003500" classname="test"/>
+	<testcase name="texto libre: distingue sí, no, ocasionalmente, no sé y no recuerdo" time="0.002197" classname="test"/>
+	<testcase name="«no sé» y «no recuerdo» nunca se convierten en negativa" time="0.000393" classname="test"/>
+	<testcase name="no confunde el reflexivo «no se distrae» con «no sé»" time="0.000258" classname="test"/>
+	<testcase name="respuestas ambiguas quedan como ambiguas (no se suponen)" time="0.000273" classname="test"/>
+	<testcase name="alternativas inválidas o combinaciones excluyentes se rechazan" time="0.000800" classname="test"/>
+	<testcase name="selección múltiple: contextos y «No sabe» de contextos" time="0.000221" classname="test"/>
+	<testcase name="alternativas por texto: frecuencia «varias veces al día» → código A" time="0.000465" classname="test"/>
+	<testcase name="números: dígitos y palabras" time="0.000747" classname="test"/>
+	<testcase name="texto libre en preguntas abiertas se conserva literal" time="0.000625" classname="test"/>
+	<testcase name="menciones espontáneas: detecta conductas y respeta negaciones" time="0.000647" classname="test"/>
+	<testcase name="protocolo vigente: 18 síntomas, alternativas obligatorias y validación referencial" time="0.010540" classname="test"/>
+	<testcase name="fase inicial: orden estricto motivo → edad → informe escolar → disponibilidad" time="0.039762" classname="test"/>
+	<testcase name="fase inicial: la disponibilidad solo se pregunta si el informe existe" time="0.018665" classname="test"/>
+	<testcase name="ruta: disponible → Ruta B (con_informe); no existe / no sabe / no disponible → Ruta A (completa)" time="0.067900" classname="test"/>
+	<testcase name="activación inmediata (Etapa 9 §14.2): una conducta mencionada en el motivo se caracteriza primero" time="0.015638" classname="test"/>
+	<testcase name="profundización: con presencia «Sí» se preguntan como máximo frecuencia, desde y contextos" time="0.038103" classname="test"/>
+	<testcase name="ausencia: con «No» no se profundiza el síntoma" time="0.021129" classname="test"/>
+	<testcase name="«No sabe / No recuerda» no es negativa: el síntoma queda DESCONOCIDO, no NO REFERIDO" time="0.030453" classname="test"/>
+	<testcase name="validador: bloquea preguntas externas, repetidas, reformuladas y equivalentes" time="0.127810" classname="test"/>
+	<testcase name="similitud textual detecta reformulaciones" time="0.000704" classname="test"/>
+	<testcase name="barrido diferencial: el tamizaje no se adelanta al barrido y «Sueño» deriva la categoría D" time="0.772881" classname="test"/>
+	<testcase name="gate de cierre: no cierra con barrido pendiente; cierra con barrido y tamizaje completos" time="0.688001" classname="test"/>
+	<testcase name="tamizaje con «No sabe» queda COMPLETADO_CON_INCERTIDUMBRE (no se interpreta como ausencia)" time="0.652113" classname="test"/>
+	<testcase name="«Ocasionalmente»: se registra y se evalúa la profundización cuantificando solo la frecuencia (Etapa 9 §6.2)" time="0.025246" classname="test"/>
+	<!-- tests 59 -->
 	<!-- suites 0 -->
-	<!-- pass 55 -->
+	<!-- pass 59 -->
 	<!-- fail 0 -->
 	<!-- cancelled 0 -->
 	<!-- skipped 0 -->
 	<!-- todo 0 -->
-	<!-- duration_ms 32605.883894 -->
+	<!-- duration_ms 32025.114901 -->
 </testsuites>

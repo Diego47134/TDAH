@@ -24,7 +24,7 @@ Abrir `http://127.0.0.1:3000`, crear un caso con un seudónimo y comenzar la ent
 |---|---|
 | `npm run dev` | Desarrollo local (recarga al guardar, sin token) |
 | `npm start` | Producción (`server.js`): clave de acceso obligatoria, datos fuera de la app, respaldos |
-| `npm test` | Pruebas unitarias y de extremo a extremo (55) |
+| `npm test` | Pruebas unitarias y de extremo a extremo (59) |
 | `npm run test:evidencia` | Igual, y escribe evidencia verificable en `docs/evidencia/` |
 | `npm run demo` | Caso ficticio completo de principio a fin → `docs/demo/` |
 | `npm run validar-protocolo [-- archivo.json]` | Valida la integridad del protocolo |
@@ -58,6 +58,7 @@ PWA ──HTTP──> Backend (servicio) ──> Motor Etapa 9 ──> Validador
                     │                     └──── expediente (SQLite) <────┘ respuesta + hechos + auditoría
 ```
 
+- **Preguntas a la app:** el profesional y el apoderado pueden hacer preguntas. La app responde con su propio contenido (glosario y protocolo); si no encuentra la respuesta, busca sola en literatura científica (Europe PMC) y muestra fragmentos textuales con su fuente, sin IA. Solo salen términos clínicos reconocidos, nunca el texto escrito ni datos del paciente. Las preguntas del apoderado sin respuesta quedan pendientes para el profesional.
 - **Buscar evidencia en internet:** el profesional consulta Europe PMC y PubMed (criterios DSM-5, entrevistas diagnósticas para TDAH) y agrega las referencias al informe del caso; solo se envían los términos de búsqueda.
 - El **motor** decide qué falta y qué preguntar con reglas deterministas; el sistema funciona completo en el servidor, sin servicios externos.
 - Cada pregunta pasa por un **validador** de 17 reglas antes de mostrarse (pertenece al proyecto, orden, ruta, necesaria, no repetida, no equivalente, máximo 3 por síntoma, barrido antes del tamizaje, alternativas obligatorias, etc.).

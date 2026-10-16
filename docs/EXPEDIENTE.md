@@ -16,7 +16,7 @@ Base de datos SQLite (`DB_PATH`, por defecto `data/tdah.sqlite`). Esquema comple
 | Pregunta anterior y justificación de la siguiente | `preguntas` (orden por turno) y `casos.pregunta_actual.justificacion` |
 | Estado global del proceso | `casos.estado_global` + `flujo` en la vista del caso |
 
-Tablas adicionales: `busquedas_bibliograficas` (caché de búsquedas), `referencias_caso` (referencias citadas en el informe), `consentimientos` (consentimiento del representante legal y asentimiento del NNA, con versión de la política), `informes_escolares` (texto y extracción), `informes` (finales, estado de validación), `errores` (servidor y motor).
+Tablas adicionales: `consultas` (preguntas del profesional y del apoderado, y cómo se respondieron), `busquedas_bibliograficas` (caché de búsquedas), `referencias_caso` (referencias citadas en el informe), `consentimientos` (consentimiento del representante legal y asentimiento del NNA, con versión de la política), `informes_escolares` (texto y extracción), `informes` (finales, estado de validación), `errores` (servidor y motor).
 
 ## API
 
@@ -39,6 +39,8 @@ Tablas adicionales: `busquedas_bibliograficas` (caché de búsquedas), `referenc
 | `POST /api/casos/:id/informes/:iid/validacion` | `{profesional}` |
 | `POST /api/casos/:id/propuestas` | Valida una pregunta propuesta externamente |
 | `GET /api/casos/:id/auditoria` | Decisiones, errores, preguntas y respuestas |
+| `POST /api/consultas` | `{pregunta, quien: profesional\|apoderado, caso_id?, pregunta_id?}` → respuesta de la app, o fragmentos textuales encontrados automáticamente en internet, o pendiente para el profesional |
+| `POST /api/casos/:id/consultas/:cid/atendida` | El profesional marca como atendida una pregunta del apoderado |
 | `GET /api/bibliografia/sugerencias` | Búsquedas sugeridas (criterios DSM-5, entrevistas para TDAH) y fuentes |
 | `GET /api/bibliografia?q=&fuente=europepmc\|pubmed&n=` | Búsqueda bibliográfica en internet (solo términos de búsqueda; caché de 7 días) |
 | `POST /api/casos/:id/referencias` | `{referencia_id, fuente, profesional, nota?}` agrega una referencia encontrada al informe |

@@ -153,6 +153,7 @@ export function contexto(db, protocolo, casoId) {
     evaluaciones: evaluaciones(db, casoId),
     consentimientos: consentimientos(db, casoId),
     referencias: referenciasCaso(db, casoId),
+    consultas: db.prepare('SELECT * FROM consultas WHERE caso_id = ? ORDER BY id').all(casoId).map((c) => ({ ...c, respuesta: JSON.parse(c.respuesta) })),
   };
 }
 

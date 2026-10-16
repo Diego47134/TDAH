@@ -1,0 +1,312 @@
+{
+ "descripcion": "Respuestas generales de la propia app (sin internet). Se consultan antes de buscar en fuentes externas. Texto general: no reemplaza la explicación del profesional.",
+ "entradas": [
+  {
+   "id": "G-TDAH",
+   "publico": [
+    "apoderado",
+    "profesional"
+   ],
+   "titulo": "¿Qué es el TDAH?",
+   "terminos": [
+    "que es el tdah",
+    "que es tdah",
+    "que es el deficit atencional",
+    "deficit atencional",
+    "trastorno por deficit"
+   ],
+   "texto": "El TDAH (trastorno por déficit de atención e hiperactividad) es una condición del neurodesarrollo. Se caracteriza por un patrón persistente de dificultades de atención, de hiperactividad o de impulsividad, que aparece desde la infancia, se observa en más de un lugar (por ejemplo, en la casa y en el colegio) y afecta el día a día. Solo un profesional de salud puede diagnosticarlo, después de una evaluación completa."
+  },
+  {
+   "id": "G-DSM5",
+   "publico": [
+    "apoderado",
+    "profesional"
+   ],
+   "titulo": "¿Qué es el DSM-5?",
+   "terminos": [
+    "dsm",
+    "dsm 5",
+    "dsm5",
+    "dsm 5 tr",
+    "manual diagnostico"
+   ],
+   "texto": "El DSM-5 (y su revisión DSM-5-TR) es el manual de diagnóstico de la Asociación Americana de Psiquiatría. Describe los criterios que los profesionales usan para diagnosticar condiciones de salud mental, entre ellas el TDAH."
+  },
+  {
+   "id": "G-CRITERIOS",
+   "publico": [
+    "apoderado",
+    "profesional"
+   ],
+   "titulo": "Criterios DSM-5 para el diagnóstico de TDAH (resumen)",
+   "terminos": [
+    "criterios",
+    "criterio",
+    "diagnostico",
+    "diagnosticar",
+    "requisitos",
+    "cuantos sintomas",
+    "umbral"
+   ],
+   "texto": "Según el DSM-5: (A) seis o más síntomas de inatención y/o seis o más de hiperactividad-impulsividad (cinco o más desde los 17 años), presentes al menos 6 meses y en un grado que no corresponde al nivel de desarrollo; (B) varios síntomas presentes antes de los 12 años; (C) varios síntomas en dos o más contextos (por ejemplo, casa, colegio, con amigos); (D) evidencia clara de que interfieren con el funcionamiento social, escolar o laboral; (E) no se explican mejor por otra condición. En la app corresponden a los requisitos R1 a R10 del contraste DSM-5-TR."
+  },
+  {
+   "id": "G-PRESENTACIONES",
+   "publico": [
+    "apoderado",
+    "profesional"
+   ],
+   "titulo": "Presentaciones del TDAH",
+   "terminos": [
+    "tipos",
+    "tipo",
+    "presentacion",
+    "presentaciones",
+    "combinado",
+    "inatento",
+    "predominio"
+   ],
+   "texto": "El DSM-5 distingue tres presentaciones según los síntomas de los últimos 6 meses: combinada (se cumplen los criterios de inatención y de hiperactividad-impulsividad), predominantemente inatenta y predominantemente hiperactiva/impulsiva."
+  },
+  {
+   "id": "G-INATENCION",
+   "publico": [
+    "apoderado",
+    "profesional"
+   ],
+   "titulo": "¿Qué es la inatención?",
+   "terminos": [
+    "inatencion",
+    "atencion",
+    "distraccion",
+    "distrae",
+    "concentrarse",
+    "concentracion"
+   ],
+   "texto": "La inatención se refiere a dificultades para mantener la atención, seguir instrucciones, organizarse, terminar tareas o no perder objetos, más de lo esperable para la edad. El DSM-5 describe nueve síntomas de inatención."
+  },
+  {
+   "id": "G-HIPERACTIVIDAD",
+   "publico": [
+    "apoderado",
+    "profesional"
+   ],
+   "titulo": "¿Qué son la hiperactividad y la impulsividad?",
+   "terminos": [
+    "hiperactividad",
+    "impulsividad",
+    "inquieto",
+    "movimiento",
+    "interrumpe",
+    "esperar turno",
+    "impulsivo"
+   ],
+   "texto": "La hiperactividad es un nivel de actividad motora mayor al esperable (moverse mucho, levantarse cuando debe estar sentado, hablar en exceso). La impulsividad es actuar o responder sin esperar (interrumpir, responder antes de que termine la pregunta, dificultad para esperar el turno). El DSM-5 describe nueve síntomas en este grupo."
+  },
+  {
+   "id": "G-EDAD12",
+   "publico": [
+    "apoderado",
+    "profesional"
+   ],
+   "titulo": "¿Por qué se pregunta desde cuándo ocurre?",
+   "terminos": [
+    "desde cuando",
+    "desde",
+    "edad",
+    "inicio",
+    "12 anos",
+    "antes de los 12",
+    "seis meses",
+    "6 meses"
+   ],
+   "texto": "El DSM-5 exige que varios síntomas hayan estado presentes antes de los 12 años y que se mantengan al menos 6 meses. Por eso la entrevista pregunta desde cuándo ocurre cada conducta."
+  },
+  {
+   "id": "G-CONTEXTOS",
+   "publico": [
+    "apoderado",
+    "profesional"
+   ],
+   "titulo": "¿Por qué se pregunta dónde ocurre?",
+   "terminos": [
+    "donde",
+    "contextos",
+    "contexto",
+    "casa",
+    "colegio",
+    "lugares",
+    "hogar"
+   ],
+   "texto": "Para el diagnóstico, varios síntomas deben observarse en dos o más contextos (por ejemplo, en la casa y en el colegio). Por eso se pregunta en qué lugares ocurre cada conducta y se solicita información del colegio."
+  },
+  {
+   "id": "G-NOSE",
+   "publico": [
+    "apoderado"
+   ],
+   "titulo": "¿Qué pasa si no sé o no recuerdo la respuesta?",
+   "terminos": [
+    "no se",
+    "no recuerdo",
+    "no estoy seguro",
+    "no se que responder",
+    "duda"
+   ],
+   "texto": "Puede elegir «No sabe / No recuerda». Esa respuesta no se interpreta como un «no»: queda registrada como información desconocida y el profesional puede buscarla por otra fuente."
+  },
+  {
+   "id": "G-OCASIONAL",
+   "publico": [
+    "apoderado"
+   ],
+   "titulo": "¿Cuándo elegir «Ocasionalmente»?",
+   "terminos": [
+    "ocasionalmente",
+    "a veces",
+    "depende",
+    "de vez en cuando"
+   ],
+   "texto": "Elija «Ocasionalmente» cuando la conducta ocurre a veces, pero no de forma habitual. Si después se pregunta la frecuencia, indique la que mejor la describa."
+  },
+  {
+   "id": "G-INFORME-ESCOLAR",
+   "publico": [
+    "apoderado",
+    "profesional"
+   ],
+   "titulo": "¿Para qué se pide el informe escolar?",
+   "terminos": [
+    "informe escolar",
+    "colegio",
+    "profesora",
+    "profesor",
+    "escuela",
+    "docente"
+   ],
+   "texto": "El informe escolar aporta lo que se observa en el colegio, otro contexto que el diagnóstico exige considerar. Si existe y está disponible, la entrevista con la familia se centra en el hogar y luego solo se pregunta lo que el informe no responde."
+  },
+  {
+   "id": "G-SUENO",
+   "publico": [
+    "apoderado",
+    "profesional"
+   ],
+   "titulo": "¿Por qué se pregunta por el sueño, la visión, la audición o la salud?",
+   "terminos": [
+    "sueno",
+    "dormir",
+    "vision",
+    "audicion",
+    "oido",
+    "salud",
+    "medico",
+    "tamizaje",
+    "duerme",
+    "duermen",
+    "duerme mal",
+    "ronca",
+    "cansado",
+    "somnolencia"
+   ],
+   "texto": "Problemas de sueño, de visión o de audición y otras condiciones de salud pueden producir dificultades parecidas a las del TDAH. Por eso la evaluación las revisa antes de concluir (tamizaje médico, sensorial y del sueño)."
+  },
+  {
+   "id": "G-DIAGNOSTICO-APP",
+   "publico": [
+    "apoderado"
+   ],
+   "titulo": "¿La app entrega el diagnóstico?",
+   "terminos": [
+    "resultado",
+    "diagnostico",
+    "tiene tdah",
+    "mi hijo tiene",
+    "mi hija tiene",
+    "cuando sabre"
+   ],
+   "texto": "No. La app ordena la información de la entrevista y de las demás fuentes. El diagnóstico y las indicaciones los entrega el profesional después de revisar toda la evaluación."
+  },
+  {
+   "id": "G-DATOS",
+   "publico": [
+    "apoderado"
+   ],
+   "titulo": "¿Qué se hace con mis respuestas?",
+   "terminos": [
+    "datos",
+    "privacidad",
+    "confidencial",
+    "quien ve",
+    "respuestas",
+    "informacion"
+   ],
+   "texto": "Sus respuestas son confidenciales y se usan solo para esta evaluación. Puede pedir una copia o hacer consultas sobre sus datos al profesional. Más información en la Política de privacidad."
+  },
+  {
+   "id": "G-BARRIDO",
+   "publico": [
+    "profesional"
+   ],
+   "titulo": "Barrido diferencial (Etapa 9 §H)",
+   "terminos": [
+    "barrido",
+    "diferencial",
+    "explicaciones alternativas",
+    "comorbilidad",
+    "condiciones concurrentes"
+   ],
+   "texto": "Pregunta general obligatoria antes del cierre sobre áreas que podrían explicar o acompañar las dificultades (aprendizaje, lenguaje, sueño, emocional, conductual, desarrollo, sensorial, audición, visión, salud, contexto familiar). Cada área marcada abre su rama; «Ninguna» y «No sabe» son excluyentes."
+  },
+  {
+   "id": "G-PUERTA",
+   "publico": [
+    "profesional"
+   ],
+   "titulo": "Puerta de suficiencia diagnóstica",
+   "terminos": [
+    "puerta",
+    "suficiencia",
+    "abierta",
+    "cerrada",
+    "incertidumbre",
+    "resultado"
+   ],
+   "texto": "Según la Etapa 5 §21: PUERTA ABIERTA = existe información crítica suficiente y se puede realizar el contraste diagnóstico; PUERTA CERRADA = falta información crítica, no se debe cerrar la conclusión y debe especificarse qué falta; PUERTA ABIERTA CON INCERTIDUMBRE = existe información suficiente, pero permanecen discrepancias relevantes que requieren revisión clínica.",
+   "fuente_doc": "Etapa 5 §21"
+  },
+  {
+   "id": "G-RUTAS",
+   "publico": [
+    "profesional"
+   ],
+   "titulo": "Ruta A y Ruta B (Etapa 7 §5)",
+   "terminos": [
+    "ruta",
+    "ruta a",
+    "ruta b",
+    "con informe",
+    "completa"
+   ],
+   "texto": "Ruta B: existe un informe escolar disponible; el apoderado se centra en hogar, desarrollo, trayectoria e impacto, y lo escolar se toma del informe. Ruta A: no hay informe; el apoderado aporta lo que sabe del colegio (preguntas RA) y se recomienda complementar con el colegio."
+  },
+  {
+   "id": "G-ESTADOS",
+   "publico": [
+    "profesional"
+   ],
+   "titulo": "Estados de cada síntoma (Etapa 9 §14.1)",
+   "terminos": [
+    "estados",
+    "apoyado",
+    "probable",
+    "posible",
+    "contradictorio",
+    "desconocido",
+    "no referido"
+   ],
+   "texto": "APOYADO POR EVIDENCIA (frecuente, ≥6 meses), PROBABLE, POSIBLE (p. ej. ocasional o < 6 meses), EVIDENCIA RELACIONADA — REQUIERE CARACTERIZACIÓN, CONTRADICTORIO (fuentes discrepan), INFORMACIÓN INSUFICIENTE, NO REFERIDO (respondido «No»), DESCONOCIDO («No sabe») y NO INFORMADO (sin pregunta aún)."
+  }
+ ]
+}

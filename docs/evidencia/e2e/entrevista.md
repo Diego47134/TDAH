@@ -1,6 +1,6 @@
 # Evidencia E2E — entrevista
 
-Generado: 2026-10-15T23:37:50.534Z
+Generado: 2026-10-16T00:19:01.122Z
 
 ## E01 · Orden inicial obligatorio — **APROBADA**
 

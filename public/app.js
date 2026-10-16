@@ -236,10 +236,12 @@ function entrevista(cont, v, recargar) {
       <p class="texto">${esc(q.texto)}</p>
       <div id="fresp">${formPregunta(q)}</div>
       <details class="porque"><summary>¿Por qué esta pregunta?</summary><p>${esc(q.justificacion)}</p><p class="mono peq">${esc(q.origen || '')}</p></details>
+      <details class="duda"><summary>¿El apoderado tiene una duda?</summary>${cajaPregunta({ quien: 'apoderado', placeholder: 'p. ej. ¿Qué significa esta pregunta?' })}</details>
       ${ultima && ultima.caso === c.id ? `<div class="ultima">Anterior: «${esc(ultima.pregunta)}» → <strong>${esc(ultima.interp)}</strong>${ultima.extra ? ` · ${esc(ultima.extra)}` : ''}</div>` : ''}
     </div>`;
+  conectarCaja(cont.querySelector('.duda'), { quien: 'apoderado', casoId: c.id, preguntaId: q.id });
   const enviar = async (r) => {
-    cont.querySelectorAll('button, input').forEach((b) => { b.disabled = true; });
+    cont.querySelectorAll('#fresp button, #fresp input').forEach((b) => { b.disabled = true; });
     try {
       const res = await api('POST', `/api/casos/${c.id}/respuestas`, { pregunta_id: q.id, ...r });
       const i = res.traza.interpretacion;
@@ -399,11 +401,18 @@ function revision(cont, v, recargar) {
       <label>Nota de revisión</label><textarea name="nota" style="min-height:60px" required></textarea>
       <label>Profesional</label><input type="text" name="prof" required><div class="fila" style="margin-top:8px"><button class="boton">Marcar como revisada</button></div>`}
     </form>`).join('') || '<p class="tenue">Sin discrepancias.</p>'}</div>
+    <div class="tarjeta"><h2>Preguntas del apoderado (${(v.consultas || []).filter((x) => x.quien === 'apoderado').length})</h2>
+      <p class="tenue peq">Dudas planteadas durante la entrevista y cómo las respondió la app. Las que quedaron sin respuesta deben ser respondidas por el profesional.</p>
+      ${(v.consultas || []).filter((x) => x.quien === 'apoderado').map((x) => `<div class="consulta" style="border-top:1px solid var(--linea);padding-top:8px;margin-top:8px">
+        <p><strong>«${esc(x.pregunta)}»</strong> <span class="estado ${x.origen === 'sin_respuesta' && !x.atendida ? 'mal' : 'ok'}">${x.atendida ? 'atendida' : esc({ app: 'respondida por la app', internet: 'respondida con fuentes', sin_respuesta: 'sin respuesta' }[x.origen])}</span></p>
+        ${x.pregunta_id ? `<p class="tenue peq">Durante la pregunta ${esc(x.pregunta_id)} · ${new Date(x.creado).toLocaleString('es-CL')}</p>` : ''}
+        ${!x.atendida ? `<button class="boton sec peq batend" data-id="${x.id}">Marcar como atendida</button>` : ''}</div>`).join('') || '<p class="tenue">Sin preguntas.</p>'}</div>
     <form class="tarjeta" id="finterp"><h2>Interpretación y decisión clínica</h2>
       <p class="tenue peq">La redacta el profesional responsable. El sistema entrega una hipótesis estructurada; la decisión final no es automática (Etapa 9 §1 y §28).</p>
       <textarea id="tint" style="min-height:160px">${esc(c.interpretacion || '')}</textarea>
       <label>Profesional responsable</label><input type="text" id="pint" value="${esc(c.interpretacion_profesional || '')}">
       <div class="fila" style="margin-top:10px"><button class="boton">Guardar</button></div></form>`;
+  cont.querySelectorAll('.batend').forEach((b) => { b.onclick = async () => { try { await api('POST', `/api/casos/${c.id}/consultas/${b.dataset.id}/atendida`, {}); recargar(); } catch (e) { aviso(e.message, true); } }; });
   cont.querySelectorAll('.fcontr').forEach((f) => {
     f.onsubmit = async (e) => { e.preventDefault(); const fd = new FormData(f); try { await api('POST', `/api/casos/${c.id}/contradicciones/${f.dataset.id}/revision`, { nota: fd.get('nota'), profesional: fd.get('prof') }); recargar(); } catch (err) { aviso(err.message, true); } };
   });
@@ -428,7 +437,7 @@ async function informe(cont, v, recargar) {
         ${ultimoFinal && ultimoFinal.estado !== 'validado' ? '<button class="boton sec" id="bvalidar">Validar informe</button>' : ''}
         <button class="boton sec" id="bimprimir">Imprimir / PDF</button>
       </div></div>
-    <div class="tarjeta no-imprimir"><div class="fila"><h2 style="margin:0">Bibliografía del caso (${(v.referencias || []).length})</h2><span class="espacio"></span><a class="boton sec" href="#/bibliografia/${c.id}">Buscar evidencia en internet</a></div>
+    <div class="tarjeta no-imprimir"><div class="fila"><h2 style="margin:0">Bibliografía del caso (${(v.referencias || []).length})</h2><span class="espacio"></span><a class="boton sec" href="#/bibliografia/${c.id}">Preguntas y evidencia</a></div>
       ${(v.referencias || []).length ? `<ul class="refs">${v.referencias.map((r) => `<li><a href="${esc(r.referencia.url)}" target="_blank" rel="noopener noreferrer">${esc(r.referencia.titulo)}</a><div class="tenue peq">${esc([r.referencia.autores, r.referencia.revista, r.referencia.anio].filter(Boolean).join(' · '))}${r.nota ? ` — ${esc(r.nota)}` : ''}</div><button class="boton sec peq bquitar" data-id="${r.id}">Quitar</button></li>`).join('')}</ul>` : '<p class="tenue peq">Aún no hay referencias. Las que agregue aparecerán al final del informe.</p>'}</div>
     <article class="tarjeta informe">${inf.html}</article>`;
   cont.querySelectorAll('.bquitar').forEach((b) => { b.onclick = async () => { try { await api('DELETE', `/api/casos/${c.id}/referencias/${b.dataset.id}`, {}); recargar(); } catch (e) { aviso(e.message, true); } }; });
@@ -442,6 +451,40 @@ async function informe(cont, v, recargar) {
   };
 }
 
+// ------------------------------------------------ preguntas a la app ---
+function cajaPregunta({ quien, placeholder }) {
+  return `<form class="caja-pregunta" data-quien="${quien}"><div class="fila"><input type="search" name="p" maxlength="300" required placeholder="${esc(placeholder)}" style="flex:1;min-width:200px"><button class="boton sec">Preguntar</button></div>
+    <p class="tenue peq" style="margin:6px 0 0">${quien === 'apoderado' ? 'Respuesta general de la app. Si no la encuentra, busca en fuentes científicas y, si tampoco, la pregunta queda registrada para el profesional.' : 'La app responde con su propio contenido; si no encuentra la respuesta, busca sola en literatura científica (solo envía términos clínicos, nunca datos del paciente).'}</p>
+    <div class="respuesta-app" aria-live="polite"></div></form>`;
+}
+
+function pintarRespuesta(r, { casoId, agregar } = {}) {
+  const origen = { app: 'Respuesta de la app', internet: 'Encontrado en internet (Europe PMC)', sin_respuesta: 'Sin respuesta' }[r.origen];
+  if (r.origen === 'sin_respuesta') return `<div class="resp sin"><strong>${origen}.</strong> ${esc(r.aviso || '')}</div>`;
+  if (r.origen === 'app') return r.respuestas.map((x) => `<div class="resp"><div class="etq">${origen}</div><strong>${esc(x.titulo)}</strong><p>${esc(x.texto)}</p><div class="tenue peq">Fuente: ${esc(x.fuente)}</div></div>`).join('');
+  return `<div class="resp"><div class="etq">${origen} · términos enviados: ${esc(r.terminos_enviados.join(', '))}</div>
+    ${r.respuestas.map((x) => `<blockquote>«${esc(x.cita)}»</blockquote><div class="tenue peq"><a href="${esc(x.articulo.url)}" target="_blank" rel="noopener noreferrer">${esc(x.articulo.titulo)}</a> · ${esc([x.articulo.autores, x.articulo.revista, x.articulo.anio].filter(Boolean).join(' · '))}</div>
+      ${agregar && casoId ? `<button type="button" class="boton sec peq bagr" data-id="${esc(x.articulo.id)}">Agregar al informe del caso</button>` : ''}`).join('')}
+    <p class="tenue peq">${esc(r.aviso || '')}</p></div>`;
+}
+
+function conectarCaja(root, { quien, casoId, preguntaId, agregar, profesional }) {
+  const f = root?.querySelector('.caja-pregunta') || (root?.classList?.contains('caja-pregunta') ? root : null);
+  if (!f) return;
+  f.onsubmit = async (e) => {
+    e.preventDefault();
+    const out = f.querySelector('.respuesta-app'); out.innerHTML = '<p class="cargando">Buscando respuesta…</p>';
+    try {
+      const r = await api('POST', '/api/consultas', { pregunta: f.p.value, quien, caso_id: casoId || undefined, pregunta_id: preguntaId || undefined });
+      out.innerHTML = pintarRespuesta(r, { casoId, agregar });
+      out.querySelectorAll('.bagr').forEach((b) => { b.onclick = async () => {
+        try { await api('POST', `/api/casos/${casoId}/referencias`, { referencia_id: b.dataset.id, fuente: 'europepmc', profesional: profesional ? profesional() : '' }); b.textContent = 'Agregada ✓'; b.disabled = true; }
+        catch (er) { aviso(er.message, true); }
+      }; });
+    } catch (er) { out.innerHTML = `<div class="resp sin">${esc(er.message)}</div>`; }
+  };
+}
+
 // ------------------------------------------- búsqueda bibliográfica ---
 let ultimaBusqueda = null;
 async function vistaBibliografia(casoId) {
@@ -449,7 +492,9 @@ async function vistaBibliografia(casoId) {
   const caso = casoId ? casos.find((c) => c.id === casoId) : null;
   $app.innerHTML = `
     <div class="fila">${caso ? `<a href="#/caso/${caso.id}/informe">← ${esc(caso.etiqueta)}</a>` : '<a href="#/">← Expedientes</a>'}</div>
-    <h1>Buscar evidencia en internet</h1>
+    <h1>Preguntas y evidencia</h1>
+    <div class="tarjeta" id="cajaprof"><h2>Haga una pregunta</h2>${cajaPregunta({ quien: 'profesional', placeholder: 'p. ej. ¿Qué dice la evidencia sobre melatonina en niños con TDAH?' })}</div>
+    <h2 style="margin-top:22px">Búsqueda bibliográfica manual</h2>
     <p class="tenue">Literatura científica sobre criterios diagnósticos DSM-5 y entrevistas para TDAH, desde Europe PMC y PubMed. <strong>Solo se envían los términos que escriba: nunca datos del paciente.</strong></p>
     <form class="tarjeta" id="fbib">
       <div class="fila"><input id="bq" type="search" maxlength="200" placeholder="p. ej. ADHD DSM-5 diagnostic interview children" style="flex:1;min-width:220px" required>
@@ -459,6 +504,7 @@ async function vistaBibliografia(casoId) {
       ${caso ? `<div class="rejilla-bib"><div><label for="bprof">Profesional que agrega referencias</label><input id="bprof" type="text" maxlength="120"></div><div><label for="bnota">Nota (opcional)</label><input id="bnota" type="text" maxlength="500" placeholder="Para qué respalda el informe"></div></div>` : '<p class="tenue peq">Para agregar referencias al informe de un caso, abra esta búsqueda desde la pestaña «Informe» del caso.</p>'}
     </form>
     <div id="bres"></div>`;
+  conectarCaja(document.getElementById('cajaprof'), { quien: 'profesional', casoId: caso?.id, agregar: Boolean(caso), profesional: () => document.getElementById('bprof')?.value || '' });
   const pintar = (r) => {
     const cont = document.getElementById('bres');
     if (!r) { cont.innerHTML = ''; return; }

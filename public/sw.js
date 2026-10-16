@@ -1,6 +1,6 @@
 // Service worker: cachea SOLO la interfaz (app shell). Los datos clínicos (/api) nunca se
 // guardan en caché del navegador: siempre se leen y escriben en el servidor (fuente única de verdad).
-const VERSION = 'tdah-shell-v5';
+const VERSION = 'tdah-shell-v6';
 const SHELL = ['/', '/index.html', '/styles.css', '/app.js', '/manifest.webmanifest', '/icons/icon.svg', '/icons/icon-192.png'];
 
 self.addEventListener('install', (e) => {

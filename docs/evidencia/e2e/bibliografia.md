@@ -1,6 +1,6 @@
 # Evidencia E2E — bibliografia
 
-Generado: 2026-10-15T23:37:31.982Z
+Generado: 2026-10-16T00:18:43.539Z
 
 ## B1 · Buscar evidencia en internet — **APROBADA**
 
