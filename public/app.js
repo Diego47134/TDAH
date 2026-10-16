@@ -459,13 +459,13 @@ function cajaPregunta({ quien, placeholder }) {
 }
 
 function pintarRespuesta(r, { casoId, agregar } = {}) {
-  const origen = { app: 'Respuesta de la app', internet: 'Encontrado en internet (Europe PMC)', sin_respuesta: 'Sin respuesta' }[r.origen];
-  if (r.origen === 'sin_respuesta') return `<div class="resp sin"><strong>${origen}.</strong> ${esc(r.aviso || '')}</div>`;
-  if (r.origen === 'app') return r.respuestas.map((x) => `<div class="resp"><div class="etq">${origen}</div><strong>${esc(x.titulo)}</strong><p>${esc(x.texto)}</p><div class="tenue peq">Fuente: ${esc(x.fuente)}</div></div>`).join('');
-  return `<div class="resp"><div class="etq">${origen} · términos enviados: ${esc(r.terminos_enviados.join(', '))}</div>
-    ${r.respuestas.map((x) => `<blockquote>«${esc(x.cita)}»</blockquote><div class="tenue peq"><a href="${esc(x.articulo.url)}" target="_blank" rel="noopener noreferrer">${esc(x.articulo.titulo)}</a> · ${esc([x.articulo.autores, x.articulo.revista, x.articulo.anio].filter(Boolean).join(' · '))}</div>
-      ${agregar && casoId ? `<button type="button" class="boton sec peq bagr" data-id="${esc(x.articulo.id)}">Agregar al informe del caso</button>` : ''}`).join('')}
-    <p class="tenue peq">${esc(r.aviso || '')}</p></div>`;
+  if (r.origen === 'sin_respuesta') return `<div class="resp sin">${esc(r.aviso || 'No encontramos una respuesta.')}</div>`;
+  if (r.origen === 'app') return r.respuestas.map((x) => `<div class="resp"><strong>${esc(x.titulo)}</strong><p>${esc(x.texto)}</p></div>`).join('');
+  return `<div class="resp"><strong>Según la literatura científica</strong>
+    ${r.respuestas.map((x, i) => `<blockquote lang="en">${esc(x.cita)}<sup>${i + 1}</sup></blockquote>`).join('')}
+    <div class="refs-resp"><div class="etq">Referencias</div><ol>${r.respuestas.map((x) => `<li><a href="${esc(x.articulo.url)}" target="_blank" rel="noopener noreferrer">${esc(x.articulo.titulo)}</a>. ${esc([x.articulo.autores, x.articulo.revista, x.articulo.anio].filter(Boolean).join(' · '))}
+      ${agregar && casoId ? ` <button type="button" class="boton sec peq bagr" data-id="${esc(x.articulo.id)}">Agregar al informe</button>` : ''}</li>`).join('')}</ol></div>
+    <p class="tenue peq">Información general de publicaciones científicas; no reemplaza la evaluación del profesional.</p></div>`;
 }
 
 function conectarCaja(root, { quien, casoId, preguntaId, agregar, profesional }) {

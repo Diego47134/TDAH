@@ -204,3 +204,7 @@ details.duda summary { cursor: pointer; color: var(--acento); font-size: .9rem; 
 .respuesta-app .resp p { margin: 6px 0; }
 .respuesta-app .etq { font-size: .72rem; text-transform: uppercase; letter-spacing: .05em; color: var(--tenue); margin-bottom: 4px; }
 .respuesta-app blockquote { margin: 8px 0 4px; padding: 0 0 0 10px; border-left: 2px solid var(--linea); font-style: italic; }
+.respuesta-app blockquote { font-style: normal; }
+.respuesta-app .refs-resp { margin-top: 10px; font-size: .82rem; }
+.respuesta-app .refs-resp ol { margin: 4px 0 0; padding-left: 18px; }
+.respuesta-app .refs-resp li { margin-bottom: 4px; }
