@@ -12,15 +12,15 @@ export function rutaDBTemporal() {
   return path.join(os.tmpdir(), `tdah-e2e-${crypto.randomUUID()}.sqlite`);
 }
 
-export async function iniciarApp({ dbPath = rutaDBTemporal(), buscador, ia = { habilitada: false } } = {}) {
-  const app = crearApp({ dbPath, buscador, ia, tokenAcceso: '' });
+export async function iniciarApp({ dbPath = rutaDBTemporal(), buscador, ia = { habilitada: false }, rvToken = '' } = {}) {
+  const app = crearApp({ dbPath, buscador, ia, rvToken, tokenAcceso: '' });
   await new Promise((ok) => app.server.listen(0, '127.0.0.1', ok));
   const base = `http://127.0.0.1:${app.server.address().port}`;
-  const req = async (metodo, ruta, cuerpo) => {
-    const r = await fetch(base + ruta, { method: metodo, headers: { 'content-type': 'application/json' }, body: cuerpo ? JSON.stringify(cuerpo) : undefined });
+  const req = async (metodo, ruta, cuerpo, extra = {}) => {
+    const r = await fetch(base + ruta, { method: metodo, headers: { 'content-type': 'application/json', ...extra }, body: cuerpo ? JSON.stringify(cuerpo) : undefined });
     return { status: r.status, body: await r.json() };
   };
-  return { app, dbPath, req, cerrar: () => app.cerrar() };
+  return { app, dbPath, base, req, cerrar: () => app.cerrar() };
 }
 
 export async function crearCaso(api, etiqueta = 'Caso ficticio de prueba') {

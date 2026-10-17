@@ -29,7 +29,7 @@ test('L1 · sin consentimiento informado del representante legal no se crea el c
     const v = await crearCaso(api);
     assert.equal(v.consentimientos.length, 1);
     assert.equal(v.consentimientos[0].tipo, 'tratamiento_datos');
-    assert.match(v.consentimientos[0].version_politica, /^1\.0/);
+    assert.match(v.consentimientos[0].version_politica, /^1\.1/);
     const aud = (await api.req('GET', `/api/casos/${v.caso.id}/auditoria`)).body;
     assert.ok(aud.decisiones.some((d) => d.tipo === 'consentimiento_registrado'));
     ev.paso(p, { entrada: 'Consentimiento completo', accion_resultante: 'Caso creado; consentimiento auditado', esperado: 'HTTP 201', ok: true });

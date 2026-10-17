@@ -3,7 +3,7 @@
 // ficha clínica), Ley 21.331 (derechos en la atención de salud mental), Decreto 41/2012 MINSAL.
 // Ver docs/PRIVACIDAD_Y_CUMPLIMIENTO.md y public/privacidad.html.
 
-export const VERSION_POLITICA = '1.0 (15-10-2026)';
+export const VERSION_POLITICA = '1.1 (16-10-2026)';
 
 export const RELACIONES = ['madre', 'padre', 'tutor_legal', 'otro_representante_legal'];
 export const MEDIOS = ['escrito_firmado', 'electronico', 'verbal_registrado'];

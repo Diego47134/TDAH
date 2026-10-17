@@ -47,6 +47,10 @@ docker run -p 3000:3000 -v tdah-datos:/data --env-file .env tdah
 | `PROTOCOLO_PATH` | Protocolo a cargar | `protocol/protocolo.json` |
 | `APP_ACCESS_TOKEN` | Clave fija de acceso (`Authorization: Bearer`). Opcional: en producción, sin ella, la app pide crear la clave en el primer ingreso | sin clave en desarrollo |
 | `RESPONSABLE_NOMBRE`, `RESPONSABLE_RUT`, `RESPONSABLE_DOMICILIO`, `RESPONSABLE_CORREO` | Datos del responsable del tratamiento en la política de privacidad y los términos | se muestran como «[completar]» |
+| `OPENAI_API_KEY` o `DEEPSEEK_API_KEY` | Clave del proveedor de IA para leer documentos y redactar textos (solo se usa si el representante lo autoriza en el consentimiento) | sin IA: reglas propias |
+| `IA_PROVEEDOR`, `IA_MODELO` | `openai` o `deepseek`, y el modelo a usar | el proveedor con clave; `gpt-5-mini` / `deepseek-flash` |
+| `RV_DEVICE_TOKEN` | Token que el casco de realidad virtual envía en la cabecera `X-RV-Token` para mandar datos en tiempo real | el casco no puede enviar datos |
+| `DOCS_PATH` | Carpeta donde se guardan los documentos adjuntos | `documentos/` junto a la base de datos |
 
 Las claves nunca se escriben en el código ni se envían al navegador.
 

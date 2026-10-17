@@ -79,7 +79,7 @@ async function enrutar() {
   const partes = location.hash.replace(/^#\/?/, '').split('/');
   try {
     if (!protocolo) {
-      const salud = await api('GET', '/api/salud');
+      const salud = await api('GET', '/api/salud'); saludApp = salud;
       if (salud.configuracion_inicial_pendiente) { configuracionInicial(); return; }
       protocolo = await api('GET', '/api/protocolo');
       for (const ops of Object.values(protocolo.alternativas || {})) for (const o of ops) if (!ETIQ[o.valor] && !/^[A-Z]$/.test(o.valor)) ETIQ[o.valor] = o.texto;
@@ -118,6 +118,7 @@ async function vistaCasos() {
           <div><label for="cprof">Profesional que obtiene el consentimiento</label><input id="cprof" type="text" maxlength="120" required></div>
         </div>
         <label class="chk"><input id="cacepta" type="checkbox" required> <span>El representante legal fue informado de la finalidad, del uso de sus datos y de sus derechos, y <strong>consiente expresamente</strong> el tratamiento de los datos de salud del niño, niña o adolescente para esta evaluación.</span></label>
+        ${saludApp && !String(saludApp.ia).startsWith('no ') ? `<label class="chk"><input id="cia" type="checkbox"> <span>Además autoriza que documentos y respuestas escritas, sin nombres ni RUT, sean procesados por el proveedor de inteligencia artificial <strong>${esc(String(saludApp.ia).split(':')[0])}</strong> (servidores en el extranjero) para extraer datos y redactar textos. Opcional: sin esta autorización la app funciona con sus propias reglas.</span></label>` : ''}
       </fieldset>
       <div class="fila" style="margin-top:12px"><button class="boton">Registrar consentimiento y crear caso</button></div>
     </form>
@@ -133,15 +134,17 @@ async function vistaCasos() {
     const val = (id) => document.getElementById(id).value;
     const v = await api('POST', '/api/casos', { etiqueta: val('etq'), consentimiento: {
       acepta: document.getElementById('cacepta').checked, otorgante: val('cotorg'), relacion: val('crel'), medio: val('cmedio'),
-      profesional: val('cprof') } });
+      profesional: val('cprof'), acepta_ia_externa: Boolean(document.getElementById('cia')?.checked) } });
     location.hash = `#/caso/${v.caso.id}`;
   };
 }
 
 // ---------------------------------------------------------- caso ---
 const PESTANAS = [['entrevista', 'Entrevista apoderado'], ['expediente', 'Expediente'], ['escolar', 'Informe escolar y colegio'], ['nna', 'Niño / adolescente'],
-  ['instrumentos', 'Instrumentos y RV'], ['revision', 'Revisión profesional'], ['informe', 'Informe'], ['auditoria', 'Auditoría']];
+  ['documentos', 'Documentos'], ['instrumentos', 'Instrumentos y RV'], ['revision', 'Revisión profesional'], ['informe', 'Informe'], ['auditoria', 'Auditoría']];
 let ultima = null;
+let saludApp = null;
+let sondeoRV = null;
 
 async function vistaCaso(id, pestana) {
   const v = await api('GET', `/api/casos/${id}`);
@@ -163,7 +166,7 @@ async function vistaCaso(id, pestana) {
     </div>`;
   const cont = document.getElementById('contenido');
   const recargar = () => vistaCaso(id, pestana);
-  ({ entrevista, expediente, escolar, nna, instrumentos, revision, informe, auditoria }[pestana] || entrevista)(cont, v, recargar);
+  ({ entrevista, expediente, escolar, nna, documentos, instrumentos, revision, informe, auditoria }[pestana] || entrevista)(cont, v, recargar);
 }
 
 function lateral(v) {
@@ -361,9 +364,82 @@ function nna(cont, v, recargar) {
 }
 
 // ----------------------------------------------------- instrumentos ---
+// ------------------------------------------------------ documentos ---
+const leerBase64 = (archivo) => new Promise((ok, mal) => { const r = new FileReader(); r.onload = () => ok(String(r.result).split(',')[1]); r.onerror = () => mal(new Error('No se pudo leer el archivo.')); r.readAsDataURL(archivo); });
+
+function documentos(cont, v, recargar) {
+  const c = v.caso;
+  const iaTxt = v.ia.habilitada ? (v.ia.autorizada ? `Los datos se extraen con IA (${esc(v.ia.proveedor)}), verificando cada dato contra una frase textual del documento.` : 'El representante no autorizó el uso de IA: el informe escolar se procesa con las reglas propias de la app; los demás documentos quedan guardados.') : 'IA no configurada: el informe escolar se procesa con las reglas propias de la app; los demás documentos quedan guardados.';
+  const ETQ = { escala_estandarizada: 'Escala estandarizada', observacion_narrativa: 'Observación narrativa', informe_general: 'Informe general', entrevista_apoderado: 'Entrevista', informe_rv: 'Informe de realidad virtual', otro: 'Otro' };
+  cont.innerHTML = `
+    <form class="tarjeta" id="fdoc"><h2>Subir documento</h2>
+      <p class="tenue peq">PDF con texto, Word (.docx) o texto (.txt), hasta 15 MB. ${iaTxt}</p>
+      <div class="rejilla-bib">
+        <div><label for="dclase">Tipo de documento</label><select id="dclase">${Object.entries(v.clases_documento).map(([k, n]) => `<option value="${k}">${esc(n)}</option>`).join('')}</select></div>
+        <div><label for="dprof">Profesional que lo sube</label><input id="dprof" type="text" maxlength="120"></div>
+      </div>
+      <label for="docult">Nombres a ocultar antes de procesar (niño, padres, profesores; separados por coma)</label><input id="docult" type="text" placeholder="Se reemplazan por [NOMBRE]; no se guardan">
+      <label for="darch">Archivo</label><input id="darch" type="file" accept=".pdf,.docx,.txt" required>
+      <div class="fila" style="margin-top:10px"><button class="boton" id="bsubir">Subir y procesar</button></div>
+      <div id="dres"></div></form>
+    <div class="tarjeta"><h2>Documentos del caso (${v.documentos.length})</h2>
+      ${v.documentos.slice().reverse().map((d) => {
+        const ex = d.extraccion; const meta = ex?.documento;
+        return `<div class="doc" style="border-top:1px solid var(--linea);padding-top:10px;margin-top:10px">
+          <div class="fila"><strong>${esc(d.nombre)}</strong><span class="espacio"></span><span class="estado ${d.estado === 'procesado' ? 'ok' : 'pendiente'}">${esc(d.estado)}</span><button class="boton sec peq bdesc" data-id="${d.id}" data-nombre="${esc(d.nombre)}">Descargar</button></div>
+          <div class="tenue peq">${esc(v.clases_documento[d.clase] || d.clase)} · ${new Date(d.creado).toLocaleString('es-CL')} · ${esc(d.metodo || '')}${d.profesional ? ` · ${esc(d.profesional)}` : ''} · ${Math.max(1, Math.round(d.bytes / 1024))} KB</div>
+          ${meta ? `<div class="peq" style="margin-top:4px">${esc([ETQ[meta.clase] || meta.clase, meta.instrumento, meta.autor, meta.fecha].filter(Boolean).join(' · '))}</div>` : ''}
+          ${d.detalle ? `<p class="peq">${esc(d.detalle)}</p>` : ''}
+          ${ex ? `<details><summary class="peq">Datos extraídos: ${(ex.respuestas || []).length} respuestas · ${(ex.hechos || []).length} síntomas · ${(ex.datos || []).length} datos · ${(ex.puntajes || []).length} puntajes · ${(ex.rv?.variables || []).length} variables RV${ex.descartados?.length ? ` · ${ex.descartados.length} descartados por no verificarse` : ''}</summary>
+            <table class="tabla"><tbody>
+            ${(ex.respuestas || []).map((r) => `<tr><td class="mono peq">${esc(r.pregunta_id)}</td><td>${esc(sv(r.valor ?? r.estado))}</td><td class="peq">«${esc(r.evidencia)}»</td></tr>`).join('')}
+            ${(ex.hechos || []).map((h) => `<tr><td class="mono peq">${esc(h.dimension_id)} · ${esc(h.slot)}</td><td>${esc(sv(h.valor))}</td><td class="peq">«${esc(h.evidencia)}»</td></tr>`).join('')}
+            ${(ex.datos || []).map((x) => `<tr><td class="mono peq">${esc(x.dato)}</td><td>${esc(x.valor)}</td><td class="peq">«${esc(x.evidencia)}»</td></tr>`).join('')}
+            ${(ex.puntajes || []).map((x) => `<tr><td class="mono peq">${esc([x.escala, x.subescala].filter(Boolean).join(' · '))}</td><td>${esc(x.puntaje)} ${esc(x.interpretacion_del_documento)}</td><td class="peq">«${esc(x.evidencia)}»</td></tr>`).join('')}
+            ${(ex.rv?.variables || []).map((x) => `<tr><td class="mono peq">${esc(x.variable)}</td><td>${esc(x.resultado)} ${esc(x.interpretacion_del_documento)}</td><td class="peq">«${esc(x.evidencia)}»</td></tr>`).join('')}
+            </tbody></table></details>` : ''}
+        </div>`;
+      }).join('') || '<p class="tenue">Aún no hay documentos.</p>'}</div>`;
+  document.getElementById('fdoc').onsubmit = async (e) => {
+    e.preventDefault();
+    const f = document.getElementById('darch').files[0]; if (!f) return;
+    const b = document.getElementById('bsubir'); b.disabled = true; b.textContent = 'Procesando…';
+    try {
+      const r = await api('POST', `/api/casos/${c.id}/documentos`, { nombre: f.name, contenido_base64: await leerBase64(f), clase: document.getElementById('dclase').value,
+        ocultar: document.getElementById('docult').value.split(',').map((x) => x.trim()).filter(Boolean), profesional: document.getElementById('dprof').value });
+      aviso(r.detalle || `Documento procesado (${r.metodo}): ${r.aplicado.respuestas} respuestas, ${r.aplicado.hechos} síntomas, ${r.aplicado.rv} variables RV incorporadas.`);
+      recargar();
+    } catch (err) { aviso(err.message, true); b.disabled = false; b.textContent = 'Subir y procesar'; }
+  };
+  cont.querySelectorAll('.bdesc').forEach((b) => { b.onclick = async () => {
+    try {
+      const r = await fetch(`/api/casos/${c.id}/documentos/${b.dataset.id}/archivo`, { headers: token ? { authorization: `Bearer ${token}` } : {} });
+      if (!r.ok) throw new Error('No se pudo descargar.');
+      const a = document.createElement('a'); a.href = URL.createObjectURL(await r.blob()); a.download = b.dataset.nombre; a.click();
+    } catch (err) { aviso(err.message, true); }
+  }; });
+}
+
+// ------------------------------------------------- realidad virtual ---
+function tarjetaRV(v) {
+  const s = (v.rv_sesiones || []).slice().reverse();
+  const activa = s.find((x) => x.estado === 'en_curso');
+  const fila = (k, m) => `<tr><td>${esc(k.replace(/_/g, ' '))}</td><td class="mono">${m.valor ?? '—'} ${esc(m.unidad || '')}</td><td>${m.percentil != null ? `p${m.percentil}` : ''}</td><td class="peq">${esc(m.interpretacion || '')}</td></tr>`;
+  return `<div class="tarjeta" id="trv"><div class="fila"><h2 style="margin:0">Realidad virtual en tiempo real</h2><span class="espacio"></span>
+      ${activa ? '<span class="estado parcial">sesión en curso</span>' : '<button class="boton sec" id="brvini">Iniciar sesión con el casco</button>'}</div>
+    <p class="tenue peq">El casco (Meta Quest 3S) envía sus mediciones a la app mientras el niño realiza la tarea. Los resultados se muestran sin interpretación normativa mientras no exista un estudio de normas propio (Etapa 9 §18).</p>
+    ${activa ? `<p class="peq" id="rvinfo">Sesión <span class="mono">${esc(activa.id.slice(0, 8))}</span> · ${esc(activa.dispositivo || 'casco')} · ${activa.eventos} eventos · actualizada ${new Date(activa.actualizado).toLocaleTimeString('es-CL')}</p>
+      <div style="overflow-x:auto"><table class="tabla" id="rvtabla"><thead><tr><th>Variable</th><th>Valor</th><th>Percentil</th><th>Interpretación</th></tr></thead><tbody>${Object.entries(activa.metricas).map(([k, m]) => fila(k, m)).join('') || '<tr><td colspan="4" class="tenue">Esperando datos del casco…</td></tr>'}</tbody></table></div>
+      <details class="peq"><summary>Datos para configurar el casco</summary><p>Caso: <span class="mono">${esc(v.caso.codigo)}</span><br>Sesión: <span class="mono">${esc(activa.id)}</span><br>Envío: <span class="mono">POST /api/rv/sesiones/${esc(activa.id)}/datos</span> con cabecera <span class="mono">X-RV-Token</span>.</p></details>
+      <div class="fila" style="margin-top:8px"><button class="boton" id="brvfin">Finalizar y guardar en el expediente</button></div>` : ''}
+    ${s.filter((x) => x.estado !== 'en_curso').map((x) => `<p class="peq tenue">Sesión ${esc(x.id.slice(0, 8))} finalizada · ${new Date(x.actualizado).toLocaleString('es-CL')} · ${Object.keys(x.metricas).length} variables</p>`).join('')}
+  </div>`;
+}
+
 function instrumentos(cont, v, recargar) {
   const c = v.caso;
-  cont.innerHTML = `<p class="tenue peq">La realidad virtual, Nesplora o un instrumento aislado no determinan por sí solos un diagnóstico: aportan evidencia complementaria de las variables que realmente miden (Etapa 9 §18).</p>
+  if (sondeoRV) { clearInterval(sondeoRV); sondeoRV = null; }
+  cont.innerHTML = `${tarjetaRV(v)}<p class="tenue peq">La realidad virtual, Nesplora o un instrumento aislado no determinan por sí solos un diagnóstico: aportan evidencia complementaria de las variables que realmente miden (Etapa 9 §18).</p>
   ${v.instrumentos.map((i) => {
     const ev = v.evaluaciones.find((e) => e.instrumento_id === i.id) || {};
     return `<form class="tarjeta finst" data-id="${esc(i.id)}">
@@ -373,17 +449,30 @@ function instrumentos(cont, v, recargar) {
         <div style="flex:1;min-width:140px"><label>Fecha</label><input type="date" name="fecha" value="${esc(ev.fecha || '')}"></div>
         <div style="flex:2;min-width:180px"><label>Aplicador</label><input type="text" name="aplicador" value="${esc(ev.aplicador || '')}"></div>
       </div>
-      <label>Resultados (una línea por variable: «nombre: valor»; p. ej. «Omisiones: percentil 12»)</label>
-      <textarea name="resultados">${esc(ev.resultados ? Object.entries(ev.resultados).map(([k, x]) => `${k}: ${x}`).join('\n') : '')}</textarea>
+      ${ev.resultados?.variables ? `<label>Resultados (${ev.resultados.sesion_id ? 'sesión del casco' : 'extraídos del documento'})</label><table class="tabla"><tbody>${ev.resultados.variables.map((x) => `<tr><td>${esc(x.variable)}</td><td class="mono">${esc(x.resultado)}</td><td class="peq">${esc(x.interpretacion_del_documento || '')}</td></tr>`).join('')}</tbody></table><input type="hidden" name="resultados" value="">`
+        : `<label>Resultados (una línea por variable: «nombre: valor»; p. ej. «Omisiones: percentil 12»)</label>
+      <textarea name="resultados">${esc(ev.resultados ? Object.entries(ev.resultados).map(([k, x]) => `${k}: ${x}`).join('\n') : '')}</textarea>`}
       <label>Observaciones (condiciones de evaluación; obligatorias si «no_aplica»)</label><textarea name="observaciones" style="min-height:60px">${esc(ev.observaciones || '')}</textarea>
       <div class="fila" style="margin-top:10px"><button class="boton">Guardar</button></div></form>`;
   }).join('')}`;
+  const bi = document.getElementById('brvini');
+  if (bi) bi.onclick = async () => { try { await api('POST', '/api/rv/sesiones', { caso_id: c.id, dispositivo: 'Meta Quest 3S' }); recargar(); } catch (e) { aviso(e.message, true); } };
+  const bf = document.getElementById('brvfin');
+  if (bf) {
+    const sid = v.rv_sesiones.find((x) => x.estado === 'en_curso').id;
+    bf.onclick = async () => { try { await api('POST', `/api/rv/sesiones/${sid}/finalizar`, {}); clearInterval(sondeoRV); sondeoRV = null; aviso('Sesión guardada en el expediente.'); recargar(); } catch (e) { aviso(e.message, true); } };
+    sondeoRV = setInterval(async () => {
+      if (!document.getElementById('trv')) { clearInterval(sondeoRV); sondeoRV = null; return; }
+      try { const nv = await api('GET', `/api/casos/${c.id}`); const t = document.getElementById('trv'); if (t) { const tmp = document.createElement('div'); tmp.innerHTML = tarjetaRV(nv); const nueva = tmp.firstElementChild; for (const sel of ['#rvtabla', '#rvinfo']) { const n = nueva.querySelector(sel); if (n) t.querySelector(sel)?.replaceWith(n); } } } catch { /* reintenta */ }
+    }, 3000);
+  }
   cont.querySelectorAll('.finst').forEach((f) => {
     f.onsubmit = async (e) => {
       e.preventDefault(); const fd = new FormData(f); const res = {};
       for (const l of String(fd.get('resultados')).split('\n')) { const i = l.indexOf(':'); if (i > 0) res[l.slice(0, i).trim()] = l.slice(i + 1).trim(); }
       try {
-        await api('POST', `/api/casos/${c.id}/evaluaciones`, { instrumento_id: f.dataset.id, estado: fd.get('estado'), fecha: fd.get('fecha') || null, aplicador: fd.get('aplicador') || null, resultados: Object.keys(res).length ? res : null, observaciones: fd.get('observaciones') || null });
+        const previo = v.evaluaciones.find((x) => x.instrumento_id === f.dataset.id)?.resultados;
+        await api('POST', `/api/casos/${c.id}/evaluaciones`, { instrumento_id: f.dataset.id, estado: fd.get('estado'), fecha: fd.get('fecha') || null, aplicador: fd.get('aplicador') || null, resultados: previo?.variables ? previo : (Object.keys(res).length ? res : null), observaciones: fd.get('observaciones') || null });
         aviso('Instrumento registrado.'); recargar();
       } catch (err) { aviso(err.message, true); }
     };
