@@ -11,7 +11,8 @@ const DB = path.join(SALIDA, 'demo.sqlite');
 fs.mkdirSync(SALIDA, { recursive: true });
 for (const f of [DB, `${DB}-wal`, `${DB}-shm`]) fs.rmSync(f, { force: true });
 
-const app = crearApp({ dbPath: DB, tokenAcceso: '' });
+// Datos ficticios para inspección: la demostración se guarda sin cifrar (cifrado: null).
+const app = crearApp({ dbPath: DB, tokenAcceso: '', cifrado: null });
 await new Promise((ok) => app.server.listen(0, '127.0.0.1', ok));
 const base = `http://127.0.0.1:${app.server.address().port}`;
 const req = async (m, r, b) => {

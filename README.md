@@ -24,7 +24,7 @@ Abrir `http://127.0.0.1:3000`, crear un caso con un seudónimo y comenzar la ent
 |---|---|
 | `npm run dev` | Desarrollo local (recarga al guardar, sin token) |
 | `npm start` | Producción (`server.js`): clave de acceso obligatoria, datos fuera de la app, respaldos |
-| `npm test` | Pruebas unitarias y de extremo a extremo (59) |
+| `npm test` | Pruebas unitarias y de extremo a extremo (73) |
 | `npm run test:evidencia` | Igual, y escribe evidencia verificable en `docs/evidencia/` |
 | `npm run demo` | Caso ficticio completo de principio a fin → `docs/demo/` |
 | `npm run validar-protocolo [-- archivo.json]` | Valida la integridad del protocolo |
@@ -34,7 +34,7 @@ Abrir `http://127.0.0.1:3000`, crear un caso con un seudónimo y comenzar la ent
 
 ```bash
 docker build -t tdah .
-docker run -p 3000:3000 -v tdah-datos:/data --env-file .env tdah
+docker run -p 3000:3000 -v tdah-datos:/data -v tdah-clave:/clave --env-file .env tdah
 ```
 
 ## Variables de entorno
@@ -51,8 +51,18 @@ docker run -p 3000:3000 -v tdah-datos:/data --env-file .env tdah
 | `IA_PROVEEDOR`, `IA_MODELO` | `openai` o `deepseek`, y el modelo a usar | el proveedor con clave; `gpt-5-mini` / `deepseek-flash` |
 | `RV_DEVICE_TOKEN` | Token que el casco de realidad virtual envía en la cabecera `X-RV-Token` para mandar datos en tiempo real | el casco no puede enviar datos |
 | `DOCS_PATH` | Carpeta donde se guardan los documentos adjuntos | `documentos/` junto a la base de datos |
+| `TDAH_CLAVE_CIFRADO` | Clave maestra de cifrado en reposo (32 bytes en base64 o hex). **Guarde una copia fuera del servidor** | si falta, se crea el archivo de clave |
+| `TDAH_ARCHIVO_CLAVE` | Archivo de la clave de cifrado cuando no se usa la variable anterior | `~/.tdah-clave-cifrado` (producción) |
+| `TDAH_LICENCIA` | Licencia de uso «TDAH1.…» (también se instala desde la app) | sin licencia: solo lectura en producción |
 
 Las claves nunca se escriben en el código ni se envían al navegador.
+
+## Seguridad y licencias
+
+- **Cifrado en reposo (AES-256-GCM):** datos clínicos de la base, documentos adjuntos y respaldos. Las bases anteriores se cifran solas al actualizar. Restaurar un respaldo: `node scripts/restaurar-respaldo.js`.
+- **Licencia por instalación (firma Ed25519):** sin licencia válida, en producción la app queda en solo lectura (se puede consultar y exportar, no crear ni registrar). Emitir licencias: `node scripts/licencias.js emitir …`.
+
+Detalle, operación y recuperación: [docs/SEGURIDAD_Y_LICENCIAS.md](docs/SEGURIDAD_Y_LICENCIAS.md).
 
 ## Cómo funciona (resumen)
 
@@ -62,7 +72,7 @@ PWA ──HTTP──> Backend (servicio) ──> Motor Etapa 9 ──> Validador
                     │                     └──── expediente (SQLite) <────┘ respuesta + hechos + auditoría
 ```
 
-- **Preguntas a la app:** el profesional y el apoderado pueden hacer preguntas. La app responde con su propio contenido (glosario y protocolo); si no encuentra la respuesta, busca sola en literatura científica (Europe PMC) y muestra fragmentos textuales con su fuente, sin IA. Solo salen términos clínicos reconocidos, nunca el texto escrito ni datos del paciente. Las preguntas del apoderado sin respuesta quedan pendientes para el profesional.
+- **Preguntas a la app:** el profesional y el apoderado pueden hacer preguntas. La app responde con su propio contenido (glosario y protocolo); si no encuentra la respuesta, busca sola en internet —literatura científica (Europe PMC) y MedlinePlus en español (NLM)— y muestra fragmentos textuales con su fuente, sin IA. Solo salen términos clínicos reconocidos, nunca el texto escrito ni datos del paciente; si no reconoce términos, propone al profesional palabras sin nombres ni números y busca solo si él las confirma. Las preguntas del apoderado sin respuesta quedan pendientes para el profesional.
 - **Buscar evidencia en internet:** el profesional consulta Europe PMC y PubMed (criterios DSM-5, entrevistas diagnósticas para TDAH) y agrega las referencias al informe del caso; solo se envían los términos de búsqueda.
 - El **motor** decide qué falta y qué preguntar con reglas deterministas; el sistema funciona completo en el servidor, sin servicios externos.
 - Cada pregunta pasa por un **validador** de 17 reglas antes de mostrarse (pertenece al proyecto, orden, ruta, necesaria, no repetida, no equivalente, máximo 3 por síntoma, barrido antes del tamizaje, alternativas obligatorias, etc.).

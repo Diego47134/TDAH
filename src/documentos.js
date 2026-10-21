@@ -5,6 +5,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import zlib from 'node:zlib';
 import crypto from 'node:crypto';
+import { esArchivoCifrado } from './cifrado.js';
 
 export const CLASES = {
   entrevista_apoderado: 'Entrevista al apoderado (realizada fuera de la app)',
@@ -82,18 +83,46 @@ export async function extraerTexto(buf, nombre) {
   return { texto, tipo_mime: EXT[ext], advertencia };
 }
 
-export function guardarArchivo(carpeta, casoId, nombre, buf) {
+/**
+ * Guarda el archivo original. Con `cifrador`, el contenido queda cifrado (AES-256-GCM) y el nombre
+ * en disco es opaco (el nombre real, que puede contener datos del paciente, va cifrado en la base).
+ */
+export function guardarArchivo(carpeta, casoId, nombre, buf, cifrador = null) {
   const sha256 = crypto.createHash('sha256').update(buf).digest('hex');
-  const seguro = String(nombre).replace(/[^\p{L}\p{N}._ -]/gu, '_').slice(-120);
-  const rel = path.join(casoId, `${Date.now()}-${sha256.slice(0, 12)}-${seguro}`);
+  const rel = cifrador
+    ? path.join(casoId, `${Date.now()}-${crypto.randomBytes(8).toString('hex')}.enc`)
+    : path.join(casoId, `${Date.now()}-${sha256.slice(0, 12)}-${String(nombre).replace(/[^\p{L}\p{N}._ -]/gu, '_').slice(-120)}`);
   const destino = path.join(carpeta, rel);
   fs.mkdirSync(path.dirname(destino), { recursive: true, mode: 0o700 });
-  fs.writeFileSync(destino, buf, { mode: 0o600 });
+  fs.writeFileSync(destino, cifrador ? cifrador.cifrarArchivo(buf) : buf, { mode: 0o600 });
   return { archivo: rel, sha256, bytes: buf.length };
 }
 
-export function leerArchivo(carpeta, rel) {
+/** Lee el archivo original (lo descifra si está cifrado; los anteriores al cifrado se leen tal cual). */
+export function leerArchivo(carpeta, rel, cifrador = null) {
   const p = path.normalize(path.join(carpeta, rel));
   if (!p.startsWith(path.normalize(carpeta))) throw new ErrorDocumento(400, 'Ruta no válida.');
-  return fs.readFileSync(p);
+  const buf = fs.readFileSync(p);
+  return cifrador ? cifrador.descifrarArchivo(buf) : buf;
+}
+
+/**
+ * Cifra los documentos guardados antes del cifrado: los reescribe cifrados con nombre opaco,
+ * actualiza la ruta en la base y borra el original. Devuelve cuántos cifró.
+ */
+export function cifrarDocumentosExistentes(db, carpeta) {
+  const cif = db.cifrador;
+  if (!cif) return 0;
+  let n = 0;
+  for (const d of db.prepare("SELECT id, caso_id, archivo FROM documentos WHERE archivo NOT LIKE '%.enc'").all()) {
+    const origen = path.normalize(path.join(carpeta, d.archivo));
+    if (!origen.startsWith(path.normalize(carpeta)) || !fs.existsSync(origen)) continue;
+    const buf = fs.readFileSync(origen);
+    const rel = path.join(d.caso_id, `${Date.now()}-${crypto.randomBytes(8).toString('hex')}.enc`);
+    fs.writeFileSync(path.join(carpeta, rel), esArchivoCifrado(buf) ? buf : cif.cifrarArchivo(buf), { mode: 0o600 });
+    db.prepare('UPDATE documentos SET archivo = ? WHERE id = ?').run(rel, d.id);
+    fs.rmSync(origen, { force: true });
+    n++;
+  }
+  return n;
 }
