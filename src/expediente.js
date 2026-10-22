@@ -82,9 +82,10 @@ export function agregarHecho(db, protocolo, casoId, h) {
   let contradiccion = null;
   // Solo datos categóricos (presencia, alternativas, edad) pueden contradecirse; el texto libre se acumula.
   if (h.estado === 'valor' && h.categorico) {
+    // El valor está cifrado en la base: se compara en JavaScript, ya descifrado.
     const previo = db.prepare(`SELECT * FROM hechos WHERE caso_id = ? AND dimension_id = ? AND slot = ? AND estado = 'valor'
-                               AND id <> ? AND valor <> ? ORDER BY id DESC LIMIT 1`)
-      .get(casoId, h.dimension_id, h.slot, nuevoId, String(h.valor));
+                               AND id <> ? ORDER BY id DESC`)
+      .all(casoId, h.dimension_id, h.slot, nuevoId).find((x) => x.valor != null && String(x.valor) !== String(h.valor));
     if (previo) {
       const desc = `«${h.slot}» registrado como «${previo.valor}» (fuente: ${previo.fuente}) y luego como «${h.valor}» (fuente: ${h.fuente}).`;
       const rc = db.prepare(`INSERT INTO contradicciones (caso_id, dimension_id, slot, hecho_a, hecho_b, descripcion, creado)

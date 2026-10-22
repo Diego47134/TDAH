@@ -1,13 +1,23 @@
 // Respaldo automático de la base de datos (copia consistente con VACUUM INTO).
+// Con cifrado activo, cada respaldo se guarda cifrado completo (AES-256-GCM, «.sqlite.enc»), de modo
+// que se puede copiar fuera del servidor sin exponer datos. Restaurar: scripts/restaurar-respaldo.js.
 // Se ejecuta al arrancar si el último respaldo tiene más de `cadaHoras` y luego periódicamente.
 import fs from 'node:fs';
 import path from 'node:path';
 
-export function respaldar(db, dir, { conservar = 14 } = {}) {
-  fs.mkdirSync(dir, { recursive: true });
+export function respaldar(db, dir, { conservar = 14, cifrador = db.cifrador || null } = {}) {
+  fs.mkdirSync(dir, { recursive: true, mode: 0o700 });
   const marca = new Date().toISOString().replace(/[:.]/g, '-').slice(0, 19);
-  const destino = path.join(dir, `tdah-${marca}.sqlite`);
-  db.prepare('VACUUM INTO ?').run(destino);
+  const destino = path.join(dir, `tdah-${marca}.sqlite${cifrador ? '.enc' : ''}`);
+  if (cifrador) {
+    const tmp = path.join(dir, `.tmp-${marca}-${process.pid}.sqlite`);
+    try {
+      db.prepare('VACUUM INTO ?').run(tmp);
+      fs.writeFileSync(destino, cifrador.cifrarArchivo(fs.readFileSync(tmp)), { mode: 0o600 });
+    } finally { fs.rmSync(tmp, { force: true }); }
+  } else {
+    db.prepare('VACUUM INTO ?').run(destino);
+  }
   const viejos = listar(dir).slice(conservar);
   for (const f of viejos) fs.rmSync(path.join(dir, f), { force: true });
   return destino;
@@ -15,7 +25,7 @@ export function respaldar(db, dir, { conservar = 14 } = {}) {
 
 export function listar(dir) {
   if (!fs.existsSync(dir)) return [];
-  return fs.readdirSync(dir).filter((f) => /^tdah-.*\.sqlite$/.test(f)).sort().reverse();
+  return fs.readdirSync(dir).filter((f) => /^tdah-.*\.sqlite(\.enc)?$/.test(f)).sort().reverse();
 }
 
 export function programarRespaldos(db, dir, { cadaHoras = 24, conservar = 14, log = console } = {}) {

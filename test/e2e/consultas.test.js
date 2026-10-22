@@ -97,3 +97,64 @@ test('Q4 · internet no disponible: aviso claro, la app sigue funcionando', asyn
     assert.equal(bad.status, 400);
   } finally { await api.cerrar(); }
 });
+
+const XML_MLP = `<?xml version="1.0" encoding="UTF-8"?><nlmSearchResult><term>x</term><count>1</count><retstart>0</retstart><retmax>5</retmax><list num="1">
+<document rank="0" url="https://medlineplus.gov/spanish/occupationaltherapy.html"><content name="title">Terapia &lt;span class="qt0"&gt;ocupacional&lt;/span&gt;</content>
+<content name="organizationName">Biblioteca Nacional de Medicina</content>
+<content name="FullSummary">&lt;p&gt;La terapia ocupacional ayuda a las personas a realizar las actividades de la vida diaria. En los niños, la terapia ocupacional puede mejorar la coordinación y la integración sensorial.&lt;/p&gt;</content></document>
+<document rank="1" url="https://sitio-falso.example/x"><content name="title">No oficial</content><content name="FullSummary">Texto que no debe mostrarse nunca en la app.</content></document></list></nlmSearchResult>`;
+
+function fetchWeb(urls, { pmcVacio = false } = {}) {
+  return async (u) => {
+    const s = decodeURIComponent(String(u)).replace(/\+/g, ' ');
+    urls.push(s);
+    if (s.includes('wsearch.nlm.nih.gov')) return new Response(XML_MLP, { headers: { 'content-type': 'application/xml' } });
+    return Response.json(pmcVacio ? { hitCount: 0, resultList: { result: [] } } : RESULTADO);
+  };
+}
+
+test('Q5 · sin términos clínicos, el profesional confirma palabras y la app busca en la web (MedlinePlus); nombres y números nunca salen', async () => {
+  const p = ev.prueba('Q5', 'Búsqueda en la web con confirmación', 'Si la app no sabe la respuesta y no reconoce términos clínicos, propone palabras sin datos personales y busca solo si el profesional confirma.');
+  const urls = [];
+  const api = await iniciarApp({ buscador: crearBuscador({ fetchImpl: fetchWeb(urls) }) });
+  try {
+    const v = await crearCaso(api, 'Martina Rojas'); const id = v.caso.id;
+    const pregunta = '¿Martina Rojas, de 9 años, necesita fonoaudiología o kinesiología?';
+    let r = await api.req('POST', '/api/consultas', { pregunta, quien: 'profesional', caso_id: id });
+    assert.equal(r.body.origen, 'sin_respuesta');
+    assert.deepEqual(r.body.propuesta_busqueda.palabras, ['fonoaudiologia', 'kinesiologia']);
+    assert.equal(urls.length, 0, 'no busca sin confirmación');
+    const intruso = await api.req('POST', '/api/consultas', { pregunta, quien: 'profesional', caso_id: id, buscar_en_web: true, palabras: ['martina', 'rojas'] });
+    assert.equal(intruso.status, 400, 'solo se aceptan palabras de la propuesta');
+    r = await api.req('POST', '/api/consultas', { pregunta, quien: 'profesional', caso_id: id, buscar_en_web: true, palabras: ['fonoaudiologia', 'kinesiologia'] });
+    assert.equal(r.body.origen, 'internet');
+    assert.equal(r.body.fuente_id, 'medlineplus');
+    assert.match(urls[0], /wsearch\.nlm\.nih\.gov\/ws\/query\?db=healthTopicsSpanish&term=fonoaudiologia kinesiologia/);
+    assert.ok(urls.every((u) => !/martina|rojas|\b9\b/i.test(u)), 'ni nombre ni edad salen a internet');
+    assert.match(r.body.respuestas[0].cita, /terapia ocupacional/);
+    assert.equal(r.body.respuestas[0].articulo.url, 'https://medlineplus.gov/spanish/occupationaltherapy.html');
+    assert.ok(!JSON.stringify(r.body).includes('sitio-falso'), 'solo enlaces oficiales de medlineplus.gov');
+    assert.match(r.body.aviso, /MedlinePlus\.gov/);
+    const ref = await api.req('POST', `/api/casos/${id}/referencias`, { referencia_id: r.body.respuestas[0].articulo.id, fuente: 'medlineplus', profesional: 'Profesional de prueba' });
+    assert.equal(ref.status, 200);
+    ev.paso(p, { entrada: pregunta, accion_resultante: `Propuesta: fonoaudiologia, kinesiologia → confirmada → ${urls[0].split('?')[1]}`, esperado: 'Sin nombre ni edad; fuente oficial citada', ok: true });
+    ev.cerrar(p, true);
+  } finally { await api.cerrar(); }
+});
+
+test('Q6 · si la literatura científica no responde, la app intenta MedlinePlus; el apoderado recibe primero MedlinePlus', async () => {
+  const urls = [];
+  const api = await iniciarApp({ buscador: crearBuscador({ fetchImpl: fetchWeb(urls, { pmcVacio: true }) }) });
+  try {
+    const v = await crearCaso(api); const id = v.caso.id;
+    let r = await api.req('POST', '/api/consultas', { pregunta: '¿Qué hacer con la coordinación motora?', quien: 'profesional', caso_id: id });
+    assert.equal(r.body.origen, 'internet'); assert.equal(r.body.fuente_id, 'medlineplus');
+    assert.ok(urls.findIndex((u) => u.includes('europepmc')) < urls.findIndex((u) => u.includes('wsearch')), 'profesional: primero Europe PMC');
+    urls.length = 0;
+    r = await api.req('POST', '/api/consultas', { pregunta: '¿Cómo puedo ayudarlo con la lectura?', quien: 'apoderado', caso_id: id });
+    assert.equal(r.body.origen, 'internet');
+    assert.match(urls[0], /wsearch\.nlm\.nih\.gov/, 'apoderado: primero información en español para público general');
+    r = await api.req('POST', '/api/consultas', { pregunta: '¿Cuánto dura la consulta de hoy?', quien: 'apoderado', caso_id: id });
+    assert.equal(r.body.origen, 'sin_respuesta'); assert.equal(r.body.propuesta_busqueda, undefined, 'el apoderado nunca envía texto libre a internet');
+  } finally { await api.cerrar(); }
+});

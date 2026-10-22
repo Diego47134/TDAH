@@ -91,6 +91,35 @@ function explicarPregunta(base, P, preguntaId) {
   return id ? base.filter((e) => e.id === id) : [];
 }
 
+const NO_WEB = 'necesita necesitan anos meses semanas tiene tienen recomienda recomendable conviene sirve bueno buena mejor deberia podria seria hoy ayer manana'.split(' ');
+
+/** Hasta dos oraciones iniciales del resumen (MedlinePlus ordena por relevancia). */
+function primerasOraciones(r) {
+  if (!r?.resumen) return [];
+  const cita = r.resumen.split(/(?<=[.!?])\s+(?=[A-ZÁÉÍÓÚÑ¿¡])/).slice(0, 2).join(' ').trim();
+  return cita.length >= 40 ? [{ cita: cita.slice(0, 700), articulo: { id: r.id, titulo: r.titulo, autores: r.autores, revista: r.revista, anio: r.anio, url: r.url, doi: null, pmid: null } }] : [];
+}
+
+/**
+ * Palabras que se pueden enviar a un buscador web: sin palabras vacías, sin nombres del caso, sin
+ * números (edades, RUT, teléfonos) ni correos. Máximo 6.
+ */
+export function palabrasParaWeb(texto, excluir = []) {
+  const fuera = new Set(excluir.flatMap((n) => normalizar(String(n)).split(' ')).filter(Boolean));
+  // Palabras con mayúscula inicial que no empiezan la oración: probablemente nombres propios.
+  // (también al inicio: se prefiere omitir una palabra útil antes que enviar un nombre).
+  for (const m of String(texto).matchAll(/\p{Lu}[\p{L}'-]+/gu)) for (const w of normalizar(m[0]).split(' ')) fuera.add(w);
+  for (const w of NO_WEB) fuera.add(w);
+  const limpio = String(texto).replace(/[^\s@]+@[^\s@]+/g, ' ');
+  const out = [];
+  for (const w of palabras(limpio)) {
+    if (/\d/.test(w) || fuera.has(w) || out.includes(w) || w.length < 4) continue;
+    out.push(w);
+    if (out.length >= 6) break;
+  }
+  return out;
+}
+
 const GENERICA = /(que significa|no entiendo|no comprendo|a que se refiere|que quiere decir|explique|explicar|no se que responder)/;
 
 /** Oraciones de los resúmenes que mejor responden, textuales y con su cita. */
@@ -124,9 +153,36 @@ function extraerCitas(resultados, terminos, max = 3) {
  */
 export function crearConsultas(P, { buscarInternet }) {
   const base = construirBase(P);
+
+  /** Prueba las fuentes en orden hasta encontrar fragmentos que respondan; devuelve la respuesta. */
+  async function buscarEnFuentes(planes, { quien, manual = false }) {
+    let errorRed = null; const enviados = [];
+    for (const plan of planes) {
+      for (const consulta of plan.consultas) {
+        let r;
+        try { r = await buscarInternet({ consulta, fuente: plan.fuente, cantidad: plan.fuente === 'medlineplus' ? 5 : 15 }); } catch (e) { errorRed = e; break; }
+        enviados.push(consulta);
+        if (!r.resultados.some((x) => x.resumen)) continue;
+        let citas = extraerCitas(r.resultados, plan.sel);
+        if (!citas.length && plan.fuente === 'medlineplus') citas = primerasOraciones(r.resultados[0]);
+        if (!citas.length) continue;
+        const esMedline = plan.fuente === 'medlineplus';
+        return { origen: 'internet', consulta_enviada: consulta, terminos_enviados: manual ? plan.sel.map((t) => t.es) : plan.sel.map((t) => (quien === 'apoderado' || esMedline ? t.es : t.en)),
+          fuente: esMedline ? 'MedlinePlus.gov' : 'Europe PMC', fuente_id: plan.fuente, busqueda_manual: manual, respuestas: citas,
+          aviso: esMedline
+            ? 'Información general de MedlinePlus.gov (Biblioteca Nacional de Medicina de EE.UU.), encontrada automáticamente. No reemplaza la opinión del profesional.'
+            : 'Fragmentos textuales de publicaciones científicas encontradas automáticamente. No son una respuesta de la app ni reemplazan la opinión del profesional.' };
+      }
+    }
+    const terminosEnviados = planes[0].sel.map((t) => (quien === 'apoderado' || manual ? t.es : t.en));
+    if (errorRed && !enviados.length) return { origen: 'sin_respuesta', respuestas: [], terminos_enviados: terminosEnviados, aviso: `No fue posible buscar en internet: ${errorRed.message}` };
+    return { origen: 'sin_respuesta', respuestas: [], terminos_enviados: terminosEnviados,
+      aviso: quien === 'apoderado' ? 'No encontramos una respuesta. Su pregunta quedó registrada para que el profesional la responda.' : 'La búsqueda en internet no encontró párrafos que respondan la pregunta.' };
+  }
+
   return {
     base,
-    async responder({ pregunta, quien = 'profesional', pregunta_id } = {}) {
+    async responder({ pregunta, quien = 'profesional', pregunta_id, buscar_en_web = false, palabras, excluir = [] } = {}) {
       const texto = String(pregunta ?? '').replace(/\s+/g, ' ').trim();
       if (texto.length < 3) throw Object.assign(new Error('Escriba su pregunta.'), { status: 400 });
       if (texto.length > 300) throw Object.assign(new Error('La pregunta es demasiado larga (máximo 300 caracteres).'), { status: 400 });
@@ -147,30 +203,37 @@ export function crearConsultas(P, { buscarInternet }) {
 
       // 2. Búsqueda automática en internet (solo términos clínicos reconocidos).
       const terminos = terminosClinicos(texto);
+      const sinRespuesta = (aviso, extra = {}) => ({ origen: 'sin_respuesta', respuestas: [], terminos_enviados: [], aviso, ...extra });
+      const avisoApoderado = 'No encontramos una respuesta. Su pregunta quedó registrada para que el profesional la responda.';
       if (!terminos.length) {
-        return { origen: 'sin_respuesta', respuestas: [], terminos_enviados: [],
-          aviso: quien === 'apoderado' ? 'No encontramos una respuesta. Su pregunta quedó registrada para que el profesional la responda.' : 'No se reconocieron términos clínicos para buscar en internet. Reformule con términos como «criterios», «inicio», «sueño», «entrevista», «tratamiento».' };
+        if (quien === 'apoderado') return sinRespuesta(avisoApoderado);
+        // Profesional: la app propone palabras para buscar en la web y SOLO busca si el profesional
+        // las confirma (puede quitar las que no quiera enviar). Nunca salen nombres, números ni RUT.
+        const propuesta = palabrasParaWeb(texto, excluir);
+        if (!propuesta.length) return sinRespuesta('No hay palabras que se puedan buscar en internet sin exponer datos. Reformule con términos generales.');
+        if (!buscar_en_web) {
+          return sinRespuesta('La app no tiene una respuesta propia y no reconoció términos clínicos. Puede buscar en internet con las palabras propuestas.',
+            { propuesta_busqueda: { palabras: propuesta, fuentes: ['MedlinePlus en español', 'Europe PMC'] } });
+        }
+        const elegidas = (Array.isArray(palabras) ? palabras : propuesta).map((w) => normalizar(String(w))).filter((w) => propuesta.includes(w));
+        if (!elegidas.length) throw Object.assign(new Error('Seleccione al menos una de las palabras propuestas.'), { status: 400 });
+        const sel = elegidas.map((w) => ({ en: w, es: w }));
+        return buscarEnFuentes([
+          { fuente: 'medlineplus', consultas: [elegidas.join(' '), ...(elegidas.length > 1 ? [elegidas.slice(0, 2).join(' ')] : [])], sel },
+          { fuente: 'europepmc', consultas: [`TDAH ${elegidas.join(' ')} LANG:"spa"`], sel },
+        ], { quien, manual: true });
       }
       const intentos = [];
       for (let k = Math.min(terminos.length, 3); k >= 1; k--) {
         const sel = terminos.slice(0, k);
         intentos.push(quien === 'apoderado'
-          ? { consulta: `TDAH ${sel.map((t) => t.es).join(' ')} LANG:"spa"`, sel }
-          : { consulta: `ADHD ${sel.map((t) => (t.en.includes(' ') ? `"${t.en}"` : t.en)).join(' ')}`, sel });
+          ? `TDAH ${sel.map((t) => t.es).join(' ')} LANG:"spa"`
+          : `ADHD ${sel.map((t) => (t.en.includes(' ') ? `"${t.en}"` : t.en)).join(' ')}`);
       }
-      let r = null; let usada = null; let errorRed = null;
-      for (const it of intentos) {
-        try { r = await buscarInternet({ consulta: it.consulta, fuente: 'europepmc', cantidad: 15 }); } catch (e) { errorRed = e; break; }
-        if (r.resultados.some((x) => x.resumen)) { usada = it; break; }
-      }
-      if (errorRed) return { origen: 'sin_respuesta', respuestas: [], terminos_enviados: terminos.map((t) => t.en), aviso: `No fue posible buscar en internet: ${errorRed.message}` };
-      const citas = usada ? extraerCitas(r.resultados, usada.sel) : [];
-      if (!citas.length) {
-        return { origen: 'sin_respuesta', respuestas: [], terminos_enviados: terminos.map((t) => t.en),
-          aviso: quien === 'apoderado' ? 'No encontramos una respuesta. Su pregunta quedó registrada para que el profesional la responda.' : 'La búsqueda en internet no encontró párrafos que respondan la pregunta.' };
-      }
-      return { origen: 'internet', consulta_enviada: usada.consulta, terminos_enviados: usada.sel.map((t) => (quien === 'apoderado' ? t.es : t.en)), fuente: 'Europe PMC',
-        respuestas: citas, aviso: 'Fragmentos textuales de publicaciones científicas encontradas automáticamente. No son una respuesta de la app ni reemplazan la opinión del profesional.' };
+      const medline = { fuente: 'medlineplus', consultas: [...new Set([terminos.slice(0, 2).map((t) => t.es).join(' '), terminos[0].es])], sel: terminos.slice(0, 3) };
+      const pmc = { fuente: 'europepmc', consultas: intentos, sel: terminos.slice(0, 3) };
+      // El apoderado recibe primero información en español para público general; el profesional, literatura científica.
+      return buscarEnFuentes(quien === 'apoderado' ? [medline, pmc] : [pmc, medline], { quien });
     },
   };
 }

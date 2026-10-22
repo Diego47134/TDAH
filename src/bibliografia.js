@@ -10,6 +10,9 @@ export class ErrorBusqueda extends Error {
 export const FUENTES = {
   europepmc: { nombre: 'Europe PMC (incluye PubMed)', url: 'https://www.ebi.ac.uk/europepmc/webservices/rest/search' },
   pubmed: { nombre: 'PubMed (NCBI)', url: 'https://eutils.ncbi.nlm.nih.gov/entrez/eutils' },
+  // Información de salud en español para público general (Biblioteca Nacional de Medicina de EE.UU.).
+  // Servicio gratuito, sin registro; máximo 85 consultas por minuto; exige indicar «MedlinePlus.gov».
+  medlineplus: { nombre: 'MedlinePlus en español (Biblioteca Nacional de Medicina de EE.UU.)', url: 'https://wsearch.nlm.nih.gov/ws/query' },
 };
 
 /** Búsquedas sugeridas: criterios DSM-5 y entrevistas diagnósticas para TDAH. */
@@ -41,7 +44,32 @@ export function validarConsulta(q) {
   return consulta;
 }
 
+const ENTIDADES = { amp: '&', lt: '<', gt: '>', quot: '"', apos: "'", nbsp: ' ', iexcl: '¡', iquest: '¿', laquo: '«', raquo: '»', ndash: '–', mdash: '—', hellip: '…', deg: '°' };
+for (const [l, b] of Object.entries({ a: 'aáàâä', e: 'eéèêë', i: 'iíìîï', o: 'oóòôö', u: 'uúùûü' })) {
+  ['acute', 'grave', 'circ', 'uml'].forEach((tipo, k) => { ENTIDADES[`${l}${tipo}`] = b[k + 1]; ENTIDADES[`${l.toUpperCase()}${tipo}`] = b[k + 1].toUpperCase(); });
+}
+Object.assign(ENTIDADES, { ntilde: 'ñ', Ntilde: 'Ñ', ccedil: 'ç', Ccedil: 'Ç' });
+const entidades = (s) => String(s ?? '').replace(/&(#x?[0-9a-f]+|\w+);/gi, (m, e) => {
+  if (e[0] === '#') { const n = e[1] === 'x' || e[1] === 'X' ? parseInt(e.slice(2), 16) : Number(e.slice(1)); return Number.isFinite(n) ? String.fromCodePoint(n) : m; }
+  return ENTIDADES[e] ?? ENTIDADES[e.toLowerCase()] ?? m;
+});
 const limpiar = (s) => String(s ?? '').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+/** Texto de un fragmento XML/HTML: decodifica entidades (el resumen viene como HTML escapado) y quita etiquetas. */
+const textoXML = (s) => limpiar(entidades(limpiar(entidades(String(s ?? '').replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, '$1')))));
+
+/** Interpreta la respuesta XML del servicio web de MedlinePlus. */
+export function leerMedlinePlus(xml) {
+  const total = Number(String(xml).match(/<count>(\d+)<\/count>/)?.[1] || 0);
+  const resultados = [];
+  for (const m of String(xml).matchAll(/<document\b([^>]*)>([\s\S]*?)<\/document>/g)) {
+    const url = entidades(m[1].match(/url="([^"]+)"/)?.[1] || '');
+    if (!/^https:\/\/(\w+\.)?medlineplus\.gov\//.test(url)) continue; // solo enlaces oficiales
+    const campo = (n) => { const c = m[2].match(new RegExp(`<content name="${n}"[^>]*>([\\s\\S]*?)</content>`, 'i')); return c ? textoXML(c[1]) : ''; };
+    resultados.push({ id: `MLP:${url}`, fuente: 'medlineplus', titulo: campo('title'), autores: campo('organizationName') || 'MedlinePlus',
+      revista: 'MedlinePlus.gov', anio: null, doi: null, pmid: null, url, resumen: (campo('FullSummary') || campo('snippet')).slice(0, 4000) || null, acceso_abierto: true });
+  }
+  return { total: total || resultados.length, resultados };
+}
 
 export function crearBuscador({ fetchImpl = globalThis.fetch, timeoutMs = 15000, correoContacto = process.env.RESPONSABLE_CORREO } = {}) {
   async function obtenerJSON(url) {
@@ -56,6 +84,26 @@ export function crearBuscador({ fetchImpl = globalThis.fetch, timeoutMs = 15000,
       if (e.name === 'AbortError') throw new ErrorBusqueda(504, 'La fuente bibliográfica no respondió a tiempo.');
       throw new ErrorBusqueda(502, 'No fue posible conectarse a la fuente bibliográfica (revise la conexión a internet del servidor).');
     } finally { clearTimeout(t); }
+  }
+
+  async function obtenerTexto(url) {
+    const ctrl = new AbortController();
+    const t = setTimeout(() => ctrl.abort(), timeoutMs);
+    try {
+      const r = await fetchImpl(url, { signal: ctrl.signal, headers: { accept: 'application/xml', 'user-agent': 'EvaluacionTDAH/1.0 (consulta de salud)' } });
+      if (!r.ok) throw new ErrorBusqueda(502, `La fuente respondió con el código ${r.status}. Intente nuevamente más tarde.`);
+      return await r.text();
+    } catch (e) {
+      if (e instanceof ErrorBusqueda) throw e;
+      if (e.name === 'AbortError') throw new ErrorBusqueda(504, 'La fuente no respondió a tiempo.');
+      throw new ErrorBusqueda(502, 'No fue posible conectarse a la fuente (revise la conexión a internet del servidor).');
+    } finally { clearTimeout(t); }
+  }
+
+  async function medlineplus(consulta, n) {
+    const u = new URL(FUENTES.medlineplus.url);
+    u.search = new URLSearchParams({ db: 'healthTopicsSpanish', term: consulta, retmax: String(n), rettype: 'brief', tool: 'EvaluacionTDAH', ...(correoContacto ? { email: correoContacto } : {}) }).toString();
+    return leerMedlinePlus(await obtenerTexto(u));
   }
 
   async function europepmc(consulta, n) {
@@ -99,7 +147,7 @@ export function crearBuscador({ fetchImpl = globalThis.fetch, timeoutMs = 15000,
       const q = validarConsulta(consulta);
       if (!FUENTES[fuente]) throw new ErrorBusqueda(400, `Fuente no válida: ${fuente}.`);
       const n = Math.min(Math.max(Number(cantidad) || 10, 1), 25);
-      const r = fuente === 'pubmed' ? await pubmed(q, n) : await europepmc(q, n);
+      const r = fuente === 'pubmed' ? await pubmed(q, n) : fuente === 'medlineplus' ? await medlineplus(q, n) : await europepmc(q, n);
       return { consulta: q, fuente, fuente_nombre: FUENTES[fuente].nombre, ...r };
     },
   };

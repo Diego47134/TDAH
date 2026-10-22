@@ -270,7 +270,7 @@ export function crearServicio({ db, protocolo, buscador = crearBuscador(), ia = 
       if (buf.length > MAX_BYTES) throw new ErrorServicio(413, 'El archivo supera los 15 MB.');
       let ext;
       try { ext = await extraerTexto(buf, nombre); } catch (e) { if (e instanceof ErrorDocumento) throw new ErrorServicio(e.status, e.message); throw e; }
-      const guardado = guardarArchivo(carpetaDocs, casoId, nombre, buf);
+      const guardado = guardarArchivo(carpetaDocs, casoId, nombre, buf, db.cifrador);
       const texto = seudonimizar(ext.texto, nombresDelCaso(ctx, Array.isArray(ocultar) ? ocultar : String(ocultar).split(',')));
       const usarIA = ia?.habilitada && permiteIA(ctx) && ['entrevista_apoderado', 'informe_escolar', 'informe_rv'].includes(clase) && !ext.advertencia;
       let verif = null; let metodo = 'sin_extraccion'; let detalle = ext.advertencia; let errorIA = null;
@@ -335,7 +335,7 @@ export function crearServicio({ db, protocolo, buscador = crearBuscador(), ia = 
       ctxDe(casoId);
       const d = db.prepare('SELECT * FROM documentos WHERE id = ? AND caso_id = ?').get(Number(docId), casoId);
       if (!d) throw new ErrorServicio(404, 'Documento no encontrado.');
-      return { nombre: d.nombre, tipo_mime: d.tipo_mime, contenido: leerArchivo(carpetaDocs, d.archivo) };
+      return { nombre: d.nombre, tipo_mime: d.tipo_mime, contenido: leerArchivo(carpetaDocs, d.archivo, db.cifrador) };
     },
 
     // ---------------------------------- realidad virtual en tiempo real (casco) ---
@@ -614,12 +614,14 @@ export function crearServicio({ db, protocolo, buscador = crearBuscador(), ia = 
     },
 
     /** Pregunta libre del profesional o del apoderado: responde con la app y, si no alcanza, busca sola en internet. */
-    async preguntar({ pregunta, quien = 'profesional', caso_id, pregunta_id } = {}) {
-      if (caso_id) ctxDe(caso_id);
-      let r;
-      try { r = await consultas.responder({ pregunta, quien, pregunta_id }); } catch (e) { if (e.status) throw new ErrorServicio(e.status, e.message); throw e; }
-      // Redacción en español a partir de las fuentes encontradas (sin agregar información).
+    async preguntar({ pregunta, quien = 'profesional', caso_id, pregunta_id, buscar_en_web = false, palabras } = {}) {
       const ctxC = caso_id ? ctxDe(caso_id) : null;
+      let r;
+      try {
+        r = await consultas.responder({ pregunta, quien, pregunta_id, buscar_en_web: buscar_en_web === true, palabras,
+          excluir: ctxC ? [...nombresDelCaso(ctxC), ctxC.caso.etiqueta || ''] : [] });
+      } catch (e) { if (e.status) throw new ErrorServicio(e.status, e.message); throw e; }
+      // Redacción en español a partir de las fuentes encontradas (sin agregar información).
       if (ia?.habilitada && (!ctxC || permiteIA(ctxC)) && ['app', 'internet'].includes(r.origen) && r.respuestas.length) {
         const fragmentos = r.respuestas.map((x, i) => ({ n: i + 1, texto: x.cita || `${x.titulo}: ${x.texto}`, fuente: x.articulo ? `${x.articulo.titulo} (${x.articulo.revista || ''} ${x.articulo.anio || ''})` : x.fuente }));
         try {

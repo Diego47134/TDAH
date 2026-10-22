@@ -81,6 +81,7 @@ async function enrutar() {
     if (!protocolo) {
       const salud = await api('GET', '/api/salud'); saludApp = salud;
       if (salud.configuracion_inicial_pendiente) { configuracionInicial(); return; }
+      bandaLicencia(salud.licencia);
       protocolo = await api('GET', '/api/protocolo');
       for (const ops of Object.values(protocolo.alternativas || {})) for (const o of ops) if (!ETIQ[o.valor] && !/^[A-Z]$/.test(o.valor)) ETIQ[o.valor] = o.texto;
       const b = document.getElementById('protocolo');
@@ -90,11 +91,64 @@ async function enrutar() {
     }
     if (partes[0] === 'caso' && partes[1]) await vistaCaso(partes[1], partes[2] || 'entrevista');
     else if (partes[0] === 'bibliografia') await vistaBibliografia(partes[1] || null);
+    else if (partes[0] === 'licencia') await vistaLicencia();
     else await vistaCasos();
   } catch (e) {
     if (e.status !== 401) $app.innerHTML = `<div class="tarjeta"><h2>No se pudo cargar</h2><p>${esc(e.message)}</p><button class="boton sec" id="breintentar">Reintentar</button></div>`;
     const b = document.getElementById('breintentar'); if (b) b.onclick = () => location.reload();
   }
+}
+
+// ------------------------------------------------- licencia y seguridad ---
+function bandaLicencia(l) {
+  const b = document.getElementById('banda-licencia');
+  if (!l || !l.requerida || l.estado === 'valida') { b.hidden = true; return; }
+  b.hidden = false;
+  b.className = `banda${l.permite_escritura ? '' : ' mal'}`;
+  b.innerHTML = `${l.permite_escritura ? '' : '<strong>Solo lectura.</strong> '}${esc(l.mensaje)} <a href="#/licencia">Ver licencia</a>`;
+}
+
+const ESTADO_LICENCIA = { valida: ['ok', 'Vigente'], por_vencer: ['aviso', 'Por vencer'], gracia: ['aviso', 'Vencida (período de gracia)'], vencida: ['mal', 'Vencida'],
+  invalida: ['mal', 'No válida'], ausente: ['pendiente', 'Sin licencia'], dominio_no_autorizado: ['mal', 'Dominio no autorizado'] };
+
+async function vistaLicencia() {
+  const [l, s] = await Promise.all([api('GET', '/api/licencia'), api('GET', '/api/salud')]);
+  saludApp = s; bandaLicencia(s.licencia);
+  const [cls, txt] = ESTADO_LICENCIA[l.estado] || ['pendiente', l.estado];
+  const d = l.licencia;
+  $app.innerHTML = `<div class="tarjeta" style="max-width:720px;margin:0 auto">
+    <h2>Licencia</h2>
+    <p><span class="estado ${cls}">${esc(txt)}</span> ${esc(l.mensaje || '')}</p>
+    ${!l.requerida ? '<p class="tenue peq">Modo desarrollo: la licencia no se exige. En producción, sin licencia válida la aplicación queda en solo lectura.</p>' : ''}
+    ${d ? `<dl class="licencia-datos">
+      <dt>Licencia</dt><dd>${esc(d.id)}</dd><dt>Cliente</dt><dd>${esc(d.cliente)}${d.rut ? ` · RUT ${esc(d.rut)}` : ''}</dd>
+      <dt>Emitida</dt><dd>${esc(d.emitida)}</dd><dt>Vence</dt><dd>${esc(d.vence || 'Perpetua')}</dd>
+      <dt>Dominios</dt><dd>${esc((d.dominios || []).join(', ') || 'Cualquiera')}</dd>
+      ${d.profesionales ? `<dt>Profesionales</dt><dd>${esc(d.profesionales)}</dd>` : ''}${d.casos_max ? `<dt>Máximo de casos</dt><dd>${esc(d.casos_max)}</dd>` : ''}
+    </dl>` : ''}
+    ${l.origen === 'entorno' ? '<p class="tenue peq">La licencia está definida en la variable de entorno TDAH_LICENCIA del hosting.</p>' : `
+    <form id="flic"><label for="tlic">${d ? 'Reemplazar por una licencia nueva' : 'Instalar licencia'}</label>
+      <textarea id="tlic" class="licencia" placeholder="TDAH1.…" required spellcheck="false" autocomplete="off"></textarea>
+      <div class="fila" style="margin-top:10px"><button class="boton">Instalar licencia</button></div></form>`}
+  </div>
+  <div class="tarjeta" style="max-width:720px;margin:14px auto 0">
+    <h2>Seguridad de los datos</h2>
+    <dl class="licencia-datos">
+      <dt>Cifrado en reposo</dt><dd>${s.cifrado?.activo ? `Activo · ${esc(s.cifrado.algoritmo)} (datos clínicos, documentos y respaldos)` : '<span class="estado mal">Desactivado</span>'}</dd>
+      ${s.cifrado?.activo ? `<dt>Huella de la clave</dt><dd><code>${esc(s.cifrado.huella)}</code> · origen: ${esc({ entorno: 'variable de entorno', archivo: 'archivo en el servidor', generada: 'generada en este arranque', memoria: 'temporal (memoria)' }[s.cifrado.origen_clave] || s.cifrado.origen_clave)}</dd>` : ''}
+      <dt>Acceso</dt><dd>${s.requiere_token ? 'Protegido con clave de acceso' : 'Sin clave (solo desarrollo local)'}</dd>
+    </dl>
+    ${(s.avisos || []).map((a) => `<p class="tenue peq">⚠ ${esc(a)}</p>`).join('')}
+    <p class="tenue peq">La huella identifica la clave sin revelarla: si cambia, la clave configurada no es la que cifró los datos.</p>
+  </div>`;
+  const f = document.getElementById('flic');
+  if (f) f.onsubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await api('POST', '/api/licencia', { licencia: document.getElementById('tlic').value });
+      aviso('Licencia instalada.'); vistaLicencia();
+    } catch (err) { aviso(err.message, true); }
+  };
 }
 
 // ------------------------------------------------------- lista casos ---
@@ -543,35 +597,50 @@ async function informe(cont, v, recargar) {
 // ------------------------------------------------ preguntas a la app ---
 function cajaPregunta({ quien, placeholder }) {
   return `<form class="caja-pregunta" data-quien="${quien}"><div class="fila"><input type="search" name="p" maxlength="300" required placeholder="${esc(placeholder)}" style="flex:1;min-width:200px"><button class="boton sec">Preguntar</button></div>
-    <p class="tenue peq" style="margin:6px 0 0">${quien === 'apoderado' ? 'Respuesta general de la app. Si no la encuentra, busca en fuentes científicas y, si tampoco, la pregunta queda registrada para el profesional.' : 'La app responde con su propio contenido; si no encuentra la respuesta, busca sola en literatura científica (solo envía términos clínicos, nunca datos del paciente).'}</p>
+    <p class="tenue peq" style="margin:6px 0 0">${quien === 'apoderado' ? 'Respuesta general de la app. Si no la encuentra, busca en MedlinePlus (información de salud en español) y en fuentes científicas; si tampoco, la pregunta queda registrada para el profesional.' : 'La app responde con su propio contenido; si no encuentra la respuesta, busca sola en literatura científica y en MedlinePlus (solo envía términos clínicos, nunca datos del paciente). Si no reconoce términos clínicos, le propone palabras para buscar en internet y espera su confirmación.'}</p>
     <div class="respuesta-app" aria-live="polite"></div></form>`;
 }
 
 function pintarRespuesta(r, { casoId, agregar } = {}) {
-  if (r.origen === 'sin_respuesta') return `<div class="resp sin">${esc(r.aviso || 'No encontramos una respuesta.')}</div>`;
+  if (r.origen === 'sin_respuesta') {
+    const pb = r.propuesta_busqueda;
+    if (!pb) return `<div class="resp sin">${esc(r.aviso || 'No encontramos una respuesta.')}</div>`;
+    return `<div class="resp sin">${esc(r.aviso)}
+      <div class="fila" style="margin-top:8px;gap:6px">${pb.palabras.map((w) => `<label class="chk peq"><input type="checkbox" class="pweb" value="${esc(w)}" checked> ${esc(w)}</label>`).join('')}</div>
+      <p class="tenue peq" style="margin:6px 0">Solo se enviarán las palabras marcadas a ${esc(pb.fuentes.join(' y '))}. Desmarque cualquiera que identifique al paciente.</p>
+      <button type="button" class="boton sec peq bweb">Buscar en internet</button></div>`;
+  }
   if (r.origen === 'app') return r.respuestas.map((x) => `<div class="resp"><strong>${esc(x.titulo)}</strong><p>${esc(x.texto)}</p></div>`).join('');
-  return `<div class="resp"><strong>Según la literatura científica</strong>
-    ${r.respuestas.map((x, i) => `<blockquote lang="en">${esc(x.cita)}<sup>${i + 1}</sup></blockquote>`).join('')}
-    <div class="refs-resp"><div class="etq">Referencias</div><ol>${r.respuestas.map((x) => `<li><a href="${esc(x.articulo.url)}" target="_blank" rel="noopener noreferrer">${esc(x.articulo.titulo)}</a>. ${esc([x.articulo.autores, x.articulo.revista, x.articulo.anio].filter(Boolean).join(' · '))}
+  const medline = r.fuente_id === 'medlineplus';
+  return `<div class="resp"><strong>${medline ? 'Según MedlinePlus.gov' : 'Según la literatura científica'}</strong>
+    ${r.respuestas.map((x, i) => `<blockquote lang="${medline || /LANG:"spa"/.test(r.consulta_enviada || '') ? 'es' : 'en'}">${esc(x.cita)}<sup>${i + 1}</sup></blockquote>`).join('')}
+    <div class="refs-resp"><div class="etq">${medline ? 'Fuente' : 'Referencias'}</div><ol>${r.respuestas.map((x) => `<li><a href="${esc(x.articulo.url)}" target="_blank" rel="noopener noreferrer">${esc(x.articulo.titulo)}</a>. ${esc([x.articulo.autores, x.articulo.revista, x.articulo.anio].filter(Boolean).join(' · '))}
       ${agregar && casoId ? ` <button type="button" class="boton sec peq bagr" data-id="${esc(x.articulo.id)}">Agregar al informe</button>` : ''}</li>`).join('')}</ol></div>
-    <p class="tenue peq">Información general de publicaciones científicas; no reemplaza la evaluación del profesional.</p></div>`;
+    <p class="tenue peq">${esc(r.aviso || 'Información general; no reemplaza la evaluación del profesional.')}${r.terminos_enviados?.length ? ` Se envió a internet: «${esc(r.terminos_enviados.join(', '))}».` : ''}</p></div>`;
 }
 
 function conectarCaja(root, { quien, casoId, preguntaId, agregar, profesional }) {
   const f = root?.querySelector('.caja-pregunta') || (root?.classList?.contains('caja-pregunta') ? root : null);
   if (!f) return;
-  f.onsubmit = async (e) => {
-    e.preventDefault();
-    const out = f.querySelector('.respuesta-app'); out.innerHTML = '<p class="cargando">Buscando respuesta…</p>';
+  const out = f.querySelector('.respuesta-app');
+  const consultar = async (extra = {}) => {
+    out.innerHTML = '<p class="cargando">Buscando respuesta…</p>';
     try {
-      const r = await api('POST', '/api/consultas', { pregunta: f.p.value, quien, caso_id: casoId || undefined, pregunta_id: preguntaId || undefined });
+      const r = await api('POST', '/api/consultas', { pregunta: f.p.value, quien, caso_id: casoId || undefined, pregunta_id: preguntaId || undefined, ...extra });
       out.innerHTML = pintarRespuesta(r, { casoId, agregar });
       out.querySelectorAll('.bagr').forEach((b) => { b.onclick = async () => {
-        try { await api('POST', `/api/casos/${casoId}/referencias`, { referencia_id: b.dataset.id, fuente: 'europepmc', profesional: profesional ? profesional() : '' }); b.textContent = 'Agregada ✓'; b.disabled = true; }
+        try { await api('POST', `/api/casos/${casoId}/referencias`, { referencia_id: b.dataset.id, fuente: r.fuente_id || 'europepmc', profesional: profesional ? profesional() : '' }); b.textContent = 'Agregada ✓'; b.disabled = true; }
         catch (er) { aviso(er.message, true); }
       }; });
+      const bw = out.querySelector('.bweb');
+      if (bw) bw.onclick = () => {
+        const palabras = [...out.querySelectorAll('.pweb:checked')].map((x) => x.value);
+        if (!palabras.length) { aviso('Marque al menos una palabra.', true); return; }
+        consultar({ buscar_en_web: true, palabras });
+      };
     } catch (er) { out.innerHTML = `<div class="resp sin">${esc(er.message)}</div>`; }
   };
+  f.onsubmit = (e) => { e.preventDefault(); consultar(); };
 }
 
 // ------------------------------------------- búsqueda bibliográfica ---
