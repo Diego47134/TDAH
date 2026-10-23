@@ -128,6 +128,9 @@ details.porque p { background: var(--papel); border-left: 3px solid var(--acento
 .informe h2 { margin-top: 1.4em; padding-top: .6em; border-top: 1px solid var(--linea); }
 .informe blockquote { margin: .6em 0; padding: 8px 12px; background: var(--ambar-suave); border-left: 3px solid var(--ambar); }
 
+.aviso-caja { margin-top: 8px; padding: 10px 12px; background: var(--ambar-suave); border-left: 3px solid var(--ambar); border-radius: 0 8px 8px 0; }
+.aviso-caja p { margin: 0 0 6px; }
+.aviso-caja ul { margin: 0 0 6px; padding-left: 18px; }
 .banda { padding: 10px max(16px, env(safe-area-inset-left)); font-size: .92rem; border-bottom: 1px solid var(--linea); background: var(--ambar-suave); color: var(--ambar); }
 .banda.mal { background: var(--ladrillo-suave); color: var(--ladrillo); }
 .banda a { color: inherit; font-weight: 600; }
