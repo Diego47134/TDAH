@@ -276,7 +276,7 @@ function recomendaciones(ctx, I, F) {
  * Genera las secciones del informe integrado (markdown).
  * @returns {{ lineas: string[], calidad: {control, ok, detalle}[] }}
  */
-export function informeIntegrado(ctx, I, { validacion = null, tipo = 'borrador' } = {}) {
+export function informeIntegrado(ctx, I, { validacion = null, tipo = 'borrador', redaccion = null } = {}) {
   const p = ctx.protocolo; const c = ctx.caso;
   const F = datosDeFuentes(ctx);
   const L = [];
@@ -303,8 +303,12 @@ export function informeIntegrado(ctx, I, { validacion = null, tipo = 'borrador' 
     L.push(`> **Atención — ${nombreInstrumento(ctx, e)} no integrado.** ${(e.resultados.vinculacion?.problemas || []).join(' ')} Sus resultados no se atribuyen al caso hasta que el profesional confirme la vinculación.`, '');
   }
 
+  const MARCA_IA = redaccion ? `_Redacción asistida por IA (${redaccion.proveedor || 'proveedor externo'}${redaccion.modelo ? `, ${redaccion.modelo}` : ''}) a partir de los datos de este informe, verificada automáticamente; el profesional debe revisarla antes de validar._` : null;
+  const parrafos = (t) => String(t).split(/\n{2,}|\n/).map((x) => x.trim()).filter(Boolean).flatMap((x) => [x, '']);
+
   // 3.3
   L.push('## 3. Síntesis ejecutiva', '');
+  const L33 = L.length;
   const porDom = (d) => positivos.filter((s) => s.dominio === d);
   const difTxt = [porDom('inatencion').length && `en atención (${porDom('inatencion').map((s) => s.nombre.toLowerCase()).join('; ')})`, porDom('hiperactividad_impulsividad').length && `en actividad e impulsividad (${porDom('hiperactividad_impulsividad').map((s) => s.nombre.toLowerCase()).join('; ')})`].filter(Boolean);
   L.push(`**Dificultades documentadas.** ${difTxt.length ? `Se documentan dificultades ${unir(difTxt)}.` : 'No hay conductas DSM-5-TR con evidencia positiva en el expediente.'}${F.rvIntegrados.length ? ` En ${unir(F.rvIntegrados.map((e) => nombreInstrumento(ctx, e)))} se registran ${F.rvIntegrados.flatMap((e) => e.resultados.variables || []).filter((v) => v.sentido === 'dificultad').length} índice(s) con rendimiento bajo lo esperado para su edad.` : ''}`, '');
@@ -316,9 +320,11 @@ export function informeIntegrado(ctx, I, { validacion = null, tipo = 'borrador' 
   L.push(`**Impacto funcional.** ${impacto.length || impactoEsc.length ? cap(unir([impacto.length && `según el apoderado afecta ${unir(impacto)}`, impactoEsc.length && 'el colegio describe repercusión en el rendimiento'].filter(Boolean))) + '.' : 'No se describe impacto funcional con la información disponible.'}`, '');
   L.push(`**Apoyos que parecen útiles.** ${recs.filter((r) => r.grupo !== 'D').length ? cap(unir([...new Set(recs.filter((r) => r.grupo !== 'D').map((r) => r.objetivo.toLowerCase()))].slice(0, 4))) + ' (detalle en la sección 12).' : 'Por definir con más información.'}${F.apoyosPrevios.length ? ` El colegio ya aplicó ${F.apoyosPrevios.length} medidas${F.efectividad ? ` (${esc(F.efectividad).replace(/^\(?\s*observaci[oó]n:\s*/i, '').replace(/[).\s]+$/, '').toLowerCase()})` : ''}.` : ''}`, '');
   L.push(`**Cuestiones pendientes.** ${I.informacionFaltante.length || F.rvPendientes.length ? `${I.informacionFaltante.filter((x) => x.relevancia === 'CRÍTICA').length} aspectos críticos y ${I.informacionFaltante.filter((x) => x.relevancia !== 'CRÍTICA').length} relevantes sin resolver${F.rvPendientes.length ? '; un informe de realidad virtual sin vincular al caso' : ''} (sección 14).` : 'Sin cuestiones pendientes relevantes.'} La conclusión diagnóstica queda sujeta a la validación del profesional.`, '');
+  if (redaccion?.sintesis_ejecutiva) L.splice(L33, L.length - L33, ...parrafos(redaccion.sintesis_ejecutiva), MARCA_IA, '');
 
   // 3.4
   L.push('## 4. Integración de las fuentes', '');
+  if (redaccion?.integracion) L.push(...parrafos(redaccion.integracion), MARCA_IA, '', '**Detalle por fuente:**', '');
   const fuentesSi = (s) => Object.keys(s.porFuente).filter((k) => s.porFuente[k] === 'si');
   const conv = I.sintomas.filter((s) => !s.contradictorio && new Set(fuentesSi(s).map((k) => FUENTE_CORTA[k])).size >= 2);
   const compl = I.sintomas.filter((s) => !s.contradictorio && new Set(fuentesSi(s).map((k) => FUENTE_CORTA[k])).size === 1 && F.escolar.length);
@@ -462,7 +468,8 @@ export function informeIntegrado(ctx, I, { validacion = null, tipo = 'borrador' 
 
   // 3.15
   L.push('## 15. Conclusión integrada', '');
-  L.push(`${positivos.length ? `El perfil muestra dificultades documentadas ${difTxt.length ? unir(difTxt) : ''}` : 'No se documentan dificultades conductuales DSM-5-TR'}${impacto.length || impactoEsc.length ? `, con repercusión en ${unir([...impacto, ...(impactoEsc.length ? ['el rendimiento escolar'] : [])])}` : ''}.${fortReales.length ? ` Como fortalezas se identifican: ${unir(fortReales.slice(0, 3).map((f) => f.capacidad.split(':')[0].replace(/\.$/, '').toLowerCase()))}.` : ''}${preserv.length ? ` Se mantienen relativamente preservadas: ${unir(preserv.map((f) => f.capacidad.split(':')[0].toLowerCase()))}.` : ''}${recs.length ? ` Las necesidades de apoyo se concentran en: ${unir([...new Set(recs.filter((r) => r.grupo !== 'D').map((r) => r.objetivo.toLowerCase()))].slice(0, 3))}.` : ''}`, '');
+  if (redaccion?.conclusion) L.push(...parrafos(redaccion.conclusion), MARCA_IA, '');
+  else L.push(`${positivos.length ? `El perfil muestra dificultades documentadas ${difTxt.length ? unir(difTxt) : ''}` : 'No se documentan dificultades conductuales DSM-5-TR'}${impacto.length || impactoEsc.length ? `, con repercusión en ${unir([...impacto, ...(impactoEsc.length ? ['el rendimiento escolar'] : [])])}` : ''}.${fortReales.length ? ` Como fortalezas se identifican: ${unir(fortReales.slice(0, 3).map((f) => f.capacidad.split(':')[0].replace(/\.$/, '').toLowerCase()))}.` : ''}${preserv.length ? ` Se mantienen relativamente preservadas: ${unir(preserv.map((f) => f.capacidad.split(':')[0].toLowerCase()))}.` : ''}${recs.length ? ` Las necesidades de apoyo se concentran en: ${unir([...new Set(recs.filter((r) => r.grupo !== 'D').map((r) => r.objetivo.toLowerCase()))].slice(0, 3))}.` : ''}`, '');
   L.push(`**Estado diagnóstico establecido por el motor:** ${I.resultado.titulo}. ${I.resultado.umbral}`, '');
   if (I.puerta === 'CERRADA') L.push('Con la información disponible no es posible establecer una conclusión diagnóstica definitiva.', '');
   else if (I.puerta === 'ABIERTA CON INCERTIDUMBRE') L.push('La conclusión queda abierta con incertidumbre: hay discrepancias o alternativas que el profesional debe ponderar.', '');
@@ -484,7 +491,8 @@ export function informeIntegrado(ctx, I, { validacion = null, tipo = 'borrador' 
   // 4. Síntesis educativa
   L.push('## Síntesis para docentes y psicólogos educativos', '');
   L.push('_Resumen en lenguaje sencillo derivado de los mismos datos. No contiene un diagnóstico: está pensado para planificar apoyos en el aula._', '');
-  L.push('**Cómo funciona en el aula y en casa.** ' + (positivos.length ? `Se describe que: ${unir([...new Set(positivos.map((s) => (s.conducta || s.nombre).replace(/^¿|\?$/g, '').toLowerCase()))].slice(0, 6))}.` : 'No se describen dificultades conductuales específicas.') + (ctxs.length ? ` Se observa en: ${unir(ctxs)}.` : ''), '');
+  if (redaccion?.sintesis_educativa) L.push(...parrafos(redaccion.sintesis_educativa), MARCA_IA, '');
+  else L.push('**Cómo funciona en el aula y en casa.** ' + (positivos.length ? `Se describe que: ${unir([...new Set(positivos.map((s) => (s.conducta || s.nombre).replace(/^¿|\?$/g, '').toLowerCase()))].slice(0, 6))}.` : 'No se describen dificultades conductuales específicas.') + (ctxs.length ? ` Se observa en: ${unir(ctxs)}.` : ''), '');
   L.push('**Fortalezas para el aprendizaje.**', '', ...lista(fortReales.map((f) => `${f.capacidad.split(':')[0].replace(/\.$/, '')} — ${f.uso}`), 'Por identificar con el equipo.'), '');
   if (preserv.length) L.push(`**Áreas sin dificultades referidas.** ${unir(preserv.map((f) => f.capacidad.split(':')[0]))}.`, '');
   L.push('**Apoyos en el aula.**', '', ...lista(recs.filter((r) => r.grupo === 'A').map((r) => r.accion), 'Por definir.'), '');
@@ -504,10 +512,80 @@ export function informeIntegrado(ctx, I, { validacion = null, tipo = 'borrador' 
     { control: 'Interpretación prudente de la realidad virtual', ok: true, detalle: 'Solo se describen las variables que mide el instrumento, con su interpretación original y sus límites.' },
     { control: 'Coherencia entre dificultades, fortalezas y recomendaciones', ok: recs.every((r) => r.hallazgo), detalle: 'Cada recomendación indica el hallazgo que la justifica.' },
     { control: 'Diagnóstico no presentado como validado', ok: !validacion ? true : Boolean(validacion.por), detalle: validacion ? `Validado por ${validacion.por}.` : 'Estado: pendiente de validación profesional.' },
+    ...(redaccion ? [{ control: 'Redacción asistida por IA verificada', ok: true, detalle: 'Sin cifras, nombres ni afirmaciones diagnósticas ajenas a los datos; la conclusión diagnóstica la escribe el sistema.' }] : []),
     { control: 'Trazabilidad de las conclusiones', ok: true, detalle: 'Conclusión → estado del motor → síntoma → dato original (sección 5) → fuente (sección 2); detalle completo en la auditoría del caso.' },
   ];
   L.push('## Control de calidad del informe', '');
   L.push(...tabla(['Control', 'Resultado', 'Detalle'], calidad.map((x) => [x.control, x.ok ? 'Cumple' : 'Con limitación', x.detalle])));
   L.push(`_El informe ${calidad.every((x) => x.ok) ? 'superó todas las comprobaciones' : 'tiene limitaciones declaradas arriba'}${tipo === 'final' ? '' : '; es un borrador mientras la evaluación siga en curso'}._`, '');
   return { lineas: L, calidad };
+}
+
+
+// ------------------------------------------------------- redacción con IA ---
+
+/**
+ * Datos que se entregan a la IA para redactar: solo lo que el informe ya establece, sin nombres,
+ * RUT ni fechas de nacimiento. La IA no recibe el expediente completo.
+ */
+export function datosParaRedaccion(ctx, I) {
+  const F = datosDeFuentes(ctx);
+  const positivos = I.sintomas.filter((s) => POSITIVOS.includes(s.estado));
+  const fort = fortalezas(ctx, I, F);
+  const recs = recomendaciones(ctx, I, F);
+  const fuentesDe = (s) => [...new Set(Object.keys(s.porFuente).filter((k) => s.porFuente[k] === 'si').map((k) => FUENTE_CORTA[k]))];
+  const impacto = [['A46', 'rendimiento escolar'], ['A47', 'convivencia familiar'], ['A48', 'relaciones con otros niños'], ['A49', 'actividades cotidianas'], ['A51', 'frustración o conflictos']]
+    .filter(([q]) => respuesta(ctx, q) === 'si').map(([, t]) => t);
+  return {
+    genero_referencia: 'niño o niña (usar «el estudiante» si no se sabe)',
+    edad: I.edad, etapa: I.etapa,
+    fuentes: [
+      F.apoderado.length && 'entrevista al apoderado',
+      F.escolar.length && `informe del colegio (${F.docEsc?.clase === 'escala_estandarizada' ? 'escala' : 'observación narrativa'})`,
+      ...F.rvIntegrados.map((e) => `${nombreInstrumento(ctx, e)} (realidad virtual, ${e.fecha || 'sin fecha'})`),
+    ].filter(Boolean),
+    fuentes_no_integradas: F.rvPendientes.map((e) => `${nombreInstrumento(ctx, e)}: identidad sin verificar`),
+    dificultades: positivos.map((s) => ({ conducta: s.nombre, estado: ESTADO_LEGIBLE[s.estado] || s.estado, fuentes: fuentesDe(s), contextos: s.contextos })),
+    discrepancias: I.sintomas.filter((s) => s.contradictorio).map((s) => ({ conducta: s.nombre, por_fuente: Object.fromEntries(Object.entries(s.porFuente).map(([k, v]) => [FUENTE_CORTA[k], V[v] || v])) })),
+    sin_informacion: I.sintomas.filter((s) => ['NO INFORMADO', 'DESCONOCIDO'].includes(s.estado)).map((s) => s.nombre),
+    situaciones_que_modulan: I.moduladores.filter((m) => m.valor === 'si').map((m) => m.texto),
+    realidad_virtual: F.rvIntegrados.flatMap((e) => (e.resultados.variables || []).map((v) => ({ indice: v.variable, interpretacion_del_instrumento: v.rendimiento || v.interpretacion, correspondencia: correspondenciaRV(I, v) }))),
+    fortalezas: fort.filter((f) => !f.preservada).map((f) => ({ fortaleza: f.capacidad, fuente: f.fuente, como_aprovecharla: f.uso })),
+    areas_sin_dificultades_referidas: fort.filter((f) => f.preservada).map((f) => f.capacidad.split(':')[0]),
+    impacto_funcional: [...impacto.map((t) => `${t} (apoderado)`), ...(ctx.hechos.some((h) => h.fuente === 'informe_escolar' && h.slot === 'impacto_academico') ? ['rendimiento escolar (colegio)'] : [])],
+    apoyos_ya_aplicados_por_el_colegio: F.apoyosPrevios, efectividad_de_esos_apoyos: F.efectividad,
+    apoyos_recomendados: recs.filter((r) => r.grupo !== 'D').map((r) => ({ objetivo: r.objetivo, accion: r.accion, para: { A: 'aula', B: 'psicopedagogía', C: 'familia' }[r.grupo] })),
+    evaluaciones_pendientes: recs.filter((r) => r.grupo === 'D').map((r) => r.accion),
+    informacion_pendiente: I.informacionFaltante.map((x) => x.que),
+    estado_diagnostico_del_motor: I.resultado.titulo,
+  };
+}
+
+/**
+ * Verifica la redacción de la IA antes de usarla. Devuelve { ok, motivos, redaccion }.
+ * Rechaza textos con cifras que no están en los datos, nombres del caso, afirmaciones diagnósticas
+ * o menciones diagnósticas en la síntesis educativa.
+ */
+export function verificarRedaccion(salida, datos, { nombres = [] } = {}) {
+  const motivos = [];
+  const CAMPOS = ['sintesis_ejecutiva', 'integracion', 'conclusion', 'sintesis_educativa'];
+  const red = {};
+  for (const k of CAMPOS) {
+    const t = typeof salida?.[k] === 'string' ? salida[k].trim() : '';
+    if (!t) { motivos.push(`Falta «${k}».`); continue; }
+    if (t.length > 4000) motivos.push(`«${k}» es demasiado largo.`);
+    red[k] = t;
+  }
+  const fuente = JSON.stringify(datos);
+  const todo = Object.values(red).join(' ');
+  for (const n of todo.match(/\d+(?:[.,]\d+)?/g) || []) {
+    if (!fuente.includes(n) && !fuente.includes(n.replace(',', '.'))) motivos.push(`Cifra no presente en los datos: ${n}.`);
+  }
+  for (const nombre of nombres.flatMap((x) => String(x).split(/\s+/)).filter((w) => w.length >= 3 && !/^(caso|de|del|la|el|los|las)$/i.test(w))) {
+    if (new RegExp(`\\b${nombre.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'i').test(todo)) motivos.push('Incluye un nombre del caso.');
+  }
+  if (/(se (le )?diagnostica|diagn[oó]stico (de|confirmado)|tiene tdah|padece|presenta (un )?tdah|cumple (los )?criterios|confirma(n|do)? (el |un )?(diagn[oó]stico|tdah))/i.test(todo)) motivos.push('Contiene una afirmación diagnóstica.');
+  if (red.conclusion && /tdah/i.test(red.conclusion)) motivos.push('La conclusión no debe mencionar TDAH (la escribe el sistema).');
+  if (red.sintesis_educativa && /(tdah|dsm|diagn[oó]stic)/i.test(red.sintesis_educativa)) motivos.push('La síntesis educativa menciona diagnósticos.');
+  return { ok: motivos.length === 0, motivos: [...new Set(motivos)], redaccion: motivos.length ? null : red };
 }

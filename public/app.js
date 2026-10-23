@@ -600,7 +600,14 @@ async function informe(cont, v, recargar) {
     <article class="tarjeta informe">${inf.html}</article>`;
   cont.querySelectorAll('.bquitar').forEach((b) => { b.onclick = async () => { try { await api('DELETE', `/api/casos/${c.id}/referencias/${b.dataset.id}`, {}); recargar(); } catch (e) { aviso(e.message, true); } }; });
   document.getElementById('bimprimir').onclick = () => window.print();
-  document.getElementById('bfinal').onclick = async () => { try { await api('POST', `/api/casos/${c.id}/informes`); aviso('Informe final generado.'); recargar(); } catch (e) { aviso(e.message, true); } };
+  document.getElementById('bfinal').onclick = async (ev) => {
+    const b = ev.currentTarget; b.disabled = true; b.textContent = 'Generando…';
+    try {
+      const r = await api('POST', `/api/casos/${c.id}/informes`);
+      aviso(r.ia_aviso || (r.redaccion_ia ? 'Informe final generado con redacción asistida por IA (revísela antes de validar).' : 'Informe final generado.'), Boolean(r.ia_aviso));
+      recargar();
+    } catch (e) { aviso(e.message, true); b.disabled = false; b.textContent = 'Generar informe final'; }
+  };
   const bv = document.getElementById('bvalidar');
   if (bv) bv.onclick = async () => {
     const profesional = window.prompt('Nombre del profesional que valida el informe:');
