@@ -58,3 +58,20 @@ Al final van la **Síntesis para docentes y psicólogos educativos**, sin diagn�
 - **I0:** lectura de los documentos.
 - **A17–A20:** convergencia, discrepancia de contexto, realidad virtual complementaria e información insuficiente.
 - **A21:** fuente no atribuible.
+
+## Redacción asistida por IA (opcional)
+
+Se activa definiendo `OPENAI_API_KEY` en el hosting. Opcionalmente se puede elegir el modelo con `IA_MODELO`; el predeterminado es `gpt-5-mini`.
+
+La IA se usa solo en los casos cuyo representante la autorizó en el consentimiento, y para cuatro tareas:
+
+1. **Redactar el informe:** síntesis ejecutiva, integración de las fuentes, conclusión y síntesis para docentes.
+   - Recibe solo los datos que el informe ya estableció, sin nombres (`datosParaRedaccion`).
+   - Su texto se verifica antes de usarlo (`verificarRedaccion`). Se rechaza si trae cifras que no están en los datos, nombres del caso, afirmaciones diagnósticas o menciones diagnósticas en la síntesis educativa.
+   - Si no pasa la verificación, se usa la redacción del sistema y queda registrado.
+   - La conclusión diagnóstica la escribe siempre el sistema con el estado del motor.
+2. **Leer documentos** con formatos distintos a los conocidos. Cada dato debe estar respaldado por una frase literal del documento.
+3. **Interpretar respuestas libres** del apoderado y asignarlas a una alternativa autorizada.
+4. **Redactar respuestas a dudas**, usando solo las fuentes encontradas.
+
+Pruebas: IA1–IA3 (con un proveedor simulado).

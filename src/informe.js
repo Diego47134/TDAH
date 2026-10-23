@@ -35,7 +35,7 @@ function etiquetaOpcion(p, alternativas, valor) {
   return String(valor).split(',').map((v) => ops.find((o) => o.valor === v)?.texto || V[v] || v).join(', ');
 }
 
-export function generarInforme(ctx, { tipo = 'borrador', requisitos, validacion } = {}) {
+export function generarInforme(ctx, { tipo = 'borrador', requisitos, validacion, redaccion = null } = {}) {
   const p = ctx.protocolo; const c = ctx.caso;
   const req = requisitos || evaluarRequisitos(ctx);
   const L = [];
@@ -51,7 +51,7 @@ export function generarInforme(ctx, { tipo = 'borrador', requisitos, validacion 
   const I = integrar(ctx);
 
   // Informe integrado (especificación «Módulo de generación del informe clínico-neuropsicológico y educativo»).
-  const { lineas } = informeIntegrado(ctx, I, { validacion, tipo });
+  const { lineas } = informeIntegrado(ctx, I, { validacion, tipo, redaccion });
   L.push(...lineas);
   L.push('## Referencias científicas de apoyo', '', ...Object.entries(p.referencias).map(([k, v]) => `- [${k}] ${v}`), '');
   if (ctx.referencias?.length) {

@@ -12,6 +12,7 @@ import { interpretarRespuesta, detectarMenciones, ErrorEntrada } from './interpr
 import { leerInformeEscolar, validarExtraccionManual } from './informeEscolar.js';
 import { evaluarRequisitos, generarInforme, markdownAHtml } from './informe.js';
 import { integrar } from './integracion.js';
+import { datosParaRedaccion, verificarRedaccion } from './informeIntegrado.js';
 import { crearBuscador, ErrorBusqueda, SUGERIDAS, FUENTES, validarConsulta } from './bibliografia.js';
 import { crearConsultas } from './consultas.js';
 import { CLASES, MAX_BYTES, ErrorDocumento, carpetaDocumentos, extraerTexto, guardarArchivo, leerArchivo } from './documentos.js';
@@ -562,19 +563,32 @@ export function crearServicio({ db, protocolo, buscador = crearBuscador(), ia = 
       return { tipo: 'borrador', requisitos, markdown: md, html: markdownAHtml(md) };
     },
 
-    generarInformeFinal(casoId) {
+    async generarInformeFinal(casoId) {
       const ctx = ctxDe(casoId);
       const requisitos = evaluarRequisitos(ctx);
       if (!requisitos.completo) {
         X.registrarDecision(db, casoId, ctx.caso.turno, 'informe_final_bloqueado', { faltantes: requisitos.requisitos.filter((r) => !r.cumplido) });
         throw new ErrorServicio(409, 'Evaluación pendiente: no se puede generar el informe final.', requisitos);
       }
+      // Redacción asistida por IA: solo si está configurada y el representante la autorizó en el consentimiento.
+      // La IA recibe los datos ya establecidos (sin nombres) y su texto se verifica antes de usarlo.
+      let redaccion = null; let iaNota = null;
+      if (ia?.habilitada && permiteIA(ctx)) {
+        const datos = datosParaRedaccion(ctx, integrar(ctx));
+        try {
+          const salida = await ia.redactarInforme({ resultados: datos });
+          const v = verificarRedaccion(salida, datos, { nombres: nombresDelCaso(ctx) });
+          if (v.ok) redaccion = { ...v.redaccion, proveedor: ia.nombre, modelo: ia.modelo, fecha: ahora() };
+          else iaNota = { motivo: 'verificacion', detalle: v.motivos };
+        } catch (e) { iaNota = { motivo: 'error', detalle: e.message }; X.registrarError(db, casoId, 'api_ia', e.message, e.detalle); }
+      }
       return transaccion(db, () => {
-        const md = generarInforme(ctx, { tipo: 'final', requisitos });
-        const r = db.prepare(`INSERT INTO informes (caso_id, tipo, estado, contenido_md, requisitos, generado) VALUES (?, 'final', 'pendiente_validacion', ?, ?, ?)`).run(casoId, md, JSON.stringify(requisitos), ahora());
+        const md = generarInforme(ctx, { tipo: 'final', requisitos, redaccion });
+        const r = db.prepare(`INSERT INTO informes (caso_id, tipo, estado, contenido_md, requisitos, generado, redaccion) VALUES (?, 'final', 'pendiente_validacion', ?, ?, ?, ?)`)
+          .run(casoId, md, JSON.stringify(requisitos), ahora(), redaccion ? JSON.stringify(redaccion) : null);
         X.actualizarCaso(db, casoId, { estado_global: 'informe_final' });
-        X.registrarDecision(db, casoId, ctx.caso.turno, 'informe_final_generado', { informe_id: Number(r.lastInsertRowid) });
-        return { id: Number(r.lastInsertRowid), estado: 'pendiente_validacion', markdown: md, html: markdownAHtml(md) };
+        X.registrarDecision(db, casoId, ctx.caso.turno, 'informe_final_generado', { informe_id: Number(r.lastInsertRowid), redaccion_ia: redaccion ? `${redaccion.proveedor}:${redaccion.modelo}` : null, ...(iaNota ? { ia_descartada: iaNota } : {}) });
+        return { id: Number(r.lastInsertRowid), estado: 'pendiente_validacion', redaccion_ia: Boolean(redaccion), ia_aviso: iaNota ? (iaNota.motivo === 'error' ? `No se pudo usar la IA (${iaNota.detalle}); el informe se redactó con las reglas del sistema.` : `La redacción de la IA no superó la verificación (${iaNota.detalle.join(' ')}); se usó la redacción del sistema.`) : null, markdown: md, html: markdownAHtml(md) };
       });
     },
 
@@ -587,7 +601,7 @@ export function crearServicio({ db, protocolo, buscador = crearBuscador(), ia = 
       if (!requisitos.completo) throw new ErrorServicio(409, 'El expediente cambió y ya no cumple los requisitos; genere un nuevo informe.', requisitos);
       return transaccion(db, () => {
         const fecha = ahora();
-        const md = generarInforme(ctx, { tipo: 'final', requisitos, validacion: { por: profesional.trim(), fecha } });
+        const md = generarInforme(ctx, { tipo: 'final', requisitos, validacion: { por: profesional.trim(), fecha }, redaccion: inf.redaccion ? JSON.parse(inf.redaccion) : null });
         db.prepare("UPDATE informes SET estado = 'validado', validado_por = ?, validado = ?, contenido_md = ? WHERE id = ?").run(profesional.trim(), fecha, md, inf.id);
         X.actualizarCaso(db, casoId, { estado_global: 'validado' });
         X.registrarDecision(db, casoId, ctx.caso.turno, 'informe_validado', { informe_id: inf.id, profesional });
