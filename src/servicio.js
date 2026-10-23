@@ -614,9 +614,22 @@ export function crearServicio({ db, protocolo, buscador = crearBuscador(), ia = 
     },
 
     /** Pregunta libre del profesional o del apoderado: responde con la app y, si no alcanza, busca sola en internet. */
-    async preguntar({ pregunta, quien = 'profesional', caso_id, pregunta_id, buscar_en_web = false, palabras } = {}) {
+    async preguntar({ pregunta, quien = 'profesional', caso_id, pregunta_id, buscar_en_web = false, palabras, comentario = false } = {}) {
       const ctxC = caso_id ? ctxDe(caso_id) : null;
       let r;
+      if (comentario === true) {
+        // Comentario libre: solo se registra para el profesional; no se responde ni sale a internet.
+        const texto = String(pregunta ?? '').replace(/\s+/g, ' ').trim();
+        if (texto.length < 3) throw new ErrorServicio(400, 'Escriba el comentario.');
+        if (texto.length > 1000) throw new ErrorServicio(400, 'El comentario es demasiado largo (máximo 1000 caracteres).');
+        r = { origen: 'comentario', respuestas: [], terminos_enviados: [], aviso: 'Comentario registrado. El profesional lo verá en la revisión del caso.' };
+        return transaccion(db, () => {
+          const id = Number(db.prepare('INSERT INTO consultas (caso_id, quien, pregunta, pregunta_id, origen, respuesta, creado) VALUES (?, ?, ?, ?, ?, ?, ?)')
+            .run(caso_id || null, quien, texto, pregunta_id || null, r.origen, JSON.stringify(r), ahora()).lastInsertRowid);
+          if (caso_id) X.registrarDecision(db, caso_id, ctxC.caso.turno, quien === 'apoderado' ? 'comentario_apoderado' : 'comentario_profesional', { id });
+          return { id, ...r };
+        });
+      }
       try {
         r = await consultas.responder({ pregunta, quien, pregunta_id, buscar_en_web: buscar_en_web === true, palabras,
           excluir: ctxC ? [...nombresDelCaso(ctxC), ctxC.caso.etiqueta || ''] : [] });

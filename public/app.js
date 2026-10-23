@@ -293,7 +293,7 @@ function entrevista(cont, v, recargar) {
       <p class="texto">${esc(q.texto)}</p>
       <div id="fresp">${formPregunta(q)}</div>
       <details class="porque"><summary>¿Por qué esta pregunta?</summary><p>${esc(q.justificacion)}</p><p class="mono peq">${esc(q.origen || '')}</p></details>
-      <details class="duda"><summary>¿El apoderado tiene una duda?</summary>${cajaPregunta({ quien: 'apoderado', placeholder: 'p. ej. ¿Qué significa esta pregunta?' })}</details>
+      <details class="duda"><summary>¿El apoderado tiene una duda o un comentario?</summary>${cajaPregunta({ quien: 'apoderado', placeholder: 'Escriba la duda o el comentario del apoderado' })}</details>
       ${ultima && ultima.caso === c.id ? `<div class="ultima">Anterior: «${esc(ultima.pregunta)}» → <strong>${esc(ultima.interp)}</strong>${ultima.extra ? ` · ${esc(ultima.extra)}` : ''}</div>` : ''}
     </div>`;
   conectarCaja(cont.querySelector('.duda'), { quien: 'apoderado', casoId: c.id, preguntaId: q.id });
@@ -544,10 +544,10 @@ function revision(cont, v, recargar) {
       <label>Nota de revisión</label><textarea name="nota" style="min-height:60px" required></textarea>
       <label>Profesional</label><input type="text" name="prof" required><div class="fila" style="margin-top:8px"><button class="boton">Marcar como revisada</button></div>`}
     </form>`).join('') || '<p class="tenue">Sin discrepancias.</p>'}</div>
-    <div class="tarjeta"><h2>Preguntas del apoderado (${(v.consultas || []).filter((x) => x.quien === 'apoderado').length})</h2>
-      <p class="tenue peq">Dudas planteadas durante la entrevista y cómo las respondió la app. Las que quedaron sin respuesta deben ser respondidas por el profesional.</p>
+    <div class="tarjeta"><h2>Preguntas y comentarios del apoderado (${(v.consultas || []).filter((x) => x.quien === 'apoderado').length})</h2>
+      <p class="tenue peq">Dudas y comentarios dejados durante la entrevista. Los comentarios y las dudas sin respuesta deben ser revisados por el profesional.</p>
       ${(v.consultas || []).filter((x) => x.quien === 'apoderado').map((x) => `<div class="consulta" style="border-top:1px solid var(--linea);padding-top:8px;margin-top:8px">
-        <p><strong>«${esc(x.pregunta)}»</strong> <span class="estado ${x.origen === 'sin_respuesta' && !x.atendida ? 'mal' : 'ok'}">${x.atendida ? 'atendida' : esc({ app: 'respondida por la app', internet: 'respondida con fuentes', sin_respuesta: 'sin respuesta' }[x.origen])}</span></p>
+        <p><strong>«${esc(x.pregunta)}»</strong> <span class="estado ${['sin_respuesta', 'comentario'].includes(x.origen) && !x.atendida ? 'mal' : 'ok'}">${x.atendida ? (x.origen === 'comentario' ? 'comentario leído' : 'atendida') : esc({ app: 'respondida por la app', internet: 'respondida con fuentes', sin_respuesta: 'sin respuesta', comentario: 'comentario por leer' }[x.origen])}</span></p>
         ${x.pregunta_id ? `<p class="tenue peq">Durante la pregunta ${esc(x.pregunta_id)} · ${new Date(x.creado).toLocaleString('es-CL')}</p>` : ''}
         ${!x.atendida ? `<button class="boton sec peq batend" data-id="${x.id}">Marcar como atendida</button>` : ''}</div>`).join('') || '<p class="tenue">Sin preguntas.</p>'}</div>
     <form class="tarjeta" id="finterp"><h2>Interpretación y decisión clínica</h2>
@@ -596,12 +596,19 @@ async function informe(cont, v, recargar) {
 
 // ------------------------------------------------ preguntas a la app ---
 function cajaPregunta({ quien, placeholder }) {
+  if (quien === 'apoderado') {
+    return `<form class="caja-pregunta" data-quien="${quien}"><textarea name="p" maxlength="1000" required placeholder="${esc(placeholder)}" style="min-height:70px"></textarea>
+    <div class="fila" style="margin-top:8px"><button class="boton sec" data-accion="preguntar">Preguntar a la app</button><button type="button" class="boton sec" data-accion="comentar">Dejar comentario para el profesional</button></div>
+    <p class="tenue peq" style="margin:6px 0 0">«Preguntar» busca una respuesta general en la app y, si no la encuentra, en fuentes de salud. «Dejar comentario» solo lo guarda para que el profesional lo lea; no sale de la app.</p>
+    <div class="respuesta-app" aria-live="polite"></div></form>`;
+  }
   return `<form class="caja-pregunta" data-quien="${quien}"><div class="fila"><input type="search" name="p" maxlength="300" required placeholder="${esc(placeholder)}" style="flex:1;min-width:200px"><button class="boton sec">Preguntar</button></div>
     <p class="tenue peq" style="margin:6px 0 0">${quien === 'apoderado' ? 'Respuesta general de la app. Si no la encuentra, busca en MedlinePlus (información de salud en español) y en fuentes científicas; si tampoco, la pregunta queda registrada para el profesional.' : 'La app responde con su propio contenido; si no encuentra la respuesta, busca sola en literatura científica y en MedlinePlus (solo envía términos clínicos, nunca datos del paciente). Si no reconoce términos clínicos, le propone palabras para buscar en internet y espera su confirmación.'}</p>
     <div class="respuesta-app" aria-live="polite"></div></form>`;
 }
 
 function pintarRespuesta(r, { casoId, agregar } = {}) {
+  if (r.origen === 'comentario') return `<div class="resp">${esc(r.aviso)}</div>`;
   if (r.origen === 'sin_respuesta') {
     const pb = r.propuesta_busqueda;
     if (!pb) return `<div class="resp sin">${esc(r.aviso || 'No encontramos una respuesta.')}</div>`;
@@ -641,6 +648,12 @@ function conectarCaja(root, { quien, casoId, preguntaId, agregar, profesional })
     } catch (er) { out.innerHTML = `<div class="resp sin">${esc(er.message)}</div>`; }
   };
   f.onsubmit = (e) => { e.preventDefault(); consultar(); };
+  const bc = f.querySelector('[data-accion="comentar"]');
+  if (bc) bc.onclick = async () => {
+    if (f.p.value.trim().length < 3) { aviso('Escriba el comentario.', true); return; }
+    await consultar({ comentario: true });
+    if (out.querySelector('.resp:not(.sin)')) f.p.value = '';
+  };
 }
 
 // ------------------------------------------- búsqueda bibliográfica ---
