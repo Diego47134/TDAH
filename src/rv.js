@@ -42,7 +42,10 @@ const normalizar = (s) => String(s ?? '').normalize('NFD').replace(/[̀-ͯ]/g, '
 
 /** Clasifica un resultado como «dificultad», «esperado» o «sin interpretación», según el propio instrumento. */
 export function sentidoResultado(v) {
-  const t = normalizar(`${v.interpretacion_del_documento || ''} ${v.interpretacion || ''} ${v.resultado || ''}`);
+  // Clasificación ya hecha por el lector del instrumento (p. ej. Nesplora, según su propio baremo).
+  if (v.sentido === 'dificultad' || v.sentido === 'esperado' || v.sentido === 'sin_interpretacion') return v.sentido;
+  if (v.sentido === 'fortaleza') return 'esperado';
+  const t =normalizar(`${v.interpretacion_del_documento || ''} ${v.interpretacion || ''} ${v.resultado || ''}`);
   if (/(dentro de lo esperado|dentro_de_lo_esperado|normal|promedio|adecuad|sin dificultad)/.test(t)) return 'esperado';
   if (/(bajo lo esperado|bajo_lo_esperado|sobre lo esperado|sobre_lo_esperado|por sobre|por debajo|elevad|alterad|deficit|dificultad|clinic|riesgo|lento|inferior)/.test(t)) return 'dificultad';
   if (v.percentil != null) return v.percentil >= 85 || v.percentil <= 15 ? 'dificultad' : 'esperado';

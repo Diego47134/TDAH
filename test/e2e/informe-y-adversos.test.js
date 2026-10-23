@@ -46,17 +46,18 @@ test('E11 · el informe final refleja los datos reales, las discrepancias y la i
     r = await api.req('POST', `/api/casos/${id}/informes`);
     assert.equal(r.status, 200);
     const md = r.body.markdown;
-    for (let i = 1; i <= 19; i++) {
-      const sec = i === 13 || i === 14 ? '## 13–14.' : `## ${i}.`;
-      assert.ok(md.includes(sec), `sección ${i}`);
-    }
+    // Estructura obligatoria del informe (especificación 3.1–3.16), síntesis educativa (4) y control de calidad (6).
+    for (let i = 1; i <= 16; i++) assert.ok(md.includes(`## ${i}. `), `sección ${i}`);
+    assert.ok(md.includes('## Síntesis para docentes y psicólogos educativos'));
+    assert.ok(md.includes('## Control de calidad del informe'));
+    if (process.env.VOLCAR_INFORME) (await import('node:fs')).writeFileSync(process.env.VOLCAR_INFORME, md);
     assert.match(md, /Desde primero básico se distrae mucho en clases/);
     assert.match(md, /«No interrumpe a sus compañeros\.»/);
-    assert.match(md, /R1\.5 \| Dificultad para organizar tareas y actividades \| DESCONOCIDO/);
+    assert.match(md, /R1\.5 Dificultad para organizar tareas y actividades \| Desconocido \/ no recuerda/);
     assert.match(md, /Nesplora/);
     assert.match(md, /Referencias científicas/);
     assert.match(md, /PENDIENTE DE VALIDACIÓN PROFESIONAL/);
-    ev.paso(p, { entrada: 'Expediente completo + revisión + interpretación', accion_resultante: `Informe final #${r.body.id} (${md.length} caracteres)`, esperado: '19 secciones con datos reales', ok: true });
+    ev.paso(p, { entrada: 'Expediente completo + revisión + interpretación', accion_resultante: `Informe final #${r.body.id} (${md.length} caracteres)`, esperado: '16 secciones + síntesis educativa + control de calidad, con datos reales', ok: true });
     const val = await api.req('POST', `/api/casos/${id}/informes/${r.body.id}/validacion`, { profesional: 'Profesional ficticio' });
     assert.equal(val.status, 200);
     assert.match(val.body.markdown, /VALIDADO por Profesional ficticio/);
@@ -108,7 +109,7 @@ test('A2 · discrepancia entre fuentes: se registra y bloquea el informe hasta s
   try {
     const id = await casoCompleto(api);
     const v = await vista(api, id);
-    const c = v.contradicciones.find((x) => x.estado === 'abierta');
+    const c = v.contradicciones.find((x) => x.estado === 'abierta' && /se conserva sin resolver/.test(x.descripcion));
     assert.ok(c);
     assert.match(c.descripcion, /se conserva sin resolver/);
     const e = v.sintomas.find((s) => s.id === 'R2.9');
@@ -116,7 +117,11 @@ test('A2 · discrepancia entre fuentes: se registra y bloquea el informe hasta s
     assert.equal(v.requisitos.requisitos.find((r) => r.id === 'contradicciones_revisadas').cumplido, false);
     const sinNota = await api.req('POST', `/api/casos/${id}/contradicciones/${c.id}/revision`, { profesional: 'X' });
     assert.equal(sinNota.status, 400);
-    const ok = await api.req('POST', `/api/casos/${id}/contradicciones/${c.id}/revision`, { nota: 'Revisado', profesional: 'Profesional ficticio' });
+    let ok;
+    for (const x of v.contradicciones.filter((y) => y.estado === 'abierta')) {
+      ok = await api.req('POST', `/api/casos/${id}/contradicciones/${x.id}/revision`, { nota: 'Revisado', profesional: 'Profesional ficticio' });
+      if (x.id !== v.contradicciones.filter((y) => y.estado === 'abierta').at(-1).id) assert.equal(ok.body.requisitos.requisitos.find((r) => r.id === 'contradicciones_revisadas').cumplido, false, 'quedan otras sin revisar');
+    }
     assert.equal(ok.body.requisitos.requisitos.find((r) => r.id === 'contradicciones_revisadas').cumplido, true);
     ev.paso(p, { entrada: c.descripcion, accion_resultante: 'Revisión con nota y profesional', esperado: 'Requisito cumplido solo tras la revisión', ok: true });
     ev.cerrar(p, true);

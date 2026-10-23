@@ -9,7 +9,7 @@ import {
 } from './motor.js';
 import { validarPregunta } from './validador.js';
 import { interpretarRespuesta, detectarMenciones, ErrorEntrada } from './interprete.js';
-import { extraerPorReglas, validarExtraccionManual } from './informeEscolar.js';
+import { leerInformeEscolar, validarExtraccionManual } from './informeEscolar.js';
 import { evaluarRequisitos, generarInforme, markdownAHtml } from './informe.js';
 import { integrar } from './integracion.js';
 import { crearBuscador, ErrorBusqueda, SUGERIDAS, FUENTES, validarConsulta } from './bibliografia.js';
@@ -18,6 +18,7 @@ import { CLASES, MAX_BYTES, ErrorDocumento, carpetaDocumentos, extraerTexto, gua
 import { esquemaPara, verificarExtraccion } from './extraccion.js';
 import { seudonimizar, nombresDelCaso } from './anonimizar.js';
 import { VARIABLES_RV, validarMetricas } from './rv.js';
+import { esNesplora, leerNesplora, verificarVinculacion } from './nesplora.js';
 import { validarConsentimiento, validarAsentimiento, tieneAsentimiento, permiteIA, ErrorConsentimiento, VERSION_POLITICA } from './privacidad.js';
 
 export class ErrorServicio extends Error {
@@ -183,7 +184,8 @@ export function crearServicio({ db, protocolo, buscador = crearBuscador(), ia = 
         etapa_evolutiva: etapaEvolutiva(ctx),
         sintomas: ini ? evaluarSintomas(ctx) : [],
         barrido: ini ? estadoBarrido(ctx) : null, tamizaje: ini ? estadoTamizaje(ctx) : null,
-        integracion: I && { puerta: I.puerta, resultado: I.resultado, requisitos: Object.fromEntries(Object.entries(I.requisitos).map(([k, v]) => [k, { nombre: v.nombre, estado: v.estado }])), areas: I.areas.map(({ id, nombre, estado }) => ({ id, nombre, estado })) },
+        integracion: I && { puerta: I.puerta, resultado: I.resultado, requisitos: Object.fromEntries(Object.entries(I.requisitos).map(([k, v]) => [k, { nombre: v.nombre, estado: v.estado }])), areas: I.areas.map(({ id, nombre, estado }) => ({ id, nombre, estado })),
+          fuentes: I.requisitos.R10.fuentes || [], realidad_virtual: { disponible: I.realidadVirtual.disponible, hallazgos: I.realidadVirtual.hallazgos.length } },
         hechos: ctx.hechos, contradicciones: ctx.contradicciones, informes_escolares: ctx.informesEscolares,
         evaluaciones: ctx.evaluaciones, instrumentos: P.instrumentos, requisitos: req, informes,
         consentimientos: ctx.consentimientos, version_politica: VERSION_POLITICA, referencias: ctx.referencias, consultas: ctx.consultas,
@@ -257,7 +259,8 @@ export function crearServicio({ db, protocolo, buscador = crearBuscador(), ia = 
         try { extraidos = validarExtraccionManual(P, hechos); } catch (e) { throw new ErrorServicio(400, e.message); }
         return incorporarInformeEscolar(casoId, { texto, extraidos, metodo: 'estructurada_manual' });
       }
-      return incorporarInformeEscolar(casoId, { texto, extraidos: extraerPorReglas(P, texto), metodo: 'reglas' });
+      const lectura = leerInformeEscolar(P, texto);
+      return incorporarInformeEscolar(casoId, { texto, extraidos: lectura.hechos, metodo: 'reglas', documento: lectura.documento, datos: lectura.datos });
     },
 
     // ---------------------------------------------------- documentos adjuntos ---
@@ -272,8 +275,19 @@ export function crearServicio({ db, protocolo, buscador = crearBuscador(), ia = 
       try { ext = await extraerTexto(buf, nombre); } catch (e) { if (e instanceof ErrorDocumento) throw new ErrorServicio(e.status, e.message); throw e; }
       const guardado = guardarArchivo(carpetaDocs, casoId, nombre, buf, db.cifrador);
       const texto = seudonimizar(ext.texto, nombresDelCaso(ctx, Array.isArray(ocultar) ? ocultar : String(ocultar).split(',')));
-      const usarIA = ia?.habilitada && permiteIA(ctx) && ['entrevista_apoderado', 'informe_escolar', 'informe_rv'].includes(clase) && !ext.advertencia;
+      // Informe de Nesplora Aula: se lee con su formato propio, sin IA, y se verifica que sea del mismo caso.
+      const nesplora = !ext.advertencia && esNesplora(ext.texto) ? leerNesplora(ext.texto) : null;
+      if (nesplora) clase = 'informe_rv';
+      const vinculacion = nesplora ? verificarVinculacion(nesplora, { edadCaso: edad(ctx), etiqueta: ctx.caso.etiqueta }) : null;
+      const usarIA = !nesplora && ia?.habilitada && permiteIA(ctx) && ['entrevista_apoderado', 'informe_escolar', 'informe_rv'].includes(clase) && !ext.advertencia;
       let verif = null; let metodo = 'sin_extraccion'; let detalle = ext.advertencia; let errorIA = null;
+      if (nesplora) {
+        verif = { documento: { clase: 'informe_rv', instrumento: nesplora.instrumento, fecha: nesplora.fecha, autor: null }, respuestas: [], hechos: [], datos: [], puntajes: [],
+          rv: { variables: nesplora.variables, limitaciones: nesplora.limitaciones }, descartados: [] };
+        metodo = 'lector_nesplora';
+        detalle = vinculacion.estado === 'verificada' ? null
+          : `Resultados pendientes de vinculación: ${[...vinculacion.problemas, ...vinculacion.advertencias.filter((a) => /no se pudo verificar/.test(a))].join(' ')} El profesional debe confirmar que el informe corresponde a este caso antes de integrarlo.`;
+      }
       if (usarIA) {
         try {
           const salida = await ia.extraerDocumento({ tipo: clase, texto: texto.slice(0, 60000), esquema: esquemaPara(P, clase) });
@@ -281,7 +295,8 @@ export function crearServicio({ db, protocolo, buscador = crearBuscador(), ia = 
         } catch (e) { errorIA = e; }
       }
       if (!verif && clase === 'informe_escolar' && !ext.advertencia) {
-        verif = { documento: { clase: 'informe_general' }, respuestas: [], hechos: extraerPorReglas(P, texto), datos: [], puntajes: [], rv: { variables: [], limitaciones: [] }, descartados: [] };
+        const lectura = leerInformeEscolar(P, texto);
+        verif = { documento: lectura.documento, respuestas: [], hechos: lectura.hechos, datos: lectura.datos, puntajes: [], rv: { variables: [], limitaciones: [] }, descartados: [] };
         metodo = errorIA ? 'reglas (contingencia)' : 'reglas';
       }
       if (!verif && !detalle) {
@@ -311,14 +326,16 @@ export function crearServicio({ db, protocolo, buscador = crearBuscador(), ia = 
         }
         if (verif && clase === 'informe_rv' && verif.rv.variables.length) {
           const inst = /nesplora|aula/i.test(verif.documento.instrumento || '') ? 'NESPLORA' : 'RV';
-          db.prepare(`INSERT INTO evaluaciones (caso_id, instrumento_id, estado, fecha, aplicador, resultados, observaciones, actualizado) VALUES (?, ?, 'realizada', ?, ?, ?, ?, ?)
-                      ON CONFLICT(caso_id, instrumento_id) DO UPDATE SET estado = 'realizada', fecha = excluded.fecha, resultados = excluded.resultados, observaciones = excluded.observaciones, actualizado = excluded.actualizado`)
-            .run(casoId, inst, verif.documento.fecha || ahora().slice(0, 10), verif.documento.autor || null,
-              JSON.stringify({ variables: verif.rv.variables, limitaciones: verif.rv.limitaciones, documento: verif.documento, documento_id: id }),
+          const estadoEv = vinculacion && vinculacion.estado !== 'verificada' ? 'pendiente_vinculacion' : 'realizada';
+          db.prepare(`INSERT INTO evaluaciones (caso_id, instrumento_id, estado, fecha, aplicador, resultados, observaciones, actualizado) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+                      ON CONFLICT(caso_id, instrumento_id) DO UPDATE SET estado = excluded.estado, fecha = excluded.fecha, resultados = excluded.resultados, observaciones = excluded.observaciones, actualizado = excluded.actualizado`)
+            .run(casoId, inst, estadoEv, verif.documento.fecha || ahora().slice(0, 10), verif.documento.autor || null,
+              JSON.stringify({ variables: verif.rv.variables, limitaciones: verif.rv.limitaciones, documento: verif.documento, documento_id: id,
+                ...(nesplora ? { persona: nesplora.persona, valido: nesplora.valido, baremo: nesplora.baremo, duracion: nesplora.duracion, condiciones: nesplora.condiciones, vinculacion } : {}) }),
               `Extraído del documento «${String(nombre).slice(0, 80)}»${verif.rv.limitaciones.length ? `. Limitaciones: ${verif.rv.limitaciones.join('; ')}` : ''}`, ahora());
           aplicado.rv = verif.rv.variables.length;
         }
-        X.registrarDecision(db, casoId, ctxDe(casoId).caso.turno, 'documento_subido', { id, clase, metodo, sha256: guardado.sha256, descartados: verif?.descartados.length || 0, aplicado });
+        X.registrarDecision(db, casoId, ctxDe(casoId).caso.turno, 'documento_subido', { id, clase, metodo, sha256: guardado.sha256, descartados: verif?.descartados.length || 0, aplicado, ...(vinculacion ? { vinculacion } : {}) });
         return id;
       });
       let resultado = null;
@@ -329,6 +346,22 @@ export function crearServicio({ db, protocolo, buscador = crearBuscador(), ia = 
         transaccion(db, () => revalidarActual(casoId));
       }
       return { id: docId, metodo, detalle, aplicado, descartados: verif?.descartados || [], documento: verif?.documento || null, vista: resultado?.vista || api.vista(casoId) };
+    },
+
+    /** El profesional confirma que un informe de RV con identidad no verificada corresponde a este caso. */
+    vincularDocumento(casoId, docId, { profesional, motivo } = {}) {
+      const ctx = ctxDe(casoId);
+      if (!String(profesional ?? '').trim()) throw new ErrorServicio(400, 'Indique el profesional que confirma la vinculación.');
+      if (!String(motivo ?? '').trim()) throw new ErrorServicio(400, 'Indique cómo verificó que el informe corresponde a este caso.');
+      const ev = ctx.evaluaciones.find((e) => e.estado === 'pendiente_vinculacion' && e.resultados?.documento_id === Number(docId));
+      if (!ev) throw new ErrorServicio(404, 'No hay resultados pendientes de vinculación para ese documento.');
+      const res = { ...ev.resultados, vinculacion: { ...ev.resultados.vinculacion, estado: 'confirmada', confirmada_por: String(profesional).trim().slice(0, 120), motivo: String(motivo).trim().slice(0, 500), fecha: ahora() } };
+      return transaccion(db, () => {
+        db.prepare("UPDATE evaluaciones SET estado = 'realizada', resultados = ?, actualizado = ? WHERE id = ?").run(JSON.stringify(res), ahora(), ev.id);
+        db.prepare('UPDATE documentos SET detalle = ? WHERE id = ? AND caso_id = ?').run(`Vinculación confirmada por ${res.vinculacion.confirmada_por}: ${res.vinculacion.motivo}`, Number(docId), casoId);
+        X.registrarDecision(db, casoId, ctx.caso.turno, 'vinculacion_confirmada', { documento_id: Number(docId), instrumento: ev.instrumento_id, profesional: res.vinculacion.confirmada_por, motivo: res.vinculacion.motivo, problemas: ev.resultados.vinculacion?.problemas || [] });
+        return api.vista(casoId);
+      });
     },
 
     descargarDocumento(casoId, docId) {

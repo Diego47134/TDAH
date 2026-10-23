@@ -113,6 +113,7 @@ export function crearApp({ dbPath, protocoloPath, buscador, ia, rvToken = proces
   on('GET', '/api/bibliografia/sugerencias', () => svc.bibliografiaSugerencias());
   on('GET', '/api/bibliografia', (_p, _b, q) => svc.buscarBibliografia({ consulta: q.get('q'), fuente: q.get('fuente') || 'europepmc', cantidad: q.get('n') }));
   on('POST', '/api/casos/:id/documentos', (p, b) => svc.subirDocumento(p.id, b));
+  on('POST', '/api/casos/:id/documentos/:did/vinculacion', (p, b) => svc.vincularDocumento(p.id, p.did, b));
   on('GET', '/api/casos/:id/documentos/:did/archivo', (p) => ({ __archivo: svc.descargarDocumento(p.id, p.did) }));
   on('POST', '/api/rv/sesiones', (_p, b) => svc.rvIniciar(b.caso_id || svc.idPorCodigo(b.caso_codigo), b));
   on('POST', '/api/rv/sesiones/:sid/datos', (p, b) => svc.rvDatos(p.sid, b));

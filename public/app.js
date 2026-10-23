@@ -4,7 +4,7 @@ const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '
 const ETIQ = {
   fase_inicial: 'Fase inicial', entrevista: 'En entrevista', esperando_informe_escolar: 'Esperando informe escolar',
   entrevista_completa: 'Entrevista completa', informe_final: 'Informe final', validado: 'Validado',
-  pendiente: 'Pendiente', en_curso: 'En curso', parcial: 'Parcial', resuelta: 'Resuelta', no_aplica: 'No aplica', pendiente_informe: 'Desde informe',
+  pendiente: 'Pendiente', pendiente_vinculacion: 'Pendiente de vinculación', en_curso: 'En curso', parcial: 'Parcial', resuelta: 'Resuelta', no_aplica: 'No aplica', pendiente_informe: 'Desde informe',
   con_informe: 'Con informe escolar', completa: 'Entrevista completa', incorporado: 'Incorporado', disponible: 'Disponible', revisado: 'Revisado', generado: 'Generado', bloqueado: 'Bloqueado', 'listo para generar': 'Listo para generar',
   sin_dato: 'Sin dato', contradiccion: 'Contradictorio', apoderado: 'Apoderado', informe_escolar: 'Informe escolar', valor: 'Valor', no_sabe: 'No sabe', no_recuerda: 'No recuerda', ambiguo: 'Ambiguo',
 };
@@ -424,10 +424,11 @@ const leerBase64 = (archivo) => new Promise((ok, mal) => { const r = new FileRea
 function documentos(cont, v, recargar) {
   const c = v.caso;
   const iaTxt = v.ia.habilitada ? (v.ia.autorizada ? `Los datos se extraen con IA (${esc(v.ia.proveedor)}), verificando cada dato contra una frase textual del documento.` : 'El representante no autorizó el uso de IA: el informe escolar se procesa con las reglas propias de la app; los demás documentos quedan guardados.') : 'IA no configurada: el informe escolar se procesa con las reglas propias de la app; los demás documentos quedan guardados.';
+  const nesTxt = 'Los informes de Nesplora Aula se leen automáticamente (sin IA) y se verifica que correspondan a este caso.';
   const ETQ = { escala_estandarizada: 'Escala estandarizada', observacion_narrativa: 'Observación narrativa', informe_general: 'Informe general', entrevista_apoderado: 'Entrevista', informe_rv: 'Informe de realidad virtual', otro: 'Otro' };
   cont.innerHTML = `
     <form class="tarjeta" id="fdoc"><h2>Subir documento</h2>
-      <p class="tenue peq">PDF con texto, Word (.docx) o texto (.txt), hasta 15 MB. ${iaTxt}</p>
+      <p class="tenue peq">PDF con texto, Word (.docx) o texto (.txt), hasta 15 MB. ${iaTxt} ${nesTxt}</p>
       <div class="rejilla-bib">
         <div><label for="dclase">Tipo de documento</label><select id="dclase">${Object.entries(v.clases_documento).map(([k, n]) => `<option value="${k}">${esc(n)}</option>`).join('')}</select></div>
         <div><label for="dprof">Profesional que lo sube</label><input id="dprof" type="text" maxlength="120"></div>
@@ -439,18 +440,27 @@ function documentos(cont, v, recargar) {
     <div class="tarjeta"><h2>Documentos del caso (${v.documentos.length})</h2>
       ${v.documentos.slice().reverse().map((d) => {
         const ex = d.extraccion; const meta = ex?.documento;
+        const pend = (v.evaluaciones || []).find((e) => e.estado === 'pendiente_vinculacion' && e.resultados?.documento_id === d.id);
+        const vinc = pend?.resultados?.vinculacion;
         return `<div class="doc" style="border-top:1px solid var(--linea);padding-top:10px;margin-top:10px">
           <div class="fila"><strong>${esc(d.nombre)}</strong><span class="espacio"></span><span class="estado ${d.estado === 'procesado' ? 'ok' : 'pendiente'}">${esc(d.estado)}</span><button class="boton sec peq bdesc" data-id="${d.id}" data-nombre="${esc(d.nombre)}">Descargar</button></div>
           <div class="tenue peq">${esc(v.clases_documento[d.clase] || d.clase)} · ${new Date(d.creado).toLocaleString('es-CL')} · ${esc(d.metodo || '')}${d.profesional ? ` · ${esc(d.profesional)}` : ''} · ${Math.max(1, Math.round(d.bytes / 1024))} KB</div>
           ${meta ? `<div class="peq" style="margin-top:4px">${esc([ETQ[meta.clase] || meta.clase, meta.instrumento, meta.autor, meta.fecha].filter(Boolean).join(' · '))}</div>` : ''}
-          ${d.detalle ? `<p class="peq">${esc(d.detalle)}</p>` : ''}
+          ${d.detalle && !pend ? `<p class="peq">${esc(d.detalle)}</p>` : ''}
+          ${pend ? `<form class="fvinc aviso-caja" data-id="${d.id}">
+            <p><strong>Resultados no integrados: falta confirmar que el informe corresponde a este caso.</strong></p>
+            <ul class="peq">${[...(vinc?.problemas || []), ...(vinc?.advertencias || [])].map((x) => `<li>${esc(x)}</li>`).join('')}</ul>
+            ${pend.resultados.persona ? `<p class="peq tenue">Datos del informe: ${esc([pend.resultados.persona.nombre, pend.resultados.persona.nacimiento && `nacimiento ${pend.resultados.persona.nacimiento}`, pend.resultados.persona.edad != null && `${pend.resultados.persona.edad} años al evaluar`, pend.fecha && `prueba ${pend.fecha}`].filter(Boolean).join(' · '))}</p>` : ''}
+            <label>Cómo verificó que corresponde a este caso</label><input type="text" name="motivo" required placeholder="p. ej. el informe usa un seudónimo; la familia confirmó la fecha de nacimiento">
+            <label>Profesional</label><input type="text" name="prof" required>
+            <div class="fila" style="margin-top:8px"><button class="boton sec">Confirmar vinculación e integrar</button></div></form>` : ''}
           ${ex ? `<details><summary class="peq">Datos extraídos: ${(ex.respuestas || []).length} respuestas · ${(ex.hechos || []).length} síntomas · ${(ex.datos || []).length} datos · ${(ex.puntajes || []).length} puntajes · ${(ex.rv?.variables || []).length} variables RV${ex.descartados?.length ? ` · ${ex.descartados.length} descartados por no verificarse` : ''}</summary>
             <table class="tabla"><tbody>
             ${(ex.respuestas || []).map((r) => `<tr><td class="mono peq">${esc(r.pregunta_id)}</td><td>${esc(sv(r.valor ?? r.estado))}</td><td class="peq">«${esc(r.evidencia)}»</td></tr>`).join('')}
             ${(ex.hechos || []).map((h) => `<tr><td class="mono peq">${esc(h.dimension_id)} · ${esc(h.slot)}</td><td>${esc(sv(h.valor))}</td><td class="peq">«${esc(h.evidencia)}»</td></tr>`).join('')}
             ${(ex.datos || []).map((x) => `<tr><td class="mono peq">${esc(x.dato)}</td><td>${esc(x.valor)}</td><td class="peq">«${esc(x.evidencia)}»</td></tr>`).join('')}
             ${(ex.puntajes || []).map((x) => `<tr><td class="mono peq">${esc([x.escala, x.subescala].filter(Boolean).join(' · '))}</td><td>${esc(x.puntaje)} ${esc(x.interpretacion_del_documento)}</td><td class="peq">«${esc(x.evidencia)}»</td></tr>`).join('')}
-            ${(ex.rv?.variables || []).map((x) => `<tr><td class="mono peq">${esc(x.variable)}</td><td>${esc(x.resultado)} ${esc(x.interpretacion_del_documento)}</td><td class="peq">«${esc(x.evidencia)}»</td></tr>`).join('')}
+            ${(ex.rv?.variables || []).map((x) => `<tr><td class="mono peq">${esc(x.variable)}</td><td>${esc(x.resultado)} ${esc(x.interpretacion || x.interpretacion_del_documento || '')}</td><td class="peq">«${esc(x.evidencia)}»</td></tr>`).join('')}
             </tbody></table></details>` : ''}
         </div>`;
       }).join('') || '<p class="tenue">Aún no hay documentos.</p>'}</div>`;
@@ -465,6 +475,11 @@ function documentos(cont, v, recargar) {
       recargar();
     } catch (err) { aviso(err.message, true); b.disabled = false; b.textContent = 'Subir y procesar'; }
   };
+  cont.querySelectorAll('.fvinc').forEach((f) => { f.onsubmit = async (e) => {
+    e.preventDefault(); const fd = new FormData(f);
+    try { await api('POST', `/api/casos/${c.id}/documentos/${f.dataset.id}/vinculacion`, { motivo: fd.get('motivo'), profesional: fd.get('prof') }); aviso('Vinculación confirmada: los resultados se integraron al caso.'); recargar(); }
+    catch (err) { aviso(err.message, true); }
+  }; });
   cont.querySelectorAll('.bdesc').forEach((b) => { b.onclick = async () => {
     try {
       const r = await fetch(`/api/casos/${c.id}/documentos/${b.dataset.id}/archivo`, { headers: token ? { authorization: `Bearer ${token}` } : {} });
@@ -497,7 +512,7 @@ function instrumentos(cont, v, recargar) {
   ${v.instrumentos.map((i) => {
     const ev = v.evaluaciones.find((e) => e.instrumento_id === i.id) || {};
     return `<form class="tarjeta finst" data-id="${esc(i.id)}">
-      <div class="fila"><h3 style="margin:0">${esc(i.nombre)}</h3><span class="espacio"></span><span class="estado ${ev.estado === 'realizada' ? 'ok' : 'pendiente'}">${esc(ev.estado || 'pendiente')}</span></div>
+      <div class="fila"><h3 style="margin:0">${esc(i.nombre)}</h3><span class="espacio"></span><span class="estado ${ev.estado === 'realizada' ? 'ok' : 'pendiente'}">${esc(et(ev.estado || 'pendiente'))}</span></div>
       <div class="fila" style="align-items:end">
         <div style="flex:1;min-width:140px"><label>Estado</label><select name="estado">${['pendiente', 'realizada', 'no_aplica'].map((s) => `<option ${ev.estado === s ? 'selected' : ''}>${s}</option>`).join('')}</select></div>
         <div style="flex:1;min-width:140px"><label>Fecha</label><input type="date" name="fecha" value="${esc(ev.fecha || '')}"></div>
