@@ -182,7 +182,7 @@ export function crearConsultas(P, { buscarInternet }) {
 
   return {
     base,
-    async responder({ pregunta, quien = 'profesional', pregunta_id, buscar_en_web = false, palabras, excluir = [] } = {}) {
+    async responder({ pregunta, quien = 'profesional', pregunta_id, buscar_en_web = false, palabras: palabrasElegidas, excluir = [] } = {}) {
       const texto = String(pregunta ?? '').replace(/\s+/g, ' ').trim();
       if (texto.length < 3) throw Object.assign(new Error('Escriba su pregunta.'), { status: 400 });
       if (texto.length > 300) throw Object.assign(new Error('La pregunta es demasiado larga (máximo 300 caracteres).'), { status: 400 });
@@ -215,7 +215,7 @@ export function crearConsultas(P, { buscarInternet }) {
           return sinRespuesta('La app no tiene una respuesta propia y no reconoció términos clínicos. Puede buscar en internet con las palabras propuestas.',
             { propuesta_busqueda: { palabras: propuesta, fuentes: ['MedlinePlus en español', 'Europe PMC'] } });
         }
-        const elegidas = (Array.isArray(palabras) ? palabras : propuesta).map((w) => normalizar(String(w))).filter((w) => propuesta.includes(w));
+        const elegidas = (Array.isArray(palabrasElegidas) ? palabrasElegidas : propuesta).map((w) => normalizar(String(w))).filter((w) => propuesta.includes(w));
         if (!elegidas.length) throw Object.assign(new Error('Seleccione al menos una de las palabras propuestas.'), { status: 400 });
         const sel = elegidas.map((w) => ({ en: w, es: w }));
         return buscarEnFuentes([

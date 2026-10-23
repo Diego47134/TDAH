@@ -158,3 +158,33 @@ test('Q6 · si la literatura científica no responde, la app intenta MedlinePlus
     assert.equal(r.body.origen, 'sin_respuesta'); assert.equal(r.body.propuesta_busqueda, undefined, 'el apoderado nunca envía texto libre a internet');
   } finally { await api.cerrar(); }
 });
+
+test('Q7 · el apoderado puede dejar un comentario libre durante la entrevista (sin error) y queda registrado para el profesional', async () => {
+  const urls = [];
+  const api = await iniciarApp({ buscador: crearBuscador({ fetchImpl: fetchRegistrado(urls) }) });
+  try {
+    const v = await crearCaso(api); const id = v.caso.id;
+    const q = v.caso.pregunta_actual;
+    const r = await api.req('POST', '/api/consultas', { pregunta: 'Mi hijo se porta bien en la casa, quería comentarlo', quien: 'apoderado', caso_id: id, pregunta_id: q.id });
+    assert.equal(r.status, 200, JSON.stringify(r.body));
+    const w = await vista(api, id);
+    assert.ok(w.consultas.some((c) => c.quien === 'apoderado' && /porta bien/.test(c.pregunta)), 'queda en «Preguntas del apoderado» para el profesional');
+    assert.equal(urls.length, 0, 'el texto del apoderado no sale a internet');
+  } finally { await api.cerrar(); }
+});
+
+test('Q8 · «Dejar comentario»: se guarda tal cual para el profesional, sin respuesta automática ni internet', async () => {
+  const urls = [];
+  const api = await iniciarApp({ buscador: crearBuscador({ fetchImpl: fetchRegistrado(urls) }) });
+  try {
+    const v = await crearCaso(api); const id = v.caso.id;
+    const texto = 'En la casa se concentra bien cuando juega con legos, pero no con las tareas.';
+    const r = await api.req('POST', '/api/consultas', { pregunta: texto, quien: 'apoderado', caso_id: id, pregunta_id: v.caso.pregunta_actual.id, comentario: true });
+    assert.equal(r.status, 200, JSON.stringify(r.body));
+    assert.equal(r.body.origen, 'comentario');
+    assert.equal(urls.length, 0);
+    const c = (await vista(api, id)).consultas.find((x) => x.id === r.body.id);
+    assert.equal(c.pregunta, texto); assert.equal(c.origen, 'comentario');
+    assert.equal((await api.req('POST', '/api/consultas', { pregunta: 'x', quien: 'apoderado', caso_id: id, comentario: true })).status, 400);
+  } finally { await api.cerrar(); }
+});
