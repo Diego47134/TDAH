@@ -59,6 +59,9 @@ export const faseInicialCompleta = (ctx) => slotsIniciales(ctx).every((s) => res
 export function ruta(ctx) {
   if (ctx.caso.ruta_forzada) return ctx.caso.ruta_forzada;
   if (!faseInicialCompleta(ctx)) return null;
+  // Si el informe escolar ya está incorporado al expediente, se usa (Etapa 7 §5.2), aunque la respuesta
+  // del apoderado diga otra cosa; esa diferencia se registra como contradicción (servicio.avanzar).
+  if (informeCargado(ctx)) return 'con_informe';
   const ex = estadoSlot(ctx, 'INI', 'informe_existe');
   if (ex.estado !== 'valor' || ex.valor !== 'si') return 'completa';
   const d = estadoSlot(ctx, 'INI', 'informe_disponible');
@@ -69,6 +72,9 @@ export function justificacionRuta(ctx) {
   if (ctx.caso.ruta_forzada) return `Ruta modificada por el profesional: ${ctx.caso.ruta_motivo || 'sin motivo registrado'}.`;
   const ex = estadoSlot(ctx, 'INI', 'informe_existe');
   const d = estadoSlot(ctx, 'INI', 'informe_disponible');
+  if (informeCargado(ctx) && !(ex.estado === 'valor' && ex.valor === 'si' && d.estado === 'valor' && d.valor === 'si')) {
+    return 'Ruta B (Etapa 7 §5.2): el informe escolar ya está incorporado al expediente, aunque la respuesta inicial del apoderado no lo indicaba; la diferencia queda registrada para revisión y al apoderado solo se le pregunta lo que el informe no resuelve.';
+  }
   if (ex.estado !== 'valor') return 'No se pudo establecer si existe informe escolar (respuesta «no sabe»); no se interpreta como «no», pero se aplica la Ruta A para no perder información escolar (D1).';
   if (ex.valor === 'no') return 'Ruta A (Etapa 7 §5.1): no existe informe escolar; el apoderado aporta lo que conozca del contexto escolar.';
   if (d.estado === 'valor' && d.valor === 'si') return 'Ruta B (Etapa 7 §5.2): existe informe escolar disponible; el apoderado se centra en hogar, desarrollo, trayectoria, autonomía e impacto, y solo se pregunta lo que el informe no resuelva.';
@@ -99,16 +105,47 @@ function presenciaPorFuente(ctx, s) {
   return res;
 }
 
+/** Último dato de un slot por cada fuente: { fuente: {estado, valor} }. */
+export function slotPorFuente(ctx, dim, slot) {
+  const out = {};
+  for (const h of hechosDe(ctx, dim, slot)) {
+    const prev = out[h.fuente];
+    if (h.estado === 'valor' || !prev || prev.estado !== 'valor') out[h.fuente] = { estado: h.estado, valor: h.valor };
+  }
+  return out;
+}
+
+/**
+ * Frecuencia del síntoma considerando cada fuente por separado (Etapa 7 §12; Etapa 9 §11): la frecuencia
+ * en casa y en el colegio son datos de contextos distintos y no se contradicen entre sí. Se usa la de las
+ * fuentes que informan la conducta; una contradicción solo existe dentro de una misma fuente.
+ */
+function frecuenciaSintoma(ctx, s, porFuente) {
+  const pf = slotPorFuente(ctx, s.id, 'frecuencia');
+  const contradiccion = ctx.contradicciones.some((c) => c.dimension_id === s.id && c.slot === 'frecuencia');
+  if (contradiccion) return { st: { estado: 'contradiccion' }, porFuente: pf };
+  const informan = Object.keys(pf).filter((f) => ['si', 'ocasionalmente', 'parcial'].includes(porFuente[f]));
+  const candidatas = (informan.length ? informan : Object.keys(pf)).map((f) => pf[f]);
+  const valores = candidatas.filter((x) => x.estado === 'valor');
+  const frecuente = valores.find((x) => FRECUENTE.includes(x.valor));
+  if (frecuente) return { st: { estado: 'valor', valor: frecuente.valor }, porFuente: pf };
+  if (valores.length) return { st: { estado: 'valor', valor: valores.at(-1).valor }, porFuente: pf };
+  if (candidatas.length) return { st: { estado: candidatas.at(-1).estado }, porFuente: pf };
+  return { st: { estado: 'sin_dato' }, porFuente: pf };
+}
+
 /** Evaluación del síntoma DSM-5-TR con los estados de la Etapa 9 §14.1. */
 export function evaluarSintoma(ctx, s) {
   const p = ctx.protocolo;
   const porFuente = presenciaPorFuente(ctx, s);
   const valores = Object.values(porFuente);
   const mencion = hechosDe(ctx, s.id, 'mencion').filter((h) => h.estado === 'valor' && h.valor === 'si');
+  // Una descripción espontánea que contradice un «No» de la MISMA fuente es una contradicción a revisar (Etapa 7 §15).
+  const mencionContraria = mencion.some((h) => porFuente[h.fuente] === 'no');
   const positivo = valores.includes('si');
   const parcial = !positivo && valores.includes('parcial');
-  const contradictorio = positivo && valores.includes('no');
-  const frec = estadoSlot(ctx, s.id, 'frecuencia');
+  const contradictorio = (positivo && valores.includes('no')) || mencionContraria;
+  const { st: frec, porFuente: frecPorFuente } = frecuenciaSintoma(ctx, s, porFuente);
   const desde = estadoSlot(ctx, s.id, 'desde');
   const ctxs = new Set(hechosDe(ctx, s.id, 'contextos').filter((h) => h.estado === 'valor').flatMap((h) => lista(h.valor)));
   if (porFuente.informe_escolar === 'si' || porFuente.profesor === 'si') ctxs.add('colegio');
@@ -117,17 +154,21 @@ export function evaluarSintoma(ctx, s) {
   const max = p.parametros.max_profundizacion_sintoma;
 
   // Preguntas de presencia del banco: R1.4 usa dos (instrucciones / finalización).
+  // La presencia se establece POR FUENTE: lo que informa el colegio no responde qué ocurre en casa,
+  // así que no cierra la pregunta al apoderado (Etapa 7 §5.2 y §17; Etapa 9 §11).
   const bancoPend = s.preguntas.filter((qid) => !resuelto(estadoSlot(ctx, s.id, `presencia:${qid}`)));
-  const presenciaApoderadoResuelta = 'apoderado' in porFuente && (porFuente.apoderado === 'si' || bancoPend.length === 0);
-  const presenciaEstablecida = presenciaApoderadoResuelta || porFuente.informe_escolar === 'si';
+  const ap = porFuente.apoderado;
+  const presenciaEstablecida = ap !== undefined && (ap === 'si' || bancoPend.length === 0);
 
+  // Profundización con el apoderado: solo sobre conductas que él mismo informa (no sobre las que describió otra fuente).
   // «Ocasionalmente»: registrar y evaluar la necesidad de profundización (Etapa 9 §6.2): se cuantifica la frecuencia.
+  const frecAp = frecPorFuente.apoderado || { estado: 'sin_dato' };
   const ocasional = !positivo && !parcial && valores.includes('ocasionalmente');
   const faltantes = [];
-  if (ocasional && !resuelto(frec)) faltantes.push('frecuencia');
-  if (positivo || parcial) {
-    if (!resuelto(frec)) faltantes.push('frecuencia');
-    if (!parcial) {
+  if (ap === 'ocasionalmente' && !resuelto(frecAp)) faltantes.push('frecuencia');
+  if (ap === 'si' || ap === 'parcial') {
+    if (!resuelto(frecAp)) faltantes.push('frecuencia');
+    if (ap === 'si') {
       if (!resuelto(desde)) faltantes.push('desde');
       if (!ctxResuelto) faltantes.push('contextos');
     }
@@ -152,8 +193,9 @@ export function evaluarSintoma(ctx, s) {
   const actividad = Math.max(0, ...ctx.hechos.filter((h) => h.dimension_id === s.id).map((h) => h.respuesta_id || 0));
   return {
     id: s.id, nombre: s.nombre, dominio: s.dominio, area: s.area, conducta: s.conducta, estado, porFuente,
-    mencion: mencion.length > 0, positivo, contradictorio,
+    mencion: mencion.length > 0, mencionContraria, positivo, contradictorio,
     frecuencia: frec.estado === 'valor' ? frec.valor : frec.estado,
+    frecuencias: Object.fromEntries(Object.entries(frecPorFuente).map(([f, x]) => [f, x.estado === 'valor' ? x.valor : x.estado])),
     desde: desde.estado === 'valor' ? desde.valor : desde.estado,
     contextos: [...ctxs], profundizacion: deep, faltantes: agotado ? [] : faltantes, agotado, ocasional,
     presenciaEstablecida, bancoPendiente: bancoPend, actividad,

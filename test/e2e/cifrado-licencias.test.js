@@ -209,7 +209,9 @@ test('L1 · en producción sin licencia: solo lectura (consultar y exportar sí;
     assert.equal((await api.req('GET', `/api/casos/${id}/exportar`, null, H)).status, 200, 'exportar (derecho de acceso) sigue permitido');
     ev.paso(p, { entrada: 'Producción sin licencia: crear caso / ver / exportar', accion_resultante: `${crear.status} / 200 / 200`, esperado: 'Solo lectura', ok: true });
 
-    const falsa = lic().replace(/.$/, (c) => (c === 'A' ? 'B' : 'A'));
+    // Se altera un carácter interior de la firma (el último puede codificar solo bits de relleno y no cambiarla).
+    const original = lic(); const k = original.length - 10;
+    const falsa = original.slice(0, k) + (original[k] === 'A' ? 'B' : 'A') + original.slice(k + 1);
     assert.equal((await api.req('POST', '/api/licencia', { licencia: falsa }, H)).status, 400, 'firma alterada');
     const otraFirma = firmarLicencia({ id: 'X', cliente: 'Pirata', emitida: hoy(), vence: null }, crypto.generateKeyPairSync('ed25519').privateKey);
     const r0 = await api.req('POST', '/api/licencia', { licencia: otraFirma }, H);

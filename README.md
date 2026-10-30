@@ -24,7 +24,8 @@ Abrir `http://127.0.0.1:3000`, crear un caso con un seudónimo y comenzar la ent
 |---|---|
 | `npm run dev` | Desarrollo local (recarga al guardar, sin token) |
 | `npm start` | Producción (`server.js`): clave de acceso obligatoria, datos fuera de la app, respaldos |
-| `npm test` | Pruebas unitarias y de extremo a extremo (82) |
+| `npm test` | Pruebas unitarias, de extremo a extremo (82) y protocolo formal (26) |
+| `npm run test:protocolo` | Protocolo formal de pruebas con los documentos reales; escribe `docs/evidencia/protocolo/RESULTADOS.md` |
 | `npm run test:evidencia` | Igual, y escribe evidencia verificable en `docs/evidencia/` |
 | `npm run demo` | Caso ficticio completo de principio a fin → `docs/demo/` |
 | `npm run validar-protocolo [-- archivo.json]` | Valida la integridad del protocolo |
