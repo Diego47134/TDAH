@@ -1,6 +1,6 @@
 # Protocolo de pruebas — resultados
 
-Ejecutado: 2026-10-30 14:35 UTC · Protocolo tdah-protocolo 1.0.0 · 18 aprobadas, 6 fallidas de 24.
+Ejecutado: 2026-10-30 14:55 UTC · Protocolo tdah-protocolo 1.0.0 · 26 aprobadas, 0 fallidas de 26.
 
 Documentos reales usados: «Informe del Colegio (prueba).docx» y «Inform Nesplora para Diego.pdf» (entregados por el cliente). Las respuestas del apoderado son guiones de prueba.
 
@@ -8,28 +8,30 @@ Documentos reales usados: «Informe del Colegio (prueba).docx» y «Inform Nespl
 |---|---|---|---|
 | PE-01 | Puerta de entrada | La entrevista empieza por motivo, edad e informe escolar, en ese orden | **APROBADA** |
 | PE-02 | Puerta de entrada | No se acepta una respuesta clínica antes de completar la puerta | **APROBADA** |
-| PE-03 | Puerta de entrada | Un documento cargado antes de la puerta no adelanta las ramas clínicas | **APROBADA** |
-| PE-04 | Puerta de entrada | Si el informe ya está cargado y el apoderado responde que no existe, el sistema lo advierte | **FALLIDA** |
+| PE-03 | Puerta de entrada | Antes de la puerta no se integran documentos clínicos, Nesplora, colegio, RV ni entrevista del niño | **APROBADA** |
+| PE-03b | Puerta de entrada | Completada la puerta, el Nesplora de otra edad queda pendiente de vinculación | **APROBADA** |
+| PE-04 | Puerta de entrada | Si el apoderado dice que no hay informe escolar y luego se incorpora uno, se usa y la diferencia se registra | **APROBADA** |
 | PE-05 | Entrevista adaptativa | Ninguna pregunta se repite y la profundización no supera 3 por síntoma | **APROBADA** |
 | PE-06 | Entrevista adaptativa | Con «No» no se profundiza; con «No sabe» no se registra ausencia | **APROBADA** |
 | PE-07 | Conservación de la información | El expediente persiste tras reiniciar el servidor | **APROBADA** |
 | PE-08 | Etapa 7 / Etapa 9 | El motor (Etapa 9) solo formula preguntas del banco (Etapa 7) y rechaza preguntas externas o reformuladas | **APROBADA** |
 | PE-09 | Entrevista adaptativa | «Ninguna de las anteriores» en el tamizaje cierra solo ese módulo | **APROBADA** |
-| PE-10 | Conservación de la información | Una descripción espontánea posterior a un «No» se conserva y se señala como discrepancia | **FALLIDA** |
+| PE-10 | Conservación de la información | Una descripción espontánea posterior a un «No» se conserva y se señala como discrepancia | **APROBADA** |
 | PE-11 | Escenario 1 · Coincidencia | Apoderado, colegio y Nesplora convergen: se integran sin emitir diagnóstico | **APROBADA** |
 | PE-12 | Escenario 1 · Coincidencia | La convergencia no se cuenta dos veces (un síntoma = una unidad aunque lo describan varias fuentes) | **APROBADA** |
 | PE-13 | Escenario 2 · Discrepancia | El colegio describe conductas que el apoderado no observa en casa (entrevista antes del informe) | **APROBADA** |
-| PE-14 | Escenario 2 · Discrepancia | Ruta B con el informe cargado ANTES de las ramas clínicas: el apoderado debe informar sobre el hogar | **FALLIDA** |
+| PE-14 | Escenario 2 · Discrepancia | Ruta B con el informe cargado ANTES de las ramas clínicas: el apoderado debe informar sobre el hogar | **APROBADA** |
 | PE-15 | Escenario 2 · Discrepancia | El apoderado describe dificultades que el informe escolar no menciona | **APROBADA** |
 | PE-16 | Escenario 2 · Discrepancia | Las discrepancias no se resuelven automáticamente ni a favor de una fuente | **APROBADA** |
 | PE-17 | Escenario 3 · Insuficiencia | Con «No sabe» generalizado y sin informe, el sistema declara la incertidumbre y no concluye | **APROBADA** |
 | PE-18 | Escenario 3 · Insuficiencia | Un informe Nesplora de otro niño (edad y fecha no concordantes) no se integra hasta que el profesional lo confirme | **APROBADA** |
-| PE-19 | Escenario 3 · Insuficiencia | Un segundo informe Nesplora no borra el primero | **FALLIDA** |
+| PE-19 | Escenario 3 · Insuficiencia | Un segundo informe Nesplora no borra el primero | **APROBADA** |
 | PE-20 | Cuestionarios (Conners) | Los resultados de una escala registrada se conservan y aparecen en el informe sin crear criterios | **APROBADA** |
 | PE-21 | Informe y validación | El informe final no se valida sin profesional y nunca se presenta como validado por sí solo | **APROBADA** |
-| PE-22 | Informe y validación | El informe incluye la caracterización en los seis perfiles multidimensionales | **FALLIDA** |
+| PE-22 | Informe y validación | El informe sigue el formato de 16 secciones pedido por el cliente | **APROBADA** |
 | PE-23 | Informe y validación | Los requisitos del informe coinciden con los estados calculados por el motor | **APROBADA** |
-| PE-24 | Escenario 1 · Coincidencia | Frecuencias compatibles de dos fuentes no se registran como contradicción | **FALLIDA** |
+| PE-24 | Escenario 1 · Coincidencia | Frecuencias compatibles de dos fuentes no se registran como contradicción | **APROBADA** |
+| PE-25 | Informe y validación | Los controles de calidad del informe se calculan (no se declaran cumplidos de antemano) | **APROBADA** |
 
 ## PE-01 — La entrevista empieza por motivo, edad e informe escolar, en ese orden
 
@@ -49,23 +51,32 @@ Documentos reales usados: «Informe del Colegio (prueba).docx» y «Inform Nespl
 - **Resultado obtenido:** Respuesta fuera de turno: HTTP 409. Validador: bloquea (Antes deben registrarse motivo, edad e informe escolar.).
 - **Veredicto:** APROBADA
 
-## PE-03 — Un documento cargado antes de la puerta no adelanta las ramas clínicas
+## PE-03 — Antes de la puerta no se integran documentos clínicos, Nesplora, colegio, RV ni entrevista del niño
 
 - **Escenario:** Puerta de entrada
-- **Regla del proyecto:** Etapa 7 §3 (edad y motivo antes de la entrevista); regla del cliente sobre la puerta de entrada.
-- **Datos de entrada:** Caso nuevo; antes de responder nada se carga el informe real del colegio (.docx) y el informe Nesplora (.pdf).
-- **Resultado esperado:** La pregunta vigente sigue siendo INI-MOTIVO; Nesplora queda pendiente de vinculación porque sin edad no se puede verificar.
-- **Resultado obtenido:** Pregunta vigente: INI-MOTIVO. Hechos del colegio ya incorporados: 24. Nesplora: pendiente_vinculacion (HTTP 200).
+- **Regla del proyecto:** Etapa 7 §3–5 (edad, motivo e informe escolar antes de continuar); regla del cliente sobre la puerta de entrada.
+- **Datos de entrada:** Caso nuevo; antes de responder nada se intenta cargar el informe real del colegio (.docx), el Nesplora (.pdf), respuestas del colegio y una sesión de RV.
+- **Resultado esperado:** Todas las cargas responden HTTP 409 indicando la puerta; ningún dato clínico entra al expediente; la pregunta vigente sigue siendo INI-MOTIVO.
+- **Resultado obtenido:** Respuestas: 409, 409, 409, 409. Datos clínicos en el expediente: 0. Pregunta vigente: INI-MOTIVO.
 - **Veredicto:** APROBADA
 
-## PE-04 — Si el informe ya está cargado y el apoderado responde que no existe, el sistema lo advierte
+## PE-03b — Completada la puerta, el Nesplora de otra edad queda pendiente de vinculación
 
 - **Escenario:** Puerta de entrada
-- **Regla del proyecto:** Etapa 7 §5 (la ruta depende de la existencia del informe) y §15 (repetir solo ante contradicción); Etapa 9 §I (la fuente nueva no reemplaza la previa).
-- **Datos de entrada:** Se carga el informe real del colegio antes de la puerta; en INI-INF-EXISTE el apoderado responde «No».
-- **Resultado esperado:** Se registra una contradicción o advertencia (informe cargado vs. «no existe»), o se aplica la Ruta B; no se pregunta al apoderado lo que el informe ya cubre.
-- **Resultado obtenido:** Ruta aplicada: completa. Preguntas escolares al apoderado (RA): 4. Advertencia o contradicción registrada: no.
-- **Veredicto:** FALLIDA
+- **Regla del proyecto:** Etapa 9 §18; regla del cliente: no confundir resultados entre fuentes.
+- **Datos de entrada:** Puerta completa (8 años, informe escolar sí y disponible); se carga el Nesplora real (niño nacido en 2014).
+- **Resultado esperado:** HTTP 200; evaluación «pendiente_vinculacion» hasta que el profesional confirme.
+- **Resultado obtenido:** HTTP 200; Nesplora: pendiente_vinculacion.
+- **Veredicto:** APROBADA
+
+## PE-04 — Si el apoderado dice que no hay informe escolar y luego se incorpora uno, se usa y la diferencia se registra
+
+- **Escenario:** Puerta de entrada
+- **Regla del proyecto:** Etapa 7 §5.1 (si después se obtiene un informe, se incorpora como fuente independiente) y §5.2; Etapa 9 §I (la fuente nueva no reemplaza la previa).
+- **Datos de entrada:** INI-INF-EXISTE = «No» (Ruta A). Antes de terminar la entrevista se carga el informe real del colegio.
+- **Resultado esperado:** El caso pasa a Ruta B («con_informe»), se registra una contradicción sobre la existencia del informe para revisión profesional, y no se borran las respuestas previas del apoderado.
+- **Resultado obtenido:** Ruta: con_informe. Contradicción registrada: sí («El apoderado indicó que el informe escolar no existe, pero hay un informe escolar incorpor…»). Datos del apoderado antes/después: 6/52.
+- **Veredicto:** APROBADA
 
 ## PE-05 — Ninguna pregunta se repite y la profundización no supera 3 por síntoma
 
@@ -118,8 +129,8 @@ Documentos reales usados: «Informe del Colegio (prueba).docx» y «Inform Nespl
 - **Regla del proyecto:** Etapa 9 §3–5 (conservar el dato original), §14.2 (evidencia relacionada), §F (una respuesta puede resolver varias dimensiones); Etapa 7 §15 (repetir ante contradicción).
 - **Datos de entrada:** Ruta A. A02 («¿Le cuesta mantener la atención…?») = «No». Más adelante, en una pregunta abierta, el apoderado escribe: «Le cuesta mucho mantener la atención en las tareas, se desconcentra a los pocos minutos».
 - **Resultado esperado:** La mención queda registrada como evidencia relacionada de R1.2 y se señala la contradicción con el «No» previo (o se activa una pregunta de aclaración).
-- **Resultado obtenido:** Texto libre en RA-C01; menciones registradas: [ninguna]. Hechos de R1.2: presencia:A02=no. Contradicciones de R1.2: 0. Estado final R1.2: NO REFERIDO.
-- **Veredicto:** FALLIDA
+- **Resultado obtenido:** Texto libre en RA-C01; menciones registradas: [R1.2]. Hechos de R1.2: presencia:A02=no; mencion=si. Contradicciones de R1.2: 1. Estado final R1.2: CONTRADICTORIO.
+- **Veredicto:** APROBADA
 
 ## PE-11 — Apoderado, colegio y Nesplora convergen: se integran sin emitir diagnóstico
 
@@ -127,7 +138,7 @@ Documentos reales usados: «Informe del Colegio (prueba).docx» y «Inform Nespl
 - **Regla del proyecto:** Etapa 5 / Etapa 9 §11 (triangulación), §18 (RV complementaria); Automatización fase 3; regla del cliente: sin diagnóstico automático.
 - **Datos de entrada:** Apoderado: «Sí» en los 10 síntomas que describe el informe real del colegio (frecuencia «varias veces al día», desde «>6 meses y antes de los 12», contextos hogar y colegio). Documentos: informe del colegio (.docx) y Nesplora Aula (.pdf) con vinculación confirmada por el profesional.
 - **Resultado esperado:** Los 10 síntomas con dos fuentes (apoderado + colegio) figuran como convergentes; R10 APOYADO; Nesplora integrado como evidencia complementaria («comisiones» converge con conductas impulsivas); el informe queda «pendiente de validación» y no afirma un diagnóstico.
-- **Resultado obtenido:** Síntomas con apoderado + colegio: 10/10. R10: APOYADO. Resultado del motor: INFORMACION_INSUFICIENTE (puerta CERRADA). Nesplora: realizada; comisiones convergentes en §4: sí. «Pendiente de validación»: sí. Afirmación diagnóstica: no.
+- **Resultado obtenido:** Síntomas con apoderado + colegio: 10/10. R10: APOYADO. Resultado del motor: SOSTIENE_TDAH (puerta ABIERTA). Nesplora: realizada; comisiones convergentes en §4: sí. «Pendiente de validación»: sí. Afirmación diagnóstica: no.
 - **Veredicto:** APROBADA
 
 ## PE-12 — La convergencia no se cuenta dos veces (un síntoma = una unidad aunque lo describan varias fuentes)
@@ -136,7 +147,7 @@ Documentos reales usados: «Informe del Colegio (prueba).docx» y «Inform Nespl
 - **Regla del proyecto:** Etapa 9 §14.3 (sin duplicación de síntomas).
 - **Datos de entrada:** Mismo caso que PE-11.
 - **Resultado esperado:** R1 «apoyados» ≤ 9 y R2 ≤ 9; la tabla del §5 tiene exactamente 18 filas de síntomas, sin repetidos.
-- **Resultado obtenido:** Filas de síntomas en §5: 18 (únicas 18). Apoyados: inatención 4, hiperactividad/impulsividad 4.
+- **Resultado obtenido:** Filas de síntomas en §5: 18 (únicas 18). Apoyados: inatención 6, hiperactividad/impulsividad 4.
 - **Veredicto:** APROBADA
 
 ## PE-13 — El colegio describe conductas que el apoderado no observa en casa (entrevista antes del informe)
@@ -154,8 +165,8 @@ Documentos reales usados: «Informe del Colegio (prueba).docx» y «Inform Nespl
 - **Regla del proyecto:** Etapa 7 §5.2 (el apoderado se usa para el funcionamiento en casa) y §17; Etapa 9 §11 (triangulación); regla del cliente: una sola fuente no determina el resultado.
 - **Datos de entrada:** Ruta B en el orden de la Etapa 7 §5.2: puerta → se carga el informe real del colegio → entrevista al apoderado, que responde «No» a todo síntoma que se le pregunte.
 - **Resultado esperado:** Para cada síntoma descrito por el colegio se pregunta al apoderado si ocurre en casa; con «No», el síntoma queda CONTRADICTORIO y se registra la discrepancia; ninguno queda «apoyado» solo con el colegio.
-- **Resultado obtenido:** Síntomas del colegio con presencia preguntada al apoderado: 0/10. Discrepancias registradas: 0. Síntomas «apoyados» solo por el colegio: 10 (R1.1, R1.2, R1.4, R1.5, R1.8, R1.9, R2.1, R2.2, R2.8, R2.9). Preguntas de frecuencia/inicio hechas al apoderado sobre conductas que solo describió el colegio: 13. R1: UMBRAL ALCANZADO.
-- **Veredicto:** FALLIDA
+- **Resultado obtenido:** Síntomas del colegio con presencia preguntada al apoderado: 10/10. Discrepancias registradas: 10. Síntomas «apoyados» solo por el colegio: 0 (). Preguntas de frecuencia/inicio hechas al apoderado sobre conductas que solo describió el colegio: 0. R1: INFORMACIÓN INSUFICIENTE.
+- **Veredicto:** APROBADA
 
 ## PE-15 — El apoderado describe dificultades que el informe escolar no menciona
 
@@ -198,9 +209,9 @@ Documentos reales usados: «Informe del Colegio (prueba).docx» y «Inform Nespl
 - **Escenario:** Escenario 3 · Insuficiencia
 - **Regla del proyecto:** Regla del cliente: conservar la información recogida; Etapa 9 §24 (versionado) y §I (la información nueva no reemplaza la previa).
 - **Datos de entrada:** Se cargan dos informes Nesplora en el mismo caso (el mismo PDF real, dos veces).
-- **Resultado esperado:** Quedan dos evaluaciones (o la primera queda versionada) vinculadas a sus documentos.
-- **Resultado obtenido:** Documentos guardados: 2 (ids 13, 14). Evaluaciones Nesplora: 1, vinculadas a documento(s) 14.
-- **Veredicto:** FALLIDA
+- **Resultado esperado:** Quedan dos evaluaciones, o la primera se conserva como registro anterior vinculado a su documento.
+- **Resultado obtenido:** Documentos guardados: 2 (ids 12, 13). Evaluaciones Nesplora: 1, vigente vinculada al documento 13; registros anteriores conservados: documento 12.
+- **Veredicto:** APROBADA
 
 ## PE-20 — Los resultados de una escala registrada se conservan y aparecen en el informe sin crear criterios
 
@@ -220,14 +231,14 @@ Documentos reales usados: «Informe del Colegio (prueba).docx» y «Inform Nespl
 - **Resultado obtenido:** Generar informe final: HTTP 409 (Evaluación pendiente: no se puede generar el informe final.). Validar sin profesional: no aplica.
 - **Veredicto:** APROBADA
 
-## PE-22 — El informe incluye la caracterización en los seis perfiles multidimensionales
+## PE-22 — El informe sigue el formato de 16 secciones pedido por el cliente
 
 - **Escenario:** Informe y validación
-- **Regla del proyecto:** Automatización fase 3 («doble salida»: salida diagnóstica formal + caracterización en los 6 perfiles); Etapa 9 §16 y §28.10; registro K7 del proyecto (prevalece la Etapa 9 §28).
+- **Regla del proyecto:** «Módulo de generación del informe» del cliente (secciones 3.1–3.16, síntesis educativa y control de calidad); decisión K9 del registro de contradicciones (prevalece el formato del cliente).
 - **Datos de entrada:** Caso de PE-11 (tres fuentes).
-- **Resultado esperado:** El informe tiene una sección con los perfiles Neuroquímico, Estructural, Circuitos/Redes, Neuropsicológico, Conductual y Contextual (1–3 como marco teórico).
-- **Resultado obtenido:** Perfiles mencionados en el informe: 1/6 (Neuropsicológico).
-- **Veredicto:** FALLIDA
+- **Resultado esperado:** Secciones 1 a 16 en orden, «Síntesis para docentes y psicólogos educativos» y «Control de calidad del informe».
+- **Resultado obtenido:** Secciones numeradas: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16. Síntesis educativa: sí. Control de calidad: sí.
+- **Veredicto:** APROBADA
 
 ## PE-23 — Los requisitos del informe coinciden con los estados calculados por el motor
 
@@ -244,5 +255,14 @@ Documentos reales usados: «Informe del Colegio (prueba).docx» y «Inform Nespl
 - **Regla del proyecto:** Etapa 9 §11 (la diferencia entre contextos no es error de una fuente); Etapa 7 §12 (variabilidad por contexto); Etapa 3 §3.6/3.10 (frecuencia y contexto son dimensiones distintas de la variable).
 - **Datos de entrada:** Mismo caso que PE-11: el apoderado indica «varias veces al día» (en casa) y el informe del colegio describe la conducta como frecuente/constante (el lector lo registra como «casi todos los días»).
 - **Resultado esperado:** Ninguna contradicción en el slot «frecuencia» cuando ambas fuentes informan una frecuencia alta; los 10 síntomas convergentes quedan APOYADO POR EVIDENCIA.
-- **Resultado obtenido:** Contradicciones de frecuencia: 2 (R1.9, R1.5). Síntomas convergentes no apoyados: R1.5 INFORMACIÓN INSUFICIENTE; R1.9 INFORMACIÓN INSUFICIENTE. R1: INFORMACIÓN INSUFICIENTE; resultado: INFORMACION_INSUFICIENTE.
-- **Veredicto:** FALLIDA
+- **Resultado obtenido:** Contradicciones de frecuencia: 0 (—). Síntomas convergentes no apoyados: ninguno. R1: UMBRAL ALCANZADO; resultado: SOSTIENE_TDAH.
+- **Veredicto:** APROBADA
+
+## PE-25 — Los controles de calidad del informe se calculan (no se declaran cumplidos de antemano)
+
+- **Escenario:** Informe y validación
+- **Regla del proyecto:** Etapa 6 y Etapa 9 §23 (trazabilidad y auditoría verificables).
+- **Datos de entrada:** Caso con discrepancias sin revisar entre colegio y apoderado (PE-13) y caso con Nesplora sin vincular (PE-18).
+- **Resultado esperado:** En el caso con Nesplora sin vincular, «Fuentes vinculadas al caso» aparece «Con limitación»; en ambos, la consistencia, la duplicación y la trazabilidad se informan según el cálculo.
+- **Resultado obtenido:** Fuentes vinculadas al caso: Cumple / Con limitación. Consistencia entre síntomas y conclusión: Cumple / Cumple. Sin duplicación de evidencia: Cumple / Cumple. Trazabilidad de las conclusiones: Cumple / Cumple.
+- **Veredicto:** APROBADA

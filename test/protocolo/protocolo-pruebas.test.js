@@ -5,8 +5,8 @@
 // proyecto (informe del colegio .docx e informe Nesplora Aula .pdf entregados por el cliente) y
 // el servidor HTTP real con una base temporal. No modifica código del sistema.
 //
-// Ejecutar:  node --disable-warning=ExperimentalWarning --test test/protocolo/
-// Resultados: docs/evidencia/protocolo/RESULTADOS.md y resultados.json
+// Ejecutar:  npm run test:protocolo   (forma parte también de `npm test`)
+// Resultados: docs/evidencia/protocolo/RESULTADOS.md y resultados.json (con PROTOCOLO=1 o EVIDENCIA=1)
 import { test, after } from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -125,32 +125,50 @@ caso('PE-02', 'Puerta de entrada', 'No se acepta una respuesta clínica antes de
   return a.status === 409 && !b.body.ok && regla && !regla.ok;
 });
 
-caso('PE-03', 'Puerta de entrada', 'Un documento cargado antes de la puerta no adelanta las ramas clínicas', async (r) => {
-  r.entrada = 'Caso nuevo; antes de responder nada se carga el informe real del colegio (.docx) y el informe Nesplora (.pdf).';
-  r.regla = 'Etapa 7 §3 (edad y motivo antes de la entrevista); regla del cliente sobre la puerta de entrada.';
-  r.esperado = 'La pregunta vigente sigue siendo INI-MOTIVO; Nesplora queda pendiente de vinculación porque sin edad no se puede verificar.';
+caso('PE-03', 'Puerta de entrada', 'Antes de la puerta no se integran documentos clínicos, Nesplora, colegio, RV ni entrevista del niño', async (r) => {
+  r.entrada = 'Caso nuevo; antes de responder nada se intenta cargar el informe real del colegio (.docx), el Nesplora (.pdf), respuestas del colegio y una sesión de RV.';
+  r.regla = 'Etapa 7 §3–5 (edad, motivo e informe escolar antes de continuar); regla del cliente sobre la puerta de entrada.';
+  r.esperado = 'Todas las cargas responden HTTP 409 indicando la puerta; ningún dato clínico entra al expediente; la pregunta vigente sigue siendo INI-MOTIVO.';
   const v = await crearCaso(api, 'PE-03');
-  await subir(api, v.caso.id, COLEGIO, 'col.docx', 'informe_escolar');
-  const n = await subir(api, v.caso.id, NESPLORA, 'nes.pdf', 'informe_rv');
-  const w = await vista(api, v.caso.id);
-  const ev = w.evaluaciones.find((e) => e.instrumento_id === 'NESPLORA');
-  r.obtenido = `Pregunta vigente: ${w.caso.pregunta_actual?.id}. Hechos del colegio ya incorporados: ${w.hechos.filter((h) => h.fuente === 'informe_escolar').length}. Nesplora: ${ev?.estado} (HTTP ${n.status}).`;
-  return w.caso.pregunta_actual?.id === 'INI-MOTIVO' && ev?.estado === 'pendiente_vinculacion';
+  const id = v.caso.id;
+  const st = [
+    (await subir(api, id, COLEGIO, 'col.docx', 'informe_escolar')).status,
+    (await subir(api, id, NESPLORA, 'nes.pdf', 'informe_rv')).status,
+    (await api.req('POST', `/api/casos/${id}/colegio`, { respuestas: [{ pregunta_id: P.colegio[0].id, texto: 'Sí, se distrae.' }] })).status,
+    (await api.req('POST', `/api/casos/${id}/evaluaciones`, { instrumento_id: 'NESPLORA', estado: 'realizada', fecha: '2026-10-01', resultados: { x: 1 } })).status,
+  ];
+  const w = await vista(api, id);
+  const clinicos = w.hechos.filter((h) => h.dimension_id !== 'INI').length;
+  r.obtenido = `Respuestas: ${st.join(', ')}. Datos clínicos en el expediente: ${clinicos}. Pregunta vigente: ${w.caso.pregunta_actual?.id}.`;
+  return st.every((x) => x === 409) && clinicos === 0 && w.caso.pregunta_actual?.id === 'INI-MOTIVO';
 });
 
-caso('PE-04', 'Puerta de entrada', 'Si el informe ya está cargado y el apoderado responde que no existe, el sistema lo advierte', async (r) => {
-  r.entrada = 'Se carga el informe real del colegio antes de la puerta; en INI-INF-EXISTE el apoderado responde «No».';
-  r.regla = 'Etapa 7 §5 (la ruta depende de la existencia del informe) y §15 (repetir solo ante contradicción); Etapa 9 §I (la fuente nueva no reemplaza la previa).';
-  r.esperado = 'Se registra una contradicción o advertencia (informe cargado vs. «no existe»), o se aplica la Ruta B; no se pregunta al apoderado lo que el informe ya cubre.';
+caso('PE-03b', 'Puerta de entrada', 'Completada la puerta, el Nesplora de otra edad queda pendiente de vinculación', async (r) => {
+  r.entrada = 'Puerta completa (8 años, informe escolar sí y disponible); se carga el Nesplora real (niño nacido en 2014).';
+  r.regla = 'Etapa 9 §18; regla del cliente: no confundir resultados entre fuentes.';
+  r.esperado = 'HTTP 200; evaluación «pendiente_vinculacion» hasta que el profesional confirme.';
+  const v = await crearCaso(api, 'PE-03b');
+  await responderN(api, v.caso.id, 4, guion());
+  const n = await subir(api, v.caso.id, NESPLORA, 'nes.pdf', 'informe_rv');
+  const ev = (await vista(api, v.caso.id)).evaluaciones.find((e) => e.instrumento_id === 'NESPLORA');
+  r.obtenido = `HTTP ${n.status}; Nesplora: ${ev?.estado}.`;
+  return n.status === 200 && ev?.estado === 'pendiente_vinculacion';
+});
+
+caso('PE-04', 'Puerta de entrada', 'Si el apoderado dice que no hay informe escolar y luego se incorpora uno, se usa y la diferencia se registra', async (r) => {
+  r.entrada = 'INI-INF-EXISTE = «No» (Ruta A). Antes de terminar la entrevista se carga el informe real del colegio.';
+  r.regla = 'Etapa 7 §5.1 (si después se obtiene un informe, se incorpora como fuente independiente) y §5.2; Etapa 9 §I (la fuente nueva no reemplaza la previa).';
+  r.esperado = 'El caso pasa a Ruta B («con_informe»), se registra una contradicción sobre la existencia del informe para revisión profesional, y no se borran las respuestas previas del apoderado.';
   const v = await crearCaso(api, 'PE-04');
-  await subir(api, v.caso.id, COLEGIO, 'col.docx', 'informe_escolar');
   const g = guion({ existe: 'B' });
-  await responderN(api, v.caso.id, 3, g);
-  const { turnos, vista: w } = await entrevistar(api, v.caso.id, { respuesta: g });
-  const ra = turnos.filter((t) => t.pregunta.id.startsWith('RA-')).length;
-  const adv = w.contradicciones.some((c) => c.dimension_id === 'INI') || (await api.req('GET', `/api/casos/${v.caso.id}/auditoria`)).body?.decisiones?.some?.((d) => /informe/.test(d.tipo) && /contradic|advert/.test(JSON.stringify(d.detalle)));
-  r.obtenido = `Ruta aplicada: ${w.caso.ruta}. Preguntas escolares al apoderado (RA): ${ra}. Advertencia o contradicción registrada: ${adv ? 'sí' : 'no'}.`;
-  return w.caso.ruta === 'con_informe' || adv;
+  await responderN(api, v.caso.id, 6, g);
+  const antes = (await vista(api, v.caso.id)).hechos.filter((h) => h.fuente === 'apoderado').length;
+  await subir(api, v.caso.id, COLEGIO, 'col.docx', 'informe_escolar');
+  const { vista: w } = await entrevistar(api, v.caso.id, { respuesta: g });
+  const c = w.contradicciones.find((x) => x.dimension_id === 'INI');
+  const despues = w.hechos.filter((h) => h.fuente === 'apoderado').length;
+  r.obtenido = `Ruta: ${w.caso.ruta}. Contradicción registrada: ${c ? `sí («${c.descripcion.slice(0, 90)}…»)` : 'no'}. Datos del apoderado antes/después: ${antes}/${despues}.`;
+  return w.caso.ruta === 'con_informe' && Boolean(c) && despues >= antes;
 });
 
 // =================================================================================================
@@ -370,15 +388,15 @@ caso('PE-18', 'Escenario 3 · Insuficiencia', 'Un informe Nesplora de otro niño
 caso('PE-19', 'Escenario 3 · Insuficiencia', 'Un segundo informe Nesplora no borra el primero', async (r) => {
   r.entrada = 'Se cargan dos informes Nesplora en el mismo caso (el mismo PDF real, dos veces).';
   r.regla = 'Regla del cliente: conservar la información recogida; Etapa 9 §24 (versionado) y §I (la información nueva no reemplaza la previa).';
-  r.esperado = 'Quedan dos evaluaciones (o la primera queda versionada) vinculadas a sus documentos.';
+  r.esperado = 'Quedan dos evaluaciones, o la primera se conserva como registro anterior vinculado a su documento.';
   const v0 = await crearCaso(api, 'PE-19');
-  await responderN(api, v0.caso.id, 3, guion());
+  await responderN(api, v0.caso.id, 4, guion());
   const a = (await subir(api, v0.caso.id, NESPLORA, 'nes1.pdf', 'informe_rv')).body;
   const b = (await subir(api, v0.caso.id, NESPLORA, 'nes2.pdf', 'informe_rv')).body;
   const w = await vista(api, v0.caso.id);
   const evs = w.evaluaciones.filter((e) => e.instrumento_id === 'NESPLORA');
-  r.obtenido = `Documentos guardados: ${w.documentos.filter((d) => d.clase === 'informe_rv').length} (ids ${a.id}, ${b.id}). Evaluaciones Nesplora: ${evs.length}, vinculadas a documento(s) ${evs.map((e) => e.resultados?.documento_id).join(', ')}.`;
-  return evs.length === 2 || evs.some((e) => e.resultados?.versiones?.length);
+  r.obtenido = `Documentos guardados: ${w.documentos.filter((d) => d.clase === 'informe_rv').length} (ids ${a.id}, ${b.id}). Evaluaciones Nesplora: ${evs.length}, vigente vinculada al documento ${evs.map((e) => e.resultados?.documento_id).join(', ')}; registros anteriores conservados: ${evs.map((e) => (e.resultados?.anteriores || []).map((x) => `documento ${x.resultados?.documento_id}`).join(', ') || 'ninguno').join('; ')}.`;
+  return evs.length === 2 || evs.some((e) => e.resultados?.anteriores?.length === 1 && e.resultados.anteriores[0].resultados?.documento_id === a.id);
 });
 
 // =================================================================================================
@@ -416,15 +434,29 @@ caso('PE-21', 'Informe y validación', 'El informe final no se valida sin profes
   return (f.status === 409) || (f.status === 200 && f.body.estado === 'pendiente_validacion' && val.status === 400);
 });
 
-caso('PE-22', 'Informe y validación', 'El informe incluye la caracterización en los seis perfiles multidimensionales', async (r) => {
+caso('PE-22', 'Informe y validación', 'El informe sigue el formato de 16 secciones pedido por el cliente', async (r) => {
   r.entrada = 'Caso de PE-11 (tres fuentes).';
-  r.regla = 'Automatización fase 3 («doble salida»: salida diagnóstica formal + caracterización en los 6 perfiles); Etapa 9 §16 y §28.10; registro K7 del proyecto (prevalece la Etapa 9 §28).';
-  r.esperado = 'El informe tiene una sección con los perfiles Neuroquímico, Estructural, Circuitos/Redes, Neuropsicológico, Conductual y Contextual (1–3 como marco teórico).';
+  r.regla = '«Módulo de generación del informe» del cliente (secciones 3.1–3.16, síntesis educativa y control de calidad); decisión K9 del registro de contradicciones (prevalece el formato del cliente).';
+  r.esperado = 'Secciones 1 a 16 en orden, «Síntesis para docentes y psicólogos educativos» y «Control de calidad del informe».';
   const s = Object.fromEntries(SINT_COLEGIO.map((x) => [x, 'A']));
   const { md } = await armar(api, { g: guion({ sintomas: s, contextos: ['A', 'B'] }), etiqueta: 'PE-22' });
-  const perfiles = ['Neuroquímico', 'Estructural', 'Circuitos', 'Neuropsicológico', 'Conductual', 'Contextual'].filter((x) => new RegExp(x, 'i').test(md));
-  r.obtenido = `Perfiles mencionados en el informe: ${perfiles.length}/6 (${perfiles.join(', ') || 'ninguno'}).`;
-  return perfiles.length === 6;
+  const nums = [...md.matchAll(/^## (\d+)\. /gm)].map((m) => Number(m[1]));
+  const ok = nums.join() === Array.from({ length: 16 }, (_, i) => i + 1).join() && /## Síntesis para docentes y psicólogos educativos/.test(md) && /## Control de calidad del informe/.test(md);
+  r.obtenido = `Secciones numeradas: ${nums.join(', ')}. Síntesis educativa: ${/Síntesis para docentes/.test(md) ? 'sí' : 'no'}. Control de calidad: ${/Control de calidad del informe/.test(md) ? 'sí' : 'no'}.`;
+  return ok;
+});
+
+caso('PE-25', 'Informe y validación', 'Los controles de calidad del informe se calculan (no se declaran cumplidos de antemano)', async (r) => {
+  r.entrada = 'Caso con discrepancias sin revisar entre colegio y apoderado (PE-13) y caso con Nesplora sin vincular (PE-18).';
+  r.regla = 'Etapa 6 y Etapa 9 §23 (trazabilidad y auditoría verificables).';
+  r.esperado = 'En el caso con Nesplora sin vincular, «Fuentes vinculadas al caso» aparece «Con limitación»; en ambos, la consistencia, la duplicación y la trazabilidad se informan según el cálculo.';
+  const a = await armar(api, { g: guion({ defecto: 'B' }), etiqueta: 'PE-25a' });
+  const b = await armar(api, { g: guion({ existe: 'B' }), colegio: false, nesplora: 'pendiente', etiqueta: 'PE-25b' });
+  const fila = (md, c) => (md.split('\n').find((l) => l.startsWith(`| ${c} |`)) || '').split('|')[2]?.trim();
+  const res = ['Fuentes vinculadas al caso', 'Consistencia entre síntomas y conclusión', 'Sin duplicación de evidencia', 'Trazabilidad de las conclusiones'].map((c) => `${c}: ${fila(a.md, c)} / ${fila(b.md, c)}`);
+  r.obtenido = res.join('. ') + '.';
+  return fila(b.md, 'Fuentes vinculadas al caso') === 'Con limitación' && fila(a.md, 'Fuentes vinculadas al caso') === 'Cumple'
+    && ['Consistencia entre síntomas y conclusión', 'Sin duplicación de evidencia', 'Trazabilidad de las conclusiones'].every((c) => fila(a.md, c) === 'Cumple' && fila(b.md, c) === 'Cumple');
 });
 
 caso('PE-23', 'Informe y validación', 'Los requisitos del informe coinciden con los estados calculados por el motor', async (r) => {
@@ -446,6 +478,7 @@ caso('PE-23', 'Informe y validación', 'Los requisitos del informe coinciden con
 // ------------------------------------------------------------------ salida ---
 
 function escribir() {
+  if (!process.env.EVIDENCIA && !process.env.PROTOCOLO) return;
   const dir = path.join('docs', 'evidencia', 'protocolo');
   fs.mkdirSync(dir, { recursive: true });
   const orden = RESULTADOS.sort((x, y) => x.id.localeCompare(y.id));

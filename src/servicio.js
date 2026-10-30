@@ -22,6 +22,8 @@ import { VARIABLES_RV, validarMetricas } from './rv.js';
 import { esNesplora, leerNesplora, verificarVinculacion } from './nesplora.js';
 import { validarConsentimiento, validarAsentimiento, tieneAsentimiento, permiteIA, ErrorConsentimiento, VERSION_POLITICA } from './privacidad.js';
 
+const PUERTA = 'Primero complete la puerta de entrada de la entrevista: motivo de consulta, edad y existencia del informe escolar (Etapa 7 §3–5).';
+
 export class ErrorServicio extends Error {
   constructor(status, mensaje, detalle) { super(mensaje); this.status = status; this.detalle = detalle; }
 }
@@ -48,6 +50,16 @@ export function crearServicio({ db, protocolo, buscador = crearBuscador(), ia = 
       X.actualizarCaso(db, casoId, { ruta: r });
       X.registrarDecision(db, casoId, ctx.caso.turno, 'ruta_determinada', { ruta: r, justificacion: justificacionRuta(ctx) });
       ctx = ctxDe(casoId);
+    }
+    // Informe escolar incorporado, pero el apoderado dijo que no existe o no está disponible: se registra sin resolver.
+    if (informeCargado(ctx)) {
+      const neg = ['informe_existe', 'informe_disponible'].map((s) => ctx.hechos.find((h) => h.dimension_id === 'INI' && h.slot === s && h.estado === 'valor' && h.valor === 'no')).find(Boolean);
+      const doc = ctx.hechos.find((h) => h.fuente === 'informe_escolar');
+      if (neg && doc) {
+        const d = X.registrarDiscrepancia(db, casoId, 'INI', neg.slot, neg.id, doc.id,
+          `El apoderado indicó que el informe escolar ${neg.slot === 'informe_existe' ? 'no existe' : 'no está disponible'}, pero hay un informe escolar incorporado al expediente. Se usa el informe (Ruta B) y la diferencia queda para revisión profesional.`);
+        if (d) { X.registrarDecision(db, casoId, ctx.caso.turno, 'contradiccion_registrada', d); ctx = ctxDe(casoId); }
+      }
     }
     const paso = siguientePaso(ctx);
     if (paso.bloqueadas.length) X.registrarDecision(db, casoId, ctx.caso.turno, 'preguntas_descartadas', { descartadas: paso.bloqueadas });
@@ -97,15 +109,39 @@ export function crearServicio({ db, protocolo, buscador = crearBuscador(), ia = 
     const ctx = ctxDe(casoId);
     const nuevas = [];
     for (const e of evaluarSintomas(ctx)) {
-      if (!e.contradictorio) continue;
+      if (!e.positivo) continue;
       const hs = ctx.hechos.filter((h) => h.dimension_id === e.id && h.slot.startsWith('presencia') && h.estado === 'valor');
-      const si = hs.find((h) => h.valor === 'si'); const no = hs.find((h) => h.valor === 'no' && h.fuente !== si.fuente);
-      if (!no) continue;
-      const d = X.registrarDiscrepancia(db, casoId, e.id, 'presencia', si.id, no.id,
-        `«${e.nombre}»: ${si.fuente} informa «Sí» y ${no.fuente} informa «No». Puede explicarse por contexto, demanda, observador o supervisión (Etapa 9 §11); se conserva sin resolver.`);
-      if (d) { nuevas.push(d); X.registrarDecision(db, casoId, turno, 'discrepancia_registrada', d); }
+      // Una discrepancia por cada par de fuentes (Sí en una, No en otra).
+      for (const fs of Object.keys(e.porFuente).filter((f) => e.porFuente[f] === 'si')) {
+        for (const fn of Object.keys(e.porFuente).filter((f) => e.porFuente[f] === 'no')) {
+          const si = hs.find((h) => h.fuente === fs && h.valor === 'si'); const no = hs.find((h) => h.fuente === fn && h.valor === 'no');
+          if (!si || !no) continue;
+          const d = X.registrarDiscrepancia(db, casoId, e.id, 'presencia', si.id, no.id,
+            `«${e.nombre}»: ${si.fuente} informa «Sí» y ${no.fuente} informa «No». Puede explicarse por contexto, demanda, observador o supervisión (Etapa 9 §11); se conserva sin resolver.`);
+          if (d) { nuevas.push(d); X.registrarDecision(db, casoId, turno, 'discrepancia_registrada', d); }
+        }
+      }
     }
     return nuevas;
+  }
+
+  /**
+   * Guarda el resultado de un instrumento sin perder el anterior: si ya había una aplicación o un
+   * registro del mismo instrumento, se conserva en `resultados.anteriores` (Etapa 9 §24 y §I).
+   */
+  function guardarEvaluacion(casoId, instrumentoId, { estado, fecha = null, aplicador = null, resultados = null, observaciones = null }) {
+    const previa = X.evaluaciones(db, casoId).find((e) => e.instrumento_id === instrumentoId);
+    if (!previa) {
+      db.prepare('INSERT INTO evaluaciones (caso_id, instrumento_id, estado, fecha, aplicador, resultados, observaciones, actualizado) VALUES (?, ?, ?, ?, ?, ?, ?, ?)')
+        .run(casoId, instrumentoId, estado, fecha, aplicador, resultados ? JSON.stringify(resultados) : null, observaciones, ahora());
+      return;
+    }
+    const { anteriores = [], ...resPrevios } = previa.resultados || {};
+    const historial = previa.estado === 'pendiente' && !previa.resultados ? anteriores
+      : [...anteriores, { estado: previa.estado, fecha: previa.fecha, aplicador: previa.aplicador, observaciones: previa.observaciones, resultados: Object.keys(resPrevios).length ? resPrevios : null, reemplazado: ahora() }];
+    const nuevos = resultados || historial.length ? { ...(resultados || {}), ...(historial.length ? { anteriores: historial } : {}) } : null;
+    db.prepare('UPDATE evaluaciones SET estado = ?, fecha = ?, aplicador = ?, resultados = ?, observaciones = ?, actualizado = ? WHERE id = ?')
+      .run(estado, fecha, aplicador, nuevos ? JSON.stringify(nuevos) : null, observaciones, ahora(), previa.id);
   }
 
   function registrarMenciones(casoId, texto, fuente, respuestaId, preguntaId, turno, excluir) {
@@ -113,8 +149,17 @@ export function crearServicio({ db, protocolo, buscador = crearBuscador(), ia = 
     for (const m of detectarMenciones(P, texto)) {
       if (m.sintoma === excluir) continue;
       const ctx = ctxDe(casoId);
-      if (ctx.hechos.some((h) => h.dimension_id === m.sintoma)) continue; // ya hay evidencia: se acumula, no se duplica
-      X.agregarHecho(db, P, casoId, { dimension_id: m.sintoma, slot: 'mencion', estado: 'valor', valor: 'si', fuente, origen: 'mencion_espontanea', evidencia: m.evidencia, respuesta_id: respuestaId, pregunta_id: preguntaId });
+      // La mención siempre se conserva (Etapa 9 §5.1 y §14.2); solo se evita duplicar la de la misma fuente.
+      if (ctx.hechos.some((h) => h.dimension_id === m.sintoma && h.slot === 'mencion' && h.fuente === fuente)) continue;
+      const { id } = X.agregarHecho(db, P, casoId, { dimension_id: m.sintoma, slot: 'mencion', estado: 'valor', valor: 'si', fuente, origen: 'mencion_espontanea', evidencia: m.evidencia, respuesta_id: respuestaId, pregunta_id: preguntaId });
+      // Si la misma fuente había respondido «No», se registra la contradicción sin resolverla (Etapa 7 §15).
+      const no = ctx.hechos.find((h) => h.dimension_id === m.sintoma && h.slot.startsWith('presencia') && h.fuente === fuente && h.estado === 'valor' && h.valor === 'no');
+      if (no) {
+        const nombre = P.sintomasPorId.get(m.sintoma)?.nombre || m.sintoma;
+        const d = X.registrarDiscrepancia(db, casoId, m.sintoma, 'mencion', no.id, id,
+          `«${nombre}»: ${fuente} respondió «No» y luego describió espontáneamente la conducta («${String(m.evidencia).slice(0, 160)}»). Se conserva sin resolver; requiere aclaración.`);
+        if (d) X.registrarDecision(db, casoId, turno, 'contradiccion_registrada', d);
+      }
       reg.push(m);
     }
     if (reg.length) X.registrarDecision(db, casoId, turno, 'evidencia_relacionada_detectada', { fuente, menciones: reg, regla: 'Etapa 9 §14.2: activación inmediata de caracterización, sin confirmar el síntoma por asociación.' });
@@ -258,8 +303,10 @@ export function crearServicio({ db, protocolo, buscador = crearBuscador(), ia = 
       if (hechos) {
         let extraidos;
         try { extraidos = validarExtraccionManual(P, hechos); } catch (e) { throw new ErrorServicio(400, e.message); }
+        if (!faseInicialCompleta(ctx0)) throw new ErrorServicio(409, PUERTA);
         return incorporarInformeEscolar(casoId, { texto, extraidos, metodo: 'estructurada_manual' });
       }
+      if (!faseInicialCompleta(ctx0)) throw new ErrorServicio(409, PUERTA);
       const lectura = leerInformeEscolar(P, texto);
       return incorporarInformeEscolar(casoId, { texto, extraidos: lectura.hechos, metodo: 'reglas', documento: lectura.documento, datos: lectura.datos });
     },
@@ -268,6 +315,8 @@ export function crearServicio({ db, protocolo, buscador = crearBuscador(), ia = 
     async subirDocumento(casoId, { nombre, contenido_base64, clase = 'otro', ocultar = [], profesional } = {}) {
       const ctx = ctxDe(casoId);
       if (!CLASES[clase]) throw new ErrorServicio(400, 'Tipo de documento no válido.');
+      // Puerta de entrada: los documentos con datos clínicos se integran después de motivo, edad e informe escolar.
+      if (['informe_escolar', 'informe_rv'].includes(clase) && !faseInicialCompleta(ctx)) throw new ErrorServicio(409, PUERTA);
       if (!String(nombre || '').trim() || !contenido_base64) throw new ErrorServicio(400, 'Adjunte un archivo.');
       const buf = Buffer.from(String(contenido_base64), 'base64');
       if (!buf.length) throw new ErrorServicio(400, 'El archivo está vacío.');
@@ -328,12 +377,12 @@ export function crearServicio({ db, protocolo, buscador = crearBuscador(), ia = 
         if (verif && clase === 'informe_rv' && verif.rv.variables.length) {
           const inst = /nesplora|aula/i.test(verif.documento.instrumento || '') ? 'NESPLORA' : 'RV';
           const estadoEv = vinculacion && vinculacion.estado !== 'verificada' ? 'pendiente_vinculacion' : 'realizada';
-          db.prepare(`INSERT INTO evaluaciones (caso_id, instrumento_id, estado, fecha, aplicador, resultados, observaciones, actualizado) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-                      ON CONFLICT(caso_id, instrumento_id) DO UPDATE SET estado = excluded.estado, fecha = excluded.fecha, resultados = excluded.resultados, observaciones = excluded.observaciones, actualizado = excluded.actualizado`)
-            .run(casoId, inst, estadoEv, verif.documento.fecha || ahora().slice(0, 10), verif.documento.autor || null,
-              JSON.stringify({ variables: verif.rv.variables, limitaciones: verif.rv.limitaciones, documento: verif.documento, documento_id: id,
-                ...(nesplora ? { persona: nesplora.persona, valido: nesplora.valido, baremo: nesplora.baremo, duracion: nesplora.duracion, condiciones: nesplora.condiciones, vinculacion } : {}) }),
-              `Extraído del documento «${String(nombre).slice(0, 80)}»${verif.rv.limitaciones.length ? `. Limitaciones: ${verif.rv.limitaciones.join('; ')}` : ''}`, ahora());
+          guardarEvaluacion(casoId, inst, {
+            estado: estadoEv, fecha: verif.documento.fecha || ahora().slice(0, 10), aplicador: verif.documento.autor || null,
+            resultados: { variables: verif.rv.variables, limitaciones: verif.rv.limitaciones, documento: verif.documento, documento_id: id,
+              ...(nesplora ? { persona: nesplora.persona, valido: nesplora.valido, baremo: nesplora.baremo, duracion: nesplora.duracion, condiciones: nesplora.condiciones, vinculacion } : {}) },
+            observaciones: `Extraído del documento «${String(nombre).slice(0, 80)}»${verif.rv.limitaciones.length ? `. Limitaciones: ${verif.rv.limitaciones.join('; ')}` : ''}`,
+          });
           aplicado.rv = verif.rv.variables.length;
         }
         X.registrarDecision(db, casoId, ctxDe(casoId).caso.turno, 'documento_subido', { id, clase, metodo, sha256: guardado.sha256, descartados: verif?.descartados.length || 0, aplicado, ...(vinculacion ? { vinculacion } : {}) });
@@ -381,6 +430,7 @@ export function crearServicio({ db, protocolo, buscador = crearBuscador(), ia = 
 
     rvIniciar(casoId, { dispositivo, tarea } = {}) {
       const ctx = ctxDe(casoId);
+      if (!faseInicialCompleta(ctx)) throw new ErrorServicio(409, PUERTA);
       const id = crypto.randomUUID();
       const t = ahora();
       db.prepare("INSERT INTO rv_sesiones (id, caso_id, estado, dispositivo, tarea, metricas, eventos, creado, actualizado) VALUES (?, ?, 'en_curso', ?, ?, '{}', 0, ?, ?)")
@@ -408,11 +458,11 @@ export function crearServicio({ db, protocolo, buscador = crearBuscador(), ia = 
       const variables = Object.entries(met).map(([k, v]) => ({ variable: VARIABLES_RV.find((x) => x.id === k)?.nombre || k, id: k, resultado: v.valor != null ? `${v.valor}${v.unidad ? ` ${v.unidad}` : ''}` : '', interpretacion_del_documento: v.interpretacion || '', percentil: v.percentil ?? null }));
       return transaccion(db, () => {
         db.prepare("UPDATE rv_sesiones SET estado = 'finalizada', actualizado = ? WHERE id = ?").run(ahora(), s.id);
-        db.prepare(`INSERT INTO evaluaciones (caso_id, instrumento_id, estado, fecha, aplicador, resultados, observaciones, actualizado) VALUES (?, 'RV', 'realizada', ?, ?, ?, ?, ?)
-                    ON CONFLICT(caso_id, instrumento_id) DO UPDATE SET estado = 'realizada', fecha = excluded.fecha, aplicador = excluded.aplicador, resultados = excluded.resultados, observaciones = excluded.observaciones, actualizado = excluded.actualizado`)
-          .run(s.caso_id, ahora().slice(0, 10), String(profesional || '').slice(0, 120) || null,
-            JSON.stringify({ variables, limitaciones: (Array.isArray(limitaciones) ? limitaciones : []).map(String), sesion_id: s.id, dispositivo: s.dispositivo, tarea: s.tarea, eventos: s.eventos }),
-            `Sesión de realidad virtual en tiempo real (${s.dispositivo || 'casco'}${s.tarea ? `, tarea ${s.tarea}` : ''}).`, ahora());
+        guardarEvaluacion(s.caso_id, 'RV', {
+          estado: 'realizada', fecha: ahora().slice(0, 10), aplicador: String(profesional || '').slice(0, 120) || null,
+          resultados: { variables, limitaciones: (Array.isArray(limitaciones) ? limitaciones : []).map(String), sesion_id: s.id, dispositivo: s.dispositivo, tarea: s.tarea, eventos: s.eventos },
+          observaciones: `Sesión de realidad virtual en tiempo real (${s.dispositivo || 'casco'}${s.tarea ? `, tarea ${s.tarea}` : ''}).`,
+        });
         X.registrarDecision(db, s.caso_id, ctxDe(s.caso_id).caso.turno, 'rv_sesion_finalizada', { sesion: s.id, variables: variables.length, eventos: s.eventos });
         return api.vista(s.caso_id);
       });
@@ -447,13 +497,17 @@ export function crearServicio({ db, protocolo, buscador = crearBuscador(), ia = 
     responderColegio(casoId, { respuestas }) {
       if (!Array.isArray(respuestas) || !respuestas.length) throw new ErrorServicio(400, 'Envíe un arreglo «respuestas» con {pregunta_id, texto}.');
       const ctx = ctxDe(casoId);
+      for (const r of respuestas) {
+        const q = P.preguntas.get(r.pregunta_id);
+        if (!q || q.grupo !== 'colegio') throw new ErrorServicio(400, `Pregunta de colegio no válida: ${r.pregunta_id}`);
+      }
+      if (!faseInicialCompleta(ctx)) throw new ErrorServicio(409, PUERTA);
       return transaccion(db, () => {
         for (const r of respuestas) {
           const q = P.preguntas.get(r.pregunta_id);
           if (!q || q.grupo !== 'colegio') throw new ErrorServicio(400, `Pregunta de colegio no válida: ${r.pregunta_id}`);
           const texto = String(r.texto ?? '').trim();
           if (!texto) continue;
-          if (ctx.preguntas.length === 0) { /* sin efecto */ }
           const res = interpretarRespuesta(q, { texto });
           const rid = X.registrarRespuesta(db, casoId, ctx.caso.turno, { pregunta_id: q.id, texto_original: texto, clasificacion: res.clasificacion, valor: res.valor, interprete: 'reglas' });
           X.agregarHecho(db, P, casoId, { dimension_id: 'COL', slot: q.id, estado: res.estado, valor: res.valor, fuente: 'profesor', origen: 'respuesta', evidencia: texto, respuesta_id: rid, pregunta_id: q.id });
@@ -485,7 +539,7 @@ export function crearServicio({ db, protocolo, buscador = crearBuscador(), ia = 
     responderNNA(casoId, { pregunta_id, texto = '', omitir = false, finalizar = false, asentimiento } = {}) {
       const ctx = ctxDe(casoId);
       const st = api.nnaEstado(casoId, ctx);
-      if (!st) throw new ErrorServicio(409, 'Primero debe registrarse la edad.');
+      if (!st || !faseInicialCompleta(ctx)) throw new ErrorServicio(409, PUERTA);
       if (st.cerrada) throw new ErrorServicio(409, 'La entrevista del niño/adolescente ya fue finalizada.');
       if (asentimiento) {
         let a;
@@ -521,14 +575,11 @@ export function crearServicio({ db, protocolo, buscador = crearBuscador(), ia = 
       if (!P.instrumentosPorId.has(instrumento_id)) throw new ErrorServicio(400, `Instrumento no contemplado en el protocolo: ${instrumento_id}`);
       if (!['pendiente', 'realizada', 'no_aplica'].includes(estado)) throw new ErrorServicio(400, 'Estado no válido.');
       if (estado === 'realizada' && !fecha) throw new ErrorServicio(400, 'Una evaluación realizada requiere fecha.');
+      if (estado === 'realizada' && !faseInicialCompleta(ctx)) throw new ErrorServicio(409, PUERTA);
       if (estado === 'no_aplica' && !observaciones?.trim()) throw new ErrorServicio(400, '«No aplica» requiere justificación en observaciones.');
       if (resultados != null && typeof resultados !== 'object') throw new ErrorServicio(400, 'Los resultados deben ser un objeto.');
       return transaccion(db, () => {
-        db.prepare(`INSERT INTO evaluaciones (caso_id, instrumento_id, estado, fecha, aplicador, resultados, observaciones, actualizado)
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-                    ON CONFLICT(caso_id, instrumento_id) DO UPDATE SET estado = excluded.estado, fecha = excluded.fecha,
-                    aplicador = excluded.aplicador, resultados = excluded.resultados, observaciones = excluded.observaciones, actualizado = excluded.actualizado`)
-          .run(casoId, instrumento_id, estado, fecha ?? null, aplicador ?? null, resultados ? JSON.stringify(resultados) : null, observaciones ?? null, ahora());
+        guardarEvaluacion(casoId, instrumento_id, { estado, fecha: fecha ?? null, aplicador: aplicador ?? null, resultados: resultados ?? null, observaciones: observaciones ?? null });
         X.registrarDecision(db, casoId, ctx.caso.turno, 'evaluacion_registrada', { instrumento_id, estado, fecha });
         return api.vista(casoId);
       });

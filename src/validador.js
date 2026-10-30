@@ -93,8 +93,10 @@ export function validarPregunta(ctx, cand) {
     } else {
       const max = p.parametros.max_profundizacion_sintoma;
       add('maximo_profundizacion', e.profundizacion < max, e.profundizacion < max ? `${e.profundizacion}/${max} preguntas de profundización en ${s.id}.` : `Se alcanzó el máximo de ${max} preguntas para ${s.id}; queda abierto/insuficiente sin confirmarse por defecto.`);
-      const necesaria = e.positivo || e.porFuente.apoderado === 'parcial' || (e.ocasional && q.dimension === 'frecuencia');
-      add('necesaria', necesaria, necesaria ? (e.ocasional && !e.positivo ? 'Respuesta «Ocasionalmente»: se cuantifica la frecuencia (Etapa 9 §6.2).' : 'El síntoma tiene evidencia positiva que requiere caracterización.') : 'Solo se profundiza un síntoma con evidencia positiva.');
+      // Se profundiza con el apoderado solo lo que él mismo informa (Etapa 7 §17: fuentes diferenciadas).
+      const ap = e.porFuente.apoderado;
+      const necesaria = ap === 'si' || ap === 'parcial' || (ap === 'ocasionalmente' && q.dimension === 'frecuencia');
+      add('necesaria', necesaria, necesaria ? (ap === 'ocasionalmente' ? 'Respuesta «Ocasionalmente»: se cuantifica la frecuencia (Etapa 9 §6.2).' : 'El apoderado informa la conducta y requiere caracterización.') : 'Solo se profundiza con el apoderado una conducta que él mismo informa; lo descrito por otra fuente se conserva con esa fuente.');
     }
   }
 

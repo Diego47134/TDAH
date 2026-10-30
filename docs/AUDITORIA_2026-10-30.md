@@ -184,3 +184,25 @@ La interfaz oculta estas acciones, pero la API las acepta.
 5. **C1–C5,** según lo que se decida.
 
 Cada corrección irá acompañada de su prueba del protocolo: al corregir, la prueba fallida correspondiente debe pasar a «APROBADA» y la suite existente debe seguir en verde.
+
+## 6. Estado después de las correcciones (30-10-2026)
+
+Por indicación del cliente («dejar todo como lo pidió Mario»), se corrigieron los problemas A1–A8 y A10, se mantiene el formato de informe de 16 secciones (decisión K9) y las decisiones quedaron registradas como D13–D19 en `docs/DOCUMENTOS_Y_CONTRADICCIONES.md`.
+
+| Hallazgo | Corrección | Prueba |
+|---|---|---|
+| A1 | La presencia se establece por fuente; el colegio no cierra la pregunta al apoderado sobre el hogar; con el apoderado solo se profundiza lo que él informa (`motor.js`, `validador.js`) | PE-14 aprobada |
+| A2 | Frecuencia por fuente; la contradicción solo existe dentro de una misma fuente (`motor.js`, `expediente.js`) | PE-24 aprobada |
+| A3 | La mención se registra siempre; si contradice un «No» de la misma fuente se abre una contradicción y el síntoma queda CONTRADICTORIO (`servicio.js`, `motor.js`); el informe muestra el relato | PE-10 aprobada |
+| A4 | Los registros anteriores de un instrumento se conservan en `resultados.anteriores` y el informe lo indica (`servicio.js`, `informeIntegrado.js`) | PE-19 aprobada |
+| A5 | Con informe incorporado se aplica la Ruta B y se registra la contradicción con la respuesta inicial | PE-04 aprobada |
+| A6 | Puerta de entrada también en la API (documentos clínicos, colegio, instrumentos, RV, entrevista del niño) | PE-03 aprobada |
+| A7 | Controles de calidad y auditoría calculados (`informeIntegrado.js`, `integracion.js`) | PE-25 aprobada |
+| A8 | Una discrepancia por cada par de fuentes | (cubierta por PE-13/PE-14) |
+| A10 | Línea sin efecto eliminada | — |
+| C1 | Prevalece el formato de 16 secciones del cliente (K9) | PE-22 aprobada |
+| C2–C5 | Pendientes de decisión del cliente (dimensiones de profundización, K5 actualizado, triangulación tras «No sabe», Conners) | — |
+
+Resultado: protocolo formal **26 de 26 aprobadas**; suite existente **82 de 82**. El protocolo forma parte de `npm test`.
+
+Efecto clínico a tener en cuenta: en el escenario de coincidencia (apoderado, colegio y Nesplora convergentes) el motor ahora establece «el contraste DSM-5-TR respalda la hipótesis…», que antes quedaba en «información insuficiente» por la falsa contradicción de frecuencia (A2). Sigue siendo una hipótesis estructurada pendiente de validación profesional; el informe no afirma un diagnóstico.

@@ -111,13 +111,15 @@ export function integrar(ctx) {
 
   const areas = areasFuncionales(ctx, sintomas);
   const recursos = recursosYModuladores(ctx);
+  const realidadVirtual = analizarRV(ctx.evaluaciones, sintomas);
+  const perfs = perfiles(ctx, sintomas, areas, recursos);
   return {
     edad: e, etapa: etapaEvolutiva(ctx), umbral, varios, sintomas, requisitos: R, presentacion, puerta, faltantes, resultado,
     contradicciones: { totales: contradTotales, abiertas: contradAbiertas }, areas, ...recursos,
-    perfiles: perfiles(ctx, sintomas, areas, recursos), inferencias: inferencias(ctx, areas),
+    perfiles: perfs, inferencias: inferencias(ctx, areas),
     sugerencias: sugerencias(ctx, areas, recursos, tam), barrido: bar, tamizaje: tam,
-    auditoria: auditoria(ctx, sintomas, R), informacionFaltante: faltante(ctx, sintomas, R),
-    realidadVirtual: analizarRV(ctx.evaluaciones, sintomas),
+    auditoria: auditoria(ctx, sintomas, R, { realidadVirtual, perfiles: perfs, puerta, resultado }), informacionFaltante: faltante(ctx, sintomas, R),
+    realidadVirtual,
     fuentesDocumentales: fuentesDocumentales(ctx),
   };
 }
@@ -189,19 +191,27 @@ function sugerencias(ctx, areas, rec, tam) {
     .map((s) => ({ ...s, referencias: s.refs.map((r) => `[${r}] ${p.referencias[r]}`) }));
 }
 
-function auditoria(ctx, sintomas, R) {
+function auditoria(ctx, sintomas, R, extra = {}) {
+  // Cada ítem se comprueba sobre el expediente (Etapa 6; Etapa 9 §23); ninguno se da por cumplido.
   const noInf = sintomas.filter((s) => s.estado === 'NO INFORMADO').length;
   const relacionadosNoInf = sintomas.filter((s) => s.estado === 'NO INFORMADO' && s.mencion).length;
+  const ids = sintomas.map((s) => s.id);
+  const fuentesHechos = [...new Set(ctx.hechos.filter((h) => !['INI'].includes(h.dimension_id)).map((h) => h.fuente))];
+  const contrSinRegistro = sintomas.filter((s) => s.contradictorio && !ctx.contradicciones.some((c) => c.dimension_id === s.id)).map((s) => s.id);
+  const rv = extra.realidadVirtual || { hallazgos: [] };
+  const rvAfirma = rv.hallazgos.filter((h) => /\b(confirma|descarta)\b/i.test(h.relacion || '')).length;
+  const perfilesTeoricos = (extra.perfiles || []).slice(0, 3).every((p) => /marco teórico/.test(p.contenido));
+  const coherente = (extra.puerta === 'CERRADA') === (extra.resultado?.tipo === 'INFORMACION_INSUFICIENTE');
   return [
     { item: 'Cobertura de los 18 síntomas DSM-5-TR, individualmente', ok: sintomas.length === 18, detalle: `${18 - noInf} con información; ${noInf} no informados.` },
-    { item: 'Ausencia de pérdida diagnóstica por clasificación funcional', ok: relacionadosNoInf === 0, detalle: 'Ningún síntoma con evidencia relacionada quedó como NO INFORMADO.' },
-    { item: 'Ausencia de duplicación de síntomas por una misma conducta', ok: true, detalle: 'El conteo se realiza por síntoma DSM-5-TR, no por pregunta ni por fuente (Etapa 9 §14.3).' },
-    { item: 'Integración del conjunto de respuestas de cada fuente', ok: true, detalle: `Fuentes integradas: ${R.R10.fuentes.join(', ') || '—'}.` },
-    { item: 'Convergencias y discrepancias entre fuentes conservadas', ok: true, detalle: `${ctx.contradicciones.length} contradicción(es) registradas sin resolver por suposición.` },
+    { item: 'Ausencia de pérdida diagnóstica por clasificación funcional', ok: relacionadosNoInf === 0, detalle: relacionadosNoInf ? `${relacionadosNoInf} síntoma(s) con evidencia relacionada quedaron como NO INFORMADO.` : 'Ningún síntoma con evidencia relacionada quedó como NO INFORMADO.' },
+    { item: 'Ausencia de duplicación de síntomas por una misma conducta', ok: ids.length === new Set(ids).size, detalle: 'El conteo se realiza por síntoma DSM-5-TR, no por pregunta ni por fuente (Etapa 9 §14.3).' },
+    { item: 'Integración del conjunto de respuestas de cada fuente', ok: fuentesHechos.every((f) => R.R10.fuentes.includes(f)), detalle: `Fuentes integradas: ${R.R10.fuentes.join(', ') || '—'}.` },
+    { item: 'Convergencias y discrepancias entre fuentes conservadas', ok: !contrSinRegistro.length, detalle: contrSinRegistro.length ? `Discrepancias sin registro: ${contrSinRegistro.join(', ')}.` : `${ctx.contradicciones.length} contradicción(es) registradas sin resolver por suposición.` },
     { item: 'Duración, inicio, desarrollo, contextos, impacto y diferencial revisados', ok: ['R3', 'R4', 'R5', 'R6', 'R7', 'R8'].every((k) => R[k].estado), detalle: ['R3', 'R4', 'R5', 'R6', 'R7', 'R8'].map((k) => `${k}: ${R[k].estado}`).join('; ') },
-    { item: 'Realidad virtual utilizada solo como evidencia complementaria', ok: true, detalle: 'Los resultados de RV/Nesplora se presentan como evidencia complementaria y no crean ni anulan criterios (Etapa 9 §18).' },
-    { item: 'Inferencias neurobiológicas separadas de hallazgos individuales', ok: true, detalle: 'Perfiles 1–3 rotulados como marco teórico; inferencias por nivel 1/2/3.' },
-    { item: 'Conclusión coherente con la evidencia y la información faltante', ok: true, detalle: 'El tipo de resultado se deriva de la puerta de suficiencia (Etapa 5 §20–21).' },
+    { item: 'Realidad virtual utilizada solo como evidencia complementaria', ok: !rvAfirma, detalle: rvAfirma ? `${rvAfirma} hallazgo(s) de RV con lenguaje confirmatorio.` : 'Los resultados de RV/Nesplora se presentan como evidencia complementaria y no crean ni anulan criterios (Etapa 9 §18).' },
+    { item: 'Inferencias neurobiológicas separadas de hallazgos individuales', ok: perfilesTeoricos, detalle: perfilesTeoricos ? 'Perfiles 1–3 rotulados como marco teórico; inferencias por nivel 1/2/3.' : 'Algún perfil 1–3 no está rotulado como marco teórico.' },
+    { item: 'Conclusión coherente con la evidencia y la información faltante', ok: coherente, detalle: coherente ? 'El tipo de resultado se deriva de la puerta de suficiencia (Etapa 5 §20–21).' : 'El tipo de resultado no coincide con la puerta de suficiencia.' },
   ];
 }
 

@@ -69,8 +69,10 @@ export function respuestas(db, casoId) {
 }
 
 /**
- * Agrega un hecho. Si contradice un hecho previo con valor distinto en el mismo
- * dimensión/slot (para slots si_no o numero), registra la contradicción SIN resolverla.
+ * Agrega un hecho. Si contradice un hecho previo DE LA MISMA FUENTE con valor distinto en la misma
+ * dimensión/slot (datos categóricos), registra la contradicción SIN resolverla. Las diferencias entre
+ * fuentes (p. ej. frecuencia en casa y en el colegio) no son contradicciones de un informante: se
+ * conservan por fuente y las discrepancias de presencia se registran aparte (Etapa 9 §11).
  */
 export function agregarHecho(db, protocolo, casoId, h) {
   const t = ahora();
@@ -85,7 +87,7 @@ export function agregarHecho(db, protocolo, casoId, h) {
     // El valor está cifrado en la base: se compara en JavaScript, ya descifrado.
     const previo = db.prepare(`SELECT * FROM hechos WHERE caso_id = ? AND dimension_id = ? AND slot = ? AND estado = 'valor'
                                AND id <> ? ORDER BY id DESC`)
-      .all(casoId, h.dimension_id, h.slot, nuevoId).find((x) => x.valor != null && String(x.valor) !== String(h.valor));
+      .all(casoId, h.dimension_id, h.slot, nuevoId).find((x) => x.fuente === h.fuente && x.valor != null && String(x.valor) !== String(h.valor));
     if (previo) {
       const desc = `«${h.slot}» registrado como «${previo.valor}» (fuente: ${previo.fuente}) y luego como «${h.valor}» (fuente: ${h.fuente}).`;
       const rc = db.prepare(`INSERT INTO contradicciones (caso_id, dimension_id, slot, hecho_a, hecho_b, descripcion, creado)
@@ -103,10 +105,15 @@ export function registrarPregunta(db, casoId, turno, q, justificacion) {
     .run(casoId, turno, q.id, q.objetivo[0], q.objetivo[1], 0, q.texto, justificacion, ahora());
 }
 
-/** Registra una discrepancia entre fuentes sobre un mismo síntoma (Etapa 9 §11), si no existe ya. */
+/**
+ * Registra una discrepancia sobre un mismo síntoma (Etapa 9 §11), si no existe ya una para el mismo
+ * par de fuentes: una tercera fuente que discrepa genera su propio registro.
+ */
 export function registrarDiscrepancia(db, casoId, dim, slot, hechoA, hechoB, descripcion) {
-  const ya = db.prepare('SELECT id FROM contradicciones WHERE caso_id = ? AND dimension_id = ? AND slot = ?').get(casoId, dim, slot);
-  if (ya) return null;
+  const fuenteDe = (id) => db.prepare('SELECT fuente FROM hechos WHERE id = ?').get(id)?.fuente;
+  const par = [fuenteDe(hechoA), fuenteDe(hechoB)].sort().join('|');
+  const previas = db.prepare('SELECT hecho_a, hecho_b FROM contradicciones WHERE caso_id = ? AND dimension_id = ? AND slot = ?').all(casoId, dim, slot);
+  if (previas.some((c) => [fuenteDe(c.hecho_a), fuenteDe(c.hecho_b)].sort().join('|') === par)) return null;
   const r = db.prepare(`INSERT INTO contradicciones (caso_id, dimension_id, slot, hecho_a, hecho_b, descripcion, creado) VALUES (?, ?, ?, ?, ?, ?, ?)`)
     .run(casoId, dim, slot, hechoA, hechoB, descripcion, ahora());
   return { id: Number(r.lastInsertRowid), dimension_id: dim, slot, descripcion };

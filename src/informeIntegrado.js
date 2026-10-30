@@ -65,6 +65,12 @@ function datosDeFuentes(ctx) {
   };
 }
 
+/** Aplicaciones o registros anteriores del mismo instrumento, conservados en el expediente. */
+function anteriores(e) {
+  const a = e.resultados?.anteriores || [];
+  return a.length ? ` _Se conservan ${a.length} registro(s) anterior(es) de este instrumento (${a.map((x) => x.fecha || 'sin fecha').join(', ')}); este informe usa el más reciente._` : '';
+}
+
 function nombreInstrumento(ctx, e) {
   return e.resultados?.documento?.instrumento || ctx.protocolo.instrumentos.find((i) => i.id === e.instrumento_id)?.nombre || e.instrumento_id;
 }
@@ -110,12 +116,18 @@ function conductasDeSintoma(ctx, s) {
     } else if (h.evidencia) out.push(`${FUENTE_CORTA[h.fuente] || h.fuente}: «${corta(h.evidencia.replace(/^[•·\-\s]+/, ''), 140)}»`);
     else out.push(`${FUENTE_CORTA[h.fuente] || h.fuente}: ${V[h.valor] || h.valor}`);
   }
+  for (const h of ctx.hechos.filter((x) => x.dimension_id === s.id && x.slot === 'mencion' && x.estado === 'valor')) {
+    out.push(`${FUENTE_CORTA[h.fuente] || h.fuente} (relato espontáneo): «${corta(h.evidencia || '', 140)}»`);
+  }
+  const fr = Object.entries(s.frecuencias || {}).filter(([, v]) => v && v !== 'sin_dato');
+  if (fr.length > 1) out.push(`Frecuencia por fuente: ${fr.map(([f, v]) => `${FUENTE_CORTA[f] || f} ${legible(p, `«${v}»`)}`).join('; ')}`);
   return out;
 }
 
 function faltanteDeSintoma(s) {
   const f = [];
-  if (s.contradictorio) f.push(`Las fuentes no coinciden (${Object.entries(s.porFuente).map(([k, v]) => `${FUENTE_CORTA[k]}: ${V[v] || v}`).join('; ')})`);
+  if (s.mencionContraria && !s.positivo) f.push('El informante respondió «No» y luego describió la conducta: requiere aclaración');
+  else if (s.contradictorio) f.push(`Las fuentes no coinciden (${Object.entries(s.porFuente).map(([k, v]) => `${FUENTE_CORTA[k]}: ${V[v] || v}`).join('; ')})`);
   for (const x of s.faltantes || []) f.push({ frecuencia: 'frecuencia', desde: 'desde cuándo ocurre', contextos: 'en qué contextos ocurre' }[x] || x);
   if (s.estado === 'NO INFORMADO') f.push('Ninguna fuente aporta información');
   if (s.estado === 'DESCONOCIDO') f.push('El informante no sabe o no recuerda (no equivale a ausencia)');
@@ -336,8 +348,8 @@ export function informeIntegrado(ctx, I, { validacion = null, tipo = 'borrador',
   }
   L.push('**Discrepancias** (se conservan; no se resuelven a favor de una fuente):', '');
   const disc = [
-    ...I.sintomas.filter((s) => s.contradictorio).map((s) => `${s.nombre}: ${Object.entries(s.porFuente).map(([k, v]) => `${FUENTE_CORTA[k]} «${V[v] || v}»`).join(' / ')}. Falta precisar en qué situaciones y con qué apoyos ocurre en cada contexto.`),
-    ...ctx.contradicciones.filter((x) => !/presencia/.test(x.slot)).map((x) => `${p.sintomasPorId.get(x.dimension_id)?.nombre || x.dimension_id}: ${legible(p, x.descripcion)}${x.estado === 'revisada' ? ` Revisada por ${x.revisado_por}: ${x.nota_revision}` : ' Pendiente de revisión.'}`),
+    ...I.sintomas.filter((s) => s.contradictorio && s.positivo).map((s) => `${s.nombre}: ${Object.entries(s.porFuente).map(([k, v]) => `${FUENTE_CORTA[k]} «${V[v] || v}»`).join(' / ')}. Falta precisar en qué situaciones y con qué apoyos ocurre en cada contexto.`),
+    ...ctx.contradicciones.filter((x) => !/presencia/.test(x.slot)).map((x) => `${p.sintomasPorId.get(x.dimension_id)?.nombre || (x.dimension_id === 'INI' ? 'Informe escolar' : x.dimension_id)}: ${legible(p, x.descripcion)}${x.estado === 'revisada' ? ` Revisada por ${x.revisado_por}: ${x.nota_revision}` : ' Pendiente de revisión.'}`),
   ];
   L.push(...lista(disc, 'No se registran discrepancias entre fuentes.'), '');
   if (F.rvIntegrados.length) {
@@ -423,10 +435,11 @@ export function informeIntegrado(ctx, I, { validacion = null, tipo = 'borrador',
       (r.variables || []).map((v) => [v.variable, v.mide || VAR_POR_ID.get(v.id)?.nombre || '—', v.resultado || '—', v.interpretacion || v.interpretacion_del_documento || '—', correspondenciaRV(I, v)])));
     const comp = comparacionCondiciones(r.condiciones);
     if (comp.length) L.push('**Según las condiciones de la tarea:**', '', ...comp.map((x) => `- ${x}`), '');
+    if (anteriores(e)) L.push(anteriores(e).trim(), '');
     if (r.vinculacion?.confirmada_por) L.push(`_Vinculación al caso confirmada por ${r.vinculacion.confirmada_por}: ${r.vinculacion.motivo}_`, '');
     L.push('**Límites de la inferencia:**', '', ...[...(r.limitaciones || []), ...(r.vinculacion?.advertencias || [])].map((x) => `- ${x}`), '');
   }
-  for (const e of F.otros) L.push(`- **${nombreInstrumento(ctx, e)}** (${e.fecha || 'sin fecha'}${e.aplicador ? `, ${e.aplicador}` : ''}): ${e.resultados ? Object.entries(e.resultados).map(([k, v]) => `${k}: ${typeof v === 'object' ? JSON.stringify(v) : v}`).join('; ') : ''}${e.observaciones ? ` — ${e.observaciones}` : ''}. Se interpreta según su manual.`);
+  for (const e of F.otros) L.push(`- **${nombreInstrumento(ctx, e)}** (${e.fecha || 'sin fecha'}${e.aplicador ? `, ${e.aplicador}` : ''}): ${e.resultados ? Object.entries(e.resultados).filter(([k]) => k !== 'anteriores').map(([k, v]) => `${k}: ${typeof v === 'object' ? JSON.stringify(v) : v}`).join('; ') : ''}${e.observaciones ? ` — ${e.observaciones}` : ''}. Se interpreta según su manual.${anteriores(e)}`);
   if (F.otros.length) L.push('');
 
   // 3.11
@@ -502,25 +515,51 @@ export function informeIntegrado(ctx, I, { validacion = null, tipo = 'borrador',
   L.push('**Pendiente de evaluar.**', '', ...lista([...new Set([...I.areas.filter((a) => a.estado === 'SIN INFORMACIÓN SUFICIENTE').map((a) => a.nombre), ...(impactoEsc.length || respuesta(ctx, 'A46') === 'si' ? ['Aprendizajes académicos (lectura, escritura, matemática), si el rendimiento sigue descendido'] : [])])].slice(0, 6), 'Sin aspectos pendientes para el ámbito educativo.'), '');
 
   // 6. Control de calidad
-  const calidad = [
-    { control: 'Fuentes vinculadas al caso', ok: !F.rvPendientes.length, detalle: F.rvPendientes.length ? `${F.rvPendientes.length} informe(s) de realidad virtual sin vincular: excluidos del análisis.` : 'Todas las fuentes integradas corresponden al caso.' },
-    { control: 'Cada afirmación con su fuente', ok: I.sintomas.filter((s) => POSITIVOS.includes(s.estado)).every((s) => Object.keys(s.porFuente).length), detalle: 'Síntomas, fortalezas y recomendaciones indican la fuente que los respalda.' },
-    { control: 'Consistencia entre síntomas y conclusión', ok: true, detalle: 'La conclusión reproduce el estado calculado por el motor sin modificar recuentos ni umbrales.' },
-    { control: 'Sin duplicación de evidencia', ok: true, detalle: 'Cada síntoma se cuenta una vez, aunque lo describan varias fuentes.' },
-    { control: 'Sin datos inventados', ok: true, detalle: 'El informe se construye solo con datos del expediente; lo que falta se declara.' },
-    { control: 'Contradicciones e incertidumbres identificadas', ok: true, detalle: `${disc.length} discrepancia(s); ${I.informacionFaltante.length} aspecto(s) pendiente(s).` },
-    { control: 'Interpretación prudente de la realidad virtual', ok: true, detalle: 'Solo se describen las variables que mide el instrumento, con su interpretación original y sus límites.' },
-    { control: 'Coherencia entre dificultades, fortalezas y recomendaciones', ok: recs.every((r) => r.hallazgo), detalle: 'Cada recomendación indica el hallazgo que la justifica.' },
-    { control: 'Diagnóstico no presentado como validado', ok: !validacion ? true : Boolean(validacion.por), detalle: validacion ? `Validado por ${validacion.por}.` : 'Estado: pendiente de validación profesional.' },
-    ...(redaccion ? [{ control: 'Redacción asistida por IA verificada', ok: true, detalle: 'Sin cifras, nombres ni afirmaciones diagnósticas ajenas a los datos; la conclusión diagnóstica la escribe el sistema.' }] : []),
-    { control: 'Trazabilidad de las conclusiones', ok: true, detalle: 'Conclusión → estado del motor → síntoma → dato original (sección 5) → fuente (sección 2); detalle completo en la auditoría del caso.' },
-  ];
+  const calidad = controlesDeCalidad(ctx, I, F, { fort, recs, disc, validacion, redaccion });
   L.push('## Control de calidad del informe', '');
   L.push(...tabla(['Control', 'Resultado', 'Detalle'], calidad.map((x) => [x.control, x.ok ? 'Cumple' : 'Con limitación', x.detalle])));
   L.push(`_El informe ${calidad.every((x) => x.ok) ? 'superó todas las comprobaciones' : 'tiene limitaciones declaradas arriba'}${tipo === 'final' ? '' : '; es un borrador mientras la evaluación siga en curso'}._`, '');
   return { lineas: L, calidad };
 }
 
+
+// ------------------------------------------------------- control de calidad ---
+
+/**
+ * Controles de calidad CALCULADOS sobre el expediente y el informe (Etapa 6; Etapa 9 §23): ninguno se
+ * declara cumplido sin comprobarlo.
+ */
+function controlesDeCalidad(ctx, I, F, { fort, recs, disc, validacion, redaccion }) {
+  const positivos = I.sintomas.filter((s) => POSITIVOS.includes(s.estado));
+  const hechosIds = new Set(ctx.hechos.map((h) => h.id));
+  const ids = I.sintomas.map((s) => s.id);
+  const apoyados = (d) => I.sintomas.filter((s) => s.dominio === d && s.estado === 'APOYADO POR EVIDENCIA').length;
+  const sinDuplicar = ids.length === new Set(ids).size && ids.length === ctx.protocolo.sintomas.length
+    && I.requisitos.R1.apoyados === apoyados('inatencion') && I.requisitos.R2.apoyados === apoyados('hiperactividad_impulsividad');
+  const umbral = [I.requisitos.R1.estado, I.requisitos.R2.estado].includes('UMBRAL ALCANZADO');
+  const consistente = (I.puerta === 'CERRADA') === (I.resultado.tipo === 'INFORMACION_INSUFICIENTE')
+    && (I.resultado.tipo !== 'SOSTIENE_TDAH' || (umbral && I.puerta !== 'CERRADA'));
+  const conRespaldo = (s) => ctx.hechos.some((h) => h.dimension_id === s.id && h.estado === 'valor' && ((h.slot.startsWith('presencia') && ['si', 'ocasionalmente'].includes(h.valor)) || h.slot === 'mencion'));
+  const sinRespaldo = positivos.filter((s) => !conRespaldo(s)).map((s) => s.id);
+  const contrSinRegistro = I.sintomas.filter((s) => s.contradictorio && !ctx.contradicciones.some((c) => c.dimension_id === s.id)).map((s) => s.id);
+  const rvTextos = F.rvIntegrados.flatMap((e) => (e.resultados.variables || []).map((v) => correspondenciaRV(I, v)));
+  const rvImprudente = rvTextos.filter((t) => /\b(confirma|descarta|diagn[oó]stic)/i.test(t)).length;
+  const contradRotas = ctx.contradicciones.filter((c) => !hechosIds.has(c.hecho_a) || !hechosIds.has(c.hecho_b)).length;
+  const positivosSinFuente = positivos.filter((s) => !Object.keys(s.porFuente).length && !s.mencion).map((s) => s.id);
+  return [
+    { control: 'Fuentes vinculadas al caso', ok: !F.rvPendientes.length, detalle: F.rvPendientes.length ? `${F.rvPendientes.length} informe(s) de realidad virtual sin vincular: excluidos del análisis.` : 'Todas las fuentes integradas corresponden al caso.' },
+    { control: 'Cada afirmación con su fuente', ok: !positivosSinFuente.length && fort.every((f) => f.fuente), detalle: positivosSinFuente.length ? `Síntomas sin fuente: ${positivosSinFuente.join(', ')}.` : 'Síntomas y fortalezas indican la fuente que los respalda.' },
+    { control: 'Consistencia entre síntomas y conclusión', ok: consistente, detalle: consistente ? `Resultado «${I.resultado.tipo}» coherente con la puerta de suficiencia (${I.puerta}) y los umbrales R1/R2.` : `Resultado «${I.resultado.tipo}» no coherente con la puerta (${I.puerta}) o los umbrales.` },
+    { control: 'Sin duplicación de evidencia', ok: sinDuplicar, detalle: sinDuplicar ? `${ids.length} síntomas, cada uno contado una vez; recuentos R1/R2 iguales a los del motor.` : 'Hay síntomas repetidos o recuentos que no coinciden con el motor.' },
+    { control: 'Sin datos inventados', ok: !sinRespaldo.length && recs.every((r) => r.hallazgo), detalle: sinRespaldo.length ? `Síntomas con evidencia positiva sin dato original: ${sinRespaldo.join(', ')}.` : 'Cada síntoma con evidencia positiva tiene un dato original en el expediente; cada recomendación indica su hallazgo.' },
+    { control: 'Contradicciones e incertidumbres identificadas', ok: !contrSinRegistro.length, detalle: contrSinRegistro.length ? `Discrepancias sin registro en el expediente: ${contrSinRegistro.join(', ')}.` : `${disc.length} discrepancia(s) registradas; ${I.informacionFaltante.length} aspecto(s) pendiente(s).` },
+    { control: 'Interpretación prudente de la realidad virtual', ok: !rvImprudente && F.rvIntegrados.every((e) => e.estado === 'realizada'), detalle: rvImprudente ? `${rvImprudente} correspondencia(s) con lenguaje confirmatorio.` : 'Solo se usan resultados vinculados al caso, con su interpretación original y sin confirmar ni descartar diagnósticos.' },
+    { control: 'Coherencia entre dificultades, fortalezas y recomendaciones', ok: recs.every((r) => r.hallazgo), detalle: 'Cada recomendación indica el hallazgo que la justifica.' },
+    { control: 'Diagnóstico no presentado como validado', ok: !validacion ? true : Boolean(validacion.por), detalle: validacion ? `Validado por ${validacion.por}.` : 'Estado: pendiente de validación profesional.' },
+    ...(redaccion ? [{ control: 'Redacción asistida por IA verificada', ok: true, detalle: 'Verificada antes de usarse (verificarRedaccion): sin cifras, nombres ni afirmaciones diagnósticas ajenas a los datos; la conclusión diagnóstica la escribe el sistema.' }] : []),
+    { control: 'Trazabilidad de las conclusiones', ok: !contradRotas && !sinRespaldo.length, detalle: contradRotas ? `${contradRotas} registro(s) de contradicción apuntan a datos inexistentes.` : 'Conclusión → estado del motor → síntoma → dato original (sección 5) → fuente (sección 2); detalle completo en la auditoría del caso.' },
+  ];
+}
 
 // ------------------------------------------------------- redacción con IA ---
 

@@ -3,9 +3,18 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import zlib from 'node:zlib';
-import { iniciarApp, crearCaso, vista } from './ayudantes.js';
+import { iniciarApp, crearCaso, vista, responder } from './ayudantes.js';
 import { crearClienteIA } from '../../src/ia.js';
-import { CONSENTIMIENTO } from '../fixtures/caso-ficticio.js';
+import { CONSENTIMIENTO, respuestaPara } from '../fixtures/caso-ficticio.js';
+
+/** Puerta de entrada obligatoria (motivo, edad, informe escolar) antes de integrar documentos clínicos o RV. */
+async function puerta(api, id) {
+  for (let i = 0; i < 4; i++) {
+    const v = await vista(api, id);
+    if (!v.caso.pregunta_actual?.id.startsWith('INI-')) return;
+    await responder(api, id, respuestaPara);
+  }
+}
 
 const b64 = (s) => Buffer.from(s).toString('base64');
 
@@ -44,6 +53,7 @@ test('D1 · documento de RV con IA autorizada: extrae con evidencia literal, des
   const api = await iniciarApp({ ia });
   try {
     const c = (await api.req('POST', '/api/casos', { etiqueta: 'Caso D1', consentimiento: { ...CONSENTIMIENTO, acepta_ia_externa: true } })).body.caso;
+    await puerta(api, c.id);
     const r = await api.req('POST', `/api/casos/${c.id}/documentos`, { nombre: 'rv.txt', contenido_base64: b64(TEXTO_RV), clase: 'informe_rv', ocultar: ['Tomás Pérez'], profesional: 'Ps. Prueba' });
     assert.equal(r.status, 200, JSON.stringify(r.body));
     assert.equal(r.body.metodo, 'ia');
@@ -66,6 +76,7 @@ test('D2 · sin autorización de IA no se envía nada al proveedor', async () =>
   const api = await iniciarApp({ ia });
   try {
     const c = (await crearCaso(api, 'Caso D2')).caso;
+    await puerta(api, c.id);
     const r = await api.req('POST', `/api/casos/${c.id}/documentos`, { nombre: 'rv.txt', contenido_base64: b64(TEXTO_RV), clase: 'informe_rv' });
     assert.equal(r.status, 200);
     assert.equal(r.body.metodo, 'sin_extraccion');
@@ -91,6 +102,7 @@ test('V1 · el casco envía datos en tiempo real con su token y la sesión queda
   const api = await iniciarApp({ rvToken: 'token-casco-prueba' });
   try {
     const c = (await crearCaso(api, 'Caso V1')).caso;
+    await puerta(api, c.id);
     const casco = { 'x-rv-token': 'token-casco-prueba' };
     const s = await api.req('POST', '/api/rv/sesiones', { caso_codigo: c.codigo, dispositivo: 'Meta Quest 3S' }, casco);
     assert.equal(s.status, 200, JSON.stringify(s.body));
