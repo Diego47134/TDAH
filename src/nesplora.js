@@ -103,17 +103,77 @@ export function leerNesplora(texto) {
     variables.push({ id: def.id, variable: def.nombre, mide: def.mide, pd, percentil: pc, t, rendimiento, sentido: sentidoDeRendimiento(rendimiento),
       resultado: `PD ${pd} · percentil ${pc} · T ${t}`, interpretacion: `rendimiento ${rendimiento} (según el baremo del instrumento)`, evidencia: m[0].slice(0, 300) });
   }
-  const condiciones = {
+  let condiciones = {
     distractores: tablaCondiciones(lineas, /CONDISTRACTORESSINDISTRACTORES/i, ['con', 'sin']),
     tareas: tablaCondiciones(lineas, /TAREAINHIBICI[ÓO]NTAREAVIGILANCIA/i, ['inhibicion', 'vigilancia']),
     canales: tablaCondiciones(lineas, /^VISUALAUDITIVO$/i, ['visual', 'auditivo']),
   };
+  // Formato «informe interpretativo adaptado» (texto con «[PT: 59 | Percentil: 81 | PD: 58]»).
+  const alt = !variables.length ? leerFormatoAdaptado(plano) : null;
+  if (alt) {
+    variables.push(...alt.variables);
+    condiciones = alt.condiciones;
+    Object.assign(persona, Object.fromEntries(Object.entries(alt.persona).filter(([k, v]) => v != null && persona[k] == null)));
+  }
+  const fechaFinal = fecha || alt?.fecha || null;
+  const baremoFinal = baremo || alt?.baremo || null;
   const limitaciones = [
     'Nesplora Aula mide el desempeño en una tarea específica de ejecución continua en un aula virtual; no confirma ni descarta TDAH por sí sola (el propio informe indica que no debe usarse como única base para el diagnóstico).',
     'Los resultados dependen de las condiciones de administración y del baremo utilizado.',
   ];
   if (valido === false) limitaciones.unshift('El indicador de validez (EVI) señala problemas de ejecución: los resultados deben interpretarse con cautela o no interpretarse.');
-  return { instrumento: 'Nesplora Aula', persona, fecha, duracion, baremo, valido, variables, condiciones, limitaciones };
+  if (/(compatible con un trastorno|respalda\w* (plenamente )?(los requerimientos|el diagn)|confirma\w* un rendimiento compatible)/i.test(plano)) {
+    limitaciones.push('El documento incluye una conclusión diagnóstica propia; el sistema no la incorpora: solo se usan los índices con su interpretación por baremo, como evidencia complementaria.');
+  }
+  return { instrumento: 'Nesplora Aula', persona, fecha: fechaFinal, duracion, baremo: baremoFinal, valido, variables, condiciones, limitaciones };
+}
+
+const MESES = { enero: 1, febrero: 2, marzo: 3, abril: 4, mayo: 5, junio: 6, julio: 7, agosto: 8, septiembre: 9, setiembre: 9, octubre: 10, noviembre: 11, diciembre: 12 };
+const fechaLarga = (s) => { const m = String(s || '').match(/(\d{1,2})\s+de\s+([a-záéíóú]+)\s+de\s+(\d{4})/i); const mm = m && MESES[m[2].toLowerCase()]; return mm ? `${m[3]}-${String(mm).padStart(2, '0')}-${m[1].padStart(2, '0')}` : fechaISO(s); };
+
+/** Índices mencionados en un tramo de texto: «omisiones … PT 73 (PD 31)». */
+function indicesEnTramo(tramo) {
+  const out = {};
+  const RE = [['omisiones', /\bomisiones/i], ['comisiones', /\bcomisiones/i], ['actividad_motora', /actividad motora/i], ['variabilidad_tr', /(variabilidad del tiempo de reacci[oó]n|desviaci[oó]n t[ií]pica de tr)/i], ['tiempo_reaccion', /tiempo de reacci[oó]n medio|media tr/i]];
+  for (const [id, re] of RE) {
+    const g = new RegExp(re.source + '[^.;]{0,60}?PT\\s*(\\d{2,3})(?:\\s*\\(PD\\s*([\\d.,]+)\\))?', 'i');
+    const m = tramo.match(g);
+    if (m) { const t = num(m.at(-2)); out[id] = { pc: null, pd: m.at(-1) != null ? num(m.at(-1)) : null, t, rendimiento: rendimientoPorT(t) }; }
+  }
+  return out;
+}
+const tramo = (plano, desde, hasta) => { const i = plano.search(desde); if (i < 0) return ''; const r = plano.slice(i); const j = hasta ? r.slice(10).search(hasta) : -1; return j < 0 ? r.slice(0, 400) : r.slice(0, j + 10); };
+
+function leerFormatoAdaptado(plano) {
+  const variables = [];
+  for (const m of plano.matchAll(/([A-ZÁÉÍÓÚa-záéíóúñ ]+?)(?:\s*\(([^)]+)\))?\s*\[PT:\s*(\d{2,3})\s*\|\s*Percentil:\s*(\d{1,3})\s*\|\s*PD:\s*([\d.,]+)\s*[a-z]*\]/g)) {
+    const def = INDICES.find((x) => x.re.test(m[2] || m[1]));
+    if (!def || variables.some((v) => v.id === def.id)) continue;
+    const t = num(m[3]); const pc = num(m[4]); const pd = num(m[5]); const rendimiento = rendimientoPorT(t);
+    variables.push({ id: def.id, variable: def.nombre, mide: def.mide, pd, percentil: pc, t, rendimiento, sentido: sentidoDeRendimiento(rendimiento),
+      resultado: `PD ${pd} · percentil ${pc} · T ${t}`, interpretacion: `rendimiento ${rendimiento} (según las bandas de puntuación T del instrumento)`, evidencia: m[0].trim().slice(0, 300) });
+  }
+  if (!variables.length) return null;
+  const campo = (re) => plano.match(re)?.[1]?.trim() || null;
+  const nombre = campo(/Nombre y Apellidos:\s*(.+?)\s*•/i);
+  const sexo = campo(/\bSexo:\s*(Masculino|Femenino|Otro)/i);
+  const edad = num(campo(/Fecha de Nacimiento\s*\/\s*Edad:\s*(\d{1,2})\s*años/i));
+  const nacimiento = fechaISO(campo(/Fecha de Nacimiento[^:]*:\s*(\d{1,2}\/\d{1,2}\/\d{4})/i));
+  const par = (a, b) => { const x = indicesEnTramo(a); const y = indicesEnTramo(b); return Object.keys(x).length || Object.keys(y).length ? [x, y] : null; };
+  const d = par(tramo(plano, /Con Distractores:/i, /Sin Distractores:/i), tramo(plano, /Sin Distractores:/i, /\d\.\s+Rendimiento por Tipo|Tarea de Inhibici/i));
+  const t = par(tramo(plano, /Tarea de Inhibici[oó]n/i, /Tarea de Vigilancia/i), tramo(plano, /Tarea de Vigilancia/i, /\d\.\s+Canales|Canal Visual/i));
+  const c = par(tramo(plano, /Canal Visual:/i, /Canal Auditivo:/i), tramo(plano, /Canal Auditivo:/i, /\d\.\s+Calidad/i));
+  return {
+    variables,
+    persona: { nombre, sexo: sexo ? sexo.toUpperCase() : null, nacimiento, edad },
+    fecha: fechaLarga(campo(/Fecha de Realizaci[oó]n:\s*(\d{1,2} de [a-záéíóú]+ de \d{4})/i)),
+    baremo: campo(/Baremo Utilizado:\s*(.+?)\s*•/i),
+    condiciones: {
+      distractores: d && { con: d[0], sin: d[1] },
+      tareas: t && { inhibicion: t[0], vigilancia: t[1] },
+      canales: c && { visual: c[0], auditivo: c[1] },
+    },
+  };
 }
 
 const aniosEntre = (desde, hasta) => {

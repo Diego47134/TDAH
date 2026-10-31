@@ -114,7 +114,7 @@ test('A17–A20 · integración de las tres fuentes en el informe: convergencia,
 
     // A17 Convergencia: la misma conducta, varias fuentes, contada una vez.
     assert.match(md, /- Se distrae fácilmente: Apoderado y Colegio\./);
-    assert.equal((md.match(/\| R1\.8 Se distrae fácilmente \|/g) || []).length, 1, 'un síntoma = una fila, aunque lo describan varias fuentes');
+    assert.equal((md.match(/\| A8 — Se distrae fácilmente \(R1\.8\) \|/g) || []).length, 1, 'un síntoma = una fila, aunque lo describan varias fuentes');
     assert.equal(v.sintomas.filter((s) => s.dominio === 'inatencion').length, 9);
     // A18 Discrepancia entre contextos: conservada, no se declara ausente.
     assert.match(md, /\*\*Discrepancias\*\*/);
@@ -126,15 +126,15 @@ test('A17–A20 · integración de las tres fuentes en el informe: convergencia,
     assert.match(md, /no confirma ni descarta TDAH por sí sola/);
     assert.match(md, /rendimiento menor con distractores \(T 73\) que sin distractores \(T 57\)/);
     // A20 Información insuficiente: declarada, sin forzar la conclusión.
-    assert.match(md, /R1\.5 Dificultad para organizar tareas y actividades \| (Desconocido \/ no recuerda|Apoyado por evidencia|Probable)/);
-    assert.match(md, /## 14\. Información pendiente/);
+    assert.match(md, /A5 — Dificultad para organizar tareas y actividades \(R1\.5\) \| (Desconocido \/ no recuerda|Apoyado por evidencia|Probable)/);
+    assert.match(md, /## 3\.14\. Información pendiente/);
     assert.match(md, /\*\*Estado diagnóstico establecido por el motor:\*\* /);
     // Fortalezas, recomendaciones vinculadas a hallazgos y uso de los apoyos ya aplicados por el colegio.
-    assert.match(md, /## 8\. Fortalezas y capacidades preservadas/);
+    assert.match(md, /## 3\.8\. Fortalezas y capacidades preservadas/);
     assert.match(md, /Revisar la ubicación preferencial que ya se aplica \(el colegio informa efectividad baja o transitoria\)/);
     assert.match(md, /### A\. Aula y profesores/); assert.match(md, /### C\. Familia y hogar/);
-    assert.match(md, /## Síntesis para docentes y psicólogos educativos/);
-    assert.doesNotMatch(md.split('## Síntesis para docentes')[1].split('## Control de calidad')[0], /TDAH|DSM/, 'la síntesis educativa no presenta un diagnóstico');
+    assert.match(md, /## Síntesis educativa para profesores y psicopedagogos/);
+    assert.doesNotMatch(md.split('## Síntesis educativa para profesores')[1].split('## Control de calidad')[0], /TDAH|DSM/, 'la síntesis educativa no presenta un diagnóstico');
     assert.match(md, /\| Diagnóstico no presentado como validado \| Cumple \|/);
     assert.match(md, /PENDIENTE DE VALIDACIÓN PROFESIONAL/);
     ev.paso(p, { entrada: 'Entrevista + informe del colegio (.docx) + Nesplora (.pdf) vinculado', accion_resultante: `Informe de ${md.length} caracteres con las tres fuentes integradas`, esperado: 'Convergencias, discrepancias, RV complementaria, pendientes y recomendaciones', ok: true });

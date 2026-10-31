@@ -1,6 +1,6 @@
 # Protocolo de pruebas — resultados
 
-Ejecutado: 2026-10-30 14:55 UTC · Protocolo tdah-protocolo 1.0.0 · 26 aprobadas, 0 fallidas de 26.
+Ejecutado: 2026-10-31 12:51 UTC · Protocolo tdah-protocolo 1.0.0 · 29 aprobadas, 0 fallidas de 29.
 
 Documentos reales usados: «Informe del Colegio (prueba).docx» y «Inform Nesplora para Diego.pdf» (entregados por el cliente). Las respuestas del apoderado son guiones de prueba.
 
@@ -32,6 +32,9 @@ Documentos reales usados: «Informe del Colegio (prueba).docx» y «Inform Nespl
 | PE-23 | Informe y validación | Los requisitos del informe coinciden con los estados calculados por el motor | **APROBADA** |
 | PE-24 | Escenario 1 · Coincidencia | Frecuencias compatibles de dos fuentes no se registran como contradicción | **APROBADA** |
 | PE-25 | Informe y validación | Los controles de calidad del informe se calculan (no se declaran cumplidos de antemano) | **APROBADA** |
+| PE-26 | Instrumentos | El Nesplora en formato interpretativo adaptado (.docx) se lee con sus cinco índices y se vincula al caso correcto | **APROBADA** |
+| PE-27 | Informe y validación | El informe sigue el Modelo de Informe de Salida: identificación, alcance, matriz A1–H9, tamizaje por factores, síntesis y declaración | **APROBADA** |
+| PE-28 | Cuestionarios (Conners) | Un documento Conners no se lee como observación narrativa del colegio | **APROBADA** |
 
 ## PE-01 — La entrevista empieza por motivo, edad e informe escolar, en ese orden
 
@@ -236,7 +239,7 @@ Documentos reales usados: «Informe del Colegio (prueba).docx» y «Inform Nespl
 - **Escenario:** Informe y validación
 - **Regla del proyecto:** «Módulo de generación del informe» del cliente (secciones 3.1–3.16, síntesis educativa y control de calidad); decisión K9 del registro de contradicciones (prevalece el formato del cliente).
 - **Datos de entrada:** Caso de PE-11 (tres fuentes).
-- **Resultado esperado:** Secciones 1 a 16 en orden, «Síntesis para docentes y psicólogos educativos» y «Control de calidad del informe».
+- **Resultado esperado:** Secciones 3.1 a 3.16 en orden, «Síntesis educativa para profesores y psicopedagogos» y «Control de calidad del informe» (Modelo de Informe de Salida).
 - **Resultado obtenido:** Secciones numeradas: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16. Síntesis educativa: sí. Control de calidad: sí.
 - **Veredicto:** APROBADA
 
@@ -265,4 +268,31 @@ Documentos reales usados: «Informe del Colegio (prueba).docx» y «Inform Nespl
 - **Datos de entrada:** Caso con discrepancias sin revisar entre colegio y apoderado (PE-13) y caso con Nesplora sin vincular (PE-18).
 - **Resultado esperado:** En el caso con Nesplora sin vincular, «Fuentes vinculadas al caso» aparece «Con limitación»; en ambos, la consistencia, la duplicación y la trazabilidad se informan según el cálculo.
 - **Resultado obtenido:** Fuentes vinculadas al caso: Cumple / Con limitación. Consistencia entre síntomas y conclusión: Cumple / Cumple. Sin duplicación de evidencia: Cumple / Cumple. Trazabilidad de las conclusiones: Cumple / Cumple.
+- **Veredicto:** APROBADA
+
+## PE-26 — El Nesplora en formato interpretativo adaptado (.docx) se lee con sus cinco índices y se vincula al caso correcto
+
+- **Escenario:** Instrumentos
+- **Regla del proyecto:** Modelo Maestro §3 (Instrumentos) y §6 (verificar identidad, edad y fecha); Etapa 9 §18.
+- **Datos de entrada:** Caso «Joaquín P. S.», 10 años, puerta completa; se carga «Informe_Nesplora_Joaquin_10_anos_Oficial.docx».
+- **Resultado esperado:** Evaluación «realizada» (identidad verificada) con omisiones T59 normal, comisiones T80 muy bajo, TR T37 alto, variabilidad T80 muy bajo y actividad motora T69 bajo; la conclusión diagnóstica propia del documento no se incorpora.
+- **Resultado obtenido:** HTTP 200; estado realizada; índices: {"omisiones":"T59 normal","comisiones":"T80 muy bajo","tiempo_reaccion":"T37 alto","variabilidad_tr":"T80 muy bajo","actividad_motora":"T69 bajo"}; fecha 2026-10-27; conclusión propia excluida: sí.
+- **Veredicto:** APROBADA
+
+## PE-27 — El informe sigue el Modelo de Informe de Salida: identificación, alcance, matriz A1–H9, tamizaje por factores, síntesis y declaración
+
+- **Escenario:** Informe y validación
+- **Regla del proyecto:** Modelo de Informe de Salida TDAH (30-10-2026) y Modelo Maestro §4, §5 y §7.
+- **Datos de entrada:** Caso de tres fuentes (apoderado, informe real del colegio, Nesplora vinculado); tamizaje con «Sueño».
+- **Resultado esperado:** Identificación resumida y alcance antes de 3.1; estado PENDIENTE; 3.1 con curso y establecimiento del colegio; 3.5 con A1–A9 y H1–H9; 3.11 con Sueño, factores sensoriales, neurológicos y médicos con estado; síntesis con sus 8 apartados; declaración final; controles de 16 secciones, matriz y tamizaje «Cumple».
+- **Resultado obtenido:** Identificación antes de 3.1: sí. Códigos 3.5: A1,A2,A3,A4,A5,A6,A7,A8,A9,H1,H2,H3,H4,H5,H6,H7,H8,H9. Factores 3.11: 4/4. Apartados síntesis: 8/8. Declaración: sí. Controles: Cumple / Cumple / Cumple.
+- **Veredicto:** APROBADA
+
+## PE-28 — Un documento Conners no se lee como observación narrativa del colegio
+
+- **Escenario:** Cuestionarios (Conners)
+- **Regla del proyecto:** Modelo Maestro §9 (Conners: no declarar integrado; sus resultados no crean criterios) y §3 (fuentes separadas).
+- **Datos de entrada:** Puerta completa; se carga como «informe escolar» un texto de escala Conners 3 (versión docente) con ítems y puntajes T.
+- **Resultado esperado:** El documento se guarda; no se crean datos de síntomas desde los ítems de la escala; el detalle indica registrar los puntajes en Instrumentos.
+- **Resultado obtenido:** HTTP 200; datos de síntomas creados desde la escala: 0; detalle: «Escala Conners guardada. La lectura automática específica de Conners no está implementada: registre sus puntajes en Inst».
 - **Veredicto:** APROBADA

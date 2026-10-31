@@ -39,7 +39,7 @@ export function generarInforme(ctx, { tipo = 'borrador', requisitos, validacion,
   const p = ctx.protocolo; const c = ctx.caso;
   const req = requisitos || evaluarRequisitos(ctx);
   const L = [];
-  const estadoTxt = validacion ? `VALIDADO por ${validacion.por} el ${validacion.fecha.slice(0, 10)}` : tipo === 'final' ? 'FINAL — PENDIENTE DE VALIDACIÓN PROFESIONAL' : 'BORRADOR — EVALUACIÓN EN CURSO';
+  const estadoTxt = validacion ? `VALIDADO por ${validacion.por} el ${validacion.fecha.slice(0, 10)}` : tipo === 'final' ? 'FINAL — PENDIENTE DE VALIDACIÓN PROFESIONAL' : 'BORRADOR — PENDIENTE (evaluación en curso)';
   L.push(`# Informe clínico-neuropsicológico y de orientación educativa — ${c.codigo}`, '', `**Estado:** ${estadoTxt}`, '');
   L.push(`> Informe generado desde el expediente estructurado con el protocolo ${p.id} ${p.version}. Es una hipótesis estructurada: la decisión clínica final corresponde al profesional responsable (Etapa 9 §1 y §28). Las inferencias no se presentan como hechos documentados.`, '');
   if (!req.completo) {

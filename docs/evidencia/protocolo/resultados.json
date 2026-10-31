@@ -1,5 +1,5 @@
 {
-  "fecha": "2026-10-30T14:55:08.590Z",
+  "fecha": "2026-10-31T12:51:52.632Z",
   "protocolo": "tdah-protocolo 1.0.0",
   "casos": [
     {
@@ -227,7 +227,7 @@
       "escenario": "Informe y validación",
       "titulo": "El informe sigue el formato de 16 secciones pedido por el cliente",
       "entrada": "Caso de PE-11 (tres fuentes).",
-      "esperado": "Secciones 1 a 16 en orden, «Síntesis para docentes y psicólogos educativos» y «Control de calidad del informe».",
+      "esperado": "Secciones 3.1 a 3.16 en orden, «Síntesis educativa para profesores y psicopedagogos» y «Control de calidad del informe» (Modelo de Informe de Salida).",
       "regla": "«Módulo de generación del informe» del cliente (secciones 3.1–3.16, síntesis educativa y control de calidad); decisión K9 del registro de contradicciones (prevalece el formato del cliente).",
       "obtenido": "Secciones numeradas: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16. Síntesis educativa: sí. Control de calidad: sí.",
       "veredicto": "APROBADA"
@@ -260,6 +260,36 @@
       "esperado": "En el caso con Nesplora sin vincular, «Fuentes vinculadas al caso» aparece «Con limitación»; en ambos, la consistencia, la duplicación y la trazabilidad se informan según el cálculo.",
       "regla": "Etapa 6 y Etapa 9 §23 (trazabilidad y auditoría verificables).",
       "obtenido": "Fuentes vinculadas al caso: Cumple / Con limitación. Consistencia entre síntomas y conclusión: Cumple / Cumple. Sin duplicación de evidencia: Cumple / Cumple. Trazabilidad de las conclusiones: Cumple / Cumple.",
+      "veredicto": "APROBADA"
+    },
+    {
+      "id": "PE-26",
+      "escenario": "Instrumentos",
+      "titulo": "El Nesplora en formato interpretativo adaptado (.docx) se lee con sus cinco índices y se vincula al caso correcto",
+      "entrada": "Caso «Joaquín P. S.», 10 años, puerta completa; se carga «Informe_Nesplora_Joaquin_10_anos_Oficial.docx».",
+      "esperado": "Evaluación «realizada» (identidad verificada) con omisiones T59 normal, comisiones T80 muy bajo, TR T37 alto, variabilidad T80 muy bajo y actividad motora T69 bajo; la conclusión diagnóstica propia del documento no se incorpora.",
+      "regla": "Modelo Maestro §3 (Instrumentos) y §6 (verificar identidad, edad y fecha); Etapa 9 §18.",
+      "obtenido": "HTTP 200; estado realizada; índices: {\"omisiones\":\"T59 normal\",\"comisiones\":\"T80 muy bajo\",\"tiempo_reaccion\":\"T37 alto\",\"variabilidad_tr\":\"T80 muy bajo\",\"actividad_motora\":\"T69 bajo\"}; fecha 2026-10-27; conclusión propia excluida: sí.",
+      "veredicto": "APROBADA"
+    },
+    {
+      "id": "PE-27",
+      "escenario": "Informe y validación",
+      "titulo": "El informe sigue el Modelo de Informe de Salida: identificación, alcance, matriz A1–H9, tamizaje por factores, síntesis y declaración",
+      "entrada": "Caso de tres fuentes (apoderado, informe real del colegio, Nesplora vinculado); tamizaje con «Sueño».",
+      "esperado": "Identificación resumida y alcance antes de 3.1; estado PENDIENTE; 3.1 con curso y establecimiento del colegio; 3.5 con A1–A9 y H1–H9; 3.11 con Sueño, factores sensoriales, neurológicos y médicos con estado; síntesis con sus 8 apartados; declaración final; controles de 16 secciones, matriz y tamizaje «Cumple».",
+      "regla": "Modelo de Informe de Salida TDAH (30-10-2026) y Modelo Maestro §4, §5 y §7.",
+      "obtenido": "Identificación antes de 3.1: sí. Códigos 3.5: A1,A2,A3,A4,A5,A6,A7,A8,A9,H1,H2,H3,H4,H5,H6,H7,H8,H9. Factores 3.11: 4/4. Apartados síntesis: 8/8. Declaración: sí. Controles: Cumple / Cumple / Cumple.",
+      "veredicto": "APROBADA"
+    },
+    {
+      "id": "PE-28",
+      "escenario": "Cuestionarios (Conners)",
+      "titulo": "Un documento Conners no se lee como observación narrativa del colegio",
+      "entrada": "Puerta completa; se carga como «informe escolar» un texto de escala Conners 3 (versión docente) con ítems y puntajes T.",
+      "esperado": "El documento se guarda; no se crean datos de síntomas desde los ítems de la escala; el detalle indica registrar los puntajes en Instrumentos.",
+      "regla": "Modelo Maestro §9 (Conners: no declarar integrado; sus resultados no crean criterios) y §3 (fuentes separadas).",
+      "obtenido": "HTTP 200; datos de síntomas creados desde la escala: 0; detalle: «Escala Conners guardada. La lectura automática específica de Conners no está implementada: registre sus puntajes en Inst».",
       "veredicto": "APROBADA"
     }
   ]

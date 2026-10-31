@@ -47,13 +47,13 @@ test('E11 · el informe final refleja los datos reales, las discrepancias y la i
     assert.equal(r.status, 200);
     const md = r.body.markdown;
     // Estructura obligatoria del informe (especificación 3.1–3.16), síntesis educativa (4) y control de calidad (6).
-    for (let i = 1; i <= 16; i++) assert.ok(md.includes(`## ${i}. `), `sección ${i}`);
-    assert.ok(md.includes('## Síntesis para docentes y psicólogos educativos'));
+    for (let i = 1; i <= 16; i++) assert.ok(md.includes(`## 3.${i}. `), `sección 3.${i}`);
+    assert.ok(md.includes('## Síntesis educativa para profesores y psicopedagogos'));
     assert.ok(md.includes('## Control de calidad del informe'));
     if (process.env.VOLCAR_INFORME) (await import('node:fs')).writeFileSync(process.env.VOLCAR_INFORME, md);
     assert.match(md, /Desde primero básico se distrae mucho en clases/);
     assert.match(md, /«No interrumpe a sus compañeros\.»/);
-    assert.match(md, /R1\.5 Dificultad para organizar tareas y actividades \| Desconocido \/ no recuerda/);
+    assert.match(md, /A5 — Dificultad para organizar tareas y actividades \(R1\.5\) \| Desconocido \/ no recuerda/);
     assert.match(md, /Nesplora/);
     assert.match(md, /Referencias científicas/);
     assert.match(md, /PENDIENTE DE VALIDACIÓN PROFESIONAL/);

@@ -206,3 +206,12 @@ Por indicación del cliente («dejar todo como lo pidió Mario»), se corrigiero
 Resultado: protocolo formal **26 de 26 aprobadas**; suite existente **82 de 82**. El protocolo forma parte de `npm test`.
 
 Efecto clínico a tener en cuenta: en el escenario de coincidencia (apoderado, colegio y Nesplora convergentes) el motor ahora establece «el contraste DSM-5-TR respalda la hipótesis…», que antes quedaba en «información insuficiente» por la falsa contradicción de frecuencia (A2). Sigue siendo una hipótesis estructurada pendiente de validación profesional; el informe no afirma un diagnóstico.
+
+## 7. Modelo Maestro y Modelo de Informe de Salida del cliente (31-10-2026)
+
+- El generador sigue ambos documentos (archivados en `protocol/fuentes/`): identificación resumida y alcance; secciones 3.1–3.16 en orden; matriz A1–A9/H1–H9 con frecuencia por fuente, inicio e impacto; requisitos con «Límite / pendiente»; tamizaje por factor en 3.11; síntesis educativa con sus 8 apartados; declaración de alcance y responsabilidad (D20).
+- La emisión final y la validación se bloquean si el informe no reproduce al motor (D21).
+- Nesplora en formato interpretativo adaptado (.docx) se lee con sus cinco índices y condiciones; la conclusión diagnóstica propia del documento no se incorpora (D22).
+- Conners: verificado lo existente (escala registrada, PE-20). Lo que faltaba en la integración técnica: un documento Conners se leía como observación narrativa del colegio; ahora se guarda sin crear síntomas y sus puntajes se registran como escala (D23). La lectura automática específica de Conners sigue sin implementarse (requiere muestra, versión y reglas autorizadas).
+- C2: no requiere cambio de programación en el generador; el informe declara que el impacto se explora a nivel del caso. Cambiarlo sería una modificación de las Etapas 7/9, pendiente de decisión del responsable.
+- Las Etapas 1–9 no se modificaron. Protocolo formal: 29/29 (PE-26 Nesplora adaptado, PE-27 estructura del Modelo de Salida, PE-28 Conners); suite existente: 82/82.
