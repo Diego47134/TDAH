@@ -12,7 +12,7 @@ import { interpretarRespuesta, detectarMenciones, ErrorEntrada } from './interpr
 import { leerInformeEscolar, validarExtraccionManual } from './informeEscolar.js';
 import { evaluarRequisitos, generarInforme, markdownAHtml } from './informe.js';
 import { integrar } from './integracion.js';
-import { datosParaRedaccion, verificarRedaccion } from './informeIntegrado.js';
+import { datosParaRedaccion, verificarRedaccion, informeIntegrado, CONTROLES_BLOQUEANTES } from './informeIntegrado.js';
 import { crearBuscador, ErrorBusqueda, SUGERIDAS, FUENTES, validarConsulta } from './bibliografia.js';
 import { crearConsultas } from './consultas.js';
 import { CLASES, MAX_BYTES, ErrorDocumento, carpetaDocumentos, extraerTexto, guardarArchivo, leerArchivo } from './documentos.js';
@@ -125,6 +125,15 @@ export function crearServicio({ db, protocolo, buscador = crearBuscador(), ia = 
     return nuevas;
   }
 
+  /** Si el informe no reproduce al motor (estructura, matriz, recuentos, conclusión), no se emite (Modelo Maestro §3). */
+  function bloquearSiInconsistente(casoId, ctx, { redaccion }) {
+    const { calidad } = informeIntegrado(ctx, integrar(ctx), { tipo: 'final', redaccion });
+    const fallos = calidad.filter((x) => CONTROLES_BLOQUEANTES.includes(x.control) && !x.ok);
+    if (!fallos.length) return;
+    X.registrarError(db, casoId, 'informe', 'Inconsistencia entre el informe y el motor', fallos);
+    throw new ErrorServicio(409, `No se emite el informe: ${fallos.map((x) => `${x.control} — ${x.detalle}`).join(' ')}`, { fallos });
+  }
+
   /**
    * Guarda el resultado de un instrumento sin perder el anterior: si ya había una aplicación o un
    * registro del mismo instrumento, se conserva en `resultados.anteriores` (Etapa 9 §24 y §I).
@@ -137,7 +146,10 @@ export function crearServicio({ db, protocolo, buscador = crearBuscador(), ia = 
       return;
     }
     const { anteriores = [], ...resPrevios } = previa.resultados || {};
-    const historial = previa.estado === 'pendiente' && !previa.resultados ? anteriores
+    if (resultados && typeof resultados === 'object') { const { anteriores: _ignorado, ...limpio } = resultados; resultados = limpio; }
+    // Volver a guardar los mismos resultados (p. ej. al editar fecha u observaciones) no crea un registro anterior.
+    const mismos = JSON.stringify(resultados || {}) === JSON.stringify(resPrevios) && previa.estado === estado;
+    const historial = (previa.estado === 'pendiente' && !previa.resultados) || mismos ? anteriores
       : [...anteriores, { estado: previa.estado, fecha: previa.fecha, aplicador: previa.aplicador, observaciones: previa.observaciones, resultados: Object.keys(resPrevios).length ? resPrevios : null, reemplazado: ahora() }];
     const nuevos = resultados || historial.length ? { ...(resultados || {}), ...(historial.length ? { anteriores: historial } : {}) } : null;
     db.prepare('UPDATE evaluaciones SET estado = ?, fecha = ?, aplicador = ?, resultados = ?, observaciones = ?, actualizado = ? WHERE id = ?')
@@ -344,7 +356,10 @@ export function crearServicio({ db, protocolo, buscador = crearBuscador(), ia = 
           verif = verificarExtraccion(P, clase, salida, texto); metodo = 'ia';
         } catch (e) { errorIA = e; }
       }
-      if (!verif && clase === 'informe_escolar' && !ext.advertencia) {
+      // Escala Conners: no se lee como observación narrativa (sus ítems no son conductas observadas del caso).
+      const conners = !nesplora && /\bconners\b/i.test(ext.texto || '');
+      if (conners && !verif && !detalle) detalle = 'Escala Conners guardada. La lectura automática específica de Conners no está implementada: registre sus puntajes en Instrumentos (escala docente o apoderado); se mostrarán en el informe sin crear criterios.';
+      if (!verif && clase === 'informe_escolar' && !ext.advertencia && !conners) {
         const lectura = leerInformeEscolar(P, texto);
         verif = { documento: lectura.documento, respuestas: [], hechos: lectura.hechos, datos: lectura.datos, puntajes: [], rv: { variables: [], limitaciones: [] }, descartados: [] };
         metodo = errorIA ? 'reglas (contingencia)' : 'reglas';
@@ -633,6 +648,7 @@ export function crearServicio({ db, protocolo, buscador = crearBuscador(), ia = 
           else iaNota = { motivo: 'verificacion', detalle: v.motivos };
         } catch (e) { iaNota = { motivo: 'error', detalle: e.message }; X.registrarError(db, casoId, 'api_ia', e.message, e.detalle); }
       }
+      bloquearSiInconsistente(casoId, ctx, { redaccion });
       return transaccion(db, () => {
         const md = generarInforme(ctx, { tipo: 'final', requisitos, redaccion });
         const r = db.prepare(`INSERT INTO informes (caso_id, tipo, estado, contenido_md, requisitos, generado, redaccion) VALUES (?, 'final', 'pendiente_validacion', ?, ?, ?, ?)`)
@@ -650,6 +666,7 @@ export function crearServicio({ db, protocolo, buscador = crearBuscador(), ia = 
       if (!inf) throw new ErrorServicio(404, 'Informe no encontrado.');
       const requisitos = evaluarRequisitos(ctx);
       if (!requisitos.completo) throw new ErrorServicio(409, 'El expediente cambió y ya no cumple los requisitos; genere un nuevo informe.', requisitos);
+      bloquearSiInconsistente(casoId, ctx, { redaccion: inf.redaccion ? JSON.parse(inf.redaccion) : null });
       return transaccion(db, () => {
         const fecha = ahora();
         const md = generarInforme(ctx, { tipo: 'final', requisitos, validacion: { por: profesional.trim(), fecha }, redaccion: inf.redaccion ? JSON.parse(inf.redaccion) : null });

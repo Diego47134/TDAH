@@ -69,7 +69,7 @@ async function subir(api, id, buf, nombre, clase) {
 async function responderN(api, id, n, g) { for (let i = 0; i < n; i++) await responder(api, id, g); }
 const informe = async (api, id) => (await api.req('GET', `/api/casos/${id}/informe`)).body.markdown || '';
 const sint = (v, s) => v.sintomas.find((x) => x.id === s);
-const seccion = (md, n) => { const i = md.indexOf(`## ${n}.`); if (i < 0) return ''; const j = md.indexOf('\n## ', i + 4); return md.slice(i, j < 0 ? undefined : j); };
+const seccion = (md, n) => { const i = md.indexOf(`## 3.${n}.`); if (i < 0) return ''; const j = md.indexOf('\n## ', i + 4); return md.slice(i, j < 0 ? undefined : j); };
 
 /** Caso completo: entrevista y documentos en el orden indicado. */
 async function armar(api, { g, orden = 'entrevista_primero', colegio = true, nesplora = null, etiqueta = 'Caso de protocolo' }) {
@@ -276,7 +276,7 @@ caso('PE-11', 'Escenario 1 · Coincidencia', 'Apoderado, colegio y Nesplora conv
   const s4 = seccion(md, 4);
   const okRV = /Comisiones[^\n]*Converge con conductas documentadas/i.test(s4);
   // Afirmaciones diagnósticas positivas (se excluye el texto legal «Ningún diagnóstico de salud mental…»).
-  const diag = /(se (le )?diagnostica|diagn[oó]stico confirmado|(?<!ning[uú]n )diagn[oó]stico de tdah|tiene tdah|presenta (un )?tdah)/i.test(md);
+  const diag = /(se (le )?diagnostica|(?<!sospecha y )diagn[oó]stico confirmado|(?<!ning[uú]n )diagn[oó]stico de tdah|tiene tdah|presenta (un )?tdah)/i.test(md);
   r.obtenido = `Síntomas con apoderado + colegio: ${conv.length}/10. R10: ${v.integracion.requisitos.R10.estado}. Resultado del motor: ${v.integracion.resultado.tipo} (puerta ${v.integracion.puerta}). Nesplora: ${v.evaluaciones.find((e) => e.instrumento_id === 'NESPLORA')?.estado}; comisiones convergentes en §4: ${okRV ? 'sí' : 'no'}. «Pendiente de validación»: ${/pendiente de validación/.test(md) ? 'sí' : 'no'}. Afirmación diagnóstica: ${diag ? 'SÍ' : 'no'}.`;
   return conv.length === 10 && v.integracion.requisitos.R10.estado === 'APOYADO' && okRV && /pendiente de validación/.test(md) && !diag;
 });
@@ -287,7 +287,7 @@ caso('PE-12', 'Escenario 1 · Coincidencia', 'La convergencia no se cuenta dos v
   r.esperado = 'R1 «apoyados» ≤ 9 y R2 ≤ 9; la tabla del §5 tiene exactamente 18 filas de síntomas, sin repetidos.';
   const s = Object.fromEntries(SINT_COLEGIO.map((x) => [x, 'A']));
   const { md } = await armar(api, { g: guion({ sintomas: s, contextos: ['A', 'B'] }), etiqueta: 'PE-12' });
-  const filas = seccion(md, 5).split('\n').filter((l) => /^\| R\d\.\d+ /.test(l)).map((l) => l.split('|')[1].trim().split(' ')[0]);
+  const filas = seccion(md, 5).split('\n').filter((l) => /^\| [AH]\d — /.test(l)).map((l) => l.split('|')[1].trim().split(' ')[0]);
   const m = seccion(md, 5).match(/Inatención: (\d+) de 9 .*?impulsividad: (\d+) de 9/);
   r.obtenido = `Filas de síntomas en §5: ${filas.length} (únicas ${new Set(filas).size}). Apoyados: inatención ${m?.[1]}, hiperactividad/impulsividad ${m?.[2]}.`;
   return filas.length === 18 && new Set(filas).size === 18 && Number(m?.[1]) <= 9 && Number(m?.[2]) <= 9;
@@ -437,12 +437,12 @@ caso('PE-21', 'Informe y validación', 'El informe final no se valida sin profes
 caso('PE-22', 'Informe y validación', 'El informe sigue el formato de 16 secciones pedido por el cliente', async (r) => {
   r.entrada = 'Caso de PE-11 (tres fuentes).';
   r.regla = '«Módulo de generación del informe» del cliente (secciones 3.1–3.16, síntesis educativa y control de calidad); decisión K9 del registro de contradicciones (prevalece el formato del cliente).';
-  r.esperado = 'Secciones 1 a 16 en orden, «Síntesis para docentes y psicólogos educativos» y «Control de calidad del informe».';
+  r.esperado = 'Secciones 3.1 a 3.16 en orden, «Síntesis educativa para profesores y psicopedagogos» y «Control de calidad del informe» (Modelo de Informe de Salida).';
   const s = Object.fromEntries(SINT_COLEGIO.map((x) => [x, 'A']));
   const { md } = await armar(api, { g: guion({ sintomas: s, contextos: ['A', 'B'] }), etiqueta: 'PE-22' });
-  const nums = [...md.matchAll(/^## (\d+)\. /gm)].map((m) => Number(m[1]));
-  const ok = nums.join() === Array.from({ length: 16 }, (_, i) => i + 1).join() && /## Síntesis para docentes y psicólogos educativos/.test(md) && /## Control de calidad del informe/.test(md);
-  r.obtenido = `Secciones numeradas: ${nums.join(', ')}. Síntesis educativa: ${/Síntesis para docentes/.test(md) ? 'sí' : 'no'}. Control de calidad: ${/Control de calidad del informe/.test(md) ? 'sí' : 'no'}.`;
+  const nums = [...md.matchAll(/^## 3\.(\d+)\. /gm)].map((m) => Number(m[1]));
+  const ok = nums.join() === Array.from({ length: 16 }, (_, i) => i + 1).join() && /## Síntesis educativa para profesores y psicopedagogos/.test(md) && /## Control de calidad del informe/.test(md);
+  r.obtenido = `Secciones numeradas: ${nums.join(', ')}. Síntesis educativa: ${/Síntesis educativa para profesores/.test(md) ? 'sí' : 'no'}. Control de calidad: ${/Control de calidad del informe/.test(md) ? 'sí' : 'no'}.`;
   return ok;
 });
 
@@ -469,10 +469,63 @@ caso('PE-23', 'Informe y validación', 'Los requisitos del informe coinciden con
   const difs = [];
   for (const { v, md } of [a, b]) {
     const s6 = seccion(md, 6);
-    for (const [k, x] of Object.entries(v.integracion.requisitos)) if (!s6.includes(`| ${x.nombre} | ${x.estado} |`)) difs.push(`${v.caso.etiqueta} ${k}`);
+    for (const [k, x] of Object.entries(v.integracion.requisitos)) if (!s6.split('\n').some((l) => l.includes(`${x.nombre} (${k}) | ${x.estado} |`))) difs.push(`${v.caso.etiqueta} ${k}`);
   }
   r.obtenido = difs.length ? `Diferencias: ${difs.join(', ')}.` : 'Los 20 requisitos (2 casos × R1–R10) coinciden.';
   return !difs.length;
+});
+
+// =================================================================================================
+// H. MODELO MAESTRO Y MODELO DE INFORME DE SALIDA (30-10-2026)
+// =================================================================================================
+
+const NESPLORA_ADAPTADO = DOC('nesplora-aula-adaptado.docx'); // «Informe_Nesplora_Joaquin_10_anos_Oficial.docx» del cliente
+
+caso('PE-26', 'Instrumentos', 'El Nesplora en formato interpretativo adaptado (.docx) se lee con sus cinco índices y se vincula al caso correcto', async (r) => {
+  r.entrada = 'Caso «Joaquín P. S.», 10 años, puerta completa; se carga «Informe_Nesplora_Joaquin_10_anos_Oficial.docx».';
+  r.regla = 'Modelo Maestro §3 (Instrumentos) y §6 (verificar identidad, edad y fecha); Etapa 9 §18.';
+  r.esperado = 'Evaluación «realizada» (identidad verificada) con omisiones T59 normal, comisiones T80 muy bajo, TR T37 alto, variabilidad T80 muy bajo y actividad motora T69 bajo; la conclusión diagnóstica propia del documento no se incorpora.';
+  const v = await crearCaso(api, 'Joaquín P. S.');
+  await responderN(api, v.caso.id, 4, guion({ extra: { 'INI-EDAD': { texto: '10' } } }));
+  const n = await subir(api, v.caso.id, NESPLORA_ADAPTADO, 'Informe_Nesplora_Joaquin_10_anos_Oficial.docx', 'informe_rv');
+  const ev = (await vista(api, v.caso.id)).evaluaciones.find((e) => e.instrumento_id === 'NESPLORA');
+  const vars = Object.fromEntries((ev?.resultados?.variables || []).map((x) => [x.id, `T${x.t} ${x.rendimiento}`]));
+  const lim = (ev?.resultados?.limitaciones || []).some((x) => /conclusión diagnóstica propia/.test(x));
+  r.obtenido = `HTTP ${n.status}; estado ${ev?.estado}; índices: ${JSON.stringify(vars)}; fecha ${ev?.fecha}; conclusión propia excluida: ${lim ? 'sí' : 'no'}.`;
+  return ev?.estado === 'realizada' && vars.omisiones === 'T59 normal' && vars.comisiones === 'T80 muy bajo' && vars.tiempo_reaccion === 'T37 alto' && vars.variabilidad_tr === 'T80 muy bajo' && vars.actividad_motora === 'T69 bajo' && lim;
+});
+
+caso('PE-27', 'Informe y validación', 'El informe sigue el Modelo de Informe de Salida: identificación, alcance, matriz A1–H9, tamizaje por factores, síntesis y declaración', async (r) => {
+  r.entrada = 'Caso de tres fuentes (apoderado, informe real del colegio, Nesplora vinculado); tamizaje con «Sueño».';
+  r.regla = 'Modelo de Informe de Salida TDAH (30-10-2026) y Modelo Maestro §4, §5 y §7.';
+  r.esperado = 'Identificación resumida y alcance antes de 3.1; estado PENDIENTE; 3.1 con curso y establecimiento del colegio; 3.5 con A1–A9 y H1–H9; 3.11 con Sueño, factores sensoriales, neurológicos y médicos con estado; síntesis con sus 8 apartados; declaración final; controles de 16 secciones, matriz y tamizaje «Cumple».';
+  const s = Object.fromEntries(SINT_COLEGIO.map((x) => [x, 'A']));
+  const { md } = await armar(api, { g: guion({ sintomas: s, contextos: ['A', 'B'], tamizaje: ['D'] }), nesplora: 'vincular', etiqueta: 'PE-27' });
+  const i1 = md.indexOf('## Identificación resumida'); const i31 = md.indexOf('## 3.1.');
+  const codigos = (seccion(md, 5).match(/^\| [AH]\d — /gm) || []).map((x) => x.slice(2, 4));
+  const s11 = seccion(md, 11);
+  const factores = ['Sueño', 'Factores sensoriales', 'Factores neurológicos', 'Factores médicos'].filter((f) => new RegExp(`\\| ${f} \\|[^\\n]*\\| (informado|no informado|requiere aclaración|pendiente de evaluación)`).test(s11));
+  const sub = ['Perfil funcional en lenguaje sencillo', 'Fortalezas aprovechables para el aprendizaje', 'Dificultades observadas y contextos', 'Apoyos concretos en aula', 'Estrategias psicopedagógicas', 'Orientaciones para el hogar (si corresponde)', 'Indicadores de seguimiento', 'Aspectos pendientes'].filter((x) => md.includes(`### ${x}`));
+  const qc = ['Estructura de 16 secciones', 'Matriz de 18 síntomas', 'Tamizaje médico, sensorial y del sueño'].map((c) => (md.split('\n').find((l) => l.startsWith(`| ${c} |`)) || '').split('|')[2]?.trim());
+  const ok = i1 >= 0 && i1 < i31 && /Estado de validación:\*\* PENDIENTE/.test(md) && /\*\*Curso:\*\* 3° Básico A/.test(md) && /Colegio San Agustín/.test(seccion(md, 1))
+    && codigos.join() === 'A1,A2,A3,A4,A5,A6,A7,A8,A9,H1,H2,H3,H4,H5,H6,H7,H8,H9' && factores.length === 4 && sub.length === 8
+    && /## Declaración de alcance y responsabilidad profesional/.test(md) && qc.every((x) => x === 'Cumple');
+  r.obtenido = `Identificación antes de 3.1: ${i1 >= 0 && i1 < i31 ? 'sí' : 'no'}. Códigos 3.5: ${codigos.join(',')}. Factores 3.11: ${factores.length}/4. Apartados síntesis: ${sub.length}/8. Declaración: ${/Declaración de alcance/.test(md) ? 'sí' : 'no'}. Controles: ${qc.join(' / ')}.`;
+  return ok;
+});
+
+caso('PE-28', 'Cuestionarios (Conners)', 'Un documento Conners no se lee como observación narrativa del colegio', async (r) => {
+  r.entrada = 'Puerta completa; se carga como «informe escolar» un texto de escala Conners 3 (versión docente) con ítems y puntajes T.';
+  r.regla = 'Modelo Maestro §9 (Conners: no declarar integrado; sus resultados no crean criterios) y §3 (fuentes separadas).';
+  r.esperado = 'El documento se guarda; no se crean datos de síntomas desde los ítems de la escala; el detalle indica registrar los puntajes en Instrumentos.';
+  const v = await crearCaso(api, 'PE-28');
+  await responderN(api, v.caso.id, 4, guion());
+  const txt = Buffer.from('Conners 3 – Formulario docente. Ítems: Se distrae fácilmente (3). No termina las tareas (3). Le cuesta permanecer sentado (2). Inatención T = 78. Hiperactividad/Impulsividad T = 72.');
+  const res = await subir(api, v.caso.id, txt, 'conners.txt', 'informe_escolar');
+  const w = await vista(api, v.caso.id);
+  const n = w.hechos.filter((h) => h.fuente === 'informe_escolar').length;
+  r.obtenido = `HTTP ${res.status}; datos de síntomas creados desde la escala: ${n}; detalle: «${(res.body.detalle || '').slice(0, 120)}».`;
+  return res.status === 200 && n === 0 && /Conners/.test(res.body.detalle || '');
 });
 
 // ------------------------------------------------------------------ salida ---
